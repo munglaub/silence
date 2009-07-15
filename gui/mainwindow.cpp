@@ -18,7 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
 	// the treeview on the left side
 	QTreeView *tree = new QTreeView();
 	QDockWidget *dockWidget = new QDockWidget(tr("Tree"), this);
-	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea);
+	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | 
+	Qt::RightDockWidgetArea);
 	dockWidget->setWidget(tree);
 	addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
 
