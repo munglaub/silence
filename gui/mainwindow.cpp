@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 	fileMenu->addAction(tr("ein"));
 	fileMenu->addAction(tr("git"));
 	fileMenu->addAction(tr("test"));
+	fileMenu->addAction(tr("test"));
 }   
 
 MainWindow::~MainWindow()
