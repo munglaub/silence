@@ -30,11 +30,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// the main menu
 	QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-	fileMenu->addAction(tr("blah"));
-	fileMenu->addAction(tr("blubb"));
-	fileMenu->addAction(tr("foo"));
-	fileMenu->addAction(tr("bar"));
-	fileMenu->addAction(tr("foobar"));
+	fileMenu->addAction(tr("das"));
+	fileMenu->addAction(tr("ist"));
+	fileMenu->addAction(tr("ein"));
+	fileMenu->addAction(tr("git"));
+	fileMenu->addAction(tr("test"));
 }   
 
 MainWindow::~MainWindow()
