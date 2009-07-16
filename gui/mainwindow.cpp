@@ -1,5 +1,6 @@
 #include "gui/mainwindow.h"
 #include "gui/filemenu.h"
+#include "gui/editmenu.h"
 #include "gui/helpmenu.h"
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexercpp.h>
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 	resize(750, 500);
 	
 	menuBar()->addMenu(new FileMenu());
+	menuBar()->addMenu(new EditMenu());
 	menuBar()->addMenu(new HelpMenu());
 }   
 
