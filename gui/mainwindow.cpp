@@ -4,7 +4,8 @@
 #include <QTreeView>
 #include <QDockWidget>
 #include <QMenuBar>
-#include <QMenu>
+//#include <QMenu>
+#include "gui/filemenu.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -26,21 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 	// set the initial windowsize
 	resize(750, 500);
-
-
-	// the main menu
-	QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-	fileMenu->addAction(tr("das"));
-	fileMenu->addAction(tr("ist"));
-	fileMenu->addAction(tr("ein"));
-	fileMenu->addAction(tr("git"));
-	fileMenu->addAction(tr("test"));
-	fileMenu->addAction(tr("test"));
+	
+	menuBar()->addMenu(new FileMenu());
 }   
 
 MainWindow::~MainWindow()
 {   
 	delete textEdit;
 }
-
 
