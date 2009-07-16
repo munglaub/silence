@@ -1,11 +1,11 @@
 #include "gui/mainwindow.h"
+#include "gui/filemenu.h"
+#include "gui/helpmenu.h"
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexercpp.h>
 #include <QTreeView>
 #include <QDockWidget>
 #include <QMenuBar>
-//#include <QMenu>
-#include "gui/filemenu.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 	resize(750, 500);
 	
 	menuBar()->addMenu(new FileMenu());
+	menuBar()->addMenu(new HelpMenu());
 }   
 
 MainWindow::~MainWindow()
