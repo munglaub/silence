@@ -13,7 +13,8 @@ SOURCES += 	main.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
 			gui/infosidebar.cpp\
-			gui/statusbar.cpp
+			gui/statusbar.cpp\
+			gui/newnodedialog.cpp
 
 HEADERS +=	gui/mainwindow.h\
 			gui/filemenu.h\
@@ -24,7 +25,8 @@ HEADERS +=	gui/mainwindow.h\
 			gui/treeview.h\
 			gui/textedit.h\
 			gui/infosidebar.h\
-			gui/statusbar.h
+			gui/statusbar.h\
+			gui/newnodedialog.h
 
 LIBS	+=	-lqscintilla2
 

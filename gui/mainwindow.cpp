@@ -13,6 +13,8 @@
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
+	setWindowTitle(tr("Silence"));
+
 	// texteditor component
 	setCentralWidget(new TextEdit());
 	
