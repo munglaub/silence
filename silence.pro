@@ -10,7 +10,8 @@ SOURCES += 	main.cpp\
 			gui/aboutdialog.cpp\
 			gui/editmenu.cpp\
 			gui/viewmenu.cpp\
-			gui/treeview.cpp
+			gui/treeview.cpp\
+			gui/textedit.cpp
 
 HEADERS +=	gui/mainwindow.h\
 			gui/filemenu.h\
@@ -18,7 +19,8 @@ HEADERS +=	gui/mainwindow.h\
 			gui/aboutdialog.h\
 			gui/editmenu.h\
 			gui/viewmenu.h\
-			gui/treeview.h
+			gui/treeview.h\
+			gui/textedit.h
 
 LIBS	+=	-lqscintilla2
 
