@@ -9,14 +9,16 @@ SOURCES += 	main.cpp\
 			gui/helpmenu.cpp\
 			gui/aboutdialog.cpp\
 			gui/editmenu.cpp\
-			gui/viewmenu.cpp
+			gui/viewmenu.cpp\
+			gui/treeview.cpp
 
 HEADERS +=	gui/mainwindow.h\
 			gui/filemenu.h\
 			gui/helpmenu.h\
 			gui/aboutdialog.h\
 			gui/editmenu.h\
-			gui/viewmenu.h
+			gui/viewmenu.h\
+			gui/treeview.h
 
 LIBS	+=	-lqscintilla2
 

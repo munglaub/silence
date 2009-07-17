@@ -3,10 +3,9 @@
 #include "gui/editmenu.h"
 #include "gui/viewmenu.h"
 #include "gui/helpmenu.h"
+#include "gui/treeview.h"
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexercpp.h>
-#include <QTreeView>
-#include <QDockWidget>
 #include <QMenuBar>
 
 /*
@@ -28,17 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
 	setCentralWidget(textEdit);
 	
 	// the treeview on the left side
-	QTreeView *tree = new QTreeView();
-	QDockWidget *dockWidget = new QDockWidget(tr("Tree"), this);
-	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | 
-	Qt::RightDockWidgetArea);
-	dockWidget->setWidget(tree);
-	addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
-
+	addDockWidget(Qt::LeftDockWidgetArea, new TreeView(tr("Tree"), this));
 
 	// set the initial windowsize
 	resize(750, 500);
 	
+	// add menus
 	menuBar()->addMenu(new FileMenu());
 	menuBar()->addMenu(new EditMenu());
 	menuBar()->addMenu(new ViewMenu());
