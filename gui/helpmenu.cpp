@@ -6,7 +6,7 @@
 HelpMenu::HelpMenu(QWidget *parent)
 	: QMenu(parent)
 {
-	setTitle(tr("Help"));
+	setTitle(tr("&Help"));
 	QAction *about = addAction(tr("About"));
 	connect(about, SIGNAL(triggered()), new AboutDialog(), SLOT(exec()));
 }

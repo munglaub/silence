@@ -12,8 +12,10 @@ EditMenu::EditMenu(QWidget *parent)
 	addAction(tr("Copy"));
 	addAction(tr("Cut"));
 	addAction(tr("Paste"));
-	addSeparator();
 	addAction(tr("Select All"));
+	addSeparator();
+	addAction(tr("Search"));
+	addAction(tr("Replace"));
 }
 
 EditMenu::~EditMenu()

@@ -1,12 +1,22 @@
 #include "gui/mainwindow.h"
 #include "gui/filemenu.h"
 #include "gui/editmenu.h"
+#include "gui/viewmenu.h"
 #include "gui/helpmenu.h"
 #include <Qsci/qsciscintilla.h>
 #include <Qsci/qscilexercpp.h>
 #include <QTreeView>
 #include <QDockWidget>
 #include <QMenuBar>
+
+/*
+	TODO:
+	extract textedit and treeview, own class
+	get/set for these components
+	add meta-info-sidebar
+	statusbar
+*/
+
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -31,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
 	
 	menuBar()->addMenu(new FileMenu());
 	menuBar()->addMenu(new EditMenu());
+	menuBar()->addMenu(new ViewMenu());
 	menuBar()->addMenu(new HelpMenu());
 }   
 
