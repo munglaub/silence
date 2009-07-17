@@ -12,7 +12,8 @@ SOURCES += 	main.cpp\
 			gui/viewmenu.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
-			gui/infosidebar.cpp
+			gui/infosidebar.cpp\
+			gui/statusbar.cpp
 
 HEADERS +=	gui/mainwindow.h\
 			gui/filemenu.h\
@@ -22,7 +23,8 @@ HEADERS +=	gui/mainwindow.h\
 			gui/viewmenu.h\
 			gui/treeview.h\
 			gui/textedit.h\
-			gui/infosidebar.h
+			gui/infosidebar.h\
+			gui/statusbar.h
 
 LIBS	+=	-lqscintilla2
 

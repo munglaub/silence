@@ -6,13 +6,8 @@
 #include "gui/textedit.h"
 #include "gui/treeview.h"
 #include "gui/infosidebar.h"
+#include "gui/statusbar.h"
 #include <QMenuBar>
-
-/*
-	TODO:
-	add meta-info-sidebar
-	statusbar
-*/
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -27,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 	// information sidebar to show the meta-infos
 	addDockWidget(Qt::RightDockWidgetArea, new InfoSidebar(tr("Info"), this));
 
+	setStatusBar(new StatusBar());
 
 	// set the initial windowsize
 	resize(950, 500);
