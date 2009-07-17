@@ -5,6 +5,7 @@
 #include "gui/helpmenu.h"
 #include "gui/textedit.h"
 #include "gui/treeview.h"
+#include "gui/infosidebar.h"
 #include <QMenuBar>
 
 /*
@@ -23,8 +24,12 @@ MainWindow::MainWindow(QWidget *parent)
 	// the treeview on the left side
 	addDockWidget(Qt::LeftDockWidgetArea, new TreeView(tr("Tree"), this));
 
+	// information sidebar to show the meta-infos
+	addDockWidget(Qt::RightDockWidgetArea, new InfoSidebar(tr("Info"), this));
+
+
 	// set the initial windowsize
-	resize(750, 500);
+	resize(950, 500);
 	
 	// add menus
 	menuBar()->addMenu(new FileMenu());

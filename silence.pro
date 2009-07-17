@@ -11,7 +11,8 @@ SOURCES += 	main.cpp\
 			gui/editmenu.cpp\
 			gui/viewmenu.cpp\
 			gui/treeview.cpp\
-			gui/textedit.cpp
+			gui/textedit.cpp\
+			gui/infosidebar.cpp
 
 HEADERS +=	gui/mainwindow.h\
 			gui/filemenu.h\
@@ -20,7 +21,8 @@ HEADERS +=	gui/mainwindow.h\
 			gui/editmenu.h\
 			gui/viewmenu.h\
 			gui/treeview.h\
-			gui/textedit.h
+			gui/textedit.h\
+			gui/infosidebar.h
 
 LIBS	+=	-lqscintilla2
 
