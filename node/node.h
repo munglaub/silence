@@ -12,11 +12,16 @@ class Node
 		// ..
 
 	private:
+		NodeId id;
 		NodeCaption caption;
 		NodeContent content;
 		QStringList metaInfos;
 		QString mimeType;
-
+		QDate creationDate;
+		QDate modificationDate;
+		
+		Node *parent;
+		QList<Node> children;
 };
 
 #endif // NODE_H
