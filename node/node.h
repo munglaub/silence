@@ -1,6 +1,11 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include "node/nodecaption.h"
+#include "node/nodeid.h"
+#include <QString>
+#include <QStringList>
+
 class Node
 {
 	public:
@@ -13,9 +18,10 @@ class Node
 
 	private:
 		NodeId id;
+		// maybe some sort of an icon
 		NodeCaption caption;
 		NodeContent content;
-		QStringList metaInfos;
+		QStringList tags;
 		QString mimeType;
 		QDate creationDate;
 		QDate modificationDate;
