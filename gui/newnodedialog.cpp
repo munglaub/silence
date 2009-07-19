@@ -15,20 +15,20 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
 	setWindowTitle(tr("New Node"));
-	setFixedWidth(500);
+	resize(500, 250);
 
-	QVBoxLayout *baselayout = new QVBoxLayout();
+	QVBoxLayout *baselayout = new QVBoxLayout;
 
-	QFormLayout *namelayout = new QFormLayout();
-	QLineEdit *nameedit = new QLineEdit();
+	QFormLayout *namelayout = new QFormLayout;
+	QLineEdit *nameedit = new QLineEdit;
 	namelayout->addRow(tr("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);
 
 	// Type & highlighting
-	QGridLayout *typelayout = new QGridLayout();
+	QGridLayout *typelayout = new QGridLayout;
 	QLabel *lbltype = new QLabel(tr("Type"));
 	typelayout->addWidget(lbltype, 0, 0);
-	QComboBox *typebox = new QComboBox();
+	QComboBox *typebox = new QComboBox;
 	typebox->addItem(tr("Text"));
 	typebox->addItem(tr("Picture"));
 	typebox->addItem(tr("whatever"));
@@ -36,7 +36,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	QLabel *lblhighlight = new QLabel(tr("Syntax"));
 	typelayout->addWidget(lblhighlight, 0, 2);
-	QComboBox *synbox = new QComboBox();
+	QComboBox *synbox = new QComboBox;
 	synbox->addItem(tr("none"));
 	synbox->addItem(tr("C++"));
 	synbox->addItem(tr("Java"));
@@ -45,8 +45,8 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	// Tags
 	QGroupBox *tagbox = new QGroupBox(tr("Tags"));
-	QGridLayout *taglayout = new QGridLayout();
-	QListView *availtags = new QListView();
+	QGridLayout *taglayout = new QGridLayout;
+	QListView *availtags = new QListView;
 	taglayout->addWidget(availtags, 0, 0, 2, 1);
 	
 	QPushButton *add = new QPushButton(tr(">"));
@@ -54,13 +54,13 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	QPushButton *rm = new QPushButton(tr("<"));
 	taglayout->addWidget(rm, 1, 1);
 
-	QListView *selectedtags = new QListView();
+	QListView *selectedtags = new QListView;
 	taglayout->addWidget(selectedtags, 0, 2, 2, 1);
 	tagbox->setLayout(taglayout);
 	baselayout->addWidget(tagbox);
 
 	// buttons
-	QGridLayout *buttonlayout = new QGridLayout();
+	QGridLayout *buttonlayout = new QGridLayout;
 	QPushButton *cancel = new QPushButton(tr("Cancel"));
 	buttonlayout->addWidget(cancel, 0, 0, 1, 1, Qt::AlignLeft);
 	connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));

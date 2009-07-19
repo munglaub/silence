@@ -3,12 +3,13 @@
 
 #include <QDialog>
 
-class SearchNodeDialog : QDialog
+class SearchNodeDialog : public QDialog
 {
 	public:
-		SearchNodeDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		SearchNodeDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
 		~SearchNodeDialog();
-}
+};
 
 #endif // SEARCHNODEDIALOG_H
+
 
