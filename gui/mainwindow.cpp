@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 	setWindowTitle(tr("Silence"));
 
 	// texteditor component
-	textedit = new TextEdit();
+	textedit = new TextEdit;
 	setCentralWidget(textedit);
 	
 	// the treeview on the left side
@@ -27,20 +27,20 @@ MainWindow::MainWindow(QWidget *parent)
 	infosidebar = new InfoSidebar(tr("Info"), this);
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
 
-	statusbar = new StatusBar();
+	statusbar = new StatusBar;
 	setStatusBar(statusbar);
 
 	// set the initial windowsize
 	resize(950, 500);
 	
 	// add menus
-	filemenu = new FileMenu();
+	filemenu = new FileMenu;
 	menuBar()->addMenu(filemenu);
-	editmenu = new EditMenu();
+	editmenu = new EditMenu;
 	menuBar()->addMenu(editmenu);
-	viewmenu = new ViewMenu();
+	viewmenu = new ViewMenu;
 	menuBar()->addMenu(viewmenu);
-	helpmenu = new HelpMenu();
+	helpmenu = new HelpMenu;
 	menuBar()->addMenu(helpmenu);
 }   
 

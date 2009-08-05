@@ -1,58 +1,119 @@
 #include "gui/treeview.h"
+#include "node/treemodel.h"
 #include <QDockWidget>
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
 #include <QStringList>
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QAction>
 #include <QList>
-#include <QTreeWidgetItem>
+#include <QTreeView>
+#include <QModelIndex>
+#include <QVariant>
+
+
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        QToolBar *toolbar = new QToolBar();
-        
-        QAction *addAction = toolbar->addAction("add");        
-        connect(addAction, SIGNAL(triggered()), this, SLOT(addTreeItem()));
-        QAction *removeAction = toolbar->addAction("remove");
-        connect(removeAction, SIGNAL(triggered()), this, SLOT(removeTreeItem()));
-        
-        tree = new QTreeWidget; 
 
-	QTreeWidgetItem *first = new QTreeWidgetItem(tree, 0);
-	first->setText(0, "blah");
-	QTreeWidgetItem *firstsub = new QTreeWidgetItem(first, 0);
-	firstsub->setText(0, "foobar");
-	QTreeWidgetItem *sec = new QTreeWidgetItem(tree, 0);
-	sec->setText(0, "blubb");
+	// Toolbar
+	QToolBar *toolbar = new QToolBar();
+	addRowAction = toolbar->addAction("add row");        
+	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
+	addChildAction = toolbar->addAction("add child");        
+	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
+	removeAction = toolbar->addAction("remove");
+	connect(removeAction, SIGNAL(triggered()), this, SLOT(removeTreeItem()));
 
-        QFrame *frame = new QFrame();
-        QVBoxLayout *layout = new QVBoxLayout;  
-        layout->addWidget(toolbar);
-        layout->addWidget(tree);
-        frame->setLayout(layout);
-        setWidget(frame);
+	// Tree
+	tree = new QTreeView; 
+	model = new TreeModel;
+	tree->setModel(model);
+	tree->setSelectionBehavior(QAbstractItemView::SelectItems);
+	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
+			const QItemSelection&)),
+			this, SLOT(updateActions()));
+
+	QFrame *frame = new QFrame();
+	QVBoxLayout *layout = new QVBoxLayout;  
+	layout->addWidget(toolbar);
+	layout->addWidget(tree);
+	frame->setLayout(layout);
+	setWidget(frame);
+
+	updateActions();
 }
-
-void TreeView::addTreeItem()
-{
-        QTreeWidgetItem *newItem = new QTreeWidgetItem(tree, 0);
-        newItem->setText(0, "testing");
-}
-
-
-void TreeView::removeTreeItem()
-{
-        QTreeWidgetItem *newItem = new QTreeWidgetItem(tree, 0);
-        newItem->setText(0, "ich bin ein fieser segfault :)");
-}
-
 
 TreeView::~TreeView()
 {      
-        delete tree;
+	delete tree;
+	delete addRowAction;
+	delete addChildAction;
+	delete removeAction;
+}
+
+void TreeView::addRow()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	QAbstractItemModel *model = tree->model();
+
+	if (!model->insertRow(index.row() + 1, index.parent()))
+		return;
+
+	updateActions();
+
+	int column = 0;
+	int pos = index.row() + 1;
+	QModelIndex child = model->index(pos, column, index.parent());
+
+	model->setData(child, QVariant("new Row"), Qt::EditRole);
+	
+	tree->selectionModel()->setCurrentIndex(model->index(pos, column, index.parent()),
+		QItemSelectionModel::ClearAndSelect);
+}
+
+void TreeView::addChild()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	QAbstractItemModel *model = tree->model();
+
+	if (!model->insertRow(0, index))
+		return;
+	
+	int column = 0;
+	QModelIndex child = model->index(0, column, index);
+	model->setData(child, QVariant("new Node"), Qt::EditRole);
+
+	// brauch ich das??
+	if (!model->headerData(column, Qt::Horizontal).isValid())
+		model->setHeaderData(column, Qt::Horizontal, QVariant("[No header]"),
+							 Qt::EditRole);
+	tree->selectionModel()->setCurrentIndex(model->index(0, 0, index),
+		QItemSelectionModel::ClearAndSelect);
+	
+	updateActions();
+}
+
+void TreeView::removeTreeItem()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	QAbstractItemModel *model = tree->model();
+	if (model->removeRow(index.row(), index.parent()))
+		updateActions();
+}
+
+void TreeView::updateActions()
+{
+	bool hasSelection = !tree->selectionModel()->selection().isEmpty();
+	removeAction->setEnabled(hasSelection);
+
+	bool hasCurrent = tree->selectionModel()->currentIndex().isValid();
+	addRowAction->setEnabled(hasCurrent);
+
+	// mh, brauch ich das??
+	if (hasCurrent)
+		tree->closePersistentEditor(tree->selectionModel()->currentIndex());
+
 }
 

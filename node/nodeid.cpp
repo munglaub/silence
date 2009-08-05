@@ -3,20 +3,29 @@
 
 NodeId::NodeId()
 {
-	this(highestid + 1);
+	init(highestid + 1);
 }
 
-NodeId::NodeId(int id)
+NodeId::NodeId(int nodeid)
 {
-	this.id = id;
-	if (id > highestid)
-		highestid = id;
+	init(nodeid);
 }
+
 NodeId::~NodeId()
 {
 }
 
-QString NodeId::toString()
+int NodeId::highestid = 0;
+
+void NodeId::init(int nodeid)
+{
+	id = nodeid;
+	if (id > highestid)
+		highestid = id;
+}
+
+
+QString* NodeId::toString()
 {
 	QString *result = new QString;
 	result->setNum(id);

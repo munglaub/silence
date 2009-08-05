@@ -7,13 +7,14 @@ class NodeId
 {
 	public:
 		NodeId();
-		NodeId(int id);
+		NodeId(int nodeid);
 		~NodeId();
 
-		QString toString();
+		QString* toString();
 
 	private:
-		static int highestid = 0;
+		void init(int nodeid);
+		static int highestid;
 		int id;
 };
 

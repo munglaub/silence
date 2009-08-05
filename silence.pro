@@ -4,6 +4,10 @@ TARGET = silence
 TEMPLATE = app
 
 SOURCES += 	main.cpp\
+			data/datastore.cpp\
+			node/node.cpp\
+			node/nodeid.cpp\
+			node/treemodel.cpp\
 			gui/mainwindow.cpp\
 			gui/filemenu.cpp\
 			gui/helpmenu.cpp\
@@ -17,7 +21,11 @@ SOURCES += 	main.cpp\
 			gui/newnodedialog.cpp\
 			gui/searchnodedialog.cpp
 
-HEADERS +=	gui/mainwindow.h\
+HEADERS +=	data/datastore.h\
+			node/node.h\
+			node/nodeid.h\
+			node/treemodel.h\
+			gui/mainwindow.h\
 			gui/filemenu.h\
 			gui/helpmenu.h\
 			gui/aboutdialog.h\
