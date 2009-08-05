@@ -1,5 +1,4 @@
 #include "node/node.h"
-#include <QMessageBox>
 
 Node::Node(QString caption, Node *parent)
 {
