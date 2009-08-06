@@ -1,14 +1,14 @@
 #include "gui/newnodedialog.h"
+#include <QComboBox>
 #include <QDialog>
-#include <QVBoxLayout>
 #include <QFormLayout>
 #include <QGridLayout>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QLabel>
-#include <QComboBox>
 #include <QGroupBox>
+#include <QLabel>
+#include <QLineEdit>
 #include <QListView>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 
 NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)

@@ -1,15 +1,15 @@
 #include "gui/searchnodedialog.h"
+#include <QCheckBox>
+#include <QComboBox>
+#include <QDateEdit>
 #include <QDialog>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QCheckBox>
 #include <QLabel>
 #include <QLineEdit>
-#include <QRadioButton>
-#include <QDateEdit>
-#include <QComboBox>
 #include <QListView>
 #include <QPushButton>
+#include <QRadioButton>
 
 
 SearchNodeDialog::SearchNodeDialog(QWidget *parent, Qt::WindowFlags flags)

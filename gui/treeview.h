@@ -1,9 +1,13 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
-#include <QDockWidget>
-#include <QTreeView>
 #include "node/treemodel.h"
+#include <QDockWidget>
+#include <QFrame>
+#include <QToolBar>
+#include <QTreeView>
+#include <QVBoxLayout>
+
 
 class TreeView : public QDockWidget
 {
@@ -26,9 +30,13 @@ class TreeView : public QDockWidget
 		TreeModel *model;
 
 		// Toolbar
+		QToolBar *toolbar;
 		QAction *addRowAction;
 		QAction *addChildAction;
 		QAction *removeAction;
+
+		QFrame *frame;
+		QVBoxLayout *layout;
 };
 
 #endif // TREEVIEW_H

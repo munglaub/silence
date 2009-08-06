@@ -1,7 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
 
-//#include "node/nodecaption.h"
 #include "node/nodeid.h"
 #include <QString>
 #include <QStringList>
@@ -23,7 +22,6 @@ class Node
 		bool addChildren(int position, int count);
 		Node* getChild(int index);
 		int getChildCount() const;
-		// TODO: ueberdenken..
 		bool removeChildren(int position, int count);
 		
 
@@ -33,8 +31,6 @@ class Node
 
 		int columnCount() const;
 		
-		
-
 	private:
 		NodeId id;
 		QString caption;

@@ -1,15 +1,14 @@
 #include "gui/treeview.h"
 #include "node/treemodel.h"
+#include <QAction>
 #include <QDockWidget>
+#include <QList>
+#include <QModelIndex>
 #include <QStringList>
 #include <QToolBar>
-#include <QVBoxLayout>
-#include <QAction>
-#include <QList>
 #include <QTreeView>
-#include <QModelIndex>
 #include <QVariant>
-
+#include <QVBoxLayout>
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -18,7 +17,7 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	// Toolbar
-	QToolBar *toolbar = new QToolBar();
+	toolbar = new QToolBar();
 	addRowAction = toolbar->addAction("add row");        
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 	addChildAction = toolbar->addAction("add child");        
@@ -35,8 +34,8 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 			const QItemSelection&)),
 			this, SLOT(updateActions()));
 
-	QFrame *frame = new QFrame();
-	QVBoxLayout *layout = new QVBoxLayout;  
+	frame = new QFrame();
+	layout = new QVBoxLayout;  
 	layout->addWidget(toolbar);
 	layout->addWidget(tree);
 	frame->setLayout(layout);
@@ -48,9 +47,13 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 TreeView::~TreeView()
 {      
 	delete tree;
+	delete model;
 	delete addRowAction;
 	delete addChildAction;
 	delete removeAction;
+	delete toolbar;
+	delete layout;
+	delete frame;
 }
 
 void TreeView::addRow()
@@ -114,6 +117,5 @@ void TreeView::updateActions()
 	// mh, brauch ich das??
 	if (hasCurrent)
 		tree->closePersistentEditor(tree->selectionModel()->currentIndex());
-
 }
 

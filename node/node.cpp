@@ -76,7 +76,6 @@ Node* Node::getParent()
 	return parent;
 }
 
-
 QString Node::getCaption()
 {
 	return caption;
