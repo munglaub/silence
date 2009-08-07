@@ -4,14 +4,16 @@ Node::Node(QString caption, Node *parent)
 {
 	this->caption = caption;
 	this->parent = parent;
+	this->content = NULL;
 }
 
 Node::~Node()
 {
 	qDeleteAll(children);
+	delete content;
 }
 
-int Node::getIndex()
+int Node::getIndex() const
 {
 // TODO: welches ist richtig/besser??
 	if (parent)
@@ -61,7 +63,7 @@ bool Node::removeChildren(int position, int count)
 	return true;
 }
 
-Node* Node::getChild(int index)
+Node* Node::getChild(int index) const
 {
 	return children.value(index);
 }
@@ -71,12 +73,12 @@ int Node::getChildCount() const
 	return children.count();
 }
 
-Node* Node::getParent()
+Node* Node::getParent() const
 {
 	return parent;
 }
 
-QString Node::getCaption()
+QString Node::getCaption() const
 {
 	return caption;
 }
@@ -91,5 +93,15 @@ int Node::columnCount() const
 {
 	// the treeview has only 1 column
 	return 1;
+}
+
+AbstractNodeContent* Node::getContent() const
+{
+	return content;
+}
+
+void Node::setContent(AbstractNodeContent *content)
+{
+	this->content = content;
 }
 

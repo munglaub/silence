@@ -8,6 +8,7 @@ SOURCES += 	main.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
 			node/treemodel.cpp\
+			node/textnodecontent.cpp\
 			gui/mainwindow.cpp\
 			gui/filemenu.cpp\
 			gui/helpmenu.cpp\
@@ -25,6 +26,8 @@ HEADERS +=	data/datastore.h\
 			node/node.h\
 			node/nodeid.h\
 			node/treemodel.h\
+			node/abstractnodecontent.h\
+			node/textnodecontent.h\
 			gui/mainwindow.h\
 			gui/filemenu.h\
 			gui/helpmenu.h\
