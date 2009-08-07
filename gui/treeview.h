@@ -1,6 +1,7 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
+#include "gui/contentview.h"
 #include "node/treemodel.h"
 #include <QDockWidget>
 #include <QFrame>
@@ -14,7 +15,7 @@ class TreeView : public QDockWidget
 	Q_OBJECT
 
 	public:
-		TreeView(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		TreeView(const QString &title, ContentView *contentview, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		~TreeView();
 
 	public slots:
@@ -24,10 +25,12 @@ class TreeView : public QDockWidget
 		void addRow();
 		void addChild();
 		void removeTreeItem();
+		void selectItem();
                 
 	private:
 		QTreeView *tree;
 		TreeModel *model;
+		ContentView *contentview;
 
 		// Toolbar
 		QToolBar *toolbar;

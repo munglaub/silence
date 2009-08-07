@@ -20,7 +20,9 @@ SOURCES += 	main.cpp\
 			gui/infosidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
-			gui/searchnodedialog.cpp
+			gui/searchnodedialog.cpp\
+			gui/contentview.cpp\
+			gui/welcomeview.cpp
 
 HEADERS +=	data/datastore.h\
 			node/node.h\
@@ -39,7 +41,9 @@ HEADERS +=	data/datastore.h\
 			gui/infosidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
-			gui/searchnodedialog.h
+			gui/searchnodedialog.h\
+			gui/contentview.h\
+			gui/welcomeview.h
 
 LIBS	+=	-lqscintilla2
 

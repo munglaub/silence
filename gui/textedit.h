@@ -6,8 +6,14 @@
 class TextEdit : public QsciScintilla
 {
 	public:
-		TextEdit();
 		~TextEdit();
+		static TextEdit* create();
+
+	protected:
+		TextEdit();
+	
+	private:
+		static TextEdit *textedit;
 };
 
 #endif // TEXTEDIT_H

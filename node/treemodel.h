@@ -46,9 +46,11 @@ public:
 	bool removeRows(int position, int rows,
 					const QModelIndex &parent = QModelIndex());
 
+	Node* getItem(const QModelIndex &index) const;
+
+
 private:
     void init(Node *parent);
-	Node* getItem(const QModelIndex &index) const;
 
     Node *rootItem;
 };

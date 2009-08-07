@@ -1,4 +1,6 @@
+#include "gui/contentview.h"
 #include "gui/treeview.h"
+#include "node/textnodecontent.h"
 #include "node/treemodel.h"
 #include <QAction>
 #include <QDockWidget>
@@ -11,7 +13,7 @@
 #include <QVBoxLayout>
 
 
-TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
+TreeView::TreeView(const QString &title, ContentView *contentview, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -33,6 +35,12 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
 			const QItemSelection&)),
 			this, SLOT(updateActions()));
+
+	this->contentview = contentview;
+	// bin mir nicht sicher das das das beste signal ist
+	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
+			const QItemSelection&)),
+			this, SLOT(selectItem()));
 
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
@@ -59,7 +67,6 @@ TreeView::~TreeView()
 void TreeView::addRow()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
-	QAbstractItemModel *model = tree->model();
 
 	if (!model->insertRow(index.row() + 1, index.parent()))
 		return;
@@ -72,6 +79,9 @@ void TreeView::addRow()
 
 	model->setData(child, QVariant("new Row"), Qt::EditRole);
 	
+	Node *item = model->getItem(child);
+	item->setContent(new TextNodeContent);
+	
 	tree->selectionModel()->setCurrentIndex(model->index(pos, column, index.parent()),
 		QItemSelectionModel::ClearAndSelect);
 }
@@ -79,7 +89,6 @@ void TreeView::addRow()
 void TreeView::addChild()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
-	QAbstractItemModel *model = tree->model();
 
 	if (!model->insertRow(0, index))
 		return;
@@ -87,6 +96,9 @@ void TreeView::addChild()
 	int column = 0;
 	QModelIndex child = model->index(0, column, index);
 	model->setData(child, QVariant("new Node"), Qt::EditRole);
+
+	Node *item = model->getItem(child);
+	item->setContent(new TextNodeContent);
 
 	// brauch ich das??
 	if (!model->headerData(column, Qt::Horizontal).isValid())
@@ -104,6 +116,13 @@ void TreeView::removeTreeItem()
 	QAbstractItemModel *model = tree->model();
 	if (model->removeRow(index.row(), index.parent()))
 		updateActions();
+}
+
+void TreeView::selectItem()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	Node *selectedNode = model->getItem(index);
+	contentview->setContent(selectedNode->getContent());
 }
 
 void TreeView::updateActions()
