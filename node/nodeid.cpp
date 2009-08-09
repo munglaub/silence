@@ -1,6 +1,8 @@
 #include "node/nodeid.h"
 #include <QString>
 
+int NodeId::highestid = 0;
+
 NodeId::NodeId()
 {
 	init(highestid + 1);
@@ -15,8 +17,6 @@ NodeId::~NodeId()
 {
 }
 
-int NodeId::highestid = 0;
-
 void NodeId::init(int nodeid)
 {
 	id = nodeid;
@@ -24,6 +24,10 @@ void NodeId::init(int nodeid)
 		highestid = id;
 }
 
+int NodeId::getId() const
+{
+	return id;
+}
 
 QString* NodeId::toString()
 {

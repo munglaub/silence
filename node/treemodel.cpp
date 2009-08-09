@@ -139,10 +139,12 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
 
 void TreeModel::init(Node *parent)
 {
+/*
 	int position = 0;
 	int count = 1;
 	parent->addChildren(position, count);
 	parent->getChild(parent->getChildCount() - 1)->setCaption("foobar");
+*/
 }
 
 

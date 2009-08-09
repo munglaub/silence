@@ -1,10 +1,16 @@
 #include "node/node.h"
+#include <QDateTime>
+#include <QString>
+
 
 Node::Node(QString caption, Node *parent)
 {
 	this->caption = caption;
 	this->parent = parent;
-	this->content = NULL;
+	
+	content = NULL;
+	creationDate = QDateTime::currentDateTime();
+	modificationDate = QDateTime::currentDateTime();
 }
 
 Node::~Node()
@@ -78,6 +84,11 @@ Node* Node::getParent() const
 	return parent;
 }
 
+NodeId Node::getId() const
+{
+	return id;
+}
+
 QString Node::getCaption() const
 {
 	return caption;
@@ -104,4 +115,20 @@ void Node::setContent(AbstractNodeContent *content)
 {
 	this->content = content;
 }
+
+QDateTime Node::getCreationDate() const
+{
+	return creationDate;
+}
+
+QDateTime Node::getModificationDate() const
+{
+	return modificationDate;
+}
+
+void Node::setModificationDate(QDateTime &date)
+{
+	modificationDate = date;
+}
+
 

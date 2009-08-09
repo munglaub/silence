@@ -10,6 +10,7 @@ class NodeId
 		NodeId(int nodeid);
 		~NodeId();
 
+		int getId() const;
 		QString* toString();
 
 	private:

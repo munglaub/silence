@@ -5,6 +5,8 @@
 #include "node/nodeid.h"
 #include <QString>
 #include <QStringList>
+#include <QDateTime>
+
 
 class Node
 {
@@ -14,8 +16,8 @@ class Node
 		~Node();
 
 		int getIndex() const;
-
 		Node* getParent() const;
+		NodeId getId() const;
 
 		// children
 //		void addChild(Node *child);
@@ -34,19 +36,23 @@ class Node
 		AbstractNodeContent* getContent() const;
 		void setContent(AbstractNodeContent *content);
 
+		// dates
+		QDateTime getCreationDate() const;
+		QDateTime getModificationDate() const;
+		void setModificationDate(QDateTime &date);
+
 		int columnCount() const;
 		
 	private:
 		NodeId id;
 		QString caption;
 		AbstractNodeContent *content;
-		// maybe some sort of an icon
+		QDateTime creationDate;
+		QDateTime modificationDate;
 /*
-		NodeContent content;
+		icon
 		QStringList tags;
 		QString mimeType;
-		QDate creationDate;
-		QDate modificationDate;
 */		
 		Node *parent;
 		QList<Node*> children;
