@@ -9,36 +9,46 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	layout = new QGridLayout();
+
+	int row = 0;
 	
 	icon = new QLabel(tr("Icon"));
 	icon->setFont(QFont("Times", 34, QFont::Bold));
-	layout->addWidget(icon, 0, 0, 1, 2, Qt::AlignCenter);
+	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
+	++row;
+
+	caption = new QLabel(tr(""));
+	caption->setFont(QFont("Times", 10, QFont::Bold));
+	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
+	++row;
 
 	created = new QLabel(tr("Created:"));
 	created->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(created, 1, 0);
+	layout->addWidget(created, row, 0);
 	createdDate = new QLabel(tr("21.03.2008"));
-	layout->addWidget(createdDate, 1, 1);
-	
+	layout->addWidget(createdDate, row, 1);
+	++row;
+
 	lastedit = new QLabel(tr("Last edit:"));
 	lastedit->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(lastedit, 2, 0);
+	layout->addWidget(lastedit, row, 0);
 	lasteditDate = new QLabel(tr("17.04.2008"));
-	layout->addWidget(lasteditDate, 2, 1);
+	layout->addWidget(lasteditDate, row, 1);
+	++row;
 
-/*
-	QLabel *type = new QLabel(tr("Type:"));
+	type = new QLabel(tr("Type:"));
 	type->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(type, 3, 0);
-	QLabel *typeName = new QLabel(tr("Text"));
-	layout->addWidget(typeName, 3, 1);
-*/
+	layout->addWidget(type, row, 0);
+	typeName = new QLabel(tr(""));
+	layout->addWidget(typeName, row, 1);
+	++row;
 
 	labels = new QLabel(tr("Tags:"));
 	labels->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(labels, 4, 0);
+	layout->addWidget(labels, row, 0);
 	labelsData = new QLabel(tr("Private, Important"));
-	layout->addWidget(labelsData, 4, 1);
+	layout->addWidget(labelsData, row, 1);
+	
 
 	frame = new QFrame;
 	frame->resize(100, 175);
@@ -63,7 +73,8 @@ void InfoSidebar::setData(Node *data)
 {
 	node = data;
 
-	// daten aus node setzen
+	// set node infos
+	caption->setText(node->getCaption());
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
 	lasteditDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 
@@ -76,8 +87,18 @@ void InfoSidebar::setData(Node *data)
 		labels += ", ";
 		labels += iterator.next();
 	}
-
 	labelsData->setText(labels);
+
+	// set content infos
+	if (node->getContent())
+	{
+		typeName->setText(node->getContent()->getMimeType());
+		type->setHidden(false);
+		typeName->setHidden(false);
+	} else {
+		type->setHidden(true);
+		typeName->setHidden(true);
+	}
 }
 
 

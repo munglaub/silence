@@ -15,6 +15,7 @@ class TextNodeContent : public AbstractNodeContent
 		
 		QWidget* getWidget();
 		QHash<QString, QString>* getMetaInfos();
+		QString getMimeType();
 
 	private:
 		TextEdit *widget;
