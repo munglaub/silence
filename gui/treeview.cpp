@@ -13,7 +13,7 @@
 #include <QVBoxLayout>
 
 
-TreeView::TreeView(const QString &title, ContentView *contentview, QWidget *parent, Qt::WindowFlags flags)
+TreeView::TreeView(const QString &title, ContentView *contentview, InfoSidebar *infosidebar, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -37,6 +37,7 @@ TreeView::TreeView(const QString &title, ContentView *contentview, QWidget *pare
 			this, SLOT(updateActions()));
 
 	this->contentview = contentview;
+	this->infosidebar = infosidebar;
 	// bin mir nicht sicher das das das beste signal ist
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
 			const QItemSelection&)),
@@ -81,6 +82,8 @@ void TreeView::addRow()
 	
 	Node *item = model->getItem(child);
 	item->setContent(new TextNodeContent);
+	item->addLabel("foo");
+	item->addLabel("bar");
 	
 	tree->selectionModel()->setCurrentIndex(model->index(pos, column, index.parent()),
 		QItemSelectionModel::ClearAndSelect);
@@ -99,6 +102,8 @@ void TreeView::addChild()
 
 	Node *item = model->getItem(child);
 	item->setContent(new TextNodeContent);
+	item->addLabel("text");
+	item->addLabel("foobar");
 
 	// brauch ich das??
 	if (!model->headerData(column, Qt::Horizontal).isValid())
@@ -123,6 +128,7 @@ void TreeView::selectItem()
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	Node *selectedNode = model->getItem(index);
 	contentview->setContent(selectedNode->getContent());
+	infosidebar->setData(selectedNode);
 }
 
 void TreeView::updateActions()

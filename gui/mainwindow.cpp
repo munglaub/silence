@@ -19,13 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
 	contentview = new ContentView;
 	setCentralWidget(contentview);
 
-	// the treeview on the left side
-	treeview = new TreeView(tr("Tree"), contentview, this);
-	addDockWidget(Qt::LeftDockWidgetArea, treeview);
-
 	// information sidebar to show the meta-infos
 	infosidebar = new InfoSidebar(tr("Info"), this);
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
+
+	// the treeview on the left side
+	treeview = new TreeView(tr("Tree"), contentview, infosidebar, this);
+	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);

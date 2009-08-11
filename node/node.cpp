@@ -131,4 +131,14 @@ void Node::setModificationDate(QDateTime &date)
 	modificationDate = date;
 }
 
+QStringList Node::getLabels() const
+{
+	return labels;
+}
+
+void Node::addLabel(QString label)
+{
+	labels.append(label);
+}
+
 

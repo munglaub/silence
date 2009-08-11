@@ -42,6 +42,10 @@ class Node
 		void setModificationDate(QDateTime &date);
 
 		int columnCount() const;
+
+		// labels
+		QStringList getLabels() const;
+		void addLabel(QString label);
 		
 	private:
 		NodeId id;
@@ -49,9 +53,9 @@ class Node
 		AbstractNodeContent *content;
 		QDateTime creationDate;
 		QDateTime modificationDate;
+		QStringList labels;
 /*
 		icon
-		QStringList tags;
 		QString mimeType;
 */		
 		Node *parent;
