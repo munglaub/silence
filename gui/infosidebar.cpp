@@ -43,7 +43,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(typeName, row, 1);
 	++row;
 
-	labels = new QLabel(tr("Tags:"));
+	labels = new QLabel(tr("Labels:"));
 	labels->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(labels, row, 0);
 	labelsData = new QLabel(tr("Private, Important"));

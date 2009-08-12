@@ -1,7 +1,7 @@
-#include "textedit.h"
+#include "gui/textedit.h"
 #include <Qsci/qscilexercpp.h>
-#include <QVBoxLayout>
 #include <QToolBar>
+#include <QVBoxLayout>
 
 
 TextEdit* TextEdit::textedit = 0;
@@ -10,8 +10,9 @@ TextEdit::TextEdit(QWidget *parent)
 	: QWidget(parent)
 {
 	// Toolbar
-	QToolBar *toolbar = new QToolBar;
-	toolbar->addAction(tr("save"));
+	toolbar = new QToolBar;
+	saveAction = toolbar->addAction(tr("save"));
+	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
 	toolbar->addSeparator();
 	toolbar->addAction(tr("copy"));
 	toolbar->addAction(tr("cut"));
@@ -38,6 +39,13 @@ TextEdit::TextEdit(QWidget *parent)
 	setLayout(layout);
 }
 
+TextEdit::~TextEdit()
+{
+	delete saveAction;
+	delete toolbar;
+	delete editor;
+}
+
 TextEdit* TextEdit::create()
 {
 	if (textedit == 0)
@@ -45,15 +53,15 @@ TextEdit* TextEdit::create()
 	return textedit;
 }
 
-void TextEdit::setText(const QString &text)
+void TextEdit::setContent(TextNodeContent *content)
 {
-	editor->setText(text);
+	this->content = content;
+	editor->setText(content->getText());
 }
 
-
-TextEdit::~TextEdit()
+void TextEdit::saveContent()
 {
-	delete editor;
+	content->setText(editor->text());
 }
 
 

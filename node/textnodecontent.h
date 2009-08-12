@@ -2,7 +2,6 @@
 #define TEXTNODECONTENT_H
 
 #include "node/abstractnodecontent.h"
-#include "gui/textedit.h"
 
 class TextNodeContent : public AbstractNodeContent
 {
@@ -10,7 +9,7 @@ class TextNodeContent : public AbstractNodeContent
 		TextNodeContent();
 		~TextNodeContent();
 
-		void setText(QString &text);
+		void setText(QString text);
 		QString getText() const;
 		
 		QWidget* getWidget();
@@ -18,7 +17,6 @@ class TextNodeContent : public AbstractNodeContent
 		QString getMimeType();
 
 	private:
-		TextEdit *widget;
 		QHash<QString, QString> *metaInfos;
 		QString text;
 };
