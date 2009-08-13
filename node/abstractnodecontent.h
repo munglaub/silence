@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QHash>
 
-class AbstractNodeContent
+class AbstractNodeContent : public QObject
 {
 	public:
 		virtual QWidget* getWidget() { return NULL; };

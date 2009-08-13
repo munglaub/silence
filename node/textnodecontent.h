@@ -5,6 +5,8 @@
 
 class TextNodeContent : public AbstractNodeContent
 {
+	Q_OBJECT
+
 	public:
 		TextNodeContent();
 		~TextNodeContent();
@@ -15,6 +17,9 @@ class TextNodeContent : public AbstractNodeContent
 		QWidget* getWidget();
 		QHash<QString, QString>* getMetaInfos();
 		QString getMimeType();
+	
+	signals:
+		void changed();
 
 	private:
 		QHash<QString, QString> *metaInfos;

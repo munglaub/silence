@@ -19,6 +19,7 @@ TextNodeContent::~TextNodeContent()
 void TextNodeContent::setText(QString text)
 {
 	this->text = text;
+	emit changed();
 }
 
 QString TextNodeContent::getText() const

@@ -8,8 +8,10 @@
 #include <QDateTime>
 
 
-class Node
+class Node : public QObject
 {
+	Q_OBJECT
+
 	public:
 		// Konstruktoren & Destruktoren
 		Node(QString caption, Node *parent = 0); 
@@ -39,7 +41,7 @@ class Node
 		// dates
 		QDateTime getCreationDate() const;
 		QDateTime getModificationDate() const;
-		void setModificationDate(QDateTime &date);
+		void setModificationDate(QDateTime date);
 
 		int columnCount() const;
 
@@ -47,6 +49,12 @@ class Node
 		QStringList getLabels() const;
 		void addLabel(QString label);
 		
+	public slots:
+		void change();
+	
+	signals:
+		void changed();
+
 	private:
 		NodeId id;
 		QString caption;

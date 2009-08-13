@@ -97,6 +97,8 @@ QString Node::getCaption() const
 bool Node::setCaption(QString caption)
 {
 	this->caption = caption;
+	change();
+	emit changed();
 	return true;
 }
 
@@ -114,6 +116,9 @@ AbstractNodeContent* Node::getContent() const
 void Node::setContent(AbstractNodeContent *content)
 {
 	this->content = content;
+	connect(content, SIGNAL(changed()), this, SLOT(change()));
+	change();
+	emit changed();
 }
 
 QDateTime Node::getCreationDate() const
@@ -126,9 +131,10 @@ QDateTime Node::getModificationDate() const
 	return modificationDate;
 }
 
-void Node::setModificationDate(QDateTime &date)
+void Node::setModificationDate(QDateTime date)
 {
 	modificationDate = date;
+	emit changed();
 }
 
 QStringList Node::getLabels() const
@@ -139,6 +145,12 @@ QStringList Node::getLabels() const
 void Node::addLabel(QString label)
 {
 	labels.append(label);
+	change();
+	emit changed();
 }
 
+void Node::change()
+{
+	setModificationDate(QDateTime::currentDateTime());
+}
 

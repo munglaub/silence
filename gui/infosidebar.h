@@ -9,14 +9,19 @@
 
 class InfoSidebar : public QDockWidget
 {
+	Q_OBJECT
+
 	public:
 		InfoSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		~InfoSidebar();
 
 		void setData(Node *data);
 
+	private slots:
+		void updateInfos();
+
 	private:
-		Node *node; // brauch ich das?
+		Node *node; 
 
 		QGridLayout *layout;
 		QFrame *frame;

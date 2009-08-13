@@ -71,8 +71,16 @@ InfoSidebar::~InfoSidebar()
 
 void InfoSidebar::setData(Node *data)
 {
+	if (node != NULL)
+		disconnect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
 	node = data;
+	if (data != NULL)
+		connect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
+	updateInfos();
+}
 
+void InfoSidebar::updateInfos()
+{
 	// set node infos
 	caption->setText(node->getCaption());
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
@@ -99,6 +107,6 @@ void InfoSidebar::setData(Node *data)
 		type->setHidden(true);
 		typeName->setHidden(true);
 	}
-}
 
+}
 
