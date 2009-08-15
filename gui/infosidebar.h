@@ -35,6 +35,8 @@ class InfoSidebar : public QDockWidget
 		QLabel *lasteditDate;
 		QLabel *labels;
 		QLabel *labelsData;
+		QLabel *metaInfo;
+		QLabel *metaInfoData;
 		QLabel *type;
 		QLabel *typeName;
 

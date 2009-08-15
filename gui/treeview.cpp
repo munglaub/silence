@@ -20,9 +20,9 @@ TreeView::TreeView(const QString &title, ContentView *contentview, InfoSidebar *
 
 	// Toolbar
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction("add row");        
+	addRowAction = toolbar->addAction("add node");        
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction("add child");        
+	addChildAction = toolbar->addAction("add subnode");        
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 	removeAction = toolbar->addAction("remove");
 	connect(removeAction, SIGNAL(triggered()), this, SLOT(removeTreeItem()));

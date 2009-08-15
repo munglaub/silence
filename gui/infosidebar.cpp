@@ -9,6 +9,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	layout = new QGridLayout();
+	node = 0;
 
 	int row = 0;
 	
@@ -48,7 +49,14 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(labels, row, 0);
 	labelsData = new QLabel(tr("Private, Important"));
 	layout->addWidget(labelsData, row, 1);
-	
+	++row;
+
+	metaInfo = new QLabel(tr(""));
+	metaInfo->setFont(QFont("Times", 10, QFont::Bold));
+	layout->addWidget(metaInfo, row, 0);
+	metaInfoData = new QLabel(tr(""));
+	layout->addWidget(metaInfoData, row, 1);
+
 
 	frame = new QFrame;
 	frame->resize(100, 175);
@@ -65,22 +73,27 @@ InfoSidebar::~InfoSidebar()
 	delete lasteditDate;
 	delete labels;
 	delete labelsData;
+	delete metaInfo;
+	delete metaInfoData;
 	delete layout;
 	delete frame;
 }
 
 void InfoSidebar::setData(Node *data)
 {
-	if (node != NULL)
+	if (node != 0)
 		disconnect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
 	node = data;
-	if (data != NULL)
+	if (node != 0)
 		connect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
 	updateInfos();
 }
 
 void InfoSidebar::updateInfos()
 {
+	if (node == 0)
+		return;
+
 	// set node infos
 	caption->setText(node->getCaption());
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
@@ -103,9 +116,26 @@ void InfoSidebar::updateInfos()
 		typeName->setText(node->getContent()->getMimeType());
 		type->setHidden(false);
 		typeName->setHidden(false);
+
+		QString cap = "";
+		QString inf = "";
+		// metainfos
+		QHashIterator<QString, QString> itr(*node->getContent()->getMetaInfos());
+		while (itr.hasNext())
+		{
+			itr.next();
+			cap += itr.key() + "\n";
+			inf += itr.value() + "\n";
+		}
+		metaInfo->setText(cap);
+		metaInfoData->setText(inf);
+		metaInfo->setHidden(false);
+		metaInfoData->setHidden(false);
 	} else {
 		type->setHidden(true);
 		typeName->setHidden(true);
+		metaInfo->setHidden(true);
+		metaInfoData->setHidden(true);
 	}
 
 }

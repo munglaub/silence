@@ -11,6 +11,7 @@ FileMenu::FileMenu(QWidget *parent)
 	setTitle(tr("&File"));
 	QAction *newNode = addAction(tr("New Node"));
 	connect(newNode, SIGNAL(triggered()), new NewNodeDialog, SLOT(exec()));
+	addAction(tr("New Subnode"));
 
 	addAction(tr("Rename Node"));
 	addAction(tr("Move Node"));
