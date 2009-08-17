@@ -1,6 +1,7 @@
 #include "gui/contentview.h"
 #include "gui/treeview.h"
 #include "node/textnodecontent.h"
+#include "node/richtextnodecontent.h"
 #include "node/treemodel.h"
 #include <QAction>
 #include <QDockWidget>
@@ -81,7 +82,7 @@ void TreeView::addRow()
 	model->setData(child, QVariant("new Row"), Qt::EditRole);
 	
 	Node *item = model->getItem(child);
-	item->setContent(new TextNodeContent);
+	item->setContent(new RichTextNodeContent);
 	item->addLabel("foo");
 	item->addLabel("bar");
 	

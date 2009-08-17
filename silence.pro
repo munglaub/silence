@@ -9,6 +9,7 @@ SOURCES += 	main.cpp\
 			node/nodeid.cpp\
 			node/treemodel.cpp\
 			node/textnodecontent.cpp\
+			node/richtextnodecontent.cpp\
 			gui/mainwindow.cpp\
 			gui/filemenu.cpp\
 			gui/helpmenu.cpp\
@@ -17,6 +18,7 @@ SOURCES += 	main.cpp\
 			gui/viewmenu.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
+			gui/richtextedit.cpp\
 			gui/infosidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
@@ -30,6 +32,7 @@ HEADERS +=	data/datastore.h\
 			node/treemodel.h\
 			node/abstractnodecontent.h\
 			node/textnodecontent.h\
+			node/richtextnodecontent.h\
 			gui/mainwindow.h\
 			gui/filemenu.h\
 			gui/helpmenu.h\
@@ -38,6 +41,7 @@ HEADERS +=	data/datastore.h\
 			gui/viewmenu.h\
 			gui/treeview.h\
 			gui/textedit.h\
+			gui/richtextedit.h\
 			gui/infosidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
