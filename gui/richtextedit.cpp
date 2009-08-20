@@ -1,10 +1,11 @@
 #include "gui/richtextedit.h"
 #include <QApplication>
-#include <QVBoxLayout>
-#include <QTextCursor>
+#include <QClipboard>
 #include <QColorDialog>
-#include <QTextList>
 #include <QFontDatabase>
+#include <QTextCursor>
+#include <QTextList>
+#include <QVBoxLayout>
 
 RichTextEdit* RichTextEdit::richtextedit = 0;
 
@@ -54,7 +55,6 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(actionRedo, SIGNAL(triggered()), textedit, SLOT(redo()));
 
 	// cut, copy, paste
-
 	actionCut->setEnabled(false);
 	actionCopy->setEnabled(false);
 
@@ -65,6 +65,8 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(textedit, SIGNAL(copyAvailable(bool)), actionCut, SLOT(setEnabled(bool)));
 	connect(textedit, SIGNAL(copyAvailable(bool)), actionCopy, SLOT(setEnabled(bool)));
 
+	connect(QApplication::clipboard(), SIGNAL(dataChanged()), 
+			this, SLOT(clipboardDataChanged()));
 }
 
 
@@ -387,4 +389,8 @@ void RichTextEdit::saveContent()
 	content->setText(textedit->toHtml());
 }
 
+void RichTextEdit::clipboardDataChanged()
+{
+	actionPaste->setEnabled(!QApplication::clipboard()->text().isEmpty());
+}
 

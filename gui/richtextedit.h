@@ -2,12 +2,12 @@
 #define RICHTEXTEDIT_H
 
 #include "node/richtextnodecontent.h"
-#include <QWidget>
-#include <QToolBar>
-#include <QTextEdit>
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
+#include <QTextEdit>
+#include <QToolBar>
+#include <QWidget>
 
 
 class RichTextEdit : public QWidget
@@ -34,6 +34,7 @@ class RichTextEdit : public QWidget
 		void textFamily(const QString &font);
 		void textSize(const QString &p);
 		void currentCharFormatChanged(const QTextCharFormat &format);
+		void clipboardDataChanged();
 
 	private:
 		static RichTextEdit *richtextedit;

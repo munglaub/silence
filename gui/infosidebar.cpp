@@ -9,6 +9,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	layout = new QGridLayout();
+	layout->setAlignment(Qt::AlignTop);
 	node = 0;
 
 	int row = 0;
