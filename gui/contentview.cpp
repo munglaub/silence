@@ -7,6 +7,7 @@ ContentView::ContentView(QWidget *parent)
 	: QWidget(parent)
 {
 	layout = new QVBoxLayout;
+	layout->setContentsMargins(0, 0, 0, 0);
 	widget = WelcomeView::create();
 	layout->addWidget(widget);
 	setContent(NULL);

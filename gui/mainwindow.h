@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "controller.h"
 #include "gui/contentview.h"
 #include "gui/editmenu.h"
 #include "gui/filemenu.h"
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
 	private:
+		Controller *controller;
 		ContentView *contentview;
 		TreeView *treeview;
 		InfoSidebar *infosidebar;

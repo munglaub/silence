@@ -14,17 +14,21 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	setWindowTitle(tr("Silence"));
+	controller = Controller::create();
 
 	// ContentView
 	contentview = new ContentView;
 	setCentralWidget(contentview);
+	controller->setContentView(contentview);
+
 
 	// information sidebar to show the meta-infos
 	infosidebar = new InfoSidebar(tr("Info"), this);
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
+	controller->setInfoSidebar(infosidebar);
 
 	// the treeview on the left side
-	treeview = new TreeView(tr("Tree"), contentview, infosidebar, this);
+	treeview = new TreeView(tr("Tree"), this);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 
 	statusbar = new StatusBar;
@@ -46,7 +50,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {   
-//	delete textedit;
 	delete contentview;
 	delete treeview;
 	delete infosidebar;
@@ -56,5 +59,7 @@ MainWindow::~MainWindow()
 	delete editmenu;
 	delete viewmenu;
 	delete helpmenu;
+
+	delete controller;
 }
 

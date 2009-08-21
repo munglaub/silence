@@ -1,7 +1,6 @@
-#include "gui/contentview.h"
 #include "gui/treeview.h"
-#include "node/textnodecontent.h"
 #include "node/richtextnodecontent.h"
+#include "node/textnodecontent.h"
 #include "node/treemodel.h"
 #include <QAction>
 #include <QDockWidget>
@@ -14,10 +13,12 @@
 #include <QVBoxLayout>
 
 
-TreeView::TreeView(const QString &title, ContentView *contentview, InfoSidebar *infosidebar, QWidget *parent, Qt::WindowFlags flags)
+TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+
+	controller = Controller::create();
 
 	// Toolbar
 	toolbar = new QToolBar();
@@ -37,8 +38,6 @@ TreeView::TreeView(const QString &title, ContentView *contentview, InfoSidebar *
 			const QItemSelection&)),
 			this, SLOT(updateActions()));
 
-	this->contentview = contentview;
-	this->infosidebar = infosidebar;
 	// bin mir nicht sicher das das das beste signal ist
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
 			const QItemSelection&)),
@@ -46,6 +45,7 @@ TreeView::TreeView(const QString &title, ContentView *contentview, InfoSidebar *
 
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
+	layout->setContentsMargins(8, 0, 0, 0);
 	layout->addWidget(toolbar);
 	layout->addWidget(tree);
 	frame->setLayout(layout);
@@ -128,8 +128,8 @@ void TreeView::selectItem()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	Node *selectedNode = model->getItem(index);
-	contentview->setContent(selectedNode->getContent());
-	infosidebar->setData(selectedNode);
+	controller->getContentView()->setContent(selectedNode->getContent());
+	controller->getInfoSidebar()->setData(selectedNode);
 }
 
 void TreeView::updateActions()

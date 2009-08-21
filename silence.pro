@@ -4,6 +4,7 @@ TARGET = silence
 TEMPLATE = app
 
 SOURCES += 	main.cpp\
+			controller.cpp\
 			data/datastore.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
@@ -26,7 +27,8 @@ SOURCES += 	main.cpp\
 			gui/contentview.cpp\
 			gui/welcomeview.cpp
 
-HEADERS +=	data/datastore.h\
+HEADERS +=	controller.h\
+			data/datastore.h\
 			node/node.h\
 			node/nodeid.h\
 			node/treemodel.h\
