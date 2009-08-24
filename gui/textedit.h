@@ -20,6 +20,8 @@ class TextEdit : public QWidget
 
 	private slots:
 		void saveContent();
+		void textModified();
+		void clipboardDataChanged();
 
 	protected:
 		TextEdit(QWidget *parent = 0);
@@ -29,8 +31,17 @@ class TextEdit : public QWidget
 		QsciScintilla *editor;
 		TextNodeContent *content;
 
-	QToolBar *toolbar;
-	QAction *saveAction;
+		QToolBar *toolbar;
+		QAction *actionSave,
+				*actionUndo,
+				*actionRedo,
+				*actionCut,
+				*actionCopy,
+				*actionPaste;
+		
+
+		void setupActions();
+		void setupEditor();
 };
 
 #endif // TEXTEDIT_H

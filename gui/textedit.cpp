@@ -1,4 +1,6 @@
 #include "gui/textedit.h"
+#include <QApplication>
+#include <QClipboard>
 #include <Qsci/qscilexerbash.h>
 #include <Qsci/qscilexerbatch.h>
 #include <Qsci/qscilexercmake.h>
@@ -29,40 +31,51 @@ TextEdit* TextEdit::textedit = 0;
 TextEdit::TextEdit(QWidget *parent)
 	: QWidget(parent)
 {
-	// Toolbar
-	toolbar = new QToolBar;
-	saveAction = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
-	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
-	toolbar->addSeparator();
-	toolbar->addAction(tr("copy"));
-	toolbar->addAction(tr("cut"));
-	toolbar->addAction(tr("paste"));
-	toolbar->addAction(tr("select all"));
-	toolbar->addSeparator();
-	toolbar->addAction(tr("undo"));
-	toolbar->addAction(tr("redo"));
-	toolbar->addSeparator();
-	toolbar->addAction(tr("find"));
-	toolbar->addAction(tr("replace"));
-
-	editor = new QsciScintilla;
-
-	// temporarily with a c++ lexer
-	editor->setLexer();
-	// show linenumbers
-	editor->setMarginWidth(0, 35);
-	editor->setMarginLineNumbers(0, true);
+	setupActions();
+	setupEditor();
 
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(toolbar);
 	layout->addWidget(editor);
 	setLayout(layout);
+	
+	// save
+	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
+	
+	// undo, redo
+	connect(editor, SIGNAL(textChanged()), this, SLOT(textModified()));
+
+	setWindowModified(editor->isModified());
+	actionUndo->setEnabled(editor->isUndoAvailable());
+	actionRedo->setEnabled(editor->isRedoAvailable());
+
+	connect(actionUndo, SIGNAL(triggered()), editor, SLOT(undo()));
+	connect(actionRedo, SIGNAL(triggered()), editor, SLOT(redo()));
+
+	// cut, copy, paste
+	actionCut->setEnabled(false);
+	actionCopy->setEnabled(false);
+
+	connect(actionCut, SIGNAL(triggered()), editor, SLOT(cut()));
+	connect(actionCopy, SIGNAL(triggered()), editor, SLOT(copy()));
+	connect(actionPaste, SIGNAL(triggered()), editor, SLOT(paste()));
+
+	connect(editor, SIGNAL(copyAvailable(bool)), actionCut, SLOT(setEnabled(bool)));
+	connect(editor, SIGNAL(copyAvailable(bool)), actionCopy, SLOT(setEnabled(bool)));
+
+	connect(QApplication::clipboard(), SIGNAL(dataChanged()), 
+			this, SLOT(clipboardDataChanged()));
 }
 
 TextEdit::~TextEdit()
 {
-	delete saveAction;
+	delete actionSave;
+	delete actionUndo;
+	delete actionRedo;
+	delete actionCut;
+	delete actionCopy;
+	delete actionPaste;
 	delete toolbar;
 	delete editor;
 }
@@ -72,6 +85,41 @@ TextEdit* TextEdit::create()
 	if (textedit == 0)
 		textedit = new TextEdit;
 	return textedit;
+}
+
+void TextEdit::setupActions()
+{
+	// Toolbar
+	toolbar = new QToolBar;
+	actionSave = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
+	actionSave->setShortcut(QKeySequence::Save);
+	toolbar->addSeparator();
+
+	actionUndo = toolbar->addAction(QIcon("icons/edit-undo.png"), tr("Undo"));
+	actionUndo->setShortcut(QKeySequence::Undo);
+	actionRedo = toolbar->addAction(QIcon("icons/edit-redo.png"), tr("Redo"));
+	actionRedo->setShortcut(QKeySequence::Redo);
+	actionCut = toolbar->addAction(QIcon("icons/edit-cut.png"), tr("Cut"));
+	actionCut->setShortcut(QKeySequence::Cut);
+	actionCopy = toolbar->addAction(QIcon("icons/edit-copy.png"), tr("Copy"));
+	actionCopy->setShortcut(QKeySequence::Copy);
+	actionPaste = toolbar->addAction(QIcon("icons/edit-paste.png"), tr("Paste"));
+	actionPaste->setShortcut(QKeySequence::Paste);
+	toolbar->addSeparator();
+
+	toolbar->addAction(tr("find"));
+	toolbar->addAction(tr("replace"));
+}
+
+void TextEdit::setupEditor()
+{
+	// Editor
+	editor = new QsciScintilla;
+
+	editor->setLexer();
+	// show linenumbers
+	editor->setMarginWidth(0, 35);
+	editor->setMarginLineNumbers(0, true);
 }
 
 void TextEdit::setContent(TextNodeContent *content)
@@ -132,4 +180,16 @@ void TextEdit::setSyntax(QString syntax)
 	else
 		editor->setLexer();
 }
+
+void TextEdit::textModified()
+{
+	actionUndo->setEnabled(editor->isUndoAvailable());
+	actionRedo->setEnabled(editor->isRedoAvailable());
+}
+
+void TextEdit::clipboardDataChanged()
+{
+	actionPaste->setEnabled(!QApplication::clipboard()->text().isEmpty());
+}
+
 

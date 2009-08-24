@@ -106,6 +106,7 @@ void RichTextEdit::setupActions()
 	toolbar->setWindowTitle(tr("Edit Actions"));
 
 	actionSave = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
+	actionSave->setShortcut(QKeySequence::Save);
 	toolbar->addSeparator();
 
 	actionUndo = toolbar->addAction(QIcon("icons/edit-undo.png"), tr("Undo"));
