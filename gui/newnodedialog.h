@@ -1,13 +1,13 @@
 #ifndef NEWNODEDIALOG_H
 #define NEWNODEDIALOG_H
 
+#include "node/abstractnodecontent.h"
+#include <QComboBox>
 #include <QDialog>
 #include <QFormLayout>
 #include <QGridLayout>
-#include <QLineEdit>
-#include <QComboBox>
-#include "node/abstractnodecontent.h"
 #include <QLabel>
+#include <QLineEdit>
 
 class NewNodeDialog : public QDialog
 {

@@ -37,8 +37,29 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	typelayout->addWidget(lblhighlight, 0, 2);
 	synbox = new QComboBox;
 	synbox->addItem(tr("None"));
+
+	synbox->addItem(tr("Bash"));
+	synbox->addItem(tr("Batch"));
+	synbox->addItem(tr("CMake"));
 	synbox->addItem(tr("C++"));
+	synbox->addItem(tr("C#"));
+	synbox->addItem(tr("CSS"));
+	synbox->addItem(tr("D"));
+	synbox->addItem(tr("Diff"));
+	synbox->addItem(tr("HTML"));
+	synbox->addItem(tr("IDL"));
 	synbox->addItem(tr("Java"));
+	synbox->addItem(tr("JavaScript"));
+	synbox->addItem(tr("Lua"));
+	synbox->addItem(tr("Makefile"));
+	synbox->addItem(tr("Perl"));
+	synbox->addItem(tr("POV"));
+	synbox->addItem(tr("Python"));
+	synbox->addItem(tr("Ruby"));
+	synbox->addItem(tr("SQL"));
+	synbox->addItem(tr("TeX"));
+	synbox->addItem(tr("VHDL"));
+
 	typelayout->addWidget(synbox, 0, 3);
 	baselayout->addLayout(typelayout);
 	indexChanged(typebox->currentIndex());
