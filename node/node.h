@@ -14,7 +14,7 @@ class Node : public QObject
 
 	public:
 		// Konstruktoren & Destruktoren
-		Node(QString caption, Node *parent = 0); 
+		Node(Node *parent = 0); 
 		~Node();
 
 		int getIndex() const;
@@ -48,6 +48,7 @@ class Node : public QObject
 		// labels
 		QStringList getLabels() const;
 		void addLabel(QString label);
+		void addLabels(QStringList labels);
 		
 	public slots:
 		void change();

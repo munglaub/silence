@@ -7,7 +7,6 @@ TextNodeContent::TextNodeContent()
 {
 	text = "ein wahnsinnig toller void text";
 	metaInfos = new QHash<QString, QString>;
-	metaInfos->insert("Syntax", "C++");
 	metaInfos->insert("Licence", "None");
 }
 
@@ -32,7 +31,7 @@ QWidget* TextNodeContent::getWidget()
 {
 	TextEdit *widget = TextEdit::create();
 	widget->setContent(this);
-	//TODO: lexer abhaengig vom syntax metadingens setzen
+	widget->setSyntax(metaInfos->value("Syntax"));
 	return widget;
 }
 
@@ -46,4 +45,9 @@ QString TextNodeContent::getMimeType()
 	return "text/plain";
 }
 
+void TextNodeContent::setSyntax(QString syntax)
+{
+	metaInfos->insert("Syntax", syntax);
+	emit changed();
+}
 

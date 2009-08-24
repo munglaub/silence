@@ -1,13 +1,13 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
-#include "controller.h"
 #include "node/treemodel.h"
 #include <QDockWidget>
 #include <QFrame>
 #include <QToolBar>
 #include <QTreeView>
 #include <QVBoxLayout>
+#include <QList>
 
 
 class TreeView : public QDockWidget
@@ -17,6 +17,7 @@ class TreeView : public QDockWidget
 	public:
 		TreeView(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		~TreeView();
+		QList<QAction*>* getNodeActions() const;
 
 	public slots:
 		void updateActions();
@@ -30,8 +31,6 @@ class TreeView : public QDockWidget
 	private:
 		QTreeView *tree;
 		TreeModel *model;
-
-		Controller *controller;
 
 		// Toolbar
 		QToolBar *toolbar;

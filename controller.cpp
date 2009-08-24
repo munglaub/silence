@@ -6,6 +6,7 @@ Controller::Controller()
 {
 	contentview = 0;
 	infosidebar = 0;
+	treeview = 0;
 }
 
 Controller::~Controller()
@@ -39,3 +40,12 @@ InfoSidebar* Controller::getInfoSidebar() const
 	return infosidebar;
 }
 
+void Controller::setTreeView(TreeView* treeview)
+{
+	this->treeview = treeview;
+}
+
+TreeView* Controller::getTreeView() const
+{
+	return treeview;
+}

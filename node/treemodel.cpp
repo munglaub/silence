@@ -6,7 +6,8 @@
 TreeModel::TreeModel(QObject *parent)
 	: QAbstractItemModel(parent)
 {
-	rootItem = new Node("Title");
+	rootItem = new Node();
+	rootItem->setCaption("Title");
 	init(rootItem);
 }
 

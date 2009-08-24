@@ -105,22 +105,22 @@ void RichTextEdit::setupActions()
 {
 	toolbar->setWindowTitle(tr("Edit Actions"));
 
-	actionSave = toolbar->addAction(tr("Save"));
+	actionSave = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
 	toolbar->addSeparator();
 
-	actionUndo = toolbar->addAction(tr("Undo"));
+	actionUndo = toolbar->addAction(QIcon("icons/edit-undo.png"), tr("Undo"));
 	actionUndo->setShortcut(QKeySequence::Undo);
-	actionRedo = toolbar->addAction(tr("Redo"));
+	actionRedo = toolbar->addAction(QIcon("icons/edit-redo.png"), tr("Redo"));
 	actionRedo->setShortcut(QKeySequence::Redo);
-	actionCut = toolbar->addAction(tr("Cut"));
+	actionCut = toolbar->addAction(QIcon("icons/edit-cut.png"), tr("Cut"));
 	actionCut->setShortcut(QKeySequence::Cut);
-	actionCopy = toolbar->addAction(tr("Copy"));
+	actionCopy = toolbar->addAction(QIcon("icons/edit-copy.png"), tr("Copy"));
 	actionCopy->setShortcut(QKeySequence::Copy);
-	actionPaste = toolbar->addAction(tr("Paste"));
+	actionPaste = toolbar->addAction(QIcon("icons/edit-paste.png"), tr("Paste"));
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
-	actionTextBold = toolbar->addAction(tr("Bold"));
+	actionTextBold = toolbar->addAction(QIcon("icons/format-text-bold.png"), tr("Bold"));
 	actionTextBold->setShortcut(Qt::CTRL + Qt::Key_B);
 	QFont bold;
 	bold.setBold(true);
@@ -128,7 +128,7 @@ void RichTextEdit::setupActions()
 	connect(actionTextBold, SIGNAL(triggered()), this, SLOT(textBold()));
 	actionTextBold->setCheckable(true);
 
-	actionTextItalic = toolbar->addAction(tr("Italic"));
+	actionTextItalic = toolbar->addAction(QIcon("icons/format-text-italic.png"), tr("Italic"));
 	actionTextItalic->setShortcut(Qt::CTRL + Qt::Key_I);
 	QFont italic;
 	italic.setItalic(true);
@@ -136,7 +136,7 @@ void RichTextEdit::setupActions()
 	connect(actionTextItalic, SIGNAL(triggered()), this, SLOT(textItalic()));
 	actionTextItalic->setCheckable(true);
 
-	actionTextUnderline = toolbar->addAction(tr("Underline"));
+	actionTextUnderline = toolbar->addAction(QIcon("icons/format-text-underline.png"), tr("Underline"));
 	actionTextUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
 	QFont underline;
 	underline.setUnderline(true);
@@ -150,16 +150,16 @@ void RichTextEdit::setupActions()
 	QActionGroup *grp = new QActionGroup(this);
 	connect(grp, SIGNAL(triggered(QAction *)), this, SLOT(textAlign(QAction *)));
 
-	actionAlignLeft = new QAction(tr("&Left"), grp);
+	actionAlignLeft = new QAction(QIcon("icons/format-justify-left.png"), tr("&Left"), grp);
 	actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
 	actionAlignLeft->setCheckable(true);
-	actionAlignCenter = new QAction(tr("C&enter"), grp);
+	actionAlignCenter = new QAction(QIcon("icons/format-justify-center.png"), tr("C&enter"), grp);
 	actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
 	actionAlignCenter->setCheckable(true);
-	actionAlignRight = new QAction(tr("&Right"), grp);
+	actionAlignRight = new QAction(QIcon("icons/format-justify-right.png"), tr("&Right"), grp);
 	actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
 	actionAlignRight->setCheckable(true);
-	actionAlignJustify = new QAction(tr("&Justify"), grp);
+	actionAlignJustify = new QAction(QIcon("icons/format-justify-fill.png"), tr("&Justify"), grp);
 	actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
 	actionAlignJustify->setCheckable(true);
 

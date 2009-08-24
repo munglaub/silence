@@ -16,6 +16,7 @@ class TextEdit : public QWidget
 		~TextEdit();
 		static TextEdit* create();
 		void setContent(TextNodeContent *content);
+		void setSyntax(QString syntax);
 
 	private slots:
 		void saveContent();

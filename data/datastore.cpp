@@ -2,7 +2,7 @@
 
 DataStore::DataStore()
 {
-	root = new Node("root");
+	root = new Node();
 }
 
 DataStore::~DataStore()

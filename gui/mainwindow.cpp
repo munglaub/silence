@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 	// the treeview on the left side
 	treeview = new TreeView(tr("Tree"), this);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
+	controller->setTreeView(treeview);
 
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);

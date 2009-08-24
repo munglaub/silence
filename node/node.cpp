@@ -3,9 +3,9 @@
 #include <QString>
 
 
-Node::Node(QString caption, Node *parent)
+Node::Node(Node *parent)
 {
-	this->caption = caption;
+	this->caption = "";
 	this->parent = parent;
 	
 	content = NULL;
@@ -50,7 +50,7 @@ bool Node::addChildren(int position, int count)
 		return false;
 
 	for (int row = 0; row < count; ++row){
-		Node *item = new Node("", this);
+		Node *item = new Node(this);
 		children.insert(position, item);
 	}
 	return true;
@@ -147,6 +147,11 @@ void Node::addLabel(QString label)
 	labels.append(label);
 	change();
 	emit changed();
+}
+
+void Node::addLabels(QStringList labels)
+{
+	this->labels = this->labels + labels;
 }
 
 void Node::change()

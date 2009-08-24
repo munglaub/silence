@@ -11,7 +11,7 @@ TextEdit::TextEdit(QWidget *parent)
 {
 	// Toolbar
 	toolbar = new QToolBar;
-	saveAction = toolbar->addAction(tr("save"));
+	saveAction = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
 	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
 	toolbar->addSeparator();
 	toolbar->addAction(tr("copy"));
@@ -64,4 +64,8 @@ void TextEdit::saveContent()
 	content->setText(editor->text());
 }
 
+void TextEdit::setSyntax(QString syntax)
+{
+	// TODO: implement
+}
 

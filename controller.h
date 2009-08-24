@@ -3,6 +3,7 @@
 
 #include "gui/contentview.h"
 #include "gui/infosidebar.h"
+#include "gui/treeview.h"
 
 class Controller
 {
@@ -14,6 +15,8 @@ class Controller
 		ContentView* getContentView() const;
 		void setInfoSidebar(InfoSidebar* infosidebar);
 		InfoSidebar* getInfoSidebar() const;
+		void setTreeView(TreeView* treeview);
+		TreeView* getTreeView() const;
 
 	protected:
 		Controller();
@@ -23,7 +26,7 @@ class Controller
 		
 		ContentView *contentview;
 		InfoSidebar *infosidebar;
-		// treeview
+		TreeView *treeview;
 		// textedit
 		// richtextedit
 		// menues

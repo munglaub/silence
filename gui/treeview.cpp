@@ -1,4 +1,5 @@
 #include "gui/treeview.h"
+#include "gui/newnodedialog.h"
 #include "node/richtextnodecontent.h"
 #include "node/textnodecontent.h"
 #include "node/treemodel.h"
@@ -11,6 +12,7 @@
 #include <QTreeView>
 #include <QVariant>
 #include <QVBoxLayout>
+#include "controller.h"
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -18,15 +20,14 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-	controller = Controller::create();
 
 	// Toolbar
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction("add node");        
+	addRowAction = toolbar->addAction("Add Node");        
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction("add subnode");        
+	addChildAction = toolbar->addAction("Add Subnode");        
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
-	removeAction = toolbar->addAction("remove");
+	removeAction = toolbar->addAction("Remove Node");
 	connect(removeAction, SIGNAL(triggered()), this, SLOT(removeTreeItem()));
 
 	// Tree
@@ -68,6 +69,13 @@ TreeView::~TreeView()
 
 void TreeView::addRow()
 {
+	NewNodeDialog *newDialog = new NewNodeDialog;
+	if (!newDialog->exec())
+	{
+		delete newDialog;
+		return;
+	}
+
 	QModelIndex index = tree->selectionModel()->currentIndex();
 
 	if (!model->insertRow(index.row() + 1, index.parent()))
@@ -79,12 +87,13 @@ void TreeView::addRow()
 	int pos = index.row() + 1;
 	QModelIndex child = model->index(pos, column, index.parent());
 
-	model->setData(child, QVariant("new Row"), Qt::EditRole);
+	model->setData(child, QVariant(newDialog->getCaption()), Qt::EditRole);
 	
 	Node *item = model->getItem(child);
-	item->setContent(new RichTextNodeContent);
-	item->addLabel("foo");
-	item->addLabel("bar");
+	item->setContent(newDialog->getContent());
+	item->addLabels(newDialog->getLabels());
+
+	delete newDialog;
 	
 	tree->selectionModel()->setCurrentIndex(model->index(pos, column, index.parent()),
 		QItemSelectionModel::ClearAndSelect);
@@ -92,6 +101,13 @@ void TreeView::addRow()
 
 void TreeView::addChild()
 {
+	NewNodeDialog *newDialog = new NewNodeDialog;
+	if (!newDialog->exec())
+	{
+		delete newDialog;
+		return;
+	}
+
 	QModelIndex index = tree->selectionModel()->currentIndex();
 
 	if (!model->insertRow(0, index))
@@ -99,12 +115,11 @@ void TreeView::addChild()
 	
 	int column = 0;
 	QModelIndex child = model->index(0, column, index);
-	model->setData(child, QVariant("new Node"), Qt::EditRole);
+	model->setData(child, QVariant(newDialog->getCaption()), Qt::EditRole);
 
 	Node *item = model->getItem(child);
-	item->setContent(new TextNodeContent);
-	item->addLabel("text");
-	item->addLabel("foobar");
+	item->setContent(newDialog->getContent());
+	item->addLabels(newDialog->getLabels());
 
 	// brauch ich das??
 	if (!model->headerData(column, Qt::Horizontal).isValid())
@@ -128,6 +143,7 @@ void TreeView::selectItem()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	Node *selectedNode = model->getItem(index);
+	Controller *controller = Controller::create();
 	controller->getContentView()->setContent(selectedNode->getContent());
 	controller->getInfoSidebar()->setData(selectedNode);
 }
@@ -145,3 +161,11 @@ void TreeView::updateActions()
 		tree->closePersistentEditor(tree->selectionModel()->currentIndex());
 }
 
+QList<QAction*>* TreeView::getNodeActions() const
+{
+	QList<QAction*> *result = new QList<QAction*>;
+	result->append(addRowAction);
+	result->append(addChildAction);
+	result->append(removeAction);
+	return result;
+}

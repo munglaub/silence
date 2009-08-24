@@ -17,6 +17,7 @@ class TextNodeContent : public AbstractNodeContent
 		QWidget* getWidget();
 		QHash<QString, QString>* getMetaInfos();
 		QString getMimeType();
+		void setSyntax(QString syntax);
 	
 	signals:
 		void changed();
