@@ -92,6 +92,8 @@ void TreeView::addRow()
 	Node *item = model->getItem(child);
 	item->setContent(newDialog->getContent());
 	item->addLabels(newDialog->getLabels());
+	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(save(Node*)));
+	Controller::create()->getDataStore()->add(item);
 
 	delete newDialog;
 	
@@ -120,6 +122,8 @@ void TreeView::addChild()
 	Node *item = model->getItem(child);
 	item->setContent(newDialog->getContent());
 	item->addLabels(newDialog->getLabels());
+	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(save(Node*)));
+	Controller::create()->getDataStore()->add(item);
 
 	// brauch ich das??
 	if (!model->headerData(column, Qt::Horizontal).isValid())
@@ -134,9 +138,11 @@ void TreeView::addChild()
 void TreeView::removeTreeItem()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
-	QAbstractItemModel *model = tree->model();
 	if (model->removeRow(index.row(), index.parent()))
+	{
+		Controller::create()->getDataStore()->remove(model->getItem(index));
 		updateActions();
+	}
 }
 
 void TreeView::selectItem()

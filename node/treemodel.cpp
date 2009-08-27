@@ -2,12 +2,12 @@
 
 #include "node/node.h"
 #include "node/treemodel.h"
+#include "controller.h"
 
 TreeModel::TreeModel(QObject *parent)
 	: QAbstractItemModel(parent)
 {
-	rootItem = new Node();
-	rootItem->setCaption("Title");
+	rootItem = Controller::create()->getDataStore()->getRoot();
 	init(rootItem);
 }
 

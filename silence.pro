@@ -51,6 +51,8 @@ HEADERS +=	controller.h\
 			gui/contentview.h\
 			gui/welcomeview.h
 
+QT		+= xml
+
 LIBS	+=	-lqscintilla2
 
 

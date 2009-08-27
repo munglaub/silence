@@ -1,3 +1,4 @@
+#include "controller.h"
 #include "node/node.h"
 #include <QDateTime>
 #include <QString>
@@ -89,6 +90,11 @@ NodeId Node::getId() const
 	return id;
 }
 
+void Node::setId(NodeId id)
+{
+	this->id = id;
+}
+
 QString Node::getCaption() const
 {
 	return caption;
@@ -98,7 +104,7 @@ bool Node::setCaption(QString caption)
 {
 	this->caption = caption;
 	change();
-	emit changed();
+	emit changed(this);
 	return true;
 }
 
@@ -118,12 +124,17 @@ void Node::setContent(AbstractNodeContent *content)
 	this->content = content;
 	connect(content, SIGNAL(changed()), this, SLOT(change()));
 	change();
-	emit changed();
+	emit changed(this);
 }
 
 QDateTime Node::getCreationDate() const
 {
 	return creationDate;
+}
+
+void Node::setCreationDate(QDateTime date)
+{
+	creationDate = date;
 }
 
 QDateTime Node::getModificationDate() const
@@ -134,7 +145,6 @@ QDateTime Node::getModificationDate() const
 void Node::setModificationDate(QDateTime date)
 {
 	modificationDate = date;
-	emit changed();
 }
 
 QStringList Node::getLabels() const
@@ -146,7 +156,7 @@ void Node::addLabel(QString label)
 {
 	labels.append(label);
 	change();
-	emit changed();
+	emit changed(this);
 }
 
 void Node::addLabels(QStringList labels)
@@ -157,5 +167,6 @@ void Node::addLabels(QStringList labels)
 void Node::change()
 {
 	setModificationDate(QDateTime::currentDateTime());
+	emit changed(this);
 }
 

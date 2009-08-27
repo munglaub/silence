@@ -7,6 +7,7 @@ Controller::Controller()
 	contentview = 0;
 	infosidebar = 0;
 	treeview = 0;
+	datastore = 0;
 }
 
 Controller::~Controller()
@@ -49,3 +50,11 @@ TreeView* Controller::getTreeView() const
 {
 	return treeview;
 }
+
+DataStore* Controller::getDataStore()
+{
+	if (datastore == 0)
+		datastore = new DataStore;
+	return datastore;
+}
+

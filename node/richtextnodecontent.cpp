@@ -36,11 +36,36 @@ QString RichTextNodeContent::getMimeType()
 void RichTextNodeContent::setText(QString text)
 {
 	this->text = text;
+	emit changed();
 }
 
 QString RichTextNodeContent::getText() const
 {
 	return text;
+}
+
+QDomElement RichTextNodeContent::getXmlData(QDomDocument &doc)
+{
+	QDomElement text = doc.createElement("text");
+	QDomText textData = doc.createTextNode(this->text);
+	text.appendChild(textData);
+	return text;
+}
+
+void RichTextNodeContent::setXmlData(QDomElement &xmlNode)
+{
+	QDomNode n = xmlNode.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		
+		if (e.tagName() == "metainfo")
+			metaInfos->insert(e.attribute("key"), e.text());
+		if (e.tagName() == "text")
+			text = e.text();
+			
+		n = n.nextSibling();
+	}
 }
 
 

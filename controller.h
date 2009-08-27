@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "data/datastore.h"
 #include "gui/contentview.h"
 #include "gui/infosidebar.h"
 #include "gui/treeview.h"
@@ -18,6 +19,8 @@ class Controller
 		void setTreeView(TreeView* treeview);
 		TreeView* getTreeView() const;
 
+		DataStore* getDataStore();
+
 	protected:
 		Controller();
 
@@ -30,6 +33,8 @@ class Controller
 		// textedit
 		// richtextedit
 		// menues
+
+		DataStore *datastore;
 };
 
 #endif // CONTROLLER_H

@@ -20,6 +20,7 @@ class Node : public QObject
 		int getIndex() const;
 		Node* getParent() const;
 		NodeId getId() const;
+		void setId(NodeId id);
 
 		// children
 //		void addChild(Node *child);
@@ -40,6 +41,7 @@ class Node : public QObject
 
 		// dates
 		QDateTime getCreationDate() const;
+		void setCreationDate(QDateTime date);
 		QDateTime getModificationDate() const;
 		void setModificationDate(QDateTime date);
 
@@ -54,7 +56,7 @@ class Node : public QObject
 		void change();
 	
 	signals:
-		void changed();
+		void changed(Node *node);
 
 	private:
 		NodeId id;

@@ -19,6 +19,9 @@ class RichTextNodeContent : public AbstractNodeContent
 
 		void setText(QString text);
 		QString getText() const;
+
+		QDomElement getXmlData(QDomDocument &doc);
+		void setXmlData(QDomElement &xmlNode);
 	
 	signals:
 		void changed();

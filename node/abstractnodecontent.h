@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QHash>
+#include <QDomDocument>
 
 class AbstractNodeContent : public QObject
 {
@@ -11,7 +12,8 @@ class AbstractNodeContent : public QObject
 		virtual QHash<QString, QString>* getMetaInfos() { return NULL; };
 		virtual QString getMimeType() { return ""; };
 
-		//virtual foo getData(); // gibt ein datenpaket zum speichern des contents zurueck
+		virtual QDomElement getXmlData(QDomDocument &doc) { return doc.createElement(""); };
+		virtual void setXmlData(QDomElement &xmlNode) { xmlNode.firstChild(); };
 };
 
 #endif // ABSTRACTNODECONTENT_H

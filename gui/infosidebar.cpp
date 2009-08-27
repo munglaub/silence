@@ -13,15 +13,15 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	node = 0;
 
 	int row = 0;
-	
-	icon = new QLabel(tr("Icon"));
-	icon->setFont(QFont("Times", 34, QFont::Bold));
-	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
-	++row;
 
 	caption = new QLabel(tr(""));
 	caption->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
+	++row;
+	
+	icon = new QLabel(tr("Icon"));
+	icon->setFont(QFont("Times", 34, QFont::Bold));
+	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 
 	created = new QLabel(tr("Created:"));
@@ -84,10 +84,10 @@ InfoSidebar::~InfoSidebar()
 void InfoSidebar::setData(Node *data)
 {
 	if (node != 0)
-		disconnect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
+		disconnect(node, SIGNAL(changed(Node*)), this, SLOT(updateInfos()));
 	node = data;
 	if (node != 0)
-		connect(node, SIGNAL(changed()), this, SLOT(updateInfos()));
+		connect(node, SIGNAL(changed(Node*)), this, SLOT(updateInfos()));
 	updateInfos();
 }
 

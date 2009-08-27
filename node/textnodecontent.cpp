@@ -51,3 +51,29 @@ void TextNodeContent::setSyntax(QString syntax)
 	emit changed();
 }
 
+QDomElement TextNodeContent::getXmlData(QDomDocument &doc)
+{
+	QDomElement text = doc.createElement("text");
+	QDomText textData = doc.createTextNode(this->text);
+	text.appendChild(textData);
+	return text;
+}
+
+void TextNodeContent::setXmlData(QDomElement &xmlNode)
+{
+	QDomNode n = xmlNode.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		
+		if (e.tagName() == "metainfo")
+			metaInfos->insert(e.attribute("key"), e.text());
+		if (e.tagName() == "text")
+			text = e.text();
+			
+		n = n.nextSibling();
+	}
+}
+
+
+
