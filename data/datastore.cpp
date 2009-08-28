@@ -26,7 +26,7 @@ DataStore::DataStore()
 	{
 		QDomElement e = n.toElement();
 		if (e.tagName() == "labels")
-			xmlToLabels(e, doc);
+			xmlToLabels(e);
 		if (e.tagName() == "node")
 			xmlToNode(root, n, doc);
 		n = n.nextSibling();
@@ -48,7 +48,7 @@ QStringList* DataStore::getLabels()
 	return labels;
 }
 
-void DataStore::xmlToLabels(QDomElement &xmlLabels, QDomDocument &doc)
+void DataStore::xmlToLabels(QDomElement &xmlLabels)
 {
 	QDomNode n = xmlLabels.firstChild();
 	while (!n.isNull())
