@@ -114,8 +114,8 @@ void TextEdit::setupActions()
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
-	toolbar->addAction(tr("find"));
-	toolbar->addAction(tr("replace"));
+	toolbar->addAction(QIcon("icons/edit-find.png"), tr("Find"));
+	toolbar->addAction(QIcon("icons/edit-find-replace.png"), tr("Find/Replace"));
 }
 
 void TextEdit::setupEditor()
