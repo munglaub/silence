@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 	menuBar()->addMenu(filemenu);
 	editmenu = new EditMenu;
 	menuBar()->addMenu(editmenu);
+	controller->setEditMenu(editmenu);
 	viewmenu = new ViewMenu;
 	menuBar()->addMenu(viewmenu);
 	helpmenu = new HelpMenu;

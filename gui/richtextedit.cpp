@@ -1,4 +1,5 @@
 #include "gui/richtextedit.h"
+#include "controller.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
@@ -103,6 +104,7 @@ RichTextEdit* RichTextEdit::create()
 
 void RichTextEdit::setupActions()
 {
+	EditMenu *menu = Controller::create()->getEditMenu();
 	toolbar->setWindowTitle(tr("Edit Actions"));
 
 	actionSave = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
@@ -110,18 +112,24 @@ void RichTextEdit::setupActions()
 	toolbar->addSeparator();
 
 	actionUndo = toolbar->addAction(QIcon("icons/edit-undo.png"), tr("Undo"));
+	menu->addAction(actionUndo);
 	actionUndo->setShortcut(QKeySequence::Undo);
 	actionRedo = toolbar->addAction(QIcon("icons/edit-redo.png"), tr("Redo"));
+	menu->addAction(actionRedo);
 	actionRedo->setShortcut(QKeySequence::Redo);
 	actionCut = toolbar->addAction(QIcon("icons/edit-cut.png"), tr("Cut"));
+	menu->addAction(actionCut);
 	actionCut->setShortcut(QKeySequence::Cut);
 	actionCopy = toolbar->addAction(QIcon("icons/edit-copy.png"), tr("Copy"));
+	menu->addAction(actionCopy);
 	actionCopy->setShortcut(QKeySequence::Copy);
 	actionPaste = toolbar->addAction(QIcon("icons/edit-paste.png"), tr("Paste"));
+	menu->addAction(actionPaste);
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
 	actionTextBold = toolbar->addAction(QIcon("icons/format-text-bold.png"), tr("Bold"));
+	menu->addAction(actionTextBold);
 	actionTextBold->setShortcut(Qt::CTRL + Qt::Key_B);
 	QFont bold;
 	bold.setBold(true);
@@ -130,6 +138,7 @@ void RichTextEdit::setupActions()
 	actionTextBold->setCheckable(true);
 
 	actionTextItalic = toolbar->addAction(QIcon("icons/format-text-italic.png"), tr("Italic"));
+	menu->addAction(actionTextItalic);
 	actionTextItalic->setShortcut(Qt::CTRL + Qt::Key_I);
 	QFont italic;
 	italic.setItalic(true);
@@ -138,6 +147,7 @@ void RichTextEdit::setupActions()
 	actionTextItalic->setCheckable(true);
 
 	actionTextUnderline = toolbar->addAction(QIcon("icons/format-text-underline.png"), tr("Underline"));
+	menu->addAction(actionTextUnderline);
 	actionTextUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
 	QFont underline;
 	underline.setUnderline(true);
@@ -165,6 +175,7 @@ void RichTextEdit::setupActions()
 	actionAlignJustify->setCheckable(true);
 
 	toolbar->addActions(grp->actions());
+	menu->addActions(grp->actions());
 	toolbar->addSeparator();
 
 	// color
@@ -173,6 +184,7 @@ void RichTextEdit::setupActions()
 	actionTextColor = new QAction(pix, tr("&Color..."), this);
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
 	toolbar->addAction(actionTextColor);
+	menu->addAction(actionTextColor);
 }
 
 void RichTextEdit::setupFontActions()
@@ -394,4 +406,23 @@ void RichTextEdit::clipboardDataChanged()
 {
 	actionPaste->setEnabled(!QApplication::clipboard()->text().isEmpty());
 }
+
+void RichTextEdit::setVisible(bool visible)
+{
+	this->QWidget::setVisible(visible);
+	actionUndo->setVisible(visible);
+	actionRedo->setVisible(visible);
+	actionCut->setVisible(visible);
+	actionCopy->setVisible(visible);
+	actionPaste->setVisible(visible);
+	actionTextBold->setVisible(visible);
+	actionTextItalic->setVisible(visible);
+	actionTextUnderline->setVisible(visible);
+	actionAlignLeft->setVisible(visible);
+	actionAlignCenter->setVisible(visible);
+	actionAlignRight->setVisible(visible);
+	actionAlignJustify->setVisible(visible);
+	actionTextColor->setVisible(visible);
+}
+
 

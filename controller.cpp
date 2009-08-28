@@ -8,6 +8,7 @@ Controller::Controller()
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
+	editmenu = 0;
 }
 
 Controller::~Controller()
@@ -57,4 +58,15 @@ DataStore* Controller::getDataStore()
 		datastore = new DataStore;
 	return datastore;
 }
+
+void Controller::setEditMenu(EditMenu *editmenu)
+{
+	this->editmenu = editmenu;
+}
+
+EditMenu* Controller::getEditMenu() const
+{
+	return editmenu;
+}
+
 

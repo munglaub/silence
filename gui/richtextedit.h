@@ -19,6 +19,9 @@ class RichTextEdit : public QWidget
 		static RichTextEdit* create();
 		void setContent(RichTextNodeContent *content);
 
+	public slots:
+		void setVisible(bool visible);
+
 	protected:
 		RichTextEdit(QWidget *parent = 0);
 

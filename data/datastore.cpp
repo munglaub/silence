@@ -18,8 +18,8 @@ DataStore::DataStore()
 	file.close();
 	
 	QDomElement xmlRoot = doc.documentElement();
-	if (xmlRoot.tagName() == "silence")
-		printf("yeah\n");
+	if (xmlRoot.tagName() != "silence")
+		return;
 	QDomNode n = xmlRoot.firstChild();
 	while (!n.isNull())
 	{
@@ -92,7 +92,6 @@ void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc
 
 void DataStore::save(Node *node)
 {
-printf("save\n");
 	// create xmlDocument
 	QDomDocument doc;
 	doc.setContent(QString("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"));

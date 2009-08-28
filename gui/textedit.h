@@ -18,6 +18,9 @@ class TextEdit : public QWidget
 		void setContent(TextNodeContent *content);
 		void setSyntax(QString syntax);
 
+	public slots:
+		void setVisible(bool visible);
+
 	private slots:
 		void saveContent();
 		void textModified();

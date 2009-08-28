@@ -1,3 +1,4 @@
+#include "controller.h"
 #include "gui/textedit.h"
 #include <QApplication>
 #include <QClipboard>
@@ -89,6 +90,7 @@ TextEdit* TextEdit::create()
 
 void TextEdit::setupActions()
 {
+	EditMenu *menu = Controller::create()->getEditMenu();
 	// Toolbar
 	toolbar = new QToolBar;
 	actionSave = toolbar->addAction(QIcon("icons/document-save.png"), tr("Save"));
@@ -96,14 +98,19 @@ void TextEdit::setupActions()
 	toolbar->addSeparator();
 
 	actionUndo = toolbar->addAction(QIcon("icons/edit-undo.png"), tr("Undo"));
+	menu->addAction(actionUndo);
 	actionUndo->setShortcut(QKeySequence::Undo);
 	actionRedo = toolbar->addAction(QIcon("icons/edit-redo.png"), tr("Redo"));
+	menu->addAction(actionRedo);
 	actionRedo->setShortcut(QKeySequence::Redo);
 	actionCut = toolbar->addAction(QIcon("icons/edit-cut.png"), tr("Cut"));
+	menu->addAction(actionCut);
 	actionCut->setShortcut(QKeySequence::Cut);
 	actionCopy = toolbar->addAction(QIcon("icons/edit-copy.png"), tr("Copy"));
+	menu->addAction(actionCopy);
 	actionCopy->setShortcut(QKeySequence::Copy);
 	actionPaste = toolbar->addAction(QIcon("icons/edit-paste.png"), tr("Paste"));
+	menu->addAction(actionPaste);
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
@@ -192,4 +199,13 @@ void TextEdit::clipboardDataChanged()
 	actionPaste->setEnabled(!QApplication::clipboard()->text().isEmpty());
 }
 
+void TextEdit::setVisible(bool visible)
+{
+	this->QWidget::setVisible(visible);
+	actionUndo->setVisible(visible);
+	actionRedo->setVisible(visible);
+	actionCut->setVisible(visible);
+	actionCopy->setVisible(visible);
+	actionPaste->setVisible(visible);
+}
 

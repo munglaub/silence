@@ -87,6 +87,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	buttonlayout->addWidget(cancel, 0, 0, 1, 1, Qt::AlignLeft);
 	connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
 	QPushButton *ok = new QPushButton(tr("OK"));
+	ok->setDefault(true);
 	connect(ok, SIGNAL(clicked()), this, SLOT(accept()));
 	buttonlayout->addWidget(ok, 0, 1, 1, 1, Qt::AlignRight);
 	baselayout->addLayout(buttonlayout);

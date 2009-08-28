@@ -20,7 +20,7 @@ FileMenu::FileMenu(QWidget *parent)
 	QAction *searchNode = addAction(tr("Search Node"));
 	connect(searchNode, SIGNAL(triggered()), new SearchNodeDialog, SLOT(exec()));
 	
-	addAction(tr("Save"));
+//	addAction(tr("Save"));
 	addSeparator();
 	QAction *exit = addAction(tr("&Exit"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));

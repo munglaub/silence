@@ -8,9 +8,12 @@ ViewMenu::ViewMenu(QWidget *parent)
 	setTitle(tr("&View"));
 	QAction *linewarp = addAction(tr("Linewarp"));
 	linewarp->setCheckable(true);
+	linewarp->setEnabled(false);
 	QAction *infosidebar = addAction(tr("Information Sidebar"));
 	infosidebar->setCheckable(true);
-	addAction(tr("Preferences"));
+	infosidebar->setEnabled(false);
+	QAction *preferences = addAction(tr("Preferences"));
+	preferences->setEnabled(false);
 
 }
 

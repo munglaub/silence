@@ -3,8 +3,10 @@
 
 #include "data/datastore.h"
 #include "gui/contentview.h"
+#include "gui/editmenu.h"
 #include "gui/infosidebar.h"
 #include "gui/treeview.h"
+
 
 class Controller
 {
@@ -18,6 +20,10 @@ class Controller
 		InfoSidebar* getInfoSidebar() const;
 		void setTreeView(TreeView* treeview);
 		TreeView* getTreeView() const;
+
+		// menues
+		void setEditMenu(EditMenu *editmenu);
+		EditMenu* getEditMenu() const;
 
 		DataStore* getDataStore();
 
@@ -33,6 +39,7 @@ class Controller
 		// textedit
 		// richtextedit
 		// menues
+		EditMenu* editmenu;
 
 		DataStore *datastore;
 };

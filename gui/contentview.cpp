@@ -22,13 +22,13 @@ ContentView::~ContentView()
 void ContentView::setContent(AbstractNodeContent *content)
 {
 	layout->removeWidget(widget);
-	widget->setHidden(true);
+	widget->setVisible(false);
 	if (!content){
 		widget = WelcomeView::create();
 	} else {
 		widget = content->getWidget();
 	}
 	layout->addWidget(widget);
-	widget->setHidden(false);
+	widget->setVisible(true);
 }
 
