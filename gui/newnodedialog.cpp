@@ -1,9 +1,7 @@
+#include "controller.h"
 #include "gui/newnodedialog.h"
 #include "node/richtextnodecontent.h"
 #include "node/textnodecontent.h"
-#include <QDialog>
-#include <QGroupBox>
-#include <QListView>
 #include <QPushButton>
 #include <QVBoxLayout>
 
@@ -12,16 +10,15 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
 	setWindowTitle(tr("New Node"));
-	resize(500, 250);
+	resize(400, 250);
 
 	baselayout = new QVBoxLayout;
 
 	namelayout = new QFormLayout;
 	nameedit = new QLineEdit("Nodename");
+	nameedit->selectAll();
 	namelayout->addRow(tr("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);
-
-
 
 	// Type & highlighting
 	typelayout = new QGridLayout;
@@ -64,29 +61,27 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	baselayout->addLayout(typelayout);
 	indexChanged(typebox->currentIndex());
 
-	// Tags
-	QGroupBox *tagbox = new QGroupBox(tr("Tags"));
-	tagbox->setEnabled(false);
-	QGridLayout *taglayout = new QGridLayout;
-	QListView *availtags = new QListView;
-	taglayout->addWidget(availtags, 0, 0, 2, 1);
-	
-	QPushButton *add = new QPushButton(tr(">"));
-	taglayout->addWidget(add, 0, 1);
-	QPushButton *rm = new QPushButton(tr("<"));
-	taglayout->addWidget(rm, 1, 1);
-
-	QListView *selectedtags = new QListView;
-	taglayout->addWidget(selectedtags, 0, 2, 2, 1);
-	tagbox->setLayout(taglayout);
-	baselayout->addWidget(tagbox);
+	// Labels
+	labelbox = new QGroupBox(tr("Labels"));
+	labellayout = new QGridLayout;
+	newLabel = new QLineEdit;
+	labellayout->addWidget(newLabel, 0, 0);
+	btnAddLabel = new QPushButton(tr("Add"));
+	connect(btnAddLabel, SIGNAL(clicked()), this, SLOT(addLabel()));
+	labellayout->addWidget(btnAddLabel, 0, 1);
+	availlabels = new QListWidget;
+	availlabels->setSelectionMode(QAbstractItemView::MultiSelection);
+	availlabels->addItems(*Controller::create()->getDataStore()->getLabels());
+	labellayout->addWidget(availlabels, 1, 0, 1, 2);
+	labelbox->setLayout(labellayout);
+	baselayout->addWidget(labelbox);
 
 	// buttons
-	QGridLayout *buttonlayout = new QGridLayout;
-	QPushButton *cancel = new QPushButton(tr("Cancel"));
+	buttonlayout = new QGridLayout;
+	cancel = new QPushButton(tr("Cancel"));
 	buttonlayout->addWidget(cancel, 0, 0, 1, 1, Qt::AlignLeft);
 	connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
-	QPushButton *ok = new QPushButton(tr("OK"));
+	ok = new QPushButton(tr("OK"));
 	ok->setDefault(true);
 	connect(ok, SIGNAL(clicked()), this, SLOT(accept()));
 	buttonlayout->addWidget(ok, 0, 1, 1, 1, Qt::AlignRight);
@@ -106,7 +101,28 @@ NewNodeDialog::~NewNodeDialog()
 	delete lblhighlight;
 	delete synbox;
 
+	delete newLabel;
+	delete btnAddLabel;
+	delete availlabels;
+	delete labellayout;
+	delete labelbox;
+
+	delete cancel;
+	delete ok;
+	delete buttonlayout;
+
 	delete baselayout;
+}
+
+void NewNodeDialog::addLabel()
+{
+	if (newLabel->text().isEmpty())
+		return;
+	availlabels->addItem(newLabel->text());
+	availlabels->item(availlabels->count() - 1)->setSelected(true);
+	QStringList *labels = Controller::create()->getDataStore()->getLabels();
+	if (!labels->contains(newLabel->text()))
+		labels->append(newLabel->text());
 }
 
 QString NewNodeDialog::getCaption() const
@@ -135,9 +151,10 @@ AbstractNodeContent* NewNodeDialog::getContent() const
 
 QStringList NewNodeDialog::getLabels() const
 {
-	//TODO: real implementation
 	QStringList result;
-	result << "Foo" << "Foobar" << "Bar";
+	for (int i = 0; i < availlabels->selectedItems().size(); ++i)
+		result << availlabels->selectedItems().at(i)->text();	
+
 	return result;
 }
 

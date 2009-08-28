@@ -6,8 +6,11 @@
 #include <QDialog>
 #include <QFormLayout>
 #include <QGridLayout>
+#include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListWidget>
+
 
 class NewNodeDialog : public QDialog
 {
@@ -23,6 +26,7 @@ class NewNodeDialog : public QDialog
 
 	private slots:
 		void indexChanged(int index);
+		void addLabel();
 
 	private:
 		QVBoxLayout *baselayout;
@@ -35,6 +39,18 @@ class NewNodeDialog : public QDialog
 		QComboBox *typebox;
 		QLabel *lblhighlight;
 		QComboBox *synbox;
+
+		// labels
+		QGroupBox *labelbox;
+		QGridLayout *labellayout;
+		QLineEdit *newLabel;
+		QPushButton *btnAddLabel;
+		QListWidget *availlabels;
+
+		// butons
+		QPushButton *cancel,
+					*ok;
+		QGridLayout *buttonlayout;
 };
 
 #endif // NEWNODEDIALOG_H

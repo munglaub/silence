@@ -15,6 +15,7 @@ class DataStore : public QObject
 		~DataStore();
 
 		Node* getRoot();
+		QStringList* getLabels();
 
 		void remove(Node *node);
 		void add(Node *node);
@@ -24,6 +25,10 @@ class DataStore : public QObject
 	
 	private:
 		Node *root;
+		QStringList *labels;
+
+		void labelsToXml();
+		void xmlToLabels(QDomElement &xmlLabels, QDomDocument &doc);
 
 		void addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc);
 		void xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc);

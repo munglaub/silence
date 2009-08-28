@@ -9,7 +9,8 @@ DataStore::DataStore()
 	root = new Node();
 	root->setCaption("Title"); // treecaption
 
-	// nodes einlesen
+	labels = new QStringList;
+
 	QDomDocument doc;
 	QFile file("foo.xml");
 	if (!file.open(QIODevice::ReadOnly))
@@ -24,6 +25,8 @@ DataStore::DataStore()
 	while (!n.isNull())
 	{
 		QDomElement e = n.toElement();
+		if (e.tagName() == "labels")
+			xmlToLabels(e, doc);
 		if (e.tagName() == "node")
 			xmlToNode(root, n, doc);
 		n = n.nextSibling();
@@ -38,6 +41,23 @@ DataStore::~DataStore()
 Node* DataStore::getRoot()
 {
 	return root;
+}
+
+QStringList* DataStore::getLabels()
+{
+	return labels;
+}
+
+void DataStore::xmlToLabels(QDomElement &xmlLabels, QDomDocument &doc)
+{
+	QDomNode n = xmlLabels.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		if (e.tagName() == "label")
+			labels->append(e.text());
+		n = n.nextSibling();
+	}
 }
 
 void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc)
@@ -98,6 +118,18 @@ void DataStore::save(Node *node)
 	QDomElement xmlRoot = doc.createElement("silence");
 	doc.appendChild(xmlRoot);
 
+	// write labels
+	QDomElement xmlLabels = doc.createElement("labels");
+	for (int i=0; i<labels->size(); ++i)
+	{
+		QDomElement l = doc.createElement("label");
+		QDomText lText = doc.createTextNode(labels->at(i));
+		l.appendChild(lText);
+		xmlLabels.appendChild(l);
+	}
+	xmlRoot.appendChild(xmlLabels);
+
+	// write nodes
 	for (int i=0; i<root->getChildCount(); ++i)
 	{
 		addXmlNode(root->getChild(i), xmlRoot, doc);
