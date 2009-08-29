@@ -67,7 +67,7 @@ TreeView::~TreeView()
 	delete frame;
 }
 
-void TreeView::addRow()
+void TreeView::addNode(QModelIndex &index, int row)
 {
 	NewNodeDialog *newDialog = new NewNodeDialog;
 	if (!newDialog->exec())
@@ -76,19 +76,17 @@ void TreeView::addRow()
 		return;
 	}
 
-	QModelIndex index = tree->selectionModel()->currentIndex();
-
-	if (!model->insertRow(index.row() + 1, index.parent()))
+	if (!model->insertRow(row, index))
+	{
+		delete newDialog;
 		return;
-
-	updateActions();
+	}
 
 	int column = 0;
-	int pos = index.row() + 1;
-	QModelIndex child = model->index(pos, column, index.parent());
+	QModelIndex child = model->index(row, column, index);
 
 	model->setData(child, QVariant(newDialog->getCaption()), Qt::EditRole);
-	
+
 	Node *item = model->getItem(child);
 	item->setContent(newDialog->getContent());
 	item->addLabels(newDialog->getLabels());
@@ -96,43 +94,26 @@ void TreeView::addRow()
 	Controller::create()->getDataStore()->add(item);
 
 	delete newDialog;
-	
-	tree->selectionModel()->setCurrentIndex(model->index(pos, column, index.parent()),
+
+	tree->selectionModel()->setCurrentIndex(model->index(row, column, index),
 		QItemSelectionModel::ClearAndSelect);
+	
+	updateActions();
+}
+
+void TreeView::addRow()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	int row = index.row() + 1;
+	index = index.parent();
+	addNode(index, row);
 }
 
 void TreeView::addChild()
 {
-	NewNodeDialog *newDialog = new NewNodeDialog;
-	if (!newDialog->exec())
-	{
-		delete newDialog;
-		return;
-	}
-
 	QModelIndex index = tree->selectionModel()->currentIndex();
-
-	if (!model->insertRow(0, index))
-		return;
-	
-	int column = 0;
-	QModelIndex child = model->index(0, column, index);
-	model->setData(child, QVariant(newDialog->getCaption()), Qt::EditRole);
-
-	Node *item = model->getItem(child);
-	item->setContent(newDialog->getContent());
-	item->addLabels(newDialog->getLabels());
-	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(save(Node*)));
-	Controller::create()->getDataStore()->add(item);
-
-	// brauch ich das??
-	if (!model->headerData(column, Qt::Horizontal).isValid())
-		model->setHeaderData(column, Qt::Horizontal, QVariant("[No header]"),
-							 Qt::EditRole);
-	tree->selectionModel()->setCurrentIndex(model->index(0, 0, index),
-		QItemSelectionModel::ClearAndSelect);
-	
-	updateActions();
+	int row = 0;
+	addNode(index, row);
 }
 
 void TreeView::removeTreeItem()
@@ -175,3 +156,5 @@ QList<QAction*>* TreeView::getNodeActions() const
 	result->append(removeAction);
 	return result;
 }
+
+

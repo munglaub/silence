@@ -40,6 +40,8 @@ class TreeView : public QDockWidget
 
 		QFrame *frame;
 		QVBoxLayout *layout;
+
+		void addNode(QModelIndex &index, int row);
 };
 
 #endif // TREEVIEW_H
