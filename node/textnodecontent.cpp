@@ -5,9 +5,8 @@
 
 TextNodeContent::TextNodeContent()
 {
-	text = "ein wahnsinnig toller void text";
+	text = "";
 	metaInfos = new QHash<QString, QString>;
-	metaInfos->insert("Licence", "None");
 }
 
 TextNodeContent::~TextNodeContent()

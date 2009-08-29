@@ -124,6 +124,7 @@ void TextEdit::setupEditor()
 	editor = new QsciScintilla;
 
 	editor->setLexer();
+	editor->setTabWidth(4);
 	// show linenumbers
 	editor->setMarginWidth(0, 35);
 	editor->setMarginLineNumbers(0, true);
@@ -185,7 +186,11 @@ void TextEdit::setSyntax(QString syntax)
 	else if (syntax == "VHDL")
 		editor->setLexer(new QsciLexerVHDL(editor));
 	else
+	{
 		editor->setLexer();
+		QFont font("Monospace", 10);
+		editor->setFont(font);
+	}
 }
 
 void TextEdit::textModified()

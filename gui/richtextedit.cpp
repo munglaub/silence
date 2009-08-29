@@ -25,6 +25,7 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	layout->addWidget(fontToolbar);
 
 	textedit = new QTextEdit;
+	textedit->setTabStopWidth(40);
 	layout->addWidget(textedit);
 
 	setLayout(layout);

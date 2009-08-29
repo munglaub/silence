@@ -104,7 +104,6 @@ bool Node::setCaption(QString caption)
 {
 	this->caption = caption;
 	change();
-	emit changed(this);
 	return true;
 }
 
@@ -124,7 +123,6 @@ void Node::setContent(AbstractNodeContent *content)
 	this->content = content;
 	connect(content, SIGNAL(changed()), this, SLOT(change()));
 	change();
-	emit changed(this);
 }
 
 QDateTime Node::getCreationDate() const
@@ -156,7 +154,6 @@ void Node::addLabel(QString label)
 {
 	labels.append(label);
 	change();
-	emit changed(this);
 }
 
 void Node::addLabels(QStringList labels)

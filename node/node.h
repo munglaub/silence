@@ -52,7 +52,7 @@ class Node : public QObject
 		void addLabel(QString label);
 		void addLabels(QStringList labels);
 		
-	public slots:
+	private slots:
 		void change();
 	
 	signals:
