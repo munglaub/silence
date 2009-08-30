@@ -8,6 +8,7 @@ Controller::Controller()
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
+	statusbar = 0;
 	editmenu = 0;
 }
 
@@ -69,4 +70,13 @@ EditMenu* Controller::getEditMenu() const
 	return editmenu;
 }
 
+void Controller::setStatusBar(StatusBar *statusbar)
+{
+	this->statusbar = statusbar;
+}
+
+StatusBar* Controller::getStatusBar() const
+{
+	return statusbar;
+}
 

@@ -1,18 +1,20 @@
-#include "gui/treeview.h"
+#include "controller.h"
 #include "gui/newnodedialog.h"
+#include "gui/treeview.h"
 #include "node/richtextnodecontent.h"
 #include "node/textnodecontent.h"
 #include "node/treemodel.h"
 #include <QAction>
+#include <QContextMenuEvent>
 #include <QDockWidget>
 #include <QList>
+#include <QMessageBox>
 #include <QModelIndex>
 #include <QStringList>
 #include <QToolBar>
 #include <QTreeView>
 #include <QVariant>
 #include <QVBoxLayout>
-#include "controller.h"
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -118,6 +120,11 @@ void TreeView::addChild()
 
 void TreeView::removeTreeItem()
 {
+	int ret = QMessageBox::question(this, tr("Delete Node"), tr("Are you sure?"), 
+			  QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+	if (ret == QMessageBox::No)
+		return;
+
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	if (model->removeRow(index.row(), index.parent()))
 	{
@@ -133,6 +140,7 @@ void TreeView::selectItem()
 	Controller *controller = Controller::create();
 	controller->getContentView()->setContent(selectedNode->getContent());
 	controller->getInfoSidebar()->setData(selectedNode);
+	controller->getStatusBar()->setNodeName(selectedNode->getCaption());
 }
 
 void TreeView::updateActions()
@@ -157,4 +165,14 @@ QList<QAction*>* TreeView::getNodeActions() const
 	return result;
 }
 
+void TreeView::contextMenuEvent(QContextMenuEvent *event)
+{
+	QMenu menu(this);
+	menu.addAction(addRowAction);
+	menu.addAction(addChildAction);
+	menu.addAction(removeAction);
+	QAction *propertyAction = menu.addAction("Properties");
+	propertyAction->setEnabled(false);
+	menu.exec(event->globalPos());
+}
 

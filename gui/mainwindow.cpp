@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);
+	controller->setStatusBar(statusbar);
 
 	// set the initial windowsize
 	resize(950, 500);

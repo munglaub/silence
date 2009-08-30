@@ -5,6 +5,7 @@
 #include "gui/contentview.h"
 #include "gui/editmenu.h"
 #include "gui/infosidebar.h"
+#include "gui/statusbar.h"
 #include "gui/treeview.h"
 
 
@@ -16,12 +17,16 @@ class Controller
 
 		void setContentView(ContentView* contentview);
 		ContentView* getContentView() const;
+
 		void setInfoSidebar(InfoSidebar* infosidebar);
 		InfoSidebar* getInfoSidebar() const;
+		
 		void setTreeView(TreeView* treeview);
 		TreeView* getTreeView() const;
+		
+		void setStatusBar(StatusBar* statusbar);
+		StatusBar* getStatusBar() const;
 
-		// menues
 		void setEditMenu(EditMenu *editmenu);
 		EditMenu* getEditMenu() const;
 
@@ -36,10 +41,8 @@ class Controller
 		ContentView *contentview;
 		InfoSidebar *infosidebar;
 		TreeView *treeview;
-		// textedit
-		// richtextedit
-		// menues
-		EditMenu* editmenu;
+		StatusBar *statusbar;
+		EditMenu *editmenu;
 
 		DataStore *datastore;
 };
