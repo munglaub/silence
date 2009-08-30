@@ -1,19 +1,19 @@
-#include "gui/richtextedit.h"
 #include "controller.h"
+#include "gui/richtextedit.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
 #include <QTextList>
-#include <QVBoxLayout>
+
 
 RichTextEdit* RichTextEdit::richtextedit = 0;
 
 RichTextEdit::RichTextEdit(QWidget *parent)
 	: QWidget(parent)
 {
-	QVBoxLayout *layout = new QVBoxLayout;
+	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	
 	toolbar = new QToolBar;
@@ -28,7 +28,15 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	textedit->setTabStopWidth(40);
 	layout->addWidget(textedit);
 
+	findWidget = new RichTextFind(textedit, this);
+	findWidget->hide();
+	connect(textedit, SIGNAL(textChanged()), findWidget, SLOT(unhighlighte()));
+	layout->addWidget(findWidget);
+
 	setLayout(layout);
+
+	// find
+	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
@@ -88,12 +96,15 @@ RichTextEdit::~RichTextEdit()
 	delete actionAlignRight;
 	delete actionAlignJustify;
 	delete actionTextColor;
+	delete actionFind;
+	delete findWidget;
 	delete toolbar;
 	delete comboStyle;
 	delete comboFont;
 	delete comboSize;
 	delete fontToolbar;
 	delete textedit;
+	delete layout;
 }
 
 RichTextEdit* RichTextEdit::create()
@@ -186,6 +197,10 @@ void RichTextEdit::setupActions()
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
 	toolbar->addAction(actionTextColor);
 	menu->addAction(actionTextColor);
+
+	actionFind = toolbar->addAction(QIcon("icons/edit-find.png"), tr("Find"));
+	actionFind->setShortcut(QKeySequence::Find);
+	menu->addAction(actionFind);
 }
 
 void RichTextEdit::setupFontActions()
@@ -424,6 +439,7 @@ void RichTextEdit::setVisible(bool visible)
 	actionAlignRight->setVisible(visible);
 	actionAlignJustify->setVisible(visible);
 	actionTextColor->setVisible(visible);
+	actionFind->setVisible(visible);
 }
 
 

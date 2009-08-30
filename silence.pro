@@ -20,6 +20,7 @@ SOURCES += 	main.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
 			gui/richtextedit.cpp\
+			gui/richtextfind.cpp\
 			gui/infosidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
@@ -44,6 +45,7 @@ HEADERS +=	controller.h\
 			gui/treeview.h\
 			gui/textedit.h\
 			gui/richtextedit.h\
+			gui/richtextfind.h\
 			gui/infosidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\

@@ -45,6 +45,18 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 	return item->getCaption();
 }
 
+bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+	if (role != Qt::EditRole)
+		return false;
+
+	Node *item = getItem(index);
+	bool result = item->setCaption(value.toString());
+	if (result)
+		emit dataChanged(index, index);
+
+	return result;
+}
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 {
@@ -122,19 +134,6 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 {
 	Node *parentItem = getItem(parent);
 	return parentItem->getChildCount();
-}
-
-bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-	if (role != Qt::EditRole)
-		return false;
-
-	Node *item = getItem(index);
-	bool result = item->setCaption(value.toString());
-	if (result)
-		emit dataChanged(index, index);
-
-	return result;
 }
 
 

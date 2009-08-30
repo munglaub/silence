@@ -1,12 +1,14 @@
 #ifndef RICHTEXTEDIT_H
 #define RICHTEXTEDIT_H
 
+#include "gui/richtextfind.h"
 #include "node/richtextnodecontent.h"
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QTextEdit>
 #include <QToolBar>
+#include <QVBoxLayout>
 #include <QWidget>
 
 
@@ -42,6 +44,9 @@ class RichTextEdit : public QWidget
 	private:
 		static RichTextEdit *richtextedit;
 		RichTextNodeContent *content;
+		RichTextFind *findWidget;
+
+		QVBoxLayout *layout;
 
 		// bad naming
 		QToolBar *toolbar;
@@ -62,7 +67,8 @@ class RichTextEdit : public QWidget
 				*actionAlignCenter,
 				*actionAlignRight,
 				*actionAlignJustify,
-				*actionTextColor;
+				*actionTextColor,
+				*actionFind;
 
 		QComboBox *comboStyle;
 		QFontComboBox *comboFont;
