@@ -24,7 +24,6 @@
 #include <Qsci/qscilexertex.h>
 #include <Qsci/qscilexervhdl.h>
 #include <QToolBar>
-#include <QVBoxLayout>
 
 
 TextEdit* TextEdit::textedit = 0;
@@ -35,12 +34,18 @@ TextEdit::TextEdit(QWidget *parent)
 	setupActions();
 	setupEditor();
 
-	QVBoxLayout *layout = new QVBoxLayout;
+	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(toolbar);
 	layout->addWidget(editor);
+	findWidget = new TextEditFind(editor, this);
+	findWidget->hide();
+	layout->addWidget(findWidget);
 	setLayout(layout);
 	
+	// find
+	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
+
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
 	
@@ -77,8 +82,11 @@ TextEdit::~TextEdit()
 	delete actionCut;
 	delete actionCopy;
 	delete actionPaste;
+	delete actionFind;
 	delete toolbar;
 	delete editor;
+	delete findWidget;
+	delete layout;
 }
 
 TextEdit* TextEdit::create()
@@ -114,7 +122,8 @@ void TextEdit::setupActions()
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
-	toolbar->addAction(QIcon("icons/edit-find.png"), tr("Find"));
+	actionFind = toolbar->addAction(QIcon("icons/edit-find.png"), tr("Find"));
+	actionFind->setShortcut(QKeySequence::Find);
 	toolbar->addAction(QIcon("icons/edit-find-replace.png"), tr("Find/Replace"));
 }
 

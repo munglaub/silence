@@ -3,6 +3,8 @@
 
 #include "node/textnodecontent.h"
 #include <QAction>
+#include <QVBoxLayout>
+#include "gui/texteditfind.h"
 #include <Qsci/qsciscintilla.h>
 #include <QToolBar>
 #include <QWidget>
@@ -33,6 +35,8 @@ class TextEdit : public QWidget
 		static TextEdit *textedit;
 		QsciScintilla *editor;
 		TextNodeContent *content;
+		QVBoxLayout *layout;
+		TextEditFind *findWidget;
 
 		QToolBar *toolbar;
 		QAction *actionSave,
@@ -40,7 +44,8 @@ class TextEdit : public QWidget
 				*actionRedo,
 				*actionCut,
 				*actionCopy,
-				*actionPaste;
+				*actionPaste,
+				*actionFind;
 		
 
 		void setupActions();

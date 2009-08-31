@@ -19,6 +19,7 @@ SOURCES += 	main.cpp\
 			gui/viewmenu.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
+			gui/texteditfind.cpp\
 			gui/richtextedit.cpp\
 			gui/richtextfind.cpp\
 			gui/infosidebar.cpp\
@@ -44,6 +45,7 @@ HEADERS +=	controller.h\
 			gui/viewmenu.h\
 			gui/treeview.h\
 			gui/textedit.h\
+			gui/texteditfind.h\
 			gui/richtextedit.h\
 			gui/richtextfind.h\
 			gui/infosidebar.h\

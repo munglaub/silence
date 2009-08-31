@@ -15,7 +15,7 @@ RichTextFind::RichTextFind(QTextEdit *editor, QWidget *parent)
 	findEdit = new QLineEdit;
 	layout->addWidget(findEdit);
 
-	findBtn = new QPushButton(tr("Find"));
+	findBtn = new QPushButton(QIcon("icons/go-next.png"), tr("Find"));
 	findBtn->setFlat(true);
 	connect(findBtn, SIGNAL(clicked()), this, SLOT(findit()));
 	layout->addWidget(findBtn);
