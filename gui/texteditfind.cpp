@@ -13,10 +13,20 @@ TextEditFind::TextEditFind(QsciScintilla *editor, QWidget *parent)
 	findEdit = new QLineEdit;
 	layout->addWidget(findEdit);
 
-	findBtn = new QPushButton(QIcon("icons/go-next.png"), tr("Find"));
-	findBtn->setFlat(true);
-	connect(findBtn, SIGNAL(clicked()), this, SLOT(findFirst()));
-	layout->addWidget(findBtn);
+	nextBtn = new QPushButton(QIcon("icons/go-next.png"), tr("Next"));
+	nextBtn->setFlat(true);
+	connect(nextBtn, SIGNAL(clicked()), this, SLOT(findNext()));
+	layout->addWidget(nextBtn);
+	
+	prevBtn = new QPushButton(QIcon("icons/go-previous.png"), tr("Previous"));
+	prevBtn->setFlat(true);
+	connect(prevBtn, SIGNAL(clicked()), this, SLOT(findPrevious()));
+	layout->addWidget(prevBtn);
+
+	caseCbx = new QCheckBox("Match case");
+	layout->addWidget(caseCbx);
+	wordCbx = new QCheckBox("Match whole word");
+	layout->addWidget(wordCbx);
 
 	hideBtn = new QPushButton(QIcon("icons/window-close.png"), "");
 	hideBtn->setFlat(true);
@@ -25,14 +35,17 @@ TextEditFind::TextEditFind(QsciScintilla *editor, QWidget *parent)
 	layout->addWidget(hideBtn);
 	setLayout(layout);
 	
-	connect(findEdit, SIGNAL(returnPressed()), findBtn, SLOT(click()));
+	connect(findEdit, SIGNAL(returnPressed()), nextBtn, SLOT(click()));
 }
 
 TextEditFind::~TextEditFind()
 {
 	delete findEdit;
-	delete findBtn;
+	delete nextBtn;
+	delete prevBtn;
 	delete hideBtn;
+	delete caseCbx;
+	delete wordCbx;
 	delete layout;
 }
 
@@ -42,7 +55,18 @@ void TextEditFind::show()
 	QWidget::show();
 }
 
-void TextEditFind::findFirst()
+void TextEditFind::findNext()
+{
+	find(true);
+}
+
+
+void TextEditFind::findPrevious()
+{
+	find(false);
+}
+
+void TextEditFind::find(bool forward)
 {
 	if (findEdit->text() == "")
 	{
@@ -50,10 +74,18 @@ void TextEditFind::findFirst()
 		"The search field is empty. Please enter a word and click Find.");
 	} else {
 		bool regex = false;
-		bool caseSensitive = false;
-		bool wholeWord = false;
+		bool caseSensitive = caseCbx->isChecked();
+		bool wholeWord = wordCbx->isChecked();
 		bool wrap = true;
-		if (!editor->findFirst(findEdit->text(), regex, caseSensitive, wholeWord, wrap))
+		int line = -1;
+		int index = -1;
+		if (forward == false)
+		{
+			editor->getCursorPosition(&line, &index);
+			--index;
+		}
+		bool show = true;
+		if (!editor->findFirst(findEdit->text(), regex, caseSensitive, wholeWord, wrap, forward, line, index, show))
 		{
 			QMessageBox::information(this, tr("Word Not Found"),
 			"Sorry, the word cannot be found.");
