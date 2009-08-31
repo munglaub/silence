@@ -46,6 +46,9 @@ TextEdit::TextEdit(QWidget *parent)
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
 
+	// cursorposition
+	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
+
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
 	

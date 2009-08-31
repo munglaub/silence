@@ -300,6 +300,9 @@ void RichTextEdit::alignmentChanged(Qt::Alignment alignment)
 void RichTextEdit::cursorPositionChanged()
 {
 	alignmentChanged(textedit->alignment());
+	int line = textedit->textCursor().block().blockNumber();
+	int col = textedit->textCursor().position() - textedit->textCursor().block().position();
+	Controller::create()->getStatusBar()->setCursorPosition(line, col);
 }
 
 void RichTextEdit::textColor()

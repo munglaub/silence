@@ -7,14 +7,20 @@
 
 class StatusBar : public QStatusBar
 {
+	Q_OBJECT
+
 	public:
 		StatusBar(QWidget *parent = 0);
 		~StatusBar();
 
 		void setNodeName(QString name);
+	
+	public slots:
+		void setCursorPosition(int line, int col);
 
 	private:
-		QLabel *nodeName;
+		QLabel	*nodeName,
+				*cursorPos;
 };
 
 #endif // STATUSBAR_H
