@@ -1,17 +1,17 @@
 #ifndef NODEPROPERTYWIDGET_H
 #define NODEPROPERTYWIDGET_H
 
+#include "node/node.h"
+#include <QComboBox>
 #include <QDockWidget>
-#include <QVBoxLayout>
+#include <QFormLayout>
 #include <QFrame>
 #include <QLabel>
-#include <QTabWidget>
-#include <QPushButton>
-#include "node/node.h"
 #include <QLineEdit>
-#include <QFormLayout>
-#include <QComboBox>
 #include <QListWidget>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QVBoxLayout>
 
 
 class NodePropertyWidget : public QDockWidget
@@ -36,6 +36,8 @@ class NodePropertyWidget : public QDockWidget
 		QTabWidget *tabwidget;
 
 		// nodeinfotab
+		QFormLayout *infolayout;
+		QFrame *infoframe;
 		QLineEdit *nodeName;
 		QLabel *creationdate;
 		QLabel *modificationdate;
@@ -44,6 +46,7 @@ class NodePropertyWidget : public QDockWidget
 
 		// labeltab
 		QGridLayout *labellayout;
+		QFrame *labelframe;
 		QLineEdit *newLabel;
 		QPushButton *btnAddLabel;
 		QListWidget *availlabels;
@@ -51,7 +54,6 @@ class NodePropertyWidget : public QDockWidget
 
 		QWidget* createNodeInfoTab();
 		QWidget* createLabelTab();
-		QWidget* createMetaInfoTab();
 	
 };
 

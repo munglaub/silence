@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->setInfoSidebar(infosidebar);
 
 	nodepropertywidget = new NodePropertyWidget(tr("Properties"), this);
-//	nodepropertywidget->hide();
+	nodepropertywidget->hide();
 	addDockWidget(Qt::RightDockWidgetArea, nodepropertywidget);
 	controller->setNodePropertyWidget(nodepropertywidget);
 

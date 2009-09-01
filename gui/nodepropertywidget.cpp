@@ -1,18 +1,17 @@
-#include "nodepropertywidget.h"
 #include "controller.h"
+#include "nodepropertywidget.h"
+
 
 NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
-	setFloating(true);
 	layout = new QVBoxLayout;
 
 	tabwidget = new QTabWidget(this);
 	layout->addWidget(tabwidget);
 	tabwidget->addTab(createNodeInfoTab(), tr("Nodeinfos"));
 	tabwidget->addTab(createLabelTab(), tr("Labels"));
-	tabwidget->addTab(createMetaInfoTab(), tr("Metainfos"));
 
 	frame = new QFrame;
 	frame->setLayout(layout);
@@ -21,11 +20,29 @@ NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt
 
 NodePropertyWidget::~NodePropertyWidget()
 {
+	delete applyLabels;
+	delete availlabels;
+	delete btnAddLabel;
+	delete newLabel;
+	delete labellayout;
+	delete labelframe;
+
+	delete applyNodeInfo;
+	delete syntax;
+	delete modificationdate;
+	delete creationdate;
+	delete nodeName;
+	delete infolayout;
+	delete infoframe;
+	
+	delete tabwidget;
+	delete layout;
+	delete frame;
 }
 
 QWidget* NodePropertyWidget::createNodeInfoTab()
 {
-	QFormLayout *infolayout = new QFormLayout;
+	infolayout = new QFormLayout;
 	nodeName = new QLineEdit;
 	infolayout->addRow(tr("Node name:"), nodeName);
 	
@@ -64,7 +81,7 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 	infolayout->addRow("", applyNodeInfo);
 	connect(applyNodeInfo, SIGNAL(clicked()), this, SLOT(saveNodeInfo()));
 
-	QFrame *infoframe = new QFrame;
+	infoframe = new QFrame;
 	infoframe->setLayout(infolayout);
 	return infoframe;
 }
@@ -87,14 +104,9 @@ QWidget* NodePropertyWidget::createLabelTab()
 	connect(applyLabels, SIGNAL(clicked()), this, SLOT(saveLabels()));
 	labellayout->addWidget(applyLabels, 2, 1);
 
-	QFrame *labelframe = new QFrame;
+	labelframe = new QFrame;
 	labelframe->setLayout(labellayout);
 	return labelframe;
-}
-
-QWidget* NodePropertyWidget::createMetaInfoTab()
-{
-	return new QLabel("bar");
 }
 
 void NodePropertyWidget::setNode(Node* node)
@@ -119,8 +131,6 @@ void NodePropertyWidget::setNode(Node* node)
 		if (node->getLabels()->contains(allLabels->at(i)))
 			availlabels->item(availlabels->count() - 1)->setSelected(true);
 	}
-
-	// metainfos
 }
 
 
@@ -135,11 +145,7 @@ void NodePropertyWidget::saveLabels()
 {
 	node->getLabels()->clear();
 	for (int i=0; i<availlabels->selectedItems().size(); ++i)
-	{
-		QString label = availlabels->selectedItems().at(i)->text();
-		//if (!node->getLabels().contains(label))
-			node->addLabel(label);
-	}
+		node->addLabel(availlabels->selectedItems().at(i)->text());
 }
 
 void NodePropertyWidget::addLabel()
