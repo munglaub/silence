@@ -170,10 +170,10 @@ void DataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
 	xmlNode.appendChild(mDate);
 
 	// labels
-	for (int i=0; i<node->getLabels().size(); ++i)
+	for (int i=0; i<node->getLabels()->size(); ++i)
 	{
 		QDomElement label = doc.createElement("label");
-		QDomText labelText = doc.createTextNode(node->getLabels().at(i));
+		QDomText labelText = doc.createTextNode(node->getLabels()->at(i));
 		label.appendChild(labelText);
 		xmlNode.appendChild(label);
 	}

@@ -102,7 +102,7 @@ void InfoSidebar::updateInfos()
 	lasteditDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 
 	QString labels;
-	QStringListIterator iterator(node->getLabels());
+	QStringListIterator iterator(*node->getLabels());
 	if (iterator.hasNext())
 		labels = iterator.next();
 	while (iterator.hasNext())

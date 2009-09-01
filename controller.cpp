@@ -9,6 +9,7 @@ Controller::Controller()
 	treeview = 0;
 	datastore = 0;
 	statusbar = 0;
+	nodepropertywidget = 0;
 	editmenu = 0;
 }
 
@@ -68,6 +69,16 @@ void Controller::setEditMenu(EditMenu *editmenu)
 EditMenu* Controller::getEditMenu() const
 {
 	return editmenu;
+}
+
+void Controller::setNodePropertyWidget(NodePropertyWidget *nodepropertywidget)
+{
+	this->nodepropertywidget = nodepropertywidget;
+}
+
+NodePropertyWidget* Controller::getNodePropertyWidget() const
+{
+	return nodepropertywidget;
 }
 
 void Controller::setStatusBar(StatusBar *statusbar)

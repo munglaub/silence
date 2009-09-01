@@ -27,6 +27,11 @@ MainWindow::MainWindow(QWidget *parent)
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
 	controller->setInfoSidebar(infosidebar);
 
+	nodepropertywidget = new NodePropertyWidget(tr("Properties"), this);
+//	nodepropertywidget->hide();
+	addDockWidget(Qt::RightDockWidgetArea, nodepropertywidget);
+	controller->setNodePropertyWidget(nodepropertywidget);
+
 	// the treeview on the left side
 	treeview = new TreeView(tr("Tree"), this);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
@@ -57,6 +62,7 @@ MainWindow::~MainWindow()
 	delete treeview;
 	delete infosidebar;
 	delete statusbar;
+	delete nodepropertywidget;
 
 	delete filemenu;
 	delete editmenu;

@@ -15,6 +15,7 @@ class RichTextNodeContent : public AbstractNodeContent
 		
 		QWidget* getWidget();
 		QHash<QString, QString>* getMetaInfos();
+		void addMetaInfo(QString key, QString value);
 		QString getMimeType();
 
 		void setText(QString text);

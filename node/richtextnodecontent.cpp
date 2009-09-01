@@ -24,6 +24,12 @@ QHash<QString, QString>* RichTextNodeContent::getMetaInfos()
 	return metaInfos;
 }
 
+void RichTextNodeContent::addMetaInfo(QString key, QString value)
+{
+	metaInfos->insert(key, value);
+	emit changed();
+}
+
 QString RichTextNodeContent::getMimeType()
 {
 	return "text/richtext";

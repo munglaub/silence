@@ -46,6 +46,10 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 			const QItemSelection&)),
 			this, SLOT(selectItem()));
 
+	// nodeproperty
+	propertyAction = new QAction(tr("Properties"), this);
+	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
+
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
 	layout->setContentsMargins(8, 0, 0, 0);
@@ -141,6 +145,7 @@ void TreeView::selectItem()
 	controller->getContentView()->setContent(selectedNode->getContent());
 	controller->getInfoSidebar()->setData(selectedNode);
 	controller->getStatusBar()->setNodeName(selectedNode->getCaption());
+	controller->getNodePropertyWidget()->setNode(selectedNode);
 }
 
 void TreeView::updateActions()
@@ -171,8 +176,7 @@ void TreeView::contextMenuEvent(QContextMenuEvent *event)
 	menu.addAction(addRowAction);
 	menu.addAction(addChildAction);
 	menu.addAction(removeAction);
-	QAction *propertyAction = menu.addAction("Properties");
-	propertyAction->setEnabled(false);
+	menu.addAction(propertyAction);
 	menu.exec(event->globalPos());
 }
 

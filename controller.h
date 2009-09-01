@@ -5,6 +5,7 @@
 #include "gui/contentview.h"
 #include "gui/editmenu.h"
 #include "gui/infosidebar.h"
+#include "gui/nodepropertywidget.h"
 #include "gui/statusbar.h"
 #include "gui/treeview.h"
 
@@ -27,6 +28,9 @@ class Controller
 		void setStatusBar(StatusBar* statusbar);
 		StatusBar* getStatusBar() const;
 
+		void setNodePropertyWidget(NodePropertyWidget *nodepropertywidget);
+		NodePropertyWidget* getNodePropertyWidget() const;
+
 		void setEditMenu(EditMenu *editmenu);
 		EditMenu* getEditMenu() const;
 
@@ -42,6 +46,7 @@ class Controller
 		InfoSidebar *infosidebar;
 		TreeView *treeview;
 		StatusBar *statusbar;
+		NodePropertyWidget *nodepropertywidget;
 		EditMenu *editmenu;
 
 		DataStore *datastore;

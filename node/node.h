@@ -48,7 +48,7 @@ class Node : public QObject
 		int columnCount() const;
 
 		// labels
-		QStringList getLabels() const;
+		QStringList* getLabels();
 		void addLabel(QString label);
 		void addLabels(QStringList labels);
 		

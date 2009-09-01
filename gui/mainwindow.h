@@ -7,6 +7,7 @@
 #include "gui/filemenu.h"
 #include "gui/helpmenu.h"
 #include "gui/infosidebar.h"
+#include "gui/nodepropertywidget.h"
 #include "gui/statusbar.h"
 #include "gui/treeview.h"
 #include "gui/viewmenu.h"
@@ -25,6 +26,7 @@ class MainWindow : public QMainWindow
 		TreeView *treeview;
 		InfoSidebar *infosidebar;
 		StatusBar *statusbar;
+		NodePropertyWidget *nodepropertywidget;
 
 		// Menus
 		FileMenu *filemenu;

@@ -39,6 +39,12 @@ QHash<QString, QString>* TextNodeContent::getMetaInfos()
 	return metaInfos;
 }
 
+void TextNodeContent::addMetaInfo(QString key, QString value)
+{
+	metaInfos->insert(key, value);
+	emit changed();
+}
+
 QString TextNodeContent::getMimeType()
 {
 	return "text/plain";

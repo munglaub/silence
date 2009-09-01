@@ -27,7 +27,8 @@ SOURCES += 	main.cpp\
 			gui/newnodedialog.cpp\
 			gui/searchnodedialog.cpp\
 			gui/contentview.cpp\
-			gui/welcomeview.cpp
+			gui/welcomeview.cpp\
+			gui/nodepropertywidget.cpp
 
 HEADERS +=	controller.h\
 			data/datastore.h\
@@ -53,7 +54,8 @@ HEADERS +=	controller.h\
 			gui/newnodedialog.h\
 			gui/searchnodedialog.h\
 			gui/contentview.h\
-			gui/welcomeview.h
+			gui/welcomeview.h\
+			gui/nodepropertywidget.h
 
 QT		+= xml
 

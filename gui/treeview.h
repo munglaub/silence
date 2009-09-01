@@ -2,6 +2,7 @@
 #define TREEVIEW_H
 
 #include "node/treemodel.h"
+#include "gui/nodepropertywidget.h"
 #include <QDockWidget>
 #include <QFrame>
 #include <QToolBar>
@@ -37,9 +38,11 @@ class TreeView : public QDockWidget
 
 		// Toolbar
 		QToolBar *toolbar;
-		QAction *addRowAction;
-		QAction *addChildAction;
-		QAction *removeAction;
+		QAction *addRowAction,
+				*addChildAction,
+				*removeAction,
+				*propertyAction;
+		
 
 		QFrame *frame;
 		QVBoxLayout *layout;
