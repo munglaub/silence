@@ -15,6 +15,7 @@
 #include <QTreeView>
 #include <QVariant>
 #include <QVBoxLayout>
+#include <QPoint>
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -40,6 +41,10 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
 			const QItemSelection&)),
 			this, SLOT(updateActions()));
+	
+	tree->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(tree, SIGNAL(customContextMenuRequested (const QPoint&)),
+			this, SLOT(showTreeContextMenu(const QPoint&)));
 
 	// bin mir nicht sicher das das das beste signal ist
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
@@ -170,13 +175,13 @@ QList<QAction*>* TreeView::getNodeActions() const
 	return result;
 }
 
-void TreeView::contextMenuEvent(QContextMenuEvent *event)
+void TreeView::showTreeContextMenu(const QPoint& pos)
 {
 	QMenu menu(this);
 	menu.addAction(addRowAction);
 	menu.addAction(addChildAction);
 	menu.addAction(removeAction);
 	menu.addAction(propertyAction);
-	menu.exec(event->globalPos());
+	menu.exec(tree->mapToGlobal(pos));
 }
 

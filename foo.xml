@@ -7,7 +7,7 @@
  <node id="2" >
   <caption>TODO</caption>
   <creationdate>Sat Aug 29 20:08:20 2009</creationdate>
-  <modificationdate>Tue Sep 1 22:03:54 2009</modificationdate>
+  <modificationdate>Wed Sep 2 18:05:49 2009</modificationdate>
   <label>wichtig</label>
   <content mimetype="text/richtext" >
    <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
@@ -74,7 +74,7 @@ p, li { white-space: pre-wrap; }
  <node id="8" >
   <caption>done</caption>
   <creationdate>Sat Aug 29 23:02:31 2009</creationdate>
-  <modificationdate>Mon Aug 31 17:58:29 2009</modificationdate>
+  <modificationdate>Wed Sep 2 17:55:23 2009</modificationdate>
   <content mimetype="text/richtext" >
    <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
  <node id="4" >
   <caption>License</caption>
   <creationdate>Sat Aug 29 20:21:07 2009</creationdate>
-  <modificationdate>Sat Aug 29 20:21:20 2009</modificationdate>
+  <modificationdate>Wed Sep 2 18:06:25 2009</modificationdate>
   <label>license</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >None</metainfo>

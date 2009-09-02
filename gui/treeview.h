@@ -23,14 +23,12 @@ class TreeView : public QDockWidget
 	public slots:
 		void updateActions();
 
-	protected:
-		void contextMenuEvent(QContextMenuEvent *event);
-
 	private slots:
 		void addRow();
 		void addChild();
 		void removeTreeItem();
 		void selectItem();
+		void showTreeContextMenu(const QPoint& pos);
                 
 	private:
 		QTreeView *tree;
