@@ -27,18 +27,18 @@ class InfoSidebar : public QDockWidget
 		QFrame *frame;
 
 		// infos aus der node
-		QLabel *caption;
-		QLabel *icon;
-		QLabel *created;
-		QLabel *createdDate;
-		QLabel *lastedit;
-		QLabel *lasteditDate;
-		QLabel *labels;
-		QLabel *labelsData;
-		QLabel *metaInfo;
-		QLabel *metaInfoData;
-		QLabel *type;
-		QLabel *typeName;
+		QLabel	*caption,
+				*created,
+				*createdDate,
+				*lastedit,
+				*lasteditDate,
+				*labels,
+				*labelsData,
+				*metaInfo,
+				*metaInfoData,
+				*type,
+				*typeName,
+				*icon;
 
 		// metainfos aus dem content
 };

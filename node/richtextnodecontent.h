@@ -23,6 +23,9 @@ class RichTextNodeContent : public AbstractNodeContent
 
 		QDomElement getXmlData(QDomDocument &doc);
 		void setXmlData(QDomElement &xmlNode);
+
+		QPixmap getPixmap();
+		QIcon getIcon();
 	
 	signals:
 		void changed();
@@ -30,6 +33,8 @@ class RichTextNodeContent : public AbstractNodeContent
 	private:
 		QHash<QString, QString> *metaInfos;
 		QString text;
+		QIcon icon;
+		QPixmap pixmap;
 
 };
 

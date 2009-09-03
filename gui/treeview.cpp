@@ -44,7 +44,7 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	
 	tree->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(tree, SIGNAL(customContextMenuRequested (const QPoint&)),
-			this, SLOT(showTreeContextMenu(const QPoint&)));
+			this, SLOT(showTreeContextMenu()));
 
 	// bin mir nicht sicher das das das beste signal ist
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
@@ -175,13 +175,13 @@ QList<QAction*>* TreeView::getNodeActions() const
 	return result;
 }
 
-void TreeView::showTreeContextMenu(const QPoint& pos)
+void TreeView::showTreeContextMenu()
 {
 	QMenu menu(this);
 	menu.addAction(addRowAction);
 	menu.addAction(addChildAction);
 	menu.addAction(removeAction);
 	menu.addAction(propertyAction);
-	menu.exec(tree->mapToGlobal(pos));
+	menu.exec(QCursor::pos());
 }
 

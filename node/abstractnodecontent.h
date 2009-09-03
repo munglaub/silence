@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QHash>
 #include <QDomDocument>
+#include <QIcon>
 
 class AbstractNodeContent : public QObject
 {
@@ -15,6 +16,8 @@ class AbstractNodeContent : public QObject
 
 		virtual QDomElement getXmlData(QDomDocument &doc) { return doc.createElement(""); };
 		virtual void setXmlData(QDomElement &xmlNode) { xmlNode.firstChild(); };
+		virtual QPixmap getPixmap() { return NULL; };
+		virtual QIcon getIcon() { return QIcon(); };
 };
 
 #endif // ABSTRACTNODECONTENT_H

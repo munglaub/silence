@@ -28,7 +28,7 @@ class TreeView : public QDockWidget
 		void addChild();
 		void removeTreeItem();
 		void selectItem();
-		void showTreeContextMenu(const QPoint& pos);
+		void showTreeContextMenu();
                 
 	private:
 		QTreeView *tree;

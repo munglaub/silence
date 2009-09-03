@@ -22,6 +22,9 @@ class TextNodeContent : public AbstractNodeContent
 		void addMetaInfo(QString key, QString value);
 		QString getMimeType();
 		void setSyntax(QString syntax);
+
+		QPixmap getPixmap();
+		QIcon getIcon();
 	
 	signals:
 		void changed();
@@ -29,6 +32,11 @@ class TextNodeContent : public AbstractNodeContent
 	private:
 		QHash<QString, QString> *metaInfos;
 		QString text;
+
+		QIcon icon;
+		QPixmap pixmap;
+
+		void setGraphics();
 };
 
 #endif // TEXTNODECONTENT_H

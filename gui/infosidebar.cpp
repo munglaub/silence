@@ -19,22 +19,21 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 	
-	icon = new QLabel(tr("Icon"));
-	icon->setFont(QFont("Times", 34, QFont::Bold));
+	icon = new QLabel(tr(""));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 
 	created = new QLabel(tr("Created:"));
 	created->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(created, row, 0);
-	createdDate = new QLabel(tr("21.03.2008"));
+	createdDate = new QLabel(tr(""));
 	layout->addWidget(createdDate, row, 1);
 	++row;
 
 	lastedit = new QLabel(tr("Last edit:"));
 	lastedit->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(lastedit, row, 0);
-	lasteditDate = new QLabel(tr("17.04.2008"));
+	lasteditDate = new QLabel(tr(""));
 	layout->addWidget(lasteditDate, row, 1);
 	++row;
 
@@ -48,7 +47,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	labels = new QLabel(tr("Labels:"));
 	labels->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(labels, row, 0);
-	labelsData = new QLabel(tr("Private, Important"));
+	labelsData = new QLabel(tr(""));
 	labelsData->setWordWrap(true);
 	layout->addWidget(labelsData, row, 1);
 	++row;
@@ -115,6 +114,8 @@ void InfoSidebar::updateInfos()
 	// set content infos
 	if (node->getContent())
 	{
+		icon->setPixmap(node->getContent()->getIcon().pixmap(64, 64));
+
 		typeName->setText(node->getContent()->getMimeType());
 		type->setHidden(false);
 		typeName->setHidden(false);

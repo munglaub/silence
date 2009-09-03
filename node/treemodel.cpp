@@ -8,7 +8,6 @@ TreeModel::TreeModel(QObject *parent)
 	: QAbstractItemModel(parent)
 {
 	rootItem = Controller::create()->getDataStore()->getRoot();
-	init(rootItem);
 }
 
 TreeModel::~TreeModel()
@@ -38,10 +37,13 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 	if (!index.isValid())
 		return QVariant();
 
-	if (role != Qt::DisplayRole && role != Qt::EditRole)
+	if (role != Qt::DisplayRole && role != Qt::EditRole && role != Qt::DecorationRole)
 		return QVariant();
 
 	Node *item = getItem(index);
+	if (role == Qt::DecorationRole && item->getContent() != 0)
+		return item->getContent()->getPixmap();
+
 	return item->getCaption();
 }
 
@@ -136,16 +138,6 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 	return parentItem->getChildCount();
 }
 
-
-void TreeModel::init(Node *parent)
-{
-/*
-	int position = 0;
-	int count = 1;
-	parent->addChildren(position, count);
-	parent->getChild(parent->getChildCount() - 1)->setCaption("foobar");
-*/
-}
 
 
 

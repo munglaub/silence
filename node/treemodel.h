@@ -50,8 +50,6 @@ public:
 
 
 private:
-    void init(Node *parent);
-
     Node *rootItem;
 };
 

@@ -5,6 +5,8 @@ RichTextNodeContent::RichTextNodeContent()
 {
 	text = "";
 	metaInfos = new QHash<QString, QString>;
+	icon = QIcon("icons/mimetype/64x64/text-rtf.png");
+	pixmap = QPixmap("icons/mimetype/16x16/text-rtf.png");
 }
 
 RichTextNodeContent::~RichTextNodeContent()
@@ -70,4 +72,13 @@ void RichTextNodeContent::setXmlData(QDomElement &xmlNode)
 	}
 }
 
+QPixmap RichTextNodeContent::getPixmap()
+{
+	return pixmap;
+}
+
+QIcon RichTextNodeContent::getIcon()
+{
+	return icon;
+}
 
