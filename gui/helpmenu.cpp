@@ -1,17 +1,22 @@
 #include "gui/helpmenu.h"
-#include "gui/aboutdialog.h"
-#include <QMenu>
-#include <QAction>
 
 HelpMenu::HelpMenu(QWidget *parent)
 	: QMenu(parent)
 {
 	setTitle(tr("&Help"));
-	QAction *about = addAction(tr("About"));
-	connect(about, SIGNAL(triggered()), new AboutDialog(), SLOT(exec()));
+	about = addAction(tr("About"));
+	connect(about, SIGNAL(triggered()), this, SLOT(showAbout()));
 }
 
 HelpMenu::~HelpMenu()
 {
+	delete about;
+}
+
+void HelpMenu::showAbout()
+{
+	AboutDialog *dlg = new AboutDialog;
+	dlg->exec();
+	delete dlg;
 }
 
