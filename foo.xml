@@ -502,15 +502,6 @@ Public License instead of this License.</text>
    <text></text>
   </content>
  </node>
- <node id="16" >
-  <caption>Nodename</caption>
-  <creationdate>Thu Sep 3 01:13:05 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:05 2009</modificationdate>
-  <content mimetype="text/plain" >
-   <metainfo key="Syntax" >C++</metainfo>
-   <text></text>
-  </content>
- </node>
  <node id="19" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:29 2009</creationdate>
@@ -559,10 +550,25 @@ Public License instead of this License.</text>
  <node id="25" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:31 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:14:31 2009</modificationdate>
+  <modificationdate>Fri Sep 4 20:49:56 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Python</metainfo>
    <text></text>
+  </content>
+ </node>
+ <node id="28" >
+  <caption>Nodename</caption>
+  <creationdate>Fri Sep 4 20:50:18 2009</creationdate>
+  <modificationdate>Fri Sep 4 20:57:49 2009</modificationdate>
+  <content mimetype="text/plain" >
+   <metainfo key="Syntax" >C#</metainfo>
+   <text>
+
+public class foo(){
+	public static string getName(){
+		return "Just a test";
+	}
+}</text>
   </content>
  </node>
  <node id="17" >

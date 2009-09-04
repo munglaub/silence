@@ -13,11 +13,11 @@ class AboutDialog : public QDialog
 		~AboutDialog();
 
 	private:
-		QGridLayout *layout;
-		QLabel	*head,
-				*version,
-				*writtenby,
-				*authors;
+                QGridLayout *subLayout,
+                            *layout;
+                QLabel      *logo,
+                            *version,
+                            *authors;
 		QPushButton *quit;
 };
 
