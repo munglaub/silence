@@ -19,16 +19,15 @@ SOURCES += 	main.cpp\
 			gui/viewmenu.cpp\
 			gui/treeview.cpp\
 			gui/textedit.cpp\
-			gui/texteditfind.cpp\
 			gui/richtextedit.cpp\
-			gui/richtextfind.cpp\
 			gui/infosidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
 			gui/searchnodedialog.cpp\
 			gui/contentview.cpp\
 			gui/welcomeview.cpp\
-			gui/nodepropertywidget.cpp
+			gui/nodepropertywidget.cpp\
+			gui/textfind.cpp
 
 HEADERS +=	controller.h\
 			data/datastore.h\
@@ -46,16 +45,15 @@ HEADERS +=	controller.h\
 			gui/viewmenu.h\
 			gui/treeview.h\
 			gui/textedit.h\
-			gui/texteditfind.h\
 			gui/richtextedit.h\
-			gui/richtextfind.h\
 			gui/infosidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
 			gui/searchnodedialog.h\
 			gui/contentview.h\
 			gui/welcomeview.h\
-			gui/nodepropertywidget.h
+			gui/nodepropertywidget.h\
+			gui/textfind.h
 
 QT		+= xml
 

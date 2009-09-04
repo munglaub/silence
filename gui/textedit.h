@@ -4,7 +4,7 @@
 #include "node/textnodecontent.h"
 #include <QAction>
 #include <QVBoxLayout>
-#include "gui/texteditfind.h"
+#include "gui/textfind.h"
 #include <Qsci/qsciscintilla.h>
 #include <QToolBar>
 #include <QWidget>
@@ -28,6 +28,10 @@ class TextEdit : public QWidget
 		void textModified();
 		void clipboardDataChanged();
 
+		void findNext();
+		void findPrev();
+		void findFirst();
+
 	protected:
 		TextEdit(QWidget *parent = 0);
 	
@@ -36,7 +40,7 @@ class TextEdit : public QWidget
 		QsciScintilla *editor;
 		TextNodeContent *content;
 		QVBoxLayout *layout;
-		TextEditFind *findWidget;
+		TextFind *findWidget;
 
 		QToolBar *toolbar;
 		QAction *actionSave,
@@ -50,6 +54,7 @@ class TextEdit : public QWidget
 
 		void setupActions();
 		void setupEditor();
+		void find(bool forward);
 };
 
 #endif // TEXTEDIT_H

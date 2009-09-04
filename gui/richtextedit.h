@@ -1,7 +1,7 @@
 #ifndef RICHTEXTEDIT_H
 #define RICHTEXTEDIT_H
 
-#include "gui/richtextfind.h"
+#include "gui/textfind.h"
 #include "node/richtextnodecontent.h"
 #include <QAction>
 #include <QComboBox>
@@ -41,10 +41,14 @@ class RichTextEdit : public QWidget
 		void currentCharFormatChanged(const QTextCharFormat &format);
 		void clipboardDataChanged();
 
+		void findNext();
+		void findPrev();
+		void findFirst();
+
 	private:
 		static RichTextEdit *richtextedit;
 		RichTextNodeContent *content;
-		RichTextFind *findWidget;
+		TextFind *findWidget;
 
 		QVBoxLayout *layout;
 
@@ -81,6 +85,7 @@ class RichTextEdit : public QWidget
 		void alignmentChanged(Qt::Alignment alignment);
 		void colorChanged(const QColor &color);
 		void fontChanged(const QFont &font);
+		void find(bool forward);
 };
 
 #endif // RICHTEXTEDIT_H

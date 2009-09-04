@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	setWindowTitle(tr("Silence"));
+	setWindowIcon(QIcon("icons/Silence_16px_1.png"));
 	controller = Controller::create();
 
 	// ContentView

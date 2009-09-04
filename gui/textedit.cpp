@@ -38,13 +38,16 @@ TextEdit::TextEdit(QWidget *parent)
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(toolbar);
 	layout->addWidget(editor);
-	findWidget = new TextEditFind(editor, this);
+	findWidget = new TextFind(this);
 	findWidget->hide();
 	layout->addWidget(findWidget);
 	setLayout(layout);
 	
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
+	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
+	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
+	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
 
 	// cursorposition
 	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
@@ -224,5 +227,42 @@ void TextEdit::setVisible(bool visible)
 	actionCut->setVisible(visible);
 	actionCopy->setVisible(visible);
 	actionPaste->setVisible(visible);
+}
+
+void TextEdit::findFirst()
+{
+	editor->setCursorPosition(0, 0);
+	find(true);
+}
+
+void TextEdit::findNext()
+{
+	find(true);
+}
+
+void TextEdit::findPrev()
+{
+	find(false);
+}
+
+void TextEdit::find(bool forward)
+{
+	if (findWidget->getSearchString().isEmpty())
+		return;
+
+	bool regex = false;
+	bool caseSensitive = findWidget->getCaseSensitivity();
+	bool wholeWord = findWidget->getWholeWord();
+	bool wrap = true;
+	int line = -1;
+	int index = -1;
+	if (forward == false)
+	{
+		editor->getCursorPosition(&line, &index);
+		--index;
+	}
+	bool show = true;
+	bool found = editor->findFirst(findWidget->getSearchString(), regex, caseSensitive, wholeWord, wrap, forward, line, index, show);
+	findWidget->setFound(found);
 }
 

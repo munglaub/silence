@@ -28,15 +28,17 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	textedit->setTabStopWidth(40);
 	layout->addWidget(textedit);
 
-	findWidget = new RichTextFind(textedit, this);
+	findWidget = new TextFind(this);
 	findWidget->hide();
-	connect(textedit, SIGNAL(textChanged()), findWidget, SLOT(unhighlighte()));
 	layout->addWidget(findWidget);
 
 	setLayout(layout);
 
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
+	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
+	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
+	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
@@ -445,4 +447,38 @@ void RichTextEdit::setVisible(bool visible)
 	actionFind->setVisible(visible);
 }
 
+void RichTextEdit::find(bool forward)
+{
+	if (findWidget->getSearchString().isEmpty())
+		return;
+
+	bool found = false;
+	QTextDocument::FindFlags flags = 0;
+	
+	if (!forward)
+		flags = flags | QTextDocument::FindBackward;
+	if (findWidget->getCaseSensitivity())
+		flags = flags | QTextDocument::FindCaseSensitively;
+	if (findWidget->getWholeWord())
+		flags = flags | QTextDocument::FindWholeWords;
+
+	found = textedit->find(findWidget->getSearchString(), flags);
+	findWidget->setFound(found);
+}
+
+void RichTextEdit::findNext()
+{
+	find(true);
+}
+
+void RichTextEdit::findPrev()
+{
+	find(false);
+}
+
+void RichTextEdit::findFirst()
+{
+	textedit->moveCursor(QTextCursor::Start);
+	find(true);
+}
 
