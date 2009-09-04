@@ -12,11 +12,10 @@ WelcomeView::WelcomeView(QWidget *parent)
 	icon = new QLabel;
 	icon->setPixmap(QPixmap("icons/Silence_big.png"));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignLeft);
-	++row;
 
 	welcome = new QLabel(tr("Welcome to Silence, an information management tool."));
 	welcome->setFont(QFont("Times", 12, QFont::Normal));
-	layout->addWidget(welcome, row, 0, 1, 2, Qt::AlignLeft);
+	layout->addWidget(welcome, row, 1, 1, 2, Qt::AlignLeft);
 	++row;
 
 	versionCap = new QLabel(tr("Version"));
