@@ -120,7 +120,7 @@ p, li { white-space: pre-wrap; }
  <node id="4" >
   <caption>License</caption>
   <creationdate>Sat Aug 29 20:21:07 2009</creationdate>
-  <modificationdate>Wed Sep 2 20:32:10 2009</modificationdate>
+  <modificationdate>Sat Sep 5 19:25:06 2009</modificationdate>
   <label>license</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >None</metainfo>

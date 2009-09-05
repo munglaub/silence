@@ -31,6 +31,7 @@
 #include "gui/statusbar.h"
 #include "gui/treeview.h"
 #include "gui/viewmenu.h"
+#include "gui/searchnodesidebar.h"
 #include <QMainWindow>
 
 
@@ -45,6 +46,7 @@ class MainWindow : public QMainWindow
 		ContentView *contentview;
 		TreeView *treeview;
 		InfoSidebar *infosidebar;
+		SearchNodeSidebar *searchnodesidebar;
 		StatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
 

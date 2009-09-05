@@ -22,6 +22,7 @@ SOURCES += 	main.cpp\
 			gui/textedit.cpp\
 			gui/richtextedit.cpp\
 			gui/infosidebar.cpp\
+			gui/searchnodesidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
 			gui/searchnodedialog.cpp\
@@ -49,6 +50,7 @@ HEADERS +=	controller.h\
 			gui/textedit.h\
 			gui/richtextedit.h\
 			gui/infosidebar.h\
+			gui/searchnodesidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
 			gui/searchnodedialog.h\

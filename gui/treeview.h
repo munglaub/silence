@@ -39,15 +39,16 @@ class TreeView : public QDockWidget
 		TreeView(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		~TreeView();
 		QList<QAction*>* getNodeActions() const;
+		QTreeView* getTree();
 
 	public slots:
 		void updateActions();
+		void selectItem();
 
 	private slots:
 		void addRow();
 		void addChild();
 		void removeTreeItem();
-		void selectItem();
 		void showTreeContextMenu();
                 
 	private:

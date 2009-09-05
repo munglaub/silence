@@ -18,26 +18,38 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui>
- 
+#ifndef SEARCHNODESIDEBAR_H
+#define SEARCHNODESIDEBAR_H
+
 #include "node/filtermodel.h"
-#include "controller.h"
 
-FilterModel::FilterModel(QObject *parent)
-:QSortFilterProxyModel(parent) /* call superclass constructor */
+#include <QDockWidget>
+#include <QGridLayout>
+#include <QListView>
+#include <QLineEdit>
+
+
+class SearchNodeSidebar : public QDockWidget
 {
-	// FIXME: remove this if not needed!
-}
+	Q_OBJECT
 
-FilterModel::~FilterModel()
-{
-	// FIXME: remove this if not needed!
-}
+	public:
+		SearchNodeSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		~SearchNodeSidebar();
 
+	private:
+		QGridLayout *layout;
+		QFrame *frame;
 
-bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
-{
-	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent); /* call superclass method */
-	
-	return accepts;
-}
+		// search results
+		QListView *results;
+		FilterModel *filtermodel;
+
+		// search properties:
+		QLineEdit *searchedit;
+	private slots:
+		void selectionChanged(QModelIndex current, QModelIndex previous);
+};
+
+#endif // SEARCHNODESIDEBAR_H
+
