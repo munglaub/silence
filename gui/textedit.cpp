@@ -1,3 +1,23 @@
+/*
+ * Silence
+ *
+ * Copyright (C) 2009 Manuel Unglaub
+ *
+ * This file is part of Silence.
+ *
+ * Silence is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version GPLv2 only of the License.
+ *
+ * Silence is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "controller.h"
 #include "gui/textedit.h"
 #include <QApplication>
@@ -38,13 +58,16 @@ TextEdit::TextEdit(QWidget *parent)
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(toolbar);
 	layout->addWidget(editor);
-	findWidget = new TextEditFind(editor, this);
+	findWidget = new TextFind(this);
 	findWidget->hide();
 	layout->addWidget(findWidget);
 	setLayout(layout);
 	
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
+	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
+	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
+	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
 
 	// cursorposition
 	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
@@ -224,5 +247,42 @@ void TextEdit::setVisible(bool visible)
 	actionCut->setVisible(visible);
 	actionCopy->setVisible(visible);
 	actionPaste->setVisible(visible);
+}
+
+void TextEdit::findFirst()
+{
+	editor->setCursorPosition(0, 0);
+	find(true);
+}
+
+void TextEdit::findNext()
+{
+	find(true);
+}
+
+void TextEdit::findPrev()
+{
+	find(false);
+}
+
+void TextEdit::find(bool forward)
+{
+	if (findWidget->getSearchString().isEmpty())
+		return;
+
+	bool regex = false;
+	bool caseSensitive = findWidget->getCaseSensitivity();
+	bool wholeWord = findWidget->getWholeWord();
+	bool wrap = true;
+	int line = -1;
+	int index = -1;
+	if (forward == false)
+	{
+		editor->getCursorPosition(&line, &index);
+		--index;
+	}
+	bool show = true;
+	bool found = editor->findFirst(findWidget->getSearchString(), regex, caseSensitive, wholeWord, wrap, forward, line, index, show);
+	findWidget->setFound(found);
 }
 

@@ -18,44 +18,52 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef RICHTEXTNODECONTENT_H
-#define RICHTEXTNODECONTENT_H
+#ifndef TEXTFIND_H
+#define TEXTFIND_H
 
-#include "node/abstractnodecontent.h"
-#include <QHash>
+#include <QCheckBox>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QTextEdit>
 #include <QWidget>
 
-class RichTextNodeContent : public AbstractNodeContent
+
+class TextFind : public QWidget
 {
 	Q_OBJECT
 
 	public:
-		RichTextNodeContent();
-		~RichTextNodeContent();
-		
-		QWidget* getWidget();
-		QHash<QString, QString>* getMetaInfos();
-		void addMetaInfo(QString key, QString value);
-		QString getMimeType();
+		TextFind(QWidget *parent = 0);
+		~TextFind();	
 
-		void setText(QString text);
-		QString getText() const;
+		bool getCaseSensitivity();
+		bool getWholeWord();
+		QString getSearchString();
 
-		QDomElement getXmlData(QDomDocument &doc);
-		void setXmlData(QDomElement &xmlNode);
+		QPushButton* getPrevBtn();
+		QPushButton* getNextBtn();
+		QLineEdit* getFindEdit();
 
-		QPixmap getPixmap();
-		QIcon getIcon();
+		void setFound(bool found);
+
 	
-	signals:
-		void changed();
+	public slots:
+		void show();
+
+	private slots:
+		void findTextChange(const QString &text);
 
 	private:
-		QHash<QString, QString> *metaInfos;
-		QString text;
-		QIcon icon;
-		QPixmap pixmap;
+		QHBoxLayout *layout;
+		QLineEdit *findEdit;
+		QPushButton *nextBtn,
+					*prevBtn,
+					*hideBtn;
+		QCheckBox 	*caseCbx,
+					*wordCbx;
 
 };
 
-#endif // RICHTEXTNODECONTENT_H
+#endif // TEXTFIND_H
+

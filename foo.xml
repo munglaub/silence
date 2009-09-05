@@ -7,7 +7,7 @@
  <node id="2" >
   <caption>TODO</caption>
   <creationdate>Sat Aug 29 20:08:20 2009</creationdate>
-  <modificationdate>Wed Sep 2 18:05:49 2009</modificationdate>
+  <modificationdate>Fri Sep 4 16:34:27 2009</modificationdate>
   <label>wichtig</label>
   <content mimetype="text/richtext" >
    <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
@@ -32,7 +32,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- namensgebung (toolbars)&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- node-suchen-dialog (searchnodedialog.h/.cpp) anpassen und mit funktionen fuellen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- nodes mit icon versehen (tree und infosidebar)&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- statusbar&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- ob der content gespeichert ist oder nicht&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
@@ -497,73 +496,150 @@ Public License instead of this License.</text>
  <node id="15" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:12:42 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:12:57 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:16:24 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C++</metainfo>
-   <text></text>
-  </content>
- </node>
- <node id="16" >
-  <caption>Nodename</caption>
-  <creationdate>Thu Sep 3 01:13:05 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:05 2009</modificationdate>
-  <content mimetype="text/plain" >
-   <metainfo key="Syntax" >C++</metainfo>
-   <text></text>
+   <text>#include &lt;iostream>
+#include &lt;ostream>
+ 
+int main() 
+{
+   std::cout &lt;&lt; "Hallo Welt!" &lt;&lt; std::endl;
+}
+
+</text>
   </content>
  </node>
  <node id="19" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:29 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:29 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:16:43 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >HTML</metainfo>
-   <text></text>
+   <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+&lt;html>
+  &lt;head>
+    &lt;title>
+      Titel der Webseite
+    &lt;/title>
+ 
+    &lt;!-- Evtl. weitere Kopfinformationen -->
+  &lt;/head>
+ 
+  &lt;body>
+    Inhalt der Webseite
+  &lt;/body>
+&lt;/html>
+
+</text>
   </content>
  </node>
  <node id="20" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:38 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:38 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:17:07 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >SQL</metainfo>
-   <text></text>
+   <text>SELECT a.PersNr, a.Name
+FROM Professor a
+WHERE NOT EXISTS (SELECT * FROM Vorlesung WHERE PersNr = a.PersNr)
+</text>
   </content>
  </node>
  <node id="21" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:45 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:45 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:18:15 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >TeX</metainfo>
-   <text></text>
+   <text>\documentclass[a4paper]{book}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%%
+\begin{document}
+\chapter{?Kapitel-Überschrift}
+\subsection{ ? }
+%% Hier Text
+\end{document}
+
+</text>
   </content>
  </node>
  <node id="22" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:54 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:54 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:18:53 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C#</metainfo>
-   <text></text>
+   <text>class Program
+{
+  static void Main()
+  {
+    System.Console.WriteLine("Hallo Welt!");
+  }
+}</text>
   </content>
  </node>
  <node id="23" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:07 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:14:07 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:19:21 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Ruby</metainfo>
-   <text></text>
+   <text>class Ente
+  def beschreibung
+    "Eine graue Ente"
+  end
+  def sprechen
+    "Quak!"
+  end
+end
+ 
+class Kuh
+  def beschreibung
+    "Eine dicke Kuh"
+  end
+  def sprechen
+    "Muuuh!"
+  end
+end
+ 
+def lass_sprechen tier
+  puts tier.beschreibung+" macht "+tier.sprechen
+end
+
+</text>
   </content>
  </node>
  <node id="25" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:31 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:14:31 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:20:16 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Python</metainfo>
-   <text></text>
+   <text>def quicksort(liste):
+    if len(liste) &lt;= 1:
+        return liste
+    pivotelement = liste.pop()
+    links  = [element for element in liste if element &lt;  pivotelement]
+    rechts = [element for element in liste if element >= pivotelement]
+    return quicksort(links) + [pivotelement] + quicksort(rechts)
+</text>
+  </content>
+ </node>
+ <node id="28" >
+  <caption>Nodename</caption>
+  <creationdate>Fri Sep 4 20:50:18 2009</creationdate>
+  <modificationdate>Fri Sep 4 20:57:49 2009</modificationdate>
+  <content mimetype="text/plain" >
+   <metainfo key="Syntax" >C#</metainfo>
+   <text>
+
+public class foo(){
+	public static string getName(){
+		return "Just a test";
+	}
+}</text>
   </content>
  </node>
  <node id="17" >
@@ -578,10 +654,16 @@ Public License instead of this License.</text>
  <node id="18" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:20 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:20 2009</modificationdate>
+  <modificationdate>Sat Sep 5 14:20:54 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Java</metainfo>
-   <text></text>
+   <text> public class HalloWelt {
+     public static void main(String[] args) {
+         System.out.println("Hallo Welt!");
+     }
+ }
+
+</text>
   </content>
  </node>
 </silence>
