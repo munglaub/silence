@@ -137,7 +137,10 @@ void NodePropertyWidget::setNode(Node* node)
 	syntax->setEnabled(false);
 	if (node->getContent() != 0)
 		if (node->getContent()->getMimeType() == "text/plain")
+		{
 			syntax->setEnabled(true);
+			syntax->setCurrentIndex(syntax->findText(node->getContent()->getMetaInfos()->value("Syntax")));
+		}
 
 	creationdate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
 	modificationdate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
