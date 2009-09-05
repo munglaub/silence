@@ -66,7 +66,6 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	connect(tree, SIGNAL(customContextMenuRequested (const QPoint&)),
 			this, SLOT(showTreeContextMenu()));
 
-	// bin mir nicht sicher das das das beste signal ist
 	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
 			const QItemSelection&)),
 			this, SLOT(selectItem()));
@@ -181,7 +180,7 @@ void TreeView::updateActions()
 	bool hasCurrent = tree->selectionModel()->currentIndex().isValid();
 	addRowAction->setEnabled(hasCurrent);
 
-	// mh, brauch ich das??
+	// TODO: is the following necessary?
 	if (hasCurrent)
 		tree->closePersistentEditor(tree->selectionModel()->currentIndex());
 }

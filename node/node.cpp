@@ -42,28 +42,13 @@ Node::~Node()
 
 int Node::getIndex() const
 {
-// TODO: welches ist richtig/besser??
+// TODO: whats the better way?
 	if (parent)
 		return parent->children.indexOf(const_cast<Node*>(this));
 //		return parent->children.indexOf(this);
 	
 	return 0;
 }
-
-/*
-void Node::addChild(Node *child)
-{
-	children.append(child);
-}
-
-bool Node::addChild(Node *child, int position)
-{
-	if (position < 0 || position > children.size())
-		return false;
-	children.insert(position, child);
-	return true;
-}
-*/
 
 bool Node::addChildren(int position, int count)
 {

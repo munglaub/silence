@@ -43,8 +43,6 @@ class Node : public QObject
 		void setId(NodeId id);
 
 		// children
-//		void addChild(Node *child);
-//		bool addChild(Node *child, int position);
 		bool addChildren(int position, int count);
 		Node* getChild(int index) const;
 		int getChildCount() const;
@@ -85,10 +83,7 @@ class Node : public QObject
 		QDateTime creationDate;
 		QDateTime modificationDate;
 		QStringList labels;
-/*
-		icon
-		QString mimeType;
-*/		
+		
 		Node *parent;
 		QList<Node*> children;
 };

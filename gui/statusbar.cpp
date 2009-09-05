@@ -26,7 +26,8 @@ StatusBar::StatusBar(QWidget *parent)
 {
 	cursorPos = new QLabel("0 : 0");
 	addWidget(cursorPos);
-	addWidget(new QLabel(tr("changed")));
+	saveStatus = new QLabel("");
+	addWidget(saveStatus);
 	nodeName = new QLabel("");
 	addWidget(nodeName);
 }
@@ -34,12 +35,21 @@ StatusBar::StatusBar(QWidget *parent)
 StatusBar::~StatusBar()
 {
 	delete nodeName;
+	delete saveStatus;
 	delete cursorPos;
 }
 
 void StatusBar::setNodeName(QString name)
 {
 	nodeName->setText(name);
+}
+
+void StatusBar::setSaveStatus(bool saved)
+{
+	if (saved)
+		saveStatus->setText(tr("saved"));
+	else
+		saveStatus->setText(tr("changed"));
 }
 
 void StatusBar::setCursorPosition(int line, int col)

@@ -37,9 +37,11 @@ class StatusBar : public QStatusBar
 	
 	public slots:
 		void setCursorPosition(int line, int col);
+		void setSaveStatus(bool saved);
 
 	private:
 		QLabel	*nodeName,
+				*saveStatus,
 				*cursorPos;
 };
 
