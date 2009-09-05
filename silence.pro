@@ -9,6 +9,7 @@ SOURCES += 	main.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
 			node/treemodel.cpp\
+			node/filtermodel.cpp\
 			node/textnodecontent.cpp\
 			node/richtextnodecontent.cpp\
 			gui/mainwindow.cpp\
@@ -35,6 +36,7 @@ HEADERS +=	controller.h\
 			node/node.h\
 			node/nodeid.h\
 			node/treemodel.h\
+			node/filtermodel.h\
 			node/abstractnodecontent.h\
 			node/textnodecontent.h\
 			node/richtextnodecontent.h\
