@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009 Manuel Unglaub, Yves Adler
  *
  * This file is part of Silence.
  *
@@ -22,7 +22,7 @@
 #define TEXTFIND_H
 
 #include <QCheckBox>
-#include <QHBoxLayout>
+#include <QGridLayout>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTextEdit>
@@ -56,11 +56,16 @@ class TextFind : public QWidget
 		void findTextChange(const QString &text);
 
 	private:
-		QHBoxLayout *layout;
-		QLineEdit *findEdit;
+		QGridLayout *layout;
+		QLineEdit *findEdit,
+				*replaceEdit;
 		QPushButton *nextBtn,
 					*prevBtn,
-					*hideBtn;
+					*hideBtn,
+					*moreBtn,
+					*lessBtn,
+					*replaceBtn,
+					*replaceAllBtn;
 		QCheckBox 	*caseCbx,
 					*wordCbx;
 		QAction *abortAction;
