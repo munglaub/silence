@@ -27,6 +27,7 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QWidget>
+#include <QAction>
 
 
 class TextFind : public QWidget
@@ -62,6 +63,7 @@ class TextFind : public QWidget
 					*hideBtn;
 		QCheckBox 	*caseCbx,
 					*wordCbx;
+		QAction *abortAction;
 
 };
 

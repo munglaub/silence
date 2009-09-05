@@ -13,6 +13,7 @@ SOURCES += 	main.cpp\
 			node/richtextnodecontent.cpp\
 			gui/mainwindow.cpp\
 			gui/filemenu.cpp\
+			gui/silencemenu.cpp\
 			gui/helpmenu.cpp\
 			gui/aboutdialog.cpp\
 			gui/editmenu.cpp\
@@ -39,6 +40,7 @@ HEADERS +=	controller.h\
 			node/richtextnodecontent.h\
 			gui/mainwindow.h\
 			gui/filemenu.h\
+			gui/silencemenu.h\
 			gui/helpmenu.h\
 			gui/aboutdialog.h\
 			gui/editmenu.h\

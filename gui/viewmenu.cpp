@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009 Manuel Unglaub, Yves Adler
  *
  * This file is part of Silence.
  *
@@ -18,24 +18,57 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "controller.h"
 #include "gui/viewmenu.h"
 #include <QMenu>
 #include <QAction>
+
 
 ViewMenu::ViewMenu(QWidget *parent)
 	: QMenu(parent)
 {
 	setTitle(tr("&View"));
+
+	QAction *welcomeView = addAction(tr("Welcome View"));
+	connect(welcomeView, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
+
+	addSeparator();
+
+	QAction *showNodeTree = addAction(tr("Node Sidebar"));
+	showNodeTree->setCheckable(true);
+	// TODO: Controller::create()->getTreeView()->isVisible() does not work
+	//	 --> find a working solution which is NOT hardcorded!!
+	showNodeTree->setChecked(true);
+	connect(showNodeTree, SIGNAL(triggered(bool)), 
+		Controller::create()->getTreeView(), SLOT(setVisible(bool)));
+
+	QAction *showInfo = addAction(tr("Information Sidebar"));
+	showInfo->setCheckable(true);
+	showInfo->setChecked(true);
+	connect(showInfo, SIGNAL(triggered(bool)), 
+		Controller::create()->getInfoSidebar(), SLOT(setVisible(bool)));
+
+	QAction *showProps = addAction(tr("Node Properties Sidebar"));
+	showProps->setCheckable(true);
+	showProps->setChecked(false);
+	connect(showProps, SIGNAL(triggered(bool)), 
+		Controller::create()->getNodePropertyWidget(), SLOT(setVisible(bool)));
+
+	addSeparator();
+
 	QAction *linewarp = addAction(tr("Linewarp"));
 	linewarp->setCheckable(true);
 	linewarp->setEnabled(false);
-	QAction *infosidebar = addAction(tr("Information Sidebar"));
-	infosidebar->setCheckable(true);
-	infosidebar->setEnabled(false);
-	QAction *preferences = addAction(tr("Preferences"));
-	preferences->setEnabled(false);
-
 }
+
+
+void ViewMenu::showWelcomeView()
+{
+	// setting contentview to NULL will display welcomeview
+	// TODO: find a more elegant solution
+	Controller::create()->getContentView()->setContent(0);
+}
+
 
 ViewMenu::~ViewMenu()
 {

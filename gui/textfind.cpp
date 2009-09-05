@@ -19,7 +19,7 @@
  */
 
 #include "gui/textfind.h"
-
+#include <QKeySequence>
 
 TextFind::TextFind(QWidget *parent)
 	: QWidget(parent)
@@ -28,10 +28,16 @@ TextFind::TextFind(QWidget *parent)
 	layout->setAlignment(Qt::AlignLeft);
 	layout->setContentsMargins(0, 0, 0, 0);
 
+	hideBtn = new QPushButton(QIcon("icons/window-close.png"), "");
+	hideBtn->setFlat(true);
+	connect(hideBtn, SIGNAL(clicked()), this, SLOT(hide()));
+
+	layout->addWidget(hideBtn);
+
 	findEdit = new QLineEdit;
 	findEdit->setMinimumWidth(150);
-	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 	layout->addWidget(findEdit);
+	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 
 	prevBtn = new QPushButton(QIcon("icons/go-previous.png"), tr("Previous"));
 	prevBtn->setFlat(true);
@@ -46,13 +52,13 @@ TextFind::TextFind(QWidget *parent)
 	wordCbx = new QCheckBox("Match whole word");
 	layout->addWidget(wordCbx);
 
-	hideBtn = new QPushButton(QIcon("icons/window-close.png"), "");
-	hideBtn->setFlat(true);
-	connect(hideBtn, SIGNAL(clicked()), this, SLOT(hide()));
-
-	layout->addWidget(hideBtn);
 	setLayout(layout);
 	connect(findEdit, SIGNAL(returnPressed()), nextBtn, SLOT(click()));
+
+	abortAction = new QAction(this);
+	abortAction->setShortcut(QKeySequence("Escape"));
+	this->addAction(abortAction);
+	connect(abortAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
 }
 
 TextFind::~TextFind()
@@ -64,6 +70,7 @@ TextFind::~TextFind()
 	delete caseCbx;
 	delete wordCbx;
 	delete layout;
+	delete abortAction;
 }
 
 void TextFind::show()

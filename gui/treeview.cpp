@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009 Manuel Unglaub, Yves Adler
  *
  * This file is part of Silence.
  *
@@ -51,7 +51,6 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	addChildAction = toolbar->addAction(QIcon("icons/view-right-new.png"), tr("Add Subnode"));        
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 	removeAction = toolbar->addAction(QIcon("icons/list-remove.png"), tr("Remove Node"));
-	connect(removeAction, SIGNAL(triggered()), this, SLOT(removeTreeItem()));
 
 	// Tree
 	tree = new QTreeView; 
@@ -74,10 +73,31 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	propertyAction = new QAction(tr("Properties"), this);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 
+	// question frame
+	question = new QLabel(tr("Are you sure?"));
+	yesButton = new QPushButton(tr("Yes"));
+	noButton = new QPushButton(tr("No"));
+	
+	questionFrame = new QFrame();
+	questionFrame->hide();
+	questionFrame->setObjectName("questionFrame");
+	questionFrame->setStyleSheet("QFrame#questionFrame { background-color: #FFFF99; border-radius: 5px;}");
+	questionLayout = new QGridLayout;
+	questionLayout->addWidget(question, 0, 0, 1, 2);
+	questionLayout->addWidget(yesButton, 1,0);
+	questionLayout->addWidget(noButton, 1,1);
+	questionFrame->setLayout(questionLayout);
+
+	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
+	connect(noButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
+	connect(yesButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
+	connect(yesButton, SIGNAL(clicked(bool)), this, SLOT(removeTreeItem()));	
+
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
-	layout->setContentsMargins(8, 0, 0, 0);
+	layout->setContentsMargins(4, 0, 4, 4);
 	layout->addWidget(toolbar);
+	layout->addWidget(questionFrame);
 	layout->addWidget(tree);
 	frame->setLayout(layout);
 	setWidget(frame);
@@ -89,6 +109,13 @@ TreeView::~TreeView()
 {      
 	delete tree;
 	delete model;
+
+	delete question;
+	delete yesButton;
+	delete noButton;
+	delete questionLayout;
+	delete questionFrame;
+
 	delete addRowAction;
 	delete addChildAction;
 	delete removeAction;
@@ -148,11 +175,6 @@ void TreeView::addChild()
 
 void TreeView::removeTreeItem()
 {
-	int ret = QMessageBox::question(this, tr("Delete Node"), tr("Are you sure?"), 
-			  QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-	if (ret == QMessageBox::No)
-		return;
-
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	if (model->removeRow(index.row(), index.parent()))
 	{
