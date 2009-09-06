@@ -58,11 +58,32 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	connect(lessBtn, SIGNAL(clicked(bool)), moreBtn , SLOT(show()));
 	connect(lessBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(hide()));
 
+	// search options
+	QGroupBox *optionbox = new QGroupBox(tr("Search Options"));
+	QGridLayout *optboxlayout = new QGridLayout;
+	optionbox->setLayout(optboxlayout);
+	optionbox->setVisible(false);
+	
+	// search by contenttype
+	QCheckBox *cbMime = new QCheckBox(tr("mime type"));
+	optboxlayout->addWidget(cbMime);
+	QComboBox *mimeCombo = new QComboBox;
+	mimeCombo->addItem("text/plain");
+	mimeCombo->addItem("text/richtext");
+	mimeCombo->setEnabled(false);
+	optboxlayout->addWidget(mimeCombo);
+	connect(cbMime, SIGNAL(clicked(bool)), mimeCombo, SLOT(setEnabled(bool)));
+	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterMimetypeEnabled(bool)));
+	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(invalidate()));
+	connect(mimeCombo, SIGNAL(currentIndexChanged(QString)), filtermodel, SLOT(setFilterMimetypeString(QString)));
+	connect(mimeCombo, SIGNAL(currentIndexChanged(QString)), filtermodel, SLOT(invalidate()));
+
 	// search by Date
 	QFrame *datebox = new QFrame;
 	QGridLayout *dateboxlayout = new QGridLayout;
 	datebox->setLayout(dateboxlayout);
-	datebox->setVisible(false);
+	dateboxlayout->setMargin(0);
+	optboxlayout->addWidget(datebox);
 
 	// creation date
 	QCheckBox *cbCreated = new QCheckBox(tr("created between"));
@@ -104,9 +125,9 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedToDate(QDate)));
 	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
-	connect(moreBtn, SIGNAL(clicked(bool)), datebox, SLOT(show()));
-	connect(lessBtn, SIGNAL(clicked(bool)), datebox, SLOT(hide()));
-	layout->addWidget(datebox, 1, 0, 1, 2);
+	connect(moreBtn, SIGNAL(clicked(bool)), optionbox, SLOT(show()));
+	connect(lessBtn, SIGNAL(clicked(bool)), optionbox, SLOT(hide()));
+	layout->addWidget(optionbox, 1, 0, 1, 2);
 
 	results = new QListView;
 	results->setModel(filtermodel);

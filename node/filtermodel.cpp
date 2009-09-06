@@ -29,16 +29,23 @@ FilterModel::FilterModel(QObject *parent)
 :QSortFilterProxyModel(parent) /* call superclass constructor */
 {
 	filterCreated = false;
-	createdFromDate = 0;
-	createdToDate = 0; 
+	createdFromDate = new QDateTime;
+	createdToDate = new QDateTime;
 	filterModified = false;
-	modifiedFromDate = 0;
-	modifiedToDate = 0;
+	modifiedFromDate = new QDateTime;
+	modifiedToDate = new QDateTime;
+
+	filterMimetype = false;
+	mimetype = new QString("text/plain");
 }
 
 FilterModel::~FilterModel()
 {
-	// FIXME: remove this if not needed!
+	delete mimetype;
+	delete createdFromDate;
+	delete createdToDate;
+	delete modifiedFromDate;
+	delete modifiedToDate;
 }
 
 
@@ -51,7 +58,7 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 	if (source_index.isValid())
 		item = static_cast<Node*>(source_index.internalPointer());
 
-	if ((filterCreated) && (item))
+	if ((item) && (filterCreated))
 	{
 		if ((createdFromDate) && (item->getCreationDate().date() < createdFromDate->date()))
 			accepts = false;
@@ -60,12 +67,18 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 			accepts = false;
 	}
 
-	if ((filterModified) && (item))
+	if ((item) && (filterModified))
 	{
 		if ((modifiedFromDate) && (item->getModificationDate().date() < modifiedFromDate->date()))
 			accepts = false;
 		
 		if ((modifiedToDate) && (item->getModificationDate().date() > modifiedToDate->date()))
+			accepts = false;
+	}
+
+	if ((item) && (filterMimetype))
+	{
+		if (item->getContent()->getMimeType().compare(mimetype) != 0)
 			accepts = false;
 	}
 
@@ -106,4 +119,16 @@ void FilterModel::setFilterModifiedFromDate(const QDate &date)
 void FilterModel::setFilterModifiedToDate(const QDate &date)
 {
 	modifiedToDate = new QDateTime(date);
+}
+
+
+void FilterModel::setFilterMimetypeEnabled(bool enabled)
+{
+	filterMimetype = enabled;
+}
+
+
+void FilterModel::setFilterMimetypeString(const QString &type)
+{
+	mimetype = new QString(type);
 }

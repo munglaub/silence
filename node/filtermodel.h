@@ -37,15 +37,20 @@ class FilterModel : public QSortFilterProxyModel
 		void setFilterCreatedDateEnabled(bool enabled);
 		void setFilterCreatedFromDate(const QDate &date); 
 		void setFilterCreatedToDate(const QDate &date); 
+
 		void setFilterModifiedDateEnabled(bool enabled);
 		void setFilterModifiedFromDate(const QDate &date); 
 		void setFilterModifiedToDate(const QDate &date); 
+
+		void setFilterMimetypeEnabled(bool enabled);
+		void setFilterMimetypeString(const QString &type);
 
 	protected:
 		virtual bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
 
 	private:
-		bool filterCreated, filterModified;
+		bool filterCreated, filterModified, filterMimetype;
+		QString *mimetype;
 		QDateTime *createdFromDate, *createdToDate, 
 			  *modifiedFromDate, *modifiedToDate;
 };
