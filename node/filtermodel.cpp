@@ -45,23 +45,28 @@ FilterModel::~FilterModel()
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
 	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent); /* call superclass method */
-// 	std::cout << source_row  << std::endl;
-
 
 	QModelIndex source_index = sourceModel()->index(source_row, this->filterKeyColumn(), source_parent);
-	if (!source_index.isValid()) // the column may not exist
-	    return true;
+	Node *item = 0;
+	if (source_index.isValid())
+		item = static_cast<Node*>(source_index.internalPointer());
 
-	// auszug aus dem stringdings von superklasse:
-// 	QString key = sourceModel()->data(source_index, this->filterRole()).toString();
-// 	if (key.contains("DO"))
-// 	  std::cout << "Foo" << std::endl;
-// 	      return key.contains(d->filter_regexp);
-
-	if (filterCreated)
+	if ((filterCreated) && (item))
 	{
-		// FIXME: put some life here
-		return true;
+		if ((createdFromDate) && (item->getCreationDate().date() < createdFromDate->date()))
+			accepts = false;
+		
+		if ((createdToDate) && (item->getCreationDate().date() > createdToDate->date()))
+			accepts = false;
+	}
+
+	if ((filterModified) && (item))
+	{
+		if ((modifiedFromDate) && (item->getModificationDate().date() < modifiedFromDate->date()))
+			accepts = false;
+		
+		if ((modifiedToDate) && (item->getModificationDate().date() > modifiedToDate->date()))
+			accepts = false;
 	}
 
 	return accepts;
@@ -76,13 +81,13 @@ void FilterModel::setFilterCreatedDateEnabled(bool enabled)
 
 void FilterModel::setFilterCreatedFromDate(const QDate &date)
 {
-	createdFromDate = new QDate(date.year(), date.month(), date.day());
+	createdFromDate = new QDateTime(date);
 }
 
 
 void FilterModel::setFilterCreatedToDate(const QDate &date)
 {
-	createdToDate = new QDate(date.year(), date.month(), date.day());
+	createdToDate = new QDateTime(date);
 }
 
 
@@ -94,11 +99,11 @@ void FilterModel::setFilterModifiedDateEnabled(bool enabled)
 
 void FilterModel::setFilterModifiedFromDate(const QDate &date)
 {
-	modifiedFromDate = new QDate(date.year(), date.month(), date.day());
+	modifiedFromDate = new QDateTime(date);
 }
 
 
 void FilterModel::setFilterModifiedToDate(const QDate &date)
 {
-	modifiedToDate = new QDate(date.year(), date.month(), date.day());
+	modifiedToDate = new QDateTime(date);
 }

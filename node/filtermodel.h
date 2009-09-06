@@ -46,8 +46,8 @@ class FilterModel : public QSortFilterProxyModel
 
 	private:
 		bool filterCreated, filterModified;
-		QDate *createdFromDate, *createdToDate, 
-		      *modifiedFromDate, *modifiedToDate;
+		QDateTime *createdFromDate, *createdToDate, 
+			  *modifiedFromDate, *modifiedToDate;
 };
 
 #endif // FILTERMODEL_H

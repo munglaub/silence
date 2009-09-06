@@ -73,6 +73,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	connect(cbCreated, SIGNAL(clicked(bool)), fromCreated, SLOT(setEnabled(bool)));
 	connect(cbCreated, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterCreatedDateEnabled(bool)));
 	connect(fromCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedFromDate(QDate)));
+	connect(fromCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	QLabel *clbland = new QLabel(tr("and"));
 	dateboxlayout->addWidget(clbland, 1, 1);
@@ -81,6 +82,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	toCreated->setEnabled(false);
 	connect(cbCreated, SIGNAL(clicked(bool)), toCreated, SLOT(setEnabled(bool)));
 	connect(toCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedToDate(QDate)));
+	connect(toCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	// modification date
 	QCheckBox *cbModified = new QCheckBox(tr("modified between"));
@@ -91,6 +93,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	connect(cbModified, SIGNAL(clicked(bool)), fromModified, SLOT(setEnabled(bool)));
 	connect(cbModified, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterModifiedDateEnabled(bool)));
 	connect(fromModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedFromDate(QDate)));
+	connect(fromModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	QLabel *mlbland = new QLabel(tr("and"));
 	dateboxlayout->addWidget(mlbland, 3, 1);
@@ -99,6 +102,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	dateboxlayout->addWidget(toModified, 3, 2);
 	connect(cbModified, SIGNAL(clicked(bool)), toModified, SLOT(setEnabled(bool)));
 	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedToDate(QDate)));
+	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	connect(moreBtn, SIGNAL(clicked(bool)), datebox, SLOT(show()));
 	connect(lessBtn, SIGNAL(clicked(bool)), datebox, SLOT(hide()));
