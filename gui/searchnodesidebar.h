@@ -38,8 +38,8 @@ class SearchNodeSidebar : public QDockWidget
 		~SearchNodeSidebar();
 
 	private:
-		QGridLayout *layout;
-		QFrame *frame;
+		QGridLayout *layout, *optionLayout;
+		QFrame *frame, *optionFrame;
 
 		// search results
 		QListView *results;

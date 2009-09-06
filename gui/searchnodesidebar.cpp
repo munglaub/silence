@@ -22,24 +22,91 @@
 #include "node/treemodel.h"
 #include "gui/searchnodesidebar.h"
 
-#include <iostream>
+#include <QPushButton>
+#include <QGroupBox>
+#include <QCheckBox>
+#include <QDateEdit>
 
 SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
         : QDockWidget(title, parent, flags)
 {
+	// setup the filtermodel first, as everything else will connect to it
+	filtermodel = new FilterModel;
+	filtermodel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+	filtermodel->setSourceModel(Controller::create()->getTreeView()->getTree()->model());
+
+	// setup the ui
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);
 
+	// first row with input for plain text and expand button
 	searchedit = new QLineEdit;
 	layout->addWidget(searchedit, 0, 0);
 
-	filtermodel = new FilterModel;
-	filtermodel->setSourceModel(Controller::create()->getTreeView()->getTree()->model());
+	QPushButton *moreBtn = new QPushButton(QIcon("icons/arrow-up-double.png"), tr(""));
+	moreBtn->setFlat(true);
+	moreBtn->setMaximumWidth(30);
+	layout->addWidget(moreBtn, 0, 1);
+	QPushButton *lessBtn = new QPushButton(QIcon("icons/arrow-down-double.png"), tr(""));
+	lessBtn->setFlat(true);
+	lessBtn->setMaximumWidth(30);
+	lessBtn->hide();
+	layout->addWidget(lessBtn, 0, 1);
+	connect(moreBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(show()));
+	connect(moreBtn, SIGNAL(clicked(bool)), moreBtn, SLOT(hide()));
+	connect(lessBtn, SIGNAL(clicked(bool)), moreBtn , SLOT(show()));
+	connect(lessBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(hide()));
+
+	// search by Date
+	QFrame *datebox = new QFrame;
+	QGridLayout *dateboxlayout = new QGridLayout;
+	datebox->setLayout(dateboxlayout);
+	datebox->setVisible(false);
+
+	// creation date
+	QCheckBox *cbCreated = new QCheckBox(tr("created between"));
+	dateboxlayout->addWidget(cbCreated, 0, 0, 1, 3);
+	QDateEdit *fromCreated = new QDateEdit(QDate::currentDate());
+	fromCreated->setEnabled(false);
+	dateboxlayout->addWidget(fromCreated, 1, 0);
+	connect(cbCreated, SIGNAL(clicked(bool)), fromCreated, SLOT(setEnabled(bool)));
+	connect(cbCreated, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterCreatedDateEnabled(bool)));
+	connect(fromCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedFromDate(QDate)));
+
+	QLabel *clbland = new QLabel(tr("and"));
+	dateboxlayout->addWidget(clbland, 1, 1);
+	QDateEdit *toCreated = new QDateEdit(QDate::currentDate());
+	dateboxlayout->addWidget(toCreated, 1, 2);
+	toCreated->setEnabled(false);
+	connect(cbCreated, SIGNAL(clicked(bool)), toCreated, SLOT(setEnabled(bool)));
+	connect(toCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedToDate(QDate)));
+
+	// modification date
+	QCheckBox *cbModified = new QCheckBox(tr("modified between"));
+	dateboxlayout->addWidget(cbModified, 2, 0, 1, 3);
+	QDateEdit *fromModified = new QDateEdit(QDate::currentDate());
+	fromModified->setEnabled(false);
+	dateboxlayout->addWidget(fromModified, 3, 0);
+	connect(cbModified, SIGNAL(clicked(bool)), fromModified, SLOT(setEnabled(bool)));
+	connect(cbModified, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterModifiedDateEnabled(bool)));
+	connect(fromModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedFromDate(QDate)));
+
+	QLabel *mlbland = new QLabel(tr("and"));
+	dateboxlayout->addWidget(mlbland, 3, 1);
+	QDateEdit *toModified = new QDateEdit(QDate::currentDate());
+	toModified->setEnabled(false);
+	dateboxlayout->addWidget(toModified, 3, 2);
+	connect(cbModified, SIGNAL(clicked(bool)), toModified, SLOT(setEnabled(bool)));
+	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedToDate(QDate)));
+
+	connect(moreBtn, SIGNAL(clicked(bool)), datebox, SLOT(show()));
+	connect(lessBtn, SIGNAL(clicked(bool)), datebox, SLOT(hide()));
+	layout->addWidget(datebox, 1, 0, 1, 2);
 
 	results = new QListView;
 	results->setModel(filtermodel);
-	layout->addWidget(results, 4, 0, 1, 2);
+	layout->addWidget(results, 2, 0, 1, 2);
 
 	frame = new QFrame;
 	frame->setLayout(layout);

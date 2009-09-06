@@ -20,23 +20,34 @@
 
 #ifndef FILTERMODEL_H
 #define FILTERMODEL_H
-#include <QSortFilterProxyModel>
 
+#include <QSortFilterProxyModel>
 #include <QObject>
+
 
 class FilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     
-    public:
-	FilterModel(QObject *parent = 0);
-	~FilterModel();
+	public:
+		FilterModel(QObject *parent = 0);
+		~FilterModel();
 
-    protected:
-	virtual bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
-	
-    private:
-	bool childAcceptsRow;
+	public slots:
+		void setFilterCreatedDateEnabled(bool enabled);
+		void setFilterCreatedFromDate(const QDate &date); 
+		void setFilterCreatedToDate(const QDate &date); 
+		void setFilterModifiedDateEnabled(bool enabled);
+		void setFilterModifiedFromDate(const QDate &date); 
+		void setFilterModifiedToDate(const QDate &date); 
+
+	protected:
+		virtual bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+
+	private:
+		bool filterCreated, filterModified;
+		QDate *createdFromDate, *createdToDate, 
+		      *modifiedFromDate, *modifiedToDate;
 };
 
 #endif // FILTERMODEL_H
