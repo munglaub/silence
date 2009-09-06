@@ -34,6 +34,8 @@ class FilterModel : public QSortFilterProxyModel
 		~FilterModel();
 
 	public slots:
+		void setFilterFixedString(const QString &pattern);
+
 		void setFilterCreatedDateEnabled(bool enabled);
 		void setFilterCreatedFromDate(const QDate &date); 
 		void setFilterCreatedToDate(const QDate &date); 
@@ -45,12 +47,14 @@ class FilterModel : public QSortFilterProxyModel
 		void setFilterMimetypeEnabled(bool enabled);
 		void setFilterMimetypeString(const QString &type);
 
+		void setFilterFulltextEnabled(bool enabled);
+
 	protected:
 		virtual bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
 
 	private:
-		bool filterCreated, filterModified, filterMimetype;
-		QString *mimetype;
+		bool filterCreated, filterModified, filterMimetype, filterFulltext;
+		QString *mimetype, searchString;
 		QDateTime *createdFromDate, *createdToDate, 
 			  *modifiedFromDate, *modifiedToDate;
 };

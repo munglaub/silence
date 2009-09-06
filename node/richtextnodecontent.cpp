@@ -57,6 +57,12 @@ QString RichTextNodeContent::getMimeType()
 	return "text/richtext";
 }
 
+bool RichTextNodeContent::contains(const QString& value)
+{
+	// FIXME: better solution should be found ;)
+	return text.contains(value);
+}
+
 void RichTextNodeContent::setText(QString text)
 {
 	this->text = text;

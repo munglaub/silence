@@ -37,6 +37,8 @@ FilterModel::FilterModel(QObject *parent)
 
 	filterMimetype = false;
 	mimetype = new QString("text/plain");
+
+	filterFulltext = false;
 }
 
 FilterModel::~FilterModel()
@@ -49,14 +51,27 @@ FilterModel::~FilterModel()
 }
 
 
+void FilterModel::setFilterFixedString(const QString &pattern)
+{
+	QSortFilterProxyModel::setFilterFixedString(pattern);
+	searchString = QString(pattern);
+}
+
+
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent); /* call superclass method */
-
 	QModelIndex source_index = sourceModel()->index(source_row, this->filterKeyColumn(), source_parent);
 	Node *item = 0;
 	if (source_index.isValid())
 		item = static_cast<Node*>(source_index.internalPointer());
+	
+	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent); /* call superclass method */
+
+	if ((item) && (filterFulltext))
+	{
+		accepts = false; // caption search is invalid now!
+		accepts = item->getContent()->contains(searchString);
+	}
 
 	if ((item) && (filterCreated))
 	{
@@ -131,4 +146,10 @@ void FilterModel::setFilterMimetypeEnabled(bool enabled)
 void FilterModel::setFilterMimetypeString(const QString &type)
 {
 	mimetype = new QString(type);
+}
+
+
+void FilterModel::setFilterFulltextEnabled(bool enabled)
+{
+	filterFulltext = enabled;
 }

@@ -26,6 +26,7 @@
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QDateEdit>
+#include <QRadioButton>
 
 SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
         : QDockWidget(title, parent, flags)
@@ -64,14 +65,23 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	optionbox->setLayout(optboxlayout);
 	optionbox->setVisible(false);
 	
+	// search for caption/fulltext
+	QRadioButton *captionBtn = new QRadioButton("Caption");
+	captionBtn->setChecked(true);
+	optboxlayout->addWidget(captionBtn, 0, 0);
+	QRadioButton *fulltextBtn = new QRadioButton("Fulltext");
+	optboxlayout->addWidget(fulltextBtn, 0, 1);
+	connect(fulltextBtn, SIGNAL(toggled(bool)), filtermodel, SLOT(setFilterFulltextEnabled(bool)));
+	connect(fulltextBtn, SIGNAL(toggled(bool)), filtermodel, SLOT(invalidate()));
+
 	// search by contenttype
 	QCheckBox *cbMime = new QCheckBox(tr("mime type"));
-	optboxlayout->addWidget(cbMime);
+	optboxlayout->addWidget(cbMime, 1, 0, 1, 2);
 	QComboBox *mimeCombo = new QComboBox;
 	mimeCombo->addItem("text/plain");
 	mimeCombo->addItem("text/richtext");
 	mimeCombo->setEnabled(false);
-	optboxlayout->addWidget(mimeCombo);
+	optboxlayout->addWidget(mimeCombo, 2, 0, 1, 2);
 	connect(cbMime, SIGNAL(clicked(bool)), mimeCombo, SLOT(setEnabled(bool)));
 	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterMimetypeEnabled(bool)));
 	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(invalidate()));
@@ -83,7 +93,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	QGridLayout *dateboxlayout = new QGridLayout;
 	datebox->setLayout(dateboxlayout);
 	dateboxlayout->setMargin(0);
-	optboxlayout->addWidget(datebox);
+	optboxlayout->addWidget(datebox, 3, 0, 1, 2);
 
 	// creation date
 	QCheckBox *cbCreated = new QCheckBox(tr("created between"));
