@@ -28,7 +28,9 @@
 #include <QToolBar>
 #include <QTreeView>
 #include <QVBoxLayout>
+#include <QGridLayout>
 #include <QList>
+#include <QLabel>
 
 
 class TreeView : public QDockWidget
@@ -61,10 +63,16 @@ class TreeView : public QDockWidget
 				*addChildAction,
 				*removeAction,
 				*propertyAction;
-		
 
-		QFrame *frame;
+		QLabel *question;
+		QPushButton *yesButton,
+				*noButton;
+
+		QFrame *frame,
+				*questionFrame;
+
 		QVBoxLayout *layout;
+		QGridLayout *questionLayout;
 
 		void addNode(QModelIndex &index, int row);
 };

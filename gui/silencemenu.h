@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009 Yves Adler
  *
  * This file is part of Silence.
  *
@@ -18,24 +18,24 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VIEWMENU_H
-#define VIEWMENU_H
+#ifndef SILENCEMENU_H
+#define SILENCEMENU_H
 
+#include "controller.h"
 #include <QMenu>
 
-class ViewMenu : public QMenu
+
+class SilenceMenu : public QMenu
 {
-	Q_OBJECT
-
 	public:
-		ViewMenu(QWidget *parent = 0);
-		~ViewMenu();
+		SilenceMenu(QWidget *parent = 0);
+		~SilenceMenu();
 
-	private slots:
-		void showWelcomeView();
+	private:
+		Controller *controller;
 };
 
-#endif // VIEWMENU_H
+#endif // SILENCEMENU_H
 
 
 

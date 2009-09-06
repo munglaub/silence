@@ -25,6 +25,7 @@
 #include <QMenu>
 
 
+//FIXME: Rename me to NodeMenu!!
 class FileMenu : public QMenu
 {
 	public:

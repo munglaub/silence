@@ -18,15 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gui/contentview.h"
-#include "gui/editmenu.h"
-#include "gui/filemenu.h"
-#include "gui/helpmenu.h"
-#include "gui/infosidebar.h"
-#include "gui/mainwindow.h"
-#include "gui/statusbar.h"
-#include "gui/treeview.h"
-#include "gui/viewmenu.h"
+#include "mainwindow.h"
 #include <QMenuBar>
 
 
@@ -54,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
-	treeview = new TreeView(tr("Tree"), this);
+	treeview = new TreeView(tr("Nodes"), this);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 	controller->setTreeView(treeview);
 
@@ -71,6 +63,8 @@ MainWindow::MainWindow(QWidget *parent)
 	resize(950, 500);
 	
 	// add menus
+	silencemenu = new SilenceMenu;
+	menuBar()->addMenu(silencemenu);
 	filemenu = new FileMenu;
 	menuBar()->addMenu(filemenu);
 	editmenu = new EditMenu;
