@@ -48,55 +48,38 @@ TextFind::TextFind(QWidget *parent)
 	nextBtn->setFlat(true);
 	layout->addWidget(nextBtn, 0, 3);
 
-	QFrame *optionPanel = new QFrame;
-	optionPanel->hide();
-	QHBoxLayout *optionPanelLayout = new QHBoxLayout;
-	optionPanelLayout->setAlignment(Qt::AlignRight);
-	caseCbx = new QCheckBox("Match case");
-	optionPanelLayout->addWidget(caseCbx);
-	wordCbx = new QCheckBox("Match whole word");
-	optionPanelLayout->addWidget(wordCbx);
-	optionPanel->setLayout(optionPanelLayout);
-	layout->addWidget(optionPanel, 2, 0, 4, 0);
-
-	replaceEdit = new QLineEdit;
-	replaceEdit->setMinimumWidth(150);
-	replaceEdit->hide();
-	layout->addWidget(replaceEdit, 1, 1);
-
-	replaceBtn = new QPushButton(tr("Replace"));
-	replaceBtn->hide();
-	replaceBtn->setFlat(true);
-	layout->addWidget(replaceBtn, 1, 2);
-
-	replaceAllBtn = new QPushButton(tr("Replace All"));
-	replaceAllBtn->hide();
-	replaceAllBtn->setFlat(true);
-	layout->addWidget(replaceAllBtn, 1, 3);
-
 	moreBtn = new QPushButton(QIcon("icons/arrow-up-double.png"), tr(""));
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 4);
-	lessBtn = new QPushButton(QIcon("icons/arrow-down-double.png"), tr(""));
-	lessBtn->setFlat(true);
-	lessBtn->setMaximumWidth(30);
-	lessBtn->hide();
-	layout->addWidget(lessBtn, 0, 4);
 
-	connect(moreBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(show()));
-	connect(moreBtn, SIGNAL(clicked(bool)), moreBtn, SLOT(hide()));
-	connect(lessBtn, SIGNAL(clicked(bool)), moreBtn , SLOT(show()));
-	connect(lessBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(hide()));
+	
+	replaceEdit = new QLineEdit;
+	replaceEdit->setMinimumWidth(150);
+	layout->addWidget(replaceEdit, 1, 1);
 
-	connect(moreBtn, SIGNAL(clicked(bool)), replaceEdit, SLOT(show()));
-	connect(moreBtn, SIGNAL(clicked(bool)), replaceBtn, SLOT(show()));
-	connect(moreBtn, SIGNAL(clicked(bool)), replaceAllBtn, SLOT(show()));
-	connect(moreBtn, SIGNAL(clicked(bool)), optionPanel, SLOT(show()));
-	connect(lessBtn, SIGNAL(clicked(bool)), replaceEdit, SLOT(hide()));
-	connect(lessBtn, SIGNAL(clicked(bool)), replaceBtn, SLOT(hide()));
-	connect(lessBtn, SIGNAL(clicked(bool)), replaceAllBtn, SLOT(hide()));
-	connect(lessBtn, SIGNAL(clicked(bool)), optionPanel, SLOT(hide()));
+	replaceBtn = new QPushButton(tr("Replace"));
+	replaceBtn->setFlat(true);
+	layout->addWidget(replaceBtn, 1, 2);
+
+	replaceAllBtn = new QPushButton(tr("Replace All"));
+	replaceAllBtn->setFlat(true);
+	layout->addWidget(replaceAllBtn, 1, 3);
+
+
+	optionPanel = new QFrame;
+	optionLayout = new QHBoxLayout;
+	optionLayout->setAlignment(Qt::AlignRight);
+	caseCbx = new QCheckBox("Match case");
+	optionLayout->addWidget(caseCbx);
+	wordCbx = new QCheckBox("Match whole word");
+	optionLayout->addWidget(wordCbx);
+	optionPanel->setLayout(optionLayout);
+	layout->addWidget(optionPanel, 2, 0, 4, 0);
+
+	showAll = true;
+	showMore();
+	connect(moreBtn, SIGNAL(clicked()), this, SLOT(showMore())); 
 
 	setLayout(layout);
 	connect(findEdit, SIGNAL(returnPressed()), nextBtn, SLOT(click()));
@@ -110,11 +93,17 @@ TextFind::TextFind(QWidget *parent)
 TextFind::~TextFind()
 {
 	delete findEdit;
+	delete replaceEdit;
 	delete nextBtn;
 	delete prevBtn;
 	delete hideBtn;
+	delete moreBtn;
+	delete replaceBtn;
+	delete replaceAllBtn;
 	delete caseCbx;
 	delete wordCbx;
+	delete optionLayout;
+	delete optionPanel;
 	delete layout;
 	delete abortAction;
 }
@@ -126,9 +115,30 @@ void TextFind::show()
 	QWidget::show();
 }
 
+void TextFind::showMore()
+{
+	optionPanel->setHidden(showAll);
+	replaceEdit->setHidden(showAll);
+	replaceBtn->setHidden(showAll);
+	replaceAllBtn->setHidden(showAll);
+	if (showAll)
+	{
+		moreBtn->setIcon(QIcon("icons/arrow-up-double.png"));
+		showAll = false;
+	} else {
+		moreBtn->setIcon(QIcon("icons/arrow-down-double.png"));
+		showAll = true;
+	}
+}
+
 QString TextFind::getSearchString()
 {
 	return findEdit->text();
+}
+
+QString TextFind::getReplaceString()
+{
+	return replaceEdit->text();
 }
 
 bool TextFind::getCaseSensitivity()
@@ -151,15 +161,29 @@ QPushButton* TextFind::getNextBtn()
 	return nextBtn;
 }
 
+QPushButton* TextFind::getReplaceBtn()
+{
+	return replaceBtn;
+}
+
+QPushButton* TextFind::getReplaceAllBtn()
+{
+	return replaceAllBtn;
+}
+
 void TextFind::findTextChange(const QString &text)
 {
 	if (text.isEmpty())
 	{
 		nextBtn->setEnabled(false);
 		prevBtn->setEnabled(false);
+		replaceBtn->setEnabled(false);
+		replaceAllBtn->setEnabled(false);
 	} else {
 		nextBtn->setEnabled(true);
 		prevBtn->setEnabled(true);
+		replaceBtn->setEnabled(true);
+		replaceAllBtn->setEnabled(true);
 	}
 }
 

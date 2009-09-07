@@ -64,6 +64,8 @@ class RichTextEdit : public QWidget
 		void findNext();
 		void findPrev();
 		void findFirst();
+		void replace();
+		void replaceAll();
 
 	private:
 		static RichTextEdit *richtextedit;
@@ -105,7 +107,7 @@ class RichTextEdit : public QWidget
 		void alignmentChanged(Qt::Alignment alignment);
 		void colorChanged(const QColor &color);
 		void fontChanged(const QFont &font);
-		void find(bool forward);
+		bool find(bool forward);
 };
 
 #endif // RICHTEXTEDIT_H

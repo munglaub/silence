@@ -68,6 +68,8 @@ TextEdit::TextEdit(QWidget *parent)
 	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
 	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
 	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
+	connect(findWidget->getReplaceBtn(), SIGNAL(clicked()), this, SLOT(replace()));
+	connect(findWidget->getReplaceAllBtn(), SIGNAL(clicked()), this, SLOT(replaceAll()));
 
 	// cursorposition
 	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
@@ -265,10 +267,11 @@ void TextEdit::findPrev()
 	find(false);
 }
 
-void TextEdit::find(bool forward)
+bool TextEdit::find(bool forward)
 {
+	bool found = false;
 	if (findWidget->getSearchString().isEmpty())
-		return;
+		return found;
 
 	bool regex = false;
 	bool caseSensitive = findWidget->getCaseSensitivity();
@@ -282,7 +285,30 @@ void TextEdit::find(bool forward)
 		--index;
 	}
 	bool show = true;
-	bool found = editor->findFirst(findWidget->getSearchString(), regex, caseSensitive, wholeWord, wrap, forward, line, index, show);
+	found = editor->findFirst(findWidget->getSearchString(), regex, caseSensitive, wholeWord, wrap, forward, line, index, show);
 	findWidget->setFound(found);
+
+	return found;
 }
+
+void TextEdit::replace()
+{
+	if (editor->selectedText() == findWidget->getSearchString())
+		editor->replace(findWidget->getReplaceString());
+	else
+		if (find(true))
+			editor->replace(findWidget->getReplaceString());
+}
+
+void TextEdit::replaceAll()
+{
+	editor->setCursorPosition(0, 0);
+	bool found = false;
+	do {
+		found = find(true);
+		if (found)
+			editor->replace(findWidget->getReplaceString());
+	} while (found);
+}
+
 

@@ -120,16 +120,7 @@ void InfoSidebar::updateInfos()
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
 	lasteditDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 
-	QString labels;
-	QStringListIterator iterator(*node->getLabels());
-	if (iterator.hasNext())
-		labels = iterator.next();
-	while (iterator.hasNext())
-	{
-		labels += ", ";
-		labels += iterator.next();
-	}
-	labelsData->setText(labels);
+	labelsData->setText(node->getLabels()->join(", "));
 
 	// set content infos
 	if (node->getContent())

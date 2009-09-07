@@ -51,6 +51,8 @@ class TextEdit : public QWidget
 		void findNext();
 		void findPrev();
 		void findFirst();
+		void replace();
+		void replaceAll();
 
 	protected:
 		TextEdit(QWidget *parent = 0);
@@ -74,7 +76,7 @@ class TextEdit : public QWidget
 
 		void setupActions();
 		void setupEditor();
-		void find(bool forward);
+		bool find(bool forward);
 };
 
 #endif // TEXTEDIT_H

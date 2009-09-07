@@ -654,7 +654,9 @@ public class foo(){
  <node id="18" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:20 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:20:54 2009</modificationdate>
+  <modificationdate>Mon Sep 7 00:38:01 2009</modificationdate>
+  <label>wichtig</label>
+  <label>license</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Java</metainfo>
    <text> public class HalloWelt {

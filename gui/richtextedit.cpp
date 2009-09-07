@@ -59,6 +59,8 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
 	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
 	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
+	connect(findWidget->getReplaceBtn(), SIGNAL(clicked()), this, SLOT(replace()));
+	connect(findWidget->getReplaceAllBtn(), SIGNAL(clicked()), this, SLOT(replaceAll()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
@@ -467,12 +469,12 @@ void RichTextEdit::setVisible(bool visible)
 	actionFind->setVisible(visible);
 }
 
-void RichTextEdit::find(bool forward)
+bool RichTextEdit::find(bool forward)
 {
-	if (findWidget->getSearchString().isEmpty())
-		return;
-
 	bool found = false;
+	if (findWidget->getSearchString().isEmpty())
+		return found;
+
 	QTextDocument::FindFlags flags = 0;
 	
 	if (!forward)
@@ -484,6 +486,7 @@ void RichTextEdit::find(bool forward)
 
 	found = textedit->find(findWidget->getSearchString(), flags);
 	findWidget->setFound(found);
+	return found;
 }
 
 void RichTextEdit::findNext()
@@ -501,4 +504,26 @@ void RichTextEdit::findFirst()
 	textedit->moveCursor(QTextCursor::Start);
 	find(true);
 }
+
+void RichTextEdit::replace()
+{
+	if (textedit->textCursor().selectedText() == findWidget->getSearchString())
+		textedit->insertPlainText(findWidget->getReplaceString());
+	else
+		if (find(true))
+			textedit->insertPlainText(findWidget->getReplaceString());
+}
+
+void RichTextEdit::replaceAll()
+{
+	textedit->moveCursor(QTextCursor::Start);
+
+	bool found = false;
+	do {
+		found = find(true);
+		if (found)
+			textedit->insertPlainText(findWidget->getReplaceString());
+	} while (found);
+}
+
 

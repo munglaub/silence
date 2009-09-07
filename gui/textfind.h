@@ -41,29 +41,36 @@ class TextFind : public QWidget
 		bool getCaseSensitivity();
 		bool getWholeWord();
 		QString getSearchString();
+		QString getReplaceString();
 
 		QPushButton* getPrevBtn();
 		QPushButton* getNextBtn();
 		QLineEdit* getFindEdit();
+
+		QPushButton* getReplaceBtn();
+		QPushButton* getReplaceAllBtn();
 
 		void setFound(bool found);
 
 	
 	public slots:
 		void show();
+		void showMore();
 
 	private slots:
 		void findTextChange(const QString &text);
 
 	private:
+		bool showAll;
 		QGridLayout *layout;
+		QHBoxLayout *optionLayout;
+		QFrame *optionPanel;
 		QLineEdit *findEdit,
 				*replaceEdit;
 		QPushButton *nextBtn,
 					*prevBtn,
 					*hideBtn,
 					*moreBtn,
-					*lessBtn,
 					*replaceBtn,
 					*replaceAllBtn;
 		QCheckBox 	*caseCbx,
