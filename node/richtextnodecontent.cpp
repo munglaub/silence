@@ -20,6 +20,7 @@
 
 #include "node/richtextnodecontent.h"
 #include "gui/richtextedit.h"
+#include <QTextDocumentFragment>
 
 RichTextNodeContent::RichTextNodeContent()
 {
@@ -59,8 +60,7 @@ QString RichTextNodeContent::getMimeType()
 
 bool RichTextNodeContent::contains(const QString& value)
 {
-	// FIXME: better solution should be found ;)
-	return text.contains(value);
+	return QTextDocumentFragment::fromHtml(text).toPlainText().contains(value);
 }
 
 void RichTextNodeContent::setText(QString text)

@@ -93,7 +93,7 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 
 	if ((item) && (filterMimetype))
 	{
-		if (item->getContent()->getMimeType().compare(mimetype) != 0)
+		if (item->getContent()->getMimeType().compare(*mimetype) != 0)
 			accepts = false;
 	}
 
