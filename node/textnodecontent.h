@@ -41,6 +41,7 @@ class TextNodeContent : public AbstractNodeContent
 		QHash<QString, QString>* getMetaInfos();
 		void addMetaInfo(QString key, QString value);
 		QString getMimeType();
+		bool contains(const QString& value);
 		void setSyntax(QString syntax);
 
 		QPixmap getPixmap();

@@ -54,6 +54,12 @@ ViewMenu::ViewMenu(QWidget *parent)
 	connect(showProps, SIGNAL(triggered(bool)), 
 		Controller::create()->getNodePropertyWidget(), SLOT(setVisible(bool)));
 
+	QAction *showNodeSearch = addAction(tr("Search Nodes Sidebar"));
+	showNodeSearch->setCheckable(true);
+	showNodeSearch->setChecked(true);
+	connect(showNodeSearch, SIGNAL(triggered(bool)), 
+		Controller::create()->getSearchNodeSidebar(), SLOT(setVisible(bool)));
+
 	addSeparator();
 
 	QAction *linewarp = addAction(tr("Linewarp"));

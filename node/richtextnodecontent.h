@@ -37,6 +37,7 @@ class RichTextNodeContent : public AbstractNodeContent
 		QHash<QString, QString>* getMetaInfos();
 		void addMetaInfo(QString key, QString value);
 		QString getMimeType();
+		bool contains(const QString& value);
 
 		void setText(QString text);
 		QString getText() const;

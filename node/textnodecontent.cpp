@@ -156,6 +156,11 @@ QString TextNodeContent::getMimeType()
 	return "text/plain";
 }
 
+bool TextNodeContent::contains(const QString& value)
+{
+	return text.contains(value);
+}
+
 void TextNodeContent::setSyntax(QString syntax)
 {
 	metaInfos->insert("Syntax", syntax);

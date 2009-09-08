@@ -33,6 +33,7 @@ class AbstractNodeContent : public QObject
 		virtual QHash<QString, QString>* getMetaInfos() { return NULL; };
 		virtual void addMetaInfo(QString key, QString value) { key = value; };
 		virtual QString getMimeType() { return ""; };
+		virtual bool contains(const QString& value) { return value.contains(value); };
 
 		virtual QDomElement getXmlData(QDomDocument &doc) { return doc.createElement(""); };
 		virtual void setXmlData(QDomElement &xmlNode) { xmlNode.firstChild(); };
