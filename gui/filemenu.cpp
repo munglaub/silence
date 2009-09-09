@@ -20,7 +20,6 @@
 
 #include "gui/filemenu.h"
 #include "gui/newnodedialog.h"
-#include "gui/searchnodedialog.h"
 
 
 //FIXME: Rename me to NodeMenu!!
@@ -34,10 +33,6 @@ FileMenu::FileMenu(QWidget *parent)
 	QList<QAction*> *actions = controller->getTreeView()->getNodeActions();
 	for (int i=0; i<actions->size(); ++i)
 		addAction(actions->at(i));
-
-	addSeparator();
-	QAction *searchNode = addAction(tr("Search Node"));
-	connect(searchNode, SIGNAL(triggered()), new SearchNodeDialog, SLOT(exec()));
 }
 
 FileMenu::~FileMenu()

@@ -20,7 +20,6 @@
 
 #include "welcomeview.h"
 
-WelcomeView* WelcomeView::welcomeview = 0;
 
 WelcomeView::WelcomeView(QWidget *parent)
 	: QWidget(parent)
@@ -62,13 +61,6 @@ WelcomeView::WelcomeView(QWidget *parent)
 	layout->addWidget(licenseVal, row, 1, 1, 1);
 
 	setLayout(layout);
-}
-
-WelcomeView* WelcomeView::create()
-{
-	if (welcomeview == 0)
-		welcomeview = new WelcomeView;
-	return welcomeview;
 }
 
 WelcomeView::~WelcomeView()

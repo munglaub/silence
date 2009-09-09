@@ -28,8 +28,6 @@
 #include <QTextList>
 
 
-RichTextEdit* RichTextEdit::richtextedit = 0;
-
 RichTextEdit::RichTextEdit(QWidget *parent)
 	: QWidget(parent)
 {
@@ -131,12 +129,6 @@ RichTextEdit::~RichTextEdit()
 	delete layout;
 }
 
-RichTextEdit* RichTextEdit::create()
-{
-	if (richtextedit == 0)
-		richtextedit = new RichTextEdit;
-	return richtextedit;
-}
 
 void RichTextEdit::setupActions()
 {

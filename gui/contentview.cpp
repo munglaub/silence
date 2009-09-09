@@ -18,17 +18,19 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "controller.h"
 #include "gui/contentview.h"
 #include "gui/welcomeview.h"
 #include <QLabel>
 #include <QWidget>
+
 
 ContentView::ContentView(QWidget *parent)
 	: QWidget(parent)
 {
 	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
-	widget = WelcomeView::create();
+	widget = Controller::create()->getWelcomeView();
 	layout->addWidget(widget);
 	setContent(NULL);
 	setLayout(layout);
@@ -44,7 +46,7 @@ void ContentView::setContent(AbstractNodeContent *content)
 	layout->removeWidget(widget);
 	widget->setVisible(false);
 	if (!content){
-		widget = WelcomeView::create();
+		widget = Controller::create()->getWelcomeView();
 	} else {
 		widget = content->getWidget();
 	}

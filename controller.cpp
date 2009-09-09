@@ -25,6 +25,9 @@ Controller* Controller::controller = 0;
 Controller::Controller()
 {
 	contentview = 0;
+	welcomeview = 0;
+	textedit = 0;
+	richtextedit = 0;
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
@@ -52,6 +55,27 @@ void Controller::setContentView(ContentView* contentview)
 ContentView* Controller::getContentView() const
 {
 	return contentview;
+}
+
+WelcomeView* Controller::getWelcomeView()
+{
+	if (welcomeview == 0)
+		welcomeview = new WelcomeView;
+	return welcomeview;
+}
+
+TextEdit* Controller::getTextEdit()
+{
+	if (textedit == 0)
+		textedit = new TextEdit;
+	return textedit;
+}
+
+RichTextEdit* Controller::getRichTextEdit()
+{
+	if (richtextedit == 0)
+		richtextedit = new RichTextEdit;
+	return richtextedit;
 }
 
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)

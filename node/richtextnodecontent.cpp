@@ -18,8 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "node/richtextnodecontent.h"
+#include "controller.h"
 #include "gui/richtextedit.h"
+#include "node/richtextnodecontent.h"
+
 
 RichTextNodeContent::RichTextNodeContent()
 {
@@ -36,7 +38,7 @@ RichTextNodeContent::~RichTextNodeContent()
 
 QWidget* RichTextNodeContent::getWidget()
 {
-	RichTextEdit *widget = RichTextEdit::create();
+	RichTextEdit *widget = Controller::create()->getRichTextEdit();
 	widget->setContent(this);
 	return widget;
 }

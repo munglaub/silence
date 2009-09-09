@@ -28,16 +28,10 @@
 class WelcomeView : public QWidget
 {
 	public:
+		WelcomeView(QWidget *parent = 0);
 		~WelcomeView();
 
-		static WelcomeView* create();
-
-	protected:
-		WelcomeView(QWidget *parent = 0);
-
 	private:
-		static WelcomeView *welcomeview;
-
 		QGridLayout *layout;
 		QLabel	*icon,
 				*welcome,

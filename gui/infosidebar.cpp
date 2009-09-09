@@ -151,6 +151,5 @@ void InfoSidebar::updateInfos()
 		metaInfo->setHidden(true);
 		metaInfoData->setHidden(true);
 	}
-
 }
 

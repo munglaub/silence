@@ -18,10 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "node/textnodecontent.h"
+#include "controller.h"
 #include "gui/textedit.h"
+#include "node/textnodecontent.h"
 
-#include<QLabel>
 
 TextNodeContent::TextNodeContent()
 {
@@ -134,7 +134,7 @@ QString TextNodeContent::getText() const
 
 QWidget* TextNodeContent::getWidget()
 {
-	TextEdit *widget = TextEdit::create();
+	TextEdit *widget = Controller::create()->getTextEdit();
 	widget->setContent(this);
 	widget->setSyntax(metaInfos->value("Syntax"));
 	return widget;
@@ -148,6 +148,8 @@ QHash<QString, QString>* TextNodeContent::getMetaInfos()
 void TextNodeContent::addMetaInfo(QString key, QString value)
 {
 	metaInfos->insert(key, value);
+	if (key == "Syntax")
+		setGraphics();
 	emit changed();
 }
 

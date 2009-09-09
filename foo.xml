@@ -3,6 +3,7 @@
  <labels>
   <label>wichtig</label>
   <label>license</label>
+  <label>coding</label>
  </labels>
  <node id="2" >
   <caption>TODO</caption>
@@ -568,7 +569,8 @@ WHERE NOT EXISTS (SELECT * FROM Vorlesung WHERE PersNr = a.PersNr)
  <node id="22" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:54 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:18:53 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:51:55 2009</modificationdate>
+  <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C#</metainfo>
    <text>class Program
@@ -583,7 +585,8 @@ WHERE NOT EXISTS (SELECT * FROM Vorlesung WHERE PersNr = a.PersNr)
  <node id="23" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:07 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:19:21 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:51:43 2009</modificationdate>
+  <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Ruby</metainfo>
    <text>class Ente
@@ -614,7 +617,8 @@ end
  <node id="25" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:31 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:20:16 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:51:40 2009</modificationdate>
+  <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Python</metainfo>
    <text>def quicksort(liste):
@@ -630,7 +634,8 @@ end
  <node id="28" >
   <caption>Nodename</caption>
   <creationdate>Fri Sep 4 20:50:18 2009</creationdate>
-  <modificationdate>Fri Sep 4 20:57:49 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:51:37 2009</modificationdate>
+  <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C#</metainfo>
    <text>
@@ -645,16 +650,17 @@ public class foo(){
  <node id="17" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:13:12 2009</creationdate>
-  <modificationdate>Thu Sep 3 01:13:12 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:51:29 2009</modificationdate>
+  <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >CMake</metainfo>
    <text></text>
   </content>
  </node>
  <node id="18" >
-  <caption>Nodename</caption>
+  <caption>Java</caption>
   <creationdate>Thu Sep 3 01:13:20 2009</creationdate>
-  <modificationdate>Mon Sep 7 00:38:01 2009</modificationdate>
+  <modificationdate>Tue Sep 8 10:49:18 2009</modificationdate>
   <label>wichtig</label>
   <label>license</label>
   <content mimetype="text/plain" >
@@ -665,6 +671,19 @@ public class foo(){
      }
  }
 
+</text>
+  </content>
+ </node>
+ <node id="31" >
+  <caption>bash</caption>
+  <creationdate>Tue Sep 8 10:49:55 2009</creationdate>
+  <modificationdate>Tue Sep 8 10:59:19 2009</modificationdate>
+  <label>coding</label>
+  <content mimetype="text/plain" >
+   <metainfo key="Syntax" >Bash</metainfo>
+   <text>FOO="blubb"
+
+echo $FOO
 </text>
   </content>
  </node>

@@ -46,7 +46,6 @@
 #include <QToolBar>
 
 
-TextEdit* TextEdit::textedit = 0;
 
 TextEdit::TextEdit(QWidget *parent)
 	: QWidget(parent)
@@ -115,13 +114,6 @@ TextEdit::~TextEdit()
 	delete editor;
 	delete findWidget;
 	delete layout;
-}
-
-TextEdit* TextEdit::create()
-{
-	if (textedit == 0)
-		textedit = new TextEdit;
-	return textedit;
 }
 
 void TextEdit::setupActions()

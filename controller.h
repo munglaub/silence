@@ -26,8 +26,11 @@
 #include "gui/editmenu.h"
 #include "gui/infosidebar.h"
 #include "gui/nodepropertywidget.h"
+#include "gui/richtextedit.h"
 #include "gui/statusbar.h"
+#include "gui/textedit.h"
 #include "gui/treeview.h"
+#include "gui/welcomeview.h"
 
 
 class Controller
@@ -38,6 +41,10 @@ class Controller
 
 		void setContentView(ContentView* contentview);
 		ContentView* getContentView() const;
+
+		WelcomeView* getWelcomeView();
+		TextEdit* getTextEdit();
+		RichTextEdit* getRichTextEdit();
 
 		void setInfoSidebar(InfoSidebar* infosidebar);
 		InfoSidebar* getInfoSidebar() const;
@@ -63,6 +70,9 @@ class Controller
 		static Controller *controller;
 		
 		ContentView *contentview;
+		WelcomeView *welcomeview;
+		TextEdit *textedit;
+		RichTextEdit *richtextedit;
 		InfoSidebar *infosidebar;
 		TreeView *treeview;
 		StatusBar *statusbar;

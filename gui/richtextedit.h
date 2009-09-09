@@ -37,15 +37,12 @@ class RichTextEdit : public QWidget
 	Q_OBJECT
 
 	public:
+		RichTextEdit(QWidget *parent = 0);
 		~RichTextEdit();
-		static RichTextEdit* create();
 		void setContent(RichTextNodeContent *content);
 
 	public slots:
 		void setVisible(bool visible);
-
-	protected:
-		RichTextEdit(QWidget *parent = 0);
 
 	private slots:
 		void saveContent();
@@ -68,7 +65,6 @@ class RichTextEdit : public QWidget
 		void replaceAll();
 
 	private:
-		static RichTextEdit *richtextedit;
 		RichTextNodeContent *content;
 		TextFind *findWidget;
 

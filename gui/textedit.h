@@ -35,8 +35,8 @@ class TextEdit : public QWidget
 	Q_OBJECT
 
 	public:
+		TextEdit(QWidget *parent = 0);
 		~TextEdit();
-		static TextEdit* create();
 		void setContent(TextNodeContent *content);
 		void setSyntax(QString syntax);
 
@@ -53,12 +53,8 @@ class TextEdit : public QWidget
 		void findFirst();
 		void replace();
 		void replaceAll();
-
-	protected:
-		TextEdit(QWidget *parent = 0);
 	
 	private:
-		static TextEdit *textedit;
 		QsciScintilla *editor;
 		TextNodeContent *content;
 		QVBoxLayout *layout;

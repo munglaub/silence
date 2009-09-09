@@ -24,7 +24,6 @@ SOURCES += 	main.cpp\
 			gui/infosidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
-			gui/searchnodedialog.cpp\
 			gui/contentview.cpp\
 			gui/welcomeview.cpp\
 			gui/nodepropertywidget.cpp\
@@ -51,7 +50,6 @@ HEADERS +=	controller.h\
 			gui/infosidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
-			gui/searchnodedialog.h\
 			gui/contentview.h\
 			gui/welcomeview.h\
 			gui/nodepropertywidget.h\
