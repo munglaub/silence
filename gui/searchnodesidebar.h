@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Yves Adler
+ * Copyright (C) 2009 Yves Adler, Manuel Unglaub
  *
  * This file is part of Silence.
  *
@@ -22,11 +22,18 @@
 #define SEARCHNODESIDEBAR_H
 
 #include "node/filtermodel.h"
-
+#include "node/listproxymodel.h"
+#include <QCheckBox>
+#include <QComboBox>
+#include <QDateEdit>
 #include <QDockWidget>
 #include <QGridLayout>
-#include <QListView>
+#include <QGroupBox>
+#include <QLabel>
 #include <QLineEdit>
+#include <QListView>
+#include <QPushButton>
+#include <QRadioButton>
 
 
 class SearchNodeSidebar : public QDockWidget
@@ -37,18 +44,42 @@ class SearchNodeSidebar : public QDockWidget
 		SearchNodeSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		~SearchNodeSidebar();
 
-	private:
-		QGridLayout *layout, *optionLayout;
-		QFrame *frame, *optionFrame;
+	private slots:
+		void selectionChanged(QModelIndex current);
 
-		// search results
-		QListView *results;
+	private:
+		ListProxyModel *listProxy;
 		FilterModel *filtermodel;
 
-		// search properties:
+		QGridLayout *layout, 
+					*optboxlayout,
+					*dateboxlayout;
+		QFrame	*frame, 
+				*datebox;
+
+		QGroupBox *optionbox;
+		QRadioButton	*captionBtn,
+						*fulltextBtn;
+		QCheckBox 	*cbMime,
+					*cbCreated,
+					*cbModified;
+		QDateEdit 	*fromCreated,
+					*toCreated,
+					*fromModified,
+					*toModified;
+		QComboBox *mimeCombo;
+		QLabel	*clbland,
+				*mlbland;
+
+		QListView *resultList;
+
 		QLineEdit *searchedit;
-	private slots:
-		void selectionChanged(QModelIndex current, QModelIndex previous);
+		QPushButton *moreBtn,
+					*lessBtn;
+
+		void setupSearchRow();
+		void setupSearchOptions();
+		void setupSearchDate();
 };
 
 #endif // SEARCHNODESIDEBAR_H

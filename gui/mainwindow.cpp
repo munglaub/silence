@@ -54,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
 	searchnodesidebar = new SearchNodeSidebar(tr("Search Nodes"), this);
 	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);
 	controller->setSearchNodeSidebar(searchnodesidebar);
+	tabifyDockWidget(searchnodesidebar, treeview);
 
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);
@@ -83,6 +84,7 @@ MainWindow::~MainWindow()
 	delete infosidebar;
 	delete statusbar;
 	delete nodepropertywidget;
+	delete searchnodesidebar;
 
 	delete filemenu;
 	delete editmenu;
