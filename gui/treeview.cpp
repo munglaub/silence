@@ -124,6 +124,11 @@ TreeView::~TreeView()
 	delete frame;
 }
 
+QTreeView* TreeView::getTree()
+{
+	return tree;
+}
+
 void TreeView::addNode(QModelIndex &index, int row)
 {
 	NewNodeDialog *newDialog = new NewNodeDialog;

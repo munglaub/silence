@@ -22,6 +22,7 @@
 #include "gui/richtextedit.h"
 #include "node/richtextnodecontent.h"
 
+#include <QTextDocumentFragment>
 
 RichTextNodeContent::RichTextNodeContent()
 {
@@ -57,6 +58,11 @@ void RichTextNodeContent::addMetaInfo(QString key, QString value)
 QString RichTextNodeContent::getMimeType()
 {
 	return "text/richtext";
+}
+
+bool RichTextNodeContent::contains(const QString& value)
+{
+	return QTextDocumentFragment::fromHtml(text).toPlainText().contains(value);
 }
 
 void RichTextNodeContent::setText(QString text)

@@ -88,6 +88,16 @@ InfoSidebar* Controller::getInfoSidebar() const
 	return infosidebar;
 }
 
+void Controller::setSearchNodeSidebar(SearchNodeSidebar* searchsidebar)
+{
+	this->searchsidebar = searchsidebar;
+}
+
+SearchNodeSidebar* Controller::getSearchNodeSidebar() const
+{
+	return searchsidebar;
+}
+
 void Controller::setTreeView(TreeView* treeview)
 {
 	this->treeview = treeview;

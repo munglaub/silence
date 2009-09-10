@@ -46,7 +46,7 @@ Node* TreeModel::getItem(const QModelIndex &index) const
 	return rootItem;
 }
 
-int TreeModel::columnCount(const QModelIndex &parent) const
+int TreeModel::columnCount(const QModelIndex&) const
 {
 	return rootItem->columnCount();
 }
@@ -89,8 +89,7 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 }
 
 
-QVariant TreeModel::headerData(int section, Qt::Orientation orientation,
-								int role) const
+QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
 		return rootItem->getCaption();

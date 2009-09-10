@@ -8,65 +8,67 @@
  <node id="2" >
   <caption>TODO</caption>
   <creationdate>Sat Aug 29 20:08:20 2009</creationdate>
-  <modificationdate>Fri Sep 4 16:34:27 2009</modificationdate>
+  <modificationdate>Sun Sep 6 16:10:14 2009</modificationdate>
   <label>wichtig</label>
   <content mimetype="text/richtext" >
    <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;">
 &lt;p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:18pt; font-weight:600;">die wundervolle TODO-Liste&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:9pt;">- TextEdit und alle Contenttypen, brauchen sinnvolle funktionen für die node suche (volltext, etc.)&lt;/span>&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- &lt;/span>&lt;span style=" font-size:11pt; color:#00aa00;">welcomeVeiw&lt;/span>&lt;span style=" font-size:11pt;"> &lt;/span>&lt;span style=" font-size:11pt; color:#ff5500;">-&amp;gt;&lt;/span>&lt;span style=" font-size:11pt;"> &lt;/span>&lt;span style=" font-size:11pt; color:#0000ff;">toll&lt;/span>&lt;span style=" font-size:11pt;"> &lt;/span>&lt;span style=" font-size:11pt; color:#aa0000;">machen&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- TextEdit&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- die toolbar ist auf einer anderen hoehe als beim treeview, das sieht nicht gut aus&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- flexible breite fuer zeilennummern rausfinden&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- ersetzen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- selectall&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- tabsize ueberall richtig einstellen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- immer eine schrift mit fester breite nehmen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- die vielen lexer durch einen ersetzen der sich die einstellungen aus einem file hohlt, ist &lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	  anpassungsfaehiger (auch fuer den user) &lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- richtextedit&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- selectall&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- ersetzen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- diese if esle if dinger irgendwie sinnvoll loesen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- namensgebung (toolbars)&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- TextEdit&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- die toolbar ist auf einer anderen hoehe als beim treeview, das sieht nicht gut aus&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- flexible breite fuer zeilennummern rausfinden&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- ersetzen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- selectall&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- tabsize ueberall richtig einstellen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- immer eine schrift mit fester breite nehmen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- die vielen lexer durch einen ersetzen der sich die einstellungen aus einem file hohlt, ist &lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	  anpassungsfaehiger (auch fuer den user) &lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- richtextedit&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- selectall&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- ersetzen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- diese if esle if dinger irgendwie sinnvoll loesen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- namensgebung (toolbars)&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- node-suchen-dialog (searchnodedialog.h/.cpp) anpassen und mit funktionen fuellen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- statusbar&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- ob der content gespeichert ist oder nicht&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- node-suchen-dialog (searchnodedialog.h/.cpp) anpassen und mit funktionen fuellen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- statusbar&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- ob der content gespeichert ist oder nicht&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- das save auch immer enablen/disablen je nachdem ob es was zu speichern gibt oder nicht (textedit und richtextedit)&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- das save auch immer enablen/disablen je nachdem ob es was zu speichern gibt oder nicht (textedit und richtextedit)&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- newnodedialog &lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- wenn ein label schon vorhanden ist nicht nochmal hinzufuegen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- labelmanagement dialog schreiben&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- konfiguration&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- configfile am richtigen platz einrichten (wo auch immer sowas nach dem freedesktopstandard hingehoert)&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">	- konfigdialog schreiben&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- newnodedialog &lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- wenn ein label schon vorhanden ist nicht nochmal hinzufuegen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- labelmanagement dialog schreiben&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- konfiguration&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- configfile am richtigen platz einrichten (wo auch immer sowas nach dem freedesktopstandard hingehoert)&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">	- konfigdialog schreiben&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- nodeproperties-dialog -&amp;gt; metainfos aendern/hinzufuegen/loeschen&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- nodeproperties-dialog -&amp;gt; metainfos aendern/hinzufuegen/loeschen&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- vielleicht muessen die views gar keine singeltons sein wenn sie vom controller verwaltet werden&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- dokumentation..&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- vielleicht muessen die views gar keine singeltons sein wenn sie vom controller verwaltet werden&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- dokumentation..&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;span style=" font-size:14pt; font-weight:600;">Refaktoring&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- datastore -&amp;gt; save - funktionen aus den abschnitten mit den kommentaren drueber machen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- die xmldata dinger in den contents in der funktion angleichen, get und set sollte das gleiche&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">  bloss in die jeweils andere richtung machen, sonst ist es unlogisch&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- die syntax-combobox sollte man immer aus irgendeiner factory hohlen&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- aus dieser labelsache ein widget machen was man dann im newnodedialog und im nodepropertywidget verwenden kann&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- node-&amp;gt;getLabels ist nicht const und wenn da was drann veraendert wird wird auch ein emit change gemacht&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14pt; font-weight:600;">Refaktoring&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- datastore -&amp;gt; save - funktionen aus den abschnitten mit den kommentaren drueber machen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- die xmldata dinger in den contents in der funktion angleichen, get und set sollte das gleiche&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">  bloss in die jeweils andere richtung machen, sonst ist es unlogisch&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- die syntax-combobox sollte man immer aus irgendeiner factory hohlen&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- aus dieser labelsache ein widget machen was man dann im newnodedialog und im nodepropertywidget verwenden kann&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- node-&amp;gt;getLabels ist nicht const und wenn da was drann veraendert wird wird auch ein emit change gemacht&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- mit den menueintraegen aus den contentviews das ist noch nicht so toll&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- mit den menueintraegen aus den contentviews das ist noch nicht so toll&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;span style=" font-size:14pt; font-weight:600;">some stuff for later versions&lt;/span>&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- internationalisierung&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- live-filter treeview&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- en-/de-crypt nodes&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- alternative zum treeview, mit so labels wie bei googlmail, entweder tree mit zwei ebenen oder noch ein&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">  listwidget mit den einzelnen knoten zu den labels drin, alles mit live-suche feldern&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">- historisierung&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14pt; font-weight:600;">some stuff for later versions&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- internationalisierung&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- live-filter treeview&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- en-/de-crypt nodes&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- alternative zum treeview, mit so labels wie bei googlmail, entweder tree mit zwei ebenen oder noch ein&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">  listwidget mit den einzelnen knoten zu den labels drin, alles mit live-suche feldern&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt;">- historisierung&lt;/span>&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>
 &lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;">&lt;/p>&lt;/body>&lt;/html></text>
   </content>
@@ -74,7 +76,7 @@ p, li { white-space: pre-wrap; }
  <node id="8" >
   <caption>done</caption>
   <creationdate>Sat Aug 29 23:02:31 2009</creationdate>
-  <modificationdate>Wed Sep 2 19:28:50 2009</modificationdate>
+  <modificationdate>Sun Sep 6 22:01:40 2009</modificationdate>
   <content mimetype="text/richtext" >
    <text>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -121,7 +123,7 @@ p, li { white-space: pre-wrap; }
  <node id="4" >
   <caption>License</caption>
   <creationdate>Sat Aug 29 20:21:07 2009</creationdate>
-  <modificationdate>Wed Sep 2 20:32:10 2009</modificationdate>
+  <modificationdate>Sat Sep 5 19:25:06 2009</modificationdate>
   <label>license</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >None</metainfo>
@@ -497,7 +499,7 @@ Public License instead of this License.</text>
  <node id="15" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:12:42 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:16:24 2009</modificationdate>
+  <modificationdate>Thu Sep 10 16:50:27 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C++</metainfo>
    <text>#include &lt;iostream>
@@ -509,6 +511,14 @@ int main()
 }
 
 </text>
+  </content>
+ </node>
+ <node id="34" >
+  <caption>fff</caption>
+  <creationdate>Thu Sep 10 14:58:47 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:47 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
   </content>
  </node>
  <node id="19" >
@@ -630,6 +640,22 @@ end
     return quicksort(links) + [pivotelement] + quicksort(rechts)
 </text>
   </content>
+  <node id="32" >
+   <caption>Nodename</caption>
+   <creationdate>Thu Sep 10 14:58:33 2009</creationdate>
+   <modificationdate>Thu Sep 10 14:58:33 2009</modificationdate>
+   <content mimetype="text/richtext" >
+    <text></text>
+   </content>
+  </node>
+ </node>
+ <node id="33" >
+  <caption>Nodename</caption>
+  <creationdate>Thu Sep 10 14:58:36 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:36 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
+  </content>
  </node>
  <node id="28" >
   <caption>Nodename</caption>
@@ -675,16 +701,11 @@ public class foo(){
   </content>
  </node>
  <node id="31" >
-  <caption>bash</caption>
-  <creationdate>Tue Sep 8 10:49:55 2009</creationdate>
-  <modificationdate>Tue Sep 8 10:59:19 2009</modificationdate>
-  <label>coding</label>
-  <content mimetype="text/plain" >
-   <metainfo key="Syntax" >Bash</metainfo>
-   <text>FOO="blubb"
-
-echo $FOO
-</text>
+  <caption>Nodename</caption>
+  <creationdate>Thu Sep 10 14:58:25 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:25 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
   </content>
  </node>
 </silence>

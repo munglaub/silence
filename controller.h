@@ -25,6 +25,7 @@
 #include "gui/contentview.h"
 #include "gui/editmenu.h"
 #include "gui/infosidebar.h"
+#include "gui/searchnodesidebar.h"
 #include "gui/nodepropertywidget.h"
 #include "gui/richtextedit.h"
 #include "gui/statusbar.h"
@@ -48,7 +49,10 @@ class Controller
 
 		void setInfoSidebar(InfoSidebar* infosidebar);
 		InfoSidebar* getInfoSidebar() const;
-		
+
+		void setSearchNodeSidebar(SearchNodeSidebar* searchnodesidebar);
+		SearchNodeSidebar* getSearchNodeSidebar() const;
+
 		void setTreeView(TreeView* treeview);
 		TreeView* getTreeView() const;
 		
@@ -74,6 +78,7 @@ class Controller
 		TextEdit *textedit;
 		RichTextEdit *richtextedit;
 		InfoSidebar *infosidebar;
+		SearchNodeSidebar *searchsidebar;
 		TreeView *treeview;
 		StatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;

@@ -9,6 +9,8 @@ SOURCES += 	main.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
 			node/treemodel.cpp\
+			node/filtermodel.cpp\
+			node/listproxymodel.cpp\
 			node/textnodecontent.cpp\
 			node/richtextnodecontent.cpp\
 			gui/mainwindow.cpp\
@@ -22,6 +24,7 @@ SOURCES += 	main.cpp\
 			gui/textedit.cpp\
 			gui/richtextedit.cpp\
 			gui/infosidebar.cpp\
+			gui/searchnodesidebar.cpp\
 			gui/statusbar.cpp\
 			gui/newnodedialog.cpp\
 			gui/contentview.cpp\
@@ -34,6 +37,8 @@ HEADERS +=	controller.h\
 			node/node.h\
 			node/nodeid.h\
 			node/treemodel.h\
+			node/listproxymodel.h\
+			node/filtermodel.h\
 			node/abstractnodecontent.h\
 			node/textnodecontent.h\
 			node/richtextnodecontent.h\
@@ -48,6 +53,7 @@ HEADERS +=	controller.h\
 			gui/textedit.h\
 			gui/richtextedit.h\
 			gui/infosidebar.h\
+			gui/searchnodesidebar.h\
 			gui/statusbar.h\
 			gui/newnodedialog.h\
 			gui/contentview.h\

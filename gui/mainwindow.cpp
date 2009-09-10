@@ -50,6 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 	controller->setTreeView(treeview);
 
+	// search sidebar
+	searchnodesidebar = new SearchNodeSidebar(tr("Search Nodes"), this);
+	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);
+	controller->setSearchNodeSidebar(searchnodesidebar);
+
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);
 	controller->setStatusBar(statusbar);
