@@ -130,7 +130,7 @@ void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc
 	connect(node, SIGNAL(changed(Node*)), this, SLOT(save(Node*)));
 }
 
-void DataStore::save(Node *node)
+void DataStore::save(Node*)
 {
 	// create xmlDocument
 	QDomDocument doc;

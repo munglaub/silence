@@ -20,6 +20,7 @@
 
 #include "controller.h"
 #include "node/treemodel.h"
+#include "node/listproxymodel.h"
 #include "gui/searchnodesidebar.h"
 
 #include <QPushButton>
@@ -31,10 +32,14 @@
 SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
         : QDockWidget(title, parent, flags)
 {
+	// Setup the listproxy, which basically transforms the tree into a flat strcuture
+	ListProxyModel *listProxy = new ListProxyModel;
+	listProxy->setSourceModel(Controller::create()->getTreeView()->getTree()->model());
+
 	// setup the filtermodel first, as everything else will connect to it
 	filtermodel = new FilterModel;
 	filtermodel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-	filtermodel->setSourceModel(Controller::create()->getTreeView()->getTree()->model());
+	filtermodel->setSourceModel(listProxy);
 
 	// setup the ui
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);

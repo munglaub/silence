@@ -498,7 +498,7 @@ Public License instead of this License.</text>
  <node id="15" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:12:42 2009</creationdate>
-  <modificationdate>Sat Sep 5 14:16:24 2009</modificationdate>
+  <modificationdate>Thu Sep 10 16:50:27 2009</modificationdate>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >C++</metainfo>
    <text>#include &lt;iostream>
@@ -510,6 +510,14 @@ int main()
 }
 
 </text>
+  </content>
+ </node>
+ <node id="34" >
+  <caption>fff</caption>
+  <creationdate>Thu Sep 10 14:58:47 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:47 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
   </content>
  </node>
  <node id="19" >
@@ -628,6 +636,22 @@ end
     return quicksort(links) + [pivotelement] + quicksort(rechts)
 </text>
   </content>
+  <node id="32" >
+   <caption>Nodename</caption>
+   <creationdate>Thu Sep 10 14:58:33 2009</creationdate>
+   <modificationdate>Thu Sep 10 14:58:33 2009</modificationdate>
+   <content mimetype="text/richtext" >
+    <text></text>
+   </content>
+  </node>
+ </node>
+ <node id="33" >
+  <caption>Nodename</caption>
+  <creationdate>Thu Sep 10 14:58:36 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:36 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
+  </content>
  </node>
  <node id="28" >
   <caption>Nodename</caption>
@@ -668,6 +692,14 @@ public class foo(){
  }
 
 </text>
+  </content>
+ </node>
+ <node id="31" >
+  <caption>Nodename</caption>
+  <creationdate>Thu Sep 10 14:58:25 2009</creationdate>
+  <modificationdate>Thu Sep 10 14:58:25 2009</modificationdate>
+  <content mimetype="text/richtext" >
+   <text></text>
   </content>
  </node>
 </silence>
