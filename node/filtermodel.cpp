@@ -18,15 +18,13 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "node/filtermodel.h"
 #include "controller.h"
-
+#include "node/filtermodel.h"
 #include <QtGui>
-#include <iostream>
 
 
 FilterModel::FilterModel(QObject *parent)
-:QSortFilterProxyModel(parent) /* call superclass constructor */
+	:QSortFilterProxyModel(parent)
 {
 	filterCreated = false;
 	createdFromDate = new QDateTime;
@@ -50,13 +48,11 @@ FilterModel::~FilterModel()
 	delete modifiedToDate;
 }
 
-
 void FilterModel::setFilterFixedString(const QString &pattern)
 {
 	QSortFilterProxyModel::setFilterFixedString(pattern);
 	searchString = QString(pattern);
 }
-
 
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
@@ -65,7 +61,7 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 	if (source_index.isValid())
 		item = static_cast<Node*>(source_index.internalPointer());
 	
-	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent); /* call superclass method */
+	bool accepts = QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
 
 	if ((item) && (filterFulltext))
 	{
@@ -100,56 +96,49 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 	return accepts;
 }
 
-
 void FilterModel::setFilterCreatedDateEnabled(bool enabled)
 {
 	filterCreated = enabled;
 }
-
 
 void FilterModel::setFilterCreatedFromDate(const QDate &date)
 {
 	createdFromDate = new QDateTime(date);
 }
 
-
 void FilterModel::setFilterCreatedToDate(const QDate &date)
 {
 	createdToDate = new QDateTime(date);
 }
-
 
 void FilterModel::setFilterModifiedDateEnabled(bool enabled)
 {
 	filterModified = enabled;
 }
 
-
 void FilterModel::setFilterModifiedFromDate(const QDate &date)
 {
 	modifiedFromDate = new QDateTime(date);
 }
-
 
 void FilterModel::setFilterModifiedToDate(const QDate &date)
 {
 	modifiedToDate = new QDateTime(date);
 }
 
-
 void FilterModel::setFilterMimetypeEnabled(bool enabled)
 {
 	filterMimetype = enabled;
 }
-
 
 void FilterModel::setFilterMimetypeString(const QString &type)
 {
 	mimetype = new QString(type);
 }
 
-
 void FilterModel::setFilterFulltextEnabled(bool enabled)
 {
 	filterFulltext = enabled;
 }
+
+

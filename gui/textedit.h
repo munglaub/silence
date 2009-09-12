@@ -67,7 +67,8 @@ class TextEdit : public QWidget
 				*actionCut,
 				*actionCopy,
 				*actionPaste,
-				*actionFind;
+				*actionFind,
+				*actionSelectAll;
 		
 
 		void setupActions();

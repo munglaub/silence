@@ -99,6 +99,9 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	connect(QApplication::clipboard(), SIGNAL(dataChanged()), 
 			this, SLOT(clipboardDataChanged()));
+
+	// select all
+	connect(actionSelectAll, SIGNAL(triggered()), textedit, SLOT(selectAll()));
 }
 
 
@@ -110,6 +113,7 @@ RichTextEdit::~RichTextEdit()
 	delete actionCut;
 	delete actionCopy;
 	delete actionPaste;
+	delete actionSelectAll;
 	delete actionTextBold;
 	delete actionTextItalic;
 	delete actionTextUnderline;
@@ -154,6 +158,9 @@ void RichTextEdit::setupActions()
 	actionPaste = toolbar->addAction(QIcon("icons/edit-paste.png"), tr("Paste"));
 	menu->addAction(actionPaste);
 	actionPaste->setShortcut(QKeySequence::Paste);
+	actionSelectAll = toolbar->addAction(QIcon("icons/edit-select-all.png"), tr("Select All"));
+	menu->addAction(actionSelectAll);
+	actionSelectAll->setShortcut(QKeySequence::SelectAll);
 	toolbar->addSeparator();
 
 	actionTextBold = toolbar->addAction(QIcon("icons/format-text-bold.png"), tr("Bold"));
@@ -450,6 +457,7 @@ void RichTextEdit::setVisible(bool visible)
 	actionCut->setVisible(visible);
 	actionCopy->setVisible(visible);
 	actionPaste->setVisible(visible);
+	actionSelectAll->setVisible(visible);
 	actionTextBold->setVisible(visible);
 	actionTextItalic->setVisible(visible);
 	actionTextUnderline->setVisible(visible);

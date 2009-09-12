@@ -25,6 +25,7 @@
 #include <QHash>
 #include <QWidget>
 
+
 class RichTextNodeContent : public AbstractNodeContent
 {
 	Q_OBJECT
@@ -60,3 +61,5 @@ class RichTextNodeContent : public AbstractNodeContent
 };
 
 #endif // RICHTEXTNODECONTENT_H
+
+

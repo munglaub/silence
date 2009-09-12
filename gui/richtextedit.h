@@ -82,6 +82,7 @@ class RichTextEdit : public QWidget
 				*actionCut,
 				*actionCopy,
 				*actionPaste,
+				*actionSelectAll,
 				*actionTextBold,
 				*actionTextItalic,
 				*actionTextUnderline,

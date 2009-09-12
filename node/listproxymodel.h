@@ -29,26 +29,25 @@
 class ListProxyModel : public QAbstractProxyModel
 {
     public:
-	ListProxyModel (QObject * parent = 0);
-	~ListProxyModel ();
+		ListProxyModel (QObject * parent = 0);
+		~ListProxyModel ();
 
-	Qt::ItemFlags flags(const QModelIndex &index) const;
-	QVariant data(const QModelIndex &index, int role) const;
-	QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
-	QModelIndex parent(const QModelIndex &index) const;
-	int rowCount(const QModelIndex &parent = QModelIndex()) const;
-	int columnCount(const QModelIndex &parent = QModelIndex()) const;
+		Qt::ItemFlags flags(const QModelIndex &index) const;
+		QVariant data(const QModelIndex &index, int role) const;
+		QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+		QModelIndex parent(const QModelIndex &index) const;
+		int rowCount(const QModelIndex &parent = QModelIndex()) const;
+		int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-	QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
-	QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
-	void setSourceModel(QAbstractItemModel *sourceModel);
-
+		QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
+		QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
+		void setSourceModel(QAbstractItemModel *sourceModel);
 
     private:
-	void addIndexes(const QAbstractItemModel *sourceModel, QModelIndex *searchIndex);
-			       
-        QList<QModelIndex> indexList;
-        // die liste??
+		void addIndexes(const QAbstractItemModel *sourceModel, QModelIndex *searchIndex);
+		QList<QModelIndex> indexList;
 };
 
 #endif // LISTPROXYMODEL_H
+
+

@@ -21,14 +21,12 @@
 #include "listproxymodel.h"
 #include "node/node.h"
 
-#include <iostream>
 
 ListProxyModel::ListProxyModel(QObject * parent)
     : QAbstractProxyModel(parent)
 {
 	// TODO: remove if not needed
 }
-
 
 ListProxyModel::~ListProxyModel()
 {
@@ -42,7 +40,6 @@ Qt::ItemFlags ListProxyModel::flags(const QModelIndex &index) const
 
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
-
 
 QVariant ListProxyModel::data(const QModelIndex &index, int role) const
 {
@@ -60,15 +57,13 @@ QVariant ListProxyModel::data(const QModelIndex &index, int role) const
 	if (item)
 		return item->getCaption();
 
-	return "ERROR";
+	return QVariant();
 }
-
 
 QModelIndex ListProxyModel::index(int row, int, const QModelIndex&) const
 {
 	return indexList[row];
 }
-
 
 QModelIndex ListProxyModel::parent(const QModelIndex &index) const
 {
@@ -78,41 +73,35 @@ QModelIndex ListProxyModel::parent(const QModelIndex &index) const
 	return indexList[indexList.indexOf(index)].parent();
 }
 
-
 int ListProxyModel::rowCount(const QModelIndex&) const
 {
 	return indexList.size();
 }
-
 
 int ListProxyModel::columnCount(const QModelIndex&) const
 {
 	return 1;
 }
 
-
 QModelIndex ListProxyModel::mapFromSource(const QModelIndex &sourceIndex) const
 {
     return indexList[indexList.indexOf(sourceIndex)];
 }
-
 
 QModelIndex ListProxyModel::mapToSource(const QModelIndex &proxyIndex) const
 {
     return indexList[indexList.indexOf(proxyIndex)];
 }
 
-
 void ListProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
 {
 	QAbstractProxyModel::setSourceModel(sourceModel);
-	
 	indexList.clear();
-
-	// Start searching in the model index
-	for (int i = 0; sourceModel->index(i, 0).isValid(); i++)
+	// add all nodes to the list
+	int column = 0;
+	for (int row = 0; sourceModel->index(row, column).isValid(); row++)
 	{
-		QModelIndex aIndex = sourceModel->index(i, 0);
+		QModelIndex aIndex = sourceModel->index(row, column);
 		indexList.append(aIndex);
 		addIndexes(sourceModel, &aIndex);
 	}
@@ -121,9 +110,10 @@ void ListProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
 void ListProxyModel::addIndexes(const QAbstractItemModel *sourceModel,
 			       QModelIndex *searchIndex)
 {
-	for (int i = 0; searchIndex->child(i, 0).isValid(); i++)
+	int column = 0;
+	for (int row = 0; searchIndex->child(row, column).isValid(); row++)
 	{
-	    QModelIndex aIndex = searchIndex->child(i, 0);
+	    QModelIndex aIndex = searchIndex->child(row, column);
 	    indexList.append(aIndex);
 	    addIndexes(sourceModel, &aIndex);
 	}

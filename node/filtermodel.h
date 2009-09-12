@@ -21,8 +21,8 @@
 #ifndef FILTERMODEL_H
 #define FILTERMODEL_H
 
-#include <QSortFilterProxyModel>
 #include <QObject>
+#include <QSortFilterProxyModel>
 
 
 class FilterModel : public QSortFilterProxyModel
@@ -53,10 +53,16 @@ class FilterModel : public QSortFilterProxyModel
 		virtual bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
 
 	private:
-		bool filterCreated, filterModified, filterMimetype, filterFulltext;
-		QString *mimetype, searchString;
-		QDateTime *createdFromDate, *createdToDate, 
-			  *modifiedFromDate, *modifiedToDate;
+		bool	filterCreated,
+				filterModified,
+				filterMimetype,
+				filterFulltext;
+		QString *mimetype,
+				searchString;
+		QDateTime	*createdFromDate,
+					*createdToDate,
+					*modifiedFromDate,
+					*modifiedToDate;
 };
 
 #endif // FILTERMODEL_H

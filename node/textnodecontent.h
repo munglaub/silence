@@ -23,6 +23,7 @@
 
 #include "node/abstractnodecontent.h"
 
+
 class TextNodeContent : public AbstractNodeContent
 {
 	Q_OBJECT

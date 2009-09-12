@@ -18,11 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui>
-
+#include "controller.h"
 #include "node/node.h"
 #include "node/treemodel.h"
-#include "controller.h"
+#include <QtGui>
+
 
 TreeModel::TreeModel(QObject *parent)
 	: QAbstractItemModel(parent)
@@ -50,7 +50,6 @@ int TreeModel::columnCount(const QModelIndex&) const
 {
 	return rootItem->columnCount();
 }
-
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const
 {
@@ -88,7 +87,6 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
-
 QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
@@ -96,8 +94,6 @@ QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 
 	return QVariant();
 }
-
-
 
 QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent) const
 {
@@ -156,8 +152,6 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 	Node *parentItem = getItem(parent);
 	return parentItem->getChildCount();
 }
-
-
 
 
 

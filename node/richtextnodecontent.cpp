@@ -21,8 +21,8 @@
 #include "controller.h"
 #include "gui/richtextedit.h"
 #include "node/richtextnodecontent.h"
-
 #include <QTextDocumentFragment>
+
 
 RichTextNodeContent::RichTextNodeContent()
 {

@@ -99,6 +99,9 @@ TextEdit::TextEdit(QWidget *parent)
 
 	connect(QApplication::clipboard(), SIGNAL(dataChanged()), 
 			this, SLOT(clipboardDataChanged()));
+
+	// selectall
+	connect(actionSelectAll, SIGNAL(triggered()), editor, SLOT(selectAll()));
 }
 
 TextEdit::~TextEdit()
@@ -109,6 +112,7 @@ TextEdit::~TextEdit()
 	delete actionCut;
 	delete actionCopy;
 	delete actionPaste;
+	delete actionSelectAll;
 	delete actionFind;
 	delete toolbar;
 	delete editor;
@@ -142,6 +146,9 @@ void TextEdit::setupActions()
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
+	actionSelectAll = toolbar->addAction(QIcon("icons/edit-select-all.png"), tr("Select All"));
+	menu->addAction(actionSelectAll);
+	actionSelectAll->setShortcut(QKeySequence::SelectAll);
 	actionFind = toolbar->addAction(QIcon("icons/edit-find.png"), tr("Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	toolbar->addAction(QIcon("icons/edit-find-replace.png"), tr("Find/Replace"));
@@ -241,6 +248,7 @@ void TextEdit::setVisible(bool visible)
 	actionCut->setVisible(visible);
 	actionCopy->setVisible(visible);
 	actionPaste->setVisible(visible);
+	actionSelectAll->setVisible(visible);
 }
 
 void TextEdit::findFirst()

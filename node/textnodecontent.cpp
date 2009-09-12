@@ -131,7 +131,6 @@ QString TextNodeContent::getText() const
 	return text;
 }
 
-
 QWidget* TextNodeContent::getWidget()
 {
 	TextEdit *widget = Controller::create()->getTextEdit();
