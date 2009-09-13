@@ -28,8 +28,8 @@ RichTextNodeContent::RichTextNodeContent()
 {
 	text = "";
 	metaInfos = new QHash<QString, QString>;
-	icon = QIcon("icons/mimetype/64x64/text-rtf.png");
-	pixmap = QPixmap("icons/mimetype/16x16/text-rtf.png");
+	icon = QIcon(":/icons/mimetype_64px/text-rtf.png");
+	pixmap = QPixmap(":/icons/mimetype_16px/text-rtf.png");
 }
 
 RichTextNodeContent::~RichTextNodeContent()

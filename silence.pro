@@ -65,4 +65,5 @@ QT		+= xml
 
 LIBS	+=	-lqscintilla2
 
+RESOURCES	=	silence.qrc
 

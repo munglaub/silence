@@ -24,11 +24,11 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags f)
 	: QDialog(parent, f)
 {
 	setWindowTitle(tr("About Silence"));
-	setWindowIcon(QIcon("icons/Silence_16px.png"));
+	setWindowIcon(QIcon(":/icons/Silence_16px.png"));
 	resize(330, 150);
 
 	logo = new QLabel;
-	logo->setPixmap(QPixmap("icons/Silence_big.png"));
+	logo->setPixmap(QPixmap(":/icons/Silence_big.png"));
 
 	version = new QLabel(tr("Silence - very early Version"));
 	authors = new QLabel(tr("Manuel Unglaub\nYves Adler\nMarcel Winkel"));

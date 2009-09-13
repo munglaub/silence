@@ -1,0 +1,63 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>icons/Silence_16px.png</file>
+		<file>icons/Silence_big.png</file>
+
+		<file>icons/actions/arrow-down-double.png</file>
+		<file>icons/actions/arrow-up-double.png</file>
+		<file>icons/actions/document-save.png</file>
+		<file>icons/actions/edit-copy.png</file>
+		<file>icons/actions/edit-cut.png</file>
+		<file>icons/actions/edit-find.png</file>
+		<file>icons/actions/edit-find-replace.png</file>
+		<file>icons/actions/edit-paste.png</file>
+		<file>icons/actions/edit-redo.png</file>
+		<file>icons/actions/edit-select-all.png</file>
+		<file>icons/actions/edit-undo.png</file>
+		<file>icons/actions/format-justify-center.png</file>
+		<file>icons/actions/format-justify-fill.png</file>
+		<file>icons/actions/format-justify-left.png</file>
+		<file>icons/actions/format-justify-right.png</file>
+		<file>icons/actions/format-text-bold.png</file>
+		<file>icons/actions/format-text-italic.png</file>
+		<file>icons/actions/format-text-underline.png</file>
+		<file>icons/actions/go-next.png</file>
+		<file>icons/actions/go-previous.png</file>
+		<file>icons/actions/list-add.png</file>
+		<file>icons/actions/list-remove.png</file>
+		<file>icons/actions/view-right-new.png</file>
+		<file>icons/actions/window-close.png</file>
+
+		<file>icons/mimetype_16px/application-javascript.png</file>
+		<file>icons/mimetype_16px/application-x-perl.png</file>
+		<file>icons/mimetype_16px/application-x-ruby.png</file>
+		<file>icons/mimetype_16px/text-css.png</file>
+		<file>icons/mimetype_16px/text-html.png</file>
+		<file>icons/mimetype_16px/text-plain.png</file>
+		<file>icons/mimetype_16px/text-rtf.png</file>
+		<file>icons/mimetype_16px/text-x-cmake.png</file>
+		<file>icons/mimetype_16px/text-x-csharp.png</file>
+		<file>icons/mimetype_16px/text-x-c++src.png</file>
+		<file>icons/mimetype_16px/text-x-java.png</file>
+		<file>icons/mimetype_16px/text-x-makefile.png</file>
+		<file>icons/mimetype_16px/text-x-python.png</file>
+		<file>icons/mimetype_16px/text-x-sql.png</file>
+		<file>icons/mimetype_16px/text-x-tex.png</file>
+
+		<file>icons/mimetype_64px/application-javascript.png</file>
+		<file>icons/mimetype_64px/application-x-perl.png</file>
+		<file>icons/mimetype_64px/application-x-ruby.png</file>
+		<file>icons/mimetype_64px/text-css.png</file>
+		<file>icons/mimetype_64px/text-html.png</file>
+		<file>icons/mimetype_64px/text-plain.png</file>
+		<file>icons/mimetype_64px/text-rtf.png</file>
+		<file>icons/mimetype_64px/text-x-cmake.png</file>
+		<file>icons/mimetype_64px/text-x-csharp.png</file>
+		<file>icons/mimetype_64px/text-x-c++src.png</file>
+		<file>icons/mimetype_64px/text-x-java.png</file>
+		<file>icons/mimetype_64px/text-x-makefile.png</file>
+		<file>icons/mimetype_64px/text-x-python.png</file>
+		<file>icons/mimetype_64px/text-x-sql.png</file>
+		<file>icons/mimetype_64px/text-x-tex.png</file>
+	</qresource>
+</RCC>

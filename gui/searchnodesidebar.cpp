@@ -111,11 +111,11 @@ void SearchNodeSidebar::setupSearchRow()
 	searchedit = new QLineEdit;
 	layout->addWidget(searchedit, 0, 0);
 
-	moreBtn = new QPushButton(QIcon("icons/arrow-up-double.png"), "");
+	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), "");
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 1);
-	lessBtn = new QPushButton(QIcon("icons/arrow-down-double.png"), "");
+	lessBtn = new QPushButton(QIcon(":/icons/actions/arrow-down-double.png"), "");
 	lessBtn->setFlat(true);
 	lessBtn->setMaximumWidth(30);
 	lessBtn->hide();

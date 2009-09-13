@@ -627,7 +627,7 @@ end
  <node id="25" >
   <caption>Nodename</caption>
   <creationdate>Thu Sep 3 01:14:31 2009</creationdate>
-  <modificationdate>Tue Sep 8 10:51:40 2009</modificationdate>
+  <modificationdate>Sun Sep 13 00:11:21 2009</modificationdate>
   <label>coding</label>
   <content mimetype="text/plain" >
    <metainfo key="Syntax" >Python</metainfo>
@@ -698,6 +698,15 @@ public class foo(){
  }
 
 </text>
+  </content>
+ </node>
+ <node id="47" >
+  <caption>Nodename</caption>
+  <creationdate>Sun Sep 13 00:25:49 2009</creationdate>
+  <modificationdate>Sun Sep 13 00:25:49 2009</modificationdate>
+  <content mimetype="text/plain" >
+   <metainfo key="Syntax" >JavaScript</metainfo>
+   <text></text>
   </content>
  </node>
  <node id="31" >

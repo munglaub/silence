@@ -28,7 +28,7 @@ TextFind::TextFind(QWidget *parent)
 	layout = new QGridLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 
-	hideBtn = new QPushButton(QIcon("icons/window-close.png"), "");
+	hideBtn = new QPushButton(QIcon(":/icons/actions/window-close.png"), "");
 	hideBtn->setMaximumWidth(30);
 	hideBtn->setFlat(true);
 	connect(hideBtn, SIGNAL(clicked()), this, SLOT(hide()));
@@ -40,15 +40,15 @@ TextFind::TextFind(QWidget *parent)
 	layout->addWidget(findEdit, 0, 1);
 	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 
-	prevBtn = new QPushButton(QIcon("icons/go-previous.png"), tr("Previous"));
+	prevBtn = new QPushButton(QIcon(":/icons/actions/go-previous.png"), tr("Previous"));
 	prevBtn->setFlat(true);
 	layout->addWidget(prevBtn, 0, 2);
 
-	nextBtn = new QPushButton(QIcon("icons/go-next.png"), tr("Next"));
+	nextBtn = new QPushButton(QIcon(":/icons/actions/go-next.png"), tr("Next"));
 	nextBtn->setFlat(true);
 	layout->addWidget(nextBtn, 0, 3);
 
-	moreBtn = new QPushButton(QIcon("icons/arrow-up-double.png"), tr(""));
+	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), tr(""));
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 4);
@@ -123,10 +123,10 @@ void TextFind::showMore()
 	replaceAllBtn->setHidden(showAll);
 	if (showAll)
 	{
-		moreBtn->setIcon(QIcon("icons/arrow-up-double.png"));
+		moreBtn->setIcon(QIcon(":/icons/actions/arrow-up-double.png"));
 		showAll = false;
 	} else {
-		moreBtn->setIcon(QIcon("icons/arrow-down-double.png"));
+		moreBtn->setIcon(QIcon(":/icons/actions/arrow-down-double.png"));
 		showAll = true;
 	}
 }

@@ -29,7 +29,7 @@ WelcomeView::WelcomeView(QWidget *parent)
 	int row = 0;
 
 	icon = new QLabel;
-	icon->setPixmap(QPixmap("icons/Silence_big.png"));
+	icon->setPixmap(QPixmap(":/icons/Silence_big.png"));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignLeft);
 
 	welcome = new QLabel(tr("Welcome to Silence, an information management tool."));
