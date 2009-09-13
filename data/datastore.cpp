@@ -24,6 +24,11 @@
 #include <QFile>
 #include <QTextStream>
 
+
+// Constant for Datastore file
+const QString DataStore::DATA_FILE("data.xml");
+
+
 DataStore::DataStore()
 {
 	root = new Node();
@@ -32,7 +37,7 @@ DataStore::DataStore()
 	labels = new QStringList;
 
 	QDomDocument doc;
-	QFile file("foo.xml");
+	QFile file(DATA_FILE);
 	if (!file.open(QIODevice::ReadOnly))
 		return;
 	doc.setContent(&file);
@@ -156,7 +161,7 @@ void DataStore::save(Node*)
 	}
 	
 	// write to file
-	QFile file("foo.xml");
+	QFile file(DATA_FILE);
 	if( !file.open(QIODevice::WriteOnly))
 		return;
 	QTextStream ts(&file);
