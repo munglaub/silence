@@ -46,6 +46,7 @@ class DataStore : public QObject
 	private:
 		Node *root;
 		QStringList *labels;
+		static const QString DATA_FILE;
 
 		void xmlToLabels(QDomElement &xmlLabels);
 
