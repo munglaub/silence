@@ -25,6 +25,8 @@
 
 class EditMenu : public QMenu
 {
+	Q_OBJECT
+
 	public:
 		EditMenu(QWidget *parent = 0);
 		~EditMenu();

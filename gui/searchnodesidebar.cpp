@@ -135,7 +135,7 @@ void SearchNodeSidebar::setupSearchOptions()
 	optionbox->setVisible(false);
 	
 	// search for caption/fulltext
-	captionBtn = new QRadioButton("Caption");
+	captionBtn = new QRadioButton(tr("Caption"));
 	captionBtn->setChecked(true);
 	optboxlayout->addWidget(captionBtn, 0, 0);
 	fulltextBtn = new QRadioButton("Fulltext");

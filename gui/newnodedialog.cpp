@@ -35,7 +35,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	baselayout = new QVBoxLayout;
 
 	namelayout = new QFormLayout;
-	nameedit = new QLineEdit("Nodename");
+	nameedit = new QLineEdit(tr("Nodename"));
 	nameedit->selectAll();
 	namelayout->addRow(tr("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);
@@ -55,27 +55,27 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	synbox = new QComboBox;
 	synbox->addItem(tr("None"));
 
-	synbox->addItem(tr("Bash"));
-	synbox->addItem(tr("Batch"));
-	synbox->addItem(tr("CMake"));
-	synbox->addItem(tr("C++"));
-	synbox->addItem(tr("C#"));
-	synbox->addItem(tr("CSS"));
-	synbox->addItem(tr("D"));
-	synbox->addItem(tr("Diff"));
-	synbox->addItem(tr("HTML"));
-	synbox->addItem(tr("IDL"));
-	synbox->addItem(tr("Java"));
-	synbox->addItem(tr("JavaScript"));
-	synbox->addItem(tr("Lua"));
-	synbox->addItem(tr("Makefile"));
-	synbox->addItem(tr("Perl"));
-	synbox->addItem(tr("POV"));
-	synbox->addItem(tr("Python"));
-	synbox->addItem(tr("Ruby"));
-	synbox->addItem(tr("SQL"));
-	synbox->addItem(tr("TeX"));
-	synbox->addItem(tr("VHDL"));
+	synbox->addItem("Bash");
+	synbox->addItem("Batch");
+	synbox->addItem("CMake");
+	synbox->addItem("C++");
+	synbox->addItem("C#");
+	synbox->addItem("CSS");
+	synbox->addItem("D");
+	synbox->addItem("Diff");
+	synbox->addItem("HTML");
+	synbox->addItem("IDL");
+	synbox->addItem("Java");
+	synbox->addItem("JavaScript");
+	synbox->addItem("Lua");
+	synbox->addItem("Makefile");
+	synbox->addItem("Perl");
+	synbox->addItem("POV");
+	synbox->addItem("Python");
+	synbox->addItem("Ruby");
+	synbox->addItem("SQL");
+	synbox->addItem("TeX");
+	synbox->addItem("VHDL");
 
 	typelayout->addWidget(synbox, 0, 3);
 	baselayout->addLayout(typelayout);

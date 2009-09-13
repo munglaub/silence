@@ -48,7 +48,7 @@ TextFind::TextFind(QWidget *parent)
 	nextBtn->setFlat(true);
 	layout->addWidget(nextBtn, 0, 3);
 
-	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), tr(""));
+	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), "");
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 4);
@@ -70,9 +70,9 @@ TextFind::TextFind(QWidget *parent)
 	optionPanel = new QFrame;
 	optionLayout = new QHBoxLayout;
 	optionLayout->setAlignment(Qt::AlignRight);
-	caseCbx = new QCheckBox("Match case");
+	caseCbx = new QCheckBox(tr("Match case"));
 	optionLayout->addWidget(caseCbx);
-	wordCbx = new QCheckBox("Match whole word");
+	wordCbx = new QCheckBox(tr("Match whole word"));
 	optionLayout->addWidget(wordCbx);
 	optionPanel->setLayout(optionLayout);
 	layout->addWidget(optionPanel, 2, 0, 4, 0);

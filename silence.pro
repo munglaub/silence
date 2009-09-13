@@ -67,3 +67,6 @@ LIBS	+=	-lqscintilla2
 
 RESOURCES	=	silence.qrc
 
+TRANSLATIONS	=	silence_de_DE.ts \
+					silence_en_US.ts \
+					silence_en_GB.ts 

@@ -221,7 +221,7 @@ void RichTextEdit::setupActions()
 	toolbar->addAction(actionTextColor);
 	menu->addAction(actionTextColor);
 
-	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("Find"));
+	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	menu->addAction(actionFind);
 }
@@ -231,13 +231,13 @@ void RichTextEdit::setupFontActions()
 	comboStyle = new QComboBox(fontToolbar);
 	fontToolbar->addWidget(comboStyle);
 
-	comboStyle->addItem("Standard");
-	comboStyle->addItem("Bullet List (Disc)");
-	comboStyle->addItem("Bullet List (Circle)");
-	comboStyle->addItem("Bullet List (Square)");
-	comboStyle->addItem("Ordered List (Decimal)");
-	comboStyle->addItem("Ordered List (Alpha lower)");
-	comboStyle->addItem("Ordered List (Alpha upper)");
+	comboStyle->addItem(tr("Standard"));
+	comboStyle->addItem(tr("Bullet List (Disc)"));
+	comboStyle->addItem(tr("Bullet List (Circle)"));
+	comboStyle->addItem(tr("Bullet List (Square)"));
+	comboStyle->addItem(tr("Ordered List (Decimal)"));
+	comboStyle->addItem(tr("Ordered List (Alpha lower)"));
+	comboStyle->addItem(tr("Ordered List (Alpha upper)"));
 	connect(comboStyle, SIGNAL(activated(int)),
 			this, SLOT(textStyle(int)));
 

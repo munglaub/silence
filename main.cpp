@@ -18,14 +18,22 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui/QApplication>
 #include "gui/mainwindow.h"
+#include <QtGui/QApplication>
+#include <QTranslator>
+//#include <iostream>
 
 int main(int argc, char *argv[])
 {
 	QApplication silence(argc, argv);
+
+	QTranslator silenceTranslator;
+	silenceTranslator.load("silence_" + QLocale::system().name());
+//	silenceTranslator.load("silence_de_DE");
+	silence.installTranslator(&silenceTranslator);
+//	std::cout << QLocale::system().name().toStdString() << std::endl;
+
 	MainWindow w;
-	
 	w.show();
 	return silence.exec();
 }

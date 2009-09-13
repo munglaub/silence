@@ -27,6 +27,8 @@
 
 class WelcomeView : public QWidget
 {
+	Q_OBJECT
+
 	public:
 		WelcomeView(QWidget *parent = 0);
 		~WelcomeView();

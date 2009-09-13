@@ -34,48 +34,48 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 
 	int row = 0;
 
-	caption = new QLabel(tr(""));
+	caption = new QLabel("");
 	caption->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 	
-	icon = new QLabel(tr(""));
+	icon = new QLabel("");
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 
 	created = new QLabel(tr("Created:"));
 	created->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(created, row, 0);
-	createdDate = new QLabel(tr(""));
+	createdDate = new QLabel("");
 	layout->addWidget(createdDate, row, 1);
 	++row;
 
 	lastedit = new QLabel(tr("Last edit:"));
 	lastedit->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(lastedit, row, 0);
-	lasteditDate = new QLabel(tr(""));
+	lasteditDate = new QLabel("");
 	layout->addWidget(lasteditDate, row, 1);
 	++row;
 
 	type = new QLabel(tr("Type:"));
 	type->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(type, row, 0);
-	typeName = new QLabel(tr(""));
+	typeName = new QLabel("");
 	layout->addWidget(typeName, row, 1);
 	++row;
 
 	labels = new QLabel(tr("Labels:"));
 	labels->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(labels, row, 0);
-	labelsData = new QLabel(tr(""));
+	labelsData = new QLabel("");
 	labelsData->setWordWrap(true);
 	layout->addWidget(labelsData, row, 1);
 	++row;
 
-	metaInfo = new QLabel(tr(""));
+	metaInfo = new QLabel("");
 	metaInfo->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(metaInfo, row, 0);
-	metaInfoData = new QLabel(tr(""));
+	metaInfoData = new QLabel("");
 	layout->addWidget(metaInfoData, row, 1);
 
 

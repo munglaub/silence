@@ -27,6 +27,8 @@
 
 class SilenceMenu : public QMenu
 {
+	Q_OBJECT
+
 	public:
 		SilenceMenu(QWidget *parent = 0);
 		~SilenceMenu();

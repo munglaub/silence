@@ -28,6 +28,8 @@
 //FIXME: Rename me to NodeMenu!!
 class FileMenu : public QMenu
 {
+	Q_OBJECT
+
 	public:
 		FileMenu(QWidget *parent = 0);
 		~FileMenu();
