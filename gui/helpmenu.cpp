@@ -24,7 +24,7 @@ HelpMenu::HelpMenu(QWidget *parent)
 	: QMenu(parent)
 {
 	setTitle(tr("&Help"));
-	about = addAction(tr("About"));
+	about = addAction(QIcon(":/icons/actions/help-about.png"), tr("About"));
 	connect(about, SIGNAL(triggered()), this, SLOT(showAbout()));
 }
 

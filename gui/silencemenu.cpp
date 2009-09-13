@@ -33,7 +33,7 @@ SilenceMenu::SilenceMenu(QWidget *parent)
 
 	addSeparator();
 
-	QAction *exit = addAction(tr("&Exit"));
+	QAction *exit = addAction(QIcon(":/icons/actions/application-exit.png"), tr("&Exit"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
