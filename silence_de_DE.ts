@@ -65,7 +65,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Labels:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag:</translation>
     </message>
 </context>
 <context>
@@ -150,106 +150,106 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Tags</translation>
     </message>
     <message>
         <source>Node name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax:</translation>
     </message>
     <message>
         <source>Creationdate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstellt:</translation>
     </message>
     <message>
         <source>Modificationdate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeitet:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
 </context>
 <context>
     <name>RichTextEdit</name>
     <message>
         <source>Edit Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Widerhohlen</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles Auswählen</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Fett</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterstrichen</translation>
     </message>
     <message>
         <source>&amp;Left</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Links</translation>
     </message>
     <message>
         <source>C&amp;enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Zentriert</translation>
     </message>
     <message>
         <source>&amp;Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechts</translation>
     </message>
     <message>
         <source>&amp;Justify</source>
-        <translation type="unfinished"></translation>
+        <translation>Blocktext</translation>
     </message>
     <message>
         <source>&amp;Color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <source>Standard</source>
@@ -284,123 +284,119 @@ Marcel Winkel</translation>
     <name>SearchNodeSidebar</name>
     <message>
         <source>Search Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <source>mime type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>created between</source>
-        <translation type="unfinished"></translation>
+        <translation>erstellt von</translation>
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>bis</translation>
     </message>
     <message>
         <source>modified between</source>
-        <translation type="unfinished"></translation>
+        <translation>verändert von</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
 </context>
 <context>
     <name>SilenceMenu</name>
     <message>
         <source>&amp;Silence</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Silence</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>&amp;Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>B&amp;eenden</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>saved</source>
-        <translation type="unfinished"></translation>
+        <translation>gespeichert</translation>
     </message>
     <message>
         <source>changed</source>
-        <translation type="unfinished"></translation>
+        <translation>verändert</translation>
     </message>
 </context>
 <context>
     <name>TextEdit</name>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <source>Find/Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen/Ersetzen</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederhohlen</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles Auswählen</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen</translation>
     </message>
 </context>
 <context>
     <name>TextFind</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source></source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Ersetyen</translation>
     </message>
     <message>
         <source>Match case</source>
-        <translation type="unfinished"></translation>
+        <translation>Groß-/Kleinschreibung</translation>
     </message>
     <message>
         <source>Match whole word</source>
-        <translation type="unfinished"></translation>
+        <translation>Ganzes Wort</translation>
     </message>
 </context>
 <context>
@@ -419,26 +415,26 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenschaften</translation>
     </message>
     <message>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein</translation>
     </message>
 </context>
 <context>
     <name>ViewMenu</name>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansicht</translation>
     </message>
     <message>
         <source>Welcome View</source>
@@ -450,50 +446,50 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Information Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsleiste</translation>
     </message>
     <message>
         <source>Node Properties Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenschaftenleiste</translation>
     </message>
     <message>
         <source>Search Nodes Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchleiste</translation>
     </message>
     <message>
         <source>Linewarp</source>
-        <translation type="unfinished"></translation>
+        <translation>automatischer Zeilenumbruch</translation>
     </message>
 </context>
 <context>
     <name>WelcomeView</name>
     <message>
         <source>Welcome to Silence, an information management tool.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wilkommen zu Silence, einem Informations management Tool.</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>very early Version</source>
-        <translation type="unfinished"></translation>
+        <translation>sehr frühe Version</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoren</translation>
     </message>
     <message>
         <source>Manuel Unglaub, Yves Adler, Marcel Winkel</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuel Unglaub, Yves Adler, Marcel Winkel</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenz</translation>
     </message>
     <message>
         <source>GPLv2</source>
-        <translation type="unfinished"></translation>
+        <translation>GPLv2</translation>
     </message>
 </context>
 </TS>
