@@ -66,8 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
 	// add menus
 	silencemenu = new SilenceMenu;
 	menuBar()->addMenu(silencemenu);
-	filemenu = new FileMenu;
-	menuBar()->addMenu(filemenu);
+	nodemenu = new NodeMenu;
+	menuBar()->addMenu(nodemenu);
 	editmenu = new EditMenu;
 	menuBar()->addMenu(editmenu);
 	controller->setEditMenu(editmenu);
@@ -86,7 +86,7 @@ MainWindow::~MainWindow()
 	delete nodepropertywidget;
 	delete searchnodesidebar;
 
-	delete filemenu;
+	delete nodemenu;
 	delete editmenu;
 	delete viewmenu;
 	delete helpmenu;

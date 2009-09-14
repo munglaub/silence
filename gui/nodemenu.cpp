@@ -18,12 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gui/filemenu.h"
 #include "gui/newnodedialog.h"
+#include "gui/nodemenu.h"
 
 
-//FIXME: Rename me to NodeMenu!!
-FileMenu::FileMenu(QWidget *parent)
+NodeMenu::NodeMenu(QWidget *parent)
 	: QMenu(parent)
 {
 	controller = Controller::create();
@@ -35,7 +34,7 @@ FileMenu::FileMenu(QWidget *parent)
 		addAction(actions->at(i));
 }
 
-FileMenu::~FileMenu()
+NodeMenu::~NodeMenu()
 {
 }
 

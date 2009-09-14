@@ -18,27 +18,26 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FILEMENU_H
-#define FILEMENU_H
+#ifndef NODEMENU_H
+#define NODEMENU_H
 
 #include "controller.h"
 #include <QMenu>
 
 
-//FIXME: Rename me to NodeMenu!!
-class FileMenu : public QMenu
+class NodeMenu : public QMenu
 {
 	Q_OBJECT
 
 	public:
-		FileMenu(QWidget *parent = 0);
-		~FileMenu();
+		NodeMenu(QWidget *parent = 0);
+		~NodeMenu();
 
 	private:
 		Controller *controller;
 };
 
-#endif // FILEMENU_H
+#endif // NODEMENU_H
 
 
 

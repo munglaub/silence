@@ -25,7 +25,7 @@
 #include "gui/contentview.h"
 #include "gui/editmenu.h"
 #include "gui/silencemenu.h"
-#include "gui/filemenu.h"
+#include "gui/nodemenu.h"
 #include "gui/helpmenu.h"
 #include "gui/infosidebar.h"
 #include "gui/nodepropertywidget.h"
@@ -54,7 +54,7 @@ class MainWindow : public QMainWindow
 
 		// Menus
 		SilenceMenu *silencemenu;
-		FileMenu *filemenu;
+		NodeMenu *nodemenu;
 		EditMenu *editmenu;
 		ViewMenu *viewmenu;
 		HelpMenu *helpmenu;
