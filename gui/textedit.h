@@ -53,6 +53,8 @@ class TextEdit : public QWidget
 		void findFirst();
 		void replace();
 		void replaceAll();
+
+		void contentChanged();
 	
 	private:
 		QsciScintilla *editor;

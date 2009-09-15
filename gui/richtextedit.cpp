@@ -102,6 +102,8 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	// select all
 	connect(actionSelectAll, SIGNAL(triggered()), textedit, SLOT(selectAll()));
+
+	connect(textedit, SIGNAL(textChanged()), this, SLOT(contentChanged()));
 }
 
 
@@ -437,11 +439,13 @@ void RichTextEdit::setContent(RichTextNodeContent *content)
 {
 	this->content = content;
 	textedit->setHtml(content->getText());
+	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 
 void RichTextEdit::saveContent()
 {
 	content->setText(textedit->toHtml());
+	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 
 void RichTextEdit::clipboardDataChanged()
@@ -526,4 +530,8 @@ void RichTextEdit::replaceAll()
 	} while (found);
 }
 
+void RichTextEdit::contentChanged()
+{
+	Controller::create()->getStatusBar()->setSaveStatus(false);
+}
 

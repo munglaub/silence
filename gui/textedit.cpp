@@ -102,6 +102,8 @@ TextEdit::TextEdit(QWidget *parent)
 
 	// selectall
 	connect(actionSelectAll, SIGNAL(triggered()), editor, SLOT(selectAll()));
+
+	connect(editor, SIGNAL(textChanged()), this, SLOT(contentChanged()));
 }
 
 TextEdit::~TextEdit()
@@ -170,11 +172,13 @@ void TextEdit::setContent(TextNodeContent *content)
 {
 	this->content = content;
 	editor->setText(content->getText());
+	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 
 void TextEdit::saveContent()
 {
 	content->setText(editor->text());
+	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 
 void TextEdit::setSyntax(QString syntax)
@@ -311,4 +315,8 @@ void TextEdit::replaceAll()
 	} while (found);
 }
 
+void TextEdit::contentChanged()
+{
+	Controller::create()->getStatusBar()->setSaveStatus(false);
+}
 

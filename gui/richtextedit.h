@@ -58,6 +58,8 @@ class RichTextEdit : public QWidget
 		void currentCharFormatChanged(const QTextCharFormat &format);
 		void clipboardDataChanged();
 
+		void contentChanged();
+
 		void findNext();
 		void findPrev();
 		void findFirst();
