@@ -29,12 +29,12 @@ ViewMenu::ViewMenu(QWidget *parent)
 {
 	setTitle(tr("&View"));
 
-	QAction *welcomeView = addAction(tr("Welcome View"));
+	welcomeView = addAction(tr("Welcome View"));
 	connect(welcomeView, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
 
 	addSeparator();
 
-	QAction *showNodeTree = addAction(tr("Node Sidebar"));
+	showNodeTree = addAction(tr("Node Sidebar"));
 	showNodeTree->setCheckable(true);
 	// TODO: Controller::create()->getTreeView()->isVisible() does not work
 	//	 --> find a working solution which is NOT hardcorded!!
@@ -42,19 +42,19 @@ ViewMenu::ViewMenu(QWidget *parent)
 	connect(showNodeTree, SIGNAL(triggered(bool)), 
 		Controller::create()->getTreeView(), SLOT(setVisible(bool)));
 
-	QAction *showInfo = addAction(tr("Information Sidebar"));
+	showInfo = addAction(tr("Information Sidebar"));
 	showInfo->setCheckable(true);
 	showInfo->setChecked(true);
 	connect(showInfo, SIGNAL(triggered(bool)), 
 		Controller::create()->getInfoSidebar(), SLOT(setVisible(bool)));
 
-	QAction *showProps = addAction(tr("Node Properties Sidebar"));
-	showProps->setCheckable(true);
-	showProps->setChecked(false);
-	connect(showProps, SIGNAL(triggered(bool)), 
+	showProperties = addAction(tr("Node Properties Sidebar"));
+	showProperties->setCheckable(true);
+	showProperties->setChecked(false);
+	connect(showProperties, SIGNAL(triggered(bool)), 
 		Controller::create()->getNodePropertyWidget(), SLOT(setVisible(bool)));
 
-	QAction *showNodeSearch = addAction(tr("Search Nodes Sidebar"));
+	showNodeSearch = addAction(tr("Search Nodes Sidebar"));
 	showNodeSearch->setCheckable(true);
 	showNodeSearch->setChecked(true);
 	connect(showNodeSearch, SIGNAL(triggered(bool)), 
@@ -72,5 +72,10 @@ void ViewMenu::showWelcomeView()
 
 ViewMenu::~ViewMenu()
 {
+	delete welcomeView;
+	delete showNodeTree;
+	delete showInfo;
+	delete showProperties;
+	delete showNodeSearch;
 }
 

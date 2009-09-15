@@ -21,8 +21,6 @@
 #include "controller.h"
 #include "gui/contentview.h"
 #include "gui/welcomeview.h"
-#include <QLabel>
-#include <QWidget>
 
 
 ContentView::ContentView(QWidget *parent)
