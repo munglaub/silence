@@ -61,5 +61,7 @@
 		<file>icons/mimetype_64px/text-x-python.png</file>
 		<file>icons/mimetype_64px/text-x-sql.png</file>
 		<file>icons/mimetype_64px/text-x-tex.png</file>
+
+		<file>icons/status/dialog-warning.png</file>
 	</qresource>
 </RCC>

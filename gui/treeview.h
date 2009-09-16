@@ -31,6 +31,7 @@
 #include <QGridLayout>
 #include <QList>
 #include <QLabel>
+#include <QGroupBox>
 
 
 class TreeView : public QDockWidget
@@ -57,19 +58,19 @@ class TreeView : public QDockWidget
 		QTreeView *tree;
 		TreeModel *model;
 
-		// Toolbar
 		QToolBar *toolbar;
 		QAction *addRowAction,
 				*addChildAction,
 				*removeAction,
 				*propertyAction;
 
-		QLabel *question;
+		QLabel	*question,
+				*icon;
 		QPushButton *yesButton,
-				*noButton;
+					*noButton;
 
-		QFrame *frame,
-				*questionFrame;
+		QFrame *frame;
+		QGroupBox *questionFrame;
 
 		QVBoxLayout *layout;
 		QGridLayout *questionLayout;

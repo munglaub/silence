@@ -78,14 +78,15 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	yesButton = new QPushButton(tr("Yes"));
 	noButton = new QPushButton(tr("No"));
 	
-	questionFrame = new QFrame();
+	questionFrame = new QGroupBox(tr("Delete Node"));
 	questionFrame->hide();
-	questionFrame->setObjectName("questionFrame");
-	questionFrame->setStyleSheet("QFrame#questionFrame { background-color: #FFFF99; border-radius: 5px;}");
 	questionLayout = new QGridLayout;
-	questionLayout->addWidget(question, 0, 0, 1, 2);
-	questionLayout->addWidget(yesButton, 1,0);
-	questionLayout->addWidget(noButton, 1,1);
+	icon = new QLabel();
+	icon->setPixmap(QPixmap(":/icons/status/dialog-warning.png"));
+	questionLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
+	questionLayout->addWidget(question, 0, 1);
+	questionLayout->addWidget(yesButton, 1, 0);
+	questionLayout->addWidget(noButton, 1, 1);
 	questionFrame->setLayout(questionLayout);
 
 	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
@@ -197,6 +198,7 @@ void TreeView::selectItem()
 	controller->getInfoSidebar()->setData(selectedNode);
 	controller->getStatusBar()->setNodeName(selectedNode->getCaption());
 	controller->getNodePropertyWidget()->setNode(selectedNode);
+	questionFrame->hide();
 }
 
 void TreeView::updateActions()
