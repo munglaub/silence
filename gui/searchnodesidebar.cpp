@@ -158,6 +158,32 @@ void SearchNodeSidebar::setupSearchOptions()
 	connect(mimeCombo, SIGNAL(currentIndexChanged(QString)), filtermodel, SLOT(invalidate()));
 }
 
+void SearchNodeSidebar::enableCreationDate(bool enabled)
+{
+	fromCreated->setEnabled(enabled);
+	toCreated->setEnabled(enabled);
+	if (enabled)
+	{
+		filtermodel->setFilterCreatedFromDate(toCreated->date());
+		filtermodel->setFilterCreatedToDate(fromCreated->date());
+	}
+	filtermodel->setFilterCreatedDateEnabled(enabled);
+	filtermodel->invalidate();
+}
+
+void SearchNodeSidebar::enableModificationDate(bool enabled)
+{
+	fromModified->setEnabled(enabled);
+	toModified->setEnabled(enabled);
+	if (enabled)
+	{
+		filtermodel->setFilterModifiedFromDate(fromModified->date());
+		filtermodel->setFilterModifiedToDate(toModified->date());
+	}
+	filtermodel->setFilterModifiedDateEnabled(enabled);
+	filtermodel->invalidate();
+}
+
 void SearchNodeSidebar::setupSearchDate()
 {
 	// search by Date
@@ -169,43 +195,39 @@ void SearchNodeSidebar::setupSearchDate()
 
 	// creation date
 	cbCreated = new QCheckBox(tr("created between"));
+	connect(cbCreated, SIGNAL(clicked(bool)), this, SLOT(enableCreationDate(bool)));
 	dateboxlayout->addWidget(cbCreated, 0, 0, 1, 3);
+
 	fromCreated = new QDateEdit(QDate::currentDate());
 	fromCreated->setEnabled(false);
 	dateboxlayout->addWidget(fromCreated, 1, 0);
-	connect(cbCreated, SIGNAL(clicked(bool)), fromCreated, SLOT(setEnabled(bool)));
-	connect(cbCreated, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterCreatedDateEnabled(bool)));
 	connect(fromCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedFromDate(QDate)));
-	connect(fromCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	clbland = new QLabel(tr("and"));
 	dateboxlayout->addWidget(clbland, 1, 1);
+
 	toCreated = new QDateEdit(QDate::currentDate());
 	dateboxlayout->addWidget(toCreated, 1, 2);
 	toCreated->setEnabled(false);
-	connect(cbCreated, SIGNAL(clicked(bool)), toCreated, SLOT(setEnabled(bool)));
 	connect(toCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterCreatedToDate(QDate)));
-	connect(toCreated, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	// modification date
 	cbModified = new QCheckBox(tr("modified between"));
+	connect(cbModified, SIGNAL(clicked(bool)), this, SLOT(enableModificationDate(bool)));
 	dateboxlayout->addWidget(cbModified, 2, 0, 1, 3);
+
 	fromModified = new QDateEdit(QDate::currentDate());
 	fromModified->setEnabled(false);
 	dateboxlayout->addWidget(fromModified, 3, 0);
-	connect(cbModified, SIGNAL(clicked(bool)), fromModified, SLOT(setEnabled(bool)));
-	connect(cbModified, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterModifiedDateEnabled(bool)));
 	connect(fromModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedFromDate(QDate)));
-	connect(fromModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 
 	mlbland = new QLabel(tr("and"));
 	dateboxlayout->addWidget(mlbland, 3, 1);
+
 	toModified = new QDateEdit(QDate::currentDate());
 	toModified->setEnabled(false);
 	dateboxlayout->addWidget(toModified, 3, 2);
-	connect(cbModified, SIGNAL(clicked(bool)), toModified, SLOT(setEnabled(bool)));
 	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(setFilterModifiedToDate(QDate)));
-	connect(toModified, SIGNAL(dateChanged(QDate)), filtermodel, SLOT(invalidate()));
 }
 
 

@@ -46,6 +46,8 @@ class SearchNodeSidebar : public QDockWidget
 
 	private slots:
 		void selectionChanged(QModelIndex current);
+		void enableCreationDate(bool enabled);
+		void enableModificationDate(bool enabled);
 
 	private:
 		ListProxyModel *listProxy;

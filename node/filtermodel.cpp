@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Yves Adler
+ * Copyright (C) 2009 Yves Adler, Manuel Unglaub
  *
  * This file is part of Silence.
  *
@@ -104,11 +104,13 @@ void FilterModel::setFilterCreatedDateEnabled(bool enabled)
 void FilterModel::setFilterCreatedFromDate(const QDate &date)
 {
 	createdFromDate = new QDateTime(date);
+	invalidate();
 }
 
 void FilterModel::setFilterCreatedToDate(const QDate &date)
 {
 	createdToDate = new QDateTime(date);
+	invalidate();
 }
 
 void FilterModel::setFilterModifiedDateEnabled(bool enabled)
@@ -119,11 +121,13 @@ void FilterModel::setFilterModifiedDateEnabled(bool enabled)
 void FilterModel::setFilterModifiedFromDate(const QDate &date)
 {
 	modifiedFromDate = new QDateTime(date);
+	invalidate();
 }
 
 void FilterModel::setFilterModifiedToDate(const QDate &date)
 {
 	modifiedToDate = new QDateTime(date);
+	invalidate();
 }
 
 void FilterModel::setFilterMimetypeEnabled(bool enabled)

@@ -90,6 +90,7 @@ MainWindow::~MainWindow()
 	delete editmenu;
 	delete viewmenu;
 	delete helpmenu;
+	delete silencemenu;
 
 	delete controller;
 }

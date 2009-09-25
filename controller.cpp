@@ -38,6 +38,7 @@ Controller::Controller()
 
 Controller::~Controller()
 {
+	delete datastore;
 }
 
 Controller* Controller::create()

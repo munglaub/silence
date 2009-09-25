@@ -29,16 +29,16 @@
 class AbstractNodeContent : public QObject
 {
 	public:
-		virtual QWidget* getWidget() { return NULL; };
-		virtual QHash<QString, QString>* getMetaInfos() { return NULL; };
-		virtual void addMetaInfo(QString key, QString value) { key = value; };
-		virtual QString getMimeType() { return ""; };
-		virtual bool contains(const QString& value) { return value.contains(value); };
+		virtual QWidget* getWidget() = 0;
+		virtual QHash<QString, QString>* getMetaInfos() = 0;
+		virtual void addMetaInfo(QString key, QString value) = 0;
+		virtual QString getMimeType() = 0;
+		virtual bool contains(const QString& value) = 0;
 
-		virtual QDomElement getXmlData(QDomDocument &doc) { return doc.createElement(""); };
-		virtual void setXmlData(QDomElement &xmlNode) { xmlNode.firstChild(); };
-		virtual QPixmap getPixmap() { return NULL; };
-		virtual QIcon getIcon() { return QIcon(); };
+		virtual QDomElement getXmlData(QDomDocument &doc) = 0;
+		virtual void setXmlData(QDomElement &xmlNode) = 0;
+		virtual QPixmap getPixmap() = 0;
+		virtual QIcon getIcon() = 0;
 };
 
 #endif // ABSTRACTNODECONTENT_H
