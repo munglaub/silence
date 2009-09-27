@@ -48,10 +48,12 @@ class SearchNodeSidebar : public QDockWidget
 		void selectionChanged(QModelIndex current);
 		void enableCreationDate(bool enabled);
 		void enableModificationDate(bool enabled);
+		void toggleOptionsVisibility();
 
 	private:
 		ListProxyModel *listProxy;
 		FilterModel *filtermodel;
+		bool showOptions;
 
 		QGridLayout *layout, 
 					*optboxlayout,
@@ -76,8 +78,7 @@ class SearchNodeSidebar : public QDockWidget
 		QListView *resultList;
 
 		QLineEdit *searchedit;
-		QPushButton *moreBtn,
-					*lessBtn;
+		QPushButton *moreBtn;
 
 		void setupSearchRow();
 		void setupSearchOptions();

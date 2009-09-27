@@ -52,6 +52,7 @@ void FilterModel::setFilterFixedString(const QString &pattern)
 {
 	QSortFilterProxyModel::setFilterFixedString(pattern);
 	searchString = QString(pattern);
+	invalidate();
 }
 
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
@@ -99,6 +100,7 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 void FilterModel::setFilterCreatedDateEnabled(bool enabled)
 {
 	filterCreated = enabled;
+	invalidate();
 }
 
 void FilterModel::setFilterCreatedFromDate(const QDate &date)
@@ -116,6 +118,7 @@ void FilterModel::setFilterCreatedToDate(const QDate &date)
 void FilterModel::setFilterModifiedDateEnabled(bool enabled)
 {
 	filterModified = enabled;
+	invalidate();
 }
 
 void FilterModel::setFilterModifiedFromDate(const QDate &date)
@@ -133,16 +136,19 @@ void FilterModel::setFilterModifiedToDate(const QDate &date)
 void FilterModel::setFilterMimetypeEnabled(bool enabled)
 {
 	filterMimetype = enabled;
+	invalidate();
 }
 
 void FilterModel::setFilterMimetypeString(const QString &type)
 {
 	mimetype = new QString(type);
+	invalidate();
 }
 
 void FilterModel::setFilterFulltextEnabled(bool enabled)
 {
 	filterFulltext = enabled;
+	invalidate();
 }
 
 

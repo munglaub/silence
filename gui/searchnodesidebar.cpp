@@ -22,7 +22,6 @@
 #include "gui/searchnodesidebar.h"
 #include "node/treemodel.h"
 
-
 SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
         : QDockWidget(title, parent, flags)
 {
@@ -36,6 +35,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	filtermodel->setSourceModel(listProxy);
 
 	// setup the ui
+	showOptions = false;
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);
@@ -44,8 +44,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	setupSearchOptions();
 	setupSearchDate();
 
-	connect(moreBtn, SIGNAL(clicked(bool)), optionbox, SLOT(show()));
-	connect(lessBtn, SIGNAL(clicked(bool)), optionbox, SLOT(hide()));
+	connect(moreBtn, SIGNAL(clicked()), this, SLOT(toggleOptionsVisibility()));
 	layout->addWidget(optionbox, 1, 0, 1, 2);
 
 	// setup the resultlist
@@ -68,7 +67,6 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 
 SearchNodeSidebar::~SearchNodeSidebar()
 {
-	delete lessBtn;
 	delete moreBtn;
 	delete searchedit;
 	delete resultList;
@@ -97,6 +95,18 @@ SearchNodeSidebar::~SearchNodeSidebar()
 	delete listProxy;
 }
 
+void SearchNodeSidebar::toggleOptionsVisibility()
+{
+	if (showOptions)
+	{
+		moreBtn->setIcon(QIcon(":/icons/actions/arrow-down-double.png"));
+		showOptions = false;
+	} else {
+		moreBtn->setIcon(QIcon(":/icons/actions/arrow-up-double.png"));
+		showOptions = true;
+	}
+	optionbox->setVisible(showOptions);
+}
 
 void SearchNodeSidebar::selectionChanged(QModelIndex current)
 {
@@ -111,19 +121,10 @@ void SearchNodeSidebar::setupSearchRow()
 	searchedit = new QLineEdit;
 	layout->addWidget(searchedit, 0, 0);
 
-	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), "");
+	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-down-double.png"), "");
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 1);
-	lessBtn = new QPushButton(QIcon(":/icons/actions/arrow-down-double.png"), "");
-	lessBtn->setFlat(true);
-	lessBtn->setMaximumWidth(30);
-	lessBtn->hide();
-	layout->addWidget(lessBtn, 0, 1);
-	connect(moreBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(show()));
-	connect(moreBtn, SIGNAL(clicked(bool)), moreBtn, SLOT(hide()));
-	connect(lessBtn, SIGNAL(clicked(bool)), moreBtn , SLOT(show()));
-	connect(lessBtn, SIGNAL(clicked(bool)), lessBtn, SLOT(hide()));
 }
 
 void SearchNodeSidebar::setupSearchOptions()
@@ -141,7 +142,6 @@ void SearchNodeSidebar::setupSearchOptions()
 	fulltextBtn = new QRadioButton("Fulltext");
 	optboxlayout->addWidget(fulltextBtn, 0, 1);
 	connect(fulltextBtn, SIGNAL(toggled(bool)), filtermodel, SLOT(setFilterFulltextEnabled(bool)));
-	connect(fulltextBtn, SIGNAL(toggled(bool)), filtermodel, SLOT(invalidate()));
 
 	// search by contenttype
 	cbMime = new QCheckBox(tr("mime type"));
@@ -153,9 +153,7 @@ void SearchNodeSidebar::setupSearchOptions()
 	optboxlayout->addWidget(mimeCombo, 2, 0, 1, 2);
 	connect(cbMime, SIGNAL(clicked(bool)), mimeCombo, SLOT(setEnabled(bool)));
 	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(setFilterMimetypeEnabled(bool)));
-	connect(cbMime, SIGNAL(clicked(bool)), filtermodel, SLOT(invalidate()));
 	connect(mimeCombo, SIGNAL(currentIndexChanged(QString)), filtermodel, SLOT(setFilterMimetypeString(QString)));
-	connect(mimeCombo, SIGNAL(currentIndexChanged(QString)), filtermodel, SLOT(invalidate()));
 }
 
 void SearchNodeSidebar::enableCreationDate(bool enabled)
@@ -168,7 +166,6 @@ void SearchNodeSidebar::enableCreationDate(bool enabled)
 		filtermodel->setFilterCreatedToDate(fromCreated->date());
 	}
 	filtermodel->setFilterCreatedDateEnabled(enabled);
-	filtermodel->invalidate();
 }
 
 void SearchNodeSidebar::enableModificationDate(bool enabled)
@@ -181,7 +178,6 @@ void SearchNodeSidebar::enableModificationDate(bool enabled)
 		filtermodel->setFilterModifiedToDate(toModified->date());
 	}
 	filtermodel->setFilterModifiedDateEnabled(enabled);
-	filtermodel->invalidate();
 }
 
 void SearchNodeSidebar::setupSearchDate()
