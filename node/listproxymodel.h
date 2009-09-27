@@ -28,6 +28,8 @@
 
 class ListProxyModel : public QAbstractProxyModel
 {
+	Q_OBJECT
+
     public:
 		ListProxyModel (QObject * parent = 0);
 		~ListProxyModel ();
@@ -42,6 +44,9 @@ class ListProxyModel : public QAbstractProxyModel
 		QModelIndex mapFromSource(const QModelIndex &sourceIndex) const;
 		QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
 		void setSourceModel(QAbstractItemModel *sourceModel);
+
+	public slots:
+		void update();
 
     private:
 		void addIndexes(const QAbstractItemModel *sourceModel, QModelIndex *searchIndex);

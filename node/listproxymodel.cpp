@@ -96,6 +96,12 @@ QModelIndex ListProxyModel::mapToSource(const QModelIndex &proxyIndex) const
 void ListProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
 {
 	QAbstractProxyModel::setSourceModel(sourceModel);
+	update();
+}
+
+void ListProxyModel::update()
+{
+	QAbstractItemModel *sourceModel = QAbstractProxyModel::sourceModel();
 	indexList.clear();
 	// add all nodes to the list
 	int column = 0;
