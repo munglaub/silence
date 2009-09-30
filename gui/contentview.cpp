@@ -45,6 +45,8 @@ void ContentView::setContent(AbstractNodeContent *content)
 	widget->setVisible(false);
 	if (!content){
 		widget = Controller::create()->getWelcomeView();
+		if (Controller::create()->getInfoSidebar())
+			Controller::create()->getInfoSidebar()->clearInfos();
 	} else {
 		widget = content->getWidget();
 	}

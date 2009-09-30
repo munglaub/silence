@@ -47,28 +47,30 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	created = new QLabel(tr("Created:"));
 	created->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(created, row, 0);
-	createdDate = new QLabel("");
+	createdDate = new QLabel("-");
 	layout->addWidget(createdDate, row, 1);
 	++row;
 
 	lastedit = new QLabel(tr("Last edit:"));
 	lastedit->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(lastedit, row, 0);
-	lasteditDate = new QLabel("");
+	lasteditDate = new QLabel("-");
 	layout->addWidget(lasteditDate, row, 1);
 	++row;
 
 	type = new QLabel(tr("Type:"));
 	type->setFont(QFont("Times", 10, QFont::Bold));
+	type->setHidden(true);
 	layout->addWidget(type, row, 0);
 	typeName = new QLabel("");
+	typeName->setHidden(true);
 	layout->addWidget(typeName, row, 1);
 	++row;
 
 	labels = new QLabel(tr("Labels:"));
 	labels->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(labels, row, 0);
-	labelsData = new QLabel("");
+	labelsData = new QLabel("-");
 	labelsData->setWordWrap(true);
 	layout->addWidget(labelsData, row, 1);
 	++row;
@@ -81,7 +83,6 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 
 
 	frame = new QFrame;
-	frame->resize(100, 175);
 	frame->setLayout(layout);
 	setWidget(frame);
 }
@@ -111,10 +112,25 @@ void InfoSidebar::setData(Node *data)
 	updateInfos();
 }
 
+void InfoSidebar::clearInfos()
+{
+	caption->setText("");
+	createdDate->setText("-");
+	lasteditDate->setText("-");
+	labelsData->setText("-");
+	icon->setPixmap(QPixmap());
+	type->setHidden(true);
+	typeName->setHidden(true);
+	metaInfo->setHidden(true);
+	metaInfoData->setHidden(true);
+}
+
 void InfoSidebar::updateInfos()
 {
 	if (node == 0)
+	{
 		return;
+	}
 
 	// set node infos
 	caption->setText(node->getCaption());

@@ -36,6 +36,7 @@ class InfoSidebar : public QDockWidget
 		~InfoSidebar();
 
 		void setData(Node *data);
+		void clearInfos();
 
 	private slots:
 		void updateInfos();
