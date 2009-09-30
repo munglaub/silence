@@ -60,9 +60,19 @@ class TreeModel : public QAbstractItemModel
 		bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());
 		Node* getItem(const QModelIndex &index) const;
 
+		Qt::DropActions supportedDropActions() const;
+		QMimeData* mimeData(const QModelIndexList &indexes) const;
+		bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
+		QStringList mimeTypes() const;
 
-private:
-    Node *rootItem;
+	signals:
+		void dropped(QModelIndex index);
+
+	private:
+		Node *rootItem;
+
+		QModelIndex findByNodeId(int id);
+		QModelIndex findByNodeId(int id, QModelIndex &searchindex);
 };
 
 #endif // TREMODEL_H

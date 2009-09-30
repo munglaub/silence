@@ -84,7 +84,12 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 	if (!index.isValid())
 		return 0;
 
-	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
+}
+
+Qt::DropActions TreeModel::supportedDropActions() const
+{
+	return Qt::MoveAction | Qt::CopyAction;
 }
 
 QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
@@ -121,6 +126,86 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex &parent)
 	return success;
 }
 
+QModelIndex TreeModel::findByNodeId(int id)
+{
+	int column = 0;
+	for (int row = 0; index(row, column).isValid(); ++row)
+	{
+		QModelIndex aIndex = index(row, column);
+		QModelIndex res = findByNodeId(id, aIndex);
+		if (res.isValid())
+			return res;
+	}
+	return QModelIndex();
+}
+
+QModelIndex TreeModel::findByNodeId(int id, QModelIndex &searchindex)
+{
+	if (getItem(searchindex)->getId().getId() == id)
+		return searchindex;
+	int column = 0;
+	for (int row = 0; searchindex.child(row, column).isValid(); ++row)
+	{
+		QModelIndex aIndex = searchindex.child(row, column);
+		QModelIndex res = findByNodeId(id, aIndex);
+		if (res.isValid())
+			return res;
+	}
+	return QModelIndex();
+}
+
+bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction, int row, int, const QModelIndex & parent)
+{
+	// read nodeid from qmimedata and find node
+	int id = data->data("application/silence-nodeid").toInt();
+	QModelIndex movingIndex = findByNodeId(id);
+
+	QModelIndex oldparent = movingIndex.parent();
+	int oldPos = movingIndex.row();
+	Node* oldparentNode = getItem(oldparent);
+
+	QModelIndex newparent = parent;
+	if (newparent == movingIndex)
+		return false;
+	int newPos = row < 0 ? 0 : row;
+	Node* newparentNode = getItem(newparent);
+
+	if (oldparent == newparent && oldPos < newPos)
+		newPos -= 1;
+
+	// move node
+	beginRemoveRows(oldparent, oldPos, oldPos);
+	Node *movingNode = oldparentNode->takeChild(oldPos);
+	endRemoveRows();
+	beginInsertRows(newparent, newPos, newPos);
+	bool success = newparentNode->addChild(movingNode, newPos);
+	endInsertRows();
+
+	if (success)
+		emit dropped(newparent.child(newPos, 0));
+
+	return success;
+}
+
+QStringList TreeModel::mimeTypes() const
+{
+	QStringList types;
+	types << "application/silence-nodeid";
+	return types;
+}
+
+
+QMimeData* TreeModel::mimeData(const QModelIndexList &indexes) const
+{
+	QMimeData *mimeData = new QMimeData();
+	// only one node can be selected at a time
+	Node *node = getItem(indexes.first());
+	if (node)
+		mimeData->setData("application/silence-nodeid", node->getId().toByteArray());
+	return mimeData;
+}
+
+
 bool TreeModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
 	Node *parentItem = getItem(parent);
@@ -140,7 +225,6 @@ QModelIndex TreeModel::parent(const QModelIndex &index) const
 
 	Node *childItem = getItem(index);
 	Node *parentItem = childItem->getParent();
-
 	if (parentItem == rootItem)
 		return QModelIndex();
 

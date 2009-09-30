@@ -53,6 +53,7 @@ class TreeView : public QDockWidget
 		void addChild();
 		void removeTreeItem();
 		void showTreeContextMenu();
+		void nodeDropped(QModelIndex index);
                 
 	private:
 		QTreeView *tree;

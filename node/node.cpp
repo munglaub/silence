@@ -75,6 +75,23 @@ bool Node::removeChildren(int position, int count)
 	return true;
 }
 
+Node* Node::takeChild(int position)
+{
+	if (position >= 0 && position < children.size())
+		return children.takeAt(position);
+	else
+		return 0;
+}
+
+bool Node::addChild(Node* child, int position)
+{
+	if (position < 0 || position > children.size())
+		return false;
+	children.insert(position, child);
+	child->setParent(this);
+	return true;
+}
+
 Node* Node::getChild(int index) const
 {
 	return children.value(index);
@@ -88,6 +105,11 @@ int Node::getChildCount() const
 Node* Node::getParent() const
 {
 	return parent;
+}
+
+void Node::setParent(Node* parent)
+{
+	this->parent = parent;
 }
 
 NodeId Node::getId() const

@@ -32,6 +32,7 @@ class NodeId
 
 		int getId() const;
 		QString* toString();
+		QByteArray toByteArray();
 
 	private:
 		void init(int nodeid);

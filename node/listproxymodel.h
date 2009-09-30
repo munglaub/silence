@@ -49,7 +49,7 @@ class ListProxyModel : public QAbstractProxyModel
 		void update();
 
     private:
-		void addIndexes(const QAbstractItemModel *sourceModel, QModelIndex *searchIndex);
+		void addIndexes(QModelIndex *searchIndex);
 		QList<QModelIndex> indexList;
 };
 

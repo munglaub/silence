@@ -166,6 +166,7 @@ void TextEdit::setupEditor()
 	// show linenumbers
 	editor->setMarginWidth(0, 35);
 	editor->setMarginLineNumbers(0, true);
+	editor->setWrapMode(QsciScintilla::WrapWord);
 }
 
 void TextEdit::setContent(TextNodeContent *content)

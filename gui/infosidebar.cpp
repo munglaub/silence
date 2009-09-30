@@ -35,6 +35,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	int row = 0;
 
 	caption = new QLabel("");
+	caption->setWordWrap(true);
 	caption->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
 	++row;

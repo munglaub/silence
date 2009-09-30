@@ -47,6 +47,8 @@ class Node : public QObject
 		Node* getChild(int index) const;
 		int getChildCount() const;
 		bool removeChildren(int position, int count);
+		Node* takeChild(int position);
+		bool addChild(Node* child, int position);
 		
 
 		// caption
@@ -75,6 +77,9 @@ class Node : public QObject
 	
 	signals:
 		void changed(Node *node);
+
+	protected:
+		void setParent(Node* parent);
 
 	private:
 		NodeId id;

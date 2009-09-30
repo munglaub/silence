@@ -69,6 +69,11 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 			const QItemSelection&)),
 			this, SLOT(selectItem()));
 
+	tree->setDragEnabled(true);
+	tree->setAcceptDrops(true);
+	tree->setDropIndicatorShown(true);
+	connect(model, SIGNAL(dropped(QModelIndex)), this, SLOT(nodeDropped(QModelIndex)));
+
 	// nodeproperty
 	propertyAction = new QAction(tr("Properties"), this);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
@@ -231,5 +236,11 @@ void TreeView::showTreeContextMenu()
 	menu.addAction(removeAction);
 	menu.addAction(propertyAction);
 	menu.exec(QCursor::pos());
+}
+
+void TreeView::nodeDropped(QModelIndex index)
+{
+	tree->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect);
+	Controller::create()->getDataStore()->save(model->getItem(index));
 }
 

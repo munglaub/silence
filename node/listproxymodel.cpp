@@ -109,19 +109,18 @@ void ListProxyModel::update()
 	{
 		QModelIndex aIndex = sourceModel->index(row, column);
 		indexList.append(aIndex);
-		addIndexes(sourceModel, &aIndex);
+		addIndexes(&aIndex);
 	}
 }
 
-void ListProxyModel::addIndexes(const QAbstractItemModel *sourceModel,
-			       QModelIndex *searchIndex)
+void ListProxyModel::addIndexes(QModelIndex *searchIndex)
 {
 	int column = 0;
 	for (int row = 0; searchIndex->child(row, column).isValid(); row++)
 	{
 	    QModelIndex aIndex = searchIndex->child(row, column);
 	    indexList.append(aIndex);
-	    addIndexes(sourceModel, &aIndex);
+	    addIndexes(&aIndex);
 	}
 }
 
