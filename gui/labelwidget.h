@@ -18,59 +18,39 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NEWNODEDIALOG_H
-#define NEWNODEDIALOG_H
+#ifndef LABELWIDGET_H
+#define LABELWIDGET_H
 
-#include "gui/labelwidget.h"
-#include "node/abstractnodecontent.h"
-#include <QComboBox>
-#include <QDialog>
-#include <QFormLayout>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QPushButton>
+#include <QWidget>
 
 
-class NewNodeDialog : public QDialog
+class LabelWidget : public QWidget
 {
 	Q_OBJECT
 
 	public:
-		NewNodeDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
-		~NewNodeDialog();
+		LabelWidget(QWidget *parent = 0);
+		~LabelWidget();
 
-		QString getCaption() const;
-		AbstractNodeContent* getContent() const;
+	public slots:
 		QStringList getLabels() const;
+		void selectLabels(QStringList select);
 
 	private slots:
-		void indexChanged(int index);
+		void addLabel();
 
 	private:
-		QVBoxLayout *baselayout;
+		QGridLayout *layout;
+		QLineEdit *newLabel;
+		QPushButton *btnAddLabel;
+		QListWidget *availlabels;
 
-		QFormLayout *namelayout;
-		QLineEdit *nameedit;
-
-		QGridLayout *typelayout;
-		QLabel *lbltype;
-		QComboBox *typebox;
-		QLabel *lblhighlight;
-		QComboBox *synbox;
-
-		// labels
-		QVBoxLayout *labellayout;
-		QGroupBox *labelbox;
-		LabelWidget *labelwidget;
-
-		// butons
-		QPushButton *cancel,
-					*ok;
-		QGridLayout *buttonlayout;
 };
 
-#endif // NEWNODEDIALOG_H
-
+#endif // LABELWIDGET_H
 
