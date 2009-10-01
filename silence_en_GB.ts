@@ -1,499 +1,503 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1" language="en">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Silence</source>
-        <translation type="unfinished"></translation>
+        <translation>About Silence</translation>
     </message>
     <message>
         <source>Silence - very early Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Silence - very early Version</translation>
     </message>
     <message>
         <source>Manuel Unglaub
 Yves Adler
 Marcel Winkel</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuel Unglaub
+Yves Adler
+Marcel Winkel</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Close</translation>
     </message>
 </context>
 <context>
     <name>EditMenu</name>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FileMenu</name>
-    <message>
-        <source>&amp;Node</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Edit</translation>
     </message>
 </context>
 <context>
     <name>HelpMenu</name>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <source>About Silence</source>
-        <translation type="unfinished"></translation>
+        <translation>About Silence</translation>
     </message>
 </context>
 <context>
     <name>InfoSidebar</name>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Created:</source>
-        <translation type="unfinished"></translation>
+        <translation>Created:</translation>
     </message>
     <message>
         <source>Last edit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Last edit:</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <source>Labels:</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels:</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Silence</source>
-        <translation type="unfinished"></translation>
+        <translation>Silence</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
     <message>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Properties</translation>
     </message>
     <message>
         <source>Nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Item</translation>
     </message>
     <message>
         <source>Search Nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Search Items</translation>
     </message>
 </context>
 <context>
     <name>NewNodeDialog</name>
     <message>
         <source>New Node</source>
-        <translation type="unfinished"></translation>
+        <translation>New Item</translation>
     </message>
     <message>
         <source>Node name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Item name:</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type</translation>
     </message>
     <message>
         <source>RichText</source>
-        <translation type="unfinished"></translation>
+        <translation>RichText</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>None</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Nodename</source>
-        <translation type="unfinished"></translation>
+        <translation>Itemname</translation>
+    </message>
+</context>
+<context>
+    <name>NodeMenu</name>
+    <message>
+        <source>&amp;Node</source>
+        <translation>Item</translation>
     </message>
 </context>
 <context>
     <name>NodePropertyWidget</name>
     <message>
         <source>Nodeinfos</source>
-        <translation type="unfinished"></translation>
+        <translation>Item-Infos</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
     <message>
         <source>Node name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Itemname:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>None</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax:</translation>
     </message>
     <message>
         <source>Creationdate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Creationdate:</translation>
     </message>
     <message>
         <source>Modificationdate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificationdate:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Add</translation>
     </message>
 </context>
 <context>
     <name>RichTextEdit</name>
     <message>
         <source>Edit Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Edit Actions</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Save</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Undo</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Redo</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Cut</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copy</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Paste</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Select All</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Bold</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Italic</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Underline</translation>
     </message>
     <message>
         <source>&amp;Left</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Left</translation>
     </message>
     <message>
         <source>C&amp;enter</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;enter</translation>
     </message>
     <message>
         <source>&amp;Right</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Right</translation>
     </message>
     <message>
         <source>&amp;Justify</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Justify</translation>
     </message>
     <message>
         <source>&amp;Color...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Color..</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Find</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <source>Bullet List (Disc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bullet List (Disc)</translation>
     </message>
     <message>
         <source>Bullet List (Circle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bullet List (Circle)</translation>
     </message>
     <message>
         <source>Bullet List (Square)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bullet List (Square)</translation>
     </message>
     <message>
         <source>Ordered List (Decimal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordered List (Decimal)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha lower)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordered List (Alpha lower)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha upper)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordered List (Alpha upper)</translation>
     </message>
 </context>
 <context>
     <name>SearchNodeSidebar</name>
     <message>
         <source>Search Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Search Options</translation>
     </message>
     <message>
         <source>mime type</source>
-        <translation type="unfinished"></translation>
+        <translation>mimetype</translation>
     </message>
     <message>
         <source>created between</source>
-        <translation type="unfinished"></translation>
+        <translation>created between</translation>
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>and</translation>
     </message>
     <message>
         <source>modified between</source>
-        <translation type="unfinished"></translation>
+        <translation>modified between</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
 </context>
 <context>
     <name>SilenceMenu</name>
     <message>
         <source>&amp;Silence</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Silence</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferences</translation>
     </message>
     <message>
         <source>&amp;Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exit</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>saved</source>
-        <translation type="unfinished"></translation>
+        <translation>saved</translation>
     </message>
     <message>
         <source>changed</source>
-        <translation type="unfinished"></translation>
+        <translation>changed</translation>
     </message>
 </context>
 <context>
     <name>TextEdit</name>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Cut</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Paste</translation>
     </message>
     <message>
         <source>Find/Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Find/Replace</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Save</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Undo</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Redo</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copy</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Select &amp;All</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Find</translation>
     </message>
 </context>
 <context>
     <name>TextFind</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Previous</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Next</translation>
     </message>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Replace</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished"></translation>
+        <translation>Replace All</translation>
     </message>
     <message>
         <source>Match case</source>
-        <translation type="unfinished"></translation>
+        <translation>Match case</translation>
     </message>
     <message>
         <source>Match whole word</source>
-        <translation type="unfinished"></translation>
+        <translation>Match whole word</translation>
     </message>
 </context>
 <context>
     <name>TreeView</name>
     <message>
         <source>Add Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Add Item</translation>
     </message>
     <message>
         <source>Add Subnode</source>
-        <translation type="unfinished"></translation>
+        <translation>Add SubItem</translation>
     </message>
     <message>
         <source>Remove Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Remove Item</translation>
     </message>
     <message>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Properties</translation>
     </message>
     <message>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Are you sure?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Yes</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
+    </message>
+    <message>
+        <source>Delete Node</source>
+        <translation>Delete Item</translation>
     </message>
 </context>
 <context>
     <name>ViewMenu</name>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;View</translation>
     </message>
     <message>
         <source>Welcome View</source>
-        <translation type="unfinished"></translation>
+        <translation>Welcome View</translation>
     </message>
     <message>
         <source>Node Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Item Sidebar</translation>
     </message>
     <message>
         <source>Information Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Information Sidebar</translation>
     </message>
     <message>
         <source>Node Properties Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Item Properties Sidebar</translation>
     </message>
     <message>
         <source>Search Nodes Sidebar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Linewarp</source>
-        <translation type="unfinished"></translation>
+        <translation>Search Items Sidebar</translation>
     </message>
 </context>
 <context>
     <name>WelcomeView</name>
     <message>
         <source>Welcome to Silence, an information management tool.</source>
-        <translation type="unfinished"></translation>
+        <translation>Welcome to Silence, an information management tool.</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>very early Version</source>
-        <translation type="unfinished"></translation>
+        <translation>very early Version</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Authors</translation>
     </message>
     <message>
         <source>Manuel Unglaub, Yves Adler, Marcel Winkel</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuel Unglaub, Yves Adler, Marcel Winkel</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>License</translation>
     </message>
     <message>
         <source>GPLv2</source>
-        <translation type="unfinished"></translation>
+        <translation>GPLv2</translation>
     </message>
 </context>
 </TS>

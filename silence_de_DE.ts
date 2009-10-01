@@ -32,13 +32,6 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
-    <name>FileMenu</name>
-    <message>
-        <source>&amp;Node</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>HelpMenu</name>
     <message>
         <source>&amp;Help</source>
@@ -84,11 +77,11 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel</translation>
     </message>
     <message>
         <source>Search Nodes</source>
-        <translation>Knoten Suchen</translation>
+        <translation>Artikel Suchen</translation>
     </message>
 </context>
 <context>
@@ -107,11 +100,11 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>RichText</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>QuellText</translation>
     </message>
     <message>
         <source>Syntax</source>
@@ -123,7 +116,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Tags</translation>
     </message>
     <message>
         <source>Add</source>
@@ -143,10 +136,17 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
+    <name>NodeMenu</name>
+    <message>
+        <source>&amp;Node</source>
+        <translation>Artikel</translation>
+    </message>
+</context>
+<context>
     <name>NodePropertyWidget</name>
     <message>
         <source>Nodeinfos</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel Infos</translation>
     </message>
     <message>
         <source>Labels</source>
@@ -253,31 +253,31 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <source>Bullet List (Disc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungspunkt (Punkt)</translation>
     </message>
     <message>
         <source>Bullet List (Circle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungspunkt (Kreis)</translation>
     </message>
     <message>
         <source>Bullet List (Square)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungspunkt (Quadrat)</translation>
     </message>
     <message>
         <source>Ordered List (Decimal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungsliste (Zahl)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha lower)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungsliste (Alphabetisch klein)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha upper)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzählungsliste (Alphabetisch groß)</translation>
     </message>
 </context>
 <context>
@@ -403,15 +403,15 @@ Marcel Winkel</translation>
     <name>TreeView</name>
     <message>
         <source>Add Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel hinzufügen</translation>
     </message>
     <message>
         <source>Add Subnode</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterartikel hinzufügen</translation>
     </message>
     <message>
         <source>Remove Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel entfernen</translation>
     </message>
     <message>
         <source>Properties</source>
@@ -429,6 +429,10 @@ Marcel Winkel</translation>
         <source>No</source>
         <translation>Nein</translation>
     </message>
+    <message>
+        <source>Delete Node</source>
+        <translation>Artikel löschen</translation>
+    </message>
 </context>
 <context>
     <name>ViewMenu</name>
@@ -438,11 +442,11 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Welcome View</source>
-        <translation type="unfinished"></translation>
+        <translation>Startbildschirm</translation>
     </message>
     <message>
         <source>Node Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Baumansicht</translation>
     </message>
     <message>
         <source>Information Sidebar</source>
@@ -458,7 +462,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Linewarp</source>
-        <translation>automatischer Zeilenumbruch</translation>
+        <translation type="obsolete">automatischer Zeilenumbruch</translation>
     </message>
 </context>
 <context>
