@@ -129,6 +129,7 @@ void InfoSidebar::updateInfos()
 {
 	if (node == 0)
 	{
+		clearInfos();
 		return;
 	}
 

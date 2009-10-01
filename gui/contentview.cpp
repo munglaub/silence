@@ -44,9 +44,12 @@ void ContentView::setContent(AbstractNodeContent *content)
 	layout->removeWidget(widget);
 	widget->setVisible(false);
 	if (!content){
-		widget = Controller::create()->getWelcomeView();
-		if (Controller::create()->getInfoSidebar())
-			Controller::create()->getInfoSidebar()->clearInfos();
+		Controller *controller = Controller::create();
+		widget = controller->getWelcomeView();
+		if (controller->getInfoSidebar())
+			controller->getInfoSidebar()->clearInfos();
+		if (controller->getEditMenu())
+			controller->getEditMenu()->setEnabled(false);
 	} else {
 		widget = content->getWidget();
 	}

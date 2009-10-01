@@ -247,6 +247,7 @@ void TextEdit::clipboardDataChanged()
 
 void TextEdit::setVisible(bool visible)
 {
+	Controller::create()->getEditMenu()->setEnabled(true);
 	this->QWidget::setVisible(visible);
 	actionUndo->setVisible(visible);
 	actionRedo->setVisible(visible);

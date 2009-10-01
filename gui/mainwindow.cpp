@@ -69,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
 	nodemenu = new NodeMenu;
 	menuBar()->addMenu(nodemenu);
 	editmenu = new EditMenu;
+	editmenu->setEnabled(false);
 	menuBar()->addMenu(editmenu);
 	controller->setEditMenu(editmenu);
 	viewmenu = new ViewMenu;
