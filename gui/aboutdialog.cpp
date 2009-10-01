@@ -30,7 +30,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags f)
 	logo = new QLabel;
 	logo->setPixmap(QPixmap(":/icons/Silence_big.png"));
 
-	version = new QLabel(tr("Silence - very early Version"));
+	version = new QLabel(tr("Silence - Version 0.1"));
 	authors = new QLabel(tr("Manuel Unglaub\nYves Adler\nMarcel Winkel"));
 	
 	quit = new QPushButton(tr("Close"));

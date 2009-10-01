@@ -40,7 +40,7 @@ WelcomeView::WelcomeView(QWidget *parent)
 	versionCap = new QLabel(tr("Version"));
 	versionCap->setFont(QFont("Times", 12, QFont::Bold));
 	layout->addWidget(versionCap, row, 0, 1, 1, Qt::AlignLeft);
-	versionVal = new QLabel(tr("very early Version"));
+	versionVal = new QLabel(tr("Version 0.1"));
 	versionVal->setFont(QFont("Times", 12, QFont::Normal));
 	layout->addWidget(versionVal, row, 1, 1, 1, Qt::AlignLeft);
 	++row;

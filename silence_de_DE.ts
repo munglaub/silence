@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Silence - very early Version</source>
-        <translation>Silence - sehr frühe Version</translation>
+        <translation type="obsolete">Silence - sehr frühe Version</translation>
     </message>
     <message>
         <source>Manuel Unglaub
@@ -22,6 +22,10 @@ Marcel Winkel</translation>
     <message>
         <source>Close</source>
         <translation>Schließen</translation>
+    </message>
+    <message>
+        <source>Silence - Version 0.1</source>
+        <translation>Silence - Version 0.1</translation>
     </message>
 </context>
 <context>
@@ -477,7 +481,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>very early Version</source>
-        <translation>sehr frühe Version</translation>
+        <translation type="obsolete">sehr frühe Version</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -494,6 +498,10 @@ Marcel Winkel</translation>
     <message>
         <source>GPLv2</source>
         <translation>GPLv2</translation>
+    </message>
+    <message>
+        <source>Version 0.1</source>
+        <translation>Version 0.1</translation>
     </message>
 </context>
 </TS>
