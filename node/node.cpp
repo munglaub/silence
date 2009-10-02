@@ -122,6 +122,18 @@ void Node::setId(NodeId id)
 	this->id = id;
 }
 
+bool Node::contains(Node* node)
+{
+	if (children.contains(node))
+		return true;
+	else {
+		bool result = false;
+		for (int i = 0; i < children.size() && !result; ++i)
+			result = children.at(i)->contains(node);
+		return result;
+	}
+}
+
 QString Node::getCaption() const
 {
 	return caption;
