@@ -32,10 +32,7 @@ LabelWidget::LabelWidget(QWidget *parent)
 	btnAddLabel = new QPushButton(tr("Add"));
 	connect(btnAddLabel, SIGNAL(clicked()), this, SLOT(addLabel()));
 	layout->addWidget(btnAddLabel, 0, 1);
-	availlabels = new QListWidget;
-	availlabels->setSelectionMode(QAbstractItemView::MultiSelection);
-	availlabels->addItems(*Controller::create()->getDataStore()->getLabels());
-	layout->addWidget(availlabels, 1, 0, 1, 2);
+	setupTree();
 	setLayout(layout);
 }
 
@@ -43,39 +40,64 @@ LabelWidget::~LabelWidget()
 {
 	delete newLabel;
 	delete btnAddLabel;
-	delete availlabels;
+	delete labeltree;
 	delete layout;
+}
+
+void LabelWidget::setupTree()
+{
+	labeltree = new QTreeWidget;
+	labeltree->setColumnCount(1);
+	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString("Label"))));
+	labeltree->setSelectionMode(QAbstractItemView::MultiSelection);
+	QStringList* labels = Controller::create()->getDataStore()->getLabels();
+	QList<QTreeWidgetItem *> items;
+	for (int i = 0; i < labels->size(); ++i)
+		items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(labels->at(i))));
+	labeltree->insertTopLevelItems(0, items);
+	layout->addWidget(labeltree, 1, 0, 1, 2);
 }
 
 void LabelWidget::addLabel()
 {
 	if (newLabel->text().isEmpty())
 		return;
-	availlabels->addItem(newLabel->text());
-	availlabels->item(availlabels->count() - 1)->setSelected(true);
+
 	QStringList *labels = Controller::create()->getDataStore()->getLabels();
 	if (!labels->contains(newLabel->text()))
+	{
+		// add and select the new label
 		labels->append(newLabel->text());
+		QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(newLabel->text()));
+		labeltree->insertTopLevelItem(labeltree->topLevelItemCount(), item);
+		labeltree->setCurrentItem(item);
+	} else {
+		// select the existing label
+		QList<QTreeWidgetItem *> items = labeltree->findItems(newLabel->text(), Qt::MatchExactly, 0);
+		for (int i = 0; i < items.size(); ++i)
+			labeltree->setCurrentItem(items.at(i));
+	}
 }
 
 QStringList LabelWidget::getLabels() const
 {
+	int column = 0;
 	QStringList result;
-	for (int i = 0; i < availlabels->selectedItems().size(); ++i)
-		result << availlabels->selectedItems().at(i)->text();
-
+	for (int i = 0; i < labeltree->selectedItems().size(); ++i)
+		result << labeltree->selectedItems().at(i)->text(column);
 	return result;
 }
 
 void LabelWidget::selectLabels(QStringList select)
 {
-	availlabels->clear();
-	QStringList *allLabels = Controller::create()->getDataStore()->getLabels();
-	for (int i=0; i<allLabels->size(); ++i)
+	labeltree->clear();
+	QStringList* labels = Controller::create()->getDataStore()->getLabels();
+	for (int i = 0; i < labels->size(); ++i)
 	{
-		availlabels->addItem(allLabels->at(i));
-		if (select.contains(allLabels->at(i)))
-			availlabels->item(availlabels->count() - 1)->setSelected(true);
+		QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(labels->at(i)));
+		labeltree->insertTopLevelItem(0, item);
+		if (select.contains(labels->at(i)))
+			labeltree->setCurrentItem(item);
 	}
 }
 

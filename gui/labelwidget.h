@@ -24,8 +24,8 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLineEdit>
-#include <QListWidget>
 #include <QPushButton>
+#include <QTreeWidget>
 #include <QWidget>
 
 
@@ -48,8 +48,9 @@ class LabelWidget : public QWidget
 		QGridLayout *layout;
 		QLineEdit *newLabel;
 		QPushButton *btnAddLabel;
-		QListWidget *availlabels;
+		QTreeWidget *labeltree;
 
+		void setupTree();
 };
 
 #endif // LABELWIDGET_H
