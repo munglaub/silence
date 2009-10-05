@@ -8,6 +8,7 @@ SOURCES += 	main.cpp\
 			data/datastore.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
+			node/label.cpp\
 			node/treemodel.cpp\
 			node/filtermodel.cpp\
 			node/listproxymodel.cpp\
@@ -37,6 +38,7 @@ HEADERS +=	controller.h\
 			data/datastore.h\
 			node/node.h\
 			node/nodeid.h\
+			node/label.h\
 			node/treemodel.h\
 			node/listproxymodel.h\
 			node/filtermodel.h\

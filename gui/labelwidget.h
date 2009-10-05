@@ -27,6 +27,7 @@
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QWidget>
+#include "node/label.h"
 
 
 class LabelWidget : public QWidget
@@ -43,6 +44,7 @@ class LabelWidget : public QWidget
 
 	private slots:
 		void addLabel();
+		void itemActivated(QTreeWidgetItem *item, int column);
 
 	private:
 		QGridLayout *layout;
@@ -51,6 +53,8 @@ class LabelWidget : public QWidget
 		QTreeWidget *labeltree;
 
 		void setupTree();
+		void addLabel(QTreeWidgetItem* parent, Label* label);
+		void deselectChildren(QTreeWidgetItem* item);
 };
 
 #endif // LABELWIDGET_H

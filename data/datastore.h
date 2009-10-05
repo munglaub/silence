@@ -22,6 +22,7 @@
 #define DATASTORE_H
 
 #include "node/node.h"
+#include "node/label.h"
 #include <QObject>
 #include <QDomDocument>
 
@@ -35,7 +36,8 @@ class DataStore : public QObject
 		~DataStore();
 
 		Node* getRoot();
-		QStringList* getLabels();
+		//TODO: rename to getRootLabel
+		Label* getLabels();
 
 		void remove(Node *node);
 		void add(Node *node);
@@ -45,13 +47,15 @@ class DataStore : public QObject
 	
 	private:
 		Node *root;
-		QStringList *labels;
+		Label *rootLabel;
 		static const QString DATA_FILE;
 
-		void xmlToLabels(QDomElement &xmlLabels);
+		void xmlToLabels(QDomElement &xmlLabels, Label* label);
 
 		void addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc);
 		void xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc);
+
+		void writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel);
 };
 
 #endif // DATASTORE_H

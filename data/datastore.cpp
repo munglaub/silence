@@ -34,7 +34,7 @@ DataStore::DataStore()
 	root = new Node();
 	root->setCaption("Title"); // treecaption
 
-	labels = new QStringList;
+	rootLabel = new Label();
 
 	QDomDocument doc;
 	QFile file(DATA_FILE);
@@ -51,7 +51,7 @@ DataStore::DataStore()
 	{
 		QDomElement e = n.toElement();
 		if (e.tagName() == "labels")
-			xmlToLabels(e);
+			xmlToLabels(e, rootLabel);
 		if (e.tagName() == "node")
 			xmlToNode(root, n, doc);
 		n = n.nextSibling();
@@ -61,7 +61,8 @@ DataStore::DataStore()
 DataStore::~DataStore()
 {
 	//delete root; // not necessary, is done in the treemodel
-	delete labels;
+	//delete labels;
+	//TODO: delete rootLabel
 }
 
 Node* DataStore::getRoot()
@@ -69,19 +70,23 @@ Node* DataStore::getRoot()
 	return root;
 }
 
-QStringList* DataStore::getLabels()
+Label* DataStore::getLabels()
 {
-	return labels;
+	return rootLabel;
 }
 
-void DataStore::xmlToLabels(QDomElement &xmlLabels)
+void DataStore::xmlToLabels(QDomElement &xmlLabels, Label* label)
 {
 	QDomNode n = xmlLabels.firstChild();
 	while (!n.isNull())
 	{
 		QDomElement e = n.toElement();
 		if (e.tagName() == "label")
-			labels->append(e.text());
+		{
+			Label *newLabel = new Label(e.attribute("text", ""));
+			label->appendChild(newLabel);
+			xmlToLabels(e, newLabel);
+		}
 		n = n.nextSibling();
 	}
 }
@@ -146,13 +151,7 @@ void DataStore::save(Node*)
 
 	// write labels
 	QDomElement xmlLabels = doc.createElement("labels");
-	for (int i=0; i<labels->size(); ++i)
-	{
-		QDomElement l = doc.createElement("label");
-		QDomText lText = doc.createTextNode(labels->at(i));
-		l.appendChild(lText);
-		xmlLabels.appendChild(l);
-	}
+	writeLabels(doc, xmlLabels, rootLabel);
 	xmlRoot.appendChild(xmlLabels);
 
 	// write nodes
@@ -168,6 +167,19 @@ void DataStore::save(Node*)
 	QTextStream ts(&file);
 	ts << doc.toString();
 	file.close();
+}
+
+void DataStore::writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel)
+{
+	for (int i=0; i<parentLabel->childCount(); ++i)
+	{
+		QDomElement l = doc.createElement("label");
+//		QDomText lText = doc.createTextNode(labels->at(i));
+//		l.appendChild(lText);
+		l.setAttribute("text", parentLabel->getChild(i)->getText());
+		parent.appendChild(l);
+		writeLabels(doc, l, parentLabel->getChild(i));
+	}
 }
 
 void DataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
