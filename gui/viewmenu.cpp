@@ -20,6 +20,7 @@
 
 #include "controller.h"
 #include "gui/viewmenu.h"
+#include "gui/labelmanagementdialog.h"
 #include <QMenu>
 #include <QAction>
 
@@ -31,6 +32,9 @@ ViewMenu::ViewMenu(QWidget *parent)
 
 	welcomeView = addAction(tr("Welcome View"));
 	connect(welcomeView, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
+
+	showLabelManagement = addAction(tr("Manage Labels"));
+	connect(showLabelManagement, SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
 
 	addSeparator();
 
@@ -61,6 +65,15 @@ ViewMenu::ViewMenu(QWidget *parent)
 		Controller::create()->getSearchNodeSidebar(), SLOT(setVisible(bool)));
 }
 
+ViewMenu::~ViewMenu()
+{
+	delete welcomeView;
+	delete showNodeTree;
+	delete showInfo;
+	delete showProperties;
+	delete showNodeSearch;
+	delete showLabelManagement;
+}
 
 void ViewMenu::showWelcomeView()
 {
@@ -69,13 +82,10 @@ void ViewMenu::showWelcomeView()
 	Controller::create()->getContentView()->setContent(0);
 }
 
-
-ViewMenu::~ViewMenu()
+void ViewMenu::showLabelManagementDialog()
 {
-	delete welcomeView;
-	delete showNodeTree;
-	delete showInfo;
-	delete showProperties;
-	delete showNodeSearch;
+	LabelManagementDialog *dlg = new LabelManagementDialog;
+	dlg->exec();
+	delete dlg;
 }
 

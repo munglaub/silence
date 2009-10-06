@@ -107,7 +107,7 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 QWidget* NodePropertyWidget::createLabelTab()
 {
 	labellayout = new QGridLayout;
-	labelwidget = new LabelWidget;
+	labelwidget = new LabelWidget(this, false);
 	labellayout->addWidget(labelwidget, 0, 0, 1, 2);
 
 	applyLabels = new QPushButton(tr("Apply"));

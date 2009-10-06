@@ -83,11 +83,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	// Labels
 	labelwidget = new LabelWidget;
-	labellayout = new QVBoxLayout;
-	labellayout->addWidget(labelwidget);
-	labelbox = new QGroupBox(tr("Labels"));
-	labelbox->setLayout(labellayout);
-	baselayout->addWidget(labelbox);
+	baselayout->addWidget(labelwidget);
 
 	// buttons
 	buttonlayout = new QGridLayout;
@@ -115,8 +111,6 @@ NewNodeDialog::~NewNodeDialog()
 	delete synbox;
 
 	delete labelwidget;
-	delete labellayout;
-	delete labelbox;
 
 	delete cancel;
 	delete ok;

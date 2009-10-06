@@ -61,8 +61,7 @@ DataStore::DataStore()
 DataStore::~DataStore()
 {
 	//delete root; // not necessary, is done in the treemodel
-	//delete labels;
-	//TODO: delete rootLabel
+	delete rootLabel;
 }
 
 Node* DataStore::getRoot()

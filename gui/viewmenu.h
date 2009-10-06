@@ -33,13 +33,15 @@ class ViewMenu : public QMenu
 
 	private slots:
 		void showWelcomeView();
+		void showLabelManagementDialog();
 
 	private:
 		QAction	*welcomeView,
 				*showNodeTree,
 				*showInfo,
 				*showProperties,
-				*showNodeSearch;
+				*showNodeSearch,
+				*showLabelManagement;
 };
 
 #endif // VIEWMENU_H

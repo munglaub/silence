@@ -47,7 +47,7 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	// Toolbar
 	toolbar = new QToolBar();
 	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Node"));
-        connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
+	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Subnode"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));

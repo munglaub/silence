@@ -61,8 +61,6 @@ class NewNodeDialog : public QDialog
 		QComboBox *synbox;
 
 		// labels
-		QVBoxLayout *labellayout;
-		QGroupBox *labelbox;
 		LabelWidget *labelwidget;
 
 		// butons

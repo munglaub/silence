@@ -20,29 +20,28 @@
 
 #include "controller.h"
 #include "gui/labelwidget.h"
+#include "gui/labelmanagementdialog.h"
 
 
-LabelWidget::LabelWidget(QWidget *parent)
+LabelWidget::LabelWidget(QWidget *parent, bool showManageLabelsBtn)
 	: QWidget(parent)
 {
 	layout = new QGridLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
-	newLabel = new QLineEdit;
-	layout->addWidget(newLabel, 0, 0);
-	btnAddLabel = new QPushButton(tr("Add"));
-	connect(btnAddLabel, SIGNAL(clicked()), this, SLOT(addLabel()));
-	layout->addWidget(btnAddLabel, 0, 1);
 	setupTree();
-	//TODO: auch wenn das mit tastatur gemacht wird..
 	connect(labeltree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(itemActivated(QTreeWidgetItem*, int)));
+
+	manageLabelsBtn = new QPushButton(tr("Manage Labels"));
+	manageLabelsBtn->setVisible(showManageLabelsBtn);
+	connect(manageLabelsBtn, SIGNAL(clicked()), this, SLOT(manageLabels()));
+	layout->addWidget(manageLabelsBtn, 0, 1, 1, 1, Qt::AlignTop);
 	setLayout(layout);
 }
 
 LabelWidget::~LabelWidget()
 {
-	delete newLabel;
-	delete btnAddLabel;
 	delete labeltree;
+	delete manageLabelsBtn;
 	delete layout;
 }
 
@@ -50,7 +49,7 @@ void LabelWidget::setupTree()
 {
 	labeltree = new QTreeWidget;
 	labeltree->setColumnCount(1);
-	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString("Label"))));
+	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(tr("Label")))));
 	labeltree->setSelectionMode(QAbstractItemView::MultiSelection);
 
 	Label* rootLabel = Controller::create()->getDataStore()->getLabels();
@@ -63,7 +62,7 @@ void LabelWidget::setupTree()
 	}
 	labeltree->insertTopLevelItems(0, items);
 
-	layout->addWidget(labeltree, 1, 0, 1, 2);
+	layout->addWidget(labeltree, 0, 0, 1, 1);
 }
 
 void LabelWidget::addLabel(QTreeWidgetItem* parent, Label* label)
@@ -76,38 +75,7 @@ void LabelWidget::addLabel(QTreeWidgetItem* parent, Label* label)
 	}
 }
 
-//TODO: muss glaube ich weg
-void LabelWidget::addLabel()
-{
-	if (newLabel->text().isEmpty())
-		return;
-
-	Label* rootLabel = Controller::create()->getDataStore()->getLabels();
-	rootLabel->appendChild(new Label(newLabel->text()));
-	QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(newLabel->text()));
-	labeltree->insertTopLevelItem(labeltree->topLevelItemCount(), item);
-	labeltree->setCurrentItem(item);
-	//TODO: die funktionalitaet wieder herstellen die schonmal da war..
-
-/*
-	QStringList *labels = Controller::create()->getDataStore()->getLabels();
-	if (!labels->contains(newLabel->text()))
-	{
-		// add and select the new label
-		labels->append(newLabel->text());
-		QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(newLabel->text()));
-		labeltree->insertTopLevelItem(labeltree->topLevelItemCount(), item);
-		labeltree->setCurrentItem(item);
-	} else {
-		// select the existing label
-		QList<QTreeWidgetItem *> items = labeltree->findItems(newLabel->text(), Qt::MatchExactly, 0);
-		for (int i = 0; i < items.size(); ++i)
-			labeltree->setCurrentItem(items.at(i));
-	}
-*/
-}
-
-void LabelWidget::itemActivated(QTreeWidgetItem *item, int column)
+void LabelWidget::itemActivated(QTreeWidgetItem *item, int)
 {
 	if (item->isSelected())
 	{
@@ -154,5 +122,13 @@ void LabelWidget::deselectChildren(QTreeWidgetItem* item)
 		labeltree->setCurrentItem(item->child(i), 0, QItemSelectionModel::Deselect);
 		deselectChildren(item->child(i));
 	}
+}
+
+void LabelWidget::manageLabels()
+{
+	LabelManagementDialog *dlg = new LabelManagementDialog;
+	dlg->exec();
+	delete dlg;
+	//TODO: labels neu in das qtreewidget einfuegen
 }
 

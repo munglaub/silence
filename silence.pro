@@ -32,7 +32,8 @@ SOURCES += 	main.cpp\
 			gui/welcomeview.cpp\
 			gui/nodepropertywidget.cpp\
 			gui/textfind.cpp\
-			gui/labelwidget.cpp
+			gui/labelwidget.cpp\
+			gui/labelmanagementdialog.cpp
 
 HEADERS +=	controller.h\
 			data/datastore.h\
@@ -63,7 +64,8 @@ HEADERS +=	controller.h\
 			gui/welcomeview.h\
 			gui/nodepropertywidget.h\
 			gui/textfind.h\
-			gui/labelwidget.h
+			gui/labelwidget.h\
+			gui/labelmanagementdialog.h
 
 QT		+= xml
 

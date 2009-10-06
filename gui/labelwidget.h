@@ -35,22 +35,21 @@ class LabelWidget : public QWidget
 	Q_OBJECT
 
 	public:
-		LabelWidget(QWidget *parent = 0);
+		LabelWidget(QWidget *parent = 0, bool showManageLabelsBtn = true);
 		~LabelWidget();
 
 	public slots:
 		QStringList getLabels() const;
 		void selectLabels(QStringList select);
+		void manageLabels();
 
 	private slots:
-		void addLabel();
 		void itemActivated(QTreeWidgetItem *item, int column);
 
 	private:
 		QGridLayout *layout;
-		QLineEdit *newLabel;
-		QPushButton *btnAddLabel;
 		QTreeWidget *labeltree;
+		QPushButton *manageLabelsBtn;
 
 		void setupTree();
 		void addLabel(QTreeWidgetItem* parent, Label* label);
