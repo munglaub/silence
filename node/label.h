@@ -32,12 +32,15 @@ class Label
 		~Label();
 
 //TODO: remove unused functions
+		int getIndex() const;
 		QString getText();
 		void setText(QString text);
 		Label* getParent();
 		Label* getChild(int index);
 		bool addChild(int index, Label *child);
 		bool addChild(int index);
+		bool addChildren(int position, int count);
+		bool removeChildren(int position, int count);
 		void appendChild(Label *child);
 		int childCount();
 	

@@ -18,7 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "controller.h"
 #include "gui/labelmanagementdialog.h"
+#include <QMenu>
 
 
 LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
@@ -32,7 +34,9 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 
 	toolbar = new QToolBar();
 	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Label"));
+	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Sublabel"));
+	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addSublabel()));
 	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
 	
 	layout->addWidget(toolbar, row, 0);
@@ -44,7 +48,15 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	layout->addWidget(createDeleteFrame(), row, 0);
 	++row;
 
+	model = new LabelModel();
 	tree = new QTreeView;
+	tree->setModel(model);
+	tree->expandAll();
+	tree->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(tree, SIGNAL(customContextMenuRequested(const QPoint&)),
+			this, SLOT(showTreeContextMenu()));
+	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
+			this, SLOT(selectItem()));
 	layout->addWidget(tree, row, 0);
 	++row;
 
@@ -52,9 +64,6 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	connect(closeBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	layout->addWidget(closeBtn, row, 0, 1, 1, Qt::AlignRight);
 	setLayout(layout);
-
-	connect(addRowAction, SIGNAL(triggered()), inputFrame, SLOT(show()));
-	connect(addChildAction, SIGNAL(triggered()), inputFrame, SLOT(show()));
 	connect(removeAction, SIGNAL(triggered()), deleteFrame, SLOT(show()));
 }
 
@@ -74,7 +83,7 @@ QWidget* LabelManagementDialog::createInputFrame()
 	connect(cancelInputBtn, SIGNAL(clicked()), inputFrame, SLOT(hide()));
 	inputLayout->addWidget(cancelInputBtn, 1, 0);
 	okBtn = new QPushButton(tr("OK"));
-	connect(okBtn, SIGNAL(clicked()), inputFrame, SLOT(hide()));
+	connect(okBtn, SIGNAL(clicked()), this, SLOT(addLabel()));
 	inputLayout->addWidget(okBtn, 1, 1);
 	inputFrame->setLayout(inputLayout);
 	return inputFrame;
@@ -91,7 +100,7 @@ QWidget* LabelManagementDialog::createDeleteFrame()
 	messageLbl = new QLabel(tr("Are you sure?"));
 	deleteLayout->addWidget(messageLbl, 0, 1);
 	yesBtn = new QPushButton(tr("Yes"));
-	connect(yesBtn, SIGNAL(clicked()), deleteFrame, SLOT(hide()));
+	connect(yesBtn, SIGNAL(clicked()), this, SLOT(removeLabel()));
 	deleteLayout->addWidget(yesBtn, 1, 0);
 	noBtn = new QPushButton(tr("No"));
 	connect(noBtn, SIGNAL(clicked()), deleteFrame, SLOT(hide()));
@@ -100,7 +109,58 @@ QWidget* LabelManagementDialog::createDeleteFrame()
 	return deleteFrame;
 }
 
+void LabelManagementDialog::showTreeContextMenu()
+{
+	QMenu menu(this);
+	menu.addAction(addRowAction);
+	menu.addAction(addChildAction);
+	menu.addAction(removeAction);
+	menu.exec(QCursor::pos());
+}
 
+void LabelManagementDialog::addLabel()
+{
+	inputFrame->hide();
+	if (!model->insertRow(newLabelRow, newLabelParent))
+		return;
+
+	int column = 0;
+	QModelIndex child = model->index(newLabelRow, column, newLabelParent);
+	model->setData(child, QVariant(inputEdit->text()));
+	Controller::create()->getDataStore()->addLabel(model->getItem(child));
+	tree->selectionModel()->setCurrentIndex(model->index(newLabelRow, column, newLabelParent), QItemSelectionModel::ClearAndSelect);
+}
+
+void LabelManagementDialog::addRow()
+{
+	inputFrame->setTitle(tr("New Label"));
+	newLabelParent = tree->selectionModel()->currentIndex();
+	newLabelRow = newLabelParent.row() + 1;
+	newLabelParent = newLabelParent.parent();
+	inputFrame->show();
+}
+
+void LabelManagementDialog::addSublabel()
+{
+	inputFrame->setTitle(tr("New Sublabel"));
+	newLabelParent = tree->selectionModel()->currentIndex();
+	newLabelRow = 0;
+	inputFrame->show();
+}
+
+void LabelManagementDialog::removeLabel()
+{
+	QModelIndex index = tree->selectionModel()->currentIndex();
+	model->removeRow(index.row(), index.parent());
+	Controller::create()->getDataStore()->removeLabel(model->getItem(index));
+	deleteFrame->hide();
+}
+
+void LabelManagementDialog::selectItem()
+{
+	inputFrame->hide();
+	deleteFrame->hide();
+}
 
 
 

@@ -52,7 +52,7 @@ void LabelWidget::setupTree()
 	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(tr("Label")))));
 	labeltree->setSelectionMode(QAbstractItemView::MultiSelection);
 
-	Label* rootLabel = Controller::create()->getDataStore()->getLabels();
+	Label* rootLabel = Controller::create()->getDataStore()->getRootLabel();
 	QList<QTreeWidgetItem *> items;
 	for (int i = 0; i < rootLabel->childCount(); ++i)
 	{
@@ -61,6 +61,7 @@ void LabelWidget::setupTree()
 		addLabel(item, rootLabel->getChild(i));
 	}
 	labeltree->insertTopLevelItems(0, items);
+	labeltree->expandAll();
 
 	layout->addWidget(labeltree, 0, 0, 1, 1);
 }

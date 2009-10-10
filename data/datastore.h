@@ -36,19 +36,23 @@ class DataStore : public QObject
 		~DataStore();
 
 		Node* getRoot();
-		//TODO: rename to getRootLabel
-		Label* getLabels();
+		Label* getRootLabel();
 
-		void remove(Node *node);
-		void add(Node *node);
+		void removeNode(Node *node);
+		void addNode(Node *node);
+
+		void addLabel(Label *label);
+		void removeLabel(Label *label);
 
 	public slots:
-		void save(Node *node);
+		void saveNode(Node *node);
 	
 	private:
 		Node *root;
 		Label *rootLabel;
 		static const QString DATA_FILE;
+
+		void saveAll();
 
 		void xmlToLabels(QDomElement &xmlLabels, Label* label);
 

@@ -41,6 +41,13 @@ void Label::init(Label *parent, QString text)
 	this->text = text;
 }
 
+int Label::getIndex() const
+{
+	if (parent)
+		return parent->children.indexOf(const_cast<Label*>(this));
+	return 0;
+}
+
 QString Label::getText()
 {
 	return text;
@@ -71,7 +78,7 @@ Label* Label::getChild(int index)
 
 bool Label::addChild(int index, Label *child)
 {
-	if (index <= 0 || index > children.size())
+	if (index < 0 || index > children.size())
 		return false;
 
 	children.insert(index, child);
@@ -82,6 +89,23 @@ bool Label::addChild(int index, Label *child)
 bool Label::addChild(int index)
 {
 	return addChild(index, new Label());
+}
+
+bool Label::addChildren(int position, int count)
+{
+	bool result = false;
+	for (int i = 0; i < count; ++i)
+		result = addChild(position, new Label());
+	return result;
+}
+
+bool Label::removeChildren(int position, int count)
+{
+	if (position < 0 || position + count > children.size())
+		return false;
+	for (int row = 0; row < count; ++row)
+		delete children.takeAt(position);
+	return true;
 }
 
 void Label::appendChild(Label *child)

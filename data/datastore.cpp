@@ -32,9 +32,9 @@ const QString DataStore::DATA_FILE("data.xml");
 DataStore::DataStore()
 {
 	root = new Node();
-	root->setCaption("Title"); // treecaption
+	root->setCaption(tr("Title")); // treecaption
 
-	rootLabel = new Label();
+	rootLabel = new Label(tr("Label"));
 
 	QDomDocument doc;
 	QFile file(DATA_FILE);
@@ -69,7 +69,7 @@ Node* DataStore::getRoot()
 	return root;
 }
 
-Label* DataStore::getLabels()
+Label* DataStore::getRootLabel()
 {
 	return rootLabel;
 }
@@ -137,10 +137,15 @@ void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc
 	}
 	node->setModificationDate(modificationDate);
 	
-	connect(node, SIGNAL(changed(Node*)), this, SLOT(save(Node*)));
+	connect(node, SIGNAL(changed(Node*)), this, SLOT(saveNode(Node*)));
 }
 
-void DataStore::save(Node*)
+void DataStore::saveNode(Node*)
+{
+	saveAll();
+}
+
+void DataStore::saveAll()
 {
 	// create xmlDocument
 	QDomDocument doc;
@@ -243,14 +248,24 @@ void DataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
 	}
 }
 
-void DataStore::remove(Node *node)
+void DataStore::removeNode(Node*)
 {
-	save(node);
+	saveAll();
 }
 
-void DataStore::add(Node *node)
+void DataStore::addNode(Node*)
 {
-	save(node);
+	saveAll();
+}
+
+void DataStore::addLabel(Label*)
+{
+	saveAll();
+}
+
+void DataStore::removeLabel(Label*)
+{
+	saveAll();
 }
 
 

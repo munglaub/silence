@@ -9,6 +9,7 @@ SOURCES += 	main.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
 			node/label.cpp\
+			node/labelmodel.cpp\
 			node/treemodel.cpp\
 			node/filtermodel.cpp\
 			node/listproxymodel.cpp\
@@ -40,6 +41,7 @@ HEADERS +=	controller.h\
 			node/node.h\
 			node/nodeid.h\
 			node/label.h\
+			node/labelmodel.h\
 			node/treemodel.h\
 			node/listproxymodel.h\
 			node/filtermodel.h\
