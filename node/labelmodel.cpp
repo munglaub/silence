@@ -40,7 +40,7 @@ QVariant LabelModel::data(const QModelIndex &index, int role) const
 
 	if (role != Qt::DisplayRole && role != Qt::EditRole)
 		return QVariant();
-//TODO: ueberpruefen fehlt vielleicht was..
+
 	Label *item = getItem(index);
 	return item->getText();
 }
@@ -95,9 +95,7 @@ int LabelModel::rowCount(const QModelIndex &parent) const
 
 int LabelModel::columnCount(const QModelIndex&) const
 {
-//TODO: 1
-//	return rootItem->columnCount();
-	return 1;
+	return 1; // just one column
 }
 
 bool LabelModel::insertRows(int position, int rows, const QModelIndex &parent)
@@ -114,9 +112,12 @@ bool LabelModel::insertRows(int position, int rows, const QModelIndex &parent)
 
 bool LabelModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-//TODO: noch richtig machen
+	if (role != Qt::EditRole)
+		return false;
+
 	Label *label = getItem(index);
 	label->setText(value.toString());
+	return true;
 }
 
 bool LabelModel::removeRows(int position, int rows, const QModelIndex &parent)

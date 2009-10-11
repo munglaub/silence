@@ -21,8 +21,9 @@
 #ifndef LABEL_H
 #define LABEL_H
 
-#include <QString>
 #include <QList>
+#include <QString>
+#include <QStringList>
 
 class Label
 {
@@ -43,6 +44,8 @@ class Label
 		bool removeChildren(int position, int count);
 		void appendChild(Label *child);
 		int childCount();
+		QStringList toStringList();
+		bool contains(QString labelText);
 	
 	protected:
 		void setParent(Label *parent);

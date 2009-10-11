@@ -27,7 +27,7 @@
 TreeModel::TreeModel(QObject *parent)
 	: QAbstractItemModel(parent)
 {
-	rootItem = Controller::create()->getDataStore()->getRoot();
+	rootItem = Controller::create()->getDataStore()->getRootNode();
 }
 
 TreeModel::~TreeModel()

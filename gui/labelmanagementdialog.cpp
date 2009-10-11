@@ -27,7 +27,7 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	: QDialog(parent, f)
 {
 	setWindowTitle(tr("Label Management"));
-	resize(300, 350);
+	resize(300, 500);
 
 	layout = new QGridLayout;
 	int row = 0;
@@ -65,11 +65,32 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	layout->addWidget(closeBtn, row, 0, 1, 1, Qt::AlignRight);
 	setLayout(layout);
 	connect(removeAction, SIGNAL(triggered()), deleteFrame, SLOT(show()));
+	updateActions();
 }
 
 LabelManagementDialog::~LabelManagementDialog()
 {
-	//TODO: implement
+	delete noBtn;
+	delete yesBtn;
+	delete messageLbl;
+	delete icon;
+	delete deleteLayout;
+	delete deleteFrame;
+
+	delete cancelInputBtn;
+	delete okBtn;
+	delete inputEdit;
+	delete inputLayout;
+	delete inputFrame;
+
+	delete closeBtn;
+	delete model;
+	delete tree;
+	delete removeAction;
+	delete addChildAction;
+	delete addRowAction;
+	delete toolbar;
+	delete layout;
 }
 
 QWidget* LabelManagementDialog::createInputFrame()
@@ -129,6 +150,7 @@ void LabelManagementDialog::addLabel()
 	model->setData(child, QVariant(inputEdit->text()));
 	Controller::create()->getDataStore()->addLabel(model->getItem(child));
 	tree->selectionModel()->setCurrentIndex(model->index(newLabelRow, column, newLabelParent), QItemSelectionModel::ClearAndSelect);
+	updateActions();
 }
 
 void LabelManagementDialog::addRow()
@@ -146,21 +168,46 @@ void LabelManagementDialog::addSublabel()
 	newLabelParent = tree->selectionModel()->currentIndex();
 	newLabelRow = 0;
 	inputFrame->show();
+	updateActions();
 }
 
 void LabelManagementDialog::removeLabel()
 {
 	QModelIndex index = tree->selectionModel()->currentIndex();
+	QStringList removedLabels = model->getItem(index)->toStringList();
 	model->removeRow(index.row(), index.parent());
 	Controller::create()->getDataStore()->removeLabel(model->getItem(index));
 	deleteFrame->hide();
+	updateActions();
+
+	Label *rootLabel = Controller::create()->getDataStore()->getRootLabel();
+	for (int i = 0; i < removedLabels.size(); ++i)
+	{
+		if (!rootLabel->contains(removedLabels.at(i)))
+		{
+			QList<Node*> nodes = Controller::create()->getDataStore()->getRootNode()->toNodeList();
+			for (int j = 0; j < nodes.size(); ++j)
+				nodes.at(j)->removeLabel(removedLabels.at(i));
+		}
+	}
 }
 
 void LabelManagementDialog::selectItem()
 {
 	inputFrame->hide();
 	deleteFrame->hide();
+	updateActions();
 }
+
+void LabelManagementDialog::updateActions()
+{
+	bool hasSelection = !tree->selectionModel()->selection().isEmpty();
+	removeAction->setEnabled(hasSelection);
+
+	bool hasCurrent = tree->selectionModel()->currentIndex().isValid();
+	addRowAction->setEnabled(hasCurrent);
+}
+
 
 
 

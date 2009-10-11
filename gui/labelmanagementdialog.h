@@ -48,6 +48,7 @@ class LabelManagementDialog : public QDialog
 		void addSublabel();
 		void removeLabel();
 		void selectItem();
+		void updateActions();
 
 	private:
 		QGridLayout *layout;

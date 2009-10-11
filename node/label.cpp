@@ -119,4 +119,27 @@ int Label::childCount()
 	return children.size();
 }
 
+QStringList Label::toStringList()
+{
+	QStringList result;
+	result << text;
+	for (int i = 0; i < children.size(); ++i)
+		result << children.at(i)->toStringList();
+	return result;
+}
+
+bool Label::contains(QString labelText)
+{
+	if (text == labelText)
+		return true;
+	else {
+		bool result = false;
+		for (int i = 0; i < children.size() && !result; ++i)
+			result = children.at(i)->contains(labelText);
+		return result;
+	}
+}
+
+
+
 

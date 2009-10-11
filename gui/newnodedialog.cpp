@@ -30,7 +30,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
 	setWindowTitle(tr("New Node"));
-	resize(400, 250);
+	resize(400, 400);
 
 	baselayout = new QVBoxLayout;
 

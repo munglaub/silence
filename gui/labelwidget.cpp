@@ -96,10 +96,10 @@ void LabelWidget::itemActivated(QTreeWidgetItem *item, int)
 QStringList LabelWidget::getLabels() const
 {
 	int column = 0;
-	QStringList result;
+	QSet<QString> result;
 	for (int i = 0; i < labeltree->selectedItems().size(); ++i)
 		result << labeltree->selectedItems().at(i)->text(column);
-	return result;
+	return result.toList();
 }
 
 void LabelWidget::selectLabels(QStringList select)

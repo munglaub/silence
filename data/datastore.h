@@ -35,7 +35,7 @@ class DataStore : public QObject
 		DataStore();
 		~DataStore();
 
-		Node* getRoot();
+		Node* getRootNode();
 		Label* getRootLabel();
 
 		void removeNode(Node *node);
@@ -48,7 +48,7 @@ class DataStore : public QObject
 		void saveNode(Node *node);
 	
 	private:
-		Node *root;
+		Node *rootNode;
 		Label *rootLabel;
 		static const QString DATA_FILE;
 
