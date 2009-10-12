@@ -162,6 +162,7 @@ void TextEdit::setupEditor()
 	editor = new QsciScintilla;
 
 	editor->setLexer();
+	editor->setUtf8(true);
 	editor->setTabWidth(4);
 	// show linenumbers
 	editor->setMarginWidth(0, 35);
