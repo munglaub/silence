@@ -42,6 +42,7 @@ class LabelWidget : public QWidget
 		QStringList getLabels() const;
 		void selectLabels(QStringList select);
 		void manageLabels();
+		void updateLabels();
 
 	private slots:
 		void itemActivated(QTreeWidgetItem *item, int column);
@@ -52,6 +53,7 @@ class LabelWidget : public QWidget
 		QPushButton *manageLabelsBtn;
 
 		void setupTree();
+		void fillTree();
 		void addLabel(QTreeWidgetItem* parent, Label* label);
 		void deselectChildren(QTreeWidgetItem* item);
 };

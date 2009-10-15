@@ -86,11 +86,6 @@ bool Label::addChild(int index, Label *child)
 	return true;
 }
 
-bool Label::addChild(int index)
-{
-	return addChild(index, new Label());
-}
-
 bool Label::addChildren(int position, int count)
 {
 	bool result = false;

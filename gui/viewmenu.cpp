@@ -87,5 +87,6 @@ void ViewMenu::showLabelManagementDialog()
 	LabelManagementDialog *dlg = new LabelManagementDialog;
 	dlg->exec();
 	delete dlg;
+	Controller::create()->getNodePropertyWidget()->updateLabels();
 }
 

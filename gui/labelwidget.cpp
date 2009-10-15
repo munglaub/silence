@@ -49,6 +49,13 @@ void LabelWidget::setupTree()
 {
 	labeltree = new QTreeWidget;
 	labeltree->setColumnCount(1);
+	fillTree();
+	layout->addWidget(labeltree, 0, 0, 1, 1);
+}
+
+void LabelWidget::fillTree()
+{
+	labeltree->clear();
 	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(tr("Label")))));
 	labeltree->setSelectionMode(QAbstractItemView::MultiSelection);
 
@@ -62,8 +69,6 @@ void LabelWidget::setupTree()
 	}
 	labeltree->insertTopLevelItems(0, items);
 	labeltree->expandAll();
-
-	layout->addWidget(labeltree, 0, 0, 1, 1);
 }
 
 void LabelWidget::addLabel(QTreeWidgetItem* parent, Label* label)
@@ -130,6 +135,13 @@ void LabelWidget::manageLabels()
 	LabelManagementDialog *dlg = new LabelManagementDialog;
 	dlg->exec();
 	delete dlg;
-	//TODO: labels neu in das qtreewidget einfuegen
+	fillTree();
+	Controller::create()->getNodePropertyWidget()->updateLabels();
 }
+
+void LabelWidget::updateLabels()
+{
+	fillTree();
+}
+
 

@@ -44,6 +44,7 @@ class NodePropertyWidget : public QDockWidget
 		~NodePropertyWidget();
 
 		void setNode(Node *node);
+		void updateLabels();
 
 	private slots:
 		void saveNodeInfo();

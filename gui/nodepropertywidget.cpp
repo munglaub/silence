@@ -154,3 +154,9 @@ void NodePropertyWidget::saveLabels()
 		node->addLabel(labelwidget->getLabels().at(i));
 }
 
+void NodePropertyWidget::updateLabels()
+{
+	labelwidget->updateLabels();
+	setNode(node);
+}
+
