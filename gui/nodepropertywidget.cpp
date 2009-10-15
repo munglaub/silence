@@ -121,6 +121,8 @@ QWidget* NodePropertyWidget::createLabelTab()
 
 void NodePropertyWidget::setNode(Node* node)
 {
+	if (!node)
+		return;
 	// nodeinfos
 	this->node = node;
 	nodeName->setText(node->getCaption());
