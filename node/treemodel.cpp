@@ -170,6 +170,9 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction, int row, int
 	int newPos = row < 0 ? 0 : row;
 	Node* newparentNode = getItem(newparent);
 
+	if (getItem(movingIndex)->contains(newparentNode))
+		return false;
+
 	if (oldparent == newparent && oldPos < newPos)
 		newPos -= 1;
 

@@ -45,6 +45,8 @@ class Node : public QObject
 		NodeId getId() const;
 		void setId(NodeId id);
 
+		bool contains(Node* node);
+
 		// children
 		bool addChildren(int position, int count);
 		Node* getChild(int index) const;
