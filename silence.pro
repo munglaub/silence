@@ -8,6 +8,8 @@ SOURCES += 	main.cpp\
 			data/datastore.cpp\
 			node/node.cpp\
 			node/nodeid.cpp\
+			node/label.cpp\
+			node/labelmodel.cpp\
 			node/treemodel.cpp\
 			node/filtermodel.cpp\
 			node/listproxymodel.cpp\
@@ -30,12 +32,16 @@ SOURCES += 	main.cpp\
 			gui/contentview.cpp\
 			gui/welcomeview.cpp\
 			gui/nodepropertywidget.cpp\
-			gui/textfind.cpp
+			gui/textfind.cpp\
+			gui/labelwidget.cpp\
+			gui/labelmanagementdialog.cpp
 
 HEADERS +=	controller.h\
 			data/datastore.h\
 			node/node.h\
 			node/nodeid.h\
+			node/label.h\
+			node/labelmodel.h\
 			node/treemodel.h\
 			node/listproxymodel.h\
 			node/filtermodel.h\
@@ -59,7 +65,9 @@ HEADERS +=	controller.h\
 			gui/contentview.h\
 			gui/welcomeview.h\
 			gui/nodepropertywidget.h\
-			gui/textfind.h
+			gui/textfind.h\
+			gui/labelwidget.h\
+			gui/labelmanagementdialog.h
 
 QT		+= xml
 

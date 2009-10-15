@@ -33,12 +33,15 @@ class Node : public QObject
 	Q_OBJECT
 
 	public:
-		// Konstruktoren & Destruktoren
+		// Konstruktoren & Destruktor
 		Node(Node *parent = 0); 
 		~Node();
 
 		int getIndex() const;
 		Node* getParent() const;
+		QList<Node*> toNodeList();
+
+		// id
 		NodeId getId() const;
 		void setId(NodeId id);
 
@@ -73,6 +76,7 @@ class Node : public QObject
 		QStringList* getLabels();
 		void addLabel(QString label);
 		void addLabels(QStringList labels);
+		bool removeLabel(QString label);
 		
 	private slots:
 		void change();

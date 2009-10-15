@@ -30,7 +30,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
 	setWindowTitle(tr("New Node"));
-	resize(400, 250);
+	resize(400, 400);
 
 	baselayout = new QVBoxLayout;
 
@@ -82,19 +82,8 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	indexChanged(typebox->currentIndex());
 
 	// Labels
-	labelbox = new QGroupBox(tr("Labels"));
-	labellayout = new QGridLayout;
-	newLabel = new QLineEdit;
-	labellayout->addWidget(newLabel, 0, 0);
-	btnAddLabel = new QPushButton(tr("Add"));
-	connect(btnAddLabel, SIGNAL(clicked()), this, SLOT(addLabel()));
-	labellayout->addWidget(btnAddLabel, 0, 1);
-	availlabels = new QListWidget;
-	availlabels->setSelectionMode(QAbstractItemView::MultiSelection);
-	availlabels->addItems(*Controller::create()->getDataStore()->getLabels());
-	labellayout->addWidget(availlabels, 1, 0, 1, 2);
-	labelbox->setLayout(labellayout);
-	baselayout->addWidget(labelbox);
+	labelwidget = new LabelWidget;
+	baselayout->addWidget(labelwidget);
 
 	// buttons
 	buttonlayout = new QGridLayout;
@@ -121,28 +110,13 @@ NewNodeDialog::~NewNodeDialog()
 	delete lblhighlight;
 	delete synbox;
 
-	delete newLabel;
-	delete btnAddLabel;
-	delete availlabels;
-	delete labellayout;
-	delete labelbox;
+	delete labelwidget;
 
 	delete cancel;
 	delete ok;
 	delete buttonlayout;
 
 	delete baselayout;
-}
-
-void NewNodeDialog::addLabel()
-{
-	if (newLabel->text().isEmpty())
-		return;
-	availlabels->addItem(newLabel->text());
-	availlabels->item(availlabels->count() - 1)->setSelected(true);
-	QStringList *labels = Controller::create()->getDataStore()->getLabels();
-	if (!labels->contains(newLabel->text()))
-		labels->append(newLabel->text());
 }
 
 QString NewNodeDialog::getCaption() const
@@ -171,11 +145,7 @@ AbstractNodeContent* NewNodeDialog::getContent() const
 
 QStringList NewNodeDialog::getLabels() const
 {
-	QStringList result;
-	for (int i = 0; i < availlabels->selectedItems().size(); ++i)
-		result << availlabels->selectedItems().at(i)->text();	
-
-	return result;
+	return labelwidget->getLabels();
 }
 
 void NewNodeDialog::indexChanged(int index)

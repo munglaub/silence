@@ -47,7 +47,7 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	// Toolbar
 	toolbar = new QToolBar();
 	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Node"));
-        connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
+	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Subnode"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
@@ -158,8 +158,8 @@ void TreeView::addNode(QModelIndex &index, int row)
 	Node *item = model->getItem(child);
 	item->setContent(newDialog->getContent());
 	item->addLabels(newDialog->getLabels());
-	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(save(Node*)));
-	Controller::create()->getDataStore()->add(item);
+	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(saveNode(Node*)));
+	Controller::create()->getDataStore()->addNode(item);
 
 	delete newDialog;
 
@@ -189,7 +189,7 @@ void TreeView::removeTreeItem()
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	if (model->removeRow(index.row(), index.parent()))
 	{
-		Controller::create()->getDataStore()->remove(model->getItem(index));
+		Controller::create()->getDataStore()->removeNode(model->getItem(index));
 		updateActions();
 	}
 }
@@ -241,6 +241,6 @@ void TreeView::showTreeContextMenu()
 void TreeView::nodeDropped(QModelIndex index)
 {
 	tree->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect);
-	Controller::create()->getDataStore()->save(model->getItem(index));
+	Controller::create()->getDataStore()->saveNode(model->getItem(index));
 }
 

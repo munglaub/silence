@@ -107,6 +107,15 @@ Node* Node::getParent() const
 	return parent;
 }
 
+QList<Node*> Node::toNodeList()
+{
+	QList<Node*> result;
+	result << this;
+	for (int i = 0; i < children.size(); ++i)
+		result << children.at(i)->toNodeList();
+	return result;
+}
+
 void Node::setParent(Node* parent)
 {
 	this->parent = parent;
@@ -198,6 +207,14 @@ void Node::addLabel(QString label)
 void Node::addLabels(QStringList labels)
 {
 	this->labels = this->labels + labels;
+}
+
+bool Node::removeLabel(QString label)
+{
+	bool result = labels.removeOne(label);
+	if (result)
+		change();
+	return result;
 }
 
 void Node::change()

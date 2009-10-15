@@ -41,9 +41,7 @@ NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt
 NodePropertyWidget::~NodePropertyWidget()
 {
 	delete applyLabels;
-	delete availlabels;
-	delete btnAddLabel;
-	delete newLabel;
+	delete labelwidget;
 	delete labellayout;
 	delete labelframe;
 
@@ -108,17 +106,9 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 
 QWidget* NodePropertyWidget::createLabelTab()
 {
-
 	labellayout = new QGridLayout;
-	newLabel = new QLineEdit;
-	labellayout->addWidget(newLabel, 0, 0);
-	btnAddLabel = new QPushButton(tr("Add"));
-	connect(btnAddLabel, SIGNAL(clicked()), this, SLOT(addLabel()));
-	labellayout->addWidget(btnAddLabel, 0, 1);
-	availlabels = new QListWidget;
-	availlabels->setSelectionMode(QAbstractItemView::MultiSelection);
-	availlabels->addItems(*Controller::create()->getDataStore()->getLabels());
-	labellayout->addWidget(availlabels, 1, 0, 1, 2);
+	labelwidget = new LabelWidget(this, false);
+	labellayout->addWidget(labelwidget, 0, 0, 1, 2);
 
 	applyLabels = new QPushButton(tr("Apply"));
 	connect(applyLabels, SIGNAL(clicked()), this, SLOT(saveLabels()));
@@ -146,14 +136,7 @@ void NodePropertyWidget::setNode(Node* node)
 	modificationdate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 	
 	// labels
-	availlabels->clear();
-	QStringList *allLabels = Controller::create()->getDataStore()->getLabels();
-	for (int i=0; i<allLabels->size(); ++i)
-	{
-		availlabels->addItem(allLabels->at(i));
-		if (node->getLabels()->contains(allLabels->at(i)))
-			availlabels->item(availlabels->count() - 1)->setSelected(true);
-	}
+	labelwidget->selectLabels(*node->getLabels());
 }
 
 
@@ -167,19 +150,13 @@ void NodePropertyWidget::saveNodeInfo()
 void NodePropertyWidget::saveLabels()
 {
 	node->getLabels()->clear();
-	for (int i=0; i<availlabels->selectedItems().size(); ++i)
-		node->addLabel(availlabels->selectedItems().at(i)->text());
+	for (int i=0; i<labelwidget->getLabels().size(); ++i)
+		node->addLabel(labelwidget->getLabels().at(i));
 }
 
-void NodePropertyWidget::addLabel()
+void NodePropertyWidget::updateLabels()
 {
-	if (newLabel->text().isEmpty())
-		return;
-	availlabels->addItem(newLabel->text());
-	availlabels->item(availlabels->count() - 1)->setSelected(true);
-	QStringList *labels = Controller::create()->getDataStore()->getLabels();
-	if (!labels->contains(newLabel->text()))
-		labels->append(newLabel->text());
+	labelwidget->updateLabels();
+	setNode(node);
 }
-
 

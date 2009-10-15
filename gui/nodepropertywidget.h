@@ -21,6 +21,7 @@
 #ifndef NODEPROPERTYWIDGET_H
 #define NODEPROPERTYWIDGET_H
 
+#include "gui/labelwidget.h"
 #include "node/node.h"
 #include <QComboBox>
 #include <QDockWidget>
@@ -43,11 +44,11 @@ class NodePropertyWidget : public QDockWidget
 		~NodePropertyWidget();
 
 		void setNode(Node *node);
+		void updateLabels();
 
 	private slots:
 		void saveNodeInfo();
 		void saveLabels();
-		void addLabel();
 
 	private:
 		Node *node;
@@ -67,9 +68,7 @@ class NodePropertyWidget : public QDockWidget
 		// labeltab
 		QGridLayout *labellayout;
 		QFrame *labelframe;
-		QLineEdit *newLabel;
-		QPushButton *btnAddLabel;
-		QListWidget *availlabels;
+		LabelWidget *labelwidget;
 		QPushButton *applyLabels;
 
 		QWidget* createNodeInfoTab();

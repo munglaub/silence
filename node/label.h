@@ -18,33 +18,43 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VIEWMENU_H
-#define VIEWMENU_H
+#ifndef LABEL_H
+#define LABEL_H
 
-#include <QMenu>
+#include <QList>
+#include <QString>
+#include <QStringList>
 
-class ViewMenu : public QMenu
+class Label
 {
-	Q_OBJECT
-
 	public:
-		ViewMenu(QWidget *parent = 0);
-		~ViewMenu();
+		Label();
+		Label(QString text);
+		~Label();
 
-	private slots:
-		void showWelcomeView();
-		void showLabelManagementDialog();
+		int getIndex() const;
+		QString getText();
+		void setText(QString text);
+		Label* getParent();
+		Label* getChild(int index);
+		bool addChild(int index, Label *child);
+		bool addChildren(int position, int count);
+		bool removeChildren(int position, int count);
+		void appendChild(Label *child);
+		int childCount();
+		QStringList toStringList();
+		bool contains(QString labelText);
+	
+	protected:
+		void setParent(Label *parent);
 
 	private:
-		QAction	*welcomeView,
-				*showNodeTree,
-				*showInfo,
-				*showProperties,
-				*showNodeSearch,
-				*showLabelManagement;
+		QString text;
+		Label* parent;
+		QList<Label*> children;
+		
+		void init(Label *parent, QString text);
 };
 
-#endif // VIEWMENU_H
-
-
+#endif // LABEL_H
 
