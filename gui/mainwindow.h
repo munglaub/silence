@@ -22,17 +22,17 @@
 #define MAINWINDOW_H
 
 #include "controller.h"
-#include "gui/contentview.h"
-#include "gui/editmenu.h"
-#include "gui/silencemenu.h"
-#include "gui/nodemenu.h"
-#include "gui/helpmenu.h"
-#include "gui/infosidebar.h"
-#include "gui/nodepropertywidget.h"
+#include "gui/menu/editmenu.h"
+#include "gui/menu/helpmenu.h"
+#include "gui/menu/nodemenu.h"
+#include "gui/menu/silencemenu.h"
+#include "gui/menu/viewmenu.h"
+#include "gui/sidebar/infosidebar.h"
+#include "gui/sidebar/nodepropertywidget.h"
+#include "gui/sidebar/searchnodesidebar.h"
+#include "gui/sidebar/treeview.h"
 #include "gui/statusbar.h"
-#include "gui/treeview.h"
-#include "gui/viewmenu.h"
-#include "gui/searchnodesidebar.h"
+#include "gui/view/contentview.h"
 #include <QMainWindow>
 
 

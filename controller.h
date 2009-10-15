@@ -21,17 +21,17 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "data/datastore.h"
-#include "gui/contentview.h"
-#include "gui/editmenu.h"
-#include "gui/infosidebar.h"
-#include "gui/searchnodesidebar.h"
-#include "gui/nodepropertywidget.h"
-#include "gui/richtextedit.h"
+#include "persistence/datastore.h"
+#include "gui/menu/editmenu.h"
+#include "gui/sidebar/infosidebar.h"
+#include "gui/sidebar/nodepropertywidget.h"
+#include "gui/sidebar/searchnodesidebar.h"
+#include "gui/sidebar/treeview.h"
 #include "gui/statusbar.h"
-#include "gui/textedit.h"
-#include "gui/treeview.h"
-#include "gui/welcomeview.h"
+#include "gui/view/contentview.h"
+#include "gui/view/richtextedit.h"
+#include "gui/view/textedit.h"
+#include "gui/view/welcomeview.h"
 
 
 class Controller

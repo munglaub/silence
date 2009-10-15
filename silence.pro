@@ -5,69 +5,69 @@ TEMPLATE = app
 
 SOURCES += 	main.cpp\
 			controller.cpp\
-			data/datastore.cpp\
-			node/node.cpp\
-			node/nodeid.cpp\
-			node/label.cpp\
-			node/labelmodel.cpp\
-			node/treemodel.cpp\
-			node/filtermodel.cpp\
-			node/listproxymodel.cpp\
-			node/textnodecontent.cpp\
-			node/richtextnodecontent.cpp\
+			persistence/datastore.cpp\
+			data/node/node.cpp\
+			data/node/nodeid.cpp\
+			data/node/textnodecontent.cpp\
+			data/node/richtextnodecontent.cpp\
+			data/label.cpp\
+			data/model/labelmodel.cpp\
+			data/model/treemodel.cpp\
+			data/model/filtermodel.cpp\
+			data/model/listproxymodel.cpp\
 			gui/mainwindow.cpp\
-			gui/nodemenu.cpp\
-			gui/silencemenu.cpp\
-			gui/helpmenu.cpp\
-			gui/aboutdialog.cpp\
-			gui/editmenu.cpp\
-			gui/viewmenu.cpp\
-			gui/treeview.cpp\
-			gui/textedit.cpp\
-			gui/richtextedit.cpp\
-			gui/infosidebar.cpp\
-			gui/searchnodesidebar.cpp\
 			gui/statusbar.cpp\
-			gui/newnodedialog.cpp\
-			gui/contentview.cpp\
-			gui/welcomeview.cpp\
-			gui/nodepropertywidget.cpp\
-			gui/textfind.cpp\
-			gui/labelwidget.cpp\
-			gui/labelmanagementdialog.cpp
+			gui/menu/nodemenu.cpp\
+			gui/menu/silencemenu.cpp\
+			gui/menu/helpmenu.cpp\
+			gui/menu/editmenu.cpp\
+			gui/menu/viewmenu.cpp\
+			gui/dialog/aboutdialog.cpp\
+			gui/dialog/newnodedialog.cpp\
+			gui/dialog/labelmanagementdialog.cpp\
+			gui/sidebar/treeview.cpp\
+			gui/sidebar/infosidebar.cpp\
+			gui/sidebar/searchnodesidebar.cpp\
+			gui/sidebar/nodepropertywidget.cpp\
+			gui/view/textedit.cpp\
+			gui/view/richtextedit.cpp\
+			gui/view/contentview.cpp\
+			gui/view/welcomeview.cpp\
+			gui/widget/textfind.cpp\
+			gui/widget/labelwidget.cpp
 
 HEADERS +=	controller.h\
-			data/datastore.h\
-			node/node.h\
-			node/nodeid.h\
-			node/label.h\
-			node/labelmodel.h\
-			node/treemodel.h\
-			node/listproxymodel.h\
-			node/filtermodel.h\
-			node/abstractnodecontent.h\
-			node/textnodecontent.h\
-			node/richtextnodecontent.h\
+			persistence/datastore.h\
+			data/node/node.h\
+			data/node/nodeid.h\
+			data/node/abstractnodecontent.h\
+			data/node/textnodecontent.h\
+			data/node/richtextnodecontent.h\
+			data/label.h\
+			data/model/labelmodel.h\
+			data/model/treemodel.h\
+			data/model/listproxymodel.h\
+			data/model/filtermodel.h\
 			gui/mainwindow.h\
-			gui/nodemenu.h\
-			gui/silencemenu.h\
-			gui/helpmenu.h\
-			gui/aboutdialog.h\
-			gui/editmenu.h\
-			gui/viewmenu.h\
-			gui/treeview.h\
-			gui/textedit.h\
-			gui/richtextedit.h\
-			gui/infosidebar.h\
-			gui/searchnodesidebar.h\
 			gui/statusbar.h\
-			gui/newnodedialog.h\
-			gui/contentview.h\
-			gui/welcomeview.h\
-			gui/nodepropertywidget.h\
-			gui/textfind.h\
-			gui/labelwidget.h\
-			gui/labelmanagementdialog.h
+			gui/menu/nodemenu.h\
+			gui/menu/silencemenu.h\
+			gui/menu/helpmenu.h\
+			gui/menu/editmenu.h\
+			gui/menu/viewmenu.h\
+			gui/dialog/aboutdialog.h\
+			gui/dialog/newnodedialog.h\
+			gui/dialog/labelmanagementdialog.h\
+			gui/sidebar/treeview.h\
+			gui/sidebar/infosidebar.h\
+			gui/sidebar/searchnodesidebar.h\
+			gui/sidebar/nodepropertywidget.h\
+			gui/view/textedit.h\
+			gui/view/richtextedit.h\
+			gui/view/contentview.h\
+			gui/view/welcomeview.h\
+			gui/widget/textfind.h\
+			gui/widget/labelwidget.h
 
 QT		+= xml
 
