@@ -19,7 +19,7 @@
  */
 
 #include "data/model/listproxymodel.h"
-#include "data/node.h"
+#include "data/node/node.h"
 
 
 ListProxyModel::ListProxyModel(QObject * parent)
