@@ -36,12 +36,15 @@ ContentView::ContentView(QWidget *parent)
 
 ContentView::~ContentView()
 {
+	layout->removeWidget(widget);
+	widget->setParent(0);
 	delete layout;
 }
 
 void ContentView::setContent(AbstractNodeContent *content)
 {
 	layout->removeWidget(widget);
+	widget->setParent(0);
 	widget->setVisible(false);
 	if (!content){
 		Controller *controller = Controller::create();

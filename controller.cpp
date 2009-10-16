@@ -39,6 +39,13 @@ Controller::Controller()
 Controller::~Controller()
 {
 	delete datastore;
+
+	if (welcomeview)
+		delete welcomeview;
+	if (textedit)
+		delete textedit;
+	if (richtextedit)
+		delete richtextedit;
 }
 
 Controller* Controller::create()
