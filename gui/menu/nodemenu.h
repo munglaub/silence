@@ -21,20 +21,27 @@
 #ifndef NODEMENU_H
 #define NODEMENU_H
 
-#include "controller.h"
 #include <QMenu>
 
+/*!\class NodeMenu
+ * \brief Consists of actions related to the nodes.
+ *
+ * This menu consists of node related actions like add and remove node. It shares this actions with other components like the TreeView.
+ *
+ * \author Manuel Unglaub
+ */
 
 class NodeMenu : public QMenu
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the NodeMenu which is a child of parent. This menu gets its actions from the TreeView with help of the Controller.
+		 * \param parent The parent of this NodeMenu.
+		 */
 		NodeMenu(QWidget *parent = 0);
-		~NodeMenu();
-
-	private:
-		Controller *controller;
 };
 
 #endif // NODEMENU_H
