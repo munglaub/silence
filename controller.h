@@ -45,6 +45,8 @@
  * Controller. These classes are WelcomeView, TextEdit, DataStore
  * and RichTextEdit.
  * To use these classes you can use the get-methods of the Controller.
+ *
+ * \author Manuel Unglaub
  */
 class Controller
 {

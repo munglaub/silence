@@ -40,6 +40,8 @@
  * \brief The main window of Silence.
  *
  * This is the Silence main window. It contains a central widget, several docking widgets and a statusbar.
+ *
+ * \author Manuel Unglaub
  */
 
 class MainWindow : public QMainWindow
