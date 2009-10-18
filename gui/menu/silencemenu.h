@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Yves Adler
+ * Copyright (C) 2009 Yves Adler, Manuel Unglaub
  *
  * This file is part of Silence.
  *
@@ -21,20 +21,37 @@
 #ifndef SILENCEMENU_H
 #define SILENCEMENU_H
 
-#include "controller.h"
 #include <QMenu>
 
+/*!\class SilenceMenu
+ * \brief The main menu of the application.
+ *
+ * Provides actions to exit the application and to access the preferences.
+ *
+ * \authors Yves Adler, Manuel Unglaub
+ */
 
 class SilenceMenu : public QMenu
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the SilenceMenu which is a child of parent.
+		 * \param parent The parent of this SilenceMenu.
+		 */
 		SilenceMenu(QWidget *parent = 0);
+
+		/*! The destruktor.
+		 *
+		 * Destroys the Object.
+		 */
 		~SilenceMenu();
 
 	private:
-		Controller *controller;
+		QAction *preferences,
+				*exit;
 };
 
 #endif // SILENCEMENU_H
