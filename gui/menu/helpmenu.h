@@ -26,12 +26,29 @@
 #include <QMenu>
 
 
+/*!\class HelpMenu
+ * \brief Consists of an action to show some information about Silence.
+ *
+ * This menus action can show informations about Silence.
+ *
+ * \author Manuel Unglaub
+ */
 class HelpMenu : public QMenu
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the HelpMenu which is a child of parent.
+		 * \parm parent The parent of this HelpMenu.
+		 */
 		HelpMenu(QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~HelpMenu();
 
 	private slots:
