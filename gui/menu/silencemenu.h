@@ -45,7 +45,7 @@ class SilenceMenu : public QMenu
 
 		/*! The destruktor.
 		 *
-		 * Destroys the Object.
+		 * Destroys the object.
 		 */
 		~SilenceMenu();
 
