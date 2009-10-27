@@ -23,6 +23,7 @@
 
 #include <QMenu>
 
+
 /*!\class SilenceMenu
  * \brief The main menu of the application.
  *
@@ -30,7 +31,6 @@
  *
  * \authors Yves Adler, Manuel Unglaub
  */
-
 class SilenceMenu : public QMenu
 {
 	Q_OBJECT

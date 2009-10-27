@@ -42,10 +42,12 @@ TextFind::TextFind(QWidget *parent)
 
 	prevBtn = new QPushButton(QIcon(":/icons/actions/go-previous.png"), tr("Previous"));
 	prevBtn->setFlat(true);
+	connect(prevBtn, SIGNAL(clicked()), this, SLOT(prevBtnClicked()));
 	layout->addWidget(prevBtn, 0, 2);
 
 	nextBtn = new QPushButton(QIcon(":/icons/actions/go-next.png"), tr("Next"));
 	nextBtn->setFlat(true);
+	connect(nextBtn, SIGNAL(clicked()), this, SLOT(nextBtnClicked()));
 	layout->addWidget(nextBtn, 0, 3);
 
 	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), "");
@@ -60,10 +62,12 @@ TextFind::TextFind(QWidget *parent)
 
 	replaceBtn = new QPushButton(tr("Replace"));
 	replaceBtn->setFlat(true);
+	connect(replaceBtn, SIGNAL(clicked()), this, SLOT(replaceBtnClicked()));
 	layout->addWidget(replaceBtn, 1, 2);
 
 	replaceAllBtn = new QPushButton(tr("Replace All"));
 	replaceAllBtn->setFlat(true);
+	connect(replaceAllBtn, SIGNAL(clicked()), this, SLOT(replaceAllBtnClicked()));
 	layout->addWidget(replaceAllBtn, 1, 3);
 
 
@@ -115,6 +119,26 @@ void TextFind::show()
 	QWidget::show();
 }
 
+void TextFind::nextBtnClicked()
+{
+	emit findNext();
+}
+
+void TextFind::prevBtnClicked()
+{
+	emit findPrev();
+}
+
+void TextFind::replaceBtnClicked()
+{
+	emit replace();
+}
+
+void TextFind::replaceAllBtnClicked()
+{
+	emit replaceAll();
+}
+
 void TextFind::showMore()
 {
 	optionPanel->setHidden(showAll);
@@ -151,26 +175,6 @@ bool TextFind::getWholeWord()
 	return wordCbx->isChecked();
 }
 
-QPushButton* TextFind::getPrevBtn()
-{
-	return prevBtn;
-}
-
-QPushButton* TextFind::getNextBtn()
-{
-	return nextBtn;
-}
-
-QPushButton* TextFind::getReplaceBtn()
-{
-	return replaceBtn;
-}
-
-QPushButton* TextFind::getReplaceAllBtn()
-{
-	return replaceAllBtn;
-}
-
 void TextFind::findTextChange(const QString &text)
 {
 	if (text.isEmpty())
@@ -185,6 +189,7 @@ void TextFind::findTextChange(const QString &text)
 		replaceBtn->setEnabled(true);
 		replaceAllBtn->setEnabled(true);
 	}
+	emit searchStringChanged(text);
 }
 
 void TextFind::setFound(bool found)
@@ -197,9 +202,5 @@ void TextFind::setFound(bool found)
 	findEdit->setPalette(palette);
 }
 
-QLineEdit* TextFind::getFindEdit()
-{
-	return findEdit;
-}
 
 

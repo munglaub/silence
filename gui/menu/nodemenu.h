@@ -30,7 +30,6 @@
  *
  * \author Manuel Unglaub
  */
-
 class NodeMenu : public QMenu
 {
 	Q_OBJECT

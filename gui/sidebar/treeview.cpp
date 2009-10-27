@@ -69,6 +69,10 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 			const QItemSelection&)),
 			this, SLOT(selectItem()));
 
+	// All rows should have the same height so it should be no problem
+	// to use this option. It should increace the performance of the TreeView.
+	tree->setUniformRowHeights(true);
+
 	tree->setDragEnabled(true);
 	tree->setAcceptDrops(true);
 	tree->setDropIndicatorShown(true);
