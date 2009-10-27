@@ -26,12 +26,31 @@
 #include <QLabel>
 #include <QPushButton>
 
+
+/*!\class AboutDialog
+ * \brief Some infos about Silence.
+ *
+ * This dialog shows some informations about Silence.
+ *
+ * \author Manuel Unglaub
+ */
 class AboutDialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the AboutDialog which is a child of parent.
+		 * \param parent The parent of this AboutDialog.
+		 * \param f The dialog flags f are passed on to the QDialog constructor.
+		 */
 		AboutDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~AboutDialog();
 
 	private:
