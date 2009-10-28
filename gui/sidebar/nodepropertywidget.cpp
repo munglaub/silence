@@ -26,6 +26,7 @@ NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
+	node = 0;
 	layout = new QVBoxLayout;
 
 	tabwidget = new QTabWidget(this);
