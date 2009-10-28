@@ -32,6 +32,7 @@ NodeMenu::NodeMenu(QWidget *parent)
 	QList<QAction*> *actions = controller->getTreeView()->getNodeActions();
 	for (int i=0; i<actions->size(); ++i)
 		addAction(actions->at(i));
+	delete actions;
 }
 
 NodeMenu::~NodeMenu()
