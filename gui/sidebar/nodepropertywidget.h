@@ -21,9 +21,9 @@
 #ifndef NODEPROPERTYWIDGET_H
 #define NODEPROPERTYWIDGET_H
 
-#include "gui/widget/labelwidget.h"
 #include "data/node/node.h"
-#include <QComboBox>
+#include "gui/widget/labelwidget.h"
+#include "gui/widget/syntaxbox.h"
 #include <QDockWidget>
 #include <QFormLayout>
 #include <QFrame>
@@ -62,8 +62,8 @@ class NodePropertyWidget : public QDockWidget
 		QLineEdit *nodeName;
 		QLabel *creationdate;
 		QLabel *modificationdate;
-		QComboBox *syntax;
 		QPushButton *applyNodeInfo;
+		SyntaxBox *syntaxbox;
 
 		// labeltab
 		QGridLayout *labellayout;

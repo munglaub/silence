@@ -34,7 +34,8 @@ SOURCES += 	main.cpp\
 			gui/view/contentview.cpp\
 			gui/view/welcomeview.cpp\
 			gui/widget/textfind.cpp\
-			gui/widget/labelwidget.cpp
+			gui/widget/labelwidget.cpp\
+			gui/widget/syntaxbox.cpp
 
 HEADERS +=	controller.h\
 			persistence/datastore.h\
@@ -67,7 +68,8 @@ HEADERS +=	controller.h\
 			gui/view/contentview.h\
 			gui/view/welcomeview.h\
 			gui/widget/textfind.h\
-			gui/widget/labelwidget.h
+			gui/widget/labelwidget.h\
+			gui/widget/syntaxbox.h
 
 QT		+= xml
 

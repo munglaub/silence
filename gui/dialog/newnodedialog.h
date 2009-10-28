@@ -21,9 +21,9 @@
 #ifndef NEWNODEDIALOG_H
 #define NEWNODEDIALOG_H
 
-#include "gui/widget/labelwidget.h"
 #include "data/node/abstractnodecontent.h"
-#include <QComboBox>
+#include "gui/widget/labelwidget.h"
+#include "gui/widget/syntaxbox.h"
 #include <QDialog>
 #include <QFormLayout>
 #include <QGridLayout>
@@ -57,8 +57,7 @@ class NewNodeDialog : public QDialog
 		QGridLayout *typelayout;
 		QLabel *lbltype;
 		QComboBox *typebox;
-		QLabel *lblhighlight;
-		QComboBox *synbox;
+		SyntaxBox *syntaxbox;
 
 		// labels
 		LabelWidget *labelwidget;
