@@ -27,13 +27,40 @@
 #include <QWidget>
 
 
+/*!\class SyntaxBox
+ * \brief A widget to select a syntax.
+ *
+ * This widget provides a combobox with the available syntax options and an optional describing label.
+ *
+ * \author Manuel Unglaub
+ */
 class SyntaxBox : public QWidget
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the SyntaxBox which is a child of parent.
+		 * \param showLabel Indicates if the describing label will be shown.
+		 * \param parent The parent of this SyntaxBox.
+		 */
 		SyntaxBox(bool showLabel = true, QWidget *parent = 0);
+
+		/*! The destructro.
+		 *
+		 * Destroys the object.
+		 */
 		~SyntaxBox();
 
+		/*!
+		 * Get the selected syntax.
+		 * \return A QString with the selected syntax.
+		 */
 		QString getSyntax();
+
+		/*!
+		 * Select a specific syntax.
+		 * \param syntax The syntax which will be selected.
+		 */
 		void setSyntax(QString syntax);
 	
 	private:
