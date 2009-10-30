@@ -19,9 +19,6 @@
  */
 
 #include "gui/sidebar/infosidebar.h"
-#include <QGridLayout>
-#include <QLabel>
-#include <QWidget>
 
 
 InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
