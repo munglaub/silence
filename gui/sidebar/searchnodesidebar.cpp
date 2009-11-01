@@ -27,7 +27,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 {
 	// Setup the listproxy, which basically transforms the tree into a flat strcuture
 	listProxy = new ListProxyModel;
-	QAbstractItemModel *treemodel = Controller::create()->getTreeView()->getTree()->model();
+	QAbstractItemModel *treemodel = Controller::create()->getTreeView()->getTreeModel();
 	listProxy->setSourceModel(treemodel);
 	// update the proxy when nodes are added or removed
 	connect(treemodel, SIGNAL(rowsInserted(const QModelIndex&, int, int)), listProxy, SLOT(update()));
@@ -116,10 +116,8 @@ void SearchNodeSidebar::toggleOptionsVisibility()
 
 void SearchNodeSidebar::selectionChanged(QModelIndex current)
 {
-	QTreeView *tree = Controller::create()->getTreeView()->getTree();
-	tree->selectionModel()->clearSelection();
-	tree->selectionModel()->setCurrentIndex(filtermodel->mapToSource(current), QItemSelectionModel::Select);
-	Controller::create()->getTreeView()->selectItem();
+	QModelIndex sourceIndex = filtermodel->mapToSource(current);
+	Controller::create()->getTreeView()->selectItem(sourceIndex);
 }
 
 void SearchNodeSidebar::setupSearchRow()
