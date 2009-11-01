@@ -50,7 +50,7 @@ class NodePropertyWidget : public QDockWidget
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs a NodePropertyWidget which is a child of parent hand has the provided window flags. The NodePropertyWidget will be paced in the right dock widget area.
+		 * Constructs a NodePropertyWidget which is a child of parent and has the provided window flags. The NodePropertyWidget will be paced in the right dock widget area.
 		 *
 		 * The window title is set to title. This title is used when the NodePropertyWidget is docked and undocked. It is also used in the context menu provided by MainWindow.
 		 * The parameters will be passed to the QDockWidget constructor.
