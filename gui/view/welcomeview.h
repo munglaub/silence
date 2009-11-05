@@ -25,12 +25,30 @@
 #include <QLabel>
 #include <QWidget>
 
+
+/*!\class WelcomeView
+ * \brief A widget which contains some informations about Silence.
+ *
+ * The WelcomeView contains some informations about Silence and should be shown if no node is selected.
+ *
+ * \author Manuel Unglaub
+ */
 class WelcomeView : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the WelcomeView which is a child of parent.
+		 * \param parent The parent of this WelcomeView.
+		 */
 		WelcomeView(QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destructs the object.
+		 */
 		~WelcomeView();
 
 	private:
