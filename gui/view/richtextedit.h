@@ -59,7 +59,7 @@ class RichTextEdit : public QWidget
 
 		/*!
 		 * Provide the RichTextEdit with a content to show and edit.
-		 * \param content The content wich will be shown by this RichTextEdit.
+		 * \param content The content which will be shown by this RichTextEdit.
 		 */
 		void setContent(RichTextNodeContent *content);
 

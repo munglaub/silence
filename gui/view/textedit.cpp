@@ -22,6 +22,7 @@
 #include "gui/view/textedit.h"
 #include <QApplication>
 #include <QClipboard>
+#include <QToolBar>
 #include <Qsci/qscilexerbash.h>
 #include <Qsci/qscilexerbatch.h>
 #include <Qsci/qscilexercmake.h>
@@ -43,7 +44,6 @@
 #include <Qsci/qscilexersql.h>
 #include <Qsci/qscilexertex.h>
 #include <Qsci/qscilexervhdl.h>
-#include <QToolBar>
 
 
 
