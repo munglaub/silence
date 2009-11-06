@@ -116,10 +116,10 @@ TreeView* Controller::getTreeView() const
 	return treeview;
 }
 
-DataStore* Controller::getDataStore()
+AbstractDataStore* Controller::getDataStore()
 {
 	if (datastore == 0)
-		datastore = new DataStore;
+		datastore = new XmlDataStore;
 	return datastore;
 }
 

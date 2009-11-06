@@ -5,7 +5,7 @@ TEMPLATE = app
 
 SOURCES += 	main.cpp\
 			controller.cpp\
-			persistence/datastore.cpp\
+			persistence/xmldatastore.cpp\
 			data/node/node.cpp\
 			data/node/nodeid.cpp\
 			data/node/textnodecontent.cpp\
@@ -38,7 +38,8 @@ SOURCES += 	main.cpp\
 			gui/widget/syntaxbox.cpp
 
 HEADERS +=	controller.h\
-			persistence/datastore.h\
+			persistence/abstractdatastore.h\
+			persistence/xmldatastore.h\
 			data/node/node.h\
 			data/node/nodeid.h\
 			data/node/abstractnodecontent.h\

@@ -18,49 +18,31 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DATASTORE_H
-#define DATASTORE_H
+#ifndef ABSTRACTDATASTORE_H
+#define ABSTRACTDATASTORE_H
 
 #include "data/node/node.h"
 #include "data/label.h"
 #include <QObject>
-#include <QDomDocument>
 
 
-class DataStore : public QObject
+class AbstractDataStore : public QObject
 {
 	Q_OBJECT
 
 	public:
-		DataStore();
-		~DataStore();
+		virtual Node* getRootNode() = 0;
+		virtual Label* getRootLabel() = 0;
 
-		Node* getRootNode();
-		Label* getRootLabel();
+		virtual void removeNode(Node *node) = 0;
+		virtual void addNode(Node *node) = 0;
 
-		void removeNode(Node *node);
-		void addNode(Node *node);
-
-		void addLabel(Label *label);
-		void removeLabel(Label *label);
+		virtual void addLabel(Label *label) = 0;
+		virtual void removeLabel(Label *label) = 0;
 
 	public slots:
-		void saveNode(Node *node);
-	
-	private:
-		Node *rootNode;
-		Label *rootLabel;
-		static const QString DATA_FILE;
-
-		void saveAll();
-
-		void xmlToLabels(QDomElement &xmlLabels, Label* label);
-
-		void addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc);
-		void xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc);
-
-		void writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel);
+		virtual void saveNode(Node *node) = 0;
 };
 
-#endif // DATASTORE_H
+#endif // ABSTRACTDATASTORE_H
 

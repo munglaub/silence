@@ -21,7 +21,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "persistence/datastore.h"
 #include "gui/menu/editmenu.h"
 #include "gui/sidebar/infosidebar.h"
 #include "gui/sidebar/nodepropertywidget.h"
@@ -32,6 +31,8 @@
 #include "gui/view/richtextedit.h"
 #include "gui/view/textedit.h"
 #include "gui/view/welcomeview.h"
+#include "persistence/abstractdatastore.h"
+#include "persistence/xmldatastore.h"
 
 
 /*!\class Controller
@@ -95,11 +96,11 @@ class Controller
 		RichTextEdit* getRichTextEdit();
 
 		/*!
-		 * Get a pointer to the DataStore. The Controller will manage the
-		 * DataStore, that means it will create and destroy it.
-		 * \return A pointer to the DataStore.
+		 * Get a pointer to the datastore. The Controller will manage the
+		 * datastore, that means it will create and destroy it. The datastore is the backend responsible for persisting the data. The following datastores are availlable: XmlDataStore
+		 * \return A pointer to the AbstractDataStore.
 		 */
-		DataStore* getDataStore();
+		AbstractDataStore* getDataStore();
 
 		/*!
 		 * This function provides the Controller with a pointer to the InfoSidebar.
@@ -191,7 +192,7 @@ class Controller
 		NodePropertyWidget *nodepropertywidget;
 		EditMenu *editmenu;
 
-		DataStore *datastore;
+		AbstractDataStore *datastore;
 };
 
 #endif // CONTROLLER_H
