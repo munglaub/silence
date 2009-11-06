@@ -25,18 +25,49 @@
 #include <QStatusBar>
 
 
+/*!\class StatusBar
+ * \brief The statusbar for the MainWindow.
+ *
+ * This StatusBar is used in the MainWindow to show some status informations.
+ *
+ * \author Manuel Unglaub
+ */
 class StatusBar : public QStatusBar
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the StatusBar which is a child of parent.
+		 * \param parent The parent of this StatusBar.
+		 */
 		StatusBar(QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~StatusBar();
 
+		/*!
+		 * Display the currently selected nodes name.
+		 * \param name The string which will be shown in this StatusBar.
+		 */
 		void setNodeName(QString name);
 	
 	public slots:
+		/*!
+		 * Display the current cursor position in this StatusBar.
+		 * \param line Set the line of the current cursor position.
+		 * \param col Set the column of the current cursor position.
+		 */
 		void setCursorPosition(int line, int col);
+
+		/*!
+		 * Show if the currently selected node is saved.
+		 * \param saved If true it will show that the content is saved and if it is false it will show that the content is changend.
+		 */
 		void setSaveStatus(bool saved);
 
 	private:
