@@ -21,26 +21,64 @@
 #ifndef ABSTRACTDATASTORE_H
 #define ABSTRACTDATASTORE_H
 
-#include "data/node/node.h"
 #include "data/label.h"
+#include "data/node/node.h"
 #include <QObject>
 
 
+/*!\class AbstractDataStore
+ * \brief An abstract class for the persistence backend.
+ *
+ * Implement this abstract class to create a persistence layer for this application. Which implementation of this class is used will be decided in the Controller.
+ *
+ * \author Manuel Unglaub
+ */
 class AbstractDataStore : public QObject
 {
 	Q_OBJECT
 
 	public:
+		/*!
+		 * Get the node whose childs are the first level of nodes.
+		 * \return The root of the nodes.
+		 */
 		virtual Node* getRootNode() = 0;
+
+		/*!
+		 * Get the root label of the hierarchical label structure.
+		 * \return The root of the label structure.
+		 */
 		virtual Label* getRootLabel() = 0;
 
+		/*!
+		 * Remove a node with all its subnodes from the persistence layer.
+		 * \param node The node which will be removed from the persistence layer.
+		 */
 		virtual void removeNode(Node *node) = 0;
+
+		/*!
+		 * Add a node to the persistence layer.
+		 * \param node The node which will be added to the persistence layer.
+		 */
 		virtual void addNode(Node *node) = 0;
 
+		/*!
+		 * Add a label to the persistence layer.
+		 * \param label The label wich will be added to the persistence layer.
+		 */
 		virtual void addLabel(Label *label) = 0;
+
+		/*!
+		 * Remove a label from the persistence layer.
+		 * \param label The label which will be removed from the persistence layer.
+		 */
 		virtual void removeLabel(Label *label) = 0;
 
 	public slots:
+		/*!
+		 * Save a node which has changed.
+		 * \param node This node will be saved with all its changes.
+		 */
 		virtual void saveNode(Node *node) = 0;
 };
 
