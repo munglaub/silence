@@ -48,7 +48,8 @@ Node* TreeModel::getItem(const QModelIndex &index) const
 
 int TreeModel::columnCount(const QModelIndex&) const
 {
-	return rootItem->columnCount();
+	// only one column
+	return 1;
 }
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const

@@ -130,8 +130,7 @@ void NodePropertyWidget::saveNodeInfo()
 void NodePropertyWidget::saveLabels()
 {
 	node->getLabels()->clear();
-	for (int i=0; i<labelwidget->getLabels().size(); ++i)
-		node->addLabel(labelwidget->getLabels().at(i));
+	node->addLabels(labelwidget->getLabels());
 }
 
 void NodePropertyWidget::updateLabels()

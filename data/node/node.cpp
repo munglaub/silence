@@ -20,8 +20,6 @@
 
 #include "controller.h"
 #include "data/node/node.h"
-#include <QDateTime>
-#include <QString>
 
 
 Node::Node(Node *parent)
@@ -29,7 +27,7 @@ Node::Node(Node *parent)
 	this->caption = "";
 	this->parent = parent;
 	
-	content = NULL;
+	content = 0;
 	creationDate = QDateTime::currentDateTime();
 	modificationDate = QDateTime::currentDateTime();
 }
@@ -94,7 +92,9 @@ bool Node::addChild(Node* child, int position)
 
 Node* Node::getChild(int index) const
 {
-	return children.value(index);
+	if (index < 0 || index >= children.size())
+		return 0;
+	return children.at(index);
 }
 
 int Node::getChildCount() const
@@ -155,12 +155,6 @@ bool Node::setCaption(QString caption)
 	return true;
 }
 
-int Node::columnCount() const
-{
-	// the treeview has only 1 column
-	return 1;
-}
-
 AbstractNodeContent* Node::getContent() const
 {
 	return content;
@@ -207,6 +201,7 @@ void Node::addLabel(QString label)
 void Node::addLabels(QStringList labels)
 {
 	this->labels = this->labels + labels;
+	change();
 }
 
 bool Node::removeLabel(QString label)
