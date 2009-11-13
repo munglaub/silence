@@ -19,7 +19,7 @@
  */
 
 #include "data/node/nodeid.h"
-#include <QString>
+
 
 int NodeId::highestid = 0;
 
@@ -55,6 +55,7 @@ QString* NodeId::toString()
 	result->setNum(id);
 	return result;
 }
+
 
 QByteArray NodeId::toByteArray()
 {

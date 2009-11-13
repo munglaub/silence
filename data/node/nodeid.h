@@ -23,15 +23,53 @@
 
 #include <QString>
 
+
+/*!\class NodeId
+ * \brief A id for the Node.
+ *
+ * The NodeId provides a id for the nodes. It can generate a unique id and provide this id in differtent types.
+ *
+ * \author Manuel Unglaub
+ */
 class NodeId
 {
 	public:
+		/*!
+		 * A constructor.
+		 *
+		 * Constructs the NodId and will generate a unique id.
+		 */
 		NodeId();
+
+		/*! A constructor.
+		 *
+		 * Constructs the NodeId and will set the id.
+		 * \param nodeid The id of theis NodeId.
+		 */
 		NodeId(int nodeid);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NodeId();
 
+		/*!
+		 *	Get the id of this NodeId as an int.
+		 * \return The id of this NodeId.
+		 */
 		int getId() const;
+
+		/*!
+		 * Get the id of this NodeId as a QString.
+		 * \return The id of this NodeId.
+		 */
 		QString* toString();
+
+		/*!
+		 * Get the id of this NodeId as a QByteArray.
+		 * \return The id of this NodeId.
+		 */
 		QByteArray toByteArray();
 
 	private:
