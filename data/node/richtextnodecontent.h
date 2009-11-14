@@ -22,8 +22,6 @@
 #define RICHTEXTNODECONTENT_H
 
 #include "data/node/abstractnodecontent.h"
-#include <QHash>
-#include <QWidget>
 
 
 class RichTextNodeContent : public AbstractNodeContent
