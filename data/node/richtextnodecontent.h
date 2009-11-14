@@ -24,12 +24,28 @@
 #include "data/node/abstractnodecontent.h"
 
 
+/*!\class RichTextNodeContent
+ * \brief A content with formatted text for the Node.
+ *
+ * This content contains formatted text with meta infos.
+ *
+ * \author Manuel Unglaub
+ */
 class RichTextNodeContent : public AbstractNodeContent
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs a RichTextNodeContent.
+		 */
 		RichTextNodeContent();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~RichTextNodeContent();
 		
 		QWidget* getWidget();
@@ -38,7 +54,18 @@ class RichTextNodeContent : public AbstractNodeContent
 		QString getMimeType();
 		bool contains(const QString& value);
 
+		/*!
+		 * Set the text of this RichTextNodeContent.
+		 * \param text The text that will be assigned to this RichTextNodeContent.
+		 * \sa getText()
+		 */
 		void setText(QString text);
+
+		/*!
+		 * Get the text of this RichTextNodeContent.
+		 * \return The text of this RichTextNodeContent.
+		 * \sa setText()
+		 */
 		QString getText() const;
 
 		QDomElement getXmlData(QDomDocument &doc);
@@ -48,6 +75,9 @@ class RichTextNodeContent : public AbstractNodeContent
 		QIcon getIcon();
 	
 	signals:
+		/*!
+		 * This signal will be emitted after calling addMetaInfo() and setText().
+		 */
 		void changed();
 
 	private:
