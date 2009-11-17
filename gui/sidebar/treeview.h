@@ -82,7 +82,7 @@ class TreeView : public QDockWidget
 
 		/*!
 		 * Select a node by a given QModelIndex.
-		 * \param index The QModelIndex of the node which will be selected.
+		 * \param item The QModelIndex of the node which will be selected.
 		 */
 		void selectItem(QModelIndex &item);
 

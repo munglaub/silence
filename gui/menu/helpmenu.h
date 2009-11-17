@@ -41,7 +41,7 @@ class HelpMenu : public QMenu
 		/*! The constructor.
 		 *
 		 * Constructs the HelpMenu which is a child of parent.
-		 * \parm parent The parent of this HelpMenu.
+		 * \param parent The parent of this HelpMenu.
 		 */
 		HelpMenu(QWidget *parent = 0);
 

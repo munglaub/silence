@@ -30,11 +30,6 @@ TreeModel::TreeModel(QObject *parent)
 	rootItem = Controller::create()->getDataStore()->getRootNode();
 }
 
-TreeModel::~TreeModel()
-{
-	delete rootItem;
-}
-
 Node* TreeModel::getItem(const QModelIndex &index) const
 {
 	if (index.isValid())
@@ -48,7 +43,6 @@ Node* TreeModel::getItem(const QModelIndex &index) const
 
 int TreeModel::columnCount(const QModelIndex&) const
 {
-	// only one column
 	return 1;
 }
 
@@ -96,7 +90,7 @@ Qt::DropActions TreeModel::supportedDropActions() const
 QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return rootItem->getCaption();
+		return QVariant(tr("Title"));
 
 	return QVariant();
 }

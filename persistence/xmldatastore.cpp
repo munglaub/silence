@@ -32,7 +32,6 @@ const QString XmlDataStore::DATA_FILE("data.xml");
 XmlDataStore::XmlDataStore()
 {
 	rootNode = new Node();
-	rootNode->setCaption(tr("Title")); // treecaption
 
 	rootLabel = new Label(tr("Label"));
 
@@ -60,7 +59,7 @@ XmlDataStore::XmlDataStore()
 
 XmlDataStore::~XmlDataStore()
 {
-	//delete root; // not necessary, is done in the treemodel
+	delete rootNode;
 	delete rootLabel;
 }
 
