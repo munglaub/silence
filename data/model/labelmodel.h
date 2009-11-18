@@ -50,7 +50,7 @@ class LabelModel : public QAbstractItemModel
 		 * Get the data of a Label specified by an index and a role.
 		 *
 		 * \param index The index of the requested data.
-		 * \param role The rodle of the requested data.
+		 * \param role The role of the requested data.
 		 * \return The data stored under the given role for the item referred to by the index.
 		 * \sa setData()
 		 */
