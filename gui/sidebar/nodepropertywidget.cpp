@@ -47,7 +47,7 @@ NodePropertyWidget::~NodePropertyWidget()
 	delete labelframe;
 
 	delete applyNodeInfo;
-	delete syntax;
+	delete syntaxbox;
 	delete modificationdate;
 	delete creationdate;
 	delete nodeName;
@@ -65,30 +65,8 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 	nodeName = new QLineEdit;
 	infolayout->addRow(tr("Node name:"), nodeName);
 	
-	syntax = new QComboBox;
-	syntax->addItem(tr("None"));
-	syntax->addItem("Bash");
-	syntax->addItem("Batch");
-	syntax->addItem("CMake");
-	syntax->addItem("C++");
-	syntax->addItem("C#");
-	syntax->addItem("CSS");
-	syntax->addItem("D");
-	syntax->addItem("Diff");
-	syntax->addItem("HTML");
-	syntax->addItem("IDL");
-	syntax->addItem("Java");
-	syntax->addItem("JavaScript");
-	syntax->addItem("Lua");
-	syntax->addItem("Makefile");
-	syntax->addItem("Perl");
-	syntax->addItem("POV");
-	syntax->addItem("Python");
-	syntax->addItem("Ruby");
-	syntax->addItem("SQL");
-	syntax->addItem("TeX");
-	syntax->addItem("VHDL");
-	infolayout->addRow(tr("Syntax:"), syntax);
+	syntaxbox = new SyntaxBox(false);
+	infolayout->addRow(tr("Syntax:"), syntaxbox);
 	
 	creationdate = new QLabel("");
 	infolayout->addRow(tr("Creationdate:"), creationdate);
@@ -127,12 +105,12 @@ void NodePropertyWidget::setNode(Node* node)
 	// nodeinfos
 	this->node = node;
 	nodeName->setText(node->getCaption());
-	syntax->setEnabled(false);
+	syntaxbox->setEnabled(false);
 	if (node->getContent() != 0)
 		if (node->getContent()->getMimeType() == "text/plain")
 		{
-			syntax->setEnabled(true);
-			syntax->setCurrentIndex(syntax->findText(node->getContent()->getMetaInfos()->value("Syntax")));
+			syntaxbox->setEnabled(true);
+			syntaxbox->setSyntax(node->getContent()->getMetaInfos()->value("Syntax"));
 		}
 
 	creationdate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
@@ -146,15 +124,14 @@ void NodePropertyWidget::setNode(Node* node)
 void NodePropertyWidget::saveNodeInfo()
 {
 	node->setCaption(nodeName->text());
-	if (syntax->isEnabled())
-		node->getContent()->addMetaInfo("Syntax", syntax->currentText());
+	if (syntaxbox->isEnabled())
+		node->getContent()->addMetaInfo("Syntax", syntaxbox->getSyntax());
 }
 
 void NodePropertyWidget::saveLabels()
 {
 	node->getLabels()->clear();
-	for (int i=0; i<labelwidget->getLabels().size(); ++i)
-		node->addLabel(labelwidget->getLabels().at(i));
+	node->addLabels(labelwidget->getLabels());
 }
 
 void NodePropertyWidget::updateLabels()

@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Yves Adler
+ * Copyright (C) 2009 Yves Adler, Manuel Unglaub
  *
  * This file is part of Silence.
  *
@@ -24,20 +24,20 @@
 SilenceMenu::SilenceMenu(QWidget *parent)
 	: QMenu(parent)
 {
-	controller = Controller::create();
-
 	setTitle(tr("&Silence"));
 
-	QAction *preferences = addAction(tr("Preferences"));
+	preferences = addAction(tr("Preferences"));
 	preferences->setEnabled(false);
 
 	addSeparator();
 
-	QAction *exit = addAction(QIcon(":/icons/actions/application-exit.png"), tr("&Exit"));
+	exit = addAction(QIcon(":/icons/actions/application-exit.png"), tr("&Exit"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 SilenceMenu::~SilenceMenu()
 {
+	delete preferences;
+	delete exit;
 }
 

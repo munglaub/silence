@@ -27,45 +27,171 @@
 #include <QVariant>
 
 
+/*!\class TreeModel
+ * \brief A tree model for the nodes.
+ *
+ * This model is a implementation of the QAbstractItemModel. For more informations take a look at the QT documentation.
+ *
+ * The model is used by the TreeView.
+ *
+ * \author Manuel Unglaub
+ */
 class TreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the TreeModel which is a child of parent.
+		 * \param parent The parent of this TreeModel.
+		 */
 		TreeModel(QObject *parent = 0);
-		~TreeModel();
 
-		// fuer die caption
+		/*!
+		 * Get the caption or icon, dependent on the role, of a Node specified by the index.
+		 * \param index The index of the requested data.
+		 * \param role The role of the requested data.
+		 * \return The data stored under the given role for the item referred to by the index.
+		 * \sa setData()
+		 */
 		QVariant data(const QModelIndex &index, int role) const;
 
-		// make sure the model has the right setup
+		/*!
+		 * Sets the role data for the item at index to value. The dataChanged() signal will be emitted if the data was successfully set.
+		 *
+		 * \param index The index of the Node.
+		 * \param value The caption for the Node.
+		 * \param role The role the data is for. Only Qt::EditRole will have any effect.
+		 * \return True if successfull.
+		 * \sa data()
+		 */
+		bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+
+		/*!
+		 * Returns the item flags for the given index.
+		 *
+		 * \param index The index for the requested flags.
+		 * \return If the index is valid a combination of the following flags: Qt::ItemIsEnabled, Qt::ItemIsSelectable, Qt::ItemIsEditable, Qt::ItemIsDragEnabled, Qt::ItemIsDropEnabled.
+		 */
 		Qt::ItemFlags flags(const QModelIndex &index) const;
 
-		// get the data stored in the nodes
+		/*!
+		 * Returns the date for the header.
+		 *
+		 * \param section The section of the requested data.
+		 * \param orientation The orientation of the requested data.
+		 * \param role The role of the requested data.
+		 * \return The header data.
+		 */
 		QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     
-		// a model must implement the index function
+		/*!
+		 * Get a specified index.
+		 *
+		 * \param row The row of the requested index.
+		 * \param column The column of the requested index.
+		 * \param parent The parent of the requested index.
+		 * \return The requested index.
+		 */
 		QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
 
-		// get the model index of the parent of a given model index
+		/*!
+		 * Get the parent of a specified index.
+		 *
+		 * \param index The child of the requested index.
+		 * \return The parent index of the specified index.
+		 */
 		QModelIndex parent(const QModelIndex &index) const;
 	
-		// returns the number of childs of a given model index
+		/*!
+		 * Get the number of children of a specified index.
+		 *
+		 * \param parent The index for the request of the number of its children.
+		 * \return The number of rows under the given parent.
+		 * \sa columnCount()
+		 */
 		int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	
-		// returns how many columns a given model index has
+		/*!
+		 * Get the number of columns for the children of the given parent.
+		 *
+		 * \param parent The number of columns for the children under the given parent. (not used)
+		 * \return The number of columns for the children of the given parent. Always 1 because there is only one column at the moment.
+		 * \sa rowCount()
+		 */
 		int columnCount(const QModelIndex &parent = QModelIndex()) const;
-		bool insertRows(int position, int rows, const QModelIndex &parent = QModelIndex());
-		bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-		bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());
-		Node* getItem(const QModelIndex &index) const;
 
+		/*!
+		 * Insert rows at a specified position to a given parent.
+		 *
+		 * \param position The position in the list of children of the parent.
+		 * \param rows The number of rows to insert.
+		 * \param parent The parent to insert the rows.
+		 * \return True if successfull.
+		 * \sa removeRows()
+		 */
+		bool insertRows(int position, int rows, const QModelIndex &parent = QModelIndex());
+
+		/*!
+		 * Remove rows at a specified position from a given parent.
+		 *
+		 * \param position The position in th list of children of the parent.
+		 * \param rows The number of rows to remove.
+		 * \param parent The parent to remove the rows from.
+		 * \return True if successfull.
+		 * \sa insertRows()
+		 */
+		bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());
+
+		/*!
+		 * Find out which drop actions are supported by this model.
+		 *
+		 * \return The drop actions supported by this model.
+		 */
 		Qt::DropActions supportedDropActions() const;
+
+		/*!
+		 * Returns an object that contains serialized items of data corresponding to the list of indexes specified. The formats used to describe the encoded data is obtained from the mimeTypes() function.
+		 *
+		 * \param indexes The indexes that will be serialized.
+		 * \return The object that contains serialized items of data.
+		 */
 		QMimeData* mimeData(const QModelIndexList &indexes) const;
+
+		/*!
+		 * Handles the data supplied by a drag and drop operation that ended with the given action.
+		 *
+		 * \param data The data supplied by a drag and drop operation.
+		 * \param action The action the drag and drop operation ended with.
+		 * \param row The row where the drag and drop operation ended.
+		 * \param column The column where the drag and drop operation ended.
+		 * \param parent The parent where the drag and drop operation ended.
+		 * \return True if the dropping was successfull.
+		 */
 		bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
+
+		/*!
+		 * Get a list of MIME types that can be used to describe a list of model indexes.
+		 *
+		 * \return A list of MIME types that can be used to describe a list of model indexes.
+		 */
 		QStringList mimeTypes() const;
 
+		/*!
+		 * Get the node from a specified index.
+		 *
+		 * \param index The index of the requested Node.
+		 * \return The node specified by the given index.
+		 */
+		Node* getItem(const QModelIndex &index) const;
+
 	signals:
+		/*!
+		 * This signal will be emitted after a successfull drop operation.
+		 *
+		 * \param index The index of the dropped node.
+		 */
 		void dropped(QModelIndex index);
 
 	private:

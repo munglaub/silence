@@ -18,14 +18,14 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "controller.h"
 #include "gui/menu/nodemenu.h"
-#include "gui/dialog/newnodedialog.h"
 
 
 NodeMenu::NodeMenu(QWidget *parent)
 	: QMenu(parent)
 {
-	controller = Controller::create();
+	Controller *controller = Controller::create();
 
 	setTitle(tr("&Node"));
 
@@ -33,9 +33,5 @@ NodeMenu::NodeMenu(QWidget *parent)
 	for (int i=0; i<actions->size(); ++i)
 		addAction(actions->at(i));
 	delete actions;
-}
-
-NodeMenu::~NodeMenu()
-{
 }
 

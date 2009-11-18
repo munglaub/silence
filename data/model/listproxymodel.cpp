@@ -22,17 +22,6 @@
 #include "data/node/node.h"
 
 
-ListProxyModel::ListProxyModel(QObject * parent)
-    : QAbstractProxyModel(parent)
-{
-	// TODO: remove if not needed
-}
-
-ListProxyModel::~ListProxyModel()
-{
-	// TODO: remove if not needed
-}
-
 Qt::ItemFlags ListProxyModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())

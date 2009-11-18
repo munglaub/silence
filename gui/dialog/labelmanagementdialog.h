@@ -33,12 +33,30 @@
 #include <QTreeView>
 
 
+/*!\class LabelManagementDialog
+ * \brief A dialog to manage the labels.
+ *
+ * This dialog should be used to add and remove labels to the system.
+ *
+ * \author Manuel Unglaub
+ */
 class LabelManagementDialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the LabelManagemetDialog which is a child of parent.
+		 * \param parent The parent of this LabelManagementDialog.
+		 * \param f The dialog flags f are passed on to the QDialog constructor.
+		 */
 		LabelManagementDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~LabelManagementDialog();
 
 	private slots:

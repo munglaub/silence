@@ -30,35 +30,108 @@
 #include <QAction>
 
 
+/*!\class TextFind
+ * \brief A find and replace widget.
+ *
+ * The TextFind widget proviedes a GUI to search and replace text. The replace part is hiden per default and can be shown when needed. It provides the options choosen by the user and emittes signal when certain actions are triggered.
+ *
+ * This widget has no search or replace capabilities. It just provides a GUI.
+ *
+ * \authors Manuel Unglaub, Yves Adler
+ */
 class TextFind : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the TextFind which is a child of parent.
+		 * \param parent The parent of this TextFind.
+		 */
 		TextFind(QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~TextFind();	
 
+		/*!
+		 * Find out if the match case option is selected.
+		 * \return True if the match case option is selected.
+		 */
 		bool getCaseSensitivity();
+
+		/*!
+		 * Find out if the match whole word option is selected.
+		 * \return True if the match whole word option is selected.
+		 */
 		bool getWholeWord();
+
+		/*!
+		 * Get the string entered in the search lineedit.
+		 * \return The entered searchstring.
+		 */
 		QString getSearchString();
+
+		/*!
+		 * Get the string entered in the replace lineedit.
+		 * \return The entered replacestring.
+		 */
 		QString getReplaceString();
 
-		QPushButton* getPrevBtn();
-		QPushButton* getNextBtn();
-		QLineEdit* getFindEdit();
-
-		QPushButton* getReplaceBtn();
-		QPushButton* getReplaceAllBtn();
-
+		/*!
+		 * This function will color the edit field of the TextFind to indicate if a searchstring was found.
+		 * \param found Should indicate if a searchstring was found.
+		 */
 		void setFound(bool found);
 
 	
 	public slots:
+		/*!
+		 * Show the TextFind widget.
+		 */
 		void show();
+
+		/*!
+		 * Show the full TextFind widget including the replace parts.
+		 */
 		void showMore();
+
+	signals:
+		/*!
+		 * The find next action was triggered.
+		 */
+		void findNext();
+
+		/*!
+		 * The find previous action was triggered.
+		 */
+		void findPrev();
+
+		/*!
+		 * The replace action was triggered.
+		 */
+		void replace();
+
+		/*!
+		 * The replace all action was triggered.
+		 */
+		void replaceAll();
+
+		/*!
+		 * This signal is emitted when the searchstring is changed.
+		 * \param searchString The changed searchString.
+		 */
+		void searchStringChanged(const QString& searchString);
 
 	private slots:
 		void findTextChange(const QString &text);
+		void nextBtnClicked();
+		void prevBtnClicked();
+		void replaceBtnClicked();
+		void replaceAllBtnClicked();
 
 	private:
 		bool showAll;

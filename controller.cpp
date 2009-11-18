@@ -39,6 +39,13 @@ Controller::Controller()
 Controller::~Controller()
 {
 	delete datastore;
+
+	if (welcomeview)
+		delete welcomeview;
+	if (textedit)
+		delete textedit;
+	if (richtextedit)
+		delete richtextedit;
 }
 
 Controller* Controller::create()
@@ -109,10 +116,10 @@ TreeView* Controller::getTreeView() const
 	return treeview;
 }
 
-DataStore* Controller::getDataStore()
+AbstractDataStore* Controller::getDataStore()
 {
 	if (datastore == 0)
-		datastore = new DataStore;
+		datastore = new XmlDataStore;
 	return datastore;
 }
 

@@ -30,18 +30,53 @@
 #include <QWidget>
 
 
+/*!\class LabelWidget
+ * \brief A widget to select labels.
+ *
+ * Use this widget to select labels. It contains a slot to preselect labels an a button to show the LabelManagementDialog.
+ *
+ * \author Manuel Unglaub
+ */
 class LabelWidget : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the LabelWidget which is a child of parent.
+		 * \param parent The parent of this LabelWidget.
+		 * \param showManageLabelsBtn Indicates if the button to manage the labels is visible.
+		 */
 		LabelWidget(QWidget *parent = 0, bool showManageLabelsBtn = true);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~LabelWidget();
 
 	public slots:
+		/*!
+		 * Get a QStringList with all the selected labels.
+		 * \return The selected labels.
+		 */
 		QStringList getLabels() const;
+
+		/*!
+		 * Select all labels which the QStringList contains.
+		 * \param select The labels which will be selected.
+		 */
 		void selectLabels(QStringList select);
+
+		/*!
+		 * Open the LabelManagementDialog.
+		 */
 		void manageLabels();
+
+		/*!
+		 * Reload the the tree with the labels to show the modification made in the LabelManagementDialog.
+		 */
 		void updateLabels();
 
 	private slots:

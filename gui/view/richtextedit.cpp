@@ -54,11 +54,11 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
-	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
-	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
-	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
-	connect(findWidget->getReplaceBtn(), SIGNAL(clicked()), this, SLOT(replace()));
-	connect(findWidget->getReplaceAllBtn(), SIGNAL(clicked()), this, SLOT(replaceAll()));
+	connect(findWidget, SIGNAL(findNext()), this, SLOT(findNext()));
+	connect(findWidget, SIGNAL(findPrev()), this, SLOT(findPrev()));
+	connect(findWidget, SIGNAL(searchStringChanged(const QString&)), this, SLOT(findFirst()));
+	connect(findWidget, SIGNAL(replace()), this, SLOT(replace()));
+	connect(findWidget, SIGNAL(replaceAll()), this, SLOT(replaceAll()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));

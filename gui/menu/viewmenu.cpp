@@ -30,49 +30,49 @@ ViewMenu::ViewMenu(QWidget *parent)
 {
 	setTitle(tr("&View"));
 
-	welcomeView = addAction(tr("Welcome View"));
-	connect(welcomeView, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
+	welcomeViewAction = addAction(tr("Welcome View"));
+	connect(welcomeViewAction, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
 
-	showLabelManagement = addAction(tr("Manage Labels"));
-	connect(showLabelManagement, SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
+	showLabelManagementAction = addAction(tr("Manage Labels"));
+	connect(showLabelManagementAction, SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
 
 	addSeparator();
 
-	showNodeTree = addAction(tr("Node Sidebar"));
-	showNodeTree->setCheckable(true);
+	showNodeTreeAction = addAction(tr("Node Sidebar"));
+	showNodeTreeAction->setCheckable(true);
 	// TODO: Controller::create()->getTreeView()->isVisible() does not work
 	//	 --> find a working solution which is NOT hardcorded!!
-	showNodeTree->setChecked(true);
-	connect(showNodeTree, SIGNAL(triggered(bool)), 
-		Controller::create()->getTreeView(), SLOT(setVisible(bool)));
+	showNodeTreeAction->setChecked(true);
+	connect(showNodeTreeAction, SIGNAL(triggered(bool)),
+		this, SLOT(showNodeTree(bool)));
 
-	showInfo = addAction(tr("Information Sidebar"));
-	showInfo->setCheckable(true);
-	showInfo->setChecked(true);
-	connect(showInfo, SIGNAL(triggered(bool)), 
-		Controller::create()->getInfoSidebar(), SLOT(setVisible(bool)));
+	showInfoAction = addAction(tr("Information Sidebar"));
+	showInfoAction->setCheckable(true);
+	showInfoAction->setChecked(true);
+	connect(showInfoAction, SIGNAL(triggered(bool)),
+		this, SLOT(showInfo(bool)));
 
-	showProperties = addAction(tr("Node Properties Sidebar"));
-	showProperties->setCheckable(true);
-	showProperties->setChecked(false);
-	connect(showProperties, SIGNAL(triggered(bool)), 
-		Controller::create()->getNodePropertyWidget(), SLOT(setVisible(bool)));
+	showPropertiesAction = addAction(tr("Node Properties Sidebar"));
+	showPropertiesAction->setCheckable(true);
+	showPropertiesAction->setChecked(false);
+	connect(showPropertiesAction, SIGNAL(triggered(bool)),
+		this, SLOT(showProperties(bool)));
 
-	showNodeSearch = addAction(tr("Search Nodes Sidebar"));
-	showNodeSearch->setCheckable(true);
-	showNodeSearch->setChecked(true);
-	connect(showNodeSearch, SIGNAL(triggered(bool)), 
-		Controller::create()->getSearchNodeSidebar(), SLOT(setVisible(bool)));
+	showNodeSearchAction = addAction(tr("Search Nodes Sidebar"));
+	showNodeSearchAction->setCheckable(true);
+	showNodeSearchAction->setChecked(true);
+	connect(showNodeSearchAction, SIGNAL(triggered(bool)),
+		this, SLOT(showNodeSearch(bool)));
 }
 
 ViewMenu::~ViewMenu()
 {
-	delete welcomeView;
-	delete showNodeTree;
-	delete showInfo;
-	delete showProperties;
-	delete showNodeSearch;
-	delete showLabelManagement;
+	delete welcomeViewAction;
+	delete showNodeTreeAction;
+	delete showInfoAction;
+	delete showPropertiesAction;
+	delete showNodeSearchAction;
+	delete showLabelManagementAction;
 }
 
 void ViewMenu::showWelcomeView()
@@ -89,4 +89,25 @@ void ViewMenu::showLabelManagementDialog()
 	delete dlg;
 	Controller::create()->getNodePropertyWidget()->updateLabels();
 }
+
+void ViewMenu::showNodeTree(bool visible)
+{
+	Controller::create()->getTreeView()->setVisible(visible);
+}
+
+void ViewMenu::showInfo(bool visible)
+{
+	Controller::create()->getInfoSidebar()->setVisible(visible);
+}
+
+void ViewMenu::showProperties(bool visible)
+{
+	Controller::create()->getNodePropertyWidget()->setVisible(visible);
+}
+
+void ViewMenu::showNodeSearch(bool visible)
+{
+	Controller::create()->getSearchNodeSidebar()->setVisible(visible);
+}
+
 

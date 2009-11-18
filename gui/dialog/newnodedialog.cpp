@@ -50,35 +50,11 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	connect(typebox, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
 	typelayout->addWidget(typebox, 0, 1);
 
-	lblhighlight = new QLabel(tr("Syntax"));
-	typelayout->addWidget(lblhighlight, 0, 2);
-	synbox = new QComboBox;
-	synbox->addItem(tr("None"));
+	syntaxbox = new SyntaxBox;
+	typelayout->addWidget(syntaxbox, 0, 2, 1, 2);
 
-	synbox->addItem("Bash");
-	synbox->addItem("Batch");
-	synbox->addItem("CMake");
-	synbox->addItem("C++");
-	synbox->addItem("C#");
-	synbox->addItem("CSS");
-	synbox->addItem("D");
-	synbox->addItem("Diff");
-	synbox->addItem("HTML");
-	synbox->addItem("IDL");
-	synbox->addItem("Java");
-	synbox->addItem("JavaScript");
-	synbox->addItem("Lua");
-	synbox->addItem("Makefile");
-	synbox->addItem("Perl");
-	synbox->addItem("POV");
-	synbox->addItem("Python");
-	synbox->addItem("Ruby");
-	synbox->addItem("SQL");
-	synbox->addItem("TeX");
-	synbox->addItem("VHDL");
-
-	typelayout->addWidget(synbox, 0, 3);
 	baselayout->addLayout(typelayout);
+
 	indexChanged(typebox->currentIndex());
 
 	// Labels
@@ -107,8 +83,7 @@ NewNodeDialog::~NewNodeDialog()
 	delete lbltype;
 	delete typebox;
 	delete typelayout;
-	delete lblhighlight;
-	delete synbox;
+	delete syntaxbox;
 
 	delete labelwidget;
 
@@ -134,7 +109,7 @@ AbstractNodeContent* NewNodeDialog::getContent() const
 		case 1:
 			TextNodeContent *content;
 			content = new TextNodeContent;
-			content->setSyntax(synbox->currentText());
+			content->setSyntax(syntaxbox->getSyntax());
 			return content;
 			break;
 		default:
@@ -151,13 +126,9 @@ QStringList NewNodeDialog::getLabels() const
 void NewNodeDialog::indexChanged(int index)
 {
 	if (index == 1)
-	{
-		lblhighlight->setEnabled(true);
-		synbox->setEnabled(true);
-	} else {
-		lblhighlight->setEnabled(false);
-		synbox->setEnabled(false);
-	}
+		syntaxbox->setEnabled(true);
+	else
+		syntaxbox->setEnabled(false);
 }
 
 

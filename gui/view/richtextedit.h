@@ -21,8 +21,8 @@
 #ifndef RICHTEXTEDIT_H
 #define RICHTEXTEDIT_H
 
-#include "gui/widget/textfind.h"
 #include "data/node/richtextnodecontent.h"
+#include "gui/widget/textfind.h"
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
@@ -32,16 +32,42 @@
 #include <QWidget>
 
 
+/*!\class RichTextEdit
+ * \brief A widget to show and edit rich text.
+ *
+ * This RichTextEdit is the widget to show and modify the RichTextNodeContent.
+ *
+ * \author Manuel Unglaub
+ */
 class RichTextEdit : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the RichTextEdit which is a child of parent.
+		 * \param parent The parent of this RichTextEdit.
+		 */
 		RichTextEdit(QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~RichTextEdit();
+
+		/*!
+		 * Provide the RichTextEdit with a content to show and edit.
+		 * \param content The content which will be shown by this RichTextEdit.
+		 */
 		void setContent(RichTextNodeContent *content);
 
 	public slots:
+		/*!
+		 * Indicate the visibility of this widget and its actions.
+		 * \param visible If true the RichTextEdit with its actions will be visible.
+		 */
 		void setVisible(bool visible);
 
 	private slots:

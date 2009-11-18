@@ -5,7 +5,7 @@ TEMPLATE = app
 
 SOURCES += 	main.cpp\
 			controller.cpp\
-			persistence/datastore.cpp\
+			persistence/xmldatastore.cpp\
 			data/node/node.cpp\
 			data/node/nodeid.cpp\
 			data/node/textnodecontent.cpp\
@@ -34,10 +34,12 @@ SOURCES += 	main.cpp\
 			gui/view/contentview.cpp\
 			gui/view/welcomeview.cpp\
 			gui/widget/textfind.cpp\
-			gui/widget/labelwidget.cpp
+			gui/widget/labelwidget.cpp\
+			gui/widget/syntaxbox.cpp
 
 HEADERS +=	controller.h\
-			persistence/datastore.h\
+			persistence/abstractdatastore.h\
+			persistence/xmldatastore.h\
 			data/node/node.h\
 			data/node/nodeid.h\
 			data/node/abstractnodecontent.h\
@@ -67,7 +69,8 @@ HEADERS +=	controller.h\
 			gui/view/contentview.h\
 			gui/view/welcomeview.h\
 			gui/widget/textfind.h\
-			gui/widget/labelwidget.h
+			gui/widget/labelwidget.h\
+			gui/widget/syntaxbox.h
 
 QT		+= xml
 

@@ -21,9 +21,9 @@
 #ifndef NEWNODEDIALOG_H
 #define NEWNODEDIALOG_H
 
-#include "gui/widget/labelwidget.h"
 #include "data/node/abstractnodecontent.h"
-#include <QComboBox>
+#include "gui/widget/labelwidget.h"
+#include "gui/widget/syntaxbox.h"
 #include <QDialog>
 #include <QFormLayout>
 #include <QGridLayout>
@@ -33,16 +33,48 @@
 #include <QListWidget>
 
 
+/*!\class NewNodeDialog
+ * \brief A dialog to create a new node.
+ *
+ * This dialog provides the user with a GUI to create a new node. The dialog does not create a node, it only provides the necessary elements to create one.
+ *
+ * \author Manuel Unglaub
+ */
 class NewNodeDialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the NewNodeDialog which is a child of parent.
+		 * \param parent The parent of this NewNodeDialog.
+		 * \param f The dialog flags f are passed on to the QDialog constructor.
+		 */
 		NewNodeDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NewNodeDialog();
 
+		/*!
+		 * Get the caption the user entered at the dialog for the new node.
+		 * \return The caption the user entered.
+		 */
 		QString getCaption() const;
+
+		/*!
+		 * Get the content the user selected at the dialog for the new node.
+		 * \return The content the user selected.
+		 */
 		AbstractNodeContent* getContent() const;
+
+		/*!
+		 * Get the labels the user selected for the new node.
+		 * \return A QStringList which contains the selected labels.
+		 */
 		QStringList getLabels() const;
 
 	private slots:
@@ -57,8 +89,7 @@ class NewNodeDialog : public QDialog
 		QGridLayout *typelayout;
 		QLabel *lbltype;
 		QComboBox *typebox;
-		QLabel *lblhighlight;
-		QComboBox *synbox;
+		SyntaxBox *syntaxbox;
 
 		// labels
 		LabelWidget *labelwidget;

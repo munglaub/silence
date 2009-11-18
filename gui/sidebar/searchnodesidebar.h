@@ -36,12 +36,37 @@
 #include <QRadioButton>
 
 
+/*!\class SearchNodeSidebar
+ * \brief A sidebar to search for nodes.
+ *
+ * The purpose of this SearchNodeSidebar is the ability to search for nodes. It provides a search based on the captions or on the full text of a node. It can restrict the results further by limiting the time period of the last change or the creation date. The contenttype can also be used to refine the search.
+ *
+ * It uses the ListProxyModel and the FilterModel to find the nodes which are searched for.
+ * This widget is allowed to dock at the right and the left docking areas.
+ *
+ * \authors Yves Adler, Manuel Unglaub
+ */
 class SearchNodeSidebar : public QDockWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor
+		 *
+		 * Constructs a SearchNodeSidebar which is a child of parent and has the provided window flags. The SearchNodeSidebar will be places in the left dock widget area.
+		 *
+		 * The window title is set to title. This title is used when the SearchNodeSidebar is docked and undocked. It is also used in the context menu provided by MainWindow.
+		 * The parameters will be passed to the QDockWidget constructor.
+		 * \param title The title of this SearchNodeSidebar.
+		 * \param parent The parent of this SearchNodeSidebar.
+		 * \param flags The window flags of this SearchNodeSidebar.
+		 */
 		SearchNodeSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~SearchNodeSidebar();
 
 	private slots:

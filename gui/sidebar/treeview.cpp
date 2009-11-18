@@ -19,23 +19,13 @@
  */
 
 #include "controller.h"
-#include "gui/dialog/newnodedialog.h"
-#include "gui/sidebar/treeview.h"
+#include "data/model/treemodel.h"
 #include "data/node/richtextnodecontent.h"
 #include "data/node/textnodecontent.h"
-#include "data/model/treemodel.h"
-#include <QAction>
-#include <QContextMenuEvent>
-#include <QDockWidget>
-#include <QList>
-#include <QMessageBox>
-#include <QModelIndex>
+#include "gui/dialog/newnodedialog.h"
+#include "gui/sidebar/treeview.h"
 #include <QPoint>
-#include <QStringList>
-#include <QToolBar>
-#include <QTreeView>
 #include <QVariant>
-#include <QVBoxLayout>
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -43,61 +33,11 @@ TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 {
 	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-
-	// Toolbar
-	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Node"));
-	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Subnode"));
-	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
-	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
-
-	// Tree
-	tree = new QTreeView; 
-	model = new TreeModel;
-	tree->setModel(model);
-	tree->setSelectionBehavior(QAbstractItemView::SelectItems);
-	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
-			const QItemSelection&)),
-			this, SLOT(updateActions()));
-	
-	tree->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(tree, SIGNAL(customContextMenuRequested (const QPoint&)),
-			this, SLOT(showTreeContextMenu()));
-
-	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
-			const QItemSelection&)),
-			this, SLOT(selectItem()));
-
-	tree->setDragEnabled(true);
-	tree->setAcceptDrops(true);
-	tree->setDropIndicatorShown(true);
-	connect(model, SIGNAL(dropped(QModelIndex)), this, SLOT(nodeDropped(QModelIndex)));
-
-	// nodeproperty
-	propertyAction = new QAction(tr("Properties"), this);
-	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
-
-	// question frame
-	question = new QLabel(tr("Are you sure?"));
-	yesButton = new QPushButton(tr("Yes"));
-	noButton = new QPushButton(tr("No"));
-	
-	questionFrame = new QGroupBox(tr("Delete Node"));
-	questionFrame->hide();
-	questionLayout = new QGridLayout;
-	icon = new QLabel();
-	icon->setPixmap(QPixmap(":/icons/status/dialog-warning.png"));
-	questionLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
-	questionLayout->addWidget(question, 0, 1);
-	questionLayout->addWidget(yesButton, 1, 0);
-	questionLayout->addWidget(noButton, 1, 1);
-	questionFrame->setLayout(questionLayout);
+	setupToolbar();
+	setupTree();
+	setupQuestionFrame();
 
 	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
-	connect(noButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
-	connect(yesButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
-	connect(yesButton, SIGNAL(clicked(bool)), this, SLOT(removeTreeItem()));	
 
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
@@ -130,9 +70,16 @@ TreeView::~TreeView()
 	delete frame;
 }
 
-QTreeView* TreeView::getTree()
+TreeModel* TreeView::getTreeModel()
 {
-	return tree;
+	return model;
+}
+
+void TreeView::selectItem(QModelIndex &item)
+{
+	tree->selectionModel()->clearSelection();
+	tree->selectionModel()->setCurrentIndex(item, QItemSelectionModel::Select);
+	selectItem();
 }
 
 void TreeView::addNode(QModelIndex &index, int row)
@@ -167,6 +114,72 @@ void TreeView::addNode(QModelIndex &index, int row)
 		QItemSelectionModel::ClearAndSelect);
 	
 	updateActions();
+}
+
+void TreeView::setupToolbar()
+{
+	toolbar = new QToolBar();
+	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Node"));
+	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
+	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Subnode"));
+	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
+	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
+	propertyAction = toolbar->addAction(QIcon(":/icons/actions/document-properties.png"), tr("Properties"));
+	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
+}
+
+void TreeView::setupTree()
+{
+	tree = new QTreeView;
+	model = new TreeModel;
+	tree->setModel(model);
+	tree->setSelectionBehavior(QAbstractItemView::SelectItems);
+	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
+			const QItemSelection&)),
+			this, SLOT(updateActions()));
+
+	tree->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(tree, SIGNAL(customContextMenuRequested (const QPoint&)),
+			this, SLOT(showTreeContextMenu()));
+
+	connect(tree->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,
+			const QItemSelection&)),
+			this, SLOT(selectItem()));
+
+	// All rows should have the same height so it should be no problem
+	// to use this option. It should increace the performance of the TreeView.
+	tree->setUniformRowHeights(true);
+
+	tree->setDragEnabled(true);
+	tree->setAcceptDrops(true);
+	tree->setDropIndicatorShown(true);
+	connect(model, SIGNAL(dropped(QModelIndex)), this, SLOT(nodeDropped(QModelIndex)));
+}
+
+void TreeView::setupQuestionFrame()
+{
+	questionFrame = new QGroupBox(tr("Delete Node"));
+	questionFrame->hide();
+	questionLayout = new QGridLayout;
+
+	icon = new QLabel();
+	icon->setPixmap(QPixmap(":/icons/status/dialog-warning.png"));
+	questionLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
+
+	question = new QLabel(tr("Are you sure?"));
+	questionLayout->addWidget(question, 0, 1);
+
+	yesButton = new QPushButton(tr("Yes"));
+	questionLayout->addWidget(yesButton, 1, 0);
+
+	noButton = new QPushButton(tr("No"));
+	questionLayout->addWidget(noButton, 1, 1);
+
+	questionFrame->setLayout(questionLayout);
+
+	connect(noButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
+	connect(yesButton, SIGNAL(clicked(bool)), questionFrame, SLOT(hide()));
+	connect(yesButton, SIGNAL(clicked(bool)), this, SLOT(removeTreeItem()));
 }
 
 void TreeView::addRow()
@@ -225,6 +238,7 @@ QList<QAction*>* TreeView::getNodeActions() const
 	result->append(addRowAction);
 	result->append(addChildAction);
 	result->append(removeAction);
+	result->append(propertyAction);
 	return result;
 }
 

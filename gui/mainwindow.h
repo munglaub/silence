@@ -36,13 +36,29 @@
 #include <QMainWindow>
 
 
+/*!\class MainWindow
+ * \brief The main window of Silence.
+ *
+ * This is the Silence main window. It contains a central widget, several docking widgets and a statusbar.
+ *
+ * \author Manuel Unglaub
+ */
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 * Constructs the main window with statusbar, treeview, searchnodesidebar and infosidebar.
+		 * \param parent specifies the widgets parent.
+		 */
 		MainWindow(QWidget *parent = 0);
+		/*! The destructor.
+		 * Destroys the main window with its components.
+		 */
 		~MainWindow();
+
 	private:
 		Controller *controller;
 		ContentView *contentview;

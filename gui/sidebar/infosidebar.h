@@ -23,19 +23,51 @@
 
 #include "data/node/node.h"
 #include <QDockWidget>
-#include <QLabel>
 #include <QGridLayout>
+#include <QLabel>
 
 
+/*!\class InfoSidebar
+ * \brief Sidebar to show informations about a node.
+ *
+ * This sidebar shows informations about a node. It is allowed at the left and right dockingwidgetarea.
+ *
+ * It shows, the caption, an icon, the creation and modification date, the labels and all available metainformations of the node.
+ *
+ * \author Manuel Unglaub
+ */
 class InfoSidebar : public QDockWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs a InfoSidebar which is a child of parent and has the provided window flags. The InfoSidebar will be placed in the right dock widget area.
+		 *
+		 * The window title is set to title. This title is used when the InfoSidebar is docked and undocked. It is also used in the context menu provided by MainWindow.
+		 * The parameters will be passed to the QDockWidget constructor.
+		 * \param title The title of the InfoSidebar.
+		 * \param parent The parent of this InfoSidebar.
+		 * \param flags The window flags of this InfoSidebar.
+		 */
 		InfoSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+
+		/*! The destructor
+		 *
+		 * Destroys the object.
+		 */
 		~InfoSidebar();
 
+		/*!
+		 * Provide this InfoSidebar with a node to show information about.
+		 * \param data The node wich informations will be displayed.
+		 */
 		void setData(Node *data);
+
+		/*!
+		 * Clear out the informations shown at this InfoSidebar.
+		 */
 		void clearInfos();
 
 	private slots:
@@ -43,11 +75,8 @@ class InfoSidebar : public QDockWidget
 
 	private:
 		Node *node; 
-
 		QGridLayout *layout;
 		QFrame *frame;
-
-		// infos aus der node
 		QLabel	*caption,
 				*created,
 				*createdDate,
@@ -60,8 +89,6 @@ class InfoSidebar : public QDockWidget
 				*type,
 				*typeName,
 				*icon;
-
-		// metainfos aus dem content
 };
 
 #endif // INFOSIDEBAR_H

@@ -18,23 +18,22 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "persistence/datastore.h"
-#include "data/node/textnodecontent.h"
 #include "data/node/richtextnodecontent.h"
+#include "data/node/textnodecontent.h"
+#include "persistence/xmldatastore.h"
 #include <QFile>
 #include <QTextStream>
 
 
 // Constant for Datastore file
-const QString DataStore::DATA_FILE("data.xml");
+const QString XmlDataStore::DATA_FILE("data.xml");
 
 
-DataStore::DataStore()
+XmlDataStore::XmlDataStore()
 {
 	rootNode = new Node();
-	rootNode->setCaption(tr("Title")); // treecaption
 
-	rootLabel = new Label(tr("Label"));
+	rootLabel = new Label();
 
 	QDomDocument doc;
 	QFile file(DATA_FILE);
@@ -58,23 +57,23 @@ DataStore::DataStore()
 	}
 }
 
-DataStore::~DataStore()
+XmlDataStore::~XmlDataStore()
 {
-	//delete root; // not necessary, is done in the treemodel
+	delete rootNode;
 	delete rootLabel;
 }
 
-Node* DataStore::getRootNode()
+Node* XmlDataStore::getRootNode()
 {
 	return rootNode;
 }
 
-Label* DataStore::getRootLabel()
+Label* XmlDataStore::getRootLabel()
 {
 	return rootLabel;
 }
 
-void DataStore::xmlToLabels(QDomElement &xmlLabels, Label* label)
+void XmlDataStore::xmlToLabels(QDomElement &xmlLabels, Label* label)
 {
 	QDomNode n = xmlLabels.firstChild();
 	while (!n.isNull())
@@ -90,7 +89,7 @@ void DataStore::xmlToLabels(QDomElement &xmlLabels, Label* label)
 	}
 }
 
-void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc)
+void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc)
 {
 	// node erstellen
 	int index = parentNode->getChildCount();
@@ -140,12 +139,12 @@ void DataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc
 	connect(node, SIGNAL(changed(Node*)), this, SLOT(saveNode(Node*)));
 }
 
-void DataStore::saveNode(Node*)
+void XmlDataStore::saveNode(Node*)
 {
 	saveAll();
 }
 
-void DataStore::saveAll()
+void XmlDataStore::saveAll()
 {
 	// create xmlDocument
 	QDomDocument doc;
@@ -173,7 +172,7 @@ void DataStore::saveAll()
 	file.close();
 }
 
-void DataStore::writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel)
+void XmlDataStore::writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel)
 {
 	for (int i = 0; i < parentLabel->childCount(); ++i)
 	{
@@ -184,7 +183,7 @@ void DataStore::writeLabels(QDomDocument &doc, QDomElement &parent, Label* paren
 	}
 }
 
-void DataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
+void XmlDataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
 {
 	// node tag with id
 	QDomElement xmlNode = doc.createElement("node");
@@ -246,22 +245,22 @@ void DataStore::addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc)
 	}
 }
 
-void DataStore::removeNode(Node*)
+void XmlDataStore::removeNode(Node*)
 {
 	saveAll();
 }
 
-void DataStore::addNode(Node*)
+void XmlDataStore::addNode(Node*)
 {
 	saveAll();
 }
 
-void DataStore::addLabel(Label*)
+void XmlDataStore::addLabel(Label*)
 {
 	saveAll();
 }
 
-void DataStore::removeLabel(Label*)
+void XmlDataStore::removeLabel(Label*)
 {
 	saveAll();
 }

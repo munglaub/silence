@@ -18,22 +18,39 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DATASTORE_H
-#define DATASTORE_H
+#ifndef XMLDATASTORE_H
+#define XMLDATASTORE_H
 
-#include "data/node/node.h"
 #include "data/label.h"
-#include <QObject>
+#include "data/node/node.h"
+#include "persistence/abstractdatastore.h"
 #include <QDomDocument>
+#include <QObject>
 
 
-class DataStore : public QObject
+/*!\class XmlDataStore
+ * \brief A xml based persistence backend.
+ *
+ * This implementation of the AbstractDataStore can save the nodes and labels to a singel xml file.
+ *
+ * \author Manuel Unglaub
+ */
+class XmlDataStore : public AbstractDataStore
 {
 	Q_OBJECT
 
 	public:
-		DataStore();
-		~DataStore();
+		/*! The constructor.
+		 *
+		 * Constructs the XmlDataStore.
+		 */
+		XmlDataStore();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
+		~XmlDataStore();
 
 		Node* getRootNode();
 		Label* getRootLabel();
@@ -62,5 +79,5 @@ class DataStore : public QObject
 		void writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel);
 };
 
-#endif // DATASTORE_H
+#endif // XMLDATASTORE_H
 

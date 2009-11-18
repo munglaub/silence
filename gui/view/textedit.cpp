@@ -22,6 +22,7 @@
 #include "gui/view/textedit.h"
 #include <QApplication>
 #include <QClipboard>
+#include <QToolBar>
 #include <Qsci/qscilexerbash.h>
 #include <Qsci/qscilexerbatch.h>
 #include <Qsci/qscilexercmake.h>
@@ -43,7 +44,6 @@
 #include <Qsci/qscilexersql.h>
 #include <Qsci/qscilexertex.h>
 #include <Qsci/qscilexervhdl.h>
-#include <QToolBar>
 
 
 
@@ -64,11 +64,11 @@ TextEdit::TextEdit(QWidget *parent)
 	
 	// find
 	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
-	connect(findWidget->getNextBtn(), SIGNAL(clicked()), this, SLOT(findNext()));
-	connect(findWidget->getPrevBtn(), SIGNAL(clicked()), this, SLOT(findPrev()));
-	connect(findWidget->getFindEdit(), SIGNAL(textChanged(const QString&)), this, SLOT(findFirst()));
-	connect(findWidget->getReplaceBtn(), SIGNAL(clicked()), this, SLOT(replace()));
-	connect(findWidget->getReplaceAllBtn(), SIGNAL(clicked()), this, SLOT(replaceAll()));
+	connect(findWidget, SIGNAL(findNext()), this, SLOT(findNext()));
+	connect(findWidget, SIGNAL(findPrev()), this, SLOT(findPrev()));
+	connect(findWidget, SIGNAL(searchStringChanged(const QString&)), this, SLOT(findFirst()));
+	connect(findWidget, SIGNAL(replace()), this, SLOT(replace()));
+	connect(findWidget, SIGNAL(replaceAll()), this, SLOT(replaceAll()));
 
 	// cursorposition
 	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
