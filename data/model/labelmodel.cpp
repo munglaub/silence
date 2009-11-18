@@ -18,19 +18,14 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "data/model/labelmodel.h"
 #include "controller.h"
+#include "data/model/labelmodel.h"
 
 
 LabelModel::LabelModel(QObject *parent)
 	: QAbstractItemModel(parent)
 {
 	rootItem = Controller::create()->getDataStore()->getRootLabel();
-}
-
-LabelModel::~LabelModel()
-{
-	// TODO: foo
 }
 
 QVariant LabelModel::data(const QModelIndex &index, int role) const
@@ -56,7 +51,8 @@ Qt::ItemFlags LabelModel::flags(const QModelIndex &index) const
 QVariant LabelModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return rootItem->getText();
+		return QVariant(tr("Label"));
+
 	return QVariant();
 }
 
@@ -95,7 +91,7 @@ int LabelModel::rowCount(const QModelIndex &parent) const
 
 int LabelModel::columnCount(const QModelIndex&) const
 {
-	return 1; // just one column
+	return 1;
 }
 
 bool LabelModel::insertRows(int position, int rows, const QModelIndex &parent)

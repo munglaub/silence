@@ -30,7 +30,9 @@
 /*!\class TreeModel
  * \brief A tree model for the nodes.
  *
- * This model is a implementation of the QAbstractItemModle. For more informations take a look at the QT documentation.
+ * This model is a implementation of the QAbstractItemModel. For more informations take a look at the QT documentation.
+ *
+ * The model is used by the TreeView.
  *
  * \author Manuel Unglaub
  */
@@ -47,7 +49,7 @@ class TreeModel : public QAbstractItemModel
 		TreeModel(QObject *parent = 0);
 
 		/*!
-		 * Get the caption or icon, dependet on the role, of a Node specified by the index.
+		 * Get the caption or icon, dependent on the role, of a Node specified by the index.
 		 * \param index The index of the requested data.
 		 * \param role The role of the requested data.
 		 * \return The data stored under the given role for the item referred to by the index.
@@ -70,7 +72,7 @@ class TreeModel : public QAbstractItemModel
 		 * Returns the item flags for the given index.
 		 *
 		 * \param index The index for the requested flags.
-		 * \return If the index is valid a combiantion of the following flags: Qt::ItemIsEnabled, Qt::ItemIsSelectable, Qt::ItemIsEditable, Qt::ItemIsDragEnabled, Qt::ItemIsDropEnabled.
+		 * \return If the index is valid a combination of the following flags: Qt::ItemIsEnabled, Qt::ItemIsSelectable, Qt::ItemIsEditable, Qt::ItemIsDragEnabled, Qt::ItemIsDropEnabled.
 		 */
 		Qt::ItemFlags flags(const QModelIndex &index) const;
 
@@ -103,7 +105,7 @@ class TreeModel : public QAbstractItemModel
 		QModelIndex parent(const QModelIndex &index) const;
 	
 		/*!
-		 * The number of children of a specified index.
+		 * Get the number of children of a specified index.
 		 *
 		 * \param parent The index for the request of the number of its children.
 		 * \return The number of rows under the given parent.

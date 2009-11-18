@@ -33,7 +33,7 @@ XmlDataStore::XmlDataStore()
 {
 	rootNode = new Node();
 
-	rootLabel = new Label(tr("Label"));
+	rootLabel = new Label();
 
 	QDomDocument doc;
 	QFile file(DATA_FILE);
