@@ -26,7 +26,7 @@
 #include <QList>
 
 
-/*!\classe ListProxyModel
+/*!\class ListProxyModel
  * \brief A proxy model from tree to list.
  *
  * This model is a implementation of the QAbstractProxyModel. For more information take a look at the QT documentation.
