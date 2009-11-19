@@ -110,3 +110,22 @@ QIcon RichTextNodeContent::getIcon()
 	return icon;
 }
 
+QString RichTextNodeContent::toString()
+{
+	QString result;
+
+	result.append("Metainfos\n");
+	QHashIterator<QString, QString> itr(*metaInfos);
+	while (itr.hasNext())
+	{
+		itr.next();
+		result.append("\t" + itr.key() + " :  " + itr.value() + "\n");
+	}
+
+	result.append("Text:\n");
+	result.append(QTextDocumentFragment::fromHtml(text).toPlainText());
+
+	return result;
+}
+
+

@@ -80,6 +80,8 @@ class TextNodeContent : public AbstractNodeContent
 
 		QPixmap getPixmap();
 		QIcon getIcon();
+
+		QString toString();
 	
 	signals:
 		/*!

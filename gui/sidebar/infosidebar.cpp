@@ -41,6 +41,13 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 
+	id = new QLabel(tr("ID:"));
+	id->setFont(QFont("Times", 10, QFont::Bold));
+	layout->addWidget(id, row, 0);
+	idValue = new QLabel("-");
+	layout->addWidget(idValue, row, 1);
+	++row;
+
 	created = new QLabel(tr("Created:"));
 	created->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(created, row, 0);
@@ -87,6 +94,8 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 InfoSidebar::~InfoSidebar()
 {
 	delete icon;
+	delete id;
+	delete idValue;
 	delete created;
 	delete createdDate;
 	delete lastedit;
@@ -112,6 +121,7 @@ void InfoSidebar::setData(Node *data)
 void InfoSidebar::clearInfos()
 {
 	caption->setText("");
+	idValue->setText("-");
 	createdDate->setText("-");
 	lasteditDate->setText("-");
 	labelsData->setText("-");
@@ -132,6 +142,7 @@ void InfoSidebar::updateInfos()
 
 	// set node infos
 	caption->setText(node->getCaption());
+	idValue->setText(QString().setNum(node->getId().getId()));
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
 	lasteditDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 

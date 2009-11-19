@@ -226,6 +226,13 @@ class Node : public QObject
 		 * \sa addLabel(), addLabels(), getLabels()
 		 */
 		bool removeLabel(QString label);
+
+		/*!
+		 * Transform the node to a QString.
+		 *
+		 * \return The node as a QString.
+		 */
+		QString toString();
 		
 	signals:
 		/*!

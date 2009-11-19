@@ -73,6 +73,8 @@ class RichTextNodeContent : public AbstractNodeContent
 
 		QPixmap getPixmap();
 		QIcon getIcon();
+
+		QString toString();
 	
 	signals:
 		/*!

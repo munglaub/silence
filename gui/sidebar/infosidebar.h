@@ -78,6 +78,8 @@ class InfoSidebar : public QDockWidget
 		QGridLayout *layout;
 		QFrame *frame;
 		QLabel	*caption,
+				*id,
+				*idValue,
 				*created,
 				*createdDate,
 				*lastedit,

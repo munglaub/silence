@@ -18,10 +18,12 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "commandline/cmdmain.h"
 #include "gui/mainwindow.h"
-#include <QtGui/QApplication>
 #include <QTranslator>
+#include <QtGui/QApplication>
 //#include <iostream>
+
 
 int main(int argc, char *argv[])
 {
@@ -33,8 +35,18 @@ int main(int argc, char *argv[])
 	silence.installTranslator(&silenceTranslator);
 //	std::cout << QLocale::system().name().toStdString() << std::endl;
 
-	MainWindow w;
-	w.show();
+	MainWindow *w;
+	CmdMain *cmd;
+	if (argc <= 1){
+		w = new MainWindow();
+		w->show();
+	} else {
+		cmd = new CmdMain();
+		cmd->exec(argc, argv);
+		delete cmd;
+		return 0; // TODO: do it the right way
+	}
+
 	return silence.exec();
 }
 

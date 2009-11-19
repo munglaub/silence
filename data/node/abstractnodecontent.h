@@ -97,6 +97,13 @@ class AbstractNodeContent : public QObject
 		 * \sa getPixmap()
 		 */
 		virtual QIcon getIcon() = 0;
+
+		/*!
+		 * Transform the content to a QString. This string should only contain plain text information.
+		 *
+		 * \return The content as a QString.
+		 */
+		virtual QString toString() = 0;
 };
 
 #endif // ABSTRACTNODECONTENT_H

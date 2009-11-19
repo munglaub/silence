@@ -35,7 +35,8 @@ SOURCES += 	main.cpp\
 			gui/view/welcomeview.cpp\
 			gui/widget/textfind.cpp\
 			gui/widget/labelwidget.cpp\
-			gui/widget/syntaxbox.cpp
+			gui/widget/syntaxbox.cpp\
+			commandline/cmdmain.cpp
 
 HEADERS +=	controller.h\
 			persistence/abstractdatastore.h\
@@ -70,11 +71,14 @@ HEADERS +=	controller.h\
 			gui/view/welcomeview.h\
 			gui/widget/textfind.h\
 			gui/widget/labelwidget.h\
-			gui/widget/syntaxbox.h
+			gui/widget/syntaxbox.h\
+			commandline/cmdmain.h
 
 QT		+= xml
 
-LIBS	+=	-lqscintilla2
+LIBS	+= -lqscintilla2
+
+CONFIG	+= console
 
 RESOURCES	=	silence.qrc
 
