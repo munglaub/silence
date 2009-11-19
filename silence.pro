@@ -36,6 +36,7 @@ SOURCES += 	main.cpp\
 			gui/widget/textfind.cpp\
 			gui/widget/labelwidget.cpp\
 			gui/widget/syntaxbox.cpp\
+			gui/widget/inputwidget.cpp\
 			commandline/cmdmain.cpp
 
 HEADERS +=	controller.h\
@@ -72,6 +73,7 @@ HEADERS +=	controller.h\
 			gui/widget/textfind.h\
 			gui/widget/labelwidget.h\
 			gui/widget/syntaxbox.h\
+			gui/widget/inputwidget.h\
 			commandline/cmdmain.h
 
 QT		+= xml

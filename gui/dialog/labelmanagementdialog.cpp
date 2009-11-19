@@ -42,7 +42,10 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	layout->addWidget(toolbar, row, 0);
 	++row;
 
-	layout->addWidget(createInputFrame(), row, 0);
+	inputwidget = new InputWidget;
+	inputwidget->hide();
+	connect(inputwidget, SIGNAL(done()), this, SLOT(addLabel()));
+	layout->addWidget(inputwidget, row, 0);
 	++row;
 
 	layout->addWidget(createDeleteFrame(), row, 0);
@@ -77,11 +80,7 @@ LabelManagementDialog::~LabelManagementDialog()
 	delete deleteLayout;
 	delete deleteFrame;
 
-	delete cancelInputBtn;
-	delete okBtn;
-	delete inputEdit;
-	delete inputLayout;
-	delete inputFrame;
+	delete inputwidget;
 
 	delete closeBtn;
 	delete model;
@@ -91,23 +90,6 @@ LabelManagementDialog::~LabelManagementDialog()
 	delete addRowAction;
 	delete toolbar;
 	delete layout;
-}
-
-QWidget* LabelManagementDialog::createInputFrame()
-{
-	inputFrame = new QGroupBox(tr("New Label"));
-	inputFrame->hide();
-	inputLayout = new QGridLayout;
-	inputEdit = new QLineEdit;
-	inputLayout->addWidget(inputEdit, 0, 0, 1, 2);
-	cancelInputBtn = new QPushButton(tr("Cancel"));
-	connect(cancelInputBtn, SIGNAL(clicked()), inputFrame, SLOT(hide()));
-	inputLayout->addWidget(cancelInputBtn, 1, 0);
-	okBtn = new QPushButton(tr("OK"));
-	connect(okBtn, SIGNAL(clicked()), this, SLOT(addLabel()));
-	inputLayout->addWidget(okBtn, 1, 1);
-	inputFrame->setLayout(inputLayout);
-	return inputFrame;
 }
 
 QWidget* LabelManagementDialog::createDeleteFrame()
@@ -141,13 +123,13 @@ void LabelManagementDialog::showTreeContextMenu()
 
 void LabelManagementDialog::addLabel()
 {
-	inputFrame->hide();
+	inputwidget->hide();
 	if (!model->insertRow(newLabelRow, newLabelParent))
 		return;
 
 	int column = 0;
 	QModelIndex child = model->index(newLabelRow, column, newLabelParent);
-	model->setData(child, QVariant(inputEdit->text()));
+	model->setData(child, QVariant(inputwidget->getInput()));
 	Controller::create()->getDataStore()->addLabel(model->getItem(child));
 	tree->selectionModel()->setCurrentIndex(model->index(newLabelRow, column, newLabelParent), QItemSelectionModel::ClearAndSelect);
 	updateActions();
@@ -155,19 +137,17 @@ void LabelManagementDialog::addLabel()
 
 void LabelManagementDialog::addRow()
 {
-	inputFrame->setTitle(tr("New Label"));
 	newLabelParent = tree->selectionModel()->currentIndex();
 	newLabelRow = newLabelParent.row() + 1;
 	newLabelParent = newLabelParent.parent();
-	inputFrame->show();
+	inputwidget->show(tr("New Label"));
 }
 
 void LabelManagementDialog::addSublabel()
 {
-	inputFrame->setTitle(tr("New Sublabel"));
 	newLabelParent = tree->selectionModel()->currentIndex();
 	newLabelRow = 0;
-	inputFrame->show();
+	inputwidget->show(tr("New Sublabel"));
 	updateActions();
 }
 
@@ -194,7 +174,7 @@ void LabelManagementDialog::removeLabel()
 
 void LabelManagementDialog::selectItem()
 {
-	inputFrame->hide();
+	inputwidget->hide();
 	deleteFrame->hide();
 	updateActions();
 }

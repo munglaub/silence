@@ -31,6 +31,7 @@
 #include <QPushButton>
 #include <QToolBar>
 #include <QTreeView>
+#include "gui/widget/inputwidget.h"
 
 
 /*!\class LabelManagementDialog
@@ -78,12 +79,7 @@ class LabelManagementDialog : public QDialog
 		LabelModel *model;
 		QPushButton *closeBtn;
 
-		// InputFrame
-		QGroupBox *inputFrame;
-		QGridLayout *inputLayout;
-		QLineEdit *inputEdit;
-		QPushButton *okBtn,
-					*cancelInputBtn;
+		InputWidget *inputwidget;
 
 		// DeleteFrame
 		QGroupBox *deleteFrame;
@@ -96,7 +92,6 @@ class LabelManagementDialog : public QDialog
 		QModelIndex newLabelParent;
 		int newLabelRow;
 
-		QWidget* createInputFrame();
 		QWidget* createDeleteFrame();
 };
 
