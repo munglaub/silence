@@ -20,7 +20,9 @@
 
 #include "commandline/cmdmain.h"
 #include "controller.h"
+#include "commandline/nodefilter.h"
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -47,15 +49,16 @@ void CmdMain::exec(int argc, char *argv[])
 					printHelp();
 					return;
 				case 'i':
-					printNode(atoi(argv[i+1]));
 					++i;
+					printNode(atoi(argv[i]));
 					break;
 				case 's':
-					// the big search
+					filterNodes(argc, argv, i);
+					return;
 					break;
-				case '-':
-					cout << "langer parameter" << endl;
-					break;
+//				case '-':
+//					cout << "long parameter" << endl;
+//					break;
 				default:
 					cout << "Unknown parameter" << endl;
 					printHelp();
@@ -69,6 +72,7 @@ void CmdMain::exec(int argc, char *argv[])
 void CmdMain::printHelp()
 {
 	cout << "Some information about the silence command line options.." << endl;
+	//TODO: print real help
 }
 
 void CmdMain::printNode(int id)
@@ -81,7 +85,7 @@ void CmdMain::printNode(int id)
 	{
 		cout << node->toString().toStdString() << endl;
 	} else {
-		cout << "nicht gefunden" << endl;
+		cout << "not found" << endl;
 	}
 
 	delete controller;
@@ -98,6 +102,77 @@ Node* CmdMain::findNodeById(int id, Node* root)
 			result = findNodeById(id, root->getChild(i));
 	}
 	return result;
+}
+
+void CmdMain::filterNodes(int argc, char *argv[], int pos)
+{
+
+	NodeFilter *filter = new NodeFilter(Controller::create()->getDataStore()->getRootNode());
+	for (int i = pos; i < argc; ++i)
+	{
+		if (QString(argv[i]) == "--text")
+		{
+			++i;
+			filter->setFilterString(QString(argv[i]));
+			continue;
+		}
+		if (QString(argv[i]) == "--fulltext")
+			filter->enableFulltext(true);
+		if (QString(argv[i]) == "--created")
+		{
+			++i;
+			QDate from = strToDate(argv[i]);
+			++i;
+			QDate to = strToDate(argv[i]);
+			if (!from.isValid() || !to.isValid())
+			{
+				//TODO: think about that again..
+				cerr << "Error: Invalide Dates" << endl;
+				return;
+			}
+
+			filter->setCreationDateFilter(from, to);
+			continue;
+		}
+		if (QString(argv[i]) == "--modified")
+		{
+			++i;
+			QDate from = strToDate(argv[i]);
+			++i;
+			QDate to = strToDate(argv[i]);
+			if (!from.isValid() || !to.isValid())
+			{
+				//TODO: think about that again..
+				cerr << "Error: Invalide Dates" << endl;
+				return;
+			}
+
+			filter->setModificationDateFilter(from, to);
+			continue;
+		}
+		if (QString(argv[i]) == "--label")
+		{
+			++i;
+			filter->setLabelFilter(QString(argv[i]).split(","));
+			continue;
+		}
+		if (QString(argv[i]) == "--nolabel")
+		{
+			++i;
+			filter->setNoLabelFilter(QString(argv[i]).split(","));
+			continue;
+		}
+
+	}
+	filter->printNodes();
+	delete filter;
+}
+
+QDate CmdMain::strToDate(char *str)
+{
+	int y, m, d;
+	sscanf(str, "%d-%d-%d", &y, &m, &d);
+	return QDate(y, m, d);
 }
 
 

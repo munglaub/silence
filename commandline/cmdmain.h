@@ -36,6 +36,8 @@ class CmdMain
 		void printHelp();
 		void printNode(int id);
 		Node* findNodeById(int id, Node* root);
+		void filterNodes(int argc, char *argv[], int pos);
+		QDate strToDate(char *str);
 };
 
 #endif // CMDMAIN_H

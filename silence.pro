@@ -37,7 +37,8 @@ SOURCES += 	main.cpp\
 			gui/widget/labelwidget.cpp\
 			gui/widget/syntaxbox.cpp\
 			gui/widget/inputwidget.cpp\
-			commandline/cmdmain.cpp
+			commandline/cmdmain.cpp\
+			commandline/nodefilter.cpp
 
 HEADERS +=	controller.h\
 			persistence/abstractdatastore.h\
@@ -74,7 +75,8 @@ HEADERS +=	controller.h\
 			gui/widget/labelwidget.h\
 			gui/widget/syntaxbox.h\
 			gui/widget/inputwidget.h\
-			commandline/cmdmain.h
+			commandline/cmdmain.h\
+			commandline/nodefilter.h
 
 QT		+= xml
 
