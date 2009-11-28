@@ -72,7 +72,35 @@ void CmdMain::exec(int argc, char *argv[])
 void CmdMain::printHelp()
 {
 	cout << "Some information about the silence command line options.." << endl;
-	//TODO: print real help
+
+	cout << "silence [-h | -i <id> | -s" << endl;
+	cout << "\t( --text <text>" << endl;
+	cout << "\t| --fulltext" << endl;
+	cout << "\t| --created <from> <to>" << endl;
+	cout << "\t| --modified <from> <to>" << endl;
+	cout << "\t| --label <lbl1,lbl1,...>" << endl;
+	cout << "\t| --nolabel <lbl1,lbl2,...>" << endl;
+	cout << "\t| --type <type>) ... ]" << endl;
+	cout << endl << endl;
+
+	cout << "  -h\n\t Print this help" << endl;
+	cout << "  -i <id>\n\t Print the node with <id>" << endl;
+	cout << "  -s\n\t Search for nodes." << endl;
+	cout << "\t--text <text>" << endl;
+	cout << "\t\t Restrict the search to nodes which contain <text> in their caption or in their content if --fulltext is set." << endl;
+	cout << "\t--fulltext" << endl;
+	cout << "\t\t Use to search the content for the text provided by the --text option." << endl;
+	cout << "\t--created <from> <to>" << endl;
+	cout << "\t\t Restrict the search to nodes created between <from> and <to>." << endl;
+	cout << "\t--modified <from> <to>" << endl;
+	cout << "\t\t Restrict the search to nodes modified between <from> and <to>" << endl;
+	cout << "\t--label <lbl1,lbl1,...>" << endl;
+	cout << "\t\t Restrict the search to nodes which have all labels given by <lbl1,lbl2,...>" << endl;
+	cout << "\t--nolabel <foo>" << endl;
+	cout << "\t\t Restrict the search to nodes which do not have the labels given by <lbl1,lbl2,..>" << endl;
+	cout << "\t--type <type>) ... ]" << endl;
+	cout << "\t\t Restrict the search to nodes with a specific type. Available types are text/plain and text/richtext." << endl;
+
 }
 
 void CmdMain::printNode(int id)
@@ -160,6 +188,12 @@ void CmdMain::filterNodes(int argc, char *argv[], int pos)
 		{
 			++i;
 			filter->setNoLabelFilter(QString(argv[i]).split(","));
+			continue;
+		}
+		if (QString(argv[i]) == "--type")
+		{
+			++i;
+			filter->setMimeTypFilter(QString(argv[i]));
 			continue;
 		}
 
