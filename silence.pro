@@ -37,6 +37,7 @@ SOURCES += 	main.cpp\
 			gui/widget/labelwidget.cpp\
 			gui/widget/syntaxbox.cpp\
 			gui/widget/inputwidget.cpp\
+			gui/widget/searchnodeoptions.cpp\
 			commandline/cmdmain.cpp\
 			commandline/nodefilter.cpp
 
@@ -75,6 +76,7 @@ HEADERS +=	controller.h\
 			gui/widget/labelwidget.h\
 			gui/widget/syntaxbox.h\
 			gui/widget/inputwidget.h\
+			gui/widget/searchnodeoptions.h\
 			commandline/cmdmain.h\
 			commandline/nodefilter.h
 

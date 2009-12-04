@@ -23,17 +23,11 @@
 
 #include "data/model/filtermodel.h"
 #include "data/model/listproxymodel.h"
-#include <QCheckBox>
-#include <QComboBox>
-#include <QDateEdit>
+#include "gui/widget/searchnodeoptions.h"
 #include <QDockWidget>
 #include <QGridLayout>
-#include <QGroupBox>
-#include <QLabel>
 #include <QLineEdit>
 #include <QListView>
-#include <QPushButton>
-#include <QRadioButton>
 
 
 /*!\class SearchNodeSidebar
@@ -71,43 +65,18 @@ class SearchNodeSidebar : public QDockWidget
 
 	private slots:
 		void selectionChanged(QModelIndex current);
-		void enableCreationDate(bool enabled);
-		void enableModificationDate(bool enabled);
-		void toggleOptionsVisibility();
 
 	private:
 		ListProxyModel *listProxy;
 		FilterModel *filtermodel;
-		bool showOptions;
 
-		QGridLayout *layout, 
-					*optboxlayout,
-					*dateboxlayout;
-		QFrame	*frame, 
-				*datebox;
-
-		QGroupBox *optionbox;
-		QRadioButton	*captionBtn,
-						*fulltextBtn;
-		QCheckBox 	*cbMime,
-					*cbCreated,
-					*cbModified;
-		QDateEdit 	*fromCreated,
-					*toCreated,
-					*fromModified,
-					*toModified;
-		QComboBox *mimeCombo;
-		QLabel	*clbland,
-				*mlbland;
-
+		QGridLayout *layout;
+		QFrame	*frame;
+		SearchNodeOptions *searchnodeoptions;
 		QListView *resultList;
-
 		QLineEdit *searchedit;
-		QPushButton *moreBtn;
 
-		void setupSearchRow();
-		void setupSearchOptions();
-		void setupSearchDate();
+		void connectOptions();
 };
 
 #endif // SEARCHNODESIDEBAR_H
