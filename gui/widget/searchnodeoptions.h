@@ -37,7 +37,7 @@ class SearchNodeOptions : public QFrame
 	Q_OBJECT
 
 	public:
-		SearchNodeOptions(QWidget * parent = 0, Qt::WindowFlags f = 0);
+		SearchNodeOptions(QWidget *parent = 0, Qt::WindowFlags f = 0);
 		~SearchNodeOptions();
 
 	signals:

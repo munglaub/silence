@@ -61,8 +61,6 @@ class NodeFilter
 					nolabels;
 
 		void filterNodes();
-		bool intersecting(QStringList *a, QStringList *b);
-		bool isSubset(QStringList *set, QStringList *subset);
 };
 
 #endif // NODEFILTER_H

@@ -45,20 +45,28 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);
+	int row = 0;
 
 	searchedit = new QLineEdit;
-	layout->addWidget(searchedit, 0, 0);
+	layout->addWidget(searchedit, row, 0);
+	++row;
 
 	searchnodeoptions = new SearchNodeOptions();
-	layout->addWidget(searchnodeoptions, 1, 0);
+	layout->addWidget(searchnodeoptions, row, 0);
+	++row;
+
+	labellist = new LabelList;
+	layout->addWidget(labellist, row, 0);
+	++row;
 
 	connectOptions();
-
+	connectLabelList();
 
 	// setup the resultlist
 	resultList = new QListView;
 	resultList->setModel(filtermodel);
-	layout->addWidget(resultList, 2, 0);
+	layout->addWidget(resultList, row, 0);
+	++row;
 
 	frame = new QFrame;
 	frame->setLayout(layout);
@@ -77,6 +85,7 @@ SearchNodeSidebar::~SearchNodeSidebar()
 {
 	delete searchedit;
 	delete resultList;
+	delete labellist;
 	delete searchnodeoptions;
 
 	delete layout;
@@ -103,6 +112,14 @@ void SearchNodeSidebar::connectOptions()
 	connect(searchnodeoptions, SIGNAL(changedCreatedTo(QDate)), filtermodel, SLOT(setFilterCreatedToDate(const QDate&)));
 	connect(searchnodeoptions, SIGNAL(changedModifiedFrom(QDate)), filtermodel, SLOT(setFilterModifiedFromDate(const QDate&)));
 	connect(searchnodeoptions, SIGNAL(changedModifiedTo(QDate)), filtermodel, SLOT(setFilterModifiedToDate(const QDate&)));
+}
+
+void SearchNodeSidebar::connectLabelList()
+{
+	connect(labellist, SIGNAL(addedLabel(QString)), filtermodel, SLOT(addLabel(QString)));
+	connect(labellist, SIGNAL(removedLabel(QString)), filtermodel, SLOT(removeLabel(QString)));
+	connect(labellist, SIGNAL(addedBannedLabel(QString)), filtermodel, SLOT(addBannedLabel(QString)));
+	connect(labellist, SIGNAL(removedBannedLabel(QString)), filtermodel, SLOT(removeBannedLabel(QString)));
 }
 
 

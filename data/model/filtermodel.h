@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QSortFilterProxyModel>
+#include <QStringList>
 
 
 /*!\class FilterModel
@@ -121,6 +122,34 @@ class FilterModel : public QSortFilterProxyModel
 		 */
 		void setFilterFulltextEnabled(bool enabled);
 
+		/*!
+		 * Add a label to the filter. The node must contain all added labels to pass the filter.
+		 *
+		 * \param label This label will be added to this filter.
+		 */
+		void addLabel(QString label);
+
+		/*!
+		 * Remove a label from the filter. This label will no longer be relevant for the filter.
+		 *
+		 * \param label This label will be removed from this filter.
+		 */
+		void removeLabel(QString label);
+
+		/*!
+		 * Add a label to the filter. The node must not contain this label to pass the filter.
+		 *
+		 * \param label This label will be added to the filter.
+		 */
+		void addBannedLabel(QString label);
+
+		/*!
+		 * Remove a label form the filter. This label will no longer be relevant for the filter.
+		 *
+		 * \param label This label will be removed from this filter.
+		 */
+		void removeBannedLabel(QString label);
+
 	protected:
 		/*!
 		 * Returns true if the item in the row indicated by the given source_row and source_parent should be included in the model; otherwise returns false.
@@ -142,6 +171,8 @@ class FilterModel : public QSortFilterProxyModel
 					*createdToDate,
 					*modifiedFromDate,
 					*modifiedToDate;
+		QStringList labels,
+					bannedLabels;
 };
 
 #endif // FILTERMODEL_H

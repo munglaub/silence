@@ -125,7 +125,7 @@ class Label
 		int childCount();
 
 		/*!
-		 * Get a QStringList of this Label and all its sublabels. The list contains the the member text of all thes Labels.
+		 * Get a QStringList of this Label and all its sublabels. The list contains the member text of all these Labels.
 		 * \return A QStringList of this Label and al its sublabels.
 		 */
 		QStringList toStringList();

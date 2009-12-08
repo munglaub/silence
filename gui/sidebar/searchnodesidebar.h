@@ -23,6 +23,7 @@
 
 #include "data/model/filtermodel.h"
 #include "data/model/listproxymodel.h"
+#include "gui/widget/labellist.h"
 #include "gui/widget/searchnodeoptions.h"
 #include <QDockWidget>
 #include <QGridLayout>
@@ -73,10 +74,12 @@ class SearchNodeSidebar : public QDockWidget
 		QGridLayout *layout;
 		QFrame	*frame;
 		SearchNodeOptions *searchnodeoptions;
+		LabelList *labellist;
 		QListView *resultList;
 		QLineEdit *searchedit;
 
 		void connectOptions();
+		void connectLabelList();
 };
 
 #endif // SEARCHNODESIDEBAR_H

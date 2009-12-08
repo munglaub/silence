@@ -20,6 +20,7 @@
 
 #include "controller.h"
 #include "data/model/filtermodel.h"
+#include "utils/listutils.h"
 #include <QtGui>
 
 
@@ -94,6 +95,17 @@ bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_par
 			accepts = false;
 	}
 
+	if ((item) && (!labels.isEmpty()))
+	{
+		if (! ListUtils::isSubset(item->getLabels(), &labels))
+			accepts = false;
+	}
+
+	if ((item) && (!bannedLabels.isEmpty()))
+	{
+		if (ListUtils::intersecting(item->getLabels(), &bannedLabels))
+			accepts = false;
+	}
 	return accepts;
 }
 
@@ -148,6 +160,30 @@ void FilterModel::setFilterMimetypeString(const QString &type)
 void FilterModel::setFilterFulltextEnabled(bool enabled)
 {
 	filterFulltext = enabled;
+	invalidate();
+}
+
+void FilterModel::addLabel(QString label)
+{
+	labels << label;
+	invalidate();
+}
+
+void FilterModel::removeLabel(QString label)
+{
+	labels.removeOne(label);
+	invalidate();
+}
+
+void FilterModel::addBannedLabel(QString label)
+{
+	bannedLabels << label;
+	invalidate();
+}
+
+void FilterModel::removeBannedLabel(QString label)
+{
+	bannedLabels.removeOne(label);
 	invalidate();
 }
 

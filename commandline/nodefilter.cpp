@@ -19,6 +19,7 @@
  */
 
 #include "commandline/nodefilter.h"
+#include "utils/listutils.h"
 #include <iostream>
 
 using namespace std;
@@ -154,7 +155,7 @@ void NodeFilter::filterNodes()
 		}
 		if (filterLabels)
 		{
-			if (!isSubset(current->getLabels(), &labels))
+			if (! ListUtils::isSubset(current->getLabels(), &labels))
 			{
 				nodes.removeAt(i);
 				continue;
@@ -162,7 +163,7 @@ void NodeFilter::filterNodes()
 		}
 		if (filterNolabels)
 		{
-			if (intersecting(current->getLabels(), &nolabels))
+			if (ListUtils::intersecting(current->getLabels(), &nolabels))
 			{
 				nodes.removeAt(i);
 				continue;
@@ -171,25 +172,6 @@ void NodeFilter::filterNodes()
 	}
 }
 
-bool NodeFilter::intersecting(QStringList *a, QStringList *b)
-{
-	bool result = false;
-	for (int i=0; i < a->size() && !result; ++i)
-	{
-		result = b->contains(a->at(i));
-	}
-	return result;
-}
 
-bool NodeFilter::isSubset(QStringList *set, QStringList *subset)
-{
-	bool result = true;
-	for (int i=0; i < subset->size() && result; ++i)
-	{
-		result = set->contains(subset->at(i));
-	}
-
-	return result;
-}
 
 

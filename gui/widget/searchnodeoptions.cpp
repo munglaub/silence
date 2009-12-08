@@ -42,6 +42,24 @@ SearchNodeOptions::SearchNodeOptions(QWidget *parent, Qt::WindowFlags f)
 
 SearchNodeOptions::~SearchNodeOptions()
 {
+	delete mlbland;
+	delete clbland;
+	delete mimeCombo;
+	delete toModified;
+	delete fromModified;
+	delete toCreated;
+	delete fromCreated;
+	delete cbModified;
+	delete cbCreated;
+	delete cbMime;
+	delete fulltextBtn;
+	delete captionBtn;
+	delete optionbox;
+	delete title;
+	delete datebox;
+	delete dateboxlayout;
+	delete optboxlayout;
+	delete layout;
 }
 
 QWidget* SearchNodeOptions::createOptionbox()
