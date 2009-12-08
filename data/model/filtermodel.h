@@ -144,11 +144,21 @@ class FilterModel : public QSortFilterProxyModel
 		void addBannedLabel(QString label);
 
 		/*!
+		 * Remove all labels from this filter.
+		 */
+		void clearLabels();
+
+		/*!
 		 * Remove a label form the filter. This label will no longer be relevant for the filter.
 		 *
 		 * \param label This label will be removed from this filter.
 		 */
 		void removeBannedLabel(QString label);
+
+		/*!
+		 * Remove all banned labels from this filter.
+		 */
+		void clearBannedLabels();
 
 	protected:
 		/*!

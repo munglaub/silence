@@ -42,6 +42,11 @@ class LabelList : public QFrame
 		void removedLabel(QString label);
 		void addedBannedLabel(QString label);
 		void removedBannedLabel(QString label);
+		void clearLabels();
+		void clearBannedLabels();
+
+	public slots:
+		void update();
 
 	private slots:
 		void toggleVisibility();
@@ -61,6 +66,7 @@ class LabelList : public QFrame
 				*addBannedLabelAction,
 				*clearAction;
 
+		void fillList();
 		void setupActions();
 
 };

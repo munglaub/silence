@@ -18,7 +18,6 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "controller.h"
 #include "gui/dialog/newnodedialog.h"
 #include "data/node/richtextnodecontent.h"
 #include "data/node/textnodecontent.h"

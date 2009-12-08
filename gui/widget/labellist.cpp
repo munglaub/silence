@@ -35,13 +35,9 @@ LabelList::LabelList(QWidget *parent, Qt::WindowFlags f)
 	showBtn->setMaximumWidth(30);
 	connect(showBtn, SIGNAL(clicked()), this, SLOT(toggleVisibility()));
 	layout->addWidget(showBtn, 0, 1, 1, 1, Qt::AlignRight);
+
 	list = new QListWidget;
-	
-	QStringList labels = Controller::create()->getDataStore()->getRootLabel()->toStringList();
-	labels.removeOne("");
-	labels.removeDuplicates();
-	labels.sort();
-	list->addItems(labels);
+	fillList();
 	list->setVisible(false);
 	list->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(list, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu()));
@@ -61,6 +57,16 @@ LabelList::~LabelList()
 	delete showBtn;
 	delete title;
 	delete layout;
+}
+
+void LabelList::fillList()
+{
+	list->clear();
+	QStringList labels = Controller::create()->getDataStore()->getRootLabel()->toStringList();
+	labels.removeOne("");
+	labels.removeDuplicates();
+	labels.sort();
+	list->addItems(labels);
 }
 
 void LabelList::setupActions()
@@ -83,6 +89,13 @@ void LabelList::setupActions()
 	clearAction->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	this->addAction(clearAction);
 	connect(clearAction, SIGNAL(triggered()), this, SLOT(clear()));
+}
+
+void LabelList::update()
+{
+	fillList();
+	emit clearLabels();
+	emit clearBannedLabels();
 }
 
 void LabelList::toggleVisibility()

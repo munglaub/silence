@@ -175,6 +175,12 @@ void FilterModel::removeLabel(QString label)
 	invalidate();
 }
 
+void FilterModel::clearLabels()
+{
+	bannedLabels.clear();
+	invalidate();
+}
+
 void FilterModel::addBannedLabel(QString label)
 {
 	bannedLabels << label;
@@ -184,6 +190,12 @@ void FilterModel::addBannedLabel(QString label)
 void FilterModel::removeBannedLabel(QString label)
 {
 	bannedLabels.removeOne(label);
+	invalidate();
+}
+
+void FilterModel::clearBannedLabels()
+{
+	bannedLabels.clear();
 	invalidate();
 }
 

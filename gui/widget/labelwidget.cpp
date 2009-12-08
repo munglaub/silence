@@ -137,6 +137,7 @@ void LabelWidget::manageLabels()
 	delete dlg;
 	fillTree();
 	Controller::create()->getNodePropertyWidget()->updateLabels();
+	Controller::create()->getSearchNodeSidebar()->updateLabels();
 }
 
 void LabelWidget::updateLabels()

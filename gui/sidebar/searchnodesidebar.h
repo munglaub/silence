@@ -64,6 +64,11 @@ class SearchNodeSidebar : public QDockWidget
 		 */
 		~SearchNodeSidebar();
 
+		/*!
+		 * Call to update the list of labels.
+		 */
+		void updateLabels();
+
 	private slots:
 		void selectionChanged(QModelIndex current);
 

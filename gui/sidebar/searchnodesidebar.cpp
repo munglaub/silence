@@ -95,6 +95,11 @@ SearchNodeSidebar::~SearchNodeSidebar()
 	delete listProxy;
 }
 
+void SearchNodeSidebar::updateLabels()
+{
+	labellist->update();
+}
+
 void SearchNodeSidebar::selectionChanged(QModelIndex current)
 {
 	QModelIndex sourceIndex = filtermodel->mapToSource(current);
@@ -120,6 +125,8 @@ void SearchNodeSidebar::connectLabelList()
 	connect(labellist, SIGNAL(removedLabel(QString)), filtermodel, SLOT(removeLabel(QString)));
 	connect(labellist, SIGNAL(addedBannedLabel(QString)), filtermodel, SLOT(addBannedLabel(QString)));
 	connect(labellist, SIGNAL(removedBannedLabel(QString)), filtermodel, SLOT(removeBannedLabel(QString)));
+	connect(labellist, SIGNAL(clearLabels()), filtermodel, SLOT(clearLabels()));
+	connect(labellist, SIGNAL(clearBannedLabels()), filtermodel, SLOT(clearBannedLabels()));
 }
 
 

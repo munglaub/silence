@@ -88,6 +88,7 @@ void ViewMenu::showLabelManagementDialog()
 	dlg->exec();
 	delete dlg;
 	Controller::create()->getNodePropertyWidget()->updateLabels();
+	Controller::create()->getSearchNodeSidebar()->updateLabels();
 }
 
 void ViewMenu::showNodeTree(bool visible)
