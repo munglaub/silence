@@ -62,7 +62,7 @@ QString RichTextNodeContent::getMimeType()
 
 bool RichTextNodeContent::contains(const QString& value)
 {
-	return QTextDocumentFragment::fromHtml(text).toPlainText().contains(value);
+	return QTextDocumentFragment::fromHtml(text).toPlainText().contains(value, Qt::CaseInsensitive);
 }
 
 void RichTextNodeContent::setText(QString text)

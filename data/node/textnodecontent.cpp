@@ -159,7 +159,7 @@ QString TextNodeContent::getMimeType()
 
 bool TextNodeContent::contains(const QString& value)
 {
-	return text.contains(value);
+	return text.contains(value, Qt::CaseInsensitive);
 }
 
 void TextNodeContent::setSyntax(QString syntax)
