@@ -185,54 +185,59 @@ void TextEdit::saveContent()
 
 void TextEdit::setSyntax(QString syntax)
 {
+	QsciLexer *lexer = 0;
 	if (syntax == "Bash")
-		editor->setLexer(new QsciLexerBash(editor));
+		lexer = new QsciLexerBash(editor);
 	else if (syntax == "Batch")
-		editor->setLexer(new QsciLexerBatch(editor));
+		lexer = new QsciLexerBatch(editor);
 	else if (syntax == "CMake")
-		editor->setLexer(new QsciLexerCMake(editor));
+		lexer = new QsciLexerCMake(editor);
 	else if (syntax == "C++")
-		editor->setLexer(new QsciLexerCPP(editor));
+		lexer = new QsciLexerCPP(editor);
 	else if (syntax == "C#")
-		editor->setLexer(new QsciLexerCSharp(editor));
+		lexer = new QsciLexerCSharp(editor);
 	else if (syntax == "CSS")
-		editor->setLexer(new QsciLexerCSS(editor));
+		lexer = new QsciLexerCSS(editor);
 	else if (syntax == "D")
-		editor->setLexer(new QsciLexerD(editor));
+		lexer = new QsciLexerD(editor);
 	else if (syntax == "Diff")
-		editor->setLexer(new QsciLexerDiff(editor));
+		lexer = new QsciLexerDiff(editor);
 	else if (syntax == "HTML")
-		editor->setLexer(new QsciLexerHTML(editor));
+		lexer = new QsciLexerHTML(editor);
 	else if (syntax == "IDL")
-		editor->setLexer(new QsciLexerIDL(editor));
+		lexer = new QsciLexerIDL(editor);
 	else if (syntax == "Java")
-		editor->setLexer(new QsciLexerJava(editor));
+		lexer = new QsciLexerJava(editor);
 	else if (syntax == "JavaScript")
-		editor->setLexer(new QsciLexerJavaScript(editor));
+		lexer = new QsciLexerJavaScript(editor);
 	else if (syntax == "Lua")
-		editor->setLexer(new QsciLexerLua(editor));
+		lexer = new QsciLexerLua(editor);
 	else if (syntax == "Makefile")
-		editor->setLexer(new QsciLexerMakefile(editor));
+		lexer = new QsciLexerMakefile(editor);
 	else if (syntax == "Perl")
-		editor->setLexer(new QsciLexerPerl(editor));
+		lexer = new QsciLexerPerl(editor);
 	else if (syntax == "POV")
-		editor->setLexer(new QsciLexerPOV(editor));
+		lexer = new QsciLexerPOV(editor);
 	else if (syntax == "Python")
-		editor->setLexer(new QsciLexerPython(editor));
+		lexer = new QsciLexerPython(editor);
 	else if (syntax == "Ruby")
-		editor->setLexer(new QsciLexerRuby(editor));
+		lexer = new QsciLexerRuby(editor);
 	else if (syntax == "SQL")
-		editor->setLexer(new QsciLexerSQL(editor));
+		lexer = new QsciLexerSQL(editor);
 	else if (syntax == "TeX")
-		editor->setLexer(new QsciLexerTeX(editor));
+		lexer = new QsciLexerTeX(editor);
 	else if (syntax == "VHDL")
-		editor->setLexer(new QsciLexerVHDL(editor));
-	else
+		lexer = new QsciLexerVHDL(editor);
+
+	if (lexer)
 	{
+		lexer->setFont(QFont("Monospace", 10));
+		editor->setLexer(lexer);
+	} else {
 		editor->setLexer();
-		QFont font("Monospace", 10);
-		editor->setFont(font);
+		editor->setFont(QFont("Monospace", 10));
 	}
+
 }
 
 void TextEdit::textModified()
