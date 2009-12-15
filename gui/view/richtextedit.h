@@ -22,11 +22,11 @@
 #define RICHTEXTEDIT_H
 
 #include "data/node/richtextnodecontent.h"
+#include "gui/view/rtf/rtfedit.h"
 #include "gui/widget/textfind.h"
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
-#include <QTextEdit>
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -101,7 +101,7 @@ class RichTextEdit : public QWidget
 		// bad naming
 		QToolBar *toolbar;
 		QToolBar *fontToolbar;
-		QTextEdit *textedit;
+		RtfEdit *textedit;
 
 
 		QAction *actionSave,

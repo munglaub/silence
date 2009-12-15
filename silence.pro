@@ -30,9 +30,10 @@ SOURCES += 	main.cpp\
 			gui/sidebar/searchnodesidebar.cpp\
 			gui/sidebar/nodepropertywidget.cpp\
 			gui/view/textedit.cpp\
-			gui/view/richtextedit.cpp\
 			gui/view/contentview.cpp\
 			gui/view/welcomeview.cpp\
+			gui/view/richtextedit.cpp\
+			gui/view/rtf/rtfedit.cpp\
 			gui/widget/textfind.cpp\
 			gui/widget/labelwidget.cpp\
 			gui/widget/syntaxbox.cpp\
@@ -71,9 +72,10 @@ HEADERS +=	controller.h\
 			gui/sidebar/searchnodesidebar.h\
 			gui/sidebar/nodepropertywidget.h\
 			gui/view/textedit.h\
-			gui/view/richtextedit.h\
 			gui/view/contentview.h\
 			gui/view/welcomeview.h\
+			gui/view/richtextedit.h\
+			gui/view/rtf/rtfedit.h\
 			gui/widget/textfind.h\
 			gui/widget/labelwidget.h\
 			gui/widget/syntaxbox.h\

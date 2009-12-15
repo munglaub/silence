@@ -42,7 +42,15 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	setupFontActions();
 	layout->addWidget(fontToolbar);
 
-	textedit = new QTextEdit;
+	textedit = new RtfEdit;
+	QList<QAction*> contextActions;
+	contextActions.append(actionUndo);
+	contextActions.append(actionRedo);
+	contextActions.append(actionCut);
+	contextActions.append(actionCopy);
+	contextActions.append(actionPaste);
+	contextActions.append(actionSelectAll);
+	textedit->addContextActions(contextActions);
 	textedit->setTabStopWidth(40);
 	layout->addWidget(textedit);
 
