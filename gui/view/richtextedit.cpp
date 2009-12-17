@@ -117,6 +117,8 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	// lists
 	connect(actionIncreaseIndent, SIGNAL(triggered()), this, SLOT(increaseIndent()));
 	connect(actionDecreaseIndent, SIGNAL(triggered()), this, SLOT(decreaseIndent()));
+	connect(actionOrderedList, SIGNAL(triggered()), this, SLOT(createOrderedList()));
+	connect(actionUnorderedList, SIGNAL(triggered()), this, SLOT(createUnorderedList()));
 }
 
 
@@ -138,9 +140,12 @@ RichTextEdit::~RichTextEdit()
 	delete actionAlignJustify;
 	delete actionTextColor;
 	delete actionFind;
+	delete actionIncreaseIndent;
+	delete actionDecreaseIndent;
+	delete actionOrderedList;
+	delete actionUnorderedList;
 	delete findWidget;
 	delete toolbar;
-	delete comboStyle;
 	delete comboFont;
 	delete comboSize;
 	delete fontToolbar;
@@ -228,6 +233,12 @@ void RichTextEdit::setupActions()
 	menu->addActions(grp->actions());
 	toolbar->addSeparator();
 
+	actionUnorderedList = toolbar->addAction(QIcon(":/icons/actions/format-list-unordered.png"), tr("Create Unordered List"));
+	actionOrderedList = toolbar->addAction(QIcon(":/icons/actions/format-list-ordered.png"), tr("Create Ordered List"));
+	actionIncreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-more.png"), tr("Indent more"));
+	actionDecreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
+	toolbar->addSeparator();
+
 	// color
 	QPixmap pix(16, 16);
 	pix.fill(Qt::black);
@@ -243,22 +254,6 @@ void RichTextEdit::setupActions()
 
 void RichTextEdit::setupFontActions()
 {
-	actionIncreaseIndent = fontToolbar->addAction(QIcon(":/icons/actions/format-indent-more.png"), tr("Indent more"));
-	actionDecreaseIndent = fontToolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
-
-	comboStyle = new QComboBox(fontToolbar);
-	fontToolbar->addWidget(comboStyle);
-
-	comboStyle->addItem(tr("Standard"));
-	comboStyle->addItem(tr("Bullet List (Disc)"));
-	comboStyle->addItem(tr("Bullet List (Circle)"));
-	comboStyle->addItem(tr("Bullet List (Square)"));
-	comboStyle->addItem(tr("Ordered List (Decimal)"));
-	comboStyle->addItem(tr("Ordered List (Alpha lower)"));
-	comboStyle->addItem(tr("Ordered List (Alpha upper)"));
-	connect(comboStyle, SIGNAL(activated(int)),
-			this, SLOT(textStyle(int)));
-
 	comboFont = new QFontComboBox(fontToolbar);
 	fontToolbar->addWidget(comboFont);
 	connect(comboFont, SIGNAL(activated(const QString &)),
@@ -362,61 +357,6 @@ void RichTextEdit::colorChanged(const QColor &color)
 	QPixmap pix(16, 16);
 	pix.fill(color);
 	actionTextColor->setIcon(pix);
-}
-
-void RichTextEdit::textStyle(int styleIndex)
-{
-	QTextCursor cursor = textedit->textCursor();
-	
-	if (styleIndex != 0) {
-		QTextListFormat::Style style = QTextListFormat::ListDisc;
-	
-		switch (styleIndex) {
-			default:
-			case 1:
-				style = QTextListFormat::ListDisc;
-				break;
-			case 2:
-				style = QTextListFormat::ListCircle;
-				break;
-			case 3:
-				style = QTextListFormat::ListSquare;
-				break;
-			case 4:
-				style = QTextListFormat::ListDecimal;
-				break;
-			case 5:
-				style = QTextListFormat::ListLowerAlpha;
-				break;
-			case 6:
-				style = QTextListFormat::ListUpperAlpha;
-				break;
-		}
-	
-		cursor.beginEditBlock();
-	
-		QTextBlockFormat blockFmt = cursor.blockFormat();
-	
-		QTextListFormat listFmt;
-	
-		if (cursor.currentList()) {
-			listFmt = cursor.currentList()->format();
-		} else {
-			listFmt.setIndent(blockFmt.indent() + 1);
-			blockFmt.setIndent(0);
-			cursor.setBlockFormat(blockFmt);
-		}
-	
-		listFmt.setStyle(style);
-	
-		cursor.createList(listFmt);
-	
-		cursor.endEditBlock();
-	} else {
-		QTextBlockFormat bfmt;
-		bfmt.setObjectIndex(-1);
-		cursor.mergeBlockFormat(bfmt);
-	}
 }
 
 void RichTextEdit::textFamily(const QString &font)
@@ -632,6 +572,37 @@ void RichTextEdit::decreaseIndent()
 			cursor.mergeBlockFormat(bfmt);
 		}
 	}
+}
+
+void RichTextEdit::createOrderedList()
+{
+	createList(QTextListFormat::ListDecimal);
+}
+
+void RichTextEdit::createUnorderedList()
+{
+	createList(QTextListFormat::ListDisc);
+}
+
+void RichTextEdit::createList(QTextListFormat::Style style)
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentList())
+		return;
+
+	cursor.beginEditBlock();
+
+	QTextBlockFormat blockFmt = cursor.blockFormat();
+	QTextListFormat listFmt;
+
+	listFmt.setIndent(blockFmt.indent() + 1);
+	blockFmt.setIndent(0);
+	cursor.setBlockFormat(blockFmt);
+
+	listFmt.setStyle(style);
+	cursor.createList(listFmt);
+
+	cursor.endEditBlock();
 }
 
 void RichTextEdit::contentChanged()

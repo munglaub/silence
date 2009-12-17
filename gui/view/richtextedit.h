@@ -78,7 +78,6 @@ class RichTextEdit : public QWidget
 		void textAlign(QAction *action);
 		void cursorPositionChanged();
 		void textColor();
-		void textStyle(int styleIndex);
 		void textFamily(const QString &font);
 		void textSize(const QString &p);
 		void currentCharFormatChanged(const QTextCharFormat &format);
@@ -94,6 +93,8 @@ class RichTextEdit : public QWidget
 
 		void increaseIndent();
 		void decreaseIndent();
+		void createOrderedList();
+		void createUnorderedList();
 
 	private:
 		RichTextNodeContent *content;
@@ -122,12 +123,12 @@ class RichTextEdit : public QWidget
 				*actionAlignRight,
 				*actionAlignJustify,
 				*actionTextColor,
-				*actionFind;
+				*actionFind,
+				*actionIncreaseIndent,
+				*actionDecreaseIndent,
+				*actionOrderedList,
+				*actionUnorderedList;
 
-		QAction *actionIncreaseIndent,
-				*actionDecreaseIndent;
-
-		QComboBox *comboStyle;
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;
 
@@ -139,6 +140,8 @@ class RichTextEdit : public QWidget
 		void colorChanged(const QColor &color);
 		void fontChanged(const QFont &font);
 		bool find(bool forward);
+
+		void createList(QTextListFormat::Style style);
 };
 
 #endif // RICHTEXTEDIT_H

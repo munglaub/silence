@@ -32,6 +32,8 @@
 		<file>icons/actions/help-about.png</file>
 		<file>icons/actions/format-indent-more.png</file>
 		<file>icons/actions/format-indent-less.png</file>
+		<file>icons/actions/format-list-ordered.png</file>
+		<file>icons/actions/format-list-unordered.png</file>
 
 		<file>icons/mimetype_16px/application-javascript.png</file>
 		<file>icons/mimetype_16px/application-x-perl.png</file>
