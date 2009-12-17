@@ -25,6 +25,7 @@
 #include <QColorDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
+#include <QTextDocumentFragment>
 #include <QTextList>
 
 
@@ -112,6 +113,10 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(actionSelectAll, SIGNAL(triggered()), textedit, SLOT(selectAll()));
 
 	connect(textedit, SIGNAL(textChanged()), this, SLOT(contentChanged()));
+
+	// lists
+	connect(actionIncreaseIndent, SIGNAL(triggered()), this, SLOT(increaseIndent()));
+	connect(actionDecreaseIndent, SIGNAL(triggered()), this, SLOT(decreaseIndent()));
 }
 
 
@@ -238,6 +243,9 @@ void RichTextEdit::setupActions()
 
 void RichTextEdit::setupFontActions()
 {
+	actionIncreaseIndent = fontToolbar->addAction(QIcon(":/icons/actions/format-indent-more.png"), tr("Indent more"));
+	actionDecreaseIndent = fontToolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
+
 	comboStyle = new QComboBox(fontToolbar);
 	fontToolbar->addWidget(comboStyle);
 
@@ -539,8 +547,97 @@ void RichTextEdit::replaceAll()
 	} while (found);
 }
 
+void RichTextEdit::increaseIndent()
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentList())
+	{
+		cursor.beginEditBlock();
+
+		QTextListFormat listFmt = cursor.currentList()->format();
+		listFmt.setIndent(listFmt.indent() + 1);
+
+		switch (listFmt.style()) {
+			default:
+			case QTextListFormat::ListDisc:
+				listFmt.setStyle(QTextListFormat::ListCircle);
+				break;
+			case QTextListFormat::ListCircle:
+				listFmt.setStyle(QTextListFormat::ListSquare);
+				break;
+			case QTextListFormat::ListSquare:
+				listFmt.setStyle(QTextListFormat::ListDisc);
+				break;
+
+			case QTextListFormat::ListDecimal:
+				listFmt.setStyle(QTextListFormat::ListLowerAlpha);
+				break;
+			case QTextListFormat::ListLowerAlpha:
+				listFmt.setStyle(QTextListFormat::ListUpperAlpha);
+				break;
+			case QTextListFormat::ListUpperAlpha:
+				listFmt.setStyle(QTextListFormat::ListDecimal);
+				break;
+		}
+		cursor.createList(listFmt);
+
+		cursor.endEditBlock();
+	} else {
+		QTextBlockFormat bfmt;
+		bfmt.setIndent(cursor.blockFormat().indent() + 1);
+		cursor.mergeBlockFormat(bfmt);
+	}
+}
+
+void RichTextEdit::decreaseIndent()
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentList())
+	{
+		cursor.beginEditBlock();
+
+		QTextListFormat listFmt = cursor.currentList()->format();
+		if (listFmt.indent() > 1)
+		{
+			listFmt.setIndent(listFmt.indent() - 1);
+			switch (listFmt.style()) {
+				default:
+				case QTextListFormat::ListDisc:
+					listFmt.setStyle(QTextListFormat::ListSquare);
+					break;
+				case QTextListFormat::ListCircle:
+					listFmt.setStyle(QTextListFormat::ListDisc);
+					break;
+				case QTextListFormat::ListSquare:
+					listFmt.setStyle(QTextListFormat::ListCircle);
+					break;
+
+				case QTextListFormat::ListDecimal:
+					listFmt.setStyle(QTextListFormat::ListUpperAlpha);
+					break;
+				case QTextListFormat::ListLowerAlpha:
+					listFmt.setStyle(QTextListFormat::ListDecimal);
+					break;
+				case QTextListFormat::ListUpperAlpha:
+					listFmt.setStyle(QTextListFormat::ListLowerAlpha);
+					break;
+			}
+			cursor.createList(listFmt);
+		}
+		cursor.endEditBlock();
+	} else {
+		if (cursor.blockFormat().indent() > 0) {
+			QTextBlockFormat bfmt;
+			bfmt.setIndent(cursor.blockFormat().indent() - 1);
+			cursor.mergeBlockFormat(bfmt);
+		}
+	}
+}
+
 void RichTextEdit::contentChanged()
 {
 	Controller::create()->getStatusBar()->setSaveStatus(false);
 }
+
+
 

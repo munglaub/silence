@@ -92,6 +92,9 @@ class RichTextEdit : public QWidget
 		void replace();
 		void replaceAll();
 
+		void increaseIndent();
+		void decreaseIndent();
+
 	private:
 		RichTextNodeContent *content;
 		TextFind *findWidget;
@@ -120,6 +123,9 @@ class RichTextEdit : public QWidget
 				*actionAlignJustify,
 				*actionTextColor,
 				*actionFind;
+
+		QAction *actionIncreaseIndent,
+				*actionDecreaseIndent;
 
 		QComboBox *comboStyle;
 		QFontComboBox *comboFont;
