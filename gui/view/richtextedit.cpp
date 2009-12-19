@@ -23,6 +23,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
+#include <QFileDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
 #include <QTextDocumentFragment>
@@ -119,6 +120,9 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(actionDecreaseIndent, SIGNAL(triggered()), this, SLOT(decreaseIndent()));
 	connect(actionOrderedList, SIGNAL(triggered()), this, SLOT(createOrderedList()));
 	connect(actionUnorderedList, SIGNAL(triggered()), this, SLOT(createUnorderedList()));
+
+	// picture
+	connect(actionAddPicture, SIGNAL(triggered()), this, SLOT(addPicture()));
 }
 
 
@@ -238,6 +242,8 @@ void RichTextEdit::setupActions()
 	actionIncreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-more.png"), tr("Indent more"));
 	actionDecreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
 	toolbar->addSeparator();
+
+	actionAddPicture = toolbar->addAction(QIcon(":/icons/actions/insert-image.png"), tr("Insert Image"));
 
 	// color
 	QPixmap pix(16, 16);
@@ -608,6 +614,29 @@ void RichTextEdit::createList(QTextListFormat::Style style)
 void RichTextEdit::contentChanged()
 {
 	Controller::create()->getStatusBar()->setSaveStatus(false);
+}
+
+void RichTextEdit::addPicture()
+{
+	QString fileName = QFileDialog::getOpenFileName(this,
+		tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp);; All Files (*)"));
+
+	if (fileName.isEmpty())
+		return;
+
+	QImage image(fileName);
+	if (image.isNull())
+	{
+		// TODO: inform the user about the problem
+		return;
+	}
+
+	//TODO: copy the image to a safe location
+
+	QTextCursor cursor = textedit->textCursor();
+	cursor.beginEditBlock();
+	cursor.insertImage(fileName);
+	cursor.endEditBlock();
 }
 
 

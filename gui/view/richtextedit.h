@@ -96,6 +96,8 @@ class RichTextEdit : public QWidget
 		void createOrderedList();
 		void createUnorderedList();
 
+		void addPicture();
+
 	private:
 		RichTextNodeContent *content;
 		TextFind *findWidget;
@@ -127,7 +129,8 @@ class RichTextEdit : public QWidget
 				*actionIncreaseIndent,
 				*actionDecreaseIndent,
 				*actionOrderedList,
-				*actionUnorderedList;
+				*actionUnorderedList,
+				*actionAddPicture;
 
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;
