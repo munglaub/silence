@@ -37,6 +37,7 @@
 		<file>icons/actions/insert-image.png</file>
 		<file>icons/actions/insert-horizontal-rule.png</file>
 		<file>icons/actions/format-text-color.png</file>
+		<file>icons/actions/format-fill-color.png</file>
 
 		<file>icons/mimetype_16px/application-javascript.png</file>
 		<file>icons/mimetype_16px/application-x-perl.png</file>

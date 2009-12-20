@@ -144,6 +144,7 @@ RichTextEdit::~RichTextEdit()
 	delete actionAlignRight;
 	delete actionAlignJustify;
 	delete actionTextColor;
+	delete actionTextBgColor;
 	delete actionFind;
 	delete actionIncreaseIndent;
 	delete actionDecreaseIndent;
@@ -258,6 +259,8 @@ void RichTextEdit::setupFontActions()
 {
 	actionTextColor = fontToolbar->addAction(QIcon(":/icons/actions/format-text-color.png"), tr("Text Color"));
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
+	actionTextBgColor = fontToolbar->addAction(QIcon(":/icons/actions/format-fill-color.png"), tr("Text Highlight"));
+	connect(actionTextBgColor, SIGNAL(triggered()), this, SLOT(textBgColor()));
 
 	comboFont = new QFontComboBox(fontToolbar);
 	fontToolbar->addWidget(comboFont);
@@ -351,6 +354,16 @@ void RichTextEdit::textColor()
 		return;
 	QTextCharFormat fmt;
 	fmt.setForeground(col);
+	mergeFormatOnWordOrSelection(fmt);
+}
+
+void RichTextEdit::textBgColor()
+{
+	QColor col = QColorDialog::getColor(textedit->textColor(), this);
+	if (!col.isValid())
+		return;
+	QTextCharFormat fmt;
+	fmt.setBackground(col);
 	mergeFormatOnWordOrSelection(fmt);
 }
 

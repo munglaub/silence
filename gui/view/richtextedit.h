@@ -78,6 +78,7 @@ class RichTextEdit : public QWidget
 		void textAlign(QAction *action);
 		void cursorPositionChanged();
 		void textColor();
+		void textBgColor();
 		void textFamily(const QString &font);
 		void textSize(const QString &p);
 		void currentCharFormatChanged(const QTextCharFormat &format);
@@ -124,6 +125,7 @@ class RichTextEdit : public QWidget
 				*actionAlignRight,
 				*actionAlignJustify,
 				*actionTextColor,
+				*actionTextBgColor,
 				*actionFind,
 				*actionIncreaseIndent,
 				*actionDecreaseIndent,
