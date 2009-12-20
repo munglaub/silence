@@ -81,7 +81,6 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	// color & font
 	connect(textedit, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)),
 			this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
-	colorChanged(textedit->textColor());	
 	fontChanged(textedit->font());
 
 	// undo & redo
@@ -250,14 +249,6 @@ void RichTextEdit::setupActions()
 	actionAddPicture = toolbar->addAction(QIcon(":/icons/actions/insert-image.png"), tr("Insert Image"));
 	actionInsertRule = toolbar->addAction(QIcon(":/icons/actions/insert-horizontal-rule.png"), tr("Insert Horizontal Rule"));
 
-	// color
-	QPixmap pix(16, 16);
-	pix.fill(Qt::black);
-	actionTextColor = new QAction(pix, tr("&Color..."), this);
-	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
-	toolbar->addAction(actionTextColor);
-	menu->addAction(actionTextColor);
-
 	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	menu->addAction(actionFind);
@@ -265,6 +256,9 @@ void RichTextEdit::setupActions()
 
 void RichTextEdit::setupFontActions()
 {
+	actionTextColor = fontToolbar->addAction(QIcon(":/icons/actions/format-text-color.png"), tr("Text Color"));
+	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
+
 	comboFont = new QFontComboBox(fontToolbar);
 	fontToolbar->addWidget(comboFont);
 	connect(comboFont, SIGNAL(activated(const QString &)),
@@ -358,14 +352,6 @@ void RichTextEdit::textColor()
 	QTextCharFormat fmt;
 	fmt.setForeground(col);
 	mergeFormatOnWordOrSelection(fmt);
-	colorChanged(col);
-}
-
-void RichTextEdit::colorChanged(const QColor &color)
-{
-	QPixmap pix(16, 16);
-	pix.fill(color);
-	actionTextColor->setIcon(pix);
 }
 
 void RichTextEdit::textFamily(const QString &font)
@@ -397,7 +383,6 @@ void RichTextEdit::fontChanged(const QFont &font)
 void RichTextEdit::currentCharFormatChanged(const QTextCharFormat &format)
 {
 	fontChanged(format.font());
-	colorChanged(format.foreground().color());
 }
 
 void RichTextEdit::setContent(RichTextNodeContent *content)
@@ -435,7 +420,6 @@ void RichTextEdit::setVisible(bool visible)
 	actionAlignCenter->setVisible(visible);
 	actionAlignRight->setVisible(visible);
 	actionAlignJustify->setVisible(visible);
-	actionTextColor->setVisible(visible);
 	actionFind->setVisible(visible);
 }
 
@@ -498,86 +482,56 @@ void RichTextEdit::replaceAll()
 
 void RichTextEdit::increaseIndent()
 {
-	QTextCursor cursor = textedit->textCursor();
-	if (cursor.currentList())
-	{
-		cursor.beginEditBlock();
-
-		QTextListFormat listFmt = cursor.currentList()->format();
-		listFmt.setIndent(listFmt.indent() + 1);
-
-		switch (listFmt.style()) {
-			default:
-			case QTextListFormat::ListDisc:
-				listFmt.setStyle(QTextListFormat::ListCircle);
-				break;
-			case QTextListFormat::ListCircle:
-				listFmt.setStyle(QTextListFormat::ListSquare);
-				break;
-			case QTextListFormat::ListSquare:
-				listFmt.setStyle(QTextListFormat::ListDisc);
-				break;
-
-			case QTextListFormat::ListDecimal:
-				listFmt.setStyle(QTextListFormat::ListLowerAlpha);
-				break;
-			case QTextListFormat::ListLowerAlpha:
-				listFmt.setStyle(QTextListFormat::ListUpperAlpha);
-				break;
-			case QTextListFormat::ListUpperAlpha:
-				listFmt.setStyle(QTextListFormat::ListDecimal);
-				break;
-		}
-		cursor.createList(listFmt);
-
-		cursor.endEditBlock();
-	} else {
-		QTextBlockFormat bfmt;
-		bfmt.setIndent(cursor.blockFormat().indent() + 1);
-		cursor.mergeBlockFormat(bfmt);
-	}
+	changeIndent(true);
 }
 
 void RichTextEdit::decreaseIndent()
 {
+	changeIndent(false);
+}
+
+void RichTextEdit::changeIndent(bool increase)
+{
+	int indent = increase ? 1 : -1;
 	QTextCursor cursor = textedit->textCursor();
 	if (cursor.currentList())
 	{
 		cursor.beginEditBlock();
 
 		QTextListFormat listFmt = cursor.currentList()->format();
-		if (listFmt.indent() > 1)
+		listFmt.setIndent(listFmt.indent() + indent);
+		if (listFmt.indent() > 0 || increase)
 		{
-			listFmt.setIndent(listFmt.indent() - 1);
 			switch (listFmt.style()) {
 				default:
 				case QTextListFormat::ListDisc:
-					listFmt.setStyle(QTextListFormat::ListSquare);
+					listFmt.setStyle(increase ? QTextListFormat::ListCircle : QTextListFormat::ListSquare);
 					break;
 				case QTextListFormat::ListCircle:
-					listFmt.setStyle(QTextListFormat::ListDisc);
+					listFmt.setStyle(increase ? QTextListFormat::ListSquare : QTextListFormat::ListDisc);
 					break;
 				case QTextListFormat::ListSquare:
-					listFmt.setStyle(QTextListFormat::ListCircle);
+					listFmt.setStyle(increase ? QTextListFormat::ListDisc : QTextListFormat::ListCircle);
 					break;
 
 				case QTextListFormat::ListDecimal:
-					listFmt.setStyle(QTextListFormat::ListUpperAlpha);
+					listFmt.setStyle(increase ? QTextListFormat::ListLowerAlpha : QTextListFormat::ListUpperAlpha);
 					break;
 				case QTextListFormat::ListLowerAlpha:
-					listFmt.setStyle(QTextListFormat::ListDecimal);
+					listFmt.setStyle(increase ? QTextListFormat::ListUpperAlpha : QTextListFormat::ListDecimal);
 					break;
 				case QTextListFormat::ListUpperAlpha:
-					listFmt.setStyle(QTextListFormat::ListLowerAlpha);
+					listFmt.setStyle(increase ? QTextListFormat::ListDecimal : QTextListFormat::ListLowerAlpha);
 					break;
 			}
 			cursor.createList(listFmt);
 		}
 		cursor.endEditBlock();
 	} else {
-		if (cursor.blockFormat().indent() > 0) {
+		if (cursor.blockFormat().indent() > 0 || increase)
+		{
 			QTextBlockFormat bfmt;
-			bfmt.setIndent(cursor.blockFormat().indent() - 1);
+			bfmt.setIndent(cursor.blockFormat().indent() + indent);
 			cursor.mergeBlockFormat(bfmt);
 		}
 	}

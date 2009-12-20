@@ -140,11 +140,11 @@ class RichTextEdit : public QWidget
 
 		void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 		void alignmentChanged(Qt::Alignment alignment);
-		void colorChanged(const QColor &color);
 		void fontChanged(const QFont &font);
 		bool find(bool forward);
 
 		void createList(QTextListFormat::Style style);
+		void changeIndent(bool increase);
 };
 
 #endif // RICHTEXTEDIT_H
