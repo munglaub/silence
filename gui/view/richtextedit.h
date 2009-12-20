@@ -97,6 +97,7 @@ class RichTextEdit : public QWidget
 		void createUnorderedList();
 
 		void addPicture();
+		void insertRule();
 
 	private:
 		RichTextNodeContent *content;
@@ -104,11 +105,9 @@ class RichTextEdit : public QWidget
 
 		QVBoxLayout *layout;
 
-		// bad naming
 		QToolBar *toolbar;
 		QToolBar *fontToolbar;
 		RtfEdit *textedit;
-
 
 		QAction *actionSave,
 				*actionUndo,
@@ -130,7 +129,8 @@ class RichTextEdit : public QWidget
 				*actionDecreaseIndent,
 				*actionOrderedList,
 				*actionUnorderedList,
-				*actionAddPicture;
+				*actionAddPicture,
+				*actionInsertRule;
 
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;

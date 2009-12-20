@@ -123,6 +123,8 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	// picture
 	connect(actionAddPicture, SIGNAL(triggered()), this, SLOT(addPicture()));
+
+	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
 }
 
 
@@ -148,6 +150,8 @@ RichTextEdit::~RichTextEdit()
 	delete actionDecreaseIndent;
 	delete actionOrderedList;
 	delete actionUnorderedList;
+	delete actionAddPicture;
+	delete actionInsertRule;
 	delete findWidget;
 	delete toolbar;
 	delete comboFont;
@@ -244,6 +248,7 @@ void RichTextEdit::setupActions()
 	toolbar->addSeparator();
 
 	actionAddPicture = toolbar->addAction(QIcon(":/icons/actions/insert-image.png"), tr("Insert Image"));
+	actionInsertRule = toolbar->addAction(QIcon(":/icons/actions/insert-horizontal-rule.png"), tr("Insert Horizontal Rule"));
 
 	// color
 	QPixmap pix(16, 16);
@@ -279,8 +284,6 @@ void RichTextEdit::setupFontActions()
 			this, SLOT(textSize(const QString &)));
 	comboSize->setCurrentIndex(comboSize->findText(QString::number(
 		QApplication::font().pointSize())));
-
-
 }
 
 void RichTextEdit::textBold()
@@ -626,16 +629,19 @@ void RichTextEdit::addPicture()
 
 	QImage image(fileName);
 	if (image.isNull())
-	{
-		// TODO: inform the user about the problem
 		return;
-	}
-
-	//TODO: copy the image to a safe location
 
 	QTextCursor cursor = textedit->textCursor();
 	cursor.beginEditBlock();
 	cursor.insertImage(fileName);
+	cursor.endEditBlock();
+}
+
+void RichTextEdit::insertRule()
+{
+	QTextCursor cursor = textedit->textCursor();
+	cursor.beginEditBlock();
+	cursor.insertHtml("<hr />");
 	cursor.endEditBlock();
 }
 
