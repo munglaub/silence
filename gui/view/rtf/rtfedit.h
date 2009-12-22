@@ -38,6 +38,7 @@ class RtfEdit : public QTextEdit
 
 	protected:
 		void contextMenuEvent(QContextMenuEvent *event);
+		void mouseReleaseEvent(QMouseEvent *event);
 
 		QList<QAction*> actions;
 

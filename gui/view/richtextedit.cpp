@@ -614,3 +614,5 @@ void RichTextEdit::insertRule()
 
 
 
+
+

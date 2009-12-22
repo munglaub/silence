@@ -86,6 +86,12 @@ class TreeView : public QDockWidget
 		 */
 		void selectItem(QModelIndex &item);
 
+		/*!
+		 * Select a node by a given NodeId.
+		 * \param id The NodeId of the node wich will be selected.
+		 */
+		void selectItem(NodeId id);
+
 	public slots:
 		/*!
 		 * Check the availability of the node related actions and enable or disable them.
@@ -130,6 +136,7 @@ class TreeView : public QDockWidget
 		void setupToolbar();
 		void setupTree();
 		void setupQuestionFrame();
+		bool searchItem(QModelIndex &parent, NodeId id);
 };
 
 #endif // TREEVIEW_H
