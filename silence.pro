@@ -24,6 +24,7 @@ SOURCES += 	main.cpp\
 			gui/menu/viewmenu.cpp\
 			gui/dialog/aboutdialog.cpp\
 			gui/dialog/newnodedialog.cpp\
+			gui/dialog/newlinkdialog.cpp\
 			gui/dialog/labelmanagementdialog.cpp\
 			gui/sidebar/treeview.cpp\
 			gui/sidebar/infosidebar.cpp\
@@ -66,6 +67,7 @@ HEADERS +=	controller.h\
 			gui/menu/viewmenu.h\
 			gui/dialog/aboutdialog.h\
 			gui/dialog/newnodedialog.h\
+			gui/dialog/newlinkdialog.h\
 			gui/dialog/labelmanagementdialog.h\
 			gui/sidebar/treeview.h\
 			gui/sidebar/infosidebar.h\

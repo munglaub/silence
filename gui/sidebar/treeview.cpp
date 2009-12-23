@@ -84,37 +84,9 @@ void TreeView::selectItem(QModelIndex &item)
 
 void TreeView::selectItem(NodeId id)
 {
-	int column = 0;
-	for (int row = 0; model->index(row, column).isValid(); ++row)
-	{
-		QModelIndex index = model->index(row, column);
-		if (model->getItem(index)->getId().getId() == id.getId())
-		{
-			selectItem(index);
-			return;
-		} else {
-			if (searchItem(index, id))
-				return;
-		}
-	}
-}
-
-bool TreeView::searchItem(QModelIndex &parent, NodeId id)
-{
-	int column = 0;
-	for (int row = 0; parent.child(row, column).isValid(); ++row)
-	{
-		QModelIndex index = parent.child(row, column);
-		if (model->getItem(index)->getId().getId() == id.getId())
-		{
-			selectItem(index);
-			return true;
-		} else {
-			if (searchItem(index, id))
-				return true;
-		}
-	}
-	return false;
+	QModelIndex index = model->findByNodeId(id.getId());
+	if (index.isValid())
+		selectItem(index);
 }
 
 void TreeView::addNode(QModelIndex &index, int row)

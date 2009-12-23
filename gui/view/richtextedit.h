@@ -99,6 +99,7 @@ class RichTextEdit : public QWidget
 
 		void addPicture();
 		void insertRule();
+		void insertLink();
 
 	private:
 		RichTextNodeContent *content;
@@ -132,7 +133,8 @@ class RichTextEdit : public QWidget
 				*actionOrderedList,
 				*actionUnorderedList,
 				*actionAddPicture,
-				*actionInsertRule;
+				*actionInsertRule,
+				*actionInsertLink;
 
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;

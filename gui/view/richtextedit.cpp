@@ -124,6 +124,7 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(actionAddPicture, SIGNAL(triggered()), this, SLOT(addPicture()));
 
 	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
+	connect(actionInsertLink, SIGNAL(triggered()), this, SLOT(insertLink()));
 }
 
 
@@ -152,6 +153,7 @@ RichTextEdit::~RichTextEdit()
 	delete actionUnorderedList;
 	delete actionAddPicture;
 	delete actionInsertRule;
+	delete actionInsertLink;
 	delete findWidget;
 	delete toolbar;
 	delete comboFont;
@@ -257,6 +259,7 @@ void RichTextEdit::setupActions()
 
 void RichTextEdit::setupFontActions()
 {
+	actionInsertLink = fontToolbar->addAction(QIcon(":/icons/actions/insert-link.png"), tr("Link"));
 	actionTextColor = fontToolbar->addAction(QIcon(":/icons/actions/format-text-color.png"), tr("Text Color"));
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
 	actionTextBgColor = fontToolbar->addAction(QIcon(":/icons/actions/format-fill-color.png"), tr("Text Highlight"));
@@ -610,6 +613,24 @@ void RichTextEdit::insertRule()
 	cursor.beginEditBlock();
 	cursor.insertHtml("<hr />");
 	cursor.endEditBlock();
+}
+
+#include "gui/dialog/newlinkdialog.h"
+void RichTextEdit::insertLink()
+{
+	QTextCursor cursor = textedit->textCursor();
+	NewLinkDialog dlg;
+	if (cursor.hasSelection())
+		dlg.setLinkText(cursor.selectedText());
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		// TODO: url.isValid checken..
+		QString html = QString("<a href='%1'>%2</a>")
+						.arg(dlg.getUrl().toString())
+						.arg(dlg.getLinkText());
+
+		textedit->insertHtml(html);
+	}
 }
 
 

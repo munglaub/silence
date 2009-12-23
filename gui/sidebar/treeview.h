@@ -136,7 +136,6 @@ class TreeView : public QDockWidget
 		void setupToolbar();
 		void setupTree();
 		void setupQuestionFrame();
-		bool searchItem(QModelIndex &parent, NodeId id);
 };
 
 #endif // TREEVIEW_H
