@@ -24,26 +24,23 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 	: QDialog(parent, f)
 {
 	setWindowTitle(tr("New Link"));
-	resize(300, 100);
+	resize(300, 400);
 
 	layout = new QGridLayout;
 	int row = 0;
 
-	// link text
 	lblLinkText = new QLabel(tr("Link Text"));
 	layout->addWidget(lblLinkText, row, 0);
 	ledLinkText = new QLineEdit;
 	layout->addWidget(ledLinkText, row, 1);
 	++row;
 
-	// link url
-	lblLinkUrl = new QLabel(tr("Link Url"));
-	layout->addWidget(lblLinkUrl, row, 0);
-	ledLinkUrl = new QLineEdit("2");
-	layout->addWidget(ledLinkUrl, row, 1);
+	tree = new QTreeView;
+	model = new SimpleTreeModel;
+	tree->setModel(model);
+	layout->addWidget(tree, row, 0, 1, 2);
 	++row;
 
-	// buttons
 	btnCancel = new QPushButton(tr("Cancel"));
 	layout->addWidget(btnCancel, row, 0, 1, 1, Qt::AlignLeft);
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(reject()));
@@ -56,6 +53,13 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 
 NewLinkDialog::~NewLinkDialog()
 {
+	delete ledLinkText;
+	delete lblLinkText;
+	delete btnOk;
+	delete btnCancel;
+	delete model;
+	delete tree;
+	delete layout;
 }
 
 void NewLinkDialog::setLinkText(QString text)
@@ -70,7 +74,8 @@ QString NewLinkDialog::getLinkText()
 
 QUrl NewLinkDialog::getUrl()
 {
-	QUrl url("silence://0.0.0.0/" + ledLinkUrl->text());
+	int id = model->getItem(tree->selectionModel()->currentIndex())->getId().getId();
+	QUrl url("silence://0.0.0.0/" + QString::number(id));
 	return url;
 }
 

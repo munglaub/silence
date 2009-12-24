@@ -21,12 +21,13 @@
 #ifndef NEWLINKDIALOG_H
 #define NEWLINKDIALOG_H
 
-
+#include "data/model/simpletreemodel.h"
 #include <QDialog>
 #include <QGridLayout>
-#include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QTreeView>
 #include <QUrl>
 
 
@@ -45,12 +46,12 @@ class NewLinkDialog : public QDialog
 
 	private:
 		QGridLayout *layout;
+		QTreeView *tree;
+		SimpleTreeModel *model;
 		QPushButton *btnCancel,
 					*btnOk;
-		QLabel	*lblLinkText,
-				*lblLinkUrl;
-		QLineEdit	*ledLinkText,
-					*ledLinkUrl;
+		QLabel	*lblLinkText;
+		QLineEdit	*ledLinkText;
 
 };
 

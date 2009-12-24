@@ -13,6 +13,7 @@ SOURCES += 	main.cpp\
 			data/label.cpp\
 			data/model/labelmodel.cpp\
 			data/model/treemodel.cpp\
+			data/model/simpletreemodel.cpp\
 			data/model/filtermodel.cpp\
 			data/model/listproxymodel.cpp\
 			gui/mainwindow.cpp\
@@ -56,6 +57,7 @@ HEADERS +=	controller.h\
 			data/label.h\
 			data/model/labelmodel.h\
 			data/model/treemodel.h\
+			data/model/simpletreemodel.h\
 			data/model/listproxymodel.h\
 			data/model/filtermodel.h\
 			gui/mainwindow.h\

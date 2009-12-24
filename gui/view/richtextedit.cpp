@@ -19,6 +19,7 @@
  */
 
 #include "controller.h"
+#include "gui/dialog/newlinkdialog.h"
 #include "gui/view/richtextedit.h"
 #include <QApplication>
 #include <QClipboard>
@@ -615,7 +616,6 @@ void RichTextEdit::insertRule()
 	cursor.endEditBlock();
 }
 
-#include "gui/dialog/newlinkdialog.h"
 void RichTextEdit::insertLink()
 {
 	QTextCursor cursor = textedit->textCursor();
@@ -624,10 +624,14 @@ void RichTextEdit::insertLink()
 		dlg.setLinkText(cursor.selectedText());
 	if (dlg.exec() == QDialog::Accepted)
 	{
-		// TODO: url.isValid checken..
+		QString linktext = dlg.getLinkText();
+		QUrl url = dlg.getUrl();
+		if (!url.isValid() || linktext.isEmpty())
+			return;
+
 		QString html = QString("<a href='%1'>%2</a>")
-						.arg(dlg.getUrl().toString())
-						.arg(dlg.getLinkText());
+						.arg(url.toString())
+						.arg(linktext);
 
 		textedit->insertHtml(html);
 	}
