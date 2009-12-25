@@ -20,6 +20,7 @@
 
 #include "controller.h"
 #include "gui/dialog/newlinkdialog.h"
+#include "gui/dialog/newtabledialog.h"
 #include "gui/view/richtextedit.h"
 #include <QApplication>
 #include <QClipboard>
@@ -126,6 +127,7 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
 	connect(actionInsertLink, SIGNAL(triggered()), this, SLOT(insertLink()));
+	connect(actionInsertTable, SIGNAL(triggered()), this, SLOT(insertTable()));
 }
 
 
@@ -155,6 +157,7 @@ RichTextEdit::~RichTextEdit()
 	delete actionAddPicture;
 	delete actionInsertRule;
 	delete actionInsertLink;
+	delete actionInsertTable;
 	delete findWidget;
 	delete toolbar;
 	delete comboFont;
@@ -250,7 +253,9 @@ void RichTextEdit::setupActions()
 	actionDecreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
 	toolbar->addSeparator();
 
+	actionInsertLink = toolbar->addAction(QIcon(":/icons/actions/insert-link.png"), tr("Link"));
 	actionAddPicture = toolbar->addAction(QIcon(":/icons/actions/insert-image.png"), tr("Insert Image"));
+	actionInsertTable = toolbar->addAction(QIcon(":/icons/actions/insert-table.png"), tr("Table"));
 	actionInsertRule = toolbar->addAction(QIcon(":/icons/actions/insert-horizontal-rule.png"), tr("Insert Horizontal Rule"));
 
 	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
@@ -260,7 +265,6 @@ void RichTextEdit::setupActions()
 
 void RichTextEdit::setupFontActions()
 {
-	actionInsertLink = fontToolbar->addAction(QIcon(":/icons/actions/insert-link.png"), tr("Link"));
 	actionTextColor = fontToolbar->addAction(QIcon(":/icons/actions/format-text-color.png"), tr("Text Color"));
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
 	actionTextBgColor = fontToolbar->addAction(QIcon(":/icons/actions/format-fill-color.png"), tr("Text Highlight"));
@@ -634,6 +638,21 @@ void RichTextEdit::insertLink()
 						.arg(linktext);
 
 		textedit->insertHtml(html);
+	}
+}
+
+void RichTextEdit::insertTable()
+{
+	QTextCursor cursor = textedit->textCursor();
+	NewTableDialog dlg;
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		if (dlg.getRowCount() > 0 && dlg.getColumnCount() > 0)
+		{
+			cursor.beginEditBlock();
+			cursor.insertTable(dlg.getRowCount(), dlg.getColumnCount(), QTextTableFormat());
+			cursor.endEditBlock();
+		}
 	}
 }
 
