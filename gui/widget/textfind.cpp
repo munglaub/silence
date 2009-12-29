@@ -155,6 +155,13 @@ void TextFind::showMore()
 	}
 }
 
+void TextFind::showFull()
+{
+	show();
+	if (!showAll)
+		showMore();
+}
+
 QString TextFind::getSearchString()
 {
 	return findEdit->text();

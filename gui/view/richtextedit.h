@@ -129,6 +129,7 @@ class RichTextEdit : public QWidget
 				*actionTextColor,
 				*actionTextBgColor,
 				*actionFind,
+				*actionFindReplace,
 				*actionIncreaseIndent,
 				*actionDecreaseIndent,
 				*actionOrderedList,

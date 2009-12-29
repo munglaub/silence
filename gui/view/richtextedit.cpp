@@ -71,6 +71,7 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(findWidget, SIGNAL(searchStringChanged(const QString&)), this, SLOT(findFirst()));
 	connect(findWidget, SIGNAL(replace()), this, SLOT(replace()));
 	connect(findWidget, SIGNAL(replaceAll()), this, SLOT(replaceAll()));
+	connect(actionFindReplace, SIGNAL(triggered()), findWidget, SLOT(showFull()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
@@ -150,6 +151,7 @@ RichTextEdit::~RichTextEdit()
 	delete actionTextColor;
 	delete actionTextBgColor;
 	delete actionFind;
+	delete actionFindReplace;
 	delete actionIncreaseIndent;
 	delete actionDecreaseIndent;
 	delete actionOrderedList;
@@ -261,6 +263,8 @@ void RichTextEdit::setupActions()
 	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	menu->addAction(actionFind);
+	actionFindReplace = toolbar->addAction(QIcon(":/icons/actions/edit-find-replace.png"), tr("Find/Replace"));
+	menu->addAction(actionFindReplace);
 }
 
 void RichTextEdit::setupFontActions()
@@ -618,6 +622,7 @@ void RichTextEdit::insertRule()
 	cursor.beginEditBlock();
 	cursor.insertHtml("<hr />");
 	cursor.endEditBlock();
+	textedit->moveCursor(QTextCursor::NextBlock);
 }
 
 void RichTextEdit::insertLink()
@@ -650,7 +655,7 @@ void RichTextEdit::insertTable()
 		if (dlg.getRowCount() > 0 && dlg.getColumnCount() > 0)
 		{
 			cursor.beginEditBlock();
-			cursor.insertTable(dlg.getRowCount(), dlg.getColumnCount(), QTextTableFormat());
+			cursor.insertTable(dlg.getRowCount(), dlg.getColumnCount());
 			cursor.endEditBlock();
 		}
 	}

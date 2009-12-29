@@ -102,6 +102,7 @@ class TextEdit : public QWidget
 				*actionCopy,
 				*actionPaste,
 				*actionFind,
+				*actionFindReplace,
 				*actionSelectAll;
 		
 

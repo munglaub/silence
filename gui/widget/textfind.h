@@ -95,9 +95,14 @@ class TextFind : public QWidget
 		void show();
 
 		/*!
-		 * Show the full TextFind widget including the replace parts.
+		 * Toggle the visibility of the replace parts.
 		 */
 		void showMore();
+
+		/*!
+		 * Show the full TextFind widget including the replace parts.
+		 */
+		void showFull();
 
 	signals:
 		/*!
