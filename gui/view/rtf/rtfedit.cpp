@@ -42,6 +42,30 @@ void RtfEdit::addContextActions(QList<QAction*> actions)
 	this->actions.append(actions);
 }
 
+bool RtfEdit::canInsertFromMimeData(const QMimeData *source) const
+{
+	if (source->formats().contains("application/silence-nodeid"))
+		return true;
+	else
+		return QTextEdit::canInsertFromMimeData(source);
+}
+
+void RtfEdit::insertFromMimeData(const QMimeData *source)
+{
+	if (source->formats().contains("applications/silence-nodeid"))
+	{
+		int id = source->data("application/silence-nodeid").toInt();
+		Node* node = Controller::create()->getDataStore()->getNode(NodeId(id));
+		QUrl url("silence://0.0.0.0/" + id);
+		QString html = QString("<a href='%1'>%2</a>")
+						.arg(url.toString())
+						.arg(node->getCaption());
+		insertHtml(html);
+	} else {
+		QTextEdit::insertFromMimeData(source);
+	}
+}
+
 void RtfEdit::contextMenuEvent(QContextMenuEvent *event)
 {
 	QMenu menu(this);

@@ -53,6 +53,7 @@ class XmlDataStore : public AbstractDataStore
 		~XmlDataStore();
 
 		Node* getRootNode();
+		Node *getNode(NodeId id);
 		Label* getRootLabel();
 
 		void removeNode(Node *node);
@@ -70,6 +71,7 @@ class XmlDataStore : public AbstractDataStore
 		static const QString DATA_FILE;
 
 		void saveAll();
+		Node* findNode(Node* parent, NodeId id);
 
 		void xmlToLabels(QDomElement &xmlLabels, Label* label);
 

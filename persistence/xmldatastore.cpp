@@ -68,6 +68,27 @@ Node* XmlDataStore::getRootNode()
 	return rootNode;
 }
 
+Node* XmlDataStore::getNode(NodeId id)
+{
+	return findNode(rootNode, id);
+}
+
+Node* XmlDataStore::findNode(Node* parent, NodeId id)
+{
+	for (int i = 0; i < parent->getChildCount(); ++i)
+	{
+		if (parent->getChild(i)->getId().getId() == id.getId())
+		{
+			return parent->getChild(i);
+		} else {
+			Node *res = findNode(parent->getChild(i), id);
+			if (res)
+				return res;
+		}
+	}
+	return 0;
+}
+
 Label* XmlDataStore::getRootLabel()
 {
 	return rootLabel;
