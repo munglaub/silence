@@ -30,6 +30,7 @@
 #include <QTextCursor>
 #include <QTextDocumentFragment>
 #include <QTextList>
+#include <QTextTable>
 
 
 RichTextEdit::RichTextEdit(QWidget *parent)
@@ -128,7 +129,13 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 
 	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
 	connect(actionInsertLink, SIGNAL(triggered()), this, SLOT(insertLink()));
+
+	// table
 	connect(actionInsertTable, SIGNAL(triggered()), this, SLOT(insertTable()));
+	connect(actionInsertTableRow, SIGNAL(triggered()), this, SLOT(insertTableRow()));
+	connect(actionInsertTableColumn, SIGNAL(triggered()), this, SLOT(insertTableColumn()));
+	connect(actionRemoveTableRow, SIGNAL(triggered()), this, SLOT(removeTableRow()));
+	connect(actionRemoveTableColumn, SIGNAL(triggered()), this, SLOT(removeTableColumn()));
 }
 
 
@@ -160,6 +167,10 @@ RichTextEdit::~RichTextEdit()
 	delete actionInsertRule;
 	delete actionInsertLink;
 	delete actionInsertTable;
+	delete actionInsertTableRow;
+	delete actionInsertTableColumn;
+	delete actionRemoveTableRow;
+	delete actionRemoveTableColumn;
 	delete findWidget;
 	delete toolbar;
 	delete comboFont;
@@ -293,6 +304,11 @@ void RichTextEdit::setupFontActions()
 			this, SLOT(textSize(const QString &)));
 	comboSize->setCurrentIndex(comboSize->findText(QString::number(
 		QApplication::font().pointSize())));
+
+	actionInsertTableRow = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-row.png"), tr("Insert Table Row"));
+	actionInsertTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-column.png"), tr("Insert Table Column"));
+	actionRemoveTableRow = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-row.png"), tr("Remove Table Row"));
+	actionRemoveTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-column.png"), tr("Remove Table Column"));
 }
 
 void RichTextEdit::textBold()
@@ -357,6 +373,12 @@ void RichTextEdit::cursorPositionChanged()
 	int line = textedit->textCursor().block().blockNumber();
 	int col = textedit->textCursor().position() - textedit->textCursor().block().position();
 	Controller::create()->getStatusBar()->setCursorPosition(line, col);
+
+	bool active = textedit->textCursor().currentTable() ? true : false;
+	actionInsertTableRow->setEnabled(active);
+	actionInsertTableColumn->setEnabled(active);
+	actionRemoveTableRow->setEnabled(active);
+	actionRemoveTableColumn->setEnabled(active);
 }
 
 void RichTextEdit::textColor()
@@ -661,7 +683,50 @@ void RichTextEdit::insertTable()
 	}
 }
 
+void RichTextEdit::insertTableRow()
+{
+	editTable(true, true);
+}
 
+void RichTextEdit::insertTableColumn()
+{
+	editTable(false, true);
+}
+
+void RichTextEdit::removeTableRow()
+{
+	editTable(true, false);
+}
+
+void RichTextEdit::removeTableColumn()
+{
+	editTable(false, false);
+}
+
+void RichTextEdit::editTable(bool row, bool insert)
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentTable())
+	{
+		cursor.beginEditBlock();
+
+		int number = 1;
+		QTextTable *table = cursor.currentTable();
+		int index = row ? table->cellAt(cursor).row() : table->cellAt(cursor).column();
+
+		if (row)
+			if (insert)
+				table->insertRows(index, number);
+			else
+				table->removeRows(index, number);
+		else
+			if (insert)
+				table->insertColumns(index, number);
+			else
+				table->removeColumns(index, number);
+		cursor.endEditBlock();
+	}
+}
 
 
 

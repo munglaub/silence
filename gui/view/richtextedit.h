@@ -100,7 +100,12 @@ class RichTextEdit : public QWidget
 		void addPicture();
 		void insertRule();
 		void insertLink();
+
 		void insertTable();
+		void insertTableRow();
+		void insertTableColumn();
+		void removeTableRow();
+		void removeTableColumn();
 
 	private:
 		RichTextNodeContent *content;
@@ -137,7 +142,11 @@ class RichTextEdit : public QWidget
 				*actionAddPicture,
 				*actionInsertRule,
 				*actionInsertLink,
-				*actionInsertTable;
+				*actionInsertTable,
+				*actionInsertTableRow,
+				*actionInsertTableColumn,
+				*actionRemoveTableRow,
+				*actionRemoveTableColumn;
 
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;
@@ -152,6 +161,7 @@ class RichTextEdit : public QWidget
 
 		void createList(QTextListFormat::Style style);
 		void changeIndent(bool increase);
+		void editTable(bool row, bool insert);
 };
 
 #endif // RICHTEXTEDIT_H
