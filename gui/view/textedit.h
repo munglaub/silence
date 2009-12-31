@@ -107,7 +107,7 @@ class TextEdit : public QWidget
 
 		void setupActions();
 		void setupEditor();
-		bool find(bool forward);
+		bool find(bool forward, bool wrap = true);
 };
 
 #endif // TEXTEDIT_H

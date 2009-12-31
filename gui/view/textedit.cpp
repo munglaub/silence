@@ -279,7 +279,7 @@ void TextEdit::findPrev()
 	find(false);
 }
 
-bool TextEdit::find(bool forward)
+bool TextEdit::find(bool forward, bool wrap)
 {
 	bool found = false;
 	if (findWidget->getSearchString().isEmpty())
@@ -288,7 +288,6 @@ bool TextEdit::find(bool forward)
 	bool regex = false;
 	bool caseSensitive = findWidget->getCaseSensitivity();
 	bool wholeWord = findWidget->getWholeWord();
-	bool wrap = true;
 	int line = -1;
 	int index = -1;
 	if (forward == false)
@@ -317,7 +316,7 @@ void TextEdit::replaceAll()
 	editor->setCursorPosition(0, 0);
 	bool found = false;
 	do {
-		found = find(true);
+		found = find(true, false);
 		if (found)
 			editor->replace(findWidget->getReplaceString());
 	} while (found);
