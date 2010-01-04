@@ -52,15 +52,18 @@ bool RtfEdit::canInsertFromMimeData(const QMimeData *source) const
 
 void RtfEdit::insertFromMimeData(const QMimeData *source)
 {
-	if (source->formats().contains("applications/silence-nodeid"))
+	if (source->formats().contains("application/silence-nodeid"))
 	{
 		int id = source->data("application/silence-nodeid").toInt();
 		Node* node = Controller::create()->getDataStore()->getNode(NodeId(id));
-		QUrl url("silence://0.0.0.0/" + id);
-		QString html = QString("<a href='%1'>%2</a>")
-						.arg(url.toString())
-						.arg(node->getCaption());
-		insertHtml(html);
+		QUrl url("silence://0.0.0.0/" + QString::number(id));
+		if (node && url.isValid())
+		{
+			QString html = QString("<a href='%1'>%2</a>")
+							.arg(url.toString())
+							.arg(node->getCaption());
+			insertHtml(html);
+		}
 	} else {
 		QTextEdit::insertFromMimeData(source);
 	}
