@@ -186,6 +186,13 @@ class TreeModel : public QAbstractItemModel
 		 */
 		Node* getItem(const QModelIndex &index) const;
 
+		/*!
+		 * Get the QModelIndex for a specified id.
+		 * \param id The id of the node to look for.
+		 * \return The QModelIndex of the node with the provided id.
+		 */
+		QModelIndex findByNodeId(int id);
+
 	signals:
 		/*!
 		 * This signal will be emitted after a successfull drop operation.
@@ -197,7 +204,6 @@ class TreeModel : public QAbstractItemModel
 	private:
 		Node *rootItem;
 
-		QModelIndex findByNodeId(int id);
 		QModelIndex findByNodeId(int id, QModelIndex &searchindex);
 };
 

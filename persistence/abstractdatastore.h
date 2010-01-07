@@ -45,6 +45,13 @@ class AbstractDataStore : public QObject
 		virtual Node* getRootNode() = 0;
 
 		/*!
+		 * Get a specific Node.
+		 * \param id The id of the requested node.
+		 * \return The node with the provided id or 0 if the node was not found.
+		 */
+		virtual Node* getNode(NodeId id) = 0;
+
+		/*!
 		 * Get the root label of the hierarchical label structure.
 		 * \return The root of the label structure.
 		 */

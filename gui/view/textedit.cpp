@@ -69,6 +69,7 @@ TextEdit::TextEdit(QWidget *parent)
 	connect(findWidget, SIGNAL(searchStringChanged(const QString&)), this, SLOT(findFirst()));
 	connect(findWidget, SIGNAL(replace()), this, SLOT(replace()));
 	connect(findWidget, SIGNAL(replaceAll()), this, SLOT(replaceAll()));
+	connect(actionFindReplace, SIGNAL(triggered()), findWidget, SLOT(showFull()));
 
 	// cursorposition
 	connect(editor, SIGNAL(cursorPositionChanged(int, int)), Controller::create()->getStatusBar(), SLOT(setCursorPosition(int, int)));
@@ -116,6 +117,7 @@ TextEdit::~TextEdit()
 	delete actionPaste;
 	delete actionSelectAll;
 	delete actionFind;
+	delete actionFindReplace;
 	delete toolbar;
 	delete editor;
 	delete findWidget;
@@ -153,7 +155,7 @@ void TextEdit::setupActions()
 	actionSelectAll->setShortcut(QKeySequence::SelectAll);
 	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
-	toolbar->addAction(QIcon(":/icons/actions/edit-find-replace.png"), tr("Find/Replace"));
+	actionFindReplace = toolbar->addAction(QIcon(":/icons/actions/edit-find-replace.png"), tr("Find/Replace"));
 }
 
 void TextEdit::setupEditor()

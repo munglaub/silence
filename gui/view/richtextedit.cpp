@@ -19,13 +19,18 @@
  */
 
 #include "controller.h"
+#include "gui/dialog/newlinkdialog.h"
+#include "gui/dialog/newtabledialog.h"
 #include "gui/view/richtextedit.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
+#include <QFileDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
+#include <QTextDocumentFragment>
 #include <QTextList>
+#include <QTextTable>
 
 
 RichTextEdit::RichTextEdit(QWidget *parent)
@@ -42,7 +47,15 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	setupFontActions();
 	layout->addWidget(fontToolbar);
 
-	textedit = new QTextEdit;
+	textedit = new RtfEdit;
+	QList<QAction*> contextActions;
+	contextActions.append(actionUndo);
+	contextActions.append(actionRedo);
+	contextActions.append(actionCut);
+	contextActions.append(actionCopy);
+	contextActions.append(actionPaste);
+	contextActions.append(actionSelectAll);
+	textedit->addContextActions(contextActions);
 	textedit->setTabStopWidth(40);
 	layout->addWidget(textedit);
 
@@ -59,6 +72,7 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(findWidget, SIGNAL(searchStringChanged(const QString&)), this, SLOT(findFirst()));
 	connect(findWidget, SIGNAL(replace()), this, SLOT(replace()));
 	connect(findWidget, SIGNAL(replaceAll()), this, SLOT(replaceAll()));
+	connect(actionFindReplace, SIGNAL(triggered()), findWidget, SLOT(showFull()));
 
 	// save
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
@@ -71,7 +85,6 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	// color & font
 	connect(textedit, SIGNAL(currentCharFormatChanged(const QTextCharFormat &)),
 			this, SLOT(currentCharFormatChanged(const QTextCharFormat &)));
-	colorChanged(textedit->textColor());	
 	fontChanged(textedit->font());
 
 	// undo & redo
@@ -104,6 +117,25 @@ RichTextEdit::RichTextEdit(QWidget *parent)
 	connect(actionSelectAll, SIGNAL(triggered()), textedit, SLOT(selectAll()));
 
 	connect(textedit, SIGNAL(textChanged()), this, SLOT(contentChanged()));
+
+	// lists
+	connect(actionIncreaseIndent, SIGNAL(triggered()), this, SLOT(increaseIndent()));
+	connect(actionDecreaseIndent, SIGNAL(triggered()), this, SLOT(decreaseIndent()));
+	connect(actionOrderedList, SIGNAL(triggered()), this, SLOT(createOrderedList()));
+	connect(actionUnorderedList, SIGNAL(triggered()), this, SLOT(createUnorderedList()));
+
+	// picture
+	connect(actionAddPicture, SIGNAL(triggered()), this, SLOT(addPicture()));
+
+	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
+	connect(actionInsertLink, SIGNAL(triggered()), this, SLOT(insertLink()));
+
+	// table
+	connect(actionInsertTable, SIGNAL(triggered()), this, SLOT(insertTable()));
+	connect(actionInsertTableRow, SIGNAL(triggered()), this, SLOT(insertTableRow()));
+	connect(actionInsertTableColumn, SIGNAL(triggered()), this, SLOT(insertTableColumn()));
+	connect(actionRemoveTableRow, SIGNAL(triggered()), this, SLOT(removeTableRow()));
+	connect(actionRemoveTableColumn, SIGNAL(triggered()), this, SLOT(removeTableColumn()));
 }
 
 
@@ -124,10 +156,23 @@ RichTextEdit::~RichTextEdit()
 	delete actionAlignRight;
 	delete actionAlignJustify;
 	delete actionTextColor;
+	delete actionTextBgColor;
 	delete actionFind;
+	delete actionFindReplace;
+	delete actionIncreaseIndent;
+	delete actionDecreaseIndent;
+	delete actionOrderedList;
+	delete actionUnorderedList;
+	delete actionAddPicture;
+	delete actionInsertRule;
+	delete actionInsertLink;
+	delete actionInsertTable;
+	delete actionInsertTableRow;
+	delete actionInsertTableColumn;
+	delete actionRemoveTableRow;
+	delete actionRemoveTableColumn;
 	delete findWidget;
 	delete toolbar;
-	delete comboStyle;
 	delete comboFont;
 	delete comboSize;
 	delete fontToolbar;
@@ -215,33 +260,30 @@ void RichTextEdit::setupActions()
 	menu->addActions(grp->actions());
 	toolbar->addSeparator();
 
-	// color
-	QPixmap pix(16, 16);
-	pix.fill(Qt::black);
-	actionTextColor = new QAction(pix, tr("&Color..."), this);
-	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
-	toolbar->addAction(actionTextColor);
-	menu->addAction(actionTextColor);
+	actionUnorderedList = toolbar->addAction(QIcon(":/icons/actions/format-list-unordered.png"), tr("Create Unordered List"));
+	actionOrderedList = toolbar->addAction(QIcon(":/icons/actions/format-list-ordered.png"), tr("Create Ordered List"));
+	actionIncreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-more.png"), tr("Indent more"));
+	actionDecreaseIndent = toolbar->addAction(QIcon(":/icons/actions/format-indent-less.png"), tr("Indent less"));
+	toolbar->addSeparator();
+
+	actionInsertLink = toolbar->addAction(QIcon(":/icons/actions/insert-link.png"), tr("Link"));
+	actionAddPicture = toolbar->addAction(QIcon(":/icons/actions/insert-image.png"), tr("Insert Image"));
+	actionInsertTable = toolbar->addAction(QIcon(":/icons/actions/insert-table.png"), tr("Table"));
+	actionInsertRule = toolbar->addAction(QIcon(":/icons/actions/insert-horizontal-rule.png"), tr("Insert Horizontal Rule"));
 
 	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	menu->addAction(actionFind);
+	actionFindReplace = toolbar->addAction(QIcon(":/icons/actions/edit-find-replace.png"), tr("Find/Replace"));
+	menu->addAction(actionFindReplace);
 }
 
 void RichTextEdit::setupFontActions()
 {
-	comboStyle = new QComboBox(fontToolbar);
-	fontToolbar->addWidget(comboStyle);
-
-	comboStyle->addItem(tr("Standard"));
-	comboStyle->addItem(tr("Bullet List (Disc)"));
-	comboStyle->addItem(tr("Bullet List (Circle)"));
-	comboStyle->addItem(tr("Bullet List (Square)"));
-	comboStyle->addItem(tr("Ordered List (Decimal)"));
-	comboStyle->addItem(tr("Ordered List (Alpha lower)"));
-	comboStyle->addItem(tr("Ordered List (Alpha upper)"));
-	connect(comboStyle, SIGNAL(activated(int)),
-			this, SLOT(textStyle(int)));
+	actionTextColor = fontToolbar->addAction(QIcon(":/icons/actions/format-text-color.png"), tr("Text Color"));
+	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
+	actionTextBgColor = fontToolbar->addAction(QIcon(":/icons/actions/format-fill-color.png"), tr("Text Highlight"));
+	connect(actionTextBgColor, SIGNAL(triggered()), this, SLOT(textBgColor()));
 
 	comboFont = new QFontComboBox(fontToolbar);
 	fontToolbar->addWidget(comboFont);
@@ -263,7 +305,10 @@ void RichTextEdit::setupFontActions()
 	comboSize->setCurrentIndex(comboSize->findText(QString::number(
 		QApplication::font().pointSize())));
 
-
+	actionInsertTableRow = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-row.png"), tr("Insert Table Row"));
+	actionInsertTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-column.png"), tr("Insert Table Column"));
+	actionRemoveTableRow = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-row.png"), tr("Remove Table Row"));
+	actionRemoveTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-column.png"), tr("Remove Table Column"));
 }
 
 void RichTextEdit::textBold()
@@ -328,6 +373,12 @@ void RichTextEdit::cursorPositionChanged()
 	int line = textedit->textCursor().block().blockNumber();
 	int col = textedit->textCursor().position() - textedit->textCursor().block().position();
 	Controller::create()->getStatusBar()->setCursorPosition(line, col);
+
+	bool active = textedit->textCursor().currentTable() ? true : false;
+	actionInsertTableRow->setEnabled(active);
+	actionInsertTableColumn->setEnabled(active);
+	actionRemoveTableRow->setEnabled(active);
+	actionRemoveTableColumn->setEnabled(active);
 }
 
 void RichTextEdit::textColor()
@@ -338,69 +389,16 @@ void RichTextEdit::textColor()
 	QTextCharFormat fmt;
 	fmt.setForeground(col);
 	mergeFormatOnWordOrSelection(fmt);
-	colorChanged(col);
 }
 
-void RichTextEdit::colorChanged(const QColor &color)
+void RichTextEdit::textBgColor()
 {
-	QPixmap pix(16, 16);
-	pix.fill(color);
-	actionTextColor->setIcon(pix);
-}
-
-void RichTextEdit::textStyle(int styleIndex)
-{
-	QTextCursor cursor = textedit->textCursor();
-	
-	if (styleIndex != 0) {
-		QTextListFormat::Style style = QTextListFormat::ListDisc;
-	
-		switch (styleIndex) {
-			default:
-			case 1:
-				style = QTextListFormat::ListDisc;
-				break;
-			case 2:
-				style = QTextListFormat::ListCircle;
-				break;
-			case 3:
-				style = QTextListFormat::ListSquare;
-				break;
-			case 4:
-				style = QTextListFormat::ListDecimal;
-				break;
-			case 5:
-				style = QTextListFormat::ListLowerAlpha;
-				break;
-			case 6:
-				style = QTextListFormat::ListUpperAlpha;
-				break;
-		}
-	
-		cursor.beginEditBlock();
-	
-		QTextBlockFormat blockFmt = cursor.blockFormat();
-	
-		QTextListFormat listFmt;
-	
-		if (cursor.currentList()) {
-			listFmt = cursor.currentList()->format();
-		} else {
-			listFmt.setIndent(blockFmt.indent() + 1);
-			blockFmt.setIndent(0);
-			cursor.setBlockFormat(blockFmt);
-		}
-	
-		listFmt.setStyle(style);
-	
-		cursor.createList(listFmt);
-	
-		cursor.endEditBlock();
-	} else {
-		QTextBlockFormat bfmt;
-		bfmt.setObjectIndex(-1);
-		cursor.mergeBlockFormat(bfmt);
-	}
+	QColor col = QColorDialog::getColor(textedit->textColor(), this);
+	if (!col.isValid())
+		return;
+	QTextCharFormat fmt;
+	fmt.setBackground(col);
+	mergeFormatOnWordOrSelection(fmt);
 }
 
 void RichTextEdit::textFamily(const QString &font)
@@ -432,7 +430,6 @@ void RichTextEdit::fontChanged(const QFont &font)
 void RichTextEdit::currentCharFormatChanged(const QTextCharFormat &format)
 {
 	fontChanged(format.font());
-	colorChanged(format.foreground().color());
 }
 
 void RichTextEdit::setContent(RichTextNodeContent *content)
@@ -470,7 +467,6 @@ void RichTextEdit::setVisible(bool visible)
 	actionAlignCenter->setVisible(visible);
 	actionAlignRight->setVisible(visible);
 	actionAlignJustify->setVisible(visible);
-	actionTextColor->setVisible(visible);
 	actionFind->setVisible(visible);
 }
 
@@ -531,8 +527,206 @@ void RichTextEdit::replaceAll()
 	} while (found);
 }
 
+void RichTextEdit::increaseIndent()
+{
+	changeIndent(true);
+}
+
+void RichTextEdit::decreaseIndent()
+{
+	changeIndent(false);
+}
+
+void RichTextEdit::changeIndent(bool increase)
+{
+	int indent = increase ? 1 : -1;
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentList())
+	{
+		cursor.beginEditBlock();
+
+		QTextListFormat listFmt = cursor.currentList()->format();
+		listFmt.setIndent(listFmt.indent() + indent);
+		if (listFmt.indent() > 0 || increase)
+		{
+			switch (listFmt.style()) {
+				default:
+				case QTextListFormat::ListDisc:
+					listFmt.setStyle(increase ? QTextListFormat::ListCircle : QTextListFormat::ListSquare);
+					break;
+				case QTextListFormat::ListCircle:
+					listFmt.setStyle(increase ? QTextListFormat::ListSquare : QTextListFormat::ListDisc);
+					break;
+				case QTextListFormat::ListSquare:
+					listFmt.setStyle(increase ? QTextListFormat::ListDisc : QTextListFormat::ListCircle);
+					break;
+
+				case QTextListFormat::ListDecimal:
+					listFmt.setStyle(increase ? QTextListFormat::ListLowerAlpha : QTextListFormat::ListUpperAlpha);
+					break;
+				case QTextListFormat::ListLowerAlpha:
+					listFmt.setStyle(increase ? QTextListFormat::ListUpperAlpha : QTextListFormat::ListDecimal);
+					break;
+				case QTextListFormat::ListUpperAlpha:
+					listFmt.setStyle(increase ? QTextListFormat::ListDecimal : QTextListFormat::ListLowerAlpha);
+					break;
+			}
+			cursor.createList(listFmt);
+		}
+		cursor.endEditBlock();
+	} else {
+		if (cursor.blockFormat().indent() > 0 || increase)
+		{
+			QTextBlockFormat bfmt;
+			bfmt.setIndent(cursor.blockFormat().indent() + indent);
+			cursor.mergeBlockFormat(bfmt);
+		}
+	}
+}
+
+void RichTextEdit::createOrderedList()
+{
+	createList(QTextListFormat::ListDecimal);
+}
+
+void RichTextEdit::createUnorderedList()
+{
+	createList(QTextListFormat::ListDisc);
+}
+
+void RichTextEdit::createList(QTextListFormat::Style style)
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentList())
+		return;
+
+	cursor.beginEditBlock();
+
+	QTextBlockFormat blockFmt = cursor.blockFormat();
+	QTextListFormat listFmt;
+
+	listFmt.setIndent(blockFmt.indent() + 1);
+	blockFmt.setIndent(0);
+	cursor.setBlockFormat(blockFmt);
+
+	listFmt.setStyle(style);
+	cursor.createList(listFmt);
+
+	cursor.endEditBlock();
+}
+
 void RichTextEdit::contentChanged()
 {
 	Controller::create()->getStatusBar()->setSaveStatus(false);
 }
+
+void RichTextEdit::addPicture()
+{
+	QString fileName = QFileDialog::getOpenFileName(this,
+		tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp);; All Files (*)"));
+
+	if (fileName.isEmpty())
+		return;
+
+	QImage image(fileName);
+	if (image.isNull())
+		return;
+
+	QTextCursor cursor = textedit->textCursor();
+	cursor.beginEditBlock();
+	cursor.insertImage(fileName);
+	cursor.endEditBlock();
+}
+
+void RichTextEdit::insertRule()
+{
+	QTextCursor cursor = textedit->textCursor();
+	cursor.beginEditBlock();
+	cursor.insertHtml("<hr />");
+	cursor.endEditBlock();
+	textedit->moveCursor(QTextCursor::NextBlock);
+}
+
+void RichTextEdit::insertLink()
+{
+	QTextCursor cursor = textedit->textCursor();
+	NewLinkDialog dlg;
+	if (cursor.hasSelection())
+		dlg.setLinkText(cursor.selectedText());
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		QString linktext = dlg.getLinkText();
+		QUrl url = dlg.getUrl();
+		if (!url.isValid() || linktext.isEmpty())
+			return;
+
+		QString html = QString("<a href='%1'>%2</a>")
+						.arg(url.toString())
+						.arg(linktext);
+
+		textedit->insertHtml(html);
+	}
+}
+
+void RichTextEdit::insertTable()
+{
+	QTextCursor cursor = textedit->textCursor();
+	NewTableDialog dlg;
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		if (dlg.getRowCount() > 0 && dlg.getColumnCount() > 0)
+		{
+			cursor.beginEditBlock();
+			cursor.insertTable(dlg.getRowCount(), dlg.getColumnCount());
+			cursor.endEditBlock();
+		}
+	}
+}
+
+void RichTextEdit::insertTableRow()
+{
+	editTable(true, true);
+}
+
+void RichTextEdit::insertTableColumn()
+{
+	editTable(false, true);
+}
+
+void RichTextEdit::removeTableRow()
+{
+	editTable(true, false);
+}
+
+void RichTextEdit::removeTableColumn()
+{
+	editTable(false, false);
+}
+
+void RichTextEdit::editTable(bool row, bool insert)
+{
+	QTextCursor cursor = textedit->textCursor();
+	if (cursor.currentTable())
+	{
+		cursor.beginEditBlock();
+
+		int number = 1;
+		QTextTable *table = cursor.currentTable();
+		int index = row ? table->cellAt(cursor).row() : table->cellAt(cursor).column();
+
+		if (row)
+			if (insert)
+				table->insertRows(index, number);
+			else
+				table->removeRows(index, number);
+		else
+			if (insert)
+				table->insertColumns(index, number);
+			else
+				table->removeColumns(index, number);
+		cursor.endEditBlock();
+	}
+}
+
+
 

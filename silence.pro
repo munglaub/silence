@@ -13,6 +13,7 @@ SOURCES += 	main.cpp\
 			data/label.cpp\
 			data/model/labelmodel.cpp\
 			data/model/treemodel.cpp\
+			data/model/simpletreemodel.cpp\
 			data/model/filtermodel.cpp\
 			data/model/listproxymodel.cpp\
 			gui/mainwindow.cpp\
@@ -24,15 +25,18 @@ SOURCES += 	main.cpp\
 			gui/menu/viewmenu.cpp\
 			gui/dialog/aboutdialog.cpp\
 			gui/dialog/newnodedialog.cpp\
+			gui/dialog/newlinkdialog.cpp\
+			gui/dialog/newtabledialog.cpp\
 			gui/dialog/labelmanagementdialog.cpp\
 			gui/sidebar/treeview.cpp\
 			gui/sidebar/infosidebar.cpp\
 			gui/sidebar/searchnodesidebar.cpp\
 			gui/sidebar/nodepropertywidget.cpp\
 			gui/view/textedit.cpp\
-			gui/view/richtextedit.cpp\
 			gui/view/contentview.cpp\
 			gui/view/welcomeview.cpp\
+			gui/view/richtextedit.cpp\
+			gui/widget/rtfedit.cpp\
 			gui/widget/textfind.cpp\
 			gui/widget/labelwidget.cpp\
 			gui/widget/syntaxbox.cpp\
@@ -54,6 +58,7 @@ HEADERS +=	controller.h\
 			data/label.h\
 			data/model/labelmodel.h\
 			data/model/treemodel.h\
+			data/model/simpletreemodel.h\
 			data/model/listproxymodel.h\
 			data/model/filtermodel.h\
 			gui/mainwindow.h\
@@ -65,15 +70,18 @@ HEADERS +=	controller.h\
 			gui/menu/viewmenu.h\
 			gui/dialog/aboutdialog.h\
 			gui/dialog/newnodedialog.h\
+			gui/dialog/newlinkdialog.h\
+			gui/dialog/newtabledialog.h\
 			gui/dialog/labelmanagementdialog.h\
 			gui/sidebar/treeview.h\
 			gui/sidebar/infosidebar.h\
 			gui/sidebar/searchnodesidebar.h\
 			gui/sidebar/nodepropertywidget.h\
 			gui/view/textedit.h\
-			gui/view/richtextedit.h\
 			gui/view/contentview.h\
 			gui/view/welcomeview.h\
+			gui/view/richtextedit.h\
+			gui/widget/rtfedit.h\
 			gui/widget/textfind.h\
 			gui/widget/labelwidget.h\
 			gui/widget/syntaxbox.h\

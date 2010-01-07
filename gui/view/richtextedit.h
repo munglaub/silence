@@ -22,11 +22,11 @@
 #define RICHTEXTEDIT_H
 
 #include "data/node/richtextnodecontent.h"
+#include "gui/widget/rtfedit.h"
 #include "gui/widget/textfind.h"
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
-#include <QTextEdit>
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -78,7 +78,7 @@ class RichTextEdit : public QWidget
 		void textAlign(QAction *action);
 		void cursorPositionChanged();
 		void textColor();
-		void textStyle(int styleIndex);
+		void textBgColor();
 		void textFamily(const QString &font);
 		void textSize(const QString &p);
 		void currentCharFormatChanged(const QTextCharFormat &format);
@@ -92,17 +92,30 @@ class RichTextEdit : public QWidget
 		void replace();
 		void replaceAll();
 
+		void increaseIndent();
+		void decreaseIndent();
+		void createOrderedList();
+		void createUnorderedList();
+
+		void addPicture();
+		void insertRule();
+		void insertLink();
+
+		void insertTable();
+		void insertTableRow();
+		void insertTableColumn();
+		void removeTableRow();
+		void removeTableColumn();
+
 	private:
 		RichTextNodeContent *content;
 		TextFind *findWidget;
 
 		QVBoxLayout *layout;
 
-		// bad naming
 		QToolBar *toolbar;
 		QToolBar *fontToolbar;
-		QTextEdit *textedit;
-
+		RtfEdit *textedit;
 
 		QAction *actionSave,
 				*actionUndo,
@@ -119,9 +132,22 @@ class RichTextEdit : public QWidget
 				*actionAlignRight,
 				*actionAlignJustify,
 				*actionTextColor,
-				*actionFind;
+				*actionTextBgColor,
+				*actionFind,
+				*actionFindReplace,
+				*actionIncreaseIndent,
+				*actionDecreaseIndent,
+				*actionOrderedList,
+				*actionUnorderedList,
+				*actionAddPicture,
+				*actionInsertRule,
+				*actionInsertLink,
+				*actionInsertTable,
+				*actionInsertTableRow,
+				*actionInsertTableColumn,
+				*actionRemoveTableRow,
+				*actionRemoveTableColumn;
 
-		QComboBox *comboStyle;
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;
 
@@ -130,9 +156,12 @@ class RichTextEdit : public QWidget
 
 		void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 		void alignmentChanged(Qt::Alignment alignment);
-		void colorChanged(const QColor &color);
 		void fontChanged(const QFont &font);
 		bool find(bool forward);
+
+		void createList(QTextListFormat::Style style);
+		void changeIndent(bool increase);
+		void editTable(bool row, bool insert);
 };
 
 #endif // RICHTEXTEDIT_H

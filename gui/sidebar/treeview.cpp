@@ -82,6 +82,13 @@ void TreeView::selectItem(QModelIndex &item)
 	selectItem();
 }
 
+void TreeView::selectItem(NodeId id)
+{
+	QModelIndex index = model->findByNodeId(id.getId());
+	if (index.isValid())
+		selectItem(index);
+}
+
 void TreeView::addNode(QModelIndex &index, int row)
 {
 	NewNodeDialog *newDialog = new NewNodeDialog;
