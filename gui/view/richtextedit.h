@@ -22,7 +22,7 @@
 #define RICHTEXTEDIT_H
 
 #include "data/node/richtextnodecontent.h"
-#include "gui/view/rtf/rtfedit.h"
+#include "gui/widget/rtfedit.h"
 #include "gui/widget/textfind.h"
 #include <QAction>
 #include <QComboBox>

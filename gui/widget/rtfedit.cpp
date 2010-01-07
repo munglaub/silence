@@ -20,7 +20,7 @@
 
 #include "controller.h"
 #include "data/node/nodeid.h"
-#include "gui/view/rtf/rtfedit.h"
+#include "gui/widget/rtfedit.h"
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QUrl>
