@@ -21,6 +21,7 @@
 #include "src/gui/widget/textfind.h"
 #include <QKeySequence>
 #include <QHBoxLayout>
+#include <KIcon>
 
 TextFind::TextFind(QWidget *parent)
 	: QWidget(parent)
@@ -28,7 +29,7 @@ TextFind::TextFind(QWidget *parent)
 	layout = new QGridLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 
-	hideBtn = new QPushButton(QIcon(":/icons/actions/window-close.png"), "");
+	hideBtn = new QPushButton(KIcon("window-close"), "");
 	hideBtn->setMaximumWidth(30);
 	hideBtn->setFlat(true);
 	connect(hideBtn, SIGNAL(clicked()), this, SLOT(hide()));
@@ -40,17 +41,17 @@ TextFind::TextFind(QWidget *parent)
 	layout->addWidget(findEdit, 0, 1);
 	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 
-	prevBtn = new QPushButton(QIcon(":/icons/actions/go-previous.png"), tr("Previous"));
+	prevBtn = new QPushButton(KIcon("go-previous"), tr("Previous"));
 	prevBtn->setFlat(true);
 	connect(prevBtn, SIGNAL(clicked()), this, SLOT(prevBtnClicked()));
 	layout->addWidget(prevBtn, 0, 2);
 
-	nextBtn = new QPushButton(QIcon(":/icons/actions/go-next.png"), tr("Next"));
+	nextBtn = new QPushButton(KIcon("go-next"), tr("Next"));
 	nextBtn->setFlat(true);
 	connect(nextBtn, SIGNAL(clicked()), this, SLOT(nextBtnClicked()));
 	layout->addWidget(nextBtn, 0, 3);
 
-	moreBtn = new QPushButton(QIcon(":/icons/actions/arrow-up-double.png"), "");
+	moreBtn = new QPushButton(KIcon("arrow-up-double"), "");
 	moreBtn->setFlat(true);
 	moreBtn->setMaximumWidth(30);
 	layout->addWidget(moreBtn, 0, 4);
@@ -147,10 +148,10 @@ void TextFind::showMore()
 	replaceAllBtn->setHidden(showAll);
 	if (showAll)
 	{
-		moreBtn->setIcon(QIcon(":/icons/actions/arrow-up-double.png"));
+		moreBtn->setIcon(KIcon("arrow-up-double"));
 		showAll = false;
 	} else {
-		moreBtn->setIcon(QIcon(":/icons/actions/arrow-down-double.png"));
+		moreBtn->setIcon(KIcon("arrow-down-double"));
 		showAll = true;
 	}
 }

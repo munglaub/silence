@@ -20,9 +20,10 @@
 
 #include "src/gui/menu/silencemenu.h"
 #include <QApplication>
+#include <KIcon>
 
 SilenceMenu::SilenceMenu(QWidget *parent)
-	: QMenu(parent)
+	: KMenu(parent)
 {
 	setTitle(tr("&Silence"));
 
@@ -31,7 +32,7 @@ SilenceMenu::SilenceMenu(QWidget *parent)
 
 	addSeparator();
 
-	exit = addAction(QIcon(":/icons/actions/application-exit.png"), tr("&Exit"));
+	exit = addAction(KIcon("application-exit"), tr("&Exit"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 

@@ -21,6 +21,7 @@
 #include "src/controller.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/view/textedit.h"
+#include <KIcon>
 
 
 TextNodeContent::TextNodeContent()
@@ -40,84 +41,70 @@ void TextNodeContent::setGraphics()
 {
 	if (metaInfos->value("Syntax") == "JavaScript")
 	{
-		icon = QIcon(":/icons/mimetype_64px/application-javascript.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/application-javascript.png");
+		icon = KIcon("application-javascript");
 		return;
 	} 
 	if (metaInfos->value("Syntax") == "Perl")
 	{
-		icon = QIcon(":/icons/mimetype_64px/application-x-perl.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/application-x-perl.png");
+		icon = KIcon("application-x-perl");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "Ruby")
 	{
-		icon = QIcon(":/icons/mimetype_64px/application-x-ruby.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/application-x-ruby.png");
+		icon = KIcon("application-x-ruby");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "CSS")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-css.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-css.png");
+		icon = KIcon("text-css");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "HTML")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-html.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-html.png");
+		icon = KIcon("text-html");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "CMake")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-cmake.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-cmake.png");
+		icon = KIcon("text-x-cmake");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "C#")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-csharp.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-csharp.png");
+		icon = KIcon("text-x-csharp");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "C++")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-c++src.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-c++src.png");
+		icon = KIcon("text-x-c++src");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "Java")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-java.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-java.png");
+		icon = KIcon("text-x-java");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "Makefile")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-makefile.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-makefile.png");
+		icon = KIcon("text-x-makefile");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "Python")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-python.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-python.png");
+		icon = KIcon("text-x-python");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "SQL")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-sql.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-sql.png");
+		icon = KIcon("text-x-sql");
 		return;
 	}
 	if (metaInfos->value("Syntax") == "TeX")
 	{
-		icon = QIcon(":/icons/mimetype_64px/text-x-tex.png");
-		pixmap = QPixmap(":/icons/mimetype_16px/text-x-tex.png");
+		icon = KIcon("text-x-tex");
 		return;
 	}
-	icon = QIcon(":/icons/mimetype_64px/text-plain.png");
-	pixmap = QPixmap(":/icons/mimetype_16px/text-plain.png");
+	icon = KIcon("text-plain");
 }
 
 void TextNodeContent::setText(QString text)
@@ -196,7 +183,7 @@ void TextNodeContent::setXmlData(QDomElement &xmlNode)
 
 QPixmap TextNodeContent::getPixmap()
 {
-	return pixmap;
+	return icon.pixmap(16, 16);
 }
 
 QIcon TextNodeContent::getIcon()

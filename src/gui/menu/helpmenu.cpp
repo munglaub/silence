@@ -19,12 +19,14 @@
  */
 
 #include "src/gui/menu/helpmenu.h"
+#include <KIcon>
+
 
 HelpMenu::HelpMenu(QWidget *parent)
 	: QMenu(parent)
 {
 	setTitle(tr("&Help"));
-	about = addAction(QIcon(":/icons/actions/help-about.png"), tr("About Silence"));
+	about = addAction(KIcon("help-about"), tr("About Silence"));
 	connect(about, SIGNAL(triggered()), this, SLOT(showAbout()));
 }
 

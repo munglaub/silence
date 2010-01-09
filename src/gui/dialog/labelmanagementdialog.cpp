@@ -21,6 +21,7 @@
 #include "src/controller.h"
 #include "src/gui/dialog/labelmanagementdialog.h"
 #include <QMenu>
+#include <KIcon>
 
 
 LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
@@ -33,11 +34,11 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	int row = 0;
 
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Label"));
+	addRowAction = toolbar->addAction(KIcon("list-add"), tr("Add Label"));
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Sublabel"));
+	addChildAction = toolbar->addAction(KIcon("view-right-new"), tr("Add Sublabel"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addSublabel()));
-	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
+	removeAction = toolbar->addAction(KIcon("list-remove"), tr("Remove Node"));
 	
 	layout->addWidget(toolbar, row, 0);
 	++row;

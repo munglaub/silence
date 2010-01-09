@@ -26,6 +26,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include <QPoint>
 #include <QVariant>
+#include <KIcon>
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -126,12 +127,12 @@ void TreeView::addNode(QModelIndex &index, int row)
 void TreeView::setupToolbar()
 {
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(QIcon(":/icons/actions/list-add.png"), tr("Add Node"));
+	addRowAction = toolbar->addAction(KIcon("list-add"), tr("Add Node"));
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(QIcon(":/icons/actions/view-right-new.png"), tr("Add Subnode"));
+	addChildAction = toolbar->addAction(KIcon("view-right-new"), tr("Add Subnode"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
-	removeAction = toolbar->addAction(QIcon(":/icons/actions/list-remove.png"), tr("Remove Node"));
-	propertyAction = toolbar->addAction(QIcon(":/icons/actions/document-properties.png"), tr("Properties"));
+	removeAction = toolbar->addAction(KIcon("list-remove"), tr("Remove Node"));
+	propertyAction = toolbar->addAction(KIcon("document-properties"), tr("Properties"));
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 }
 

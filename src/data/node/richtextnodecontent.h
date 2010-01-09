@@ -86,7 +86,6 @@ class RichTextNodeContent : public AbstractNodeContent
 		QHash<QString, QString> *metaInfos;
 		QString text;
 		QIcon icon;
-		QPixmap pixmap;
 
 };
 

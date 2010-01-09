@@ -22,14 +22,14 @@
 #include "src/gui/view/richtextedit.h"
 #include "src/data/node/richtextnodecontent.h"
 #include <QTextDocumentFragment>
+#include <KIcon>
 
 
 RichTextNodeContent::RichTextNodeContent()
 {
 	text = "";
 	metaInfos = new QHash<QString, QString>;
-	icon = QIcon(":/icons/mimetype_64px/text-rtf.png");
-	pixmap = QPixmap(":/icons/mimetype_16px/text-rtf.png");
+	icon = KIcon("text-rtf");
 }
 
 RichTextNodeContent::~RichTextNodeContent()
@@ -102,7 +102,7 @@ void RichTextNodeContent::setXmlData(QDomElement &xmlNode)
 
 QPixmap RichTextNodeContent::getPixmap()
 {
-	return pixmap;
+	return icon.pixmap(16, 16);
 }
 
 QIcon RichTextNodeContent::getIcon()

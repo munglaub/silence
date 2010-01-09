@@ -44,7 +44,7 @@
 #include <Qsci/qscilexersql.h>
 #include <Qsci/qscilexertex.h>
 #include <Qsci/qscilexervhdl.h>
-
+#include <KIcon>
 
 
 TextEdit::TextEdit(QWidget *parent)
@@ -129,33 +129,33 @@ void TextEdit::setupActions()
 	EditMenu *menu = Controller::create()->getEditMenu();
 	// Toolbar
 	toolbar = new QToolBar;
-	actionSave = toolbar->addAction(QIcon(":/icons/actions/document-save.png"), tr("&Save"));
+	actionSave = toolbar->addAction(KIcon("document-save"), tr("&Save"));
 	actionSave->setShortcut(QKeySequence::Save);
 	toolbar->addSeparator();
 
-	actionUndo = toolbar->addAction(QIcon(":/icons/actions/edit-undo.png"), tr("&Undo"));
+	actionUndo = toolbar->addAction(KIcon("edit-undo"), tr("&Undo"));
 	menu->addAction(actionUndo);
 	actionUndo->setShortcut(QKeySequence::Undo);
-	actionRedo = toolbar->addAction(QIcon(":/icons/actions/edit-redo.png"), tr("&Redo"));
+	actionRedo = toolbar->addAction(KIcon("edit-redo"), tr("&Redo"));
 	menu->addAction(actionRedo);
 	actionRedo->setShortcut(QKeySequence::Redo);
-	actionCut = toolbar->addAction(QIcon(":/icons/actions/edit-cut.png"), tr("Cut"));
+	actionCut = toolbar->addAction(KIcon("edit-cut"), tr("Cut"));
 	menu->addAction(actionCut);
 	actionCut->setShortcut(QKeySequence::Cut);
-	actionCopy = toolbar->addAction(QIcon(":/icons/actions/edit-copy.png"), tr("&Copy"));
+	actionCopy = toolbar->addAction(KIcon("edit-copy"), tr("&Copy"));
 	menu->addAction(actionCopy);
 	actionCopy->setShortcut(QKeySequence::Copy);
-	actionPaste = toolbar->addAction(QIcon(":/icons/actions/edit-paste.png"), tr("Paste"));
+	actionPaste = toolbar->addAction(KIcon("edit-paste"), tr("Paste"));
 	menu->addAction(actionPaste);
 	actionPaste->setShortcut(QKeySequence::Paste);
 	toolbar->addSeparator();
 
-	actionSelectAll = toolbar->addAction(QIcon(":/icons/actions/edit-select-all.png"), tr("Select &All"));
+	actionSelectAll = toolbar->addAction(KIcon("edit-select-all"), tr("Select &All"));
 	menu->addAction(actionSelectAll);
 	actionSelectAll->setShortcut(QKeySequence::SelectAll);
-	actionFind = toolbar->addAction(QIcon(":/icons/actions/edit-find.png"), tr("&Find"));
+	actionFind = toolbar->addAction(KIcon("edit-find"), tr("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
-	actionFindReplace = toolbar->addAction(QIcon(":/icons/actions/edit-find-replace.png"), tr("Find/Replace"));
+	actionFindReplace = toolbar->addAction(KIcon("edit-find-replace"), tr("Find/Replace"));
 }
 
 void TextEdit::setupEditor()

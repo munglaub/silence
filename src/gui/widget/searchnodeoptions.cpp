@@ -19,6 +19,7 @@
  */
 
 #include "src/gui/widget/searchnodeoptions.h"
+#include <KIcon>
 
 
 SearchNodeOptions::SearchNodeOptions(QWidget *parent, Qt::WindowFlags f)
@@ -30,7 +31,7 @@ SearchNodeOptions::SearchNodeOptions(QWidget *parent, Qt::WindowFlags f)
 
 	title = new QLabel(tr("Search Options"));
 	layout->addWidget(title, 0, 0, 1, 1, Qt::AlignLeft);
-	showBtn = new QPushButton(QIcon(":/icons/actions/arrow-down-double.png"), "");
+	showBtn = new QPushButton(KIcon("arrow-down-double"), "");
 	showBtn->setFlat(true);
 	showBtn->setMaximumWidth(30);
 	connect(showBtn, SIGNAL(clicked()), this, SLOT(toggleVisibility()));
@@ -139,10 +140,10 @@ void SearchNodeOptions::toggleVisibility()
 {
 	if (showOptions)
 	{
-		showBtn->setIcon(QIcon(":/icons/actions/arrow-down-double.png"));
+		showBtn->setIcon(KIcon("arrow-down-double"));
 		showOptions = false;
 	} else {
-		showBtn->setIcon(QIcon(":/icons/actions/arrow-up-double.png"));
+		showBtn->setIcon(KIcon("arrow-up-double"));
 		showOptions = true;
 	}
 	optionbox->setVisible(showOptions);

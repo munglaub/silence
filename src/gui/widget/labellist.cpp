@@ -20,6 +20,8 @@
 
 #include "src/gui/widget/labellist.h"
 #include "src/controller.h"
+#include <KIcon>
+
 
 LabelList::LabelList(QWidget *parent, Qt::WindowFlags f)
 	: QFrame(parent, f)
@@ -30,7 +32,7 @@ LabelList::LabelList(QWidget *parent, Qt::WindowFlags f)
 
 	title = new QLabel(tr("Labels"));
 	layout->addWidget(title, 0, 0, 1, 1, Qt::AlignLeft);
-	showBtn = new QPushButton(QIcon(":/icons/actions/arrow-down-double.png"), "");
+	showBtn = new QPushButton(KIcon("arrow-down-double"), "");
 	showBtn->setFlat(true);
 	showBtn->setMaximumWidth(30);
 	connect(showBtn, SIGNAL(clicked()), this, SLOT(toggleVisibility()));
@@ -102,10 +104,10 @@ void LabelList::toggleVisibility()
 {
 	if (showOptions)
 	{
-		showBtn->setIcon(QIcon(":/icons/actions/arrow-down-double.png"));
+		showBtn->setIcon(KIcon("arrow-down-double"));
 		showOptions = false;
 	} else {
-		showBtn->setIcon(QIcon(":/icons/actions/arrow-up-double.png"));
+		showBtn->setIcon(KIcon("arrow-up-double"));
 		showOptions = true;
 	}
 	list->setVisible(showOptions);
@@ -125,7 +127,7 @@ void LabelList::addLabel()
 	if (list->selectedItems().isEmpty())
 		return;
 	QListWidgetItem *item = list->selectedItems().first();
-	item->setIcon(QIcon(":/icons/actions/list-add.png"));
+	item->setIcon(KIcon("list-add"));
 	emit removedBannedLabel(item->text());
 	emit addedLabel(item->text());
 }
@@ -135,7 +137,7 @@ void LabelList::addBannedLabel()
 	if (list->selectedItems().isEmpty())
 		return;
 	QListWidgetItem *item = list->selectedItems().first();
-	item->setIcon(QIcon(":/icons/actions/list-remove.png"));
+	item->setIcon(KIcon("list-remove"));
 	emit removedLabel(item->text());
 	emit addedBannedLabel(item->text());
 }
@@ -145,7 +147,7 @@ void LabelList::clear()
 	if (list->selectedItems().isEmpty())
 		return;
 	QListWidgetItem *item = list->selectedItems().first();
-	item->setIcon(QIcon());
+	item->setIcon(KIcon());
 	emit removedLabel(item->text());
 	emit removedBannedLabel(item->text());
 }

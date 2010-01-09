@@ -21,7 +21,7 @@
 #ifndef SILENCEMENU_H
 #define SILENCEMENU_H
 
-#include <QMenu>
+#include <KMenu>
 
 
 /*!\class SilenceMenu
@@ -31,7 +31,7 @@
  *
  * \authors Yves Adler, Manuel Unglaub
  */
-class SilenceMenu : public QMenu
+class SilenceMenu : public KMenu
 {
 	Q_OBJECT
 
