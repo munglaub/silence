@@ -33,7 +33,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/statusbar.h"
 #include "src/gui/view/contentview.h"
-#include <QMainWindow>
+#include <KMainWindow>
 
 
 /*!\class MainWindow
@@ -44,7 +44,7 @@
  * \author Manuel Unglaub
  */
 
-class MainWindow : public QMainWindow
+class MainWindow : public KMainWindow
 {
 	Q_OBJECT
 
@@ -53,7 +53,8 @@ class MainWindow : public QMainWindow
 		 * Constructs the main window with statusbar, treeview, searchnodesidebar and infosidebar.
 		 * \param parent specifies the widgets parent.
 		 */
-		MainWindow(QWidget *parent = 0);
+		MainWindow(QWidget *parent = 0, Qt::WindowFlags f = KDE_DEFAULT_WINDOWFLAGS);
+
 		/*! The destructor.
 		 * Destroys the main window with its components.
 		 */

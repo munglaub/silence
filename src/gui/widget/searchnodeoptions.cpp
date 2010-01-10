@@ -55,11 +55,11 @@ SearchNodeOptions::~SearchNodeOptions()
 	delete cbMime;
 	delete fulltextBtn;
 	delete captionBtn;
-	delete optionbox;
 	delete title;
-	delete datebox;
 	delete dateboxlayout;
+	delete datebox;
 	delete optboxlayout;
+	delete optionbox;
 	delete layout;
 }
 

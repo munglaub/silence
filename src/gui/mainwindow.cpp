@@ -19,11 +19,11 @@
  */
 
 #include "src/gui/mainwindow.h"
-#include <QMenuBar>
+#include <KMenuBar>
 
 
-MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
+	: KMainWindow(parent, f)
 {
 	setWindowTitle(tr("Silence"));
 	setWindowIcon(QIcon(":/icons/Silence_16px.png"));
@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
 	resize(950, 500);
 	
 	// add menus
-	silencemenu = new SilenceMenu;
+	silencemenu = new SilenceMenu(this);
 	menuBar()->addMenu(silencemenu);
 	nodemenu = new NodeMenu;
 	menuBar()->addMenu(nodemenu);
