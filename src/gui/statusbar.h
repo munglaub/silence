@@ -22,7 +22,7 @@
 #define STATUSBAR_H
 
 #include <QLabel>
-#include <QStatusBar>
+#include <KStatusBar>
 
 
 /*!\class StatusBar
@@ -32,7 +32,7 @@
  *
  * \author Manuel Unglaub
  */
-class StatusBar : public QStatusBar
+class StatusBar : public KStatusBar
 {
 	Q_OBJECT
 

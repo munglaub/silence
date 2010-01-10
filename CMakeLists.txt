@@ -18,6 +18,7 @@ set ( silence_HDRS
 	src/data/node/nodeid.h
 	src/data/node/abstractnodecontent.h
 	src/data/label.h
+	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
 	src/gui/dialog/newtabledialog.h
 	src/gui/view/contentview.h
@@ -68,6 +69,7 @@ set ( silence_SRCS
 	src/data/node/textnodecontent.cpp
 	src/data/node/richtextnodecontent.cpp
 	src/data/label.cpp
+	src/data/aboutdata.cpp
 	src/data/model/labelmodel.cpp
 	src/data/model/treemodel.cpp
 	src/data/model/simpletreemodel.cpp

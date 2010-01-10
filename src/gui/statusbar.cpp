@@ -22,7 +22,7 @@
 
 
 StatusBar::StatusBar(QWidget *parent)
-	: QStatusBar(parent)
+	: KStatusBar(parent)
 {
 	cursorPos = new QLabel("0 : 0");
 	addWidget(cursorPos);

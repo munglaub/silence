@@ -21,13 +21,18 @@
 #include "src/commandline/cmdmain.h"
 #include "src/gui/mainwindow.h"
 #include <QTranslator>
-#include <QtGui/QApplication>
+#include <kapplication.h>
+#include <kcmdlineargs.h>
+#include <kaboutdata.h>
 //#include <iostream>
+#include "src/data/aboutdata.h"
 
 
 int main(int argc, char *argv[])
 {
-	QApplication silence(argc, argv);
+	AboutData aboutData;
+	KCmdLineArgs::init(argc, argv, &aboutData);
+	KApplication silence;
 
 	QTranslator silenceTranslator;
 	silenceTranslator.load("silence_" + QLocale::system().name());
