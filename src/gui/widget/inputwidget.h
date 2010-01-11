@@ -23,7 +23,7 @@
 
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QPushButton>
 
 
@@ -78,10 +78,9 @@ class InputWidget : public QGroupBox
 
 	private:
 		QGridLayout *layout;
-		QLineEdit *inputEdit;
+		KLineEdit *inputEdit;
 		QPushButton *okBtn,
 					*cancelBtn;
-
 };
 
 

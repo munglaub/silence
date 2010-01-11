@@ -27,7 +27,7 @@
 #include "src/gui/widget/searchnodeoptions.h"
 #include <QDockWidget>
 #include <QGridLayout>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QListView>
 
 
@@ -81,7 +81,7 @@ class SearchNodeSidebar : public QDockWidget
 		SearchNodeOptions *searchnodeoptions;
 		LabelList *labellist;
 		QListView *resultList;
-		QLineEdit *searchedit;
+		KLineEdit *searchedit;
 
 		void connectOptions();
 		void connectLabelList();

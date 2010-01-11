@@ -24,7 +24,8 @@ InputWidget::InputWidget(QWidget *parent)
 	: QGroupBox(parent)
 {
 	layout = new QGridLayout;
-	inputEdit = new QLineEdit;
+	inputEdit = new KLineEdit;
+	inputEdit->setClearButtonShown(true);
 	layout->addWidget(inputEdit, 0, 0, 1, 2);
 	cancelBtn = new QPushButton(tr("Cancel"));
 	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(hide()));

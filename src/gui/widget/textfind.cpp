@@ -36,7 +36,8 @@ TextFind::TextFind(QWidget *parent)
 
 	layout->addWidget(hideBtn, 0, 0);
 
-	findEdit = new QLineEdit;
+	findEdit = new KLineEdit;
+	findEdit->setClearButtonShown(true);
 	findEdit->setMinimumWidth(150);
 	layout->addWidget(findEdit, 0, 1);
 	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
@@ -57,7 +58,8 @@ TextFind::TextFind(QWidget *parent)
 	layout->addWidget(moreBtn, 0, 4);
 
 	
-	replaceEdit = new QLineEdit;
+	replaceEdit = new KLineEdit;
+	replaceEdit->setClearButtonShown(true);
 	replaceEdit->setMinimumWidth(150);
 	layout->addWidget(replaceEdit, 1, 1);
 

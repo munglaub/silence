@@ -25,7 +25,7 @@
 #include <QDialog>
 #include <QGridLayout>
 #include <QLabel>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QPushButton>
 #include <QTreeView>
 #include <QUrl>
@@ -51,7 +51,7 @@ class NewLinkDialog : public QDialog
 		QPushButton *btnCancel,
 					*btnOk;
 		QLabel	*lblLinkText;
-		QLineEdit	*ledLinkText;
+		KLineEdit	*ledLinkText;
 
 };
 

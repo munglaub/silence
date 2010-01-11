@@ -23,7 +23,7 @@
 
 #include <QCheckBox>
 #include <QGridLayout>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QPushButton>
 #include <QTextEdit>
 #include <QWidget>
@@ -143,7 +143,7 @@ class TextFind : public QWidget
 		QGridLayout *layout;
 		QHBoxLayout *optionLayout;
 		QFrame *optionPanel;
-		QLineEdit *findEdit,
+		KLineEdit *findEdit,
 				*replaceEdit;
 		QPushButton *nextBtn,
 					*prevBtn,

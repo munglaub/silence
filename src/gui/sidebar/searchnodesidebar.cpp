@@ -47,7 +47,8 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	layout->setAlignment(Qt::AlignTop);
 	int row = 0;
 
-	searchedit = new QLineEdit;
+	searchedit = new KLineEdit;
+	searchedit->setClearButtonShown(true);
 	layout->addWidget(searchedit, row, 0);
 	++row;
 

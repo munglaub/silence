@@ -29,7 +29,7 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QListWidget>
 
 
@@ -84,7 +84,7 @@ class NewNodeDialog : public QDialog
 		QVBoxLayout *baselayout;
 
 		QFormLayout *namelayout;
-		QLineEdit *nameedit;
+		KLineEdit *nameedit;
 
 		QGridLayout *typelayout;
 		QLabel *lbltype;

@@ -28,7 +28,7 @@
 #include <QFormLayout>
 #include <QFrame>
 #include <QLabel>
-#include <QLineEdit>
+#include <klineedit.h>
 #include <QPushButton>
 #include <QTabWidget>
 #include <QVBoxLayout>
@@ -90,7 +90,7 @@ class NodePropertyWidget : public QDockWidget
 		// nodeinfotab
 		QFormLayout *infolayout;
 		QFrame *infoframe;
-		QLineEdit *nodeName;
+		KLineEdit *nodeName;
 		QLabel *creationdate;
 		QLabel *modificationdate;
 		QPushButton *applyNodeInfo;

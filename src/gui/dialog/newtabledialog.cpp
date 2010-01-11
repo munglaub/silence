@@ -32,13 +32,13 @@ NewTableDialog::NewTableDialog(QWidget *parent, Qt::WindowFlags f)
 
 	lblRows = new QLabel(tr("Rows"));
 	layout->addWidget(lblRows, row, 0);
-	ledRows = new QLineEdit;
+	ledRows = new KIntSpinBox(0, 100, 1, 3, this);
 	layout->addWidget(ledRows, row, 1);
 	++row;
 
 	lblColumns = new QLabel(tr("Columns"));
 	layout->addWidget(lblColumns, row, 0);
-	ledColumns = new QLineEdit;
+	ledColumns = new KIntSpinBox(0, 20, 1, 3, this);
 	layout->addWidget(ledColumns, row, 1);
 	++row;
 

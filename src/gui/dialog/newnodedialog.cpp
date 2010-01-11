@@ -34,7 +34,8 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	baselayout = new QVBoxLayout;
 
 	namelayout = new QFormLayout;
-	nameedit = new QLineEdit(tr("Nodename"));
+	nameedit = new KLineEdit(tr("Nodename"));
+	nameedit->setClearButtonShown(true);
 	nameedit->selectAll();
 	namelayout->addRow(tr("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);

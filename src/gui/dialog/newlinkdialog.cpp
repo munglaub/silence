@@ -31,7 +31,8 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 
 	lblLinkText = new QLabel(tr("Link Text"));
 	layout->addWidget(lblLinkText, row, 0);
-	ledLinkText = new QLineEdit;
+	ledLinkText = new KLineEdit;
+	ledLinkText->setClearButtonShown(true);
 	layout->addWidget(ledLinkText, row, 1);
 	++row;
 

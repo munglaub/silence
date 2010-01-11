@@ -24,7 +24,6 @@
 #include "src/data/label.h"
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QLineEdit>
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QWidget>

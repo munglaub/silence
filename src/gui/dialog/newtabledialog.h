@@ -24,7 +24,7 @@
 #include <QDialog>
 #include <QGridLayout>
 #include <QLabel>
-#include <QLineEdit>
+#include <knuminput.h>
 #include <QPushButton>
 
 
@@ -41,7 +41,7 @@ class NewTableDialog : public QDialog
 		QGridLayout *layout;
 		QLabel	*lblRows,
 				*lblColumns;
-		QLineEdit	*ledRows,
+		KIntSpinBox	*ledRows,
 					*ledColumns;
 		QPushButton *btnCancel,
 					*btnOk;

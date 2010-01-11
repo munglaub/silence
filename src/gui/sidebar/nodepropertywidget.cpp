@@ -62,7 +62,8 @@ NodePropertyWidget::~NodePropertyWidget()
 QWidget* NodePropertyWidget::createNodeInfoTab()
 {
 	infolayout = new QFormLayout;
-	nodeName = new QLineEdit;
+	nodeName = new KLineEdit;
+	nodeName->setClearButtonShown(true);
 	infolayout->addRow(tr("Node name:"), nodeName);
 	
 	syntaxbox = new SyntaxBox(false);
