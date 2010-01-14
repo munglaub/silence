@@ -18,12 +18,13 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/controller.h"
-#include "src/data/node/nodeid.h"
-#include "src/gui/widget/rtfedit.h"
+#include <krun.h>
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QUrl>
+#include "src/controller.h"
+#include "src/data/node/nodeid.h"
+#include "src/gui/widget/rtfedit.h"
 
 
 RtfEdit::RtfEdit(QWidget *parent)
@@ -87,6 +88,8 @@ void RtfEdit::mouseReleaseEvent(QMouseEvent *event)
 		{
 			int id = anchor.path().mid(1).toInt();
 			Controller::create()->getTreeView()->selectItem(NodeId(id));
+		} else {
+			new KRun(anchor, this);
 		}
 	}
 	QTextEdit::mouseReleaseEvent(event);

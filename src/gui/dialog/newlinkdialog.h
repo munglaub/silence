@@ -21,14 +21,15 @@
 #ifndef NEWLINKDIALOG_H
 #define NEWLINKDIALOG_H
 
-#include "src/data/model/simpletreemodel.h"
+#include <klineedit.h>
 #include <QDialog>
 #include <QGridLayout>
 #include <QLabel>
-#include <klineedit.h>
 #include <QPushButton>
+#include <QRadioButton>
 #include <QTreeView>
 #include <QUrl>
+#include "src/data/model/simpletreemodel.h"
 
 
 class NewLinkDialog : public QDialog
@@ -44,14 +45,23 @@ class NewLinkDialog : public QDialog
 
 		QUrl getUrl();
 
+	private slots:
+		void selectFile();
+
 	private:
 		QGridLayout *layout;
 		QTreeView *tree;
 		SimpleTreeModel *model;
 		QPushButton *btnCancel,
-					*btnOk;
+					*btnOk,
+					*btnSelectFile;
 		QLabel	*lblLinkText;
-		KLineEdit	*ledLinkText;
+		QRadioButton	*rbtnNode,
+						*rbtnWebUrl,
+						*rbtnFile;
+		KLineEdit	*ledLinkText,
+					*ledWebUrl,
+					*ledFile;
 
 };
 

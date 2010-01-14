@@ -623,7 +623,7 @@ void RichTextEdit::contentChanged()
 
 void RichTextEdit::addPicture()
 {
-	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "caption");
+	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "Select Image");
 
 	if (fileName.isEmpty())
 		return;
