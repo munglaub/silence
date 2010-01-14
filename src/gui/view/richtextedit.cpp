@@ -18,20 +18,20 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/controller.h"
-#include "src/gui/dialog/newlinkdialog.h"
-#include "src/gui/dialog/newtabledialog.h"
-#include "src/gui/view/richtextedit.h"
+#include <kfiledialog.h>
+#include <KIcon>
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
-#include <QFileDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
 #include <QTextDocumentFragment>
 #include <QTextList>
 #include <QTextTable>
-#include <KIcon>
+#include "src/controller.h"
+#include "src/gui/dialog/newlinkdialog.h"
+#include "src/gui/dialog/newtabledialog.h"
+#include "src/gui/view/richtextedit.h"
 
 
 RichTextEdit::RichTextEdit(QWidget *parent)
@@ -623,8 +623,7 @@ void RichTextEdit::contentChanged()
 
 void RichTextEdit::addPicture()
 {
-	QString fileName = QFileDialog::getOpenFileName(this,
-		tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp);; All Files (*)"));
+	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "caption");
 
 	if (fileName.isEmpty())
 		return;

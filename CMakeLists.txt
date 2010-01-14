@@ -141,6 +141,7 @@ target_link_libraries ( silence
 #	${QT_QTXML_LIBRARY}
 	${LIB_QSCINTILLA}
 	${KDE4_KDEUI_LIBS}
+	${KDE4_KIO_LIBS}
 )
 
 
