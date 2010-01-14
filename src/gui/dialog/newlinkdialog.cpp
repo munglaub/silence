@@ -84,7 +84,7 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 NewLinkDialog::~NewLinkDialog()
 {
 	delete ledWebUrl;
-	delete ledWebUrl;
+	delete ledFile;
 	delete ledLinkText;
 	delete lblLinkText;
 	delete rbtnNode;
