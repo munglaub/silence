@@ -38,7 +38,7 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 	layout->addWidget(ledLinkText, row, 1, 1, 2);
 	++row;
 
-	rbtnNode = new QRadioButton(tr("Note"));
+	rbtnNode = new QRadioButton(tr("Node"));
 	rbtnNode->setChecked(true);
 	layout->addWidget(rbtnNode, row, 0, 1, 1, Qt::AlignTop);
 	tree = new QTreeView;

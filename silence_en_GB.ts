@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS>
+<TS version="2.0" language="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -68,6 +68,105 @@ Marcel Winkel</translation>
         <source>Labels:</source>
         <translation>Labels:</translation>
     </message>
+    <message>
+        <source>ID:</source>
+        <translation>ID:</translation>
+    </message>
+</context>
+<context>
+    <name>InputWidget</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+</context>
+<context>
+    <name>LabelList</name>
+    <message>
+        <source>Labels</source>
+        <translation>Labels</translation>
+    </message>
+    <message>
+        <source>Add Label</source>
+        <translation>Add Label</translation>
+    </message>
+    <message>
+        <source>Ban Label</source>
+        <translation>Ban Label</translation>
+    </message>
+    <message>
+        <source>Clear Label</source>
+        <translation>Clear Label</translation>
+    </message>
+</context>
+<context>
+    <name>LabelManagementDialog</name>
+    <message>
+        <source>Label Management</source>
+        <translation>Label Management</translation>
+    </message>
+    <message>
+        <source>Add Label</source>
+        <translation>Add Label</translation>
+    </message>
+    <message>
+        <source>Add Sublabel</source>
+        <translation>Add Sublabel</translation>
+    </message>
+    <message>
+        <source>Remove Node</source>
+        <translation>Remove Entry</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <source>Delete Label</source>
+        <translation>Delete Label</translation>
+    </message>
+    <message>
+        <source>Are you sure?</source>
+        <translation>Are you sure?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation>New Label</translation>
+    </message>
+    <message>
+        <source>New Sublabel</source>
+        <translation>New Sublabel</translation>
+    </message>
+</context>
+<context>
+    <name>LabelModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+</context>
+<context>
+    <name>LabelWidget</name>
+    <message>
+        <source>Manage Labels</source>
+        <translation>Manage Labels</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -85,22 +184,57 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Nodes</source>
-        <translation>Item</translation>
+        <translation>Entry</translation>
     </message>
     <message>
         <source>Search Nodes</source>
-        <translation>Search Items</translation>
+        <translation>Search Entrys</translation>
+    </message>
+</context>
+<context>
+    <name>NewLinkDialog</name>
+    <message>
+        <source>New Link</source>
+        <translation>New Link</translation>
+    </message>
+    <message>
+        <source>Link Text</source>
+        <translation>Link Text</translation>
+    </message>
+    <message>
+        <source>Website Url</source>
+        <translation>Website Url</translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation>File</translation>
+    </message>
+    <message>
+        <source>Select File</source>
+        <translation>Select File</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Node</source>
+        <translation>Entry</translation>
     </message>
 </context>
 <context>
     <name>NewNodeDialog</name>
     <message>
         <source>New Node</source>
-        <translation>New Item</translation>
+        <translation>New Entry</translation>
     </message>
     <message>
         <source>Node name:</source>
-        <translation>Item name:</translation>
+        <translation>Entry name:</translation>
     </message>
     <message>
         <source>Type</source>
@@ -116,19 +250,19 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation>Syntax</translation>
+        <translation type="obsolete">Syntax</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>None</translation>
+        <translation type="obsolete">None</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation>Labels</translation>
+        <translation type="obsolete">Labels</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Add</translation>
+        <translation type="obsolete">Add</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -140,21 +274,44 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Nodename</source>
-        <translation>Itemname</translation>
+        <translation>Entryname</translation>
+    </message>
+</context>
+<context>
+    <name>NewTableDialog</name>
+    <message>
+        <source>New Table</source>
+        <translation>New Table</translation>
+    </message>
+    <message>
+        <source>Rows</source>
+        <translation>Rows</translation>
+    </message>
+    <message>
+        <source>Columns</source>
+        <translation>Columns</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
     <name>NodeMenu</name>
     <message>
         <source>&amp;Node</source>
-        <translation>Item</translation>
+        <translation>Entry</translation>
     </message>
 </context>
 <context>
     <name>NodePropertyWidget</name>
     <message>
         <source>Nodeinfos</source>
-        <translation>Item-Infos</translation>
+        <translation>Entry-Infos</translation>
     </message>
     <message>
         <source>Labels</source>
@@ -162,11 +319,11 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Node name:</source>
-        <translation>Itemname:</translation>
+        <translation>Entryname:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>None</translation>
+        <translation type="obsolete">None</translation>
     </message>
     <message>
         <source>Syntax:</source>
@@ -186,7 +343,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Add</translation>
+        <translation type="obsolete">Add</translation>
     </message>
 </context>
 <context>
@@ -253,7 +410,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>&amp;Color...</source>
-        <translation>&amp;Color..</translation>
+        <translation type="obsolete">&amp;Color..</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -261,38 +418,102 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation>Standard</translation>
+        <translation type="obsolete">Standard</translation>
     </message>
     <message>
         <source>Bullet List (Disc)</source>
-        <translation>Bullet List (Disc)</translation>
+        <translation type="obsolete">Bullet List (Disc)</translation>
     </message>
     <message>
         <source>Bullet List (Circle)</source>
-        <translation>Bullet List (Circle)</translation>
+        <translation type="obsolete">Bullet List (Circle)</translation>
     </message>
     <message>
         <source>Bullet List (Square)</source>
-        <translation>Bullet List (Square)</translation>
+        <translation type="obsolete">Bullet List (Square)</translation>
     </message>
     <message>
         <source>Ordered List (Decimal)</source>
-        <translation>Ordered List (Decimal)</translation>
+        <translation type="obsolete">Ordered List (Decimal)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha lower)</source>
-        <translation>Ordered List (Alpha lower)</translation>
+        <translation type="obsolete">Ordered List (Alpha lower)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha upper)</source>
-        <translation>Ordered List (Alpha upper)</translation>
+        <translation type="obsolete">Ordered List (Alpha upper)</translation>
+    </message>
+    <message>
+        <source>Create Unordered List</source>
+        <translation>Create Unordered List</translation>
+    </message>
+    <message>
+        <source>Create Ordered List</source>
+        <translation>Create Ordered List</translation>
+    </message>
+    <message>
+        <source>Indent more</source>
+        <translation>Indent more</translation>
+    </message>
+    <message>
+        <source>Indent less</source>
+        <translation>Indent less</translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translation>Link</translation>
+    </message>
+    <message>
+        <source>Insert Image</source>
+        <translation>Insert Image</translation>
+    </message>
+    <message>
+        <source>Table</source>
+        <translation>Table</translation>
+    </message>
+    <message>
+        <source>Insert Horizontal Rule</source>
+        <translation>Insert Horizontal Rule</translation>
+    </message>
+    <message>
+        <source>Find/Replace</source>
+        <translation>Find/Replace</translation>
+    </message>
+    <message>
+        <source>Text Color</source>
+        <translation>Text Color</translation>
+    </message>
+    <message>
+        <source>Text Highlight</source>
+        <translation>Text Highlight</translation>
+    </message>
+    <message>
+        <source>Insert Table Row</source>
+        <translation>Insert Table Row</translation>
+    </message>
+    <message>
+        <source>Insert Table Column</source>
+        <translation>Inser Table Column</translation>
+    </message>
+    <message>
+        <source>Remove Table Row</source>
+        <translation>Remove Table Row</translation>
+    </message>
+    <message>
+        <source>Remove Table Column</source>
+        <translation>Remove Table Column</translation>
     </message>
 </context>
 <context>
-    <name>SearchNodeSidebar</name>
+    <name>SearchNodeOptions</name>
     <message>
         <source>Search Options</source>
         <translation>Search Options</translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation>Name</translation>
     </message>
     <message>
         <source>mime type</source>
@@ -310,9 +531,32 @@ Marcel Winkel</translation>
         <source>modified between</source>
         <translation>modified between</translation>
     </message>
+</context>
+<context>
+    <name>SearchNodeSidebar</name>
+    <message>
+        <source>Search Options</source>
+        <translation type="obsolete">Search Options</translation>
+    </message>
+    <message>
+        <source>mime type</source>
+        <translation type="obsolete">mimetype</translation>
+    </message>
+    <message>
+        <source>created between</source>
+        <translation type="obsolete">created between</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="obsolete">and</translation>
+    </message>
+    <message>
+        <source>modified between</source>
+        <translation type="obsolete">modified between</translation>
+    </message>
     <message>
         <source>Caption</source>
-        <translation>Name</translation>
+        <translation type="obsolete">Name</translation>
     </message>
 </context>
 <context>
@@ -331,6 +575,13 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
+    <name>SimpleTreeModel</name>
+    <message>
+        <source>Title</source>
+        <translation>Title</translation>
+    </message>
+</context>
+<context>
     <name>StatusBar</name>
     <message>
         <source>saved</source>
@@ -339,6 +590,17 @@ Marcel Winkel</translation>
     <message>
         <source>changed</source>
         <translation>changed</translation>
+    </message>
+</context>
+<context>
+    <name>SyntaxBox</name>
+    <message>
+        <source>Syntax:</source>
+        <translation>Syntax:</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>None</translation>
     </message>
 </context>
 <context>
@@ -412,18 +674,25 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
+    <name>TreeModel</name>
+    <message>
+        <source>Title</source>
+        <translation>Title</translation>
+    </message>
+</context>
+<context>
     <name>TreeView</name>
     <message>
         <source>Add Node</source>
-        <translation>Add Item</translation>
+        <translation>Add Entry</translation>
     </message>
     <message>
         <source>Add Subnode</source>
-        <translation>Add SubItem</translation>
+        <translation>Add SubEntry</translation>
     </message>
     <message>
         <source>Remove Node</source>
-        <translation>Remove Item</translation>
+        <translation>Remove Entry</translation>
     </message>
     <message>
         <source>Properties</source>
@@ -443,7 +712,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Delete Node</source>
-        <translation>Delete Item</translation>
+        <translation>Delete Entry</translation>
     </message>
 </context>
 <context>
@@ -458,7 +727,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Node Sidebar</source>
-        <translation>Item Sidebar</translation>
+        <translation>Entry Sidebar</translation>
     </message>
     <message>
         <source>Information Sidebar</source>
@@ -466,11 +735,15 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Node Properties Sidebar</source>
-        <translation>Item Properties Sidebar</translation>
+        <translation>Entry Properties Sidebar</translation>
     </message>
     <message>
         <source>Search Nodes Sidebar</source>
-        <translation>Search Items Sidebar</translation>
+        <translation>Search Entrys Sidebar</translation>
+    </message>
+    <message>
+        <source>Manage Labels</source>
+        <translation>Manage Labels</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de">
+<!DOCTYPE TS>
+<TS version="2.0" language="de">
 <defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -64,6 +65,110 @@ Marcel Winkel</translation>
         <source>Labels:</source>
         <translation>Tag:</translation>
     </message>
+    <message>
+        <source>ID:</source>
+        <translatorcomment>eindeutige Identifikationsnummer</translatorcomment>
+        <translation>ID:</translation>
+    </message>
+</context>
+<context>
+    <name>InputWidget</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+</context>
+<context>
+    <name>LabelList</name>
+    <message>
+        <source>Labels</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>Add Label</source>
+        <translation>Label hinzufügen</translation>
+    </message>
+    <message>
+        <source>Ban Label</source>
+        <translation>Label ausschliessen</translation>
+    </message>
+    <message>
+        <source>Clear Label</source>
+        <translation>Labelliste leeren</translation>
+    </message>
+</context>
+<context>
+    <name>LabelManagementDialog</name>
+    <message>
+        <source>Label Management</source>
+        <translatorcomment>Labels erstellen, umbenennen, löschen</translatorcomment>
+        <translation>Label bearbeiten</translation>
+    </message>
+    <message>
+        <source>Add Label</source>
+        <translation>Label hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add Sublabel</source>
+        <translatorcomment>Label unterhalb des aktuellen Labels hinzufügen</translatorcomment>
+        <translation>neues Sublabel</translation>
+    </message>
+    <message>
+        <source>Remove Node</source>
+        <translation type="unfinished">Label entfernen</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <source>Delete Label</source>
+        <translation>Label löschen</translation>
+    </message>
+    <message>
+        <source>Are you sure?</source>
+        <translation>Sind Sie sicher?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <source>New Label</source>
+        <translation>neues Label</translation>
+    </message>
+    <message>
+        <source>New Sublabel</source>
+        <translatorcomment>Label unterhalb des aktuellen Labels hinzufügen</translatorcomment>
+        <translation>neues Sublabel</translation>
+    </message>
+</context>
+<context>
+    <name>LabelModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+</context>
+<context>
+    <name>LabelWidget</name>
+    <message>
+        <source>Manage Labels</source>
+        <translatorcomment>Labels erstellen, umbenennen, löschen</translatorcomment>
+        <translation>Labels bearbeiten</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -86,6 +191,46 @@ Marcel Winkel</translation>
     <message>
         <source>Search Nodes</source>
         <translation>Artikel Suchen</translation>
+    </message>
+</context>
+<context>
+    <name>NewLinkDialog</name>
+    <message>
+        <source>New Link</source>
+        <translatorcomment>neuer Verweis</translatorcomment>
+        <translation>neuer Link</translation>
+    </message>
+    <message>
+        <source>Link Text</source>
+        <translatorcomment>Text der angezeigt wird und zum Verweis führt</translatorcomment>
+        <translation>Link Text</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translatorcomment>Artikel zu dem verwiesen wird</translatorcomment>
+        <translation>Artikel</translation>
+    </message>
+    <message>
+        <source>Website Url</source>
+        <translatorcomment>Verweis auf eine Seite im Internet</translatorcomment>
+        <translation>Website-Url</translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translatorcomment>Verweis auf eine lokal erreichbare Datei</translatorcomment>
+        <translation>Datei</translation>
+    </message>
+    <message>
+        <source>Select File</source>
+        <translation>Datei auswählen</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -112,19 +257,19 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation>Syntax</translation>
+        <translation type="obsolete">Syntax</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation type="obsolete">Keine</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation>Tags</translation>
+        <translation type="obsolete">Tags</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Hinzufügen</translation>
+        <translation type="obsolete">Hinzufügen</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -137,6 +282,32 @@ Marcel Winkel</translation>
     <message>
         <source>Nodename</source>
         <translation>Name</translation>
+    </message>
+</context>
+<context>
+    <name>NewTableDialog</name>
+    <message>
+        <source>New Table</source>
+        <translatorcomment>eine neue Tabelle erstellen</translatorcomment>
+        <translation>neue Tabelle</translation>
+    </message>
+    <message>
+        <source>Rows</source>
+        <translatorcomment>Anzahl der zu erstellenden Reihen</translatorcomment>
+        <translation>Reihen</translation>
+    </message>
+    <message>
+        <source>Columns</source>
+        <translatorcomment>Anzahl der zu erstellenden Spalten</translatorcomment>
+        <translation>Spalten</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -162,7 +333,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation type="obsolete">Keine</translation>
     </message>
     <message>
         <source>Syntax:</source>
@@ -182,7 +353,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Hinzufügen</translation>
+        <translation type="obsolete">Hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -233,6 +404,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>&amp;Left</source>
+        <translatorcomment>linksbündig</translatorcomment>
         <translation>&amp;Links</translation>
     </message>
     <message>
@@ -241,6 +413,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>&amp;Right</source>
+        <translatorcomment>rechtsbündig</translatorcomment>
         <translation>Rechts</translation>
     </message>
     <message>
@@ -249,7 +422,7 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>&amp;Color...</source>
-        <translation>Farbe</translation>
+        <translation type="obsolete">Farbe</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -257,46 +430,120 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation>Standard</translation>
+        <translation type="obsolete">Standard</translation>
     </message>
     <message>
         <source>Bullet List (Disc)</source>
-        <translation>Aufzählungspunkt (Punkt)</translation>
+        <translation type="obsolete">Aufzählungspunkt (Punkt)</translation>
     </message>
     <message>
         <source>Bullet List (Circle)</source>
-        <translation>Aufzählungspunkt (Kreis)</translation>
+        <translation type="obsolete">Aufzählungspunkt (Kreis)</translation>
     </message>
     <message>
         <source>Bullet List (Square)</source>
-        <translation>Aufzählungspunkt (Quadrat)</translation>
+        <translation type="obsolete">Aufzählungspunkt (Quadrat)</translation>
     </message>
     <message>
         <source>Ordered List (Decimal)</source>
-        <translation>Aufzählungsliste (Zahl)</translation>
+        <translation type="obsolete">Aufzählungsliste (Zahl)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha lower)</source>
-        <translation>Aufzählungsliste (Alphabetisch klein)</translation>
+        <translation type="obsolete">Aufzählungsliste (Alphabetisch klein)</translation>
     </message>
     <message>
         <source>Ordered List (Alpha upper)</source>
-        <translation>Aufzählungsliste (Alphabetisch groß)</translation>
+        <translation type="obsolete">Aufzählungsliste (Alphabetisch groß)</translation>
+    </message>
+    <message>
+        <source>Create Unordered List</source>
+        <translation>unsortierte Liste</translation>
+    </message>
+    <message>
+        <source>Create Ordered List</source>
+        <translatorcomment>nummerierte Kiste</translatorcomment>
+        <translation>sortierte Liste</translation>
+    </message>
+    <message>
+        <source>Indent more</source>
+        <translation>Einzug vergrößern</translation>
+    </message>
+    <message>
+        <source>Indent less</source>
+        <translation>Einzug verringern</translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translatorcomment>Verweis</translatorcomment>
+        <translation>Link</translation>
+    </message>
+    <message>
+        <source>Insert Image</source>
+        <translation>Bild einfügen</translation>
+    </message>
+    <message>
+        <source>Table</source>
+        <translation>Tabelle</translation>
+    </message>
+    <message>
+        <source>Insert Horizontal Rule</source>
+        <translatorcomment>eine wagerechte Linie einfügen</translatorcomment>
+        <translation>wagerechte Linie</translation>
+    </message>
+    <message>
+        <source>Find/Replace</source>
+        <translation>Suchen/Ersetzen</translation>
+    </message>
+    <message>
+        <source>Text Color</source>
+        <translation>Textfarbe</translation>
+    </message>
+    <message>
+        <source>Text Highlight</source>
+        <translatorcomment>Text farblich markieren</translatorcomment>
+        <translation>Text markieren</translation>
+    </message>
+    <message>
+        <source>Insert Table Row</source>
+        <translatorcomment>Reihe in Tabelle einfügen</translatorcomment>
+        <translation>Reihe eingügen</translation>
+    </message>
+    <message>
+        <source>Insert Table Column</source>
+        <translatorcomment>Spalte in Tabelle einfügen</translatorcomment>
+        <translation>Spalte einfügen</translation>
+    </message>
+    <message>
+        <source>Remove Table Row</source>
+        <translatorcomment>Reihe aus Tabelle entfernen</translatorcomment>
+        <translation>Reihe entfernen</translation>
+    </message>
+    <message>
+        <source>Remove Table Column</source>
+        <translatorcomment>Spalte aus Tabelle entfernen</translatorcomment>
+        <translation>Spalte entfernen</translation>
     </message>
 </context>
 <context>
-    <name>SearchNodeSidebar</name>
+    <name>SearchNodeOptions</name>
     <message>
         <source>Search Options</source>
-        <translation>Optionen</translation>
+        <translation>Such-Optionen</translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation>Name</translation>
     </message>
     <message>
         <source>mime type</source>
+        <translatorcomment>Typ des Artikels</translatorcomment>
         <translation>Typ</translation>
     </message>
     <message>
         <source>created between</source>
-        <translation>erstellt von</translation>
+        <translatorcomment>Datum/Zeit des Erstellens</translatorcomment>
+        <translation>erstellt vom</translation>
     </message>
     <message>
         <source>and</source>
@@ -304,11 +551,35 @@ Marcel Winkel</translation>
     </message>
     <message>
         <source>modified between</source>
-        <translation>verändert von</translation>
+        <translatorcomment>Datum/Zeit der letzten Änderung</translatorcomment>
+        <translation>verändert vom</translation>
+    </message>
+</context>
+<context>
+    <name>SearchNodeSidebar</name>
+    <message>
+        <source>Search Options</source>
+        <translation type="obsolete">Optionen</translation>
+    </message>
+    <message>
+        <source>mime type</source>
+        <translation type="obsolete">Typ</translation>
+    </message>
+    <message>
+        <source>created between</source>
+        <translation type="obsolete">erstellt von</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="obsolete">bis</translation>
+    </message>
+    <message>
+        <source>modified between</source>
+        <translation type="obsolete">verändert von</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation>Name</translation>
+        <translation type="obsolete">Name</translation>
     </message>
 </context>
 <context>
@@ -327,6 +598,13 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
+    <name>SimpleTreeModel</name>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+</context>
+<context>
     <name>StatusBar</name>
     <message>
         <source>saved</source>
@@ -335,6 +613,18 @@ Marcel Winkel</translation>
     <message>
         <source>changed</source>
         <translation>verändert</translation>
+    </message>
+</context>
+<context>
+    <name>SyntaxBox</name>
+    <message>
+        <source>Syntax:</source>
+        <translatorcomment>Hervorhebung</translatorcomment>
+        <translation>Syntax:</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
     </message>
 </context>
 <context>
@@ -404,6 +694,13 @@ Marcel Winkel</translation>
     </message>
 </context>
 <context>
+    <name>TreeModel</name>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+</context>
+<context>
     <name>TreeView</name>
     <message>
         <source>Add Node</source>
@@ -467,6 +764,11 @@ Marcel Winkel</translation>
     <message>
         <source>Linewarp</source>
         <translation type="obsolete">automatischer Zeilenumbruch</translation>
+    </message>
+    <message>
+        <source>Manage Labels</source>
+        <translatorcomment>Labels erstellen, ändern, löschen</translatorcomment>
+        <translation>Labels bearbeiten</translation>
     </message>
 </context>
 <context>
