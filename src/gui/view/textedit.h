@@ -22,18 +22,26 @@
 #define TEXTEDIT_H
 
 #include "src/data/node/textnodecontent.h"
-#include "src/gui/widget/textfind.h"
-#include <QAction>
-#include <QToolBar>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <Qsci/qsciscintilla.h>
+
+namespace KTextEditor
+{
+	class Document;
+	class View;
+	class Editor;
+	class Cursor;
+}
+
+class QAction;
+class QActionGroup;
+class QToolBar;
+class QVBoxLayout;
+class QWidget;
 
 
 /*!\class TextEdit
  * \brief A widget to show and edit text.
  *
- * This TextEdit is the widget to show and modify the TextNodeContent.
+ * This TextEdit is the widget to show and modify the TextNodeContent. It is supposed to handle plain text and provieds syntax highlighting for different languages.
  *
  * \author Manuel Unglaub
  */
@@ -63,8 +71,7 @@ class TextEdit : public QWidget
 
 		/*!
 		 * Indicate the syntax highlighting that should be used.
-		 * The following syntax highlighters are available: Bash, Batch, CMake, C++, C#, CSS, D, Diff, HTML, IDL, Java, JavaScript, Lua, Makefile, Perl, POV, Python, Ruby, SQL, TeX, VHDL
-		 * \param syntax The syntax highlighting that will be used. If syntax does not match an existing syntax no syntax highlighting will be used. If you do not want to use any syntax highlighting you should assign something like "none".
+		 * \param syntax The syntax highlighting that will be used. If syntax does not match an existing syntax no syntax highlighting will be used. If you do not want to use any syntax highlighting you should assign "None".
 		 */
 		void setSyntax(QString syntax);
 
@@ -77,38 +84,25 @@ class TextEdit : public QWidget
 
 	private slots:
 		void saveContent();
-		void textModified();
-		void clipboardDataChanged();
-
-		void findNext();
-		void findPrev();
-		void findFirst();
-		void replace();
-		void replaceAll();
-
 		void contentChanged();
+		void cursorPositionChanged(KTextEditor::View *view, const KTextEditor::Cursor &newPosition);
 	
 	private:
-		QsciScintilla *editor;
 		TextNodeContent *content;
 		QVBoxLayout *layout;
-		TextFind *findWidget;
+
+		QActionGroup *actionGroup;
 
 		QToolBar *toolbar;
-		QAction *actionSave,
-				*actionUndo,
-				*actionRedo,
-				*actionCut,
-				*actionCopy,
-				*actionPaste,
-				*actionFind,
-				*actionFindReplace,
-				*actionSelectAll;
+		QAction *saveAction;
+
+		KTextEditor::View *view;
+		KTextEditor::Document *document;
+		KTextEditor::Editor *editor;
 		
 
 		void setupActions();
 		void setupEditor();
-		bool find(bool forward, bool wrap = true);
 };
 
 #endif // TEXTEDIT_H

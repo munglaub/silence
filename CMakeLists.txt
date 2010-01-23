@@ -4,13 +4,9 @@ set ( CMAKE_BUILD_TYPE Release )
 add_definitions ( -Wall )
 find_package ( Qt4 REQUIRED )
 find_package ( KDE4 REQUIRED )
-#include ( ${QT_USE_FILE} )
 include_directories (
 	${CMAKE_SOURCE_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}
-#	${QT_QTCORE_INCLUDE_DIR}
-#	${QT_QTGUI_INCLUDE_DIR}
-#	${QT_QTXML_INCLUDE_DIR}
 	${KDE4_INCLUDES}
 	)
 set ( silence_HDRS
@@ -136,12 +132,9 @@ kde4_add_executable ( silence
 	${MOCS}
 )
 target_link_libraries ( silence
-#	${QT_QTCORE_LIBRARY}
-#	${QT_QTGUI_LIBRARY}
-#	${QT_QTXML_LIBRARY}
-	${LIB_QSCINTILLA}
 	${KDE4_KDEUI_LIBS}
 	${KDE4_KIO_LIBS}
+	${KDE4_KTEXTEDITOR_LIBS}
 )
 
 
