@@ -20,6 +20,7 @@
 
 #include <kactioncollection.h>
 #include <KIcon>
+#include <KTextEditor/CommandInterface>
 #include <KTextEditor/ConfigInterface>
 #include <KTextEditor/Cursor>
 #include <KTextEditor/Document>
@@ -119,6 +120,21 @@ void TextEdit::setupEditor()
 	KTextEditor::ConfigInterface *interface = qobject_cast<KTextEditor::ConfigInterface*>(view);
 	interface->setConfigValue("line-numbers", true);
 	interface->setConfigValue("dynamic-word-wrap", true);
+
+	KTextEditor::CommandInterface *iface = qobject_cast<KTextEditor::CommandInterface*>(editor);
+	if (iface)
+	{
+		KTextEditor::Command *cmd = iface->queryCommand("set-tab-width");
+		if (cmd){
+			QString msg;
+			cmd->exec(view, "set-tab-width 4", msg);
+		}
+		cmd = iface->queryCommand("set-indent-width");
+		if (cmd){
+			QString msg;
+			cmd->exec(view, "set-indent-width 4", msg);
+		}
+	}
 }
 
 void TextEdit::setContent(TextNodeContent *content)
