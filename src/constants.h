@@ -18,27 +18,13 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/menu/helpmenu.h"
-#include <KIcon>
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 
+//#define VERSION "0.1"
 
-HelpMenu::HelpMenu(QWidget *parent)
-	: QMenu(parent)
-{
-	setTitle(tr("&Help"));
-	about = addAction(KIcon("help-about"), tr("About Silence"));
-	connect(about, SIGNAL(triggered()), this, SLOT(showAbout()));
-}
+static const char VERSION[] = "0.1";
+static const char APPNAME[] = "Silence";
 
-HelpMenu::~HelpMenu()
-{
-	delete about;
-}
-
-void HelpMenu::showAbout()
-{
-	AboutDialog *dlg = new AboutDialog;
-	dlg->exec();
-	delete dlg;
-}
+#endif // CONSTANTS_H
 

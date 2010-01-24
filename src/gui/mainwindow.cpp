@@ -74,9 +74,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	controller->setEditMenu(editmenu);
 	viewmenu = new ViewMenu;
 	menuBar()->addMenu(viewmenu);
-	helpmenu = new HelpMenu;
-	menuBar()->addMenu(helpmenu);
-}   
+	menuBar()->addMenu(helpMenu(""));
+}
 
 MainWindow::~MainWindow()
 {   
@@ -90,7 +89,6 @@ MainWindow::~MainWindow()
 	delete nodemenu;
 	delete editmenu;
 	delete viewmenu;
-	delete helpmenu;
 	delete silencemenu;
 
 	delete controller;

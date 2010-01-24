@@ -23,7 +23,6 @@
 
 #include "src/controller.h"
 #include "src/gui/menu/editmenu.h"
-#include "src/gui/menu/helpmenu.h"
 #include "src/gui/menu/nodemenu.h"
 #include "src/gui/menu/silencemenu.h"
 #include "src/gui/menu/viewmenu.h"
@@ -74,7 +73,6 @@ class MainWindow : public KMainWindow
 		NodeMenu *nodemenu;
 		EditMenu *editmenu;
 		ViewMenu *viewmenu;
-		HelpMenu *helpmenu;
 };
 
 #endif // MAINWINDOW_H

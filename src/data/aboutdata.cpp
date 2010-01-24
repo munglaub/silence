@@ -19,19 +19,23 @@
  */
 
 #include "src/data/aboutdata.h"
+#include "src/constants.h"
+#include <QImage>
 
 AboutData::AboutData()
 	: KAboutData ("silence", 0,
-		ki18n("Silence"), "version",
+		ki18n(APPNAME), VERSION,
 		ki18n("A information management tool."),
 		KAboutData::License_GPL_V2,
 		ki18n("(c) 2009 - 2010, Silence developers"),
-		ki18n("some text .."),
-		"no hompage jet",
-		"bug report email address")
+		KLocalizedString(),
+		"http://silence.sekalura.net",
+		"silence@sekalura.net")
 {
 	addAuthor(ki18n("Manuel Unglaub"), ki18n("Current maintainer"), "m.unglaub@gmail.com");
 	addAuthor(ki18n("Yves Adler"), KLocalizedString(), "yves.adler@googlemail.com");
+
+	setProgramLogo(QImage(":icons/Silence_big.png"));
 }
 
 

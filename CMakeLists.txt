@@ -11,6 +11,7 @@ include_directories (
 	)
 set ( silence_HDRS
 	src/controller.h
+	src/constants.h
 	src/data/node/nodeid.h
 	src/data/node/abstractnodecontent.h
 	src/data/label.h
@@ -34,10 +35,8 @@ set ( silence_HDRS
 	src/gui/statusbar.h
 	src/gui/menu/nodemenu.h
 	src/gui/menu/silencemenu.h
-	src/gui/menu/helpmenu.h
 	src/gui/menu/editmenu.h
 	src/gui/menu/viewmenu.h
-	src/gui/dialog/aboutdialog.h
 	src/gui/dialog/newnodedialog.h
 	src/gui/dialog/newlinkdialog.h
 	src/gui/dialog/labelmanagementdialog.h
@@ -75,10 +74,8 @@ set ( silence_SRCS
 	src/gui/statusbar.cpp
 	src/gui/menu/nodemenu.cpp
 	src/gui/menu/silencemenu.cpp
-	src/gui/menu/helpmenu.cpp
 	src/gui/menu/editmenu.cpp
 	src/gui/menu/viewmenu.cpp
-	src/gui/dialog/aboutdialog.cpp
 	src/gui/dialog/newnodedialog.cpp
 	src/gui/dialog/newlinkdialog.cpp
 	src/gui/dialog/newtabledialog.cpp
@@ -119,10 +116,6 @@ set ( silence_MOCS
 	src/persistence/abstractdatastore.h
 	)
 QT4_WRAP_CPP(MOCS ${silence_MOCS})
-
-set ( LIB_QSCINTILLA
-	-lqscintilla2
-	)
 
 kde4_add_executable ( silence
 	${silence_SRCS}
