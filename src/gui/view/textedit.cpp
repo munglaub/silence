@@ -142,6 +142,7 @@ void TextEdit::setContent(TextNodeContent *content)
 	this->content = content;
 	document->clear();
 	document->setText(content->getText());
+	view->setCursorPosition(KTextEditor::Cursor(0, 0));
 	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 

@@ -52,7 +52,7 @@ SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 	synbox->addItem("Python");
 	synbox->addItem("Ruby");
 	synbox->addItem("SQL");
-	synbox->addItem("TeX");
+	synbox->addItem("LaTeX");
 	synbox->addItem("VHDL");
 
 	layout->addWidget(synbox);

@@ -99,7 +99,7 @@ void TextNodeContent::setGraphics()
 		icon = KIcon("text-x-sql");
 		return;
 	}
-	if (metaInfos->value("Syntax") == "TeX")
+	if (metaInfos->value("Syntax") == "LaTeX")
 	{
 		icon = KIcon("text-x-tex");
 		return;
