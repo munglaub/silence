@@ -41,7 +41,7 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 
 	connect(this, SIGNAL(visibilityChanged(bool)), filtermodel, SLOT(invalidate()));
 
-	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	setAllowedAreas(Qt::AllDockWidgetAreas);
 
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);

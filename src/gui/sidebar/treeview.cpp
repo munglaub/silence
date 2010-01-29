@@ -32,7 +32,7 @@
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
-	setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	setAllowedAreas(Qt::AllDockWidgetAreas);
 
 	setupToolbar();
 	setupTree();

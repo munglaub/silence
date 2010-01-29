@@ -37,24 +37,26 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 
 	// information sidebar to show the meta-infos
 	infosidebar = new InfoSidebar(tr("Info"), this);
-	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
 	controller->setInfoSidebar(infosidebar);
 
 	nodepropertywidget = new NodePropertyWidget(tr("Properties"), this);
 	nodepropertywidget->hide();
-	addDockWidget(Qt::RightDockWidgetArea, nodepropertywidget);
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
 	treeview = new TreeView(tr("Nodes"), this);
-	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 	controller->setTreeView(treeview);
 
 	// search sidebar
 	searchnodesidebar = new SearchNodeSidebar(tr("Search Nodes"), this);
-	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);
 	controller->setSearchNodeSidebar(searchnodesidebar);
+
+	// docking the widgets
+	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
+	addDockWidget(Qt::LeftDockWidgetArea, treeview);
+	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);
 	tabifyDockWidget(searchnodesidebar, treeview);
+	addDockWidget(Qt::LeftDockWidgetArea, nodepropertywidget);
 
 	statusbar = new StatusBar;
 	setStatusBar(statusbar);
