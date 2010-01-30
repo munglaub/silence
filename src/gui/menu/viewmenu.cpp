@@ -43,26 +43,26 @@ ViewMenu::ViewMenu(QWidget *parent)
 	// TODO: Controller::create()->getTreeView()->isVisible() does not work
 	//	 --> find a working solution which is NOT hardcorded!!
 	showNodeTreeAction->setChecked(true);
-	connect(showNodeTreeAction, SIGNAL(triggered(bool)),
-		this, SLOT(showNodeTree(bool)));
+	connect(showNodeTreeAction, SIGNAL(triggered(bool)), this, SLOT(showNodeTree(bool)));
+	connect(Controller::create()->getTreeView(), SIGNAL(visibilityChanged(bool)), showNodeTreeAction, SLOT(setChecked(bool)));
 
 	showInfoAction = addAction(tr("Information Sidebar"));
 	showInfoAction->setCheckable(true);
 	showInfoAction->setChecked(true);
-	connect(showInfoAction, SIGNAL(triggered(bool)),
-		this, SLOT(showInfo(bool)));
+	connect(showInfoAction, SIGNAL(triggered(bool)), this, SLOT(showInfo(bool)));
+	connect(Controller::create()->getInfoSidebar(), SIGNAL(visibilityChanged(bool)), showInfoAction, SLOT(setChecked(bool)));
 
 	showPropertiesAction = addAction(tr("Node Properties Sidebar"));
 	showPropertiesAction->setCheckable(true);
 	showPropertiesAction->setChecked(false);
-	connect(showPropertiesAction, SIGNAL(triggered(bool)),
-		this, SLOT(showProperties(bool)));
+	connect(showPropertiesAction, SIGNAL(triggered(bool)), this, SLOT(showProperties(bool)));
+	connect(Controller::create()->getNodePropertyWidget(), SIGNAL(visibilityChanged(bool)), showPropertiesAction, SLOT(setChecked(bool)));
 
 	showNodeSearchAction = addAction(tr("Search Nodes Sidebar"));
 	showNodeSearchAction->setCheckable(true);
 	showNodeSearchAction->setChecked(true);
-	connect(showNodeSearchAction, SIGNAL(triggered(bool)),
-		this, SLOT(showNodeSearch(bool)));
+	connect(showNodeSearchAction, SIGNAL(triggered(bool)), this, SLOT(showNodeSearch(bool)));
+	connect(Controller::create()->getSearchNodeSidebar(), SIGNAL(visibilityChanged(bool)), showNodeSearchAction, SLOT(setChecked(bool)));
 }
 
 ViewMenu::~ViewMenu()
