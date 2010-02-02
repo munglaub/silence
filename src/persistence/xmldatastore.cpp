@@ -118,7 +118,7 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 		return; // TODO: real solution
 	Node *node = parentNode->getChild(index);
 	
-	node->setId(NodeId(xmlNode.toElement().attribute("id", "-1").toInt()));
+	node->setId(new NodeId(xmlNode.toElement().attribute("id", "-1").toInt()));
 
 	QDateTime modificationDate = QDateTime::currentDateTime();
 

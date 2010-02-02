@@ -76,14 +76,14 @@ class Node : public QObject
 		 * \return The NodeId of this node.
 		 * \sa setId()
 		 */
-		NodeId getId() const;
+		NodeId getId();
 
 		/*!
 		 * Set the id of this node.
 		 * \param id The NodeId which will be assigned to this node.
 		 * \sa getId()
 		 */
-		void setId(NodeId id);
+		void setId(NodeId *id);
 
 		/*!
 		 * Find out if a specific node is within the nodes below this node.
@@ -253,7 +253,7 @@ class Node : public QObject
 		void change();
 
 	private:
-		NodeId id;
+		NodeId *id;
 		QString caption;
 		AbstractNodeContent *content;
 		QDateTime creationDate;

@@ -26,6 +26,7 @@ Node::Node(Node *parent)
 {
 	this->caption = "";
 	this->parent = parent;
+	this->id = 0;
 	
 	content = 0;
 	creationDate = QDateTime::currentDateTime();
@@ -34,6 +35,8 @@ Node::Node(Node *parent)
 
 Node::~Node()
 {
+	if (id)
+		delete id;
 	qDeleteAll(children);
 	delete content;
 }
@@ -121,12 +124,14 @@ void Node::setParent(Node* parent)
 	this->parent = parent;
 }
 
-NodeId Node::getId() const
+NodeId Node::getId()
 {
-	return id;
+	if (!id)
+		id = new NodeId;
+	return *id;
 }
 
-void Node::setId(NodeId id)
+void Node::setId(NodeId *id)
 {
 	this->id = id;
 }
@@ -222,7 +227,7 @@ QString Node::toString()
 {
 	QString result;
 	result.append("Node (");
-	result.append(QString().setNum(id.getId()));
+	result.append(QString().setNum(id->getId()));
 	result.append(") - ");
 	result.append(caption);
 	result.append("\n");
