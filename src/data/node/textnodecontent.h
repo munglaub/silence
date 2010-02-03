@@ -92,9 +92,6 @@ class TextNodeContent : public AbstractNodeContent
 	private:
 		QHash<QString, QString> *metaInfos;
 		QString text;
-		QIcon icon;
-
-		void setGraphics();
 };
 
 #endif // TEXTNODECONTENT_H

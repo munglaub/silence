@@ -28,83 +28,12 @@ TextNodeContent::TextNodeContent()
 {
 	text = "";
 	metaInfos = new QHash<QString, QString>;
-	
-	setGraphics();
+	metaInfos->insert("Syntax", "None");
 }
 
 TextNodeContent::~TextNodeContent()
 {
 	delete metaInfos;
-}
-
-void TextNodeContent::setGraphics()
-{
-	if (metaInfos->value("Syntax") == "JavaScript")
-	{
-		icon = KIcon("application-javascript");
-		return;
-	} 
-	if (metaInfos->value("Syntax") == "Perl")
-	{
-		icon = KIcon("application-x-perl");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "Ruby")
-	{
-		icon = KIcon("application-x-ruby");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "CSS")
-	{
-		icon = KIcon("text-css");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "HTML")
-	{
-		icon = KIcon("text-html");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "CMake")
-	{
-		icon = KIcon("text-x-cmake");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "C#")
-	{
-		icon = KIcon("text-x-csharp");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "C++")
-	{
-		icon = KIcon("text-x-c++src");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "Java")
-	{
-		icon = KIcon("text-x-java");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "Makefile")
-	{
-		icon = KIcon("text-x-makefile");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "Python")
-	{
-		icon = KIcon("text-x-python");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "SQL")
-	{
-		icon = KIcon("text-x-sql");
-		return;
-	}
-	if (metaInfos->value("Syntax") == "LaTeX")
-	{
-		icon = KIcon("text-x-tex");
-		return;
-	}
-	icon = KIcon("text-plain");
 }
 
 void TextNodeContent::setText(QString text)
@@ -134,8 +63,6 @@ QHash<QString, QString>* TextNodeContent::getMetaInfos()
 void TextNodeContent::addMetaInfo(QString key, QString value)
 {
 	metaInfos->insert(key, value);
-	if (key == "Syntax")
-		setGraphics();
 	emit changed();
 }
 
@@ -152,7 +79,6 @@ bool TextNodeContent::contains(const QString& value)
 void TextNodeContent::setSyntax(QString syntax)
 {
 	metaInfos->insert("Syntax", syntax);
-	setGraphics();
 	emit changed();
 }
 
@@ -178,17 +104,44 @@ void TextNodeContent::setXmlData(QDomElement &xmlNode)
 			
 		n = n.nextSibling();
 	}
-	setGraphics();
 }
 
 QPixmap TextNodeContent::getPixmap()
 {
-	return icon.pixmap(16, 16);
+	return getIcon().pixmap(16, 16);
 }
 
 QIcon TextNodeContent::getIcon()
 {
-	return icon;
+	if (metaInfos->value("Syntax") == "None")
+		return KIcon("text-plain");
+	if (metaInfos->value("Syntax") == "JavaScript")
+		return KIcon("application-javascript");
+	if (metaInfos->value("Syntax") == "Perl")
+		return KIcon("application-x-perl");
+	if (metaInfos->value("Syntax") == "Ruby")
+		return KIcon("application-x-ruby");
+	if (metaInfos->value("Syntax") == "CSS")
+		return KIcon("text-css");
+	if (metaInfos->value("Syntax") == "HTML")
+		return KIcon("text-html");
+	if (metaInfos->value("Syntax") == "CMake")
+		return KIcon("text-x-cmake");
+	if (metaInfos->value("Syntax") == "C#")
+		return KIcon("text-x-csharp");
+	if (metaInfos->value("Syntax") == "C++")
+		return KIcon("text-x-c++src");
+	if (metaInfos->value("Syntax") == "Java")
+		return KIcon("text-x-java");
+	if (metaInfos->value("Syntax") == "Makefile")
+		return KIcon("text-x-makefile");
+	if (metaInfos->value("Syntax") == "Python")
+		return KIcon("text-x-python");
+	if (metaInfos->value("Syntax") == "SQL")
+		return KIcon("text-x-sql");
+	if (metaInfos->value("Syntax") == "LaTeX")
+		return KIcon("text-x-tex");
+	return KIcon("text-plain");
 }
 
 QString TextNodeContent::toString()
