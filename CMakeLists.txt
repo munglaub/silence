@@ -51,6 +51,7 @@ set ( silence_HDRS
 	src/gui/widget/textfind.h
 	src/gui/widget/labelwidget.h
 	src/gui/widget/inputwidget.h
+	src/gui/widget/addimage.h
 	src/gui/widget/searchnodeoptions.h
 	src/gui/widget/labellist.h
 	)
@@ -93,6 +94,7 @@ set ( silence_SRCS
 	src/gui/widget/labelwidget.cpp
 	src/gui/widget/syntaxbox.cpp
 	src/gui/widget/inputwidget.cpp
+	src/gui/widget/addimage.cpp
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
 	src/commandline/cmdmain.cpp

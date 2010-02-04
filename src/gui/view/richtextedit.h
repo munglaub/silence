@@ -97,7 +97,8 @@ class RichTextEdit : public QWidget
 		void createOrderedList();
 		void createUnorderedList();
 
-		void addPicture();
+		void addPicture(); // show picture frame
+		void insertPicture(QString html); // insert the selected picture
 		void insertRule();
 		void insertLink();
 

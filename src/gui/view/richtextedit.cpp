@@ -32,6 +32,7 @@
 #include "src/gui/dialog/newlinkdialog.h"
 #include "src/gui/dialog/newtabledialog.h"
 #include "src/gui/view/richtextedit.h"
+#include "src/gui/widget/addimage.h"
 
 
 RichTextEdit::RichTextEdit(QWidget *parent)
@@ -623,19 +624,19 @@ void RichTextEdit::contentChanged()
 
 void RichTextEdit::addPicture()
 {
-	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "Select Image");
+	AddImage *addImage = new AddImage(this);
+	layout->insertLayout(2, addImage);
+	connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertPicture(QString)));
+	connect(textedit, SIGNAL(textChanged()), addImage, SLOT(exit()));
+}
 
-	if (fileName.isEmpty())
-		return;
-
-	QImage image(fileName);
-	if (image.isNull())
-		return;
-
+void RichTextEdit::insertPicture(QString html)
+{
 	QTextCursor cursor = textedit->textCursor();
 	cursor.beginEditBlock();
-	cursor.insertImage(fileName);
+	cursor.insertHtml(html);
 	cursor.endEditBlock();
+	textedit->moveCursor(QTextCursor::NextBlock);
 }
 
 void RichTextEdit::insertRule()
