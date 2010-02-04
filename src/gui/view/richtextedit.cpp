@@ -30,9 +30,9 @@
 #include <QTextTable>
 #include "src/controller.h"
 #include "src/gui/dialog/newlinkdialog.h"
-#include "src/gui/dialog/newtabledialog.h"
 #include "src/gui/view/richtextedit.h"
 #include "src/gui/widget/addimage.h"
+#include "src/gui/widget/addtable.h"
 
 
 RichTextEdit::RichTextEdit(QWidget *parent)
@@ -626,11 +626,11 @@ void RichTextEdit::addPicture()
 {
 	AddImage *addImage = new AddImage(this);
 	layout->insertLayout(2, addImage);
-	connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertPicture(QString)));
+	connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertHtml(QString)));
 	connect(textedit, SIGNAL(textChanged()), addImage, SLOT(exit()));
 }
 
-void RichTextEdit::insertPicture(QString html)
+void RichTextEdit::insertHtml(QString html)
 {
 	QTextCursor cursor = textedit->textCursor();
 	cursor.beginEditBlock();
@@ -641,11 +641,7 @@ void RichTextEdit::insertPicture(QString html)
 
 void RichTextEdit::insertRule()
 {
-	QTextCursor cursor = textedit->textCursor();
-	cursor.beginEditBlock();
-	cursor.insertHtml("<hr />");
-	cursor.endEditBlock();
-	textedit->moveCursor(QTextCursor::NextBlock);
+	insertHtml("<hr />");
 }
 
 void RichTextEdit::insertLink()
@@ -671,17 +667,10 @@ void RichTextEdit::insertLink()
 
 void RichTextEdit::insertTable()
 {
-	QTextCursor cursor = textedit->textCursor();
-	NewTableDialog dlg;
-	if (dlg.exec() == QDialog::Accepted)
-	{
-		if (dlg.getRowCount() > 0 && dlg.getColumnCount() > 0)
-		{
-			cursor.beginEditBlock();
-			cursor.insertTable(dlg.getRowCount(), dlg.getColumnCount());
-			cursor.endEditBlock();
-		}
-	}
+	AddTable *addTable = new AddTable(this);
+	layout->insertLayout(2, addTable);
+	connect(addTable, SIGNAL(addedTable(const QString&)), this, SLOT(insertHtml(QString)));
+	connect(textedit, SIGNAL(textChanged()), addTable, SLOT(exit()));
 }
 
 void RichTextEdit::insertTableRow()

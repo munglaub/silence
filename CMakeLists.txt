@@ -17,7 +17,6 @@ set ( silence_HDRS
 	src/data/label.h
 	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
-	src/gui/dialog/newtabledialog.h
 	src/gui/view/contentview.h
 	src/gui/widget/syntaxbox.h
 	src/commandline/cmdmain.h
@@ -52,6 +51,7 @@ set ( silence_HDRS
 	src/gui/widget/labelwidget.h
 	src/gui/widget/inputwidget.h
 	src/gui/widget/addimage.h
+	src/gui/widget/addtable.h
 	src/gui/widget/searchnodeoptions.h
 	src/gui/widget/labellist.h
 	)
@@ -79,7 +79,6 @@ set ( silence_SRCS
 	src/gui/menu/viewmenu.cpp
 	src/gui/dialog/newnodedialog.cpp
 	src/gui/dialog/newlinkdialog.cpp
-	src/gui/dialog/newtabledialog.cpp
 	src/gui/dialog/labelmanagementdialog.cpp
 	src/gui/sidebar/treeview.cpp
 	src/gui/sidebar/infosidebar.cpp
@@ -95,6 +94,7 @@ set ( silence_SRCS
 	src/gui/widget/syntaxbox.cpp
 	src/gui/widget/inputwidget.cpp
 	src/gui/widget/addimage.cpp
+	src/gui/widget/addtable.cpp
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
 	src/commandline/cmdmain.cpp

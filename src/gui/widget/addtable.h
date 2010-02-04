@@ -18,36 +18,40 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NEWTABLEDIALOG_H
-#define NEWTABLEDIALOG_H
+#ifndef ADDTABLE_H
+#define ADDTABLE_H
 
-#include <QDialog>
+#include <knuminput.h>
 #include <QGridLayout>
 #include <QLabel>
-#include <knuminput.h>
 #include <QPushButton>
 
 
-class NewTableDialog : public QDialog
+class AddTable : public QGridLayout
 {
-	public:
-		NewTableDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
-		~NewTableDialog();
+	Q_OBJECT
 
-		int getRowCount();
-		int getColumnCount();
+	public:
+		AddTable(QWidget *parent);
+		~AddTable();
+
+	public slots:
+		void exit();
+
+	signals:
+		void addedTable(const QString &html);
+
+	private slots:
+		void addTable();
 
 	private:
-		QGridLayout *layout;
-		QLabel	*lblRows,
-				*lblColumns;
-		KIntSpinBox	*ledRows,
-					*ledColumns;
-		QPushButton *btnCancel,
-					*btnOk;
+		KIntSpinBox *sbColumns,
+					*sbRows;
+		QLabel	*lblColumns,
+				*lblRows;
+		QPushButton *btnOk,
+					*btnCancel;
 };
 
-#endif // NEWTABLEDIALOG_H
-
-
+#endif // ADDTABLE_H
 
