@@ -67,7 +67,7 @@ void AddTable::exit()
 
 void AddTable::addTable()
 {
-	QString html = "<table border=\"1\" >";
+	QString html = "<table border=\"0.5\" cellspacing=\"0\" cellpadding=\"2\">";
 	for (int rows = 0; rows < sbRows->value(); ++rows)
 	{
 		html += "<tr>";
