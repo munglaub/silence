@@ -18,89 +18,36 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/commandline/cmdmain.h"
-#include "src/controller.h"
-#include "src/commandline/nodefilter.h"
 #include <iostream>
-#include <stdio.h>
+#include "src/commandline/cmdmain.h"
+#include "src/commandline/nodefilter.h"
+#include "src/controller.h"
 
 using namespace std;
 
-CmdMain::CmdMain()
+CmdMain::CmdMain(KCmdLineArgs *args)
 {
-//	cout << "CmdMain()\n";
+	this->args = args;
 }
 
 CmdMain::~CmdMain()
 {
-//	cout << "~CmdMain()\n";
+	args->clear();
 }
 
-void CmdMain::exec(int argc, char *argv[])
+int CmdMain::exec()
 {
-	int i = 1;
-	while (i < argc)
+	if (args->isSet("s"))
 	{
-		if (argv[i][0] == '-')
-		{
-			switch (argv[i][1])
-			{
-				case 'h':
-					printHelp();
-					return;
-				case 'i':
-					++i;
-					printNode(atoi(argv[i]));
-					break;
-				case 's':
-					filterNodes(argc, argv, i);
-					return;
-					break;
-//				case '-':
-//					cout << "long parameter" << endl;
-//					break;
-				default:
-					cout << "Unknown parameter" << endl;
-					printHelp();
-			}
-		}
-		++i;
+		filterNodes();
+		return 1;
 	}
-	
-}
-
-void CmdMain::printHelp()
-{
-	cout << "Some information about the silence command line options.." << endl;
-
-	cout << "silence [-h | -i <id> | -s" << endl;
-	cout << "\t( --text <text>" << endl;
-	cout << "\t| --fulltext" << endl;
-	cout << "\t| --created <from> <to>" << endl;
-	cout << "\t| --modified <from> <to>" << endl;
-	cout << "\t| --label <lbl1,lbl1,...>" << endl;
-	cout << "\t| --nolabel <lbl1,lbl2,...>" << endl;
-	cout << "\t| --type <type>) ... ]" << endl;
-	cout << endl << endl;
-
-	cout << "  -h\n\t Print this help" << endl;
-	cout << "  -i <id>\n\t Print the node with <id>" << endl;
-	cout << "  -s\n\t Search for nodes." << endl;
-	cout << "\t--text <text>" << endl;
-	cout << "\t\t Restrict the search to nodes which contain <text> in their caption or in their content if --fulltext is set." << endl;
-	cout << "\t--fulltext" << endl;
-	cout << "\t\t Use to search the content for the text provided by the --text option." << endl;
-	cout << "\t--created <from> <to>" << endl;
-	cout << "\t\t Restrict the search to nodes created between <from> and <to>." << endl;
-	cout << "\t--modified <from> <to>" << endl;
-	cout << "\t\t Restrict the search to nodes modified between <from> and <to>" << endl;
-	cout << "\t--label <lbl1,lbl1,...>" << endl;
-	cout << "\t\t Restrict the search to nodes which have all labels given by <lbl1,lbl2,...>" << endl;
-	cout << "\t--nolabel <foo>" << endl;
-	cout << "\t\t Restrict the search to nodes which do not have the labels given by <lbl1,lbl2,..>" << endl;
-	cout << "\t--type <type>) ... ]" << endl;
-	cout << "\t\t Restrict the search to nodes with a specific type. Available types are text/plain and text/richtext." << endl;
-
+	if (args->isSet("i"))
+	{
+		printNode(args->getOption("i").toInt());
+		return 1;
+	}
+	return -1;
 }
 
 void CmdMain::printNode(int id)
@@ -132,80 +79,54 @@ Node* CmdMain::findNodeById(int id, Node* root)
 	return result;
 }
 
-void CmdMain::filterNodes(int argc, char *argv[], int pos)
+void CmdMain::filterNodes()
 {
-
 	NodeFilter *filter = new NodeFilter(Controller::create()->getDataStore()->getRootNode());
-	for (int i = pos; i < argc; ++i)
+
+	if (args->isSet("text"))
+		filter->setFilterString(args->getOption("text"));
+	if (args->isSet("fulltext"))
+		filter->enableFulltext(true);
+	if (args->isSet("created"))
 	{
-		if (QString(argv[i]) == "--text")
+		QDate from = strToDate(args->getOption("created").split(":").value(0));
+		QDate to = strToDate(args->getOption("created").split(":").value(1));
+		if (!from.isValid() || !to.isValid())
 		{
-			++i;
-			filter->setFilterString(QString(argv[i]));
-			continue;
+			//TODO: think about that again..
+			cerr << "Error: Invalide Dates" << endl;
+			return;
 		}
-		if (QString(argv[i]) == "--fulltext")
-			filter->enableFulltext(true);
-		if (QString(argv[i]) == "--created")
-		{
-			++i;
-			QDate from = strToDate(argv[i]);
-			++i;
-			QDate to = strToDate(argv[i]);
-			if (!from.isValid() || !to.isValid())
-			{
-				//TODO: think about that again..
-				cerr << "Error: Invalide Dates" << endl;
-				return;
-			}
-
-			filter->setCreationDateFilter(from, to);
-			continue;
-		}
-		if (QString(argv[i]) == "--modified")
-		{
-			++i;
-			QDate from = strToDate(argv[i]);
-			++i;
-			QDate to = strToDate(argv[i]);
-			if (!from.isValid() || !to.isValid())
-			{
-				//TODO: think about that again..
-				cerr << "Error: Invalide Dates" << endl;
-				return;
-			}
-
-			filter->setModificationDateFilter(from, to);
-			continue;
-		}
-		if (QString(argv[i]) == "--label")
-		{
-			++i;
-			filter->setLabelFilter(QString(argv[i]).split(","));
-			continue;
-		}
-		if (QString(argv[i]) == "--nolabel")
-		{
-			++i;
-			filter->setNoLabelFilter(QString(argv[i]).split(","));
-			continue;
-		}
-		if (QString(argv[i]) == "--type")
-		{
-			++i;
-			filter->setMimeTypFilter(QString(argv[i]));
-			continue;
-		}
-
+		filter->setCreationDateFilter(from, to);
 	}
+	if (args->isSet("modified"))
+	{
+		QDate from = strToDate(args->getOption("modified").split(":").value(0));
+		QDate to = strToDate(args->getOption("modified").split(":").value(1));
+		if (!from.isValid() || !to.isValid())
+		{
+			//TODO: think about that again..
+			cerr << "Error: Invalide Dates" << endl;
+			return;
+		}
+		filter->setModificationDateFilter(from, to);
+	}
+	if (args->isSet("label"))
+		filter->setLabelFilter(args->getOption("label").split(","));
+	if (args->isSet("banlabel"))
+		filter->setNoLabelFilter(args->getOption("banlabel").split(","));
+	if (args->isSet("type"))
+		filter->setMimeTypFilter(args->getOption("type"));
 	filter->printNodes();
 	delete filter;
 }
 
-QDate CmdMain::strToDate(char *str)
+QDate CmdMain::strToDate(QString str)
 {
-	int y, m, d;
-	sscanf(str, "%d-%d-%d", &y, &m, &d);
+	QStringList strlist = str.split("-");
+	int y = strlist.value(0).toInt();
+	int m = strlist.value(1).toInt();
+	int d = strlist.value(2).toInt();
 	return QDate(y, m, d);
 }
 

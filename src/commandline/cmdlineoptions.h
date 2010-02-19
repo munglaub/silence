@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2010 Manuel Unglaub
  *
  * This file is part of Silence.
  *
@@ -18,29 +18,17 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CMDMAIN_H
-#define CMDMAIN_H
+#ifndef CMDLINEOPTIONS_H
+#define CMDLINEOPTIONS_H
 
 #include <kcmdlineargs.h>
-#include "src/data/node/node.h"
 
 
-class CmdMain
+class CmdLineOptions : public KCmdLineOptions
 {
 	public:
-		CmdMain(KCmdLineArgs *args);
-		~CmdMain();
-
-		int exec();
-
-	private:
-		KCmdLineArgs *args;
-
-		void printNode(int id);
-		Node* findNodeById(int id, Node* root);
-		void filterNodes();
-		QDate strToDate(QString str);
+		CmdLineOptions();
 };
 
-#endif // CMDMAIN_H
+#endif // CMDLINEOPTIONS_H
 

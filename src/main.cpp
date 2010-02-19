@@ -18,21 +18,29 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/commandline/cmdmain.h"
-#include "src/gui/mainwindow.h"
-#include <QTranslator>
+#include <iostream>
+#include <kaboutdata.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
-#include <kaboutdata.h>
-//#include <iostream>
+#include <QTranslator>
+#include "src/commandline/cmdlineoptions.h"
+#include "src/commandline/cmdmain.h"
 #include "src/data/aboutdata.h"
+#include "src/gui/mainwindow.h"
 
 
 int main(int argc, char *argv[])
 {
 	AboutData aboutData;
 	KCmdLineArgs::init(argc, argv, &aboutData);
+	KCmdLineArgs::addCmdLineOptions(CmdLineOptions());
+
 	KApplication silence;
+
+	CmdMain *cmd = new CmdMain(KCmdLineArgs::parsedArgs());
+	if (cmd->exec() >= 0)
+		exit(0);
+	delete cmd;
 
 	QTranslator silenceTranslator;
 	silenceTranslator.load("silence_" + QLocale::system().name());
@@ -40,17 +48,8 @@ int main(int argc, char *argv[])
 	silence.installTranslator(&silenceTranslator);
 //	std::cout << QLocale::system().name().toStdString() << std::endl;
 
-	MainWindow *w;
-	CmdMain *cmd;
-	if (argc <= 1){
-		w = new MainWindow();
-		w->show();
-	} else {
-		cmd = new CmdMain();
-		cmd->exec(argc, argv);
-		delete cmd;
-		return 0; // TODO: do it the right way
-	}
+	MainWindow *w = new MainWindow();
+	w->show();
 
 	return silence.exec();
 }

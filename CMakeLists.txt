@@ -20,6 +20,7 @@ set ( silence_HDRS
 	src/gui/view/contentview.h
 	src/gui/widget/syntaxbox.h
 	src/commandline/cmdmain.h
+	src/commandline/cmdlineoptions.h
 	src/commandline/nodefilter.h
 	src/utils/listutils.h
 	src/persistence/xmldatastore.h
@@ -98,6 +99,7 @@ set ( silence_SRCS
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
 	src/commandline/cmdmain.cpp
+	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp
 	src/utils/listutils.cpp
 	)
