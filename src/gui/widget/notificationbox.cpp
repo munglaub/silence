@@ -27,7 +27,7 @@ NotificationBox::NotificationBox(Node *node, AbstractContentChange *change)
 	this->node = node;
 	this->change = change;
 	setAlignment(Qt::AlignLeft);
-	info = new QLabel(tr("You didn't save: ") + node->getCaption());
+	info = new QLabel(tr("You didn't save: ") + "<a href=\"silence://0.0.0.0/" + node->getId().getId() + "\">" + node->getCaption() + "</a>");
 	addWidget(info);
 	btnSave = new QPushButton(tr("Save"));
 	connect(btnSave, SIGNAL(clicked()), this, SLOT(save()));
@@ -36,6 +36,7 @@ NotificationBox::NotificationBox(Node *node, AbstractContentChange *change)
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(cancel()));
 	addWidget(btnCancel);
 
+	connect(info, SIGNAL(linkActivated(const QString&)), this, SLOT(selectNode()));
 	connect(Controller::create()->getTreeView(), SIGNAL(nodeSelected(Node*)), this, SLOT(checkSelection(Node*)));
 }
 
@@ -55,6 +56,11 @@ void NotificationBox::save()
 void NotificationBox::cancel()
 {
 	exit();
+}
+
+void NotificationBox::selectNode()
+{
+	Controller::create()->getTreeView()->selectItem(node->getId());
 }
 
 void NotificationBox::checkSelection(Node *node)

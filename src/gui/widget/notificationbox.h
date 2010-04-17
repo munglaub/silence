@@ -57,6 +57,7 @@ class NotificationBox : public QHBoxLayout
 	private slots:
 		void save();
 		void cancel();
+		void selectNode();
 		void checkSelection(Node *node);
 
 	private:
