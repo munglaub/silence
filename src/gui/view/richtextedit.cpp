@@ -29,15 +29,16 @@
 #include <QTextList>
 #include <QTextTable>
 #include "src/controller.h"
+#include "src/data/node/rtfcontentchange.h"
 #include "src/gui/dialog/newlinkdialog.h"
 #include "src/gui/view/richtextedit.h"
 #include "src/gui/widget/addimage.h"
 #include "src/gui/widget/addtable.h"
 
 
-RichTextEdit::RichTextEdit(QWidget *parent)
-	: QWidget(parent)
+RichTextEdit::RichTextEdit()
 {
+	isChanged = false;
 	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	
@@ -439,12 +440,29 @@ void RichTextEdit::setContent(RichTextNodeContent *content)
 	this->content = content;
 	textedit->setHtml(content->getText());
 	Controller::create()->getStatusBar()->setSaveStatus(true);
+	isChanged = false;
+}
+
+void RichTextEdit::setHtml(QString text)
+{
+	textedit->setHtml(text);
+}
+
+bool RichTextEdit::hasChanged()
+{
+	return isChanged;
+}
+
+AbstractContentChange* RichTextEdit::getChange()
+{
+	return new RtfContentChange(textedit->toHtml(), content, this);
 }
 
 void RichTextEdit::saveContent()
 {
 	content->setText(textedit->toHtml());
 	Controller::create()->getStatusBar()->setSaveStatus(true);
+	isChanged = false;
 }
 
 void RichTextEdit::clipboardDataChanged()
@@ -620,6 +638,7 @@ void RichTextEdit::createList(QTextListFormat::Style style)
 void RichTextEdit::contentChanged()
 {
 	Controller::create()->getStatusBar()->setSaveStatus(false);
+	isChanged = true;
 }
 
 void RichTextEdit::addPicture()

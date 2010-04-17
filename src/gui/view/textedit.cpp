@@ -33,14 +33,15 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include "src/controller.h"
+#include "src/data/node/textcontentchange.h"
 #include "src/gui/view/textedit.h"
 
 
-TextEdit::TextEdit(QWidget *parent)
-	: QWidget(parent)
+TextEdit::TextEdit()
 {
 	setupEditor();
 	setupActions();
+	isChanged = false;
 
 	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
@@ -144,17 +145,36 @@ void TextEdit::setContent(TextNodeContent *content)
 	document->setText(content->getText());
 	view->setCursorPosition(KTextEditor::Cursor(0, 0));
 	Controller::create()->getStatusBar()->setSaveStatus(true);
+	isChanged = false;
+}
+
+void TextEdit::setText(QString text)
+{
+	document->clear();
+	document->setText(text);
+	view->setCursorPosition(KTextEditor::Cursor(0, 0));
 }
 
 void TextEdit::saveContent()
 {
 	content->setText(document->text());
 	Controller::create()->getStatusBar()->setSaveStatus(true);
+	isChanged = false;
 }
 
 void TextEdit::setSyntax(QString syntax)
 {
 	document->setHighlightingMode(syntax);
+}
+
+bool TextEdit::hasChanged()
+{
+	return isChanged;
+}
+
+AbstractContentChange* TextEdit::getChange()
+{
+	return new TextContentChange(document->text(), content, this);
 }
 
 void TextEdit::setVisible(bool visible)
@@ -167,6 +187,7 @@ void TextEdit::setVisible(bool visible)
 void TextEdit::contentChanged()
 {
 	Controller::create()->getStatusBar()->setSaveStatus(false);
+	isChanged = true;
 }
 
 void TextEdit::cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor &newPosition)

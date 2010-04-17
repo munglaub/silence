@@ -23,7 +23,7 @@
 
 #include <QGridLayout>
 #include <QLabel>
-#include <QWidget>
+#include "src/gui/view/abstractcontentview.h"
 
 
 /*!\class WelcomeView
@@ -33,23 +33,25 @@
  *
  * \author Manuel Unglaub
  */
-class WelcomeView : public QWidget
+class WelcomeView : public AbstractContentView
 {
 	Q_OBJECT
 
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the WelcomeView which is a child of parent.
-		 * \param parent The parent of this WelcomeView.
+		 * Constructs the WelcomeView.
 		 */
-		WelcomeView(QWidget *parent = 0);
+		WelcomeView();
 
 		/*! The destructor.
 		 *
 		 * Destructs the object.
 		 */
 		~WelcomeView();
+
+		bool hasChanged();
+		AbstractContentChange* getChange();
 
 	private:
 		QGridLayout *layout;

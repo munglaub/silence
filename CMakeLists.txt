@@ -14,6 +14,9 @@ set ( silence_HDRS
 	src/constants.h
 	src/data/node/nodeid.h
 	src/data/node/abstractnodecontent.h
+	src/data/node/abstractcontentchange.h
+	src/data/node/textcontentchange.h
+	src/data/node/rtfcontentchange.h
 	src/data/label.h
 	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
@@ -44,6 +47,7 @@ set ( silence_HDRS
 	src/gui/sidebar/infosidebar.h
 	src/gui/sidebar/searchnodesidebar.h
 	src/gui/sidebar/nodepropertywidget.h
+	src/gui/view/abstractcontentview.h
 	src/gui/view/textedit.h
 	src/gui/view/welcomeview.h
 	src/gui/view/richtextedit.h
@@ -55,6 +59,7 @@ set ( silence_HDRS
 	src/gui/widget/addtable.h
 	src/gui/widget/searchnodeoptions.h
 	src/gui/widget/labellist.h
+	src/gui/widget/notificationbox.h
 	)
 
 set ( silence_SRCS
@@ -65,6 +70,8 @@ set ( silence_SRCS
 	src/data/node/nodeid.cpp
 	src/data/node/textnodecontent.cpp
 	src/data/node/richtextnodecontent.cpp
+	src/data/node/textcontentchange.cpp
+	src/data/node/rtfcontentchange.cpp
 	src/data/label.cpp
 	src/data/aboutdata.cpp
 	src/data/model/labelmodel.cpp
@@ -98,6 +105,7 @@ set ( silence_SRCS
 	src/gui/widget/addtable.cpp
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
+	src/gui/widget/notificationbox.cpp
 	src/commandline/cmdmain.cpp
 	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp

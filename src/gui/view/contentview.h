@@ -21,10 +21,11 @@
 #ifndef CONTENTVIEW_H
 #define CONTENTVIEW_H
 
-#include "src/data/node/abstractnodecontent.h"
 #include <QVBoxLayout>
 #include <QWidget>
-
+#include "src/data/node/abstractnodecontent.h"
+#include "src/data/node/node.h"
+#include "src/gui/view/abstractcontentview.h"
 
 /*!\class ContentView
  * \brief The central widget of the MainWindow.
@@ -50,14 +51,15 @@ class ContentView : public QWidget
 		~ContentView();
 
 		/*!
-		 * Provide this ContentView with a content to display. The ContentView will show the widget from the AbstractNodeContent.
-		 * \param content The content which will displayed. If it is 0 the WelcomeView will be shown.
+		 * Provide this ContentView with a content to display. The ContentView will show the widget provided by the content of the Node.
+		 * \param node The content of this node will be displayed. If it is 0 the WelcomeView will be shown.
 		 */
-		void setContent(AbstractNodeContent *content);
+		void setNode(Node *node);
 
 	private:
 		QVBoxLayout *layout;
-		QWidget *widget;
+		AbstractContentView *widget;
+		Node *node;
 };
 
 #endif // CONTENTVIEW_H

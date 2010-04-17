@@ -22,8 +22,7 @@
 #include "src/constants.h"
 
 
-WelcomeView::WelcomeView(QWidget *parent)
-	: QWidget(parent)
+WelcomeView::WelcomeView()
 {
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);
@@ -77,4 +76,13 @@ WelcomeView::~WelcomeView()
 	delete layout;
 }
 
+bool WelcomeView::hasChanged()
+{
+	return false;
+}
+
+AbstractContentChange* WelcomeView::getChange()
+{
+	return 0;
+}
 

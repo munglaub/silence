@@ -21,15 +21,15 @@
 #ifndef RICHTEXTEDIT_H
 #define RICHTEXTEDIT_H
 
-#include "src/data/node/richtextnodecontent.h"
-#include "src/gui/widget/rtfedit.h"
-#include "src/gui/widget/textfind.h"
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QToolBar>
 #include <QVBoxLayout>
-#include <QWidget>
+#include "src/data/node/richtextnodecontent.h"
+#include "src/gui/view/abstractcontentview.h"
+#include "src/gui/widget/rtfedit.h"
+#include "src/gui/widget/textfind.h"
 
 
 /*!\class RichTextEdit
@@ -39,17 +39,16 @@
  *
  * \author Manuel Unglaub
  */
-class RichTextEdit : public QWidget
+class RichTextEdit : public AbstractContentView
 {
 	Q_OBJECT
 
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the RichTextEdit which is a child of parent.
-		 * \param parent The parent of this RichTextEdit.
+		 * Constructs the RichTextEdit.
 		 */
-		RichTextEdit(QWidget *parent = 0);
+		RichTextEdit();
 
 		/*! The destructor.
 		 *
@@ -62,6 +61,15 @@ class RichTextEdit : public QWidget
 		 * \param content The content which will be shown by this RichTextEdit.
 		 */
 		void setContent(RichTextNodeContent *content);
+
+		/*!
+		 * Changes the text of the RichTextEdit.
+		 * \param text The new text of the RichTextEdit. It is interpreted as rich text in html format.
+		 */
+		void setHtml(QString text);
+
+		bool hasChanged();
+		AbstractContentChange* getChange();
 
 	public slots:
 		/*!
@@ -110,6 +118,7 @@ class RichTextEdit : public QWidget
 
 	private:
 		RichTextNodeContent *content;
+		bool isChanged;
 		TextFind *findWidget;
 
 		QVBoxLayout *layout;

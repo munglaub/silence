@@ -220,11 +220,12 @@ void TreeView::selectItem()
 	QModelIndex index = tree->selectionModel()->currentIndex();
 	Node *selectedNode = model->getItem(index);
 	Controller *controller = Controller::create();
-	controller->getContentView()->setContent(selectedNode->getContent());
+	controller->getContentView()->setNode(selectedNode);
 	controller->getInfoSidebar()->setData(selectedNode);
 	controller->getStatusBar()->setNodeName(selectedNode->getCaption());
 	controller->getNodePropertyWidget()->setNode(selectedNode);
 	questionFrame->hide();
+	emit nodeSelected(selectedNode);
 }
 
 void TreeView::updateActions()

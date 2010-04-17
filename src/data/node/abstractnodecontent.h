@@ -25,6 +25,7 @@
 #include <QHash>
 #include <QIcon>
 #include <QWidget>
+#include "src/gui/view/abstractcontentview.h"
 
 
 /*!\class AbstractNodeContent
@@ -41,7 +42,7 @@ class AbstractNodeContent : public QObject
 		 * Get a widget to view and modify this content. The content will configure the widget properly for its needs and fill it with the necessary data.
 		 * \return A widget to view and modify this content.
 		 */
-		virtual QWidget* getWidget() = 0;
+		virtual AbstractContentView* getWidget() = 0;
 
 		/*!
 		 * Get the meta infos of this content. The meta infos are key value pairs.

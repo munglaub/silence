@@ -37,7 +37,7 @@ RichTextNodeContent::~RichTextNodeContent()
 	delete metaInfos;
 }
 
-QWidget* RichTextNodeContent::getWidget()
+AbstractContentView* RichTextNodeContent::getWidget()
 {
 	RichTextEdit *widget = Controller::create()->getRichTextEdit();
 	widget->setContent(this);

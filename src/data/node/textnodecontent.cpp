@@ -47,7 +47,7 @@ QString TextNodeContent::getText() const
 	return text;
 }
 
-QWidget* TextNodeContent::getWidget()
+AbstractContentView* TextNodeContent::getWidget()
 {
 	TextEdit *widget = Controller::create()->getTextEdit();
 	widget->setContent(this);

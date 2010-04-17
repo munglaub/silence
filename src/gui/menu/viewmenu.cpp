@@ -79,7 +79,7 @@ void ViewMenu::showWelcomeView()
 {
 	// setting contentview to NULL will display welcomeview
 	// TODO: find a more elegant solution
-	Controller::create()->getContentView()->setContent(0);
+	Controller::create()->getContentView()->setNode(0);
 }
 
 void ViewMenu::showLabelManagementDialog()

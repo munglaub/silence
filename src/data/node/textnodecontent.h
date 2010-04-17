@@ -65,7 +65,7 @@ class TextNodeContent : public AbstractNodeContent
 		QDomElement getXmlData(QDomDocument &doc);
 		void setXmlData(QDomElement &xmlNode);
 		
-		QWidget* getWidget();
+		AbstractContentView* getWidget();
 		QHash<QString, QString>* getMetaInfos();
 		void addMetaInfo(QString key, QString value);
 		QString getMimeType();

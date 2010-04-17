@@ -22,6 +22,7 @@
 #define TEXTEDIT_H
 
 #include "src/data/node/textnodecontent.h"
+#include "src/gui/view/abstractcontentview.h"
 
 namespace KTextEditor
 {
@@ -35,7 +36,6 @@ class QAction;
 class QActionGroup;
 class QToolBar;
 class QVBoxLayout;
-class QWidget;
 
 
 /*!\class TextEdit
@@ -45,17 +45,16 @@ class QWidget;
  *
  * \author Manuel Unglaub
  */
-class TextEdit : public QWidget
+class TextEdit : public AbstractContentView
 {
 	Q_OBJECT
 
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the TextEdit which is a child of parent.
-		 * \param parent The parent of this TextEdit.
+		 * Constructs the TextEdit.
 		 */
-		TextEdit(QWidget *parent = 0);
+		TextEdit();
 
 		/*! The destructor.
 		 *
@@ -70,10 +69,19 @@ class TextEdit : public QWidget
 		void setContent(TextNodeContent *content);
 
 		/*!
+		 * Changes the text of the TextEdit.
+		 * \param text The new text of the TextEdit.
+		 */
+		void setText(QString text);
+
+		/*!
 		 * Indicate the syntax highlighting that should be used.
 		 * \param syntax The syntax highlighting that will be used. If syntax does not match an existing syntax no syntax highlighting will be used. If you do not want to use any syntax highlighting you should assign "None".
 		 */
 		void setSyntax(QString syntax);
+
+		bool hasChanged();
+		AbstractContentChange* getChange();
 
 	public slots:
 		/*!
@@ -89,6 +97,7 @@ class TextEdit : public QWidget
 	
 	private:
 		TextNodeContent *content;
+		bool isChanged;
 		QVBoxLayout *layout;
 
 		QActionGroup *actionGroup;

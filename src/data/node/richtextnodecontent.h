@@ -48,7 +48,7 @@ class RichTextNodeContent : public AbstractNodeContent
 		 */
 		~RichTextNodeContent();
 		
-		QWidget* getWidget();
+		AbstractContentView* getWidget();
 		QHash<QString, QString>* getMetaInfos();
 		void addMetaInfo(QString key, QString value);
 		QString getMimeType();

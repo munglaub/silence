@@ -103,6 +103,13 @@ class TreeView : public QDockWidget
 		 */
 		void selectItem();
 
+	signals:
+		/*!
+		 * This signal is emited in case a node is selected.
+		 * \param node The node wich is selected.
+		 */
+		void nodeSelected(Node* node);
+
 	private slots:
 		void addRow();
 		void addChild();

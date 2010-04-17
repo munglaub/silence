@@ -19,18 +19,21 @@
  */
 
 #include "src/controller.h"
+#include "src/data/node/abstractcontentchange.h"
 #include "src/gui/view/contentview.h"
 #include "src/gui/view/welcomeview.h"
+#include "src/gui/widget/notificationbox.h"
 
 
 ContentView::ContentView(QWidget *parent)
 	: QWidget(parent)
 {
+	node = 0;
 	layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	widget = Controller::create()->getWelcomeView();
 	layout->addWidget(widget);
-	setContent(NULL);
+	setNode(0);
 	setLayout(layout);
 }
 
@@ -41,12 +44,22 @@ ContentView::~ContentView()
 	delete layout;
 }
 
-void ContentView::setContent(AbstractNodeContent *content)
+void ContentView::setNode(Node *node)
 {
+	if (widget->hasChanged())
+	{
+		AbstractContentChange *change = widget->getChange();
+		if (change)
+		{
+			QLayout *notification = new NotificationBox(this->node, change);
+			layout->insertLayout(0, notification);
+		}
+	}
 	layout->removeWidget(widget);
 	widget->setParent(0);
 	widget->setVisible(false);
-	if (!content){
+	this->node = node;
+	if (!node || !node->getContent()){
 		Controller *controller = Controller::create();
 		widget = controller->getWelcomeView();
 		if (controller->getInfoSidebar())
@@ -54,7 +67,7 @@ void ContentView::setContent(AbstractNodeContent *content)
 		if (controller->getEditMenu())
 			controller->getEditMenu()->setEnabled(false);
 	} else {
-		widget = content->getWidget();
+		widget = node->getContent()->getWidget();
 	}
 	layout->addWidget(widget);
 	widget->setVisible(true);
