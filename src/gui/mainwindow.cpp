@@ -51,7 +51,12 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	searchnodesidebar = new SearchNodeSidebar(tr("Search Nodes"), this);
 	controller->setSearchNodeSidebar(searchnodesidebar);
 
+	// navigation sidebar
+	navigationsidebar = new NavigationSidebar(tr("Navigation"), this);
+	controller->setNavigationSidebar(navigationsidebar);
+
 	// docking the widgets
+	addDockWidget(Qt::RightDockWidgetArea, navigationsidebar);
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
 	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);

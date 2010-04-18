@@ -47,6 +47,7 @@ set ( silence_HDRS
 	src/gui/sidebar/infosidebar.h
 	src/gui/sidebar/searchnodesidebar.h
 	src/gui/sidebar/nodepropertywidget.h
+	src/gui/sidebar/navigationsidebar.h
 	src/gui/view/abstractcontentview.h
 	src/gui/view/textedit.h
 	src/gui/view/welcomeview.h
@@ -92,6 +93,7 @@ set ( silence_SRCS
 	src/gui/sidebar/infosidebar.cpp
 	src/gui/sidebar/searchnodesidebar.cpp
 	src/gui/sidebar/nodepropertywidget.cpp
+	src/gui/sidebar/navigationsidebar.cpp
 	src/gui/view/textedit.cpp
 	src/gui/view/contentview.cpp
 	src/gui/view/welcomeview.cpp

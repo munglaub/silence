@@ -33,6 +33,7 @@ Controller::Controller()
 	datastore = 0;
 	statusbar = 0;
 	nodepropertywidget = 0;
+	navigationsidebar = 0;
 	editmenu = 0;
 }
 
@@ -141,6 +142,16 @@ void Controller::setNodePropertyWidget(NodePropertyWidget *nodepropertywidget)
 NodePropertyWidget* Controller::getNodePropertyWidget() const
 {
 	return nodepropertywidget;
+}
+
+void Controller::setNavigationSidebar(NavigationSidebar *navigationsidebar)
+{
+	this->navigationsidebar = navigationsidebar;
+}
+
+NavigationSidebar* Controller::getNavigationSidebar() const
+{
+	return navigationsidebar;
 }
 
 void Controller::setStatusBar(StatusBar *statusbar)

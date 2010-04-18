@@ -21,18 +21,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <KMainWindow>
 #include "src/controller.h"
 #include "src/gui/menu/editmenu.h"
 #include "src/gui/menu/nodemenu.h"
 #include "src/gui/menu/silencemenu.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
+#include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 #include "src/gui/sidebar/searchnodesidebar.h"
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/statusbar.h"
 #include "src/gui/view/contentview.h"
-#include <KMainWindow>
 
 
 /*!\class MainWindow
@@ -67,6 +68,7 @@ class MainWindow : public KMainWindow
 		SearchNodeSidebar *searchnodesidebar;
 		StatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
+		NavigationSidebar *navigationsidebar;
 
 		// Menus
 		SilenceMenu *silencemenu;

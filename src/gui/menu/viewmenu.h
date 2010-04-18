@@ -54,12 +54,14 @@ class ViewMenu : public QMenu
 		void showLabelManagementDialog();
 		void showNodeTree(bool visible);
 		void showInfo(bool visible);
+		void showNavigation(bool visible);
 		void showProperties(bool visible);
 		void showNodeSearch(bool visible);
 
 	private:
 		QAction	*welcomeViewAction,
 				*showNodeTreeAction,
+				*showNavigationAction,
 				*showInfoAction,
 				*showPropertiesAction,
 				*showNodeSearchAction,

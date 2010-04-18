@@ -23,6 +23,7 @@
 
 #include "src/gui/menu/editmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
+#include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 #include "src/gui/sidebar/searchnodesidebar.h"
 #include "src/gui/sidebar/treeview.h"
@@ -163,6 +164,18 @@ class Controller
 		NodePropertyWidget* getNodePropertyWidget() const;
 
 		/*!
+		 * This function provides the Controller with a pointer to the NavigationSidebar.
+		 * \param navigationsidebar A pointer to the NavigationSidebar.
+		 */
+		void setNavigationSidebar(NavigationSidebar *navigationsidebar);
+
+		/*!
+		 * Get a pointer to the NavigationSidebar.
+		 * \return A pointer to the NavigationSidebar or 0 if it was not set.
+		 */
+		NavigationSidebar* getNavigationSidebar() const;
+
+		/*!
 		 * This function provides the Controller with a pointer to the EditMenu.
 		 * \param editmenu A pointer to the EditMenu.
 		 */
@@ -190,6 +203,7 @@ class Controller
 		TreeView *treeview;
 		StatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
+		NavigationSidebar *navigationsidebar;
 		EditMenu *editmenu;
 
 		AbstractDataStore *datastore;

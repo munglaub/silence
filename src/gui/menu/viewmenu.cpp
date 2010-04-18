@@ -18,11 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/controller.h"
-#include "src/gui/menu/viewmenu.h"
-#include "src/gui/dialog/labelmanagementdialog.h"
-#include <QMenu>
 #include <QAction>
+#include <QMenu>
+#include "src/controller.h"
+#include "src/gui/dialog/labelmanagementdialog.h"
+#include "src/gui/menu/viewmenu.h"
 
 
 ViewMenu::ViewMenu(QWidget *parent)
@@ -51,6 +51,12 @@ ViewMenu::ViewMenu(QWidget *parent)
 	showInfoAction->setChecked(true);
 	connect(showInfoAction, SIGNAL(triggered(bool)), this, SLOT(showInfo(bool)));
 	connect(Controller::create()->getInfoSidebar(), SIGNAL(visibilityChanged(bool)), showInfoAction, SLOT(setChecked(bool)));
+
+	showNavigationAction = addAction(tr("Navigation Sidebar"));
+	showNavigationAction->setCheckable(true);
+	showNavigationAction->setChecked(true);
+	connect(showNavigationAction, SIGNAL(triggered(bool)), this, SLOT(showNavigation(bool)));
+	connect(Controller::create()->getNavigationSidebar(), SIGNAL(visibilityChanged(bool)), showNavigationAction, SLOT(setChecked(bool)));
 
 	showPropertiesAction = addAction(tr("Node Properties Sidebar"));
 	showPropertiesAction->setCheckable(true);
@@ -99,6 +105,11 @@ void ViewMenu::showNodeTree(bool visible)
 void ViewMenu::showInfo(bool visible)
 {
 	Controller::create()->getInfoSidebar()->setVisible(visible);
+}
+
+void ViewMenu::showNavigation(bool visible)
+{
+	Controller::create()->getNavigationSidebar()->setVisible(visible);
 }
 
 void ViewMenu::showProperties(bool visible)
