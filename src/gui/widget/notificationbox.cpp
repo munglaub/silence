@@ -18,26 +18,36 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QToolTip>
 #include "src/controller.h"
 #include "src/gui/widget/notificationbox.h"
 
-
 NotificationBox::NotificationBox(Node *node, AbstractContentChange *change)
 {
+	boxlayout = new QHBoxLayout;
+
 	this->node = node;
 	this->change = change;
-	setAlignment(Qt::AlignLeft);
-	info = new QLabel(tr("You didn't save: ") + "<a href=\"silence://0.0.0.0/" + node->getId().getId() + "\">" + node->getCaption() + "</a>");
-	addWidget(info);
+	info = new QLabel(tr("You didn't save:") + " <a href=\"silence://0.0.0.0/" + node->getId().getId() + "\">" + node->getCaption() + "</a>");
+	boxlayout->addWidget(info);
+	boxlayout->addStretch();
 	btnSave = new QPushButton(tr("Save"));
 	connect(btnSave, SIGNAL(clicked()), this, SLOT(save()));
-	addWidget(btnSave);
+	boxlayout->addWidget(btnSave);
 	btnCancel = new QPushButton(tr("Cancel"));
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(cancel()));
-	addWidget(btnCancel);
+	boxlayout->addWidget(btnCancel);
 
 	connect(info, SIGNAL(linkActivated(const QString&)), this, SLOT(selectNode()));
 	connect(Controller::create()->getTreeView(), SIGNAL(nodeSelected(Node*)), this, SLOT(checkSelection(Node*)));
+
+	box = new QWidget;
+	QString css = QString("QWidget { background: %1 } QPushButton { background: %2 }")
+					.arg(QToolTip::palette().toolTipBase().color().name())
+					.arg(QToolTip::palette().window().color().name());
+	box->setStyleSheet(css);
+	box->setLayout(boxlayout);
+	addWidget(box);
 }
 
 NotificationBox::~NotificationBox()
@@ -45,6 +55,8 @@ NotificationBox::~NotificationBox()
 	delete info;
 	delete btnSave;
 	delete btnCancel;
+	delete boxlayout;
+	delete box;
 }
 
 void NotificationBox::save()

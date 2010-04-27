@@ -61,6 +61,8 @@ class NotificationBox : public QHBoxLayout
 		void checkSelection(Node *node);
 
 	private:
+		QHBoxLayout *boxlayout;
+		QWidget *box;
 		QLabel *info;
 		QPushButton *btnSave,
 					*btnCancel;
