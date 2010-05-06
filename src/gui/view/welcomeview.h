@@ -30,6 +30,7 @@
  * \brief A widget which contains some informations about Silence.
  *
  * The WelcomeView contains some informations about Silence and should be shown if no node is selected.
+ * It also shows a list of the recently modified nodes.
  *
  * \author Manuel Unglaub
  */
@@ -53,16 +54,24 @@ class WelcomeView : public AbstractContentView
 		bool hasChanged();
 		AbstractContentChange* getChange();
 
+		/*!
+		 * Indicate the visibility of this WelcomeView.
+		 * \param visible If true the WelcomeView will be visible.
+		 */
+		void setVisible(bool visible);
+
+	private slots:
+		void selectNode(const QString &link);
+
 	private:
 		QGridLayout *layout;
 		QLabel	*icon,
 				*welcome,
-				*versionCap,
-				*versionVal,
-				*authorCap,
-				*authorVal,
-				*licenseCap,
-				*licenseVal;
+				*header,
+				*modifiedCap,
+				*modifiedVal;
+
+		void createRecentModifiedList();
 };
 
 #endif // WELCOMEVIEW_H

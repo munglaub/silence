@@ -18,8 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/view/welcomeview.h"
 #include "src/constants.h"
+#include "src/controller.h"
+#include "src/gui/view/welcomeview.h"
 
 
 WelcomeView::WelcomeView()
@@ -32,45 +33,42 @@ WelcomeView::WelcomeView()
 	icon->setPixmap(QPixmap(":/icons/Silence_big.png"));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignLeft);
 
-	welcome = new QLabel(tr("Welcome to Silence, an information management tool."));
-	welcome->setFont(QFont("Times", 12, QFont::Normal));
+	welcome = new QLabel("<font size=\"4\">" + tr("Welcome to Silence, an information management tool.") + "</font>");
 	layout->addWidget(welcome, row, 1, 1, 2, Qt::AlignLeft);
 	++row;
 
-	versionCap = new QLabel(tr("Version"));
-	versionCap->setFont(QFont("Times", 12, QFont::Bold));
-	layout->addWidget(versionCap, row, 0, 1, 1, Qt::AlignLeft);
-	versionVal = new QLabel(VERSION);
-	versionVal->setFont(QFont("Times", 12, QFont::Normal));
-	layout->addWidget(versionVal, row, 1, 1, 1, Qt::AlignLeft);
+	QString html =
+		"<font size=\"4\">"
+		"<p><table width=400>"
+		"<tr><td><b>Version</b></td><td>%1</td></tr>"
+		"<tr><td><b>Authors</b></td><td>%2</td></tr>"
+		"<tr><td><b>License</b></td><td>%3</td></tr>"
+		"</table></p>"
+		"</font>"
+		;
+	html = html
+		.arg(VERSION)
+		.arg("Manuel Unglaub, Yves Adler, Marcel Winkel")
+		.arg("GPLv2");
+	header = new QLabel(html);
+	layout->addWidget(header, row, 0, 1, 2);
 	++row;
 
-	authorCap = new QLabel(tr("Authors"));
-	authorCap->setFont(QFont("Times", 12, QFont::Bold));
-	layout->addWidget(authorCap, row, 0, 1, 1);
-	authorVal = new QLabel(tr("Manuel Unglaub, Yves Adler, Marcel Winkel"));
-	authorVal->setFont(QFont("Times", 12, QFont::Normal));
-	layout->addWidget(authorVal, row, 1, 1, 1);
+	modifiedCap = new QLabel("<br><h3>" + tr("Recently modified Nodes") + "</h3>");
+	layout->addWidget(modifiedCap, row, 0, 1, 2);
 	++row;
-
-	licenseCap = new QLabel(tr("License"));
-	licenseCap->setFont(QFont("Times", 12, QFont::Bold));
-	layout->addWidget(licenseCap, row, 0, 1, 1);
-	licenseVal = new QLabel(tr("GPLv2"));
-	licenseVal->setFont(QFont("Times", 12, QFont::Normal));
-	layout->addWidget(licenseVal, row, 1, 1, 1);
+	modifiedVal = new QLabel();
+	layout->addWidget(modifiedVal, row, 0, 1, 2);
+	connect(modifiedVal, SIGNAL(linkActivated(const QString&)), this, SLOT(selectNode(const QString&)));
 
 	setLayout(layout);
 }
 
 WelcomeView::~WelcomeView()
 {
-	delete licenseVal;
-	delete licenseCap;
-	delete authorVal;
-	delete authorCap;
-	delete versionVal;
-	delete versionCap;
+	delete modifiedVal;
+	delete modifiedCap;
+	delete header;
 	delete welcome;
 	delete icon;
 	delete layout;
@@ -85,4 +83,40 @@ AbstractContentChange* WelcomeView::getChange()
 {
 	return 0;
 }
+
+void WelcomeView::setVisible(bool visible)
+{
+	if (visible)
+		createRecentModifiedList();
+	this->AbstractContentView::setVisible(visible);
+}
+
+void WelcomeView::selectNode(const QString &link)
+{
+	Controller::create()->getTreeView()->selectItem(NodeId(link.toInt()));
+}
+
+void WelcomeView::createRecentModifiedList()
+{
+	QString html = "<font size=\"4\">";
+	QList<Node*> nodes = Controller::create()->getDataStore()->getRootNode()->toNodeList();
+	QList<Node*> recent;
+	for (int i = 1; i < nodes.size(); ++i)
+	{
+		int j=0;
+		while(j<recent.size() && nodes.at(i)->getModificationDate() < recent.at(j)->getModificationDate())
+			++j;
+		recent.insert(j, nodes.at(i));
+	}
+
+	for (int i = 0; i < recent.size() && i < 10; ++i){
+		html += recent.at(i)->getModificationDate().toString(Qt::SystemLocaleShortDate);
+		html += " - <a href=\" ";
+		html += *recent.at(i)->getId().toString() + "\" >";
+		html += recent.at(i)->getCaption() + "</a><br/>";
+	}
+	html += "</font>";
+	modifiedVal->setText(html);
+}
+
 
