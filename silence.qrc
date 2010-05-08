@@ -1,13 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
-		<file>icons/Silence_16px.png</file>
-		<file>icons/Silence_big.png</file>
-
 		<file>icons/actions/insert-table-row.png</file>
 		<file>icons/actions/insert-table-column.png</file>
 		<file>icons/actions/remove-table-row.png</file>
 		<file>icons/actions/remove-table-column.png</file>
-
-		<file>icons/status/dialog-warning.png</file>
 	</qresource>
 </RCC>

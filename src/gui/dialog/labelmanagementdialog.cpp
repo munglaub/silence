@@ -99,7 +99,7 @@ QWidget* LabelManagementDialog::createDeleteFrame()
 	deleteFrame->hide();
 	deleteLayout = new QGridLayout;
 	icon = new QLabel();
-	icon->setPixmap(QPixmap(":/icons/status/dialog-warning.png"));
+	icon->setPixmap(KIcon("dialog-warning").pixmap(64, 64));
 	deleteLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
 	messageLbl = new QLabel(tr("Are you sure?"));
 	deleteLayout->addWidget(messageLbl, 0, 1);

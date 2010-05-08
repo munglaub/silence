@@ -18,15 +18,16 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <ksavefile.h>
+#include <kstandarddirs.h>
+#include <QTextStream>
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/persistence/xmldatastore.h"
-#include <QFile>
-#include <QTextStream>
 
 
 // Constant for Datastore file
-const QString XmlDataStore::DATA_FILE("data.xml");
+const QString XmlDataStore::DATA_FILE("silence/data.xml");
 
 
 XmlDataStore::XmlDataStore()
@@ -36,7 +37,7 @@ XmlDataStore::XmlDataStore()
 	rootLabel = new Label();
 
 	QDomDocument doc;
-	QFile file(DATA_FILE);
+	QFile file(KStandardDirs::locateLocal("data", DATA_FILE));
 	if (!file.open(QIODevice::ReadOnly))
 		return;
 	doc.setContent(&file);
@@ -185,7 +186,7 @@ void XmlDataStore::saveAll()
 	}
 	
 	// write to file
-	QFile file(DATA_FILE);
+	KSaveFile file(KStandardDirs::locateLocal("data", DATA_FILE));
 	if( !file.open(QIODevice::WriteOnly))
 		return;
 	QTextStream ts(&file);

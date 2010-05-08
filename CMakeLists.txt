@@ -114,6 +114,8 @@ set ( silence_SRCS
 	src/utils/listutils.cpp
 	)
 
+add_subdirectory( icons )
+
 set ( silence_RSCS
 	silence.qrc
 	)
@@ -143,5 +145,9 @@ target_link_libraries ( silence
 	${KDE4_KIO_LIBS}
 	${KDE4_KTEXTEDITOR_LIBS}
 )
+
+install(TARGETS silence  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+
+
 
 

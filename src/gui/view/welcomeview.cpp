@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KIcon>
 #include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/view/welcomeview.h"
@@ -30,7 +31,7 @@ WelcomeView::WelcomeView()
 	int row = 0;
 
 	icon = new QLabel;
-	icon->setPixmap(QPixmap(":/icons/Silence_big.png"));
+	icon->setPixmap(KIcon("silence").pixmap(96, 96));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignLeft);
 
 	welcome = new QLabel("<font size=\"4\">" + tr("Welcome to Silence, an information management tool.") + "</font>");

@@ -26,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	: KMainWindow(parent, f)
 {
 	setWindowTitle(tr("Silence"));
-	setWindowIcon(QIcon(":/icons/Silence_16px.png"));
 	controller = Controller::create();
 
 	// ContentView
@@ -68,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	controller->setStatusBar(statusbar);
 
 	// set the initial windowsize
-	resize(950, 500);
+	resize(1100, 600);
 	
 	// add menus
 	silencemenu = new SilenceMenu(this);

@@ -171,7 +171,7 @@ void TreeView::setupQuestionFrame()
 	questionLayout = new QGridLayout;
 
 	icon = new QLabel();
-	icon->setPixmap(QPixmap(":/icons/status/dialog-warning.png"));
+	icon->setPixmap(KIcon("dialog-warning").pixmap(64, 64));
 	questionLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
 
 	question = new QLabel(tr("Are you sure?"));

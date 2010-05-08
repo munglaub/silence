@@ -34,8 +34,6 @@ AboutData::AboutData()
 {
 	addAuthor(ki18n("Manuel Unglaub"), ki18n("Current maintainer"), "m.unglaub@gmail.com");
 	addAuthor(ki18n("Yves Adler"), KLocalizedString(), "yves.adler@googlemail.com");
-
-	setProgramLogo(QImage(":icons/Silence_big.png"));
 }
 
 
