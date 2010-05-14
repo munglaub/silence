@@ -24,9 +24,22 @@
 #include <kaboutdata.h>
 
 
+/*!\class AboutData
+ * \brief AboutData of Silence.
+ *
+ * This AboutData is used to strore information about Silence. It stores information like authors, license and copyright information.
+ * Inherits from KAboutData.
+ *
+ * \author Manuel Unglaub
+ */
 class AboutData : public KAboutData
 {
 	public:
+		/*!
+		 * The constructor.
+		 *
+		 * Constructs the AboutData.
+		 */
 		AboutData();
 
 };

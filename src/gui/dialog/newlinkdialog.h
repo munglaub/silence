@@ -32,17 +32,54 @@
 #include "src/data/model/simpletreemodel.h"
 
 
+/*!\class NewLinkDialog
+ * \brief A dialog to create a link.
+ *
+ * A dialog to create links to other nodes, websites or files.
+ *
+ * \author Manuel Unglaub
+ */
 class NewLinkDialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
+		/*!
+		 * The constructor.
+		 *
+		 * Constructs the NewLinkDialog which is a child of parent and has the provided window flags.
+		 *
+		 * \param parent The parent of this NewLinkDialog.
+		 * \param f The window flags of this NewLinkDialog.
+		 */
 		NewLinkDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*!
+		 * The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NewLinkDialog();
 
+		/*!
+		 * Provide the NewLinkDialog with a link text.
+		 *
+		 * \param text The link text.
+		 */
 		void setLinkText(QString text);
+
+		/*!
+		 * Get the link text form the NewLinkDialog.
+		 *
+		 * \return The link text.
+		 */
 		QString getLinkText();
 
+		/*!
+		 * Get the url of the link.
+		 *
+		 * \return The url of the link.
+		 */
 		QUrl getUrl();
 
 	private slots:

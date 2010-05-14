@@ -32,24 +32,97 @@
 #include <QRadioButton>
 
 
+/*!\class SearchNodeOptions
+ * \brief A widget for the SearchNodeSidebar.
+ *
+ * This widget provides a gui for the SearchNodeSidebar to restrict the search with various options. It consists of a row with a caption and a button to extend it and show its full functionallity.
+ *
+ * \author Manuel Unglaub
+ */
 class SearchNodeOptions : public QFrame
 {
 	Q_OBJECT
 
 	public:
+		/*!
+		 * The constructor.
+		 *
+		 * Constructs a SearchNodeOptions widget which is a child of parent and has the provided window flags.
+		 *
+		 * \param parent The parent of this SearchNodeOptions.
+		 * \param f The window flags of this SearchNodeOptions.
+		 */
 		SearchNodeOptions(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*!
+		 * The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~SearchNodeOptions();
 
 	signals:
+		/*!
+		 * This signal is emited after the fulltext option changed.
+		 *
+		 * \param enabled If true the fulltext option is enabled.
+		 */
 		void enabledFulltext(bool enabled);
+
+		/*!
+		 * This signal is emited after the mimetype option is de-/activated.
+		 *
+		 * \param enabled If true the mimetype option is activated.
+		 */
 		void enabledMimetype(bool enabled);
+
+		/*!
+		 * This signal is emited after the creation date option is de-/activated.
+		 *
+		 * \param enabled If true the creation date option is activated.
+		 */
 		void enabledCreationDate(bool enabled);
+
+		/*!
+		 * This signal is emited after the modification date option is de-/activated.
+		 *
+		 * \param enabled If true the modification date option is activated.
+		 */
 		void enabledModificationDate(bool enabled);
 
+		/*!
+		 * This signal is emited after a mimetype is selected.
+		 *
+		 * \param mimetype The selected mimetype.
+		 */
 		void mimetypeSelected(QString mimetype);
+
+		/*!
+		 * This signal is emited after the starting date of the creation date range is changed.
+		 *
+		 * \param date The new starting date of the creation date range.
+		 */
 		void changedCreatedFrom(QDate date);
+
+		/*!
+		 * This signal is emited after the ending date of the creation date range is changed.
+		 *
+		 * \param date The new ending date of the creation date range.
+		 */
 		void changedCreatedTo(QDate date);
+
+		/*!
+		 * This signal is emited after the starting date of the modification date range is changed.
+		 *
+		 * \param date The new starting date of the modification date range.
+		 */
 		void changedModifiedFrom(QDate date);
+
+		/*!
+		 * This signal is emited after the ending date of the modification date range is changed.
+		 *
+		 * \param date The new ending date of the modification date range.
+		 */
 		void changedModifiedTo(QDate date);
 
 	private slots:

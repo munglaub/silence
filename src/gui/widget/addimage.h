@@ -28,18 +28,46 @@
 #include <QPushButton>
 
 
+/*!\class AddImage
+ * \brief A widget to add images.
+ *
+ * This widget provides a gui to select an image form the file system and get an HTML image tag with height and width.
+ *
+ * \author Manuel Unglaub
+ */
 class AddImage : public QGridLayout
 {
 	Q_OBJECT
 
 	public:
+		/*!
+		 * The constructor.
+		 *
+		 * Constructs the AddImage which is a child of parent.
+		 *
+		 * \param parent The parent of this AddImage.
+		 */
 		AddImage(QWidget *parent);
+
+		/*!
+		 * The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~AddImage();
 
 	public slots:
+		/*!
+		 * Connect to this slot to destroy this object.
+		 */
 		void exit();
 
 	signals:
+		/*!
+		 * This signal is emited after the user successfully selected an image and clicked the ok button.
+		 *
+		 * \param html Containing the HTML image tag, possible with height and width.
+		 */
 		void addedImage(const QString &html);
 
 	private slots:
