@@ -23,7 +23,7 @@
 
 //#define VERSION "0.1"
 
-static const char VERSION[] = "0.1";
+static const char VERSION[] = "0.2";
 static const char APPNAME[] = "Silence";
 
 #endif // CONSTANTS_H
