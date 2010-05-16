@@ -125,6 +125,7 @@ set ( silence_TRS
 	silence_de_DE.ts
 	silence_en_US.ts
 	silence_en_GB.ts
+	silence_cs_CZ.ts
 	)
 QT4_ADD_TRANSLATION(TRS ${silence_TRS})
 
