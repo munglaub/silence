@@ -66,7 +66,7 @@ void LabelList::fillList()
 	list->clear();
 	QStringList labels = Controller::create()->getDataStore()->getRootLabel()->toStringList();
 	labels.removeOne("");
-	labels.removeDuplicates();
+	labels = labels.toSet().toList(); // remove duplicates
 	labels.sort();
 	list->addItems(labels);
 }
