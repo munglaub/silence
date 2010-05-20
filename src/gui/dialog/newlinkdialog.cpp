@@ -19,26 +19,27 @@
  */
 
 #include <kfiledialog.h>
+#include <klocalizedstring.h>
 #include "src/gui/dialog/newlinkdialog.h"
 
 
 NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 	: QDialog(parent, f)
 {
-	setWindowTitle(tr("New Link"));
+	setWindowTitle(i18n("New Link"));
 	resize(500, 400);
 
 	layout = new QGridLayout;
 	int row = 0;
 
-	lblLinkText = new QLabel(tr("Link Text"));
+	lblLinkText = new QLabel(i18n("Link Text"));
 	layout->addWidget(lblLinkText, row, 0);
 	ledLinkText = new KLineEdit;
 	ledLinkText->setClearButtonShown(true);
 	layout->addWidget(ledLinkText, row, 1, 1, 2);
 	++row;
 
-	rbtnNode = new QRadioButton(tr("Node"));
+	rbtnNode = new QRadioButton(i18n("Node"));
 	rbtnNode->setChecked(true);
 	layout->addWidget(rbtnNode, row, 0, 1, 1, Qt::AlignTop);
 	tree = new QTreeView;
@@ -48,7 +49,7 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 	connect(rbtnNode, SIGNAL(toggled(bool)), tree, SLOT(setEnabled(bool)));
 	++row;
 
-	rbtnWebUrl = new QRadioButton(tr("Website Url"));
+	rbtnWebUrl = new QRadioButton(i18n("Website Url"));
 	layout->addWidget(rbtnWebUrl, row, 0);
 	ledWebUrl = new KLineEdit("http://");
 	ledWebUrl->setClearButtonShown(true);
@@ -57,24 +58,24 @@ NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
 	connect(rbtnWebUrl, SIGNAL(toggled(bool)), ledWebUrl, SLOT(setEnabled(bool)));
 	++row;
 
-	rbtnFile = new QRadioButton(tr("File"));
+	rbtnFile = new QRadioButton(i18n("File"));
 	layout->addWidget(rbtnFile, row, 0);
 	ledFile = new KLineEdit;
 	ledFile->setClearButtonShown(true);
 	ledFile->setEnabled(false);
 	layout->addWidget(ledFile, row, 1);
 	connect(rbtnFile, SIGNAL(toggled(bool)), ledFile, SLOT(setEnabled(bool)));
-	btnSelectFile = new QPushButton(tr("Select File"));
+	btnSelectFile = new QPushButton(i18n("Select File"));
 	btnSelectFile->setEnabled(false);
 	layout->addWidget(btnSelectFile, row, 2);
 	connect(rbtnFile, SIGNAL(toggled(bool)), btnSelectFile, SLOT(setEnabled(bool)));
 	connect(btnSelectFile, SIGNAL(clicked()), this, SLOT(selectFile()));
 	++row;
 
-	btnCancel = new QPushButton(tr("Cancel"));
+	btnCancel = new QPushButton(i18n("Cancel"));
 	layout->addWidget(btnCancel, row, 0, 1, 1, Qt::AlignLeft);
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(reject()));
-	btnOk = new QPushButton(tr("OK"));
+	btnOk = new QPushButton(i18n("OK"));
 	layout->addWidget(btnOk, row, 2, 1, 1, Qt::AlignRight);
 	connect(btnOk, SIGNAL(clicked()), this, SLOT(accept()));
 

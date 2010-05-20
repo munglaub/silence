@@ -22,7 +22,7 @@
 #include <kaboutdata.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
-#include <QTranslator>
+//#include <QTranslator>
 #include "src/commandline/cmdlineoptions.h"
 #include "src/commandline/cmdmain.h"
 #include "src/data/aboutdata.h"
@@ -42,10 +42,10 @@ int main(int argc, char *argv[])
 		exit(0);
 	delete cmd;
 
-	QTranslator silenceTranslator;
-	silenceTranslator.load("silence_" + QLocale::system().name());
+//	QTranslator silenceTranslator;
+//	silenceTranslator.load("silence_" + QLocale::system().name());
 //	silenceTranslator.load("silence_de_DE");
-	silence.installTranslator(&silenceTranslator);
+//	silence.installTranslator(&silenceTranslator);
 //	std::cout << QLocale::system().name().toStdString() << std::endl;
 
 	MainWindow *w = new MainWindow();

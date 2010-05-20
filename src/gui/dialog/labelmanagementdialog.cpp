@@ -18,27 +18,28 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KIcon>
+#include <klocalizedstring.h>
+#include <QMenu>
 #include "src/controller.h"
 #include "src/gui/dialog/labelmanagementdialog.h"
-#include <QMenu>
-#include <KIcon>
 
 
 LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	: QDialog(parent, f)
 {
-	setWindowTitle(tr("Label Management"));
+	setWindowTitle(i18n("Label Management"));
 	resize(300, 500);
 
 	layout = new QGridLayout;
 	int row = 0;
 
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(KIcon("list-add"), tr("Add Label"));
+	addRowAction = toolbar->addAction(KIcon("list-add"), i18n("Add Label"));
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(KIcon("view-right-new"), tr("Add Sublabel"));
+	addChildAction = toolbar->addAction(KIcon("view-right-new"), i18n("Add Sublabel"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addSublabel()));
-	removeAction = toolbar->addAction(KIcon("list-remove"), tr("Remove Node"));
+	removeAction = toolbar->addAction(KIcon("list-remove"), i18n("Remove Node"));
 	
 	layout->addWidget(toolbar, row, 0);
 	++row;
@@ -64,7 +65,7 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	layout->addWidget(tree, row, 0);
 	++row;
 
-	closeBtn = new QPushButton(tr("Close"));
+	closeBtn = new QPushButton(i18n("Close"));
 	connect(closeBtn, SIGNAL(clicked()), this, SLOT(accept()));
 	layout->addWidget(closeBtn, row, 0, 1, 1, Qt::AlignRight);
 	setLayout(layout);
@@ -95,18 +96,18 @@ LabelManagementDialog::~LabelManagementDialog()
 
 QWidget* LabelManagementDialog::createDeleteFrame()
 {
-	deleteFrame = new QGroupBox(tr("Delete Label"));
+	deleteFrame = new QGroupBox(i18n("Delete Label"));
 	deleteFrame->hide();
 	deleteLayout = new QGridLayout;
 	icon = new QLabel();
 	icon->setPixmap(KIcon("dialog-warning").pixmap(64, 64));
 	deleteLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
-	messageLbl = new QLabel(tr("Are you sure?"));
+	messageLbl = new QLabel(i18n("Are you sure?"));
 	deleteLayout->addWidget(messageLbl, 0, 1);
-	yesBtn = new QPushButton(tr("Yes"));
+	yesBtn = new QPushButton(i18n("Yes"));
 	connect(yesBtn, SIGNAL(clicked()), this, SLOT(removeLabel()));
 	deleteLayout->addWidget(yesBtn, 1, 0);
-	noBtn = new QPushButton(tr("No"));
+	noBtn = new QPushButton(i18n("No"));
 	connect(noBtn, SIGNAL(clicked()), deleteFrame, SLOT(hide()));
 	deleteLayout->addWidget(noBtn, 1, 1);
 	deleteFrame->setLayout(deleteLayout);
@@ -141,14 +142,14 @@ void LabelManagementDialog::addRow()
 	newLabelParent = tree->selectionModel()->currentIndex();
 	newLabelRow = newLabelParent.row() + 1;
 	newLabelParent = newLabelParent.parent();
-	inputwidget->show(tr("New Label"));
+	inputwidget->show(i18n("New Label"));
 }
 
 void LabelManagementDialog::addSublabel()
 {
 	newLabelParent = tree->selectionModel()->currentIndex();
 	newLabelRow = 0;
-	inputwidget->show(tr("New Sublabel"));
+	inputwidget->show(i18n("New Sublabel"));
 	updateActions();
 }
 

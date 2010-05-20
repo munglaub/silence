@@ -18,9 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include <QToolTip>
 #include "src/controller.h"
 #include "src/gui/widget/notificationbox.h"
+
 
 NotificationBox::NotificationBox(Node *node, AbstractContentChange *change)
 {
@@ -28,13 +30,13 @@ NotificationBox::NotificationBox(Node *node, AbstractContentChange *change)
 
 	this->node = node;
 	this->change = change;
-	info = new QLabel(tr("You didn't save:") + " <a href=\"silence://0.0.0.0/" + node->getId().getId() + "\">" + node->getCaption() + "</a>");
+	info = new QLabel(i18n("You didn't save:") + " <a href=\"silence://0.0.0.0/" + node->getId().getId() + "\">" + node->getCaption() + "</a>");
 	boxlayout->addWidget(info);
 	boxlayout->addStretch();
-	btnSave = new QPushButton(tr("Save"));
+	btnSave = new QPushButton(i18n("Save"));
 	connect(btnSave, SIGNAL(clicked()), this, SLOT(save()));
 	boxlayout->addWidget(btnSave);
-	btnCancel = new QPushButton(tr("Cancel"));
+	btnCancel = new QPushButton(i18n("Cancel"));
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(cancel()));
 	boxlayout->addWidget(btnCancel);
 

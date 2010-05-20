@@ -18,7 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/gui/widget/inputwidget.h"
+
 
 InputWidget::InputWidget(QWidget *parent)
 	: QGroupBox(parent)
@@ -27,10 +29,10 @@ InputWidget::InputWidget(QWidget *parent)
 	inputEdit = new KLineEdit;
 	inputEdit->setClearButtonShown(true);
 	layout->addWidget(inputEdit, 0, 0, 1, 2);
-	cancelBtn = new QPushButton(tr("Cancel"));
+	cancelBtn = new QPushButton(i18n("Cancel"));
 	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(hide()));
 	layout->addWidget(cancelBtn, 1, 0);
-	okBtn = new QPushButton(tr("OK"));
+	okBtn = new QPushButton(i18n("OK"));
 	connect(okBtn, SIGNAL(clicked()), this, SLOT(confirm()));
 	layout->addWidget(okBtn, 1, 1);
 	setLayout(layout);

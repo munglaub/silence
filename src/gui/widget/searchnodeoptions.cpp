@@ -18,8 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/searchnodeoptions.h"
 #include <KIcon>
+#include <klocalizedstring.h>
+#include "src/gui/widget/searchnodeoptions.h"
 
 
 SearchNodeOptions::SearchNodeOptions(QWidget *parent, Qt::WindowFlags f)
@@ -29,7 +30,7 @@ SearchNodeOptions::SearchNodeOptions(QWidget *parent, Qt::WindowFlags f)
 	layout->setContentsMargins(0, 0, 0, 0);
 	showOptions = false;
 
-	title = new QLabel(tr("Search Options"));
+	title = new QLabel(i18n("Search Options"));
 	layout->addWidget(title, 0, 0, 1, 1, Qt::AlignLeft);
 	showBtn = new QPushButton(KIcon("arrow-down-double"), "");
 	showBtn->setFlat(true);
@@ -71,7 +72,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	optionbox->setVisible(false);
 	
 	// search for caption/fulltext
-	captionBtn = new QRadioButton(tr("Caption"));
+	captionBtn = new QRadioButton(i18n("Caption"));
 	captionBtn->setChecked(true);
 	optboxlayout->addWidget(captionBtn, 0, 0);
 	fulltextBtn = new QRadioButton("Fulltext");
@@ -79,7 +80,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	optboxlayout->addWidget(fulltextBtn, 0, 1);
 
 	// search by contenttype
-	cbMime = new QCheckBox(tr("mime type"));
+	cbMime = new QCheckBox(i18n("mime type"));
 	connect(cbMime, SIGNAL(clicked(bool)), this, SLOT(enableMimetype(bool)));
 	optboxlayout->addWidget(cbMime, 1, 0, 1, 2);
 	mimeCombo = new QComboBox;
@@ -98,7 +99,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	optboxlayout->addWidget(datebox, 3, 0, 1, 2);
 
 	// creation date
-	cbCreated = new QCheckBox(tr("created between"));
+	cbCreated = new QCheckBox(i18n("created between"));
 	connect(cbCreated, SIGNAL(clicked(bool)), this, SLOT(enableCreationDate(bool)));
 	dateboxlayout->addWidget(cbCreated, 0, 0, 1, 3);
 
@@ -107,7 +108,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	connect(fromCreated, SIGNAL(dateChanged(const QDate&)), this, SLOT(changeCreatedFrom(QDate)));
 	dateboxlayout->addWidget(fromCreated, 1, 0);
 
-	clbland = new QLabel(tr("and"));
+	clbland = new QLabel(i18n("and"));
 	dateboxlayout->addWidget(clbland, 1, 1);
 
 	toCreated = new QDateEdit(QDate::currentDate());
@@ -116,7 +117,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	connect(toCreated, SIGNAL(dateChanged(const QDate&)), this, SLOT(changeCreatedTo(QDate)));
 
 	// modification date
-	cbModified = new QCheckBox(tr("modified between"));
+	cbModified = new QCheckBox(i18n("modified between"));
 	connect(cbModified, SIGNAL(clicked(bool)), this, SLOT(enableModificationDate(bool)));
 	dateboxlayout->addWidget(cbModified, 2, 0, 1, 3);
 
@@ -125,7 +126,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	connect(fromModified, SIGNAL(dateChanged(const QDate&)), this, SLOT(changeModifiedFrom(QDate)));
 	dateboxlayout->addWidget(fromModified, 3, 0);
 
-	mlbland = new QLabel(tr("and"));
+	mlbland = new QLabel(i18n("and"));
 	dateboxlayout->addWidget(mlbland, 3, 1);
 
 	toModified = new QDateEdit(QDate::currentDate());

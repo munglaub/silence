@@ -20,6 +20,7 @@
 
 #include <kfiledialog.h>
 #include <KIcon>
+#include <klocalizedstring.h>
 #include <QApplication>
 #include <QClipboard>
 #include <QColorDialog>
@@ -187,33 +188,33 @@ RichTextEdit::~RichTextEdit()
 void RichTextEdit::setupActions()
 {
 	EditMenu *menu = Controller::create()->getEditMenu();
-	toolbar->setWindowTitle(tr("Edit Actions"));
+	toolbar->setWindowTitle(i18n("Edit Actions"));
 
-	actionSave = toolbar->addAction(KIcon("document-save"), tr("Save"));
+	actionSave = toolbar->addAction(KIcon("document-save"), i18n("Save"));
 	actionSave->setShortcut(QKeySequence::Save);
 	toolbar->addSeparator();
 
-	actionUndo = toolbar->addAction(KIcon("edit-undo"), tr("Undo"));
+	actionUndo = toolbar->addAction(KIcon("edit-undo"), i18n("Undo"));
 	menu->addAction(actionUndo);
 	actionUndo->setShortcut(QKeySequence::Undo);
-	actionRedo = toolbar->addAction(KIcon("edit-redo"), tr("Redo"));
+	actionRedo = toolbar->addAction(KIcon("edit-redo"), i18n("Redo"));
 	menu->addAction(actionRedo);
 	actionRedo->setShortcut(QKeySequence::Redo);
-	actionCut = toolbar->addAction(KIcon("edit-cut"), tr("Cut"));
+	actionCut = toolbar->addAction(KIcon("edit-cut"), i18n("Cut"));
 	menu->addAction(actionCut);
 	actionCut->setShortcut(QKeySequence::Cut);
-	actionCopy = toolbar->addAction(KIcon("edit-copy"), tr("Copy"));
+	actionCopy = toolbar->addAction(KIcon("edit-copy"), i18n("Copy"));
 	menu->addAction(actionCopy);
 	actionCopy->setShortcut(QKeySequence::Copy);
-	actionPaste = toolbar->addAction(KIcon("edit-paste"), tr("Paste"));
+	actionPaste = toolbar->addAction(KIcon("edit-paste"), i18n("Paste"));
 	menu->addAction(actionPaste);
 	actionPaste->setShortcut(QKeySequence::Paste);
-	actionSelectAll = toolbar->addAction(KIcon("edit-select-all"), tr("Select All"));
+	actionSelectAll = toolbar->addAction(KIcon("edit-select-all"), i18n("Select All"));
 	menu->addAction(actionSelectAll);
 	actionSelectAll->setShortcut(QKeySequence::SelectAll);
 	toolbar->addSeparator();
 
-	actionTextBold = toolbar->addAction(KIcon("format-text-bold"), tr("Bold"));
+	actionTextBold = toolbar->addAction(KIcon("format-text-bold"), i18n("Bold"));
 	menu->addAction(actionTextBold);
 	actionTextBold->setShortcut(Qt::CTRL + Qt::Key_B);
 	QFont bold;
@@ -222,7 +223,7 @@ void RichTextEdit::setupActions()
 	connect(actionTextBold, SIGNAL(triggered()), this, SLOT(textBold()));
 	actionTextBold->setCheckable(true);
 
-	actionTextItalic = toolbar->addAction(KIcon("format-text-italic"), tr("Italic"));
+	actionTextItalic = toolbar->addAction(KIcon("format-text-italic"), i18n("Italic"));
 	menu->addAction(actionTextItalic);
 	actionTextItalic->setShortcut(Qt::CTRL + Qt::Key_I);
 	QFont italic;
@@ -231,7 +232,7 @@ void RichTextEdit::setupActions()
 	connect(actionTextItalic, SIGNAL(triggered()), this, SLOT(textItalic()));
 	actionTextItalic->setCheckable(true);
 
-	actionTextUnderline = toolbar->addAction(KIcon("format-text-underline"), tr("Underline"));
+	actionTextUnderline = toolbar->addAction(KIcon("format-text-underline"), i18n("Underline"));
 	menu->addAction(actionTextUnderline);
 	actionTextUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
 	QFont underline;
@@ -246,16 +247,16 @@ void RichTextEdit::setupActions()
 	QActionGroup *grp = new QActionGroup(this);
 	connect(grp, SIGNAL(triggered(QAction *)), this, SLOT(textAlign(QAction *)));
 
-	actionAlignLeft = new QAction(KIcon("format-justify-left"), tr("&Left"), grp);
+	actionAlignLeft = new QAction(KIcon("format-justify-left"), i18n("&Left"), grp);
 	actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
 	actionAlignLeft->setCheckable(true);
-	actionAlignCenter = new QAction(KIcon("format-justify-center"), tr("C&enter"), grp);
+	actionAlignCenter = new QAction(KIcon("format-justify-center"), i18n("C&enter"), grp);
 	actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
 	actionAlignCenter->setCheckable(true);
-	actionAlignRight = new QAction(KIcon("format-justify-right"), tr("&Right"), grp);
+	actionAlignRight = new QAction(KIcon("format-justify-right"), i18n("&Right"), grp);
 	actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
 	actionAlignRight->setCheckable(true);
-	actionAlignJustify = new QAction(KIcon("format-justify-fill"), tr("&Justify"), grp);
+	actionAlignJustify = new QAction(KIcon("format-justify-fill"), i18n("&Justify"), grp);
 	actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
 	actionAlignJustify->setCheckable(true);
 
@@ -263,29 +264,29 @@ void RichTextEdit::setupActions()
 	menu->addActions(grp->actions());
 	toolbar->addSeparator();
 
-	actionUnorderedList = toolbar->addAction(KIcon("format-list-unordered"), tr("Create Unordered List"));
-	actionOrderedList = toolbar->addAction(KIcon("format-list-ordered"), tr("Create Ordered List"));
-	actionIncreaseIndent = toolbar->addAction(KIcon("format-indent-more"), tr("Indent more"));
-	actionDecreaseIndent = toolbar->addAction(KIcon("format-indent-less"), tr("Indent less"));
+	actionUnorderedList = toolbar->addAction(KIcon("format-list-unordered"), i18n("Create Unordered List"));
+	actionOrderedList = toolbar->addAction(KIcon("format-list-ordered"), i18n("Create Ordered List"));
+	actionIncreaseIndent = toolbar->addAction(KIcon("format-indent-more"), i18n("Indent more"));
+	actionDecreaseIndent = toolbar->addAction(KIcon("format-indent-less"), i18n("Indent less"));
 	toolbar->addSeparator();
 
-	actionInsertLink = toolbar->addAction(KIcon("insert-link"), tr("Link"));
-	actionAddPicture = toolbar->addAction(KIcon("insert-image"), tr("Insert Image"));
-	actionInsertTable = toolbar->addAction(KIcon("insert-table"), tr("Table"));
-	actionInsertRule = toolbar->addAction(KIcon("insert-horizontal-rule"), tr("Insert Horizontal Rule"));
+	actionInsertLink = toolbar->addAction(KIcon("insert-link"), i18n("Link"));
+	actionAddPicture = toolbar->addAction(KIcon("insert-image"), i18n("Insert Image"));
+	actionInsertTable = toolbar->addAction(KIcon("insert-table"), i18n("Table"));
+	actionInsertRule = toolbar->addAction(KIcon("insert-horizontal-rule"), i18n("Insert Horizontal Rule"));
 
-	actionFind = toolbar->addAction(KIcon("edit-find"), tr("&Find"));
+	actionFind = toolbar->addAction(KIcon("edit-find"), i18n("&Find"));
 	actionFind->setShortcut(QKeySequence::Find);
 	menu->addAction(actionFind);
-	actionFindReplace = toolbar->addAction(KIcon("edit-find-replace"), tr("Find/Replace"));
+	actionFindReplace = toolbar->addAction(KIcon("edit-find-replace"), i18n("Find/Replace"));
 	menu->addAction(actionFindReplace);
 }
 
 void RichTextEdit::setupFontActions()
 {
-	actionTextColor = fontToolbar->addAction(KIcon("format-text-color"), tr("Text Color"));
+	actionTextColor = fontToolbar->addAction(KIcon("format-text-color"), i18n("Text Color"));
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
-	actionTextBgColor = fontToolbar->addAction(KIcon("format-fill-color"), tr("Text Highlight"));
+	actionTextBgColor = fontToolbar->addAction(KIcon("format-fill-color"), i18n("Text Highlight"));
 	connect(actionTextBgColor, SIGNAL(triggered()), this, SLOT(textBgColor()));
 
 	comboFont = new QFontComboBox(fontToolbar);
@@ -308,10 +309,10 @@ void RichTextEdit::setupFontActions()
 	comboSize->setCurrentIndex(comboSize->findText(QString::number(
 		QApplication::font().pointSize())));
 
-	actionInsertTableRow = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-row.png"), tr("Insert Table Row"));
-	actionInsertTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-column.png"), tr("Insert Table Column"));
-	actionRemoveTableRow = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-row.png"), tr("Remove Table Row"));
-	actionRemoveTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-column.png"), tr("Remove Table Column"));
+	actionInsertTableRow = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-row.png"), i18n("Insert Table Row"));
+	actionInsertTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/insert-table-column.png"), i18n("Insert Table Column"));
+	actionRemoveTableRow = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-row.png"), i18n("Remove Table Row"));
+	actionRemoveTableColumn = fontToolbar->addAction(QIcon(":/icons/actions/remove-table-column.png"), i18n("Remove Table Column"));
 }
 
 void RichTextEdit::textBold()

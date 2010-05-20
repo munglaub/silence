@@ -18,21 +18,23 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/menu/silencemenu.h"
-#include <QApplication>
 #include <KIcon>
+#include <klocalizedstring.h>
+#include <QApplication>
+#include "src/gui/menu/silencemenu.h"
+
 
 SilenceMenu::SilenceMenu(QWidget *parent)
 	: KMenu(parent)
 {
-	setTitle(tr("&Silence"));
+	setTitle(i18n("&Silence"));
 
-	preferences = addAction(tr("Preferences"));
+	preferences = addAction(i18n("Preferences"));
 	preferences->setEnabled(false);
 
 	addSeparator();
 
-	exit = addAction(KIcon("application-exit"), tr("&Exit"));
+	exit = addAction(KIcon("application-exit"), i18n("&Exit"));
 	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 

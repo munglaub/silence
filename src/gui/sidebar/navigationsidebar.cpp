@@ -18,9 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/sidebar/navigationsidebar.h"
 #include <KIcon>
+#include <klocalizedstring.h>
 #include "src/controller.h"
+#include "src/gui/sidebar/navigationsidebar.h"
 
 
 NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -30,9 +31,9 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 	skip = false;
 
 	toolbar = new QToolBar;
-	prevAction = toolbar->addAction(KIcon("go-previous"), tr("Back"));
+	prevAction = toolbar->addAction(KIcon("go-previous"), i18n("Back"));
 	connect(prevAction, SIGNAL(triggered()), this, SLOT(previous()));
-	nextAction = toolbar->addAction(KIcon("go-next"), tr("Forward"));
+	nextAction = toolbar->addAction(KIcon("go-next"), i18n("Forward"));
 	connect(nextAction, SIGNAL(triggered()), this, SLOT(next()));
 
 	toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

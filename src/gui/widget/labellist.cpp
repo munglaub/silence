@@ -18,9 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/labellist.h"
-#include "src/controller.h"
 #include <KIcon>
+#include <klocalizedstring.h>
+#include "src/controller.h"
+#include "src/gui/widget/labellist.h"
 
 
 LabelList::LabelList(QWidget *parent, Qt::WindowFlags f)
@@ -30,7 +31,7 @@ LabelList::LabelList(QWidget *parent, Qt::WindowFlags f)
 	layout->setContentsMargins(0, 0, 0, 0);
 	showOptions = false;
 
-	title = new QLabel(tr("Labels"));
+	title = new QLabel(i18n("Labels"));
 	layout->addWidget(title, 0, 0, 1, 1, Qt::AlignLeft);
 	showBtn = new QPushButton(KIcon("arrow-down-double"), "");
 	showBtn->setFlat(true);
@@ -74,19 +75,19 @@ void LabelList::fillList()
 void LabelList::setupActions()
 {
 
-	addLabelAction = new QAction(tr("Add Label"), this);
+	addLabelAction = new QAction(i18n("Add Label"), this);
 	addLabelAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
 	addLabelAction->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	this->addAction(addLabelAction);
 	connect(addLabelAction, SIGNAL(triggered()), this, SLOT(addLabel()));
 
-	addBannedLabelAction = new QAction(tr("Ban Label"), this);
+	addBannedLabelAction = new QAction(i18n("Ban Label"), this);
 	addBannedLabelAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
 	addBannedLabelAction->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	this->addAction(addBannedLabelAction);
 	connect(addBannedLabelAction, SIGNAL(triggered()), this, SLOT(addBannedLabel()));
 
-	clearAction = new QAction(tr("Clear Label"), this);
+	clearAction = new QAction(i18n("Clear Label"), this);
 	clearAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_C));
 	clearAction->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	this->addAction(clearAction);

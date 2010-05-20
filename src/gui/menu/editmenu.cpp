@@ -18,12 +18,13 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/gui/menu/editmenu.h"
 
 
 EditMenu::EditMenu(QWidget *parent)
 	: QMenu(parent)
 {
-	setTitle(tr("&Edit"));
+	setTitle(i18n("&Edit"));
 }
 

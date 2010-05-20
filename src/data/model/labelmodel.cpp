@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/data/model/labelmodel.h"
 
@@ -51,7 +52,7 @@ Qt::ItemFlags LabelModel::flags(const QModelIndex &index) const
 QVariant LabelModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return QVariant(tr("Label"));
+		return QVariant(i18n("Label"));
 
 	return QVariant();
 }

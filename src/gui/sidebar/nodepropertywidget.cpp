@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 
@@ -31,8 +32,8 @@ NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt
 
 	tabwidget = new QTabWidget(this);
 	layout->addWidget(tabwidget);
-	tabwidget->addTab(createNodeInfoTab(), tr("Nodeinfos"));
-	tabwidget->addTab(createLabelTab(), tr("Labels"));
+	tabwidget->addTab(createNodeInfoTab(), i18n("Nodeinfos"));
+	tabwidget->addTab(createLabelTab(), i18n("Labels"));
 
 	frame = new QFrame;
 	frame->setLayout(layout);
@@ -64,18 +65,18 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 	infolayout = new QFormLayout;
 	nodeName = new KLineEdit;
 	nodeName->setClearButtonShown(true);
-	infolayout->addRow(tr("Node name:"), nodeName);
+	infolayout->addRow(i18n("Node name:"), nodeName);
 	
 	syntaxbox = new SyntaxBox(false);
-	infolayout->addRow(tr("Syntax:"), syntaxbox);
+	infolayout->addRow(i18n("Syntax:"), syntaxbox);
 	
 	creationdate = new QLabel("");
-	infolayout->addRow(tr("Creationdate:"), creationdate);
+	infolayout->addRow(i18n("Creationdate:"), creationdate);
 
 	modificationdate = new QLabel("");
-	infolayout->addRow(tr("Modificationdate:"), modificationdate);
+	infolayout->addRow(i18n("Modificationdate:"), modificationdate);
 
-	applyNodeInfo = new QPushButton(tr("Apply"));
+	applyNodeInfo = new QPushButton(i18n("Apply"));
 	infolayout->addRow("", applyNodeInfo);
 	connect(applyNodeInfo, SIGNAL(clicked()), this, SLOT(saveNodeInfo()));
 
@@ -90,7 +91,7 @@ QWidget* NodePropertyWidget::createLabelTab()
 	labelwidget = new LabelWidget(this, false);
 	labellayout->addWidget(labelwidget, 0, 0, 1, 2);
 
-	applyLabels = new QPushButton(tr("Apply"));
+	applyLabels = new QPushButton(i18n("Apply"));
 	connect(applyLabels, SIGNAL(clicked()), this, SLOT(saveLabels()));
 	labellayout->addWidget(applyLabels, 2, 1);
 

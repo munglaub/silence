@@ -18,15 +18,16 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KIcon>
+#include <klocalizedstring.h>
+#include <QPoint>
+#include <QVariant>
 #include "src/controller.h"
 #include "src/data/model/treemodel.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/dialog/newnodedialog.h"
 #include "src/gui/sidebar/treeview.h"
-#include <QPoint>
-#include <QVariant>
-#include <KIcon>
 
 
 TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -127,12 +128,12 @@ void TreeView::addNode(QModelIndex &index, int row)
 void TreeView::setupToolbar()
 {
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(KIcon("list-add"), tr("Add Node"));
+	addRowAction = toolbar->addAction(KIcon("list-add"), i18n("Add Node"));
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(KIcon("view-right-new"), tr("Add Subnode"));
+	addChildAction = toolbar->addAction(KIcon("view-right-new"), i18n("Add Subnode"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
-	removeAction = toolbar->addAction(KIcon("list-remove"), tr("Remove Node"));
-	propertyAction = toolbar->addAction(KIcon("document-properties"), tr("Properties"));
+	removeAction = toolbar->addAction(KIcon("list-remove"), i18n("Remove Node"));
+	propertyAction = toolbar->addAction(KIcon("document-properties"), i18n("Properties"));
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 }
 
@@ -166,7 +167,7 @@ void TreeView::setupTree()
 
 void TreeView::setupQuestionFrame()
 {
-	questionFrame = new QGroupBox(tr("Delete Node"));
+	questionFrame = new QGroupBox(i18n("Delete Node"));
 	questionFrame->hide();
 	questionLayout = new QGridLayout;
 
@@ -174,13 +175,13 @@ void TreeView::setupQuestionFrame()
 	icon->setPixmap(KIcon("dialog-warning").pixmap(64, 64));
 	questionLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
 
-	question = new QLabel(tr("Are you sure?"));
+	question = new QLabel(i18n("Are you sure?"));
 	questionLayout->addWidget(question, 0, 1);
 
-	yesButton = new QPushButton(tr("Yes"));
+	yesButton = new QPushButton(i18n("Yes"));
 	questionLayout->addWidget(yesButton, 1, 0);
 
-	noButton = new QPushButton(tr("No"));
+	noButton = new QPushButton(i18n("No"));
 	questionLayout->addWidget(noButton, 1, 1);
 
 	questionFrame->setLayout(questionLayout);

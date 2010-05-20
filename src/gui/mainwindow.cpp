@@ -18,14 +18,15 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/mainwindow.h"
+#include <klocalizedstring.h>
 #include <KMenuBar>
+#include "src/gui/mainwindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	: KMainWindow(parent, f)
 {
-	setWindowTitle(tr("Silence"));
+	setWindowTitle(i18n("Silence"));
 	controller = Controller::create();
 
 	// ContentView
@@ -35,23 +36,23 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 
 
 	// information sidebar to show the meta-infos
-	infosidebar = new InfoSidebar(tr("Info"), this);
+	infosidebar = new InfoSidebar(i18n("Info"), this);
 	controller->setInfoSidebar(infosidebar);
 
-	nodepropertywidget = new NodePropertyWidget(tr("Properties"), this);
+	nodepropertywidget = new NodePropertyWidget(i18n("Properties"), this);
 	nodepropertywidget->hide();
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
-	treeview = new TreeView(tr("Nodes"), this);
+	treeview = new TreeView(i18n("Nodes"), this);
 	controller->setTreeView(treeview);
 
 	// search sidebar
-	searchnodesidebar = new SearchNodeSidebar(tr("Search Nodes"), this);
+	searchnodesidebar = new SearchNodeSidebar(i18n("Search Nodes"), this);
 	controller->setSearchNodeSidebar(searchnodesidebar);
 
 	// navigation sidebar
-	navigationsidebar = new NavigationSidebar(tr("Navigation"), this);
+	navigationsidebar = new NavigationSidebar(i18n("Navigation"), this);
 	controller->setNavigationSidebar(navigationsidebar);
 
 	// docking the widgets

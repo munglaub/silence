@@ -19,6 +19,7 @@
  */
 
 #include <KIcon>
+#include <klocalizedstring.h>
 #include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/view/welcomeview.h"
@@ -34,28 +35,31 @@ WelcomeView::WelcomeView()
 	icon->setPixmap(KIcon("silence").pixmap(96, 96));
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignLeft);
 
-	welcome = new QLabel("<font size=\"4\">" + tr("Welcome to Silence, an information management tool.") + "</font>");
+	welcome = new QLabel("<font size=\"4\">" + i18n("Welcome to Silence, an information management tool.") + "</font>");
 	layout->addWidget(welcome, row, 1, 1, 2, Qt::AlignLeft);
 	++row;
 
 	QString html =
 		"<font size=\"4\">"
 		"<p><table width=400>"
-		"<tr><td><b>Version</b></td><td>%1</td></tr>"
-		"<tr><td><b>Authors</b></td><td>%2</td></tr>"
-		"<tr><td><b>License</b></td><td>%3</td></tr>"
+		"<tr><td><b>%1</b></td><td>%2</td></tr>"
+		"<tr><td><b>%3</b></td><td>%4</td></tr>"
+		"<tr><td><b>%5</b></td><td>%6</td></tr>"
 		"</table></p>"
 		"</font>"
 		;
 	html = html
+		.arg(i18n("Version"))
 		.arg(VERSION)
-		.arg("Manuel Unglaub, Yves Adler, Marcel Winkel")
-		.arg("GPLv2");
+		.arg(i18n("Authors"))
+		.arg(i18n("Manuel Unglaub, Yves Adler, Marcel Winkel"))
+		.arg(i18n("License"))
+		.arg(i18n("GPLv2"));
 	header = new QLabel(html);
 	layout->addWidget(header, row, 0, 1, 2);
 	++row;
 
-	modifiedCap = new QLabel("<br><h3>" + tr("Recently modified Nodes") + "</h3>");
+	modifiedCap = new QLabel("<br><h3>" + i18n("Recently modified Nodes") + "</h3>");
 	layout->addWidget(modifiedCap, row, 0, 1, 2);
 	++row;
 	modifiedVal = new QLabel();

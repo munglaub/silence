@@ -19,6 +19,7 @@
  */
 
 #include <kfiledialog.h>
+#include <klocalizedstring.h>
 #include "src/gui/widget/addimage.h"
 
 
@@ -31,19 +32,19 @@ AddImage::AddImage(QWidget *parent)
 	ledFile = new KLineEdit;
 	ledFile->setClearButtonShown(true);
 	addWidget(ledFile, row, 0, 1, 3);
-	btnBrowse = new QPushButton(tr("Browse"));
+	btnBrowse = new QPushButton(i18n("Browse"));
 	btnBrowse->setFlat(true);
 	addWidget(btnBrowse, row, 3);
 	connect(btnBrowse, SIGNAL(clicked()), this, SLOT(browse()));
 	++row;
 
-	cbWidth = new QCheckBox(tr("Width"));
+	cbWidth = new QCheckBox(i18n("Width"));
 	addWidget(cbWidth, row, 0);
 	sbWidth = new KIntSpinBox(0, 1000, 10, 100, parent);
 	sbWidth->setEnabled(false);
 	addWidget(sbWidth, row, 1);
 	connect(cbWidth, SIGNAL(clicked(bool)), sbWidth, SLOT(setEnabled(bool)));
-	cbHeight = new QCheckBox(tr("Height"));
+	cbHeight = new QCheckBox(i18n("Height"));
 	addWidget(cbHeight, row, 2);
 	sbHeight = new KIntSpinBox(0, 1000, 10, 100, parent);
 	sbHeight->setEnabled(false);
@@ -51,10 +52,10 @@ AddImage::AddImage(QWidget *parent)
 	connect(cbHeight, SIGNAL(clicked(bool)), sbHeight, SLOT(setEnabled(bool)));
 	++row;
 
-	btnCancel = new QPushButton(tr("Cancel"));
+	btnCancel = new QPushButton(i18n("Cancel"));
 	addWidget(btnCancel, row, 0);
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(exit()));
-	btnOk = new QPushButton(tr("OK"));
+	btnOk = new QPushButton(i18n("OK"));
 	addWidget(btnOk, row, 3);
 	connect(btnOk, SIGNAL(clicked()), this, SLOT(addImage()));
 }

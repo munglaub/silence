@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/gui/menu/nodemenu.h"
 
@@ -27,7 +28,7 @@ NodeMenu::NodeMenu(QWidget *parent)
 {
 	Controller *controller = Controller::create();
 
-	setTitle(tr("&Node"));
+	setTitle(i18n("&Node"));
 
 	QList<QAction*> *actions = controller->getTreeView()->getNodeActions();
 	for (int i=0; i<actions->size(); ++i)

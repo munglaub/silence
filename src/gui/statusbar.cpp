@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/gui/statusbar.h"
 
 
@@ -47,9 +48,9 @@ void StatusBar::setNodeName(QString name)
 void StatusBar::setSaveStatus(bool saved)
 {
 	if (saved)
-		saveStatus->setText(tr("saved"));
+		saveStatus->setText(i18n("saved"));
 	else
-		saveStatus->setText(tr("changed"));
+		saveStatus->setText(i18n("changed"));
 }
 
 void StatusBar::setCursorPosition(int line, int col)

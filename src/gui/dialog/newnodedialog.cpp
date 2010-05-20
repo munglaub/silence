@@ -18,35 +18,36 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/dialog/newnodedialog.h"
-#include "src/data/node/richtextnodecontent.h"
-#include "src/data/node/textnodecontent.h"
+#include <klocalizedstring.h>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include "src/data/node/richtextnodecontent.h"
+#include "src/data/node/textnodecontent.h"
+#include "src/gui/dialog/newnodedialog.h"
 
 
 NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
-	setWindowTitle(tr("New Node"));
+	setWindowTitle(i18n("New Node"));
 	resize(400, 400);
 
 	baselayout = new QVBoxLayout;
 
 	namelayout = new QFormLayout;
-	nameedit = new KLineEdit(tr("Nodename"));
+	nameedit = new KLineEdit(i18n("Nodename"));
 	nameedit->setClearButtonShown(true);
 	nameedit->selectAll();
-	namelayout->addRow(tr("Node name:"), nameedit);
+	namelayout->addRow(i18n("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);
 
 	// Type & highlighting
 	typelayout = new QGridLayout;
-	lbltype = new QLabel(tr("Type"));
+	lbltype = new QLabel(i18n("Type"));
 	typelayout->addWidget(lbltype, 0, 0);
 	typebox = new QComboBox;
-	typebox->addItem(tr("RichText"));
-	typebox->addItem(tr("Text"));
+	typebox->addItem(i18n("RichText"));
+	typebox->addItem(i18n("Text"));
 	connect(typebox, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
 	typelayout->addWidget(typebox, 0, 1);
 
@@ -63,10 +64,10 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	// buttons
 	buttonlayout = new QGridLayout;
-	cancel = new QPushButton(tr("Cancel"));
+	cancel = new QPushButton(i18n("Cancel"));
 	buttonlayout->addWidget(cancel, 0, 0, 1, 1, Qt::AlignLeft);
 	connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
-	ok = new QPushButton(tr("OK"));
+	ok = new QPushButton(i18n("OK"));
 	ok->setDefault(true);
 	connect(ok, SIGNAL(clicked()), this, SLOT(accept()));
 	buttonlayout->addWidget(ok, 0, 1, 1, 1, Qt::AlignRight);

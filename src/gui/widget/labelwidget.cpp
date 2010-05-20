@@ -18,9 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/controller.h"
-#include "src/gui/widget/labelwidget.h"
 #include "src/gui/dialog/labelmanagementdialog.h"
+#include "src/gui/widget/labelwidget.h"
 
 
 LabelWidget::LabelWidget(QWidget *parent, bool showManageLabelsBtn)
@@ -31,7 +32,7 @@ LabelWidget::LabelWidget(QWidget *parent, bool showManageLabelsBtn)
 	setupTree();
 	connect(labeltree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(itemActivated(QTreeWidgetItem*, int)));
 
-	manageLabelsBtn = new QPushButton(tr("Manage Labels"));
+	manageLabelsBtn = new QPushButton(i18n("Manage Labels"));
 	manageLabelsBtn->setVisible(showManageLabelsBtn);
 	connect(manageLabelsBtn, SIGNAL(clicked()), this, SLOT(manageLabels()));
 	layout->addWidget(manageLabelsBtn, 0, 1, 1, 1, Qt::AlignTop);
@@ -56,7 +57,7 @@ void LabelWidget::setupTree()
 void LabelWidget::fillTree()
 {
 	labeltree->clear();
-	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(tr("Label")))));
+	labeltree->setHeaderItem(new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(i18n("Label")))));
 	labeltree->setSelectionMode(QAbstractItemView::MultiSelection);
 
 	Label* rootLabel = Controller::create()->getDataStore()->getRootLabel();

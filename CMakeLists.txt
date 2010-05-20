@@ -115,19 +115,12 @@ set ( silence_SRCS
 	)
 
 add_subdirectory( icons )
+add_subdirectory( po )
 
 set ( silence_RSCS
 	silence.qrc
 	)
 QT4_ADD_RESOURCES(RSCS ${silence_RSCS})
-
-set ( silence_TRS
-	silence_de_DE.ts
-	silence_en_US.ts
-	silence_en_GB.ts
-	silence_cs_CZ.ts
-	)
-QT4_ADD_TRANSLATION(TRS ${silence_TRS})
 
 set ( silence_MOCS
 	src/persistence/abstractdatastore.h

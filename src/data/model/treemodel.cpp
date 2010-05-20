@@ -18,10 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/controller.h"
-#include "src/data/node/node.h"
-#include "src/data/model/treemodel.h"
+#include <klocalizedstring.h>
 #include <QtGui>
+#include "src/controller.h"
+#include "src/data/model/treemodel.h"
+#include "src/data/node/node.h"
 
 
 TreeModel::TreeModel(QObject *parent)
@@ -90,7 +91,7 @@ Qt::DropActions TreeModel::supportedDropActions() const
 QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return QVariant(tr("Title"));
+		return QVariant(i18n("Title"));
 
 	return QVariant();
 }

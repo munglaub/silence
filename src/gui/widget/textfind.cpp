@@ -18,10 +18,12 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/textfind.h"
-#include <QKeySequence>
-#include <QHBoxLayout>
 #include <KIcon>
+#include <klocalizedstring.h>
+#include <QHBoxLayout>
+#include <QKeySequence>
+#include "src/gui/widget/textfind.h"
+
 
 TextFind::TextFind(QWidget *parent)
 	: QWidget(parent)
@@ -42,12 +44,12 @@ TextFind::TextFind(QWidget *parent)
 	layout->addWidget(findEdit, 0, 1);
 	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 
-	prevBtn = new QPushButton(KIcon("go-previous"), tr("Previous"));
+	prevBtn = new QPushButton(KIcon("go-previous"), i18n("Previous"));
 	prevBtn->setFlat(true);
 	connect(prevBtn, SIGNAL(clicked()), this, SLOT(prevBtnClicked()));
 	layout->addWidget(prevBtn, 0, 2);
 
-	nextBtn = new QPushButton(KIcon("go-next"), tr("Next"));
+	nextBtn = new QPushButton(KIcon("go-next"), i18n("Next"));
 	nextBtn->setFlat(true);
 	connect(nextBtn, SIGNAL(clicked()), this, SLOT(nextBtnClicked()));
 	layout->addWidget(nextBtn, 0, 3);
@@ -63,12 +65,12 @@ TextFind::TextFind(QWidget *parent)
 	replaceEdit->setMinimumWidth(150);
 	layout->addWidget(replaceEdit, 1, 1);
 
-	replaceBtn = new QPushButton(tr("Replace"));
+	replaceBtn = new QPushButton(i18n("Replace"));
 	replaceBtn->setFlat(true);
 	connect(replaceBtn, SIGNAL(clicked()), this, SLOT(replaceBtnClicked()));
 	layout->addWidget(replaceBtn, 1, 2);
 
-	replaceAllBtn = new QPushButton(tr("Replace All"));
+	replaceAllBtn = new QPushButton(i18n("Replace All"));
 	replaceAllBtn->setFlat(true);
 	connect(replaceAllBtn, SIGNAL(clicked()), this, SLOT(replaceAllBtnClicked()));
 	layout->addWidget(replaceAllBtn, 1, 3);
@@ -77,9 +79,9 @@ TextFind::TextFind(QWidget *parent)
 	optionPanel = new QFrame;
 	optionLayout = new QHBoxLayout;
 	optionLayout->setAlignment(Qt::AlignRight);
-	caseCbx = new QCheckBox(tr("Match case"));
+	caseCbx = new QCheckBox(i18n("Match case"));
 	optionLayout->addWidget(caseCbx);
-	wordCbx = new QCheckBox(tr("Match whole word"));
+	wordCbx = new QCheckBox(i18n("Match whole word"));
 	optionLayout->addWidget(wordCbx);
 	optionPanel->setLayout(optionLayout);
 	layout->addWidget(optionPanel, 2, 0, 4, 0);

@@ -18,7 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <klocalizedstring.h>
 #include "src/gui/widget/syntaxbox.h"
+
 
 SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 	: QWidget(parent)
@@ -26,12 +28,12 @@ SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 	layout = new QHBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	
-	lblSyntax = new QLabel(tr("Syntax:"));
+	lblSyntax = new QLabel(i18n("Syntax:"));
 	lblSyntax->setVisible(showLabel);
 	layout->addWidget(lblSyntax);
 
 	synbox = new QComboBox;
-	synbox->addItem(tr("None"));
+	synbox->addItem(i18n("None"));
 
 	synbox->addItem("Bash");
 	synbox->addItem("Batch");

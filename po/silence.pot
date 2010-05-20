@@ -1,0 +1,589 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-19 23:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: rc.cpp:1 rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: rc.cpp:2 rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:25
+msgid "show node with given id"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:26
+msgid "find nodes"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:27
+msgid "find nodes with a caption that contains text"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:28
+msgid "activate fulltextsearch"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:29
+msgid "activate boundaries for the creation date (YYYY-MM-DD:YYYY-MM-DD)"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:30
+msgid "activate boundaries for the modification date (YYYY-MM-DD:YYYY-MM-DD)"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:31
+msgid ""
+"activate filter by labels, node must contain the given labels (label1,label2)"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:32
+msgid ""
+"activate filter by labels, node must not contain the given labels (label1,"
+"label2)"
+msgstr ""
+
+#: src/commandline/cmdlineoptions.cpp:33
+msgid "activate filter by type"
+msgstr ""
+
+#: src/data/aboutdata.cpp:28
+msgid "An information management tool."
+msgstr ""
+
+#: src/data/aboutdata.cpp:30
+msgid "(c) 2009 - 2010, Silence developers"
+msgstr ""
+
+#: src/data/aboutdata.cpp:35
+msgid "Manuel Unglaub"
+msgstr ""
+
+#: src/data/aboutdata.cpp:35
+msgid "Maintainer"
+msgstr ""
+
+#: src/data/aboutdata.cpp:36
+msgid "Yves Adler"
+msgstr ""
+
+#: src/data/model/labelmodel.cpp:55 src/gui/widget/labelwidget.cpp:60
+msgid "Label"
+msgstr ""
+
+#: src/data/model/simpletreemodel.cpp:58 src/data/model/treemodel.cpp:94
+msgid "Title"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:31
+msgid "Label Management"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:78
+msgid "Add Label"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:40
+msgid "Add Sublabel"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:42
+#: src/gui/sidebar/treeview.cpp:135
+msgid "Remove Node"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:68
+msgid "Close"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:99
+msgid "Delete Label"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:105
+#: src/gui/sidebar/treeview.cpp:178
+msgid "Are you sure?"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:107
+#: src/gui/sidebar/treeview.cpp:181
+msgid "Yes"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:110
+#: src/gui/sidebar/treeview.cpp:184
+msgid "No"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:145
+msgid "New Label"
+msgstr ""
+
+#: src/gui/dialog/labelmanagementdialog.cpp:152
+msgid "New Sublabel"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:29
+msgid "New Link"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:35
+msgid "Link Text"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:42
+msgid "Node"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:52
+msgid "Website Url"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:61
+msgid "File"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:68
+msgid "Select File"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:75 src/gui/dialog/newnodedialog.cpp:67
+#: src/gui/widget/addimage.cpp:55 src/gui/widget/addtable.cpp:44
+#: src/gui/widget/inputwidget.cpp:32 src/gui/widget/notificationbox.cpp:39
+msgid "Cancel"
+msgstr ""
+
+#: src/gui/dialog/newlinkdialog.cpp:78 src/gui/dialog/newnodedialog.cpp:70
+#: src/gui/widget/addimage.cpp:58 src/gui/widget/addtable.cpp:48
+#: src/gui/widget/inputwidget.cpp:35
+msgid "OK"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:32
+msgid "New Node"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:38
+msgid "Nodename"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:41
+#: src/gui/sidebar/nodepropertywidget.cpp:68
+msgid "Node name:"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:46
+msgid "Type"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:49
+msgid "RichText"
+msgstr ""
+
+#: src/gui/dialog/newnodedialog.cpp:50
+msgid "Text"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:29
+msgid "Silence"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:39
+msgid "Info"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:42 src/gui/sidebar/treeview.cpp:136
+msgid "Properties"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:47
+msgid "Nodes"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:51
+msgid "Search Nodes"
+msgstr ""
+
+#: src/gui/mainwindow.cpp:55
+msgid "Navigation"
+msgstr ""
+
+#: src/gui/menu/editmenu.cpp:28
+msgid "&Edit"
+msgstr ""
+
+#: src/gui/menu/nodemenu.cpp:31
+msgid "&Node"
+msgstr ""
+
+#: src/gui/menu/silencemenu.cpp:30
+msgid "&Silence"
+msgstr ""
+
+#: src/gui/menu/silencemenu.cpp:32
+msgid "Preferences"
+msgstr ""
+
+#: src/gui/menu/silencemenu.cpp:37
+msgid "&Exit"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:32
+msgid "&View"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:34
+msgid "Welcome View"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:37 src/gui/widget/labelwidget.cpp:35
+msgid "Manage Labels"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:42
+msgid "Node Sidebar"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:50
+msgid "Information Sidebar"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:56
+msgid "Navigation Sidebar"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:62
+msgid "Node Properties Sidebar"
+msgstr ""
+
+#: src/gui/menu/viewmenu.cpp:68
+msgid "Search Nodes Sidebar"
+msgstr ""
+
+#: src/gui/sidebar/infosidebar.cpp:45
+msgid "ID:"
+msgstr ""
+
+#: src/gui/sidebar/infosidebar.cpp:52
+msgid "Created:"
+msgstr ""
+
+#: src/gui/sidebar/infosidebar.cpp:59
+msgid "Last edit:"
+msgstr ""
+
+#: src/gui/sidebar/infosidebar.cpp:66
+msgid "Type:"
+msgstr ""
+
+#: src/gui/sidebar/infosidebar.cpp:75
+msgid "Labels:"
+msgstr ""
+
+#: src/gui/sidebar/navigationsidebar.cpp:34
+msgid "Back"
+msgstr ""
+
+#: src/gui/sidebar/navigationsidebar.cpp:36
+msgid "Forward"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:35
+msgid "Nodeinfos"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:36 src/gui/widget/labellist.cpp:34
+msgid "Labels"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:71 src/gui/widget/syntaxbox.cpp:31
+msgid "Syntax:"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:74
+msgid "Creationdate:"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:77
+msgid "Modificationdate:"
+msgstr ""
+
+#: src/gui/sidebar/nodepropertywidget.cpp:79
+#: src/gui/sidebar/nodepropertywidget.cpp:94
+msgid "Apply"
+msgstr ""
+
+#: src/gui/sidebar/treeview.cpp:131
+msgid "Add Node"
+msgstr ""
+
+#: src/gui/sidebar/treeview.cpp:133
+msgid "Add Subnode"
+msgstr ""
+
+#: src/gui/sidebar/treeview.cpp:170
+msgid "Delete Node"
+msgstr ""
+
+#: src/gui/statusbar.cpp:51
+msgid "saved"
+msgstr ""
+
+#: src/gui/statusbar.cpp:53
+msgid "changed"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:191
+msgid "Edit Actions"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:193 src/gui/widget/notificationbox.cpp:36
+msgid "Save"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:197
+msgid "Undo"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:200
+msgid "Redo"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:203
+msgid "Cut"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:206
+msgid "Copy"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:209
+msgid "Paste"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:212
+msgid "Select All"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:217
+msgid "Bold"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:226
+msgid "Italic"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:235
+msgid "Underline"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:250
+msgid "&Left"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:253
+msgid "C&enter"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:256
+msgid "&Right"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:259
+msgid "&Justify"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:267
+msgid "Create Unordered List"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:268
+msgid "Create Ordered List"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:269
+msgid "Indent more"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:270
+msgid "Indent less"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:273
+msgid "Link"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:274
+msgid "Insert Image"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:275
+msgid "Table"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:276
+msgid "Insert Horizontal Rule"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:278
+msgid "&Find"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:281
+msgid "Find/Replace"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:287
+msgid "Text Color"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:289
+msgid "Text Highlight"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:312
+msgid "Insert Table Row"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:313
+msgid "Insert Table Column"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:314
+msgid "Remove Table Row"
+msgstr ""
+
+#: src/gui/view/richtextedit.cpp:315
+msgid "Remove Table Column"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:38
+msgid "Welcome to Silence, an information management tool."
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:52
+msgid "Version"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:54
+msgid "Authors"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:55
+msgid "Manuel Unglaub, Yves Adler, Marcel Winkel"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:56
+msgid "License"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:57
+msgid "GPLv2"
+msgstr ""
+
+#: src/gui/view/welcomeview.cpp:62
+msgid "Recently modified Nodes"
+msgstr ""
+
+#: src/gui/widget/addimage.cpp:35
+msgid "Browse"
+msgstr ""
+
+#: src/gui/widget/addimage.cpp:41
+msgid "Width"
+msgstr ""
+
+#: src/gui/widget/addimage.cpp:47
+msgid "Height"
+msgstr ""
+
+#: src/gui/widget/addtable.cpp:30
+msgid "Rows"
+msgstr ""
+
+#: src/gui/widget/addtable.cpp:37
+msgid "Columns"
+msgstr ""
+
+#: src/gui/widget/labellist.cpp:84
+msgid "Ban Label"
+msgstr ""
+
+#: src/gui/widget/labellist.cpp:90
+msgid "Clear Label"
+msgstr ""
+
+#: src/gui/widget/notificationbox.cpp:33
+msgid "You didn't save:"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:33
+msgid "Search Options"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:75
+msgid "Caption"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:83
+msgid "mime type"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:102
+msgid "created between"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:111
+#: src/gui/widget/searchnodeoptions.cpp:129
+msgid "and"
+msgstr ""
+
+#: src/gui/widget/searchnodeoptions.cpp:120
+msgid "modified between"
+msgstr ""
+
+#: src/gui/widget/syntaxbox.cpp:36
+msgid "None"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:47
+msgid "Previous"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:52
+msgid "Next"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:68
+msgid "Replace"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:73
+msgid "Replace All"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:82
+msgid "Match case"
+msgstr ""
+
+#: src/gui/widget/textfind.cpp:84
+msgid "Match whole word"
+msgstr ""

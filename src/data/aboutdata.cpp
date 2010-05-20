@@ -25,14 +25,14 @@
 AboutData::AboutData()
 	: KAboutData ("silence", 0,
 		ki18n(APPNAME), VERSION,
-		ki18n("A information management tool."),
+		ki18n("An information management tool."),
 		KAboutData::License_GPL_V2,
 		ki18n("(c) 2009 - 2010, Silence developers"),
 		KLocalizedString(),
 		"http://silence.sekalura.net",
 		"silence@sekalura.net")
 {
-	addAuthor(ki18n("Manuel Unglaub"), ki18n("Current maintainer"), "m.unglaub@gmail.com");
+	addAuthor(ki18n("Manuel Unglaub"), ki18n("Maintainer"), "m.unglaub@gmail.com");
 	addAuthor(ki18n("Yves Adler"), KLocalizedString(), "yves.adler@googlemail.com");
 }
 
