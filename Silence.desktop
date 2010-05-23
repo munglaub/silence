@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Silence
+Name[de]=Silence
+Name[en]=Silence
+Type=Application
+Exec=silence -caption "%c"
+Icon=silence
+X-DocPath=silence/index.html
+GenericName=Information Management Tool
+GenericName[de]=Information Management Tool
+GenericName[en]=Information Management Tool
+X-KDE-StartupNotify=true
+X-DBUS-StartupType=Multi
+Categories=Qt;KDE;Utility;X-KDE-Utilities-PIM;
+

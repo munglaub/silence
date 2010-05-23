@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	: KMainWindow(parent, f)
 {
 	setWindowTitle(i18n("Silence"));
+	setAutoSaveSettings();
 	controller = Controller::create();
 
 	// ContentView
