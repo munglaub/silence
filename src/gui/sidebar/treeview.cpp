@@ -30,16 +30,16 @@
 #include "src/gui/sidebar/treeview.h"
 
 
-TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
+TreeView::TreeView(const QString &title, KActionCollection *actionCollection, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
+	setObjectName("TreeView");
 
-	setupToolbar();
 	setupTree();
 	setupQuestionFrame();
+	setupToolbar(actionCollection);
 
-	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
 
 	frame = new QFrame();
 	layout = new QVBoxLayout;  
@@ -64,9 +64,6 @@ TreeView::~TreeView()
 	delete questionLayout;
 	delete questionFrame;
 
-	delete addRowAction;
-	delete addChildAction;
-	delete removeAction;
 	delete toolbar;
 	delete layout;
 	delete frame;
@@ -125,15 +122,32 @@ void TreeView::addNode(QModelIndex &index, int row)
 	updateActions();
 }
 
-void TreeView::setupToolbar()
+void TreeView::setupToolbar(KActionCollection *actionCollection)
 {
 	toolbar = new QToolBar();
-	addRowAction = toolbar->addAction(KIcon("list-add"), i18n("Add Node"));
+
+	addRowAction = actionCollection->addAction("addnode");
+	addRowAction->setText(i18n("Add Node"));
+	addRowAction->setIcon(KIcon("list-add"));
+	toolbar->addAction(addRowAction);
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
-	addChildAction = toolbar->addAction(KIcon("view-right-new"), i18n("Add Subnode"));
+
+	addChildAction = actionCollection->addAction("addsubnode");
+	addChildAction->setText(i18n("Add Subnode"));
+	addChildAction->setIcon(KIcon("view-right-new"));
+	toolbar->addAction(addChildAction);
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
-	removeAction = toolbar->addAction(KIcon("list-remove"), i18n("Remove Node"));
-	propertyAction = toolbar->addAction(KIcon("document-properties"), i18n("Properties"));
+
+	removeAction = actionCollection->addAction("removenode");
+	removeAction->setText(i18n("Remove Node"));
+	removeAction->setIcon(KIcon("list-remove"));
+	toolbar->addAction(removeAction);
+	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
+
+	propertyAction = actionCollection->addAction("shownodeproperties");
+	propertyAction->setText(i18n("Properties"));
+	propertyAction->setIcon(KIcon("document-properties"));
+	toolbar->addAction(propertyAction);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 }
 
@@ -240,16 +254,6 @@ void TreeView::updateActions()
 	// TODO: is the following necessary?
 	if (hasCurrent)
 		tree->closePersistentEditor(tree->selectionModel()->currentIndex());
-}
-
-QList<QAction*>* TreeView::getNodeActions() const
-{
-	QList<QAction*> *result = new QList<QAction*>;
-	result->append(addRowAction);
-	result->append(addChildAction);
-	result->append(removeAction);
-	result->append(propertyAction);
-	return result;
 }
 
 void TreeView::showTreeContextMenu()

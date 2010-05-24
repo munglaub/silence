@@ -18,47 +18,47 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATUSBAR_H
-#define STATUSBAR_H
+#ifndef SISTATUSBAR_H
+#define SISTATUSBAR_H
 
 #include <QLabel>
 #include <KStatusBar>
 
 
-/*!\class StatusBar
+/*!\class SiStatusBar
  * \brief The statusbar for the MainWindow.
  *
- * This StatusBar is used in the MainWindow to show some status informations.
+ * This SiStatusBar is used in the MainWindow to show some status informations.
  *
  * \author Manuel Unglaub
  */
-class StatusBar : public KStatusBar
+class SiStatusBar : public KStatusBar
 {
 	Q_OBJECT
 
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the StatusBar which is a child of parent.
-		 * \param parent The parent of this StatusBar.
+		 * Constructs the SiStatusBar which is a child of parent.
+		 * \param parent The parent of this SiStatusBar.
 		 */
-		StatusBar(QWidget *parent = 0);
+		SiStatusBar(QWidget *parent = 0);
 
 		/*! The destructor.
 		 *
 		 * Destroys the object.
 		 */
-		~StatusBar();
+		~SiStatusBar();
 
 		/*!
 		 * Display the currently selected nodes name.
-		 * \param name The string which will be shown in this StatusBar.
+		 * \param name The string which will be shown in this SiStatusBar.
 		 */
 		void setNodeName(QString name);
 	
 	public slots:
 		/*!
-		 * Display the current cursor position in this StatusBar.
+		 * Display the current cursor position in this SiStatusBar.
 		 * \param line Set the line of the current cursor position.
 		 * \param col Set the column of the current cursor position.
 		 */
@@ -76,7 +76,7 @@ class StatusBar : public KStatusBar
 				*cursorPos;
 };
 
-#endif // STATUSBAR_H
+#endif // SISTATUSBAR_H
 
 
 

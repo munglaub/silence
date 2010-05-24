@@ -21,7 +21,8 @@
 #ifndef VIEWMENU_H
 #define VIEWMENU_H
 
-#include <QMenu>
+#include <kactioncollection.h>
+
 
 /*!\class ViewMenu
  * \brief Consists of actions to show/hide various sidebars and views.
@@ -31,7 +32,7 @@
  * \author Manuel Unglaub
  */
 
-class ViewMenu : public QMenu
+class ViewMenu : public QObject
 {
 	Q_OBJECT
 
@@ -39,15 +40,9 @@ class ViewMenu : public QMenu
 		/*! The constructor.
 		 *
 		 * Constructs the ViewMenu which is a child of parent.
-		 * \param parent The parent of this ViewMenu.
+		 * \param actionCollection The collection of the applications actions.
 		 */
-		ViewMenu(QWidget *parent = 0);
-
-		/*! The destructor.
-		 *
-		 * Destroys the object.
-		 */
-		~ViewMenu();
+		ViewMenu(KActionCollection *actionCollection);
 
 	private slots:
 		void showWelcomeView();
@@ -57,15 +52,6 @@ class ViewMenu : public QMenu
 		void showNavigation(bool visible);
 		void showProperties(bool visible);
 		void showNodeSearch(bool visible);
-
-	private:
-		QAction	*welcomeViewAction,
-				*showNodeTreeAction,
-				*showNavigationAction,
-				*showInfoAction,
-				*showPropertiesAction,
-				*showNodeSearchAction,
-				*showLabelManagementAction;
 };
 
 #endif // VIEWMENU_H

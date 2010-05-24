@@ -19,20 +19,43 @@
  */
 
 #include <klocalizedstring.h>
-#include "src/controller.h"
-#include "src/gui/menu/nodemenu.h"
+#include "src/gui/sistatusbar.h"
 
 
-NodeMenu::NodeMenu(QWidget *parent)
-	: QMenu(parent)
+SiStatusBar::SiStatusBar(QWidget *parent)
+	: KStatusBar(parent)
 {
-	Controller *controller = Controller::create();
+	cursorPos = new QLabel("0 : 0");
+	addWidget(cursorPos);
+	saveStatus = new QLabel("");
+	addWidget(saveStatus);
+	nodeName = new QLabel("");
+	addWidget(nodeName);
+}
 
-	setTitle(i18n("&Node"));
+SiStatusBar::~SiStatusBar()
+{
+	delete nodeName;
+	delete saveStatus;
+	delete cursorPos;
+}
 
-	QList<QAction*> *actions = controller->getTreeView()->getNodeActions();
-	for (int i=0; i<actions->size(); ++i)
-		addAction(actions->at(i));
-	delete actions;
+void SiStatusBar::setNodeName(QString name)
+{
+	nodeName->setText(name);
+}
+
+void SiStatusBar::setSaveStatus(bool saved)
+{
+	if (saved)
+		saveStatus->setText(i18n("saved"));
+	else
+		saveStatus->setText(i18n("changed"));
+}
+
+void SiStatusBar::setCursorPosition(int line, int col)
+{
+	QString text = QString::number(line) + " : " + QString::number(col);
+	cursorPos->setText(text);
 }
 

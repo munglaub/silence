@@ -21,9 +21,8 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
-#include "src/data/model/treemodel.h"
-#include "src/gui/sidebar/nodepropertywidget.h"
-#include <QAction>
+#include <kactioncollection.h>
+#include <kaction.h>
 #include <QDockWidget>
 #include <QFrame>
 #include <QGridLayout>
@@ -34,6 +33,8 @@
 #include <QToolBar>
 #include <QTreeView>
 #include <QVBoxLayout>
+#include "src/data/model/treemodel.h"
+#include "src/gui/sidebar/nodepropertywidget.h"
 
 
 /*!\class TreeView
@@ -60,19 +61,13 @@ class TreeView : public QDockWidget
 		 * \param parent The parent of this TreeView.
 		 * \param flags The window flags of this TreeView.
 		 */
-		TreeView(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		TreeView(const QString &title, KActionCollection *actionCollection, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor.
 		 *
 		 * Destroys the object.
 		 */
 		~TreeView();
-
-		/*!
-		 * Get the node related actions to use them in other menus. The TreeView will not delete the QList, so if you use this function you have to delete the QList. The TreeView will take care of the actions so do not delete them.
-		 * \return A pointer to a QList with pointers to node related actions.
-		 */
-		QList<QAction*>* getNodeActions() const;
 
 		/*!
 		 * Get the TreeModel to use it as a source for other models.
@@ -122,7 +117,7 @@ class TreeView : public QDockWidget
 		TreeModel *model;
 
 		QToolBar *toolbar;
-		QAction *addRowAction,
+		KAction *addRowAction,
 				*addChildAction,
 				*removeAction,
 				*propertyAction;
@@ -140,7 +135,7 @@ class TreeView : public QDockWidget
 
 		void addNode(QModelIndex &index, int row);
 
-		void setupToolbar();
+		void setupToolbar(KActionCollection *actionCollection);
 		void setupTree();
 		void setupQuestionFrame();
 };

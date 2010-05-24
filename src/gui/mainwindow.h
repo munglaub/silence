@@ -21,19 +21,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <KMainWindow>
+#include <KXmlGuiWindow>
 #include "src/controller.h"
-#include "src/gui/menu/editmenu.h"
-#include "src/gui/menu/nodemenu.h"
-#include "src/gui/menu/silencemenu.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 #include "src/gui/sidebar/searchnodesidebar.h"
 #include "src/gui/sidebar/treeview.h"
-#include "src/gui/statusbar.h"
+#include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
+#include "src/gui/menu/editmenu.h"
 
 
 /*!\class MainWindow
@@ -44,7 +42,7 @@
  * \author Manuel Unglaub
  */
 
-class MainWindow : public KMainWindow
+class MainWindow : public KXmlGuiWindow
 {
 	Q_OBJECT
 
@@ -53,7 +51,7 @@ class MainWindow : public KMainWindow
 		 * Constructs the main window with statusbar, treeview, searchnodesidebar and infosidebar.
 		 * \param parent specifies the widgets parent.
 		 */
-		MainWindow(QWidget *parent = 0, Qt::WindowFlags f = KDE_DEFAULT_WINDOWFLAGS);
+		MainWindow(QWidget *parent = 0);
 
 		/*! The destructor.
 		 * Destroys the main window with its components.
@@ -66,15 +64,13 @@ class MainWindow : public KMainWindow
 		TreeView *treeview;
 		InfoSidebar *infosidebar;
 		SearchNodeSidebar *searchnodesidebar;
-		StatusBar *statusbar;
+		SiStatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
 		NavigationSidebar *navigationsidebar;
 
 		// Menus
-		SilenceMenu *silencemenu;
-		NodeMenu *nodemenu;
-		EditMenu *editmenu;
 		ViewMenu *viewmenu;
+		EditMenu *editmenu;
 };
 
 #endif // MAINWINDOW_H

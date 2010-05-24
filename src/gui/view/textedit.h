@@ -21,6 +21,7 @@
 #ifndef TEXTEDIT_H
 #define TEXTEDIT_H
 
+#include <kactioncollection.h>
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/view/abstractcontentview.h"
 
@@ -31,6 +32,8 @@ namespace KTextEditor
 	class Editor;
 	class Cursor;
 }
+
+using namespace KStandardAction;
 
 class QAction;
 class QActionGroup;
@@ -53,8 +56,9 @@ class TextEdit : public AbstractContentView
 		/*! The constructor.
 		 *
 		 * Constructs the TextEdit.
+		 * \param actionCollection The action collection of the application.
 		 */
-		TextEdit();
+		TextEdit(KActionCollection *actionCollection);
 
 		/*! The destructor.
 		 *
@@ -110,7 +114,8 @@ class TextEdit : public AbstractContentView
 		KTextEditor::Editor *editor;
 		
 
-		void setupActions();
+		void addAction(KActionCollection *actionCollection, KStandardAction::StandardAction actionType, QString name);
+		void setupActions(KActionCollection *actionCollection);
 		void setupEditor();
 };
 

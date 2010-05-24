@@ -26,6 +26,7 @@
 SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
         : QDockWidget(title, parent, flags)
 {
+	setObjectName("SearchNodeSidebar");
 	// Setup the listproxy, which basically transforms the tree into a flat strcuture
 	listProxy = new ListProxyModel;
 	QAbstractItemModel *treemodel = Controller::create()->getTreeView()->getTreeModel();

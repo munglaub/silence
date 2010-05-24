@@ -27,7 +27,7 @@
 #include "src/gui/sidebar/nodepropertywidget.h"
 #include "src/gui/sidebar/searchnodesidebar.h"
 #include "src/gui/sidebar/treeview.h"
-#include "src/gui/statusbar.h"
+#include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
 #include "src/gui/view/richtextedit.h"
 #include "src/gui/view/textedit.h"
@@ -104,6 +104,12 @@ class Controller
 		AbstractDataStore* getDataStore();
 
 		/*!
+		 * This function provides the Controller with a collection of the applications actions.
+		 * \param actionCollection The collection of actions of the application.
+		 */
+		void setActionCollection(KActionCollection *actionCollection);
+
+		/*!
 		 * This function provides the Controller with a pointer to the InfoSidebar.
 		 * \param infosidebar A pointer to the InfoSidebar
 		 */
@@ -140,16 +146,16 @@ class Controller
 		TreeView* getTreeView() const;
 		
 		/*!
-		 * This function provides the Controller with a pointer to the StatusBar.
+		 * This function provides the Controller with a pointer to the SiStatusBar.
 		 * \param statusbar A pointer to the StatusBar.
 		 */
-		void setStatusBar(StatusBar* statusbar);
+		void setStatusBar(SiStatusBar* statusbar);
 
 		/*!
 		 * Get a pointer to the StatusBar.
 		 * \return A pointer to the StatusBar or 0 if it was not set.
 		 */
-		StatusBar* getStatusBar() const;
+		SiStatusBar* getStatusBar() const;
 
 		/*!
 		 * This function provides the Controller with a pointer to the NodePropertyWidget.
@@ -201,10 +207,12 @@ class Controller
 		InfoSidebar *infosidebar;
 		SearchNodeSidebar *searchsidebar;
 		TreeView *treeview;
-		StatusBar *statusbar;
+		SiStatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
 		NavigationSidebar *navigationsidebar;
 		EditMenu *editmenu;
+
+		KActionCollection *actionCollection;
 
 		AbstractDataStore *datastore;
 };

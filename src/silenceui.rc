@@ -1,0 +1,45 @@
+<!DOCTYPE kpartgui>
+<kpartgui version="1" name="silence" >
+	<MenuBar>
+		<Menu name="silence">
+			<text>Silence</text>
+			<Action name="te_save" />
+			<Action name="exit" />
+		</Menu>
+		<Menu name="node">
+			<text>Node</text>
+			<Action name="addnode" />
+			<Action name="addsubnode" />
+			<Action name="removenode" />
+			<Action name="shownodeproperties" />
+		</Menu>
+		<Menu name="siedit">
+			<text>Edit</text>
+			<Action name="te_undo" />
+			<Action name="te_redo" />
+			<Separator />
+			<Action name="te_cut" />
+			<Action name="te_copy" />
+			<Action name="te_paste" />
+			<Separator />
+			<Action name="te_selectall" />
+			<Action name="te_find" />
+			<Action name="te_replace" />
+
+			<Action name="rtf_" />
+		</Menu>
+		<Menu name="siview">
+			<text>View</text>
+			<Action name="showwelcomeview" />
+			<Action name="showlabelmanagement" />
+			<Separator />
+			<Action name="showtreenodesidebar" />
+			<Action name="showinfosidebar" />
+			<Action name="shownavisidebar" />
+			<Action name="showpropertysidebar" />
+			<Action name="showsearchsidebar" />
+		</Menu>
+		<Menu name="settings"></Menu>
+		<Menu name="help"></Menu>
+	</MenuBar>
+</kpartgui>

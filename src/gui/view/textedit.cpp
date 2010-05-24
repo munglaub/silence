@@ -18,7 +18,6 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <kactioncollection.h>
 #include <KIcon>
 #include <KTextEditor/CommandInterface>
 #include <KTextEditor/ConfigInterface>
@@ -29,7 +28,6 @@
 #include <KTextEditor/View>
 #include <QAction>
 #include <QToolBar>
-#include <QToolBar>
 #include <QVBoxLayout>
 #include <QWidget>
 #include "src/controller.h"
@@ -37,10 +35,10 @@
 #include "src/gui/view/textedit.h"
 
 
-TextEdit::TextEdit()
+TextEdit::TextEdit(KActionCollection *actionCollection)
 {
 	setupEditor();
-	setupActions();
+	setupActions(actionCollection);
 	isChanged = false;
 
 	layout = new QVBoxLayout;
@@ -51,9 +49,6 @@ TextEdit::TextEdit()
 	
 	// cursorposition
 	connect(view, SIGNAL(cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor&)), this, SLOT(cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor&)));
-
-	// save
-	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
 
 	// modificationstatus
 	connect(document, SIGNAL(textChanged(KTextEditor::Document*)), this, SLOT(contentChanged()));
@@ -69,44 +64,55 @@ TextEdit::~TextEdit()
 	delete layout;
 }
 
-void TextEdit::setupActions()
+void TextEdit::addAction(KActionCollection *actionCollection, KStandardAction::StandardAction actionType, QString name)
 {
-	QAction *tmp;
+	QAction *action = view->actionCollection()->action(KStandardAction::name(actionType));
+	actionCollection->addAction(name, action);
+	actionGroup->addAction(action);
+}
+
+void TextEdit::setupActions(KActionCollection *actionCollection)
+{
+	QAction *action;
 	actionGroup = new QActionGroup(this);
 
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Undo)));
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Redo)));
-	tmp = new QAction(actionGroup);
-	tmp->setSeparator(true);
-	actionGroup->addAction(tmp);
-
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Cut)));
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Copy)));
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Paste)));
-	tmp = new QAction(actionGroup);
-	tmp->setSeparator(true);
-	actionGroup->addAction(tmp);
-
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::SelectAll)));
-	actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Find)));
-	tmp = actionGroup->addAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Replace)));
-	tmp->setIcon(KIcon("edit-find-replace"));
-
-	saveAction = view->actionCollection()->action(KStandardAction::name(KStandardAction::Save));
+	addAction(actionCollection, KStandardAction::Save, "te_save");
+	saveAction = actionCollection->action("te_save");
 	saveAction->disconnect();
+	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
+
+	action = new QAction(actionGroup);
+	action->setSeparator(true);
+	actionGroup->addAction(action);
+
+	addAction(actionCollection, KStandardAction::Undo, "te_undo");
+	addAction(actionCollection, KStandardAction::Redo, "te_redo");
+
+	action = new QAction(actionGroup);
+	action->setSeparator(true);
+	actionGroup->addAction(action);
+
+	addAction(actionCollection, KStandardAction::Cut, "te_cut");
+	addAction(actionCollection, KStandardAction::Copy, "te_copy");
+	addAction(actionCollection, KStandardAction::Paste, "te_paste");
+
+	action = new QAction(actionGroup);
+	action->setSeparator(true);
+	actionGroup->addAction(action);
+
+	addAction(actionCollection, KStandardAction::SelectAll, "te_selectall");
+	addAction(actionCollection, KStandardAction::Find, "te_find");
+	addAction(actionCollection, KStandardAction::Replace, "te_replace");
+	actionCollection->action("te_replace")->setIcon(KIcon("edit-find-replace"));
 
 	toolbar = new QToolBar;
-	toolbar->addAction(saveAction);
-	toolbar->addSeparator();
-	EditMenu *menu = Controller::create()->getEditMenu();
 	for (int i = 0; i < actionGroup->actions().size(); ++i)
 	{
 		toolbar->addAction(actionGroup->actions().at(i));
-		menu->addAction(actionGroup->actions().at(i));
 	}
 
 	QMenu *contextmenu = new QMenu(this);
-	for (int i = 0; i < actionGroup->actions().size() - 2; ++i)
+	for (int i = 2; i < actionGroup->actions().size() - 2; ++i)
 		contextmenu->addAction(actionGroup->actions().at(i));
 	view->setContextMenu(contextmenu);
 }

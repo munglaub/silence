@@ -26,6 +26,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
+	setObjectName("InfoSidebar");
 	layout = new QGridLayout();
 	layout->setAlignment(Qt::AlignTop);
 	node = 0;

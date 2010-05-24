@@ -28,6 +28,7 @@ Controller::Controller()
 	welcomeview = 0;
 	textedit = 0;
 	richtextedit = 0;
+	actionCollection = 0;
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
@@ -76,7 +77,7 @@ WelcomeView* Controller::getWelcomeView()
 TextEdit* Controller::getTextEdit()
 {
 	if (textedit == 0)
-		textedit = new TextEdit;
+		textedit = new TextEdit(actionCollection);
 	return textedit;
 }
 
@@ -85,6 +86,11 @@ RichTextEdit* Controller::getRichTextEdit()
 	if (richtextedit == 0)
 		richtextedit = new RichTextEdit;
 	return richtextedit;
+}
+
+void Controller::setActionCollection(KActionCollection *actionCollection)
+{
+	this->actionCollection = actionCollection;
 }
 
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)
@@ -154,12 +160,12 @@ NavigationSidebar* Controller::getNavigationSidebar() const
 	return navigationsidebar;
 }
 
-void Controller::setStatusBar(StatusBar *statusbar)
+void Controller::setStatusBar(SiStatusBar *statusbar)
 {
 	this->statusbar = statusbar;
 }
 
-StatusBar* Controller::getStatusBar() const
+SiStatusBar* Controller::getStatusBar() const
 {
 	return statusbar;
 }

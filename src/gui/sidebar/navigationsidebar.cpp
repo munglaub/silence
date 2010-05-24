@@ -28,6 +28,7 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
+	setObjectName("NavigationBar");
 	skip = false;
 
 	toolbar = new QToolBar;

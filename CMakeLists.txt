@@ -35,9 +35,7 @@ set ( silence_HDRS
 	src/data/model/listproxymodel.h
 	src/data/model/filtermodel.h
 	src/gui/mainwindow.h
-	src/gui/statusbar.h
-	src/gui/menu/nodemenu.h
-	src/gui/menu/silencemenu.h
+	src/gui/sistatusbar.h
 	src/gui/menu/editmenu.h
 	src/gui/menu/viewmenu.h
 	src/gui/dialog/newnodedialog.h
@@ -81,9 +79,7 @@ set ( silence_SRCS
 	src/data/model/filtermodel.cpp
 	src/data/model/listproxymodel.cpp
 	src/gui/mainwindow.cpp
-	src/gui/statusbar.cpp
-	src/gui/menu/nodemenu.cpp
-	src/gui/menu/silencemenu.cpp
+	src/gui/sistatusbar.cpp
 	src/gui/menu/editmenu.cpp
 	src/gui/menu/viewmenu.cpp
 	src/gui/dialog/newnodedialog.cpp
@@ -142,6 +138,8 @@ target_link_libraries ( silence
 
 install(TARGETS silence  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install(FILES Silence.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES src/silenceui.rc  DESTINATION ${DATA_INSTALL_DIR})
+
 
 
 

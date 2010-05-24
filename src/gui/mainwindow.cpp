@@ -18,16 +18,18 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <kactioncollection.h>
+#include <kaction.h>
 #include <klocalizedstring.h>
 #include <KMenuBar>
+#include <QApplication>
 #include "src/gui/mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
-	: KMainWindow(parent, f)
+MainWindow::MainWindow(QWidget *parent)
+	: KXmlGuiWindow(parent)
 {
 	setWindowTitle(i18n("Silence"));
-	setAutoSaveSettings();
 	controller = Controller::create();
 
 	// ContentView
@@ -36,16 +38,12 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	controller->setContentView(contentview);
 
 
-	// information sidebar to show the meta-infos
-	infosidebar = new InfoSidebar(i18n("Info"), this);
-	controller->setInfoSidebar(infosidebar);
-
 	nodepropertywidget = new NodePropertyWidget(i18n("Properties"), this);
 	nodepropertywidget->hide();
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
-	treeview = new TreeView(i18n("Nodes"), this);
+	treeview = new TreeView(i18n("Nodes"), actionCollection(), this);
 	controller->setTreeView(treeview);
 
 	// search sidebar
@@ -56,33 +54,45 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
 	navigationsidebar = new NavigationSidebar(i18n("Navigation"), this);
 	controller->setNavigationSidebar(navigationsidebar);
 
+	// information sidebar to show the meta-infos
+	infosidebar = new InfoSidebar(i18n("Info"), this);
+	controller->setInfoSidebar(infosidebar);
+
 	// docking the widgets
 	addDockWidget(Qt::RightDockWidgetArea, navigationsidebar);
 	addDockWidget(Qt::RightDockWidgetArea, infosidebar);
 	addDockWidget(Qt::LeftDockWidgetArea, treeview);
-	addDockWidget(Qt::LeftDockWidgetArea, searchnodesidebar);
-	tabifyDockWidget(searchnodesidebar, treeview);
+	addDockWidget(Qt::LeftDockWidgetArea, treeview);
+	tabifyDockWidget(treeview, searchnodesidebar);
 	addDockWidget(Qt::LeftDockWidgetArea, nodepropertywidget);
 
-	statusbar = new StatusBar;
+	statusbar = new SiStatusBar;
 	setStatusBar(statusbar);
 	controller->setStatusBar(statusbar);
 
 	// set the initial windowsize
-	resize(1100, 600);
+	// TODO:..
+	//resize(1100, 600);
 	
+	controller->setActionCollection(actionCollection());
+
+
 	// add menus
-	silencemenu = new SilenceMenu(this);
-	menuBar()->addMenu(silencemenu);
-	nodemenu = new NodeMenu;
-	menuBar()->addMenu(nodemenu);
 	editmenu = new EditMenu;
 	editmenu->setEnabled(false);
 	menuBar()->addMenu(editmenu);
 	controller->setEditMenu(editmenu);
-	viewmenu = new ViewMenu;
-	menuBar()->addMenu(viewmenu);
-	menuBar()->addMenu(helpMenu(""));
+
+
+	controller->getTextEdit()->setVisible(false);
+
+	viewmenu = new ViewMenu(actionCollection());
+	KAction *action = actionCollection()->addAction("exit");
+	action->setText(i18n("&Exit"));
+	action->setIcon(KIcon("application-exit"));
+	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
+	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create, "/home/aloeee/progTest/qt/lang/silence/src/silenceui.rc");
+//	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }
 
 MainWindow::~MainWindow()
@@ -94,10 +104,7 @@ MainWindow::~MainWindow()
 	delete nodepropertywidget;
 	delete searchnodesidebar;
 
-	delete nodemenu;
-	delete editmenu;
 	delete viewmenu;
-	delete silencemenu;
 
 	delete controller;
 }
