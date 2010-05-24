@@ -40,7 +40,8 @@ RtfEdit::~RtfEdit()
 
 void RtfEdit::addContextActions(QList<QAction*> actions)
 {
-	this->actions.append(actions);
+	for (int i = 0; i < actions.size(); ++i)
+		this->actions.append(actions.at(i));
 }
 
 bool RtfEdit::canInsertFromMimeData(const QMimeData *source) const
