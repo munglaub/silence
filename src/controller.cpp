@@ -35,7 +35,6 @@ Controller::Controller()
 	statusbar = 0;
 	nodepropertywidget = 0;
 	navigationsidebar = 0;
-	editmenu = 0;
 }
 
 Controller::~Controller()
@@ -84,7 +83,7 @@ TextEdit* Controller::getTextEdit()
 RichTextEdit* Controller::getRichTextEdit()
 {
 	if (richtextedit == 0)
-		richtextedit = new RichTextEdit;
+		richtextedit = new RichTextEdit(actionCollection);
 	return richtextedit;
 }
 
@@ -128,16 +127,6 @@ AbstractDataStore* Controller::getDataStore()
 	if (datastore == 0)
 		datastore = new XmlDataStore;
 	return datastore;
-}
-
-void Controller::setEditMenu(EditMenu *editmenu)
-{
-	this->editmenu = editmenu;
-}
-
-EditMenu* Controller::getEditMenu() const
-{
-	return editmenu;
 }
 
 void Controller::setNodePropertyWidget(NodePropertyWidget *nodepropertywidget)

@@ -20,6 +20,7 @@
 
 #include <KIcon>
 #include <klocalizedstring.h>
+#include <QMenu>
 #include <QPoint>
 #include <QVariant>
 #include "src/controller.h"

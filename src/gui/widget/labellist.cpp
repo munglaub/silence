@@ -20,6 +20,7 @@
 
 #include <KIcon>
 #include <klocalizedstring.h>
+#include <QMenu>
 #include "src/controller.h"
 #include "src/gui/widget/labellist.h"
 

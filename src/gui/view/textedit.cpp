@@ -27,6 +27,7 @@
 #include <KTextEditor/EditorChooser>
 #include <KTextEditor/View>
 #include <QAction>
+#include <QMenu>
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -186,7 +187,6 @@ AbstractContentChange* TextEdit::getChange()
 void TextEdit::setVisible(bool visible)
 {
 	this->QWidget::setVisible(visible);
-	Controller::create()->getEditMenu()->setEnabled(true);
 	actionGroup->setVisible(visible);
 }
 

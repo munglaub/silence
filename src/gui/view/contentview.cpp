@@ -64,8 +64,6 @@ void ContentView::setNode(Node *node)
 		widget = controller->getWelcomeView();
 		if (controller->getInfoSidebar())
 			controller->getInfoSidebar()->clearInfos();
-		if (controller->getEditMenu())
-			controller->getEditMenu()->setEnabled(false);
 	} else {
 		widget = node->getContent()->getWidget();
 	}

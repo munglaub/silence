@@ -21,6 +21,8 @@
 #ifndef RICHTEXTEDIT_H
 #define RICHTEXTEDIT_H
 
+#include <kactioncollection.h>
+#include <KIcon>
 #include <QAction>
 #include <QComboBox>
 #include <QFontComboBox>
@@ -47,8 +49,9 @@ class RichTextEdit : public AbstractContentView
 		/*! The constructor.
 		 *
 		 * Constructs the RichTextEdit.
+		 * \param actionColleciton The action collection of the application.
 		 */
-		RichTextEdit();
+		RichTextEdit(KActionCollection *actionCollection);
 
 		/*! The destructor.
 		 *
@@ -127,7 +130,7 @@ class RichTextEdit : public AbstractContentView
 		QToolBar *fontToolbar;
 		RtfEdit *textedit;
 
-		QAction *actionSave,
+		KAction *actionSave,
 				*actionUndo,
 				*actionRedo,
 				*actionCut,
@@ -157,12 +160,14 @@ class RichTextEdit : public AbstractContentView
 				*actionInsertTableColumn,
 				*actionRemoveTableRow,
 				*actionRemoveTableColumn;
+		QList<KAction*> actions;
 
 		QFontComboBox *comboFont;
 		QComboBox *comboSize;
 
-		void setupActions();
-		void setupFontActions();
+		KAction* addAction(KActionCollection *actionCollection, QString name, QString text, QIcon icon);
+		void setupActions(KActionCollection *actionCollection);
+		void setupFontActions(KActionCollection *actionCollection);
 
 		void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 		void alignmentChanged(Qt::Alignment alignment);

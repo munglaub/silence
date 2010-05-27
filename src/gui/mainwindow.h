@@ -31,7 +31,6 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
-#include "src/gui/menu/editmenu.h"
 
 
 /*!\class MainWindow
@@ -70,7 +69,6 @@ class MainWindow : public KXmlGuiWindow
 
 		// Menus
 		ViewMenu *viewmenu;
-		EditMenu *editmenu;
 };
 
 #endif // MAINWINDOW_H

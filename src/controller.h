@@ -21,7 +21,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "src/gui/menu/editmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
@@ -181,18 +180,6 @@ class Controller
 		 */
 		NavigationSidebar* getNavigationSidebar() const;
 
-		/*!
-		 * This function provides the Controller with a pointer to the EditMenu.
-		 * \param editmenu A pointer to the EditMenu.
-		 */
-		void setEditMenu(EditMenu *editmenu);
-
-		/*!
-		 * Get a pointer to the EditMenu.
-		 * \return A pointer to the EditMenu or 0 if it was not set.
-		 */
-		EditMenu* getEditMenu() const;
-
 
 	protected:
 		Controller();
@@ -210,7 +197,6 @@ class Controller
 		SiStatusBar *statusbar;
 		NodePropertyWidget *nodepropertywidget;
 		NavigationSidebar *navigationsidebar;
-		EditMenu *editmenu;
 
 		KActionCollection *actionCollection;
 

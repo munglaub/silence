@@ -4,6 +4,7 @@
 		<Menu name="silence">
 			<text>Silence</text>
 			<Action name="te_save" />
+			<Action name="rtf_save" />
 			<Action name="exit" />
 		</Menu>
 		<Menu name="node">
@@ -21,12 +22,53 @@
 			<Action name="te_cut" />
 			<Action name="te_copy" />
 			<Action name="te_paste" />
-			<Separator />
 			<Action name="te_selectall" />
+			<Separator />
 			<Action name="te_find" />
 			<Action name="te_replace" />
 
-			<Action name="rtf_" />
+			<Action name="rtf_undo" />
+			<Action name="rtf_redo" />
+			<Separator />
+			<Action name="rtf_cut" />
+			<Action name="rtf_copy" />
+			<Action name="rtf_paste" />
+			<Action name="rtf_selectall" />
+			<Separator />
+			<Action name="rtf_increaseindent" />
+			<Action name="rtf_decreaseindent" />
+			<Action name="rtf_orderedlist" />
+			<Action name="rtf_unorderedlist" />
+			<Action name="rtf_insertimage" />
+			<Action name="rtf_insertrule" />
+			<Action name="rtf_insertlink" />
+			<Action name="rtf_inserttable" />
+			<Separator />
+			<Action name="rtf_find" />
+			<Action name="rtf_replace" />
+			<!--
+			<Menu name="table">
+			<text>Table</text>
+				<Action name="rtf_inserttablerow" />
+				<Action name="rtf_inserttablecolumn" />
+				<Action name="rtf_removetablerow" />
+				<Action name="rtf_removetablecolumn" />
+			</Menu>
+			-->
+		</Menu>
+		<Menu name="format">
+			<text>Format</text>
+			<Action name="rtf_bold" />
+			<Action name="rtf_italic" />
+			<Action name="rtf_underline" />
+			<Separator />
+			<Action name="rtf_alignleft" />
+			<Action name="rtf_alignright" />
+			<Action name="rtf_aligncenter" />
+			<Action name="rtf_alignjustify" />
+			<Separator />
+			<Action name="rtf_textcolor" />
+			<Action name="rtf_textbgcolor" />
 		</Menu>
 		<Menu name="siview">
 			<text>View</text>

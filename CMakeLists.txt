@@ -36,7 +36,6 @@ set ( silence_HDRS
 	src/data/model/filtermodel.h
 	src/gui/mainwindow.h
 	src/gui/sistatusbar.h
-	src/gui/menu/editmenu.h
 	src/gui/menu/viewmenu.h
 	src/gui/dialog/newnodedialog.h
 	src/gui/dialog/newlinkdialog.h
@@ -80,7 +79,6 @@ set ( silence_SRCS
 	src/data/model/listproxymodel.cpp
 	src/gui/mainwindow.cpp
 	src/gui/sistatusbar.cpp
-	src/gui/menu/editmenu.cpp
 	src/gui/menu/viewmenu.cpp
 	src/gui/dialog/newnodedialog.cpp
 	src/gui/dialog/newlinkdialog.cpp

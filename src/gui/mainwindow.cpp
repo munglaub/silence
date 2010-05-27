@@ -70,29 +70,18 @@ MainWindow::MainWindow(QWidget *parent)
 	setStatusBar(statusbar);
 	controller->setStatusBar(statusbar);
 
-	// set the initial windowsize
-	// TODO:..
-	//resize(1100, 600);
-	
 	controller->setActionCollection(actionCollection());
 
-
-	// add menus
-	editmenu = new EditMenu;
-	editmenu->setEnabled(false);
-	menuBar()->addMenu(editmenu);
-	controller->setEditMenu(editmenu);
-
-
 	controller->getTextEdit()->setVisible(false);
+	controller->getRichTextEdit()->setVisible(false);
 
 	viewmenu = new ViewMenu(actionCollection());
 	KAction *action = actionCollection()->addAction("exit");
 	action->setText(i18n("&Exit"));
 	action->setIcon(KIcon("application-exit"));
 	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
-	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create, "/home/aloeee/progTest/qt/lang/silence/src/silenceui.rc");
-//	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
+
+	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }
 
 MainWindow::~MainWindow()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-23 13:12+0200\n"
+"POT-Creation-Date: 2010-05-27 19:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rc.cpp:1 rc.cpp:1
+#. i18n: file: src/silenceui.rc:5
+#. i18n: ectx: Menu (silence)
+#: rc.cpp:3 src/gui/mainwindow.cpp:32 rc.cpp:3
+msgid "Silence"
+msgstr ""
+
+#. i18n: file: src/silenceui.rc:11
+#. i18n: ectx: Menu (node)
+#: rc.cpp:6 src/gui/dialog/newlinkdialog.cpp:42 rc.cpp:6
+msgid "Node"
+msgstr ""
+
+#. i18n: file: src/silenceui.rc:18
+#. i18n: ectx: Menu (siedit)
+#: rc.cpp:9 rc.cpp:9
+msgid "Edit"
+msgstr ""
+
+#. i18n: file: src/silenceui.rc:51
+#. i18n: ectx: Menu (table)
+#: rc.cpp:12 rc.cpp:12
+msgid "Table"
+msgstr ""
+
+#. i18n: file: src/silenceui.rc:60
+#. i18n: ectx: Menu (format)
+#: rc.cpp:15 rc.cpp:15
+msgid "Format"
+msgstr ""
+
+#. i18n: file: src/silenceui.rc:74
+#. i18n: ectx: Menu (siview)
+#: rc.cpp:18 rc.cpp:18
+msgid "View"
+msgstr ""
+
+#: rc.cpp:19 rc.cpp:19
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: rc.cpp:2 rc.cpp:2
+#: rc.cpp:20 rc.cpp:20
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
@@ -98,7 +134,7 @@ msgstr ""
 msgid "Label Management"
 msgstr ""
 
-#: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:78
+#: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:79
 msgid "Add Label"
 msgstr ""
 
@@ -107,7 +143,7 @@ msgid "Add Sublabel"
 msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:42
-#: src/gui/sidebar/treeview.cpp:135
+#: src/gui/sidebar/treeview.cpp:143
 msgid "Remove Node"
 msgstr ""
 
@@ -120,17 +156,17 @@ msgid "Delete Label"
 msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:105
-#: src/gui/sidebar/treeview.cpp:178
+#: src/gui/sidebar/treeview.cpp:193
 msgid "Are you sure?"
 msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:107
-#: src/gui/sidebar/treeview.cpp:181
+#: src/gui/sidebar/treeview.cpp:196
 msgid "Yes"
 msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:110
-#: src/gui/sidebar/treeview.cpp:184
+#: src/gui/sidebar/treeview.cpp:199
 msgid "No"
 msgstr ""
 
@@ -148,10 +184,6 @@ msgstr ""
 
 #: src/gui/dialog/newlinkdialog.cpp:35
 msgid "Link Text"
-msgstr ""
-
-#: src/gui/dialog/newlinkdialog.cpp:42
-msgid "Node"
 msgstr ""
 
 #: src/gui/dialog/newlinkdialog.cpp:52
@@ -187,7 +219,7 @@ msgid "Nodename"
 msgstr ""
 
 #: src/gui/dialog/newnodedialog.cpp:41
-#: src/gui/sidebar/nodepropertywidget.cpp:68
+#: src/gui/sidebar/nodepropertywidget.cpp:69
 msgid "Node name:"
 msgstr ""
 
@@ -203,71 +235,47 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: src/gui/mainwindow.cpp:29
-msgid "Silence"
-msgstr ""
-
-#: src/gui/mainwindow.cpp:39
-msgid "Info"
-msgstr ""
-
-#: src/gui/mainwindow.cpp:42 src/gui/sidebar/treeview.cpp:136
+#: src/gui/mainwindow.cpp:41 src/gui/sidebar/treeview.cpp:149
 msgid "Properties"
 msgstr ""
 
-#: src/gui/mainwindow.cpp:47
+#: src/gui/mainwindow.cpp:46
 msgid "Nodes"
 msgstr ""
 
-#: src/gui/mainwindow.cpp:51
+#: src/gui/mainwindow.cpp:50
 msgid "Search Nodes"
 msgstr ""
 
-#: src/gui/mainwindow.cpp:55
+#: src/gui/mainwindow.cpp:54
 msgid "Navigation"
 msgstr ""
 
-#: src/gui/menu/editmenu.cpp:28
-msgid "&Edit"
+#: src/gui/mainwindow.cpp:58
+msgid "Info"
 msgstr ""
 
-#: src/gui/menu/nodemenu.cpp:31
-msgid "&Node"
-msgstr ""
-
-#: src/gui/menu/silencemenu.cpp:30
-msgid "&Silence"
-msgstr ""
-
-#: src/gui/menu/silencemenu.cpp:32
-msgid "Preferences"
-msgstr ""
-
-#: src/gui/menu/silencemenu.cpp:37
+#: src/gui/mainwindow.cpp:80
 msgid "&Exit"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:32
-msgid "&View"
-msgstr ""
-
-#: src/gui/menu/viewmenu.cpp:34
+#: src/gui/menu/viewmenu.cpp:31
 msgid "Welcome View"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:37 src/gui/widget/labelwidget.cpp:35
+#: src/gui/menu/viewmenu.cpp:35 src/gui/widget/labelwidget.cpp:35
 msgid "Manage Labels"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:42
+#: src/gui/menu/viewmenu.cpp:39
 msgid "Node Sidebar"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:50
+#: src/gui/menu/viewmenu.cpp:48
 msgid "Information Sidebar"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:56
+#: src/gui/menu/viewmenu.cpp:55
 msgid "Navigation Sidebar"
 msgstr ""
 
@@ -275,60 +283,60 @@ msgstr ""
 msgid "Node Properties Sidebar"
 msgstr ""
 
-#: src/gui/menu/viewmenu.cpp:68
+#: src/gui/menu/viewmenu.cpp:69
 msgid "Search Nodes Sidebar"
 msgstr ""
 
-#: src/gui/sidebar/infosidebar.cpp:45
+#: src/gui/sidebar/infosidebar.cpp:46
 msgid "ID:"
 msgstr ""
 
-#: src/gui/sidebar/infosidebar.cpp:52
+#: src/gui/sidebar/infosidebar.cpp:53
 msgid "Created:"
 msgstr ""
 
-#: src/gui/sidebar/infosidebar.cpp:59
+#: src/gui/sidebar/infosidebar.cpp:60
 msgid "Last edit:"
 msgstr ""
 
-#: src/gui/sidebar/infosidebar.cpp:66
+#: src/gui/sidebar/infosidebar.cpp:67
 msgid "Type:"
 msgstr ""
 
-#: src/gui/sidebar/infosidebar.cpp:75
+#: src/gui/sidebar/infosidebar.cpp:76
 msgid "Labels:"
 msgstr ""
 
-#: src/gui/sidebar/navigationsidebar.cpp:34
+#: src/gui/sidebar/navigationsidebar.cpp:35
 msgid "Back"
 msgstr ""
 
-#: src/gui/sidebar/navigationsidebar.cpp:36
+#: src/gui/sidebar/navigationsidebar.cpp:37
 msgid "Forward"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:35
+#: src/gui/sidebar/nodepropertywidget.cpp:36
 msgid "Nodeinfos"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:36 src/gui/widget/labellist.cpp:34
+#: src/gui/sidebar/nodepropertywidget.cpp:37 src/gui/widget/labellist.cpp:35
 msgid "Labels"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:71 src/gui/widget/syntaxbox.cpp:31
+#: src/gui/sidebar/nodepropertywidget.cpp:72 src/gui/widget/syntaxbox.cpp:31
 msgid "Syntax:"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:74
+#: src/gui/sidebar/nodepropertywidget.cpp:75
 msgid "Creationdate:"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:77
+#: src/gui/sidebar/nodepropertywidget.cpp:78
 msgid "Modificationdate:"
 msgstr ""
 
-#: src/gui/sidebar/nodepropertywidget.cpp:79
-#: src/gui/sidebar/nodepropertywidget.cpp:94
+#: src/gui/sidebar/nodepropertywidget.cpp:80
+#: src/gui/sidebar/nodepropertywidget.cpp:95
 msgid "Apply"
 msgstr ""
 
@@ -336,143 +344,115 @@ msgstr ""
 msgid "Add Node"
 msgstr ""
 
-#: src/gui/sidebar/treeview.cpp:133
+#: src/gui/sidebar/treeview.cpp:137
 msgid "Add Subnode"
 msgstr ""
 
-#: src/gui/sidebar/treeview.cpp:170
+#: src/gui/sidebar/treeview.cpp:185
 msgid "Delete Node"
 msgstr ""
 
-#: src/gui/statusbar.cpp:51
+#: src/gui/sistatusbar.cpp:51
 msgid "saved"
 msgstr ""
 
-#: src/gui/statusbar.cpp:53
+#: src/gui/sistatusbar.cpp:53
 msgid "changed"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:191
+#: src/gui/view/richtextedit.cpp:110
 msgid "Edit Actions"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:193 src/gui/widget/notificationbox.cpp:36
-msgid "Save"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:197
-msgid "Undo"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:200
-msgid "Redo"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:203
-msgid "Cut"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:206
-msgid "Copy"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:209
-msgid "Paste"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:212
-msgid "Select All"
-msgstr ""
-
-#: src/gui/view/richtextedit.cpp:217
+#: src/gui/view/richtextedit.cpp:159
 msgid "Bold"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:226
+#: src/gui/view/richtextedit.cpp:169
 msgid "Italic"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:235
+#: src/gui/view/richtextedit.cpp:179
 msgid "Underline"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:250
-msgid "&Left"
+#: src/gui/view/richtextedit.cpp:194
+msgid "Left"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:253
-msgid "C&enter"
+#: src/gui/view/richtextedit.cpp:199
+msgid "Center"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:256
-msgid "&Right"
+#: src/gui/view/richtextedit.cpp:204
+msgid "Right"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:259
-msgid "&Justify"
+#: src/gui/view/richtextedit.cpp:209
+msgid "Justify"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:267
+#: src/gui/view/richtextedit.cpp:217
 msgid "Create Unordered List"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:268
+#: src/gui/view/richtextedit.cpp:222
 msgid "Create Ordered List"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:269
+#: src/gui/view/richtextedit.cpp:227
 msgid "Indent more"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:270
+#: src/gui/view/richtextedit.cpp:232
 msgid "Indent less"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:273
-msgid "Link"
+#: src/gui/view/richtextedit.cpp:239
+msgid "Insert Link"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:274
+#: src/gui/view/richtextedit.cpp:244
 msgid "Insert Image"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:275
-msgid "Table"
+#: src/gui/view/richtextedit.cpp:249
+msgid "Insert Table"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:276
+#: src/gui/view/richtextedit.cpp:254
 msgid "Insert Horizontal Rule"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:278
+#: src/gui/view/richtextedit.cpp:259
 msgid "&Find"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:281
+#: src/gui/view/richtextedit.cpp:265
 msgid "Find/Replace"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:287
+#: src/gui/view/richtextedit.cpp:273
 msgid "Text Color"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:289
+#: src/gui/view/richtextedit.cpp:278
 msgid "Text Highlight"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:312
+#: src/gui/view/richtextedit.cpp:299
 msgid "Insert Table Row"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:313
+#: src/gui/view/richtextedit.cpp:304
 msgid "Insert Table Column"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:314
+#: src/gui/view/richtextedit.cpp:309
 msgid "Remove Table Row"
 msgstr ""
 
-#: src/gui/view/richtextedit.cpp:315
+#: src/gui/view/richtextedit.cpp:314
 msgid "Remove Table Column"
 msgstr ""
 
@@ -524,16 +504,20 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: src/gui/widget/labellist.cpp:84
+#: src/gui/widget/labellist.cpp:85
 msgid "Ban Label"
 msgstr ""
 
-#: src/gui/widget/labellist.cpp:90
+#: src/gui/widget/labellist.cpp:91
 msgid "Clear Label"
 msgstr ""
 
 #: src/gui/widget/notificationbox.cpp:33
 msgid "You didn't save:"
+msgstr ""
+
+#: src/gui/widget/notificationbox.cpp:36
+msgid "Save"
 msgstr ""
 
 #: src/gui/widget/searchnodeoptions.cpp:33
