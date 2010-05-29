@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -83,7 +83,7 @@ class TreeView : public QDockWidget
 
 		/*!
 		 * Select a node by a given NodeId.
-		 * \param id The NodeId of the node wich will be selected.
+		 * \param id The NodeId of the node which will be selected.
 		 */
 		void selectItem(NodeId id);
 
@@ -100,8 +100,8 @@ class TreeView : public QDockWidget
 
 	signals:
 		/*!
-		 * This signal is emited in case a node is selected.
-		 * \param node The node wich is selected.
+		 * This signal is emitted in case a node is selected.
+		 * \param node The node which is selected.
 		 */
 		void nodeSelected(Node* node);
 

@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -230,19 +230,19 @@ QString Node::toString()
 	result.append(QString().setNum(id->getId()));
 	result.append(") - ");
 	result.append(caption);
-	result.append("\n");
+	result.append('\n');
 
 	result.append("Creation date:\n");
-	result.append("\t" + creationDate.toString(Qt::DefaultLocaleShortDate));
-	result.append("\n");
+	result.append('\t' + creationDate.toString(Qt::DefaultLocaleShortDate));
+	result.append('\n');
 
 	result.append("Modification date:\n");
-	result.append("\t" + creationDate.toString(Qt::DefaultLocaleShortDate));
-	result.append("\n");
+	result.append('\t' + creationDate.toString(Qt::DefaultLocaleShortDate));
+	result.append('\n');
 
 	result.append("Labels: \n");
-	result.append("\t" + labels.join(", "));
-	result.append("\n");
+	result.append('\t' + labels.join(", "));
+	result.append('\n');
 
 	result.append(content->toString());
 

@@ -1,7 +1,8 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Yves Adler, Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
+ * Copyright (C) 2009, 2010 Yves Adler <yves.adler@googlemail.com>
  *
  * This file is part of Silence.
  *
@@ -21,7 +22,6 @@
 #include "src/controller.h"
 #include "src/data/model/filtermodel.h"
 #include "src/utils/listutils.h"
-#include <QtGui>
 
 
 FilterModel::FilterModel(QObject *parent)

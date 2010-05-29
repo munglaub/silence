@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -51,7 +51,7 @@ class LabelManagementDialog : public QDialog
 		 * \param parent The parent of this LabelManagementDialog.
 		 * \param f The dialog flags f are passed on to the QDialog constructor.
 		 */
-		LabelManagementDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit LabelManagementDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
 		/*! The destructor.
 		 *

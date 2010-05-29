@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -52,7 +52,7 @@ class NewLinkDialog : public QDialog
 		 * \param parent The parent of this NewLinkDialog.
 		 * \param f The window flags of this NewLinkDialog.
 		 */
-		NewLinkDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit NewLinkDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
 		/*!
 		 * The destructor.

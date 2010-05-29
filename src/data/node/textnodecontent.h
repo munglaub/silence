@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -25,9 +25,9 @@
 
 
 /*!\class TextNodeContent
- * \brief A text content with syntax informations for the Node.
+ * \brief A text content with syntax information for the Node.
  *
- * This content contains plain text with meta infos and a syntax information wich is part of the meta infos.
+ * This content contains plain text with meta infos and a syntax information which is part of the meta infos.
  *
  * \author Manuel Unglaub
  */

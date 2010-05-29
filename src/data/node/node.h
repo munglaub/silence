@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -96,7 +96,7 @@ class Node : public QObject
 		 * Add a number of children at a specific position.
 		 * \param position The position where the children will be created. It must be greater or equal 0 and less or equal to getChildCount().
 		 * \param count The number of children that will be created.
-		 * \return True if it was successfull.
+		 * \return True if it was successful.
 		 * \sa getChild(), takeChild(), removeChildren(), addChild()
 		 */
 		bool addChildren(int position, int count);
@@ -104,7 +104,7 @@ class Node : public QObject
 		/*!
 		 * Get a specific child of this node.
 		 * \param index The index of the requested child. It must be greater or equal to 0 and less then getChildCount().
-		 * \return The node at position index in the list of childs or 0 if the index is out of bounds.
+		 * \return The node at position index in the list of children or 0 if the index is out of bounds.
 		 * \sa addChildren(), takeChild(), removeChildren(), addChild()
 		 */
 		Node* getChild(int index) const;
@@ -119,7 +119,7 @@ class Node : public QObject
 		 * Remove children from this node.
 		 * \param position The position of the children which will be removed. The position must be greater or equal to 0 and less then position + getChildCount() - count.
 		 * \param count The number of children which will be removed.
-		 * \return True if the children are removed successfull.
+		 * \return True if the children are removed successful.
 		 * \sa getChild(), takeChild(), addChildren(), addChild()
 		 */
 		bool removeChildren(int position, int count);
@@ -134,9 +134,9 @@ class Node : public QObject
 
 		/*!
 		 * Add a node as child to this node at a specific position.
-		 * \param child The node which will be added to the childs of this node.
+		 * \param child The node which will be added to the children of this node.
 		 * \param position The posittion of the node in the list of children. It must be greater or equal then 0 and less or equal to getChildCount().
-		 * \return True if it was successfull.
+		 * \return True if it was successful.
 		 * \sa getChild(), takeChild(), removeChildren(), addChildren()
 		 */
 		bool addChild(Node* child, int position);
@@ -151,7 +151,7 @@ class Node : public QObject
 		/*!
 		 * Set the caption of this node. This will also change the modification date of this node and emit the changed() signal.
 		 * \param caption The new caption of this node.
-		 * \return True if it was successfull.
+		 * \return True if it was successful.
 		 * \sa getCaption()
 		 */
 		bool setCaption(QString caption);
@@ -164,7 +164,7 @@ class Node : public QObject
 		AbstractNodeContent* getContent() const;
 
 		/*!
-		 * Set the content of this node. This will also change the modification date of this node and emit the changed() signal. Whenever the changed() signal of the content is emited the modification date will be updated and the changed() signal of this node will be emited.
+		 * Set the content of this node. This will also change the modification date of this node and emit the changed() signal. Whenever the changed() signal of the content is emitted the modification date will be updated and the changed() signal of this node will be emitted.
 		 * \param content The new content of this node.
 		 * \sa getContent()
 		 */
@@ -220,7 +220,7 @@ class Node : public QObject
 		void addLabels(QStringList labels);
 
 		/*!
-		 * Remove a label from this node. If the removal of the label was successfull the modification date of the node will be changed and the changed() signal will be emitted.
+		 * Remove a label from this node. If the removal of the label was successful the modification date of the node will be changed and the changed() signal will be emitted.
 		 * \param label The label which will be removed from this node.
 		 * \return True if the label was removed.
 		 * \sa addLabel(), addLabels(), getLabels()

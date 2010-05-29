@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -35,9 +35,9 @@
 
 
 /*!\class NodePropertyWidget
- * \brief A sidebar to edit informations of a node.
+ * \brief A sidebar to edit information of a node.
  *
- * The NodePropertyWidget should be used to change the informations of a node. It can change the caption, the labels and the syntax if it has a TextNodeContent.
+ * The NodePropertyWidget should be used to change the information of a node. It can change the caption, the labels and the syntax if it has a TextNodeContent.
  *
  * This widget is allowed to dock on all docking areas.
  *

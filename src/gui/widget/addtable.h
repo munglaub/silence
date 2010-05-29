@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -63,7 +63,7 @@ class AddTable : public QGridLayout
 
 	signals:
 		/*!
-		 * This signal is emited when the user clicked the ok button.
+		 * This signal is emitted when the user clicked the ok button.
 		 *
 		 * \param html Containing the HTML table tag that represents the table with the specified number of columns and rows.
 		 */

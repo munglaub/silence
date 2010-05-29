@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -142,7 +142,7 @@ void InfoSidebar::updateInfos()
 		return;
 	}
 
-	// set node infos
+	// set node information
 	caption->setText(node->getCaption());
 	idValue->setText(QString().setNum(node->getId().getId()));
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
@@ -150,7 +150,7 @@ void InfoSidebar::updateInfos()
 
 	labelsData->setText(node->getLabels()->join(", "));
 
-	// set content infos
+	// set content information
 	if (node->getContent())
 	{
 		icon->setPixmap(node->getContent()->getIcon().pixmap(64, 64));
@@ -166,8 +166,8 @@ void InfoSidebar::updateInfos()
 		while (itr.hasNext())
 		{
 			itr.next();
-			cap += itr.key() + "\n";
-			inf += itr.value() + "\n";
+			cap += itr.key() + '\n';
+			inf += itr.value() + '\n';
 		}
 		metaInfo->setText(cap);
 		metaInfoData->setText(inf);

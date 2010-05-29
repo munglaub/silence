@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -92,7 +92,7 @@ class Label
 		 * Add a child to the Label at a specified index.
 		 * \param index The index where the child will be inserted in the list of children in this Label. If the index is 0 it will be prepended to the list. If it is childCount() it will be appended. The child will only be inserted if the index is greater or equal to 0 and less or equal to childCount().
 		 * \param child The child that will be inserted in the list of children of this Label.
-		 * \return True if the child was successfull inserted.
+		 * \return True if the child was successful inserted.
 		 */
 		bool addChild(int index, Label *child);
 
@@ -100,7 +100,7 @@ class Label
 		 * Creates a specified number of children at a specified position.
 		 * \param position The index where the children will be inserted in the list of children in this Label. If the index is 0 they will be prepended to the list. If it is childCount() they will be appended. The children will only be created if the index is greater or equal to 0 and less or equal to childCount().
 		 * \param count The number of children that will be created.
-		 * \return True if all children are successfull created.
+		 * \return True if all children are successful created.
 		 */
 		bool addChildren(int position, int count);
 
@@ -108,7 +108,7 @@ class Label
 		 * Deletes the specified number of children at the specified position.
 		 * \param position The index of the first child that will be removed. The position must be greater or equal to 0 and less or equal to childCount() - count.
 		 * \param count The number of children that will be removed.
-		 * \return True if all children are successfull removed.
+		 * \return True if all children are successful removed.
 		 */
 		bool removeChildren(int position, int count);
 

@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -28,7 +28,7 @@
 /*!\class SiStatusBar
  * \brief The statusbar for the MainWindow.
  *
- * This SiStatusBar is used in the MainWindow to show some status informations.
+ * This SiStatusBar is used in the MainWindow to show some status information.
  *
  * \author Manuel Unglaub
  */

@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -89,8 +89,8 @@ void CmdMain::filterNodes()
 		filter->enableFulltext(true);
 	if (args->isSet("created"))
 	{
-		QDate from = strToDate(args->getOption("created").split(":").value(0));
-		QDate to = strToDate(args->getOption("created").split(":").value(1));
+		QDate from = strToDate(args->getOption("created").split(':').value(0));
+		QDate to = strToDate(args->getOption("created").split(':').value(1));
 		if (!from.isValid() || !to.isValid())
 		{
 			//TODO: think about that again..
@@ -101,8 +101,8 @@ void CmdMain::filterNodes()
 	}
 	if (args->isSet("modified"))
 	{
-		QDate from = strToDate(args->getOption("modified").split(":").value(0));
-		QDate to = strToDate(args->getOption("modified").split(":").value(1));
+		QDate from = strToDate(args->getOption("modified").split(':').value(0));
+		QDate to = strToDate(args->getOption("modified").split(':').value(1));
 		if (!from.isValid() || !to.isValid())
 		{
 			//TODO: think about that again..
@@ -112,9 +112,9 @@ void CmdMain::filterNodes()
 		filter->setModificationDateFilter(from, to);
 	}
 	if (args->isSet("label"))
-		filter->setLabelFilter(args->getOption("label").split(","));
+		filter->setLabelFilter(args->getOption("label").split(','));
 	if (args->isSet("banlabel"))
-		filter->setNoLabelFilter(args->getOption("banlabel").split(","));
+		filter->setNoLabelFilter(args->getOption("banlabel").split(','));
 	if (args->isSet("type"))
 		filter->setMimeTypFilter(args->getOption("type"));
 	filter->printNodes();
@@ -123,7 +123,7 @@ void CmdMain::filterNodes()
 
 QDate CmdMain::strToDate(QString str)
 {
-	QStringList strlist = str.split("-");
+	QStringList strlist = str.split('-');
 	int y = strlist.value(0).toInt();
 	int m = strlist.value(1).toInt();
 	int d = strlist.value(2).toInt();

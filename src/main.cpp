@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -18,11 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
 #include <kaboutdata.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
-//#include <QTranslator>
 #include "src/commandline/cmdlineoptions.h"
 #include "src/commandline/cmdmain.h"
 #include "src/data/aboutdata.h"
@@ -41,12 +39,6 @@ int main(int argc, char *argv[])
 	if (cmd->exec() >= 0)
 		exit(0);
 	delete cmd;
-
-//	QTranslator silenceTranslator;
-//	silenceTranslator.load("silence_" + QLocale::system().name());
-//	silenceTranslator.load("silence_de_DE");
-//	silence.installTranslator(&silenceTranslator);
-//	std::cout << QLocale::system().name().toStdString() << std::endl;
 
 	MainWindow *w = new MainWindow();
 	w->show();

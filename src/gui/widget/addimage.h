@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -64,7 +64,7 @@ class AddImage : public QGridLayout
 
 	signals:
 		/*!
-		 * This signal is emited after the user successfully selected an image and clicked the ok button.
+		 * This signal is emitted after the user successfully selected an image and clicked the ok button.
 		 *
 		 * \param html Containing the HTML image tag, possible with height and width.
 		 */

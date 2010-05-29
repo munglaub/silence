@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -28,9 +28,9 @@
 
 
 /*!\class InfoSidebar
- * \brief Sidebar to show informations about a node.
+ * \brief Sidebar to show information about a node.
  *
- * This sidebar shows informations about a node. It is allowed at the left and right dockingwidgetarea.
+ * This sidebar shows information about a node. It is allowed at the left and right dockingwidgetarea.
  *
  * It shows, the caption, an icon, the creation and modification date, the labels and all available metainformations of the node.
  *
@@ -61,12 +61,12 @@ class InfoSidebar : public QDockWidget
 
 		/*!
 		 * Provide this InfoSidebar with a node to show information about.
-		 * \param data The node wich informations will be displayed.
+		 * \param data The node which information will be displayed.
 		 */
 		void setData(Node *data);
 
 		/*!
-		 * Clear out the informations shown at this InfoSidebar.
+		 * Clear out the information shown at this InfoSidebar.
 		 */
 		void clearInfos();
 

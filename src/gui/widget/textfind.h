@@ -1,7 +1,8 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub, Yves Adler
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
+ * Copyright (C) 2009, 2010 Yves Adler <yves.adler@googlemail.com>
  *
  * This file is part of Silence.
  *
@@ -33,7 +34,7 @@
 /*!\class TextFind
  * \brief A find and replace widget.
  *
- * The TextFind widget proviedes a GUI to search and replace text. The replace part is hiden per default and can be shown when needed. It provides the options choosen by the user and emittes signal when certain actions are triggered.
+ * The TextFind widget proviedes a GUI to search and replace text. The replace part is hiden per default and can be shown when needed. It provides the options chosen by the user and emittes signal when certain actions are triggered.
  *
  * This widget has no search or replace capabilities. It just provides a GUI.
  *

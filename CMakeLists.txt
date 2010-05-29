@@ -136,7 +136,7 @@ target_link_libraries ( silence
 
 install(TARGETS silence  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install(FILES Silence.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
-install(FILES src/silenceui.rc  DESTINATION ${DATA_INSTALL_DIR})
+install(FILES src/silenceui.rc  DESTINATION ${DATA_INSTALL_DIR}/silence)
 
 
 

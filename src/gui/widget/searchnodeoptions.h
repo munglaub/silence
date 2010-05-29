@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -63,63 +63,63 @@ class SearchNodeOptions : public QFrame
 
 	signals:
 		/*!
-		 * This signal is emited after the fulltext option changed.
+		 * This signal is emitted after the fulltext option changed.
 		 *
 		 * \param enabled If true the fulltext option is enabled.
 		 */
 		void enabledFulltext(bool enabled);
 
 		/*!
-		 * This signal is emited after the mimetype option is de-/activated.
+		 * This signal is emitted after the mimetype option is de-/activated.
 		 *
 		 * \param enabled If true the mimetype option is activated.
 		 */
 		void enabledMimetype(bool enabled);
 
 		/*!
-		 * This signal is emited after the creation date option is de-/activated.
+		 * This signal is emitted after the creation date option is de-/activated.
 		 *
 		 * \param enabled If true the creation date option is activated.
 		 */
 		void enabledCreationDate(bool enabled);
 
 		/*!
-		 * This signal is emited after the modification date option is de-/activated.
+		 * This signal is emitted after the modification date option is de-/activated.
 		 *
 		 * \param enabled If true the modification date option is activated.
 		 */
 		void enabledModificationDate(bool enabled);
 
 		/*!
-		 * This signal is emited after a mimetype is selected.
+		 * This signal is emitted after a mimetype is selected.
 		 *
 		 * \param mimetype The selected mimetype.
 		 */
 		void mimetypeSelected(QString mimetype);
 
 		/*!
-		 * This signal is emited after the starting date of the creation date range is changed.
+		 * This signal is emitted after the starting date of the creation date range is changed.
 		 *
 		 * \param date The new starting date of the creation date range.
 		 */
 		void changedCreatedFrom(QDate date);
 
 		/*!
-		 * This signal is emited after the ending date of the creation date range is changed.
+		 * This signal is emitted after the ending date of the creation date range is changed.
 		 *
 		 * \param date The new ending date of the creation date range.
 		 */
 		void changedCreatedTo(QDate date);
 
 		/*!
-		 * This signal is emited after the starting date of the modification date range is changed.
+		 * This signal is emitted after the starting date of the modification date range is changed.
 		 *
 		 * \param date The new starting date of the modification date range.
 		 */
 		void changedModifiedFrom(QDate date);
 
 		/*!
-		 * This signal is emited after the ending date of the modification date range is changed.
+		 * This signal is emitted after the ending date of the modification date range is changed.
 		 *
 		 * \param date The new ending date of the modification date range.
 		 */

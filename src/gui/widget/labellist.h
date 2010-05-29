@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -61,42 +61,42 @@ class LabelList : public QFrame
 
 	signals:
 		/*!
-		 * This signal is emited after a label is added.
+		 * This signal is emitted after a label is added.
 		 *
 		 * \param label The added label.
 		 */
 		void addedLabel(QString label);
 
 		/*!
-		 * This signal is emited after a label is removed.
+		 * This signal is emitted after a label is removed.
 		 *
 		 * \param label The removed label.
 		 */
 		void removedLabel(QString label);
 
 		/*!
-		 * This signal is emited after a banned label is added.
+		 * This signal is emitted after a banned label is added.
 		 *
 		 * \param label. The added banned label.
 		 */
 		void addedBannedLabel(QString label);
 
 		/*!
-		 * This signal is emited after a banned label is removed.
+		 * This signal is emitted after a banned label is removed.
 		 *
 		 * \param label The removed banned label.
 		 */
 		void removedBannedLabel(QString label);
 
 		/*!
-		 * This signal is emited after all labels are removed.
+		 * This signal is emitted after all labels are removed.
 		 *
 		 * \sa clearBannedLabels()
 		 */
 		void clearLabels();
 
 		/*!
-		 * This signal is emited after all banned labels are removed.
+		 * This signal is emitted after all banned labels are removed.
 		 *
 		 * \sa clearLabels()
 		 */

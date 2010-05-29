@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -27,9 +27,9 @@
 
 
 /*!\class WelcomeView
- * \brief A widget which contains some informations about Silence.
+ * \brief A widget which contains some information about Silence.
  *
- * The WelcomeView contains some informations about Silence and should be shown if no node is selected.
+ * The WelcomeView contains some information about Silence and should be shown if no node is selected.
  * It also shows a list of the recently modified nodes.
  *
  * \author Manuel Unglaub

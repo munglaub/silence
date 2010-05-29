@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -114,7 +114,7 @@ class LabelModel : public QAbstractItemModel
 		 * \param position The position in the list of children of the parent.
 		 * \param rows The number of rows to insert.
 		 * \param parent The parent to insert the rows.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 */
 		bool insertRows(int position, int rows, const QModelIndex &parent = QModelIndex());
 
@@ -124,7 +124,7 @@ class LabelModel : public QAbstractItemModel
 		 * \param index The index of the Label.
 		 * \param value The name of the Label.
 		 * \param role The role the data is for. Only Qt:EditRole will have any effect.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 * \sa data()
 		 */
 		bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -135,7 +135,7 @@ class LabelModel : public QAbstractItemModel
 		 * \param position The position in th list of children of the parent.
 		 * \param rows The number of rows to remove.
 		 * \param parent The parent to remove the rows from.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 * \sa insertRows()
 		 */
 		bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());

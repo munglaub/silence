@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -119,7 +119,7 @@ QString RichTextNodeContent::toString()
 	while (itr.hasNext())
 	{
 		itr.next();
-		result.append("\t" + itr.key() + " :  " + itr.value() + "\n");
+		result.append('\t' + itr.key() + " :  " + itr.value() + '\n');
 	}
 
 	result.append("Text:\n");

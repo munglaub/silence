@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -30,7 +30,7 @@
 /*!\class TreeModel
  * \brief A tree model for the nodes.
  *
- * This model is a implementation of the QAbstractItemModel. For more informations take a look at the QT documentation.
+ * This model is a implementation of the QAbstractItemModel. For more information take a look at the QT documentation.
  *
  * The model is used by the TreeView.
  *
@@ -63,7 +63,7 @@ class TreeModel : public QAbstractItemModel
 		 * \param index The index of the Node.
 		 * \param value The caption for the Node.
 		 * \param role The role the data is for. Only Qt::EditRole will have any effect.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 * \sa data()
 		 */
 		bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -128,7 +128,7 @@ class TreeModel : public QAbstractItemModel
 		 * \param position The position in the list of children of the parent.
 		 * \param rows The number of rows to insert.
 		 * \param parent The parent to insert the rows.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 * \sa removeRows()
 		 */
 		bool insertRows(int position, int rows, const QModelIndex &parent = QModelIndex());
@@ -139,7 +139,7 @@ class TreeModel : public QAbstractItemModel
 		 * \param position The position in th list of children of the parent.
 		 * \param rows The number of rows to remove.
 		 * \param parent The parent to remove the rows from.
-		 * \return True if successfull.
+		 * \return True if successful.
 		 * \sa insertRows()
 		 */
 		bool removeRows(int position, int rows, const QModelIndex &parent = QModelIndex());
@@ -167,7 +167,7 @@ class TreeModel : public QAbstractItemModel
 		 * \param row The row where the drag and drop operation ended.
 		 * \param column The column where the drag and drop operation ended.
 		 * \param parent The parent where the drag and drop operation ended.
-		 * \return True if the dropping was successfull.
+		 * \return True if the dropping was successful.
 		 */
 		bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
 
@@ -195,7 +195,7 @@ class TreeModel : public QAbstractItemModel
 
 	signals:
 		/*!
-		 * This signal will be emitted after a successfull drop operation.
+		 * This signal will be emitted after a successful drop operation.
 		 *
 		 * \param index The index of the dropped node.
 		 */

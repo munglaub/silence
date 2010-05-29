@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2010 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -42,7 +42,7 @@ class NavigationSidebar : public QDockWidget
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the NavigationSidebar wich is a child of parent and has the provided window flags. The NavigationSidebar will be placed in the right dock widget area.
+		 * Constructs the NavigationSidebar which is a child of parent and has the provided window flags. The NavigationSidebar will be placed in the right dock widget area.
 		 *
 		 * The window title is set to title. This title is used when the NavigationSidebar is docked and undocked. It is also used in the context menu provided by MainWindow.
 		 * The parameters will be passed to the QDockWidget constructro.

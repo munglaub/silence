@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -39,7 +39,7 @@ class AbstractDataStore : public QObject
 
 	public:
 		/*!
-		 * Get the node whose childs are the first level of nodes.
+		 * Get the node whose children are the first level of nodes.
 		 * \return The root of the nodes.
 		 */
 		virtual Node* getRootNode() = 0;
@@ -71,7 +71,7 @@ class AbstractDataStore : public QObject
 
 		/*!
 		 * Add a label to the persistence layer.
-		 * \param label The label wich will be added to the persistence layer.
+		 * \param label The label which will be added to the persistence layer.
 		 */
 		virtual void addLabel(Label *label) = 0;
 

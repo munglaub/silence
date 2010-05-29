@@ -1,7 +1,7 @@
 /*
  * Silence
  *
- * Copyright (C) 2009 Manuel Unglaub
+ * Copyright (C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
  *
  * This file is part of Silence.
  *
@@ -19,7 +19,7 @@
  */
 
 #include <klocalizedstring.h>
-#include <QtGui>
+#include <QMimeData>
 #include "src/controller.h"
 #include "src/data/model/treemodel.h"
 #include "src/data/node/node.h"
