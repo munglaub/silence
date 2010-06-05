@@ -109,21 +109,21 @@ QString NewLinkDialog::getLinkText()
 	return ledLinkText->text();
 }
 
-QUrl NewLinkDialog::getUrl()
+KUrl NewLinkDialog::getUrl()
 {
-	QUrl url;
+	KUrl url;
 	if (rbtnNode->isChecked())
 	{
 		int id = model->getItem(tree->selectionModel()->currentIndex())->getId().getId();
-		url = QUrl("silence://0.0.0.0/" + QString::number(id));
+		url = KUrl("silence://0.0.0.0/" + QString::number(id));
 	}
 	else if (rbtnWebUrl->isChecked())
 	{
-		url = QUrl(ledWebUrl->text());
+		url = KUrl(ledWebUrl->text());
 	}
 	else if (rbtnFile->isChecked())
 	{
-		url = QUrl(ledFile->text());
+		url = KUrl(ledFile->text());
 	}
 
 	return url;

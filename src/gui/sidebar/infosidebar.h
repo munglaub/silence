@@ -51,7 +51,7 @@ class InfoSidebar : public QDockWidget
 		 * \param parent The parent of this InfoSidebar.
 		 * \param flags The window flags of this InfoSidebar.
 		 */
-		InfoSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		explicit InfoSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor
 		 *

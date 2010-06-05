@@ -21,17 +21,17 @@
 #ifndef NODEPROPERTYWIDGET_H
 #define NODEPROPERTYWIDGET_H
 
-#include "src/data/node/node.h"
-#include "src/gui/widget/labelwidget.h"
-#include "src/gui/widget/syntaxbox.h"
+#include <klineedit.h>
+#include <ktabwidget.h>
 #include <QDockWidget>
 #include <QFormLayout>
 #include <QFrame>
 #include <QLabel>
-#include <klineedit.h>
 #include <QPushButton>
-#include <QTabWidget>
 #include <QVBoxLayout>
+#include "src/data/node/node.h"
+#include "src/gui/widget/labelwidget.h"
+#include "src/gui/widget/syntaxbox.h"
 
 
 /*!\class NodePropertyWidget
@@ -58,7 +58,7 @@ class NodePropertyWidget : public QDockWidget
 		 * \param parent The parent of this NodePropertyWidget.
 		 * \param flags The window flags of this NodePropertyWidget.
 		 */
-		NodePropertyWidget(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		explicit NodePropertyWidget(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor.
 		 *
@@ -85,7 +85,7 @@ class NodePropertyWidget : public QDockWidget
 		Node *node;
 		QVBoxLayout *layout;
 		QFrame *frame;
-		QTabWidget *tabwidget;
+		KTabWidget *tabwidget;
 
 		// nodeinfotab
 		QFormLayout *infolayout;

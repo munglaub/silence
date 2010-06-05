@@ -22,9 +22,9 @@
 #define RICHTEXTEDIT_H
 
 #include <kactioncollection.h>
+#include <kcombobox.h>
 #include <KIcon>
 #include <QAction>
-#include <QComboBox>
 #include <QFontComboBox>
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -163,7 +163,7 @@ class RichTextEdit : public AbstractContentView
 		QList<KAction*> actions;
 
 		QFontComboBox *comboFont;
-		QComboBox *comboSize;
+		KComboBox *comboSize;
 
 		KAction* addAction(KActionCollection *actionCollection, QString name, QString text, QIcon icon);
 		void setupActions(KActionCollection *actionCollection);

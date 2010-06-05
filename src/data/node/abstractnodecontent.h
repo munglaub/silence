@@ -45,8 +45,8 @@ class AbstractNodeContent : public QObject
 		virtual AbstractContentView* getWidget() = 0;
 
 		/*!
-		 * Get the meta infos of this content. The meta infos are key value pairs.
-		 * \return The meta infos of this content.
+		 * Get the metainfos of this content. The metainfos are key value pairs.
+		 * \return The metainfos of this content.
 		 */
 		virtual QHash<QString, QString>* getMetaInfos() = 0;
 
@@ -71,7 +71,7 @@ class AbstractNodeContent : public QObject
 		virtual bool contains(const QString& value) = 0;
 
 		/*!
-		 * Creates a QDomElemet which contains the data of this content. Only the main part of the data, not the meta infos.
+		 * Creates a QDomElemet which contains the data of this content. Only the main part of the data, not the metainfos.
 		 * \param doc The QDomDocument to create the xml elements.
 		 * \return The QDomElement which contains the data of this content.
 		 * \sa setXmlData()

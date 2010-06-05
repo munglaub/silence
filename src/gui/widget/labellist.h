@@ -50,7 +50,7 @@ class LabelList : public QFrame
 		 * \param parent The parent of this LabelList.
 		 * \param f The window flags of this LabelList.
 		 */
-		LabelList(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit LabelList(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
 		/*!
 		 * The destructor.

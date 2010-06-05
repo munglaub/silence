@@ -21,8 +21,8 @@
 #ifndef SEARCHNODEOPTIONS_H
 #define SEARCHNODEOPTIONS_H
 
+#include <kcombobox.h>
 #include <QCheckBox>
-#include <QComboBox>
 #include <QDateEdit>
 #include <QFrame>
 #include <QGridLayout>
@@ -52,7 +52,7 @@ class SearchNodeOptions : public QFrame
 		 * \param parent The parent of this SearchNodeOptions.
 		 * \param f The window flags of this SearchNodeOptions.
 		 */
-		SearchNodeOptions(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit SearchNodeOptions(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
 		/*!
 		 * The destructor.
@@ -156,7 +156,7 @@ class SearchNodeOptions : public QFrame
 					*toCreated,
 					*fromModified,
 					*toModified;
-		QComboBox *mimeCombo;
+		KComboBox *mimeCombo;
 		QLabel	*clbland,
 				*mlbland;
 

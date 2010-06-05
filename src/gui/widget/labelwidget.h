@@ -47,7 +47,7 @@ class LabelWidget : public QWidget
 		 * \param parent The parent of this LabelWidget.
 		 * \param showManageLabelsBtn Indicates if the button to manage the labels is visible.
 		 */
-		LabelWidget(QWidget *parent = 0, bool showManageLabelsBtn = true);
+		explicit LabelWidget(QWidget *parent = 0, bool showManageLabelsBtn = true);
 
 		/*! The destructor.
 		 *

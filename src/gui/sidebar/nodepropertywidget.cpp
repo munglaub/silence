@@ -31,7 +31,7 @@ NodePropertyWidget::NodePropertyWidget(const QString &title, QWidget *parent, Qt
 	node = 0;
 	layout = new QVBoxLayout;
 
-	tabwidget = new QTabWidget(this);
+	tabwidget = new KTabWidget(this);
 	layout->addWidget(tabwidget);
 	tabwidget->addTab(createNodeInfoTab(), i18n("Nodeinfos"));
 	tabwidget->addTab(createLabelTab(), i18n("Labels"));

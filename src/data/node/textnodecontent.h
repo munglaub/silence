@@ -27,7 +27,7 @@
 /*!\class TextNodeContent
  * \brief A text content with syntax information for the Node.
  *
- * This content contains plain text with meta infos and a syntax information which is part of the meta infos.
+ * This content contains plain text with metainfos and a syntax information which is part of the metainfos.
  *
  * \author Manuel Unglaub
  */

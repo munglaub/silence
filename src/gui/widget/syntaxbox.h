@@ -21,7 +21,7 @@
 #ifndef SYNTAXBOX_H
 #define SYNTAXBOX_H
 
-#include <QComboBox>
+#include <kcombobox.h>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QWidget>
@@ -43,7 +43,7 @@ class SyntaxBox : public QWidget
 		 * \param showLabel Indicates if the describing label will be shown.
 		 * \param parent The parent of this SyntaxBox.
 		 */
-		SyntaxBox(bool showLabel = true, QWidget *parent = 0);
+		explicit SyntaxBox(bool showLabel = true, QWidget *parent = 0);
 
 		/*! The destructro.
 		 *
@@ -66,7 +66,7 @@ class SyntaxBox : public QWidget
 	private:
 		QHBoxLayout *layout;
 		QLabel *lblSyntax;
-		QComboBox *synbox;
+		KComboBox *synbox;
 };
 
 #endif // SYNTAXBOX_H

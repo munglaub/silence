@@ -18,11 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <kcolordialog.h>
 #include <kfiledialog.h>
 #include <klocalizedstring.h>
 #include <QApplication>
 #include <QClipboard>
-#include <QColorDialog>
 #include <QFontDatabase>
 #include <QTextCursor>
 #include <QTextDocumentFragment>
@@ -284,7 +284,7 @@ void RichTextEdit::setupFontActions(KActionCollection *actionCollection)
 	fontToolbar->addWidget(comboFont);
 	connect(comboFont, SIGNAL(activated(const QString &)), this, SLOT(textFamily(const QString &)));
 
-	comboSize = new QComboBox(fontToolbar);
+	comboSize = new KComboBox(fontToolbar);
 	comboSize->setObjectName("comboSize");
 	fontToolbar->addWidget(comboSize);
 	comboSize->setEditable(true);
@@ -389,7 +389,8 @@ void RichTextEdit::cursorPositionChanged()
 
 void RichTextEdit::textColor()
 {
-	QColor col = QColorDialog::getColor(textedit->textColor(), this);
+	QColor col = textedit->textColor();
+	KColorDialog::getColor(col, this);
 	if (!col.isValid())
 		return;
 	QTextCharFormat fmt;
@@ -399,7 +400,8 @@ void RichTextEdit::textColor()
 
 void RichTextEdit::textBgColor()
 {
-	QColor col = QColorDialog::getColor(textedit->textColor(), this);
+	QColor col = textedit->textBackgroundColor();
+	KColorDialog::getColor(col, this);
 	if (!col.isValid())
 		return;
 	QTextCharFormat fmt;

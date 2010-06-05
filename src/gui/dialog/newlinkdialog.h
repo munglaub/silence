@@ -80,7 +80,7 @@ class NewLinkDialog : public QDialog
 		 *
 		 * \return The url of the link.
 		 */
-		QUrl getUrl();
+		KUrl getUrl();
 
 	private slots:
 		void selectFile();

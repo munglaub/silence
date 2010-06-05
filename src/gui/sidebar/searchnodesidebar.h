@@ -57,7 +57,7 @@ class SearchNodeSidebar : public QDockWidget
 		 * \param parent The parent of this SearchNodeSidebar.
 		 * \param flags The window flags of this SearchNodeSidebar.
 		 */
-		SearchNodeSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		explicit SearchNodeSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor.
 		 *

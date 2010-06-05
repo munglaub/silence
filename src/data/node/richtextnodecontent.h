@@ -27,7 +27,7 @@
 /*!\class RichTextNodeContent
  * \brief A content with formatted text for the Node.
  *
- * This content contains formatted text with meta infos.
+ * This content contains formatted text with metainfos.
  *
  * \author Manuel Unglaub
  */

@@ -21,9 +21,9 @@
 #ifndef RTFEDIT_H
 #define RTFEDIT_H
 
-#include <QTextEdit>
-#include <QList>
 #include <QAction>
+#include <QList>
+#include <QTextEdit>
 
 
 /*!\class RtfEdit

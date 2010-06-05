@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
 	navigationsidebar = new NavigationSidebar(i18n("Navigation"), this);
 	controller->setNavigationSidebar(navigationsidebar);
 
-	// information sidebar to show the meta-infos
+	// information sidebar to show the metainfos
 	infosidebar = new InfoSidebar(i18n("Info"), this);
 	controller->setInfoSidebar(infosidebar);
 

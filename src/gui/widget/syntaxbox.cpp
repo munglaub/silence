@@ -32,7 +32,7 @@ SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 	lblSyntax->setVisible(showLabel);
 	layout->addWidget(lblSyntax);
 
-	synbox = new QComboBox;
+	synbox = new KComboBox;
 	synbox->addItem(i18n("None"));
 
 	synbox->addItem("Bash");

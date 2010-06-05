@@ -21,16 +21,17 @@
 #ifndef NEWNODEDIALOG_H
 #define NEWNODEDIALOG_H
 
-#include "src/data/node/abstractnodecontent.h"
-#include "src/gui/widget/labelwidget.h"
-#include "src/gui/widget/syntaxbox.h"
+#include <kcombobox.h>
+#include <klineedit.h>
 #include <QDialog>
 #include <QFormLayout>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
-#include <klineedit.h>
 #include <QListWidget>
+#include "src/data/node/abstractnodecontent.h"
+#include "src/gui/widget/labelwidget.h"
+#include "src/gui/widget/syntaxbox.h"
 
 
 /*!\class NewNodeDialog
@@ -88,7 +89,7 @@ class NewNodeDialog : public QDialog
 
 		QGridLayout *typelayout;
 		QLabel *lbltype;
-		QComboBox *typebox;
+		KComboBox *typebox;
 		SyntaxBox *syntaxbox;
 
 		LabelWidget *labelwidget;

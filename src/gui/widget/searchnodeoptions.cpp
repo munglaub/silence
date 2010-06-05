@@ -83,7 +83,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	cbMime = new QCheckBox(i18n("mime type"));
 	connect(cbMime, SIGNAL(clicked(bool)), this, SLOT(enableMimetype(bool)));
 	optboxlayout->addWidget(cbMime, 1, 0, 1, 2);
-	mimeCombo = new QComboBox;
+	mimeCombo = new KComboBox;
 	mimeCombo->addItem("text/plain");
 	mimeCombo->addItem("text/richtext");
 	mimeCombo->setEnabled(false);

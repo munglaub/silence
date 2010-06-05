@@ -50,7 +50,7 @@ class NavigationSidebar : public QDockWidget
 		 * \param parent The parent of this NavigationSidebar.
 		 * \param flags The window flags of this NavigationSidebar.
 		 */
-		NavigationSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		explicit NavigationSidebar(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor.
 		 *

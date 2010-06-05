@@ -45,7 +45,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	typelayout = new QGridLayout;
 	lbltype = new QLabel(i18n("Type"));
 	typelayout->addWidget(lbltype, 0, 0);
-	typebox = new QComboBox;
+	typebox = new KComboBox;
 	typebox->addItem(i18n("RichText"));
 	typebox->addItem(i18n("Text"));
 	connect(typebox, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
