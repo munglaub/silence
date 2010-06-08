@@ -50,7 +50,7 @@ void SiStatusBar::setSaveStatus(bool saved)
 	if (saved)
 		saveStatus->setText(i18n("saved"));
 	else
-		saveStatus->setText(i18n("changed"));
+		saveStatus->setText(i18nc("indicate that the node has been modified", "changed"));
 }
 
 void SiStatusBar::setCursorPosition(int line, int col)

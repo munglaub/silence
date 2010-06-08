@@ -91,7 +91,7 @@ Qt::DropActions TreeModel::supportedDropActions() const
 QVariant TreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return QVariant(i18n("Title"));
+		return QVariant(i18nc("caption of the first nodetree column", "Title"));
 
 	return QVariant();
 }

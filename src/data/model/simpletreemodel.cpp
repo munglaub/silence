@@ -55,7 +55,7 @@ Qt::ItemFlags SimpleTreeModel::flags(const QModelIndex &index) const
 QVariant SimpleTreeModel::headerData(int, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		return QVariant(i18n("Title"));
+		return QVariant(i18nc("caption of the fist labletree column", "Title"));
 
 	return QVariant();
 }

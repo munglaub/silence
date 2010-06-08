@@ -43,28 +43,28 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
 	++row;
 
-	id = new QLabel(i18n("ID:"));
+	id = new QLabel(i18n("ID") + ':');
 	id->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(id, row, 0);
 	idValue = new QLabel("-");
 	layout->addWidget(idValue, row, 1);
 	++row;
 
-	created = new QLabel(i18n("Created:"));
+	created = new QLabel(i18nc("time the node was created", "Created") + ':');
 	created->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(created, row, 0);
 	createdDate = new QLabel("-");
 	layout->addWidget(createdDate, row, 1);
 	++row;
 
-	lastedit = new QLabel(i18n("Last edit:"));
+	lastedit = new QLabel(i18n("Last edit") + ':');
 	lastedit->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(lastedit, row, 0);
 	lasteditDate = new QLabel("-");
 	layout->addWidget(lasteditDate, row, 1);
 	++row;
 
-	type = new QLabel(i18n("Type:"));
+	type = new QLabel(i18n("Type") + ':');
 	type->setFont(QFont("Times", 10, QFont::Bold));
 	type->setHidden(true);
 	layout->addWidget(type, row, 0);
@@ -73,7 +73,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(typeName, row, 1);
 	++row;
 
-	labels = new QLabel(i18n("Labels:"));
+	labels = new QLabel(i18n("Labels") + ':');
 	labels->setFont(QFont("Times", 10, QFont::Bold));
 	layout->addWidget(labels, row, 0);
 	labelsData = new QLabel("-");

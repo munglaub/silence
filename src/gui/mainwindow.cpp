@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->setSearchNodeSidebar(searchnodesidebar);
 
 	// navigation sidebar
-	navigationsidebar = new NavigationSidebar(i18n("Navigation"), this);
+	navigationsidebar = new NavigationSidebar(i18nc("title of the navigation sidebar", "Navigation"), this);
 	controller->setNavigationSidebar(navigationsidebar);
 
 	// information sidebar to show the metainfos

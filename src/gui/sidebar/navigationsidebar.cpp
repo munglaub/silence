@@ -32,9 +32,9 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 	skip = false;
 
 	toolbar = new QToolBar;
-	prevAction = toolbar->addAction(KIcon("go-previous"), i18n("Back"));
+	prevAction = toolbar->addAction(KIcon("go-previous"), i18nc("go to the previous selected node", "Back"));
 	connect(prevAction, SIGNAL(triggered()), this, SLOT(previous()));
-	nextAction = toolbar->addAction(KIcon("go-next"), i18n("Forward"));
+	nextAction = toolbar->addAction(KIcon("go-next"), i18nc("go to the next node", "Forward"));
 	connect(nextAction, SIGNAL(triggered()), this, SLOT(next()));
 
 	toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

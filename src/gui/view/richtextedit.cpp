@@ -156,7 +156,7 @@ void RichTextEdit::setupActions(KActionCollection *actionCollection)
 
 	toolbar->addSeparator();
 
-	actionTextBold = addAction(actionCollection, "rtf_bold", i18n("Bold"), KIcon("format-text-bold"));
+	actionTextBold = addAction(actionCollection, "rtf_bold", i18nc("toggle selected text to bold", "Bold"), KIcon("format-text-bold"));
 	toolbar->addAction(actionTextBold);
 	actions.append(actionTextBold);
 	actionTextBold->setShortcut(Qt::CTRL + Qt::Key_B);
@@ -166,7 +166,7 @@ void RichTextEdit::setupActions(KActionCollection *actionCollection)
 	connect(actionTextBold, SIGNAL(triggered()), this, SLOT(textBold()));
 	actionTextBold->setCheckable(true);
 
-	actionTextItalic = addAction(actionCollection, "rtf_italic", i18n("Italic"), KIcon("format-text-italic"));
+	actionTextItalic = addAction(actionCollection, "rtf_italic", i18nc("toggle selected text to italic", "Italic"), KIcon("format-text-italic"));
 	toolbar->addAction(actionTextItalic);
 	actions.append(actionTextItalic);
 	actionTextItalic->setShortcut(Qt::CTRL + Qt::Key_I);
@@ -176,7 +176,7 @@ void RichTextEdit::setupActions(KActionCollection *actionCollection)
 	connect(actionTextItalic, SIGNAL(triggered()), this, SLOT(textItalic()));
 	actionTextItalic->setCheckable(true);
 
-	actionTextUnderline = addAction(actionCollection, "rtf_underline", i18n("Underline"), KIcon("format-text-underline"));
+	actionTextUnderline = addAction(actionCollection, "rtf_underline", i18nc("underline selected text", "Underline"), KIcon("format-text-underline"));
 	toolbar->addAction(actionTextUnderline);
 	actions.append(actionTextUnderline);
 	actionTextUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
@@ -191,17 +191,17 @@ void RichTextEdit::setupActions(KActionCollection *actionCollection)
 	QActionGroup *grp = new QActionGroup(this);
 	connect(grp, SIGNAL(triggered(QAction *)), this, SLOT(textAlign(QAction *)));
 
-	actionAlignLeft = addAction(actionCollection, "rtf_alignleft", i18n("Left"), KIcon("format-justify-left"));
+	actionAlignLeft = addAction(actionCollection, "rtf_alignleft", i18nc("justify text left", "Left"), KIcon("format-justify-left"));
 	grp->addAction(actionAlignLeft);
 	actions.append(actionAlignLeft);
 	actionAlignLeft->setCheckable(true);
 
-	actionAlignCenter = addAction(actionCollection, "rtf_aligncenter", i18n("Center"), KIcon("format-justify-center"));
+	actionAlignCenter = addAction(actionCollection, "rtf_aligncenter", i18nc("justify text centered", "Center"), KIcon("format-justify-center"));
 	grp->addAction(actionAlignCenter);
 	actions.append(actionAlignCenter);
 	actionAlignCenter->setCheckable(true);
 
-	actionAlignRight = addAction(actionCollection, "rtf_alignright", i18n("Right"), KIcon("format-justify-right"));
+	actionAlignRight = addAction(actionCollection, "rtf_alignright", i18nc("justify text right", "Right"), KIcon("format-justify-right"));
 	grp->addAction(actionAlignRight);
 	actions.append(actionAlignRight);
 	actionAlignRight->setCheckable(true);

@@ -1,15 +1,16 @@
-# translation of de.po to Deutsch.
+# translation of de.po to czech.
 # Copyright (C) 2010 Manuel Unglaub <m.unglaub@gmail.com>
+# Copyright (C) 2010 Pavel Fric <pavelfric@seznam.cz>
 # This file is distributed under the same license as the Silence package.
-# Manuel Unglaub <m.unglaub@gmail.com>, 2010.
+# Manuel Unglaub <m.unglaub@gmail.com>, 2010
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: silence\n"
+"Project-Id-Version: Silence\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-08 14:43+0200\n"
-"PO-Revision-Date: 2010-05-20 22:29+0100\n"
-"Last-Translator: Manuel Unglaub <m.unglaub@gmail.com>\n"
+"PO-Revision-Date: 2010-06-08 14:43+0200\\n"
+"Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +25,7 @@ msgstr ""
 #. i18n: ectx: Menu (silence)
 #. i18n: file: src/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
-#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:32
+#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:32 rc.cpp:3 rc.cpp:21
 msgid "Silence"
 msgstr "Silence"
 
@@ -36,9 +37,9 @@ msgstr "Silence"
 #. i18n: ectx: Menu (node)
 #. i18n: file: src/silenceui.rc:16
 #. i18n: ectx: Menu (node)
-#: rc.cpp:6 rc.cpp:24 src/gui/dialog/newlinkdialog.cpp:42
+#: rc.cpp:6 rc.cpp:24 src/gui/dialog/newlinkdialog.cpp:42 rc.cpp:6 rc.cpp:24
 msgid "Node"
-msgstr "Artikel"
+msgstr "Uzel"
 
 #. i18n: file: inst/share/apps/silence/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
@@ -48,9 +49,9 @@ msgstr "Artikel"
 #. i18n: ectx: Menu (siedit)
 #. i18n: file: src/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
-#: rc.cpp:9 rc.cpp:27
+#: rc.cpp:9 rc.cpp:27 rc.cpp:9 rc.cpp:27
 msgid "Edit"
-msgstr "B&earbeiten"
+msgstr "Úpravy"
 
 #. i18n: file: inst/share/apps/silence/silenceui.rc:56
 #. i18n: ectx: Menu (table)
@@ -60,9 +61,9 @@ msgstr "B&earbeiten"
 #. i18n: ectx: Menu (table)
 #. i18n: file: src/silenceui.rc:56
 #. i18n: ectx: Menu (table)
-#: rc.cpp:12 rc.cpp:30
+#: rc.cpp:12 rc.cpp:30 rc.cpp:12 rc.cpp:30
 msgid "Table"
-msgstr "Tabelle"
+msgstr "Tabulka"
 
 #. i18n: file: inst/share/apps/silence/silenceui.rc:65
 #. i18n: ectx: Menu (format)
@@ -72,7 +73,7 @@ msgstr "Tabelle"
 #. i18n: ectx: Menu (format)
 #. i18n: file: src/silenceui.rc:65
 #. i18n: ectx: Menu (format)
-#: rc.cpp:15 rc.cpp:33
+#: rc.cpp:15 rc.cpp:33 rc.cpp:15 rc.cpp:33
 msgid "Format"
 msgstr ""
 
@@ -84,19 +85,19 @@ msgstr ""
 #. i18n: ectx: Menu (siview)
 #. i18n: file: src/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
-#: rc.cpp:18 rc.cpp:36
+#: rc.cpp:18 rc.cpp:36 rc.cpp:18 rc.cpp:36
 msgid "View"
-msgstr "Ansicht"
+msgstr "Pohled"
 
-#: rc.cpp:37
+#: rc.cpp:37 rc.cpp:37
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Manuel Unglaub"
+msgstr ""
 
-#: rc.cpp:38
+#: rc.cpp:38 rc.cpp:38
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "m.unglaub@gmail.com"
+msgstr ""
 
 #: src/commandline/cmdlineoptions.cpp:25
 msgid "show node with given id"
@@ -139,11 +140,11 @@ msgstr ""
 
 #: src/data/aboutdata.cpp:28
 msgid "An information management tool."
-msgstr "Ein Informations Mangagement Tool."
+msgstr "Nástroji na správu informací."
 
 #: src/data/aboutdata.cpp:30
 msgid "(c) 2009 - 2010, Silence developers"
-msgstr "(c) 2009 - 2010, Silence Entwickler"
+msgstr ""
 
 #: src/data/aboutdata.cpp:35
 msgid "Manuel Unglaub"
@@ -151,7 +152,7 @@ msgstr "Manuel Unglaub"
 
 #: src/data/aboutdata.cpp:35
 msgid "Maintainer"
-msgstr "Maintainer"
+msgstr ""
 
 #: src/data/aboutdata.cpp:36
 msgid "Yves Adler"
@@ -159,90 +160,90 @@ msgstr "Yves Adler"
 
 #: src/data/model/labelmodel.cpp:55 src/gui/widget/labelwidget.cpp:60
 msgid "Label"
-msgstr "Label"
+msgstr "Štítek"
 
 #: src/data/model/simpletreemodel.cpp:58
 msgctxt "caption of the fist labletree column"
 msgid "Title"
-msgstr "Titel"
+msgstr "Název"
 
 #: src/data/model/treemodel.cpp:94
 msgctxt "caption of the first nodetree column"
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:31
 msgid "Label Management"
-msgstr "Label bearbeiten"
+msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:79
 msgid "Add Label"
-msgstr "Label hinzufügen"
+msgstr "Přidat štítek"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:40
 msgid "Add Sublabel"
-msgstr "Neues Sublabel"
+msgstr "Přidat podštítek"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:42
 #: src/gui/sidebar/treeview.cpp:144
 msgid "Remove Node"
-msgstr "Artikel entfernen"
+msgstr "Odstranit uzel"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:68
 msgid "Close"
-msgstr "Schließen"
+msgstr "Zavřít"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:99
 msgid "Delete Label"
-msgstr "Label löschen"
+msgstr "Smazat štítek"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:105
 #: src/gui/sidebar/treeview.cpp:194
 msgid "Are you sure?"
-msgstr "Sind Sie sicher?"
+msgstr "Jste si jistý?"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:107
 msgid "Yes, delete Label"
-msgstr "Label löschen"
+msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:110
 #: src/gui/sidebar/treeview.cpp:200
 msgid "No, abort"
-msgstr "Nicht löschen"
+msgstr ""
 
 #: src/gui/dialog/labelmanagementdialog.cpp:145
 msgid "New Label"
-msgstr "Neues Label"
+msgstr "Nový štítek"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:152
 msgid "New Sublabel"
-msgstr "Neues Sublabel"
+msgstr "Nový poštítek"
 
 #: src/gui/dialog/newlinkdialog.cpp:29
 msgid "New Link"
-msgstr "Neuer Link"
+msgstr "Nový odkaz"
 
 #: src/gui/dialog/newlinkdialog.cpp:35
 msgid "Link Text"
-msgstr "Link Text"
+msgstr ""
 
 #: src/gui/dialog/newlinkdialog.cpp:52
 msgid "Website Url"
-msgstr "Webseite Url"
+msgstr "Adresa stránek"
 
 #: src/gui/dialog/newlinkdialog.cpp:61
 msgid "File"
-msgstr "Datei"
+msgstr "Soubor"
 
 #: src/gui/dialog/newlinkdialog.cpp:68
 msgid "Select File"
-msgstr "Datei Auswählen"
+msgstr "Vybrat soubor"
 
 #: src/gui/dialog/newlinkdialog.cpp:75 src/gui/dialog/newnodedialog.cpp:67
 #: src/gui/widget/addimage.cpp:55 src/gui/widget/addtable.cpp:44
 #: src/gui/widget/inputwidget.cpp:32 src/gui/widget/notificationbox.cpp:39
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Zrušit"
 
 #: src/gui/dialog/newlinkdialog.cpp:78 src/gui/dialog/newnodedialog.cpp:70
 #: src/gui/widget/addimage.cpp:58 src/gui/widget/addtable.cpp:48
@@ -252,16 +253,16 @@ msgstr "OK"
 
 #: src/gui/dialog/newnodedialog.cpp:32
 msgid "New Node"
-msgstr "Neuer Artikel"
+msgstr "Nový uzel"
 
 #: src/gui/dialog/newnodedialog.cpp:38
 msgid "Nodename"
-msgstr "Artikelname"
+msgstr "Název uzlu"
 
 #: src/gui/dialog/newnodedialog.cpp:41
 #: src/gui/sidebar/nodepropertywidget.cpp:69
 msgid "Node name:"
-msgstr "Artikelname"
+msgstr ""
 
 #: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:67
 msgid "Type"
@@ -269,64 +270,64 @@ msgstr "Typ"
 
 #: src/gui/dialog/newnodedialog.cpp:49
 msgid "RichText"
-msgstr "Text"
+msgstr ""
 
 #: src/gui/dialog/newnodedialog.cpp:50
 msgid "Text"
-msgstr "Quelltext"
+msgstr ""
 
 #: src/gui/mainwindow.cpp:41 src/gui/sidebar/treeview.cpp:150
 msgid "Properties"
-msgstr "Eigenschaften"
+msgstr "Vlastnosti"
 
 #: src/gui/mainwindow.cpp:46
 msgid "Nodes"
-msgstr "Baumansicht"
+msgstr "Uzly"
 
 #: src/gui/mainwindow.cpp:50
 msgid "Search Nodes"
-msgstr "Artikelsuche"
+msgstr "Hledat uzly"
 
 #: src/gui/mainwindow.cpp:54
 msgctxt "title of the navigation sidebar"
 msgid "Navigation"
-msgstr "Navigation"
+msgstr ""
 
 #: src/gui/mainwindow.cpp:58
 msgid "Info"
-msgstr "Info"
+msgstr "Informace"
 
 #: src/gui/mainwindow.cpp:80
 msgid "&Exit"
-msgstr "B&eenden"
+msgstr "Ukončit"
 
 #: src/gui/menu/viewmenu.cpp:32
 msgid "Welcome View"
-msgstr "Startbildschirm"
+msgstr "Úvodní obrazovka"
 
 #: src/gui/menu/viewmenu.cpp:36 src/gui/widget/labelwidget.cpp:35
 msgid "Manage Labels"
-msgstr "Label bearbeiten"
+msgstr "Spravovat štítky"
 
 #: src/gui/menu/viewmenu.cpp:40
 msgid "Node Sidebar"
-msgstr "Baumansicht"
+msgstr "Postranní panel se stromovým pohledem na uzly"
 
 #: src/gui/menu/viewmenu.cpp:49
 msgid "Information Sidebar"
-msgstr "Informationsleiste"
+msgstr "Postranní panel s informacemi"
 
 #: src/gui/menu/viewmenu.cpp:56
 msgid "Navigation Sidebar"
-msgstr "Navigationsleiste"
+msgstr ""
 
 #: src/gui/menu/viewmenu.cpp:63
 msgid "Node Properties Sidebar"
-msgstr "Eigenschaften"
+msgstr "Postranní panel s vlastnostmi uzlů"
 
 #: src/gui/menu/viewmenu.cpp:70
 msgid "Search Nodes Sidebar"
-msgstr "Artikelsuche"
+msgstr "Postranní panel s hledáním uzlů"
 
 #: src/gui/sidebar/infosidebar.cpp:46
 msgid "ID"
@@ -335,186 +336,186 @@ msgstr "ID"
 #: src/gui/sidebar/infosidebar.cpp:53
 msgctxt "time the node was created"
 msgid "Created"
-msgstr "Erstellt"
+msgstr "Vytvořeno"
 
 #: src/gui/sidebar/infosidebar.cpp:60
 msgid "Last edit"
-msgstr "Bearbeitet"
+msgstr "Naposledy upraveno"
 
 #: src/gui/sidebar/infosidebar.cpp:76
 #: src/gui/sidebar/nodepropertywidget.cpp:37 src/gui/widget/labellist.cpp:35
 msgid "Labels"
-msgstr "Label"
+msgstr "Štítky"
 
 #: src/gui/sidebar/navigationsidebar.cpp:35
 msgctxt "go to the previous selected node"
 msgid "Back"
-msgstr "Zurück"
+msgstr ""
 
 #: src/gui/sidebar/navigationsidebar.cpp:37
 msgctxt "go to the next node"
 msgid "Forward"
-msgstr "Weiter"
+msgstr ""
 
 #: src/gui/sidebar/nodepropertywidget.cpp:36
 msgid "Nodeinfos"
-msgstr "Artikel Infos"
+msgstr "Informace o uzlu"
 
 #: src/gui/sidebar/nodepropertywidget.cpp:72 src/gui/widget/syntaxbox.cpp:31
 msgid "Syntax:"
-msgstr "Syntax:"
+msgstr "Skladba"
 
 #: src/gui/sidebar/nodepropertywidget.cpp:75
 msgid "Creationdate:"
-msgstr "Erstellt:"
+msgstr "Datum vytvoření"
 
 #: src/gui/sidebar/nodepropertywidget.cpp:78
 msgid "Modificationdate:"
-msgstr "Bearbeitet:"
+msgstr "Datum posledních úprav"
 
 #: src/gui/sidebar/nodepropertywidget.cpp:80
 #: src/gui/sidebar/nodepropertywidget.cpp:95
 msgid "Apply"
-msgstr "Anwenden"
+msgstr "Použít"
 
 #: src/gui/sidebar/treeview.cpp:132
 msgid "Add Node"
-msgstr "Artikel hinzufügen"
+msgstr "Přidat uzel"
 
 #: src/gui/sidebar/treeview.cpp:138
 msgid "Add Subnode"
-msgstr "Unterartikel hinzufügen"
+msgstr "Přidat poduzel"
 
 #: src/gui/sidebar/treeview.cpp:186
 msgid "Delete Node"
-msgstr "Artikel löschen"
+msgstr "Smazat uzel"
 
 #: src/gui/sidebar/treeview.cpp:197
 msgid "Yes, delete Node"
-msgstr "Label löschen"
+msgstr ""
 
 #: src/gui/sistatusbar.cpp:51
 msgid "saved"
-msgstr "gespeichert"
+msgstr "Uloženo"
 
 #: src/gui/sistatusbar.cpp:53
 msgctxt "indicate that the node has been modified"
 msgid "changed"
-msgstr "verändert"
+msgstr "Změněno"
 
 #: src/gui/view/richtextedit.cpp:110
 msgid "Edit Actions"
-msgstr "Bearbeitungsaktionen"
+msgstr "Upravit činnosti"
 
 #: src/gui/view/richtextedit.cpp:159
 msgctxt "toggle selected text to bold"
 msgid "Bold"
-msgstr "Fett"
+msgstr "Tučné"
 
 #: src/gui/view/richtextedit.cpp:169
 msgctxt "toggle selected text to italic"
 msgid "Italic"
-msgstr "Kursiv"
+msgstr "Kurzíva"
 
 #: src/gui/view/richtextedit.cpp:179
 msgctxt "underline selected text"
 msgid "Underline"
-msgstr "Unterstrichen"
+msgstr "Podtržení"
 
 #: src/gui/view/richtextedit.cpp:194
 msgctxt "justify text left"
 msgid "Left"
-msgstr "Linksbündig"
+msgstr "Zarovnat vlevo"
 
 #: src/gui/view/richtextedit.cpp:199
 msgctxt "justify text centered"
 msgid "Center"
-msgstr "Zentriert"
+msgstr "Zarovnat na střed"
 
 #: src/gui/view/richtextedit.cpp:204
 msgctxt "justify text right"
 msgid "Right"
-msgstr "Rechtsbündig"
+msgstr "Zarovnat vpravo"
 
 #: src/gui/view/richtextedit.cpp:209
 msgid "Justify"
-msgstr "Blocktext"
+msgstr "Zarovnat do bloku"
 
 #: src/gui/view/richtextedit.cpp:217
 msgid "Create Unordered List"
-msgstr "Liste"
+msgstr "Vytvořit nečíslovaný seznam"
 
 #: src/gui/view/richtextedit.cpp:222
 msgid "Create Ordered List"
-msgstr "Nummerierte Liste"
+msgstr "Vytvořit číslovaný seznam"
 
 #: src/gui/view/richtextedit.cpp:227
 msgid "Indent more"
-msgstr "Einzug vergrößern"
+msgstr "Zvětšit odsazení"
 
 #: src/gui/view/richtextedit.cpp:232
 msgid "Indent less"
-msgstr "Einzug verringern"
+msgstr "Zmenšit odsazení"
 
 #: src/gui/view/richtextedit.cpp:239
 msgid "Insert Link"
-msgstr "Neuer Link"
+msgstr "Vložit odkaz"
 
 #: src/gui/view/richtextedit.cpp:244
 msgid "Insert Image"
-msgstr "Bild einfügen"
+msgstr "Vložit obrázek"
 
 #: src/gui/view/richtextedit.cpp:249
 msgid "Insert Table"
-msgstr "Zeile einfügen"
+msgstr "Vložit tabulka"
 
 #: src/gui/view/richtextedit.cpp:254
 msgid "Insert Horizontal Rule"
-msgstr "Wagerechte Linie einfügen"
+msgstr "Vložit vodorovné pravítko"
 
 #: src/gui/view/richtextedit.cpp:259
 msgid "&Find"
-msgstr "Suchen"
+msgstr "Hledat"
 
 #: src/gui/view/richtextedit.cpp:265
 msgid "Find/Replace"
-msgstr "Suchen/Ersetzen"
+msgstr "Hledat/Nahradit"
 
 #: src/gui/view/richtextedit.cpp:273
 msgid "Text Color"
-msgstr "Textfarbe"
+msgstr "Barva textu"
 
 #: src/gui/view/richtextedit.cpp:278
 msgid "Text Highlight"
-msgstr "Text markieren"
+msgstr "Zvýraznění textu"
 
 #: src/gui/view/richtextedit.cpp:299
 msgid "Insert Table Row"
-msgstr "Zeile einfügen"
+msgstr "Vložit řádek do tabulky"
 
 #: src/gui/view/richtextedit.cpp:304
 msgid "Insert Table Column"
-msgstr "Spalte einfügen"
+msgstr "Vložit sloupec do tabulky"
 
 #: src/gui/view/richtextedit.cpp:309
 msgid "Remove Table Row"
-msgstr "Zeile löschen"
+msgstr "Odstranit řádek z tabulky"
 
 #: src/gui/view/richtextedit.cpp:314
 msgid "Remove Table Column"
-msgstr "Spalte löschen"
+msgstr "Odstranit sloupec z tabulky"
 
 #: src/gui/view/welcomeview.cpp:38
 msgid "Welcome to Silence, an information management tool."
-msgstr "Wilkommen zu Silence, einem Informations Management Tool."
+msgstr "Vítejte v programu Silence, nástroji na správu informací."
 
 #: src/gui/view/welcomeview.cpp:52
 msgid "Version"
-msgstr "Version"
+msgstr "Verze"
 
 #: src/gui/view/welcomeview.cpp:54
 msgid "Authors"
-msgstr "Autoren"
+msgstr "Autoři"
 
 #: src/gui/view/welcomeview.cpp:55
 msgid "Manuel Unglaub, Yves Adler, Marcel Winkel"
@@ -522,7 +523,7 @@ msgstr "Manuel Unglaub, Yves Adler, Marcel Winkel"
 
 #: src/gui/view/welcomeview.cpp:56
 msgid "License"
-msgstr "Lizenz"
+msgstr "Povolení"
 
 #: src/gui/view/welcomeview.cpp:57
 msgid "GPLv2"
@@ -530,52 +531,52 @@ msgstr "GPLv2"
 
 #: src/gui/view/welcomeview.cpp:62
 msgid "Recently modified Nodes"
-msgstr "Zuletzt bearbeitete Artikel"
+msgstr ""
 
 #: src/gui/widget/addimage.cpp:35
 msgid "Browse"
-msgstr "Durchsuchen"
+msgstr ""
 
 #: src/gui/widget/addimage.cpp:41
 msgid "Width"
-msgstr "Breite"
+msgstr ""
 
 #: src/gui/widget/addimage.cpp:47
 msgid "Height"
-msgstr "Höhe"
+msgstr ""
 
 #: src/gui/widget/addtable.cpp:30
 msgid "Rows"
-msgstr "Zeilen"
+msgstr "Řádky"
 
 #: src/gui/widget/addtable.cpp:37
 msgid "Columns"
-msgstr "Spalten"
+msgstr "Sloupce"
 
 #: src/gui/widget/labellist.cpp:85
 msgid "Ban Label"
-msgstr "Label Ausschließen"
+msgstr "Zakázat štítek"
 
 #: src/gui/widget/labellist.cpp:91
 msgid "Clear Label"
-msgstr "Label entfernen"
+msgstr "Smazat štítek"
 
 #: src/gui/widget/notificationbox.cpp:33
 msgid "You didn't save:"
-msgstr "Sie haben nicht gespeichert:"
+msgstr ""
 
 #: src/gui/widget/notificationbox.cpp:36
 msgid "Save"
-msgstr "Speichern"
+msgstr "Uložit"
 
 #: src/gui/widget/searchnodeoptions.cpp:33
 msgid "Search Options"
-msgstr "Suchoptionen"
+msgstr "Volby pro hledání"
 
 #: src/gui/widget/searchnodeoptions.cpp:75
 msgctxt "search by node caption"
 msgid "Caption"
-msgstr "Name"
+msgstr "Název"
 
 #: src/gui/widget/searchnodeoptions.cpp:83
 msgid "mime type"
@@ -583,45 +584,46 @@ msgstr "Typ"
 
 #: src/gui/widget/searchnodeoptions.cpp:102
 msgid "created between"
-msgstr "Erstellt zwischen"
+msgstr "Vytvořeno"
 
 #: src/gui/widget/searchnodeoptions.cpp:111
 #: src/gui/widget/searchnodeoptions.cpp:129
 msgid "and"
-msgstr "und"
+msgstr "a"
 
 #: src/gui/widget/searchnodeoptions.cpp:120
 msgid "modified between"
-msgstr "Bearbeitet zwischen"
+msgstr "Změněno"
 
 #: src/gui/widget/syntaxbox.cpp:36
 msgctxt "no syntax selected"
 msgid "None"
-msgstr "Keine"
+msgstr "Žádný"
 
 #: src/gui/widget/textfind.cpp:48
 msgctxt "find previous occurrence"
 msgid "Previous"
-msgstr "Zurück"
+msgstr "Předchozí"
 
 #: src/gui/widget/textfind.cpp:53
 msgctxt "find next occurrence"
 msgid "Next"
-msgstr "Weiter"
+msgstr "Další"
 
 #: src/gui/widget/textfind.cpp:69
 msgid "Replace"
-msgstr "Ersetzen"
+msgstr "Nahradit"
 
 #: src/gui/widget/textfind.cpp:74
 msgid "Replace All"
-msgstr "Alle Ersetzen"
+msgstr "Nahradit vše"
 
 #: src/gui/widget/textfind.cpp:83
 msgid "Match case"
-msgstr "Groß-/Kleinschreibung"
+msgstr "Dbát na psaní velkých a malých písmen"
 
 #: src/gui/widget/textfind.cpp:85
 msgid "Match whole word"
-msgstr "Ganzes Wort"
+msgstr "Celé slovo"
+
 

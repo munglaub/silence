@@ -45,12 +45,12 @@ TextFind::TextFind(QWidget *parent)
 	layout->addWidget(findEdit, 0, 1);
 	connect(findEdit, SIGNAL(textChanged(const QString &)), this, SLOT(findTextChange(const QString&)));
 
-	prevBtn = new QPushButton(KIcon("go-previous"), i18n("Previous"));
+	prevBtn = new QPushButton(KIcon("go-previous"), i18nc("find previous occurrence", "Previous"));
 	prevBtn->setFlat(true);
 	connect(prevBtn, SIGNAL(clicked()), this, SLOT(prevBtnClicked()));
 	layout->addWidget(prevBtn, 0, 2);
 
-	nextBtn = new QPushButton(KIcon("go-next"), i18n("Next"));
+	nextBtn = new QPushButton(KIcon("go-next"), i18nc("find next occurrence", "Next"));
 	nextBtn->setFlat(true);
 	connect(nextBtn, SIGNAL(clicked()), this, SLOT(nextBtnClicked()));
 	layout->addWidget(nextBtn, 0, 3);

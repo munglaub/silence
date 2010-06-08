@@ -194,10 +194,10 @@ void TreeView::setupQuestionFrame()
 	question = new QLabel(i18n("Are you sure?"));
 	questionLayout->addWidget(question, 0, 1);
 
-	yesButton = new QPushButton(i18n("Yes"));
+	yesButton = new QPushButton(i18n("Yes, delete Node"));
 	questionLayout->addWidget(yesButton, 1, 0);
 
-	noButton = new QPushButton(i18n("No"));
+	noButton = new QPushButton(i18n("No, abort"));
 	questionLayout->addWidget(noButton, 1, 1);
 
 	questionFrame->setLayout(questionLayout);

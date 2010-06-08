@@ -104,10 +104,10 @@ QWidget* LabelManagementDialog::createDeleteFrame()
 	deleteLayout->addWidget(icon, 0, 0, 1, 1, Qt::AlignCenter);
 	messageLbl = new QLabel(i18n("Are you sure?"));
 	deleteLayout->addWidget(messageLbl, 0, 1);
-	yesBtn = new QPushButton(i18n("Yes"));
+	yesBtn = new QPushButton(i18n("Yes, delete Label"));
 	connect(yesBtn, SIGNAL(clicked()), this, SLOT(removeLabel()));
 	deleteLayout->addWidget(yesBtn, 1, 0);
-	noBtn = new QPushButton(i18n("No"));
+	noBtn = new QPushButton(i18n("No, abort"));
 	connect(noBtn, SIGNAL(clicked()), deleteFrame, SLOT(hide()));
 	deleteLayout->addWidget(noBtn, 1, 1);
 	deleteFrame->setLayout(deleteLayout);

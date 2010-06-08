@@ -33,43 +33,43 @@ SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 	layout->addWidget(lblSyntax);
 
 	synbox = new KComboBox;
-	synbox->addItem(i18n("None"));
+			synbox->addItem(i18nc("no syntax selected", "None"));
 
-	synbox->addItem("Bash");
-	synbox->addItem("Batch");
-	synbox->addItem("CMake");
-	synbox->addItem("C++");
-	synbox->addItem("C#");
-	synbox->addItem("CSS");
-	synbox->addItem("D");
-	synbox->addItem("Diff");
-	synbox->addItem("HTML");
-	synbox->addItem("IDL");
-	synbox->addItem("Java");
-	synbox->addItem("JavaScript");
-	synbox->addItem("Lua");
-	synbox->addItem("Makefile");
-	synbox->addItem("Perl");
-	synbox->addItem("POV");
-	synbox->addItem("Python");
-	synbox->addItem("Ruby");
-	synbox->addItem("SQL");
-	synbox->addItem("LaTeX");
-	synbox->addItem("VHDL");
+			synbox->addItem("Bash");
+			synbox->addItem("Batch");
+			synbox->addItem("CMake");
+			synbox->addItem("C++");
+			synbox->addItem("C#");
+			synbox->addItem("CSS");
+			synbox->addItem("D");
+			synbox->addItem("Diff");
+			synbox->addItem("HTML");
+			synbox->addItem("IDL");
+			synbox->addItem("Java");
+			synbox->addItem("JavaScript");
+			synbox->addItem("Lua");
+			synbox->addItem("Makefile");
+			synbox->addItem("Perl");
+			synbox->addItem("POV");
+			synbox->addItem("Python");
+			synbox->addItem("Ruby");
+			synbox->addItem("SQL");
+			synbox->addItem("LaTeX");
+			synbox->addItem("VHDL");
 
-	layout->addWidget(synbox);
-	setLayout(layout);
-}
+			layout->addWidget(synbox);
+			setLayout(layout);
+		}
 
-SyntaxBox::~SyntaxBox()
-{
-	delete synbox;
-	delete lblSyntax;
-	delete layout;
-}
+		SyntaxBox::~SyntaxBox()
+		{
+			delete synbox;
+			delete lblSyntax;
+			delete layout;
+		}
 
-QString SyntaxBox::getSyntax()
-{
+		QString SyntaxBox::getSyntax()
+		{
 	return synbox->currentText();
 }
 
