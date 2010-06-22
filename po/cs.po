@@ -2,20 +2,22 @@
 # Copyright (C) 2010 Manuel Unglaub <m.unglaub@gmail.com>
 # Copyright (C) 2010 Pavel Fric <pavelfric@seznam.cz>
 # This file is distributed under the same license as the Silence package.
-# Manuel Unglaub <m.unglaub@gmail.com>, 2010
 #
+# Manuel Unglaub <m.unglaub@gmail.com>, 2010, 2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: Silence\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-08 14:43+0200\n"
-"PO-Revision-Date: 2010-06-08 14:43+0200\\n"
-"Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2004-01-01 01:29+0100\n"
+"Last-Translator: \n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. i18n: file: inst/share/apps/silence/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
@@ -75,7 +77,7 @@ msgstr "Tabulka"
 #. i18n: ectx: Menu (format)
 #: rc.cpp:15 rc.cpp:33 rc.cpp:15 rc.cpp:33
 msgid "Format"
-msgstr ""
+msgstr "Formát"
 
 #. i18n: file: inst/share/apps/silence/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
@@ -92,59 +94,61 @@ msgstr "Pohled"
 #: rc.cpp:37 rc.cpp:37
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Pavel Fric"
 
 #: rc.cpp:38 rc.cpp:38
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "fripohled.blogspot.com"
 
 #: src/commandline/cmdlineoptions.cpp:25
 msgid "show node with given id"
-msgstr ""
+msgstr "Ukázat uzel s daným ID"
 
 #: src/commandline/cmdlineoptions.cpp:26
 msgid "find nodes"
-msgstr ""
+msgstr "Najít uzly"
 
 #: src/commandline/cmdlineoptions.cpp:27
 msgid "find nodes with a caption that contains text"
-msgstr ""
+msgstr "Najít uzly se záhlavím obsahujícím text"
 
 #: src/commandline/cmdlineoptions.cpp:28
 msgid "activate fulltextsearch"
-msgstr ""
+msgstr "Zapnout plnotextové hledání"
 
 #: src/commandline/cmdlineoptions.cpp:29
 msgid "activate boundaries for the creation date (YYYY-MM-DD:YYYY-MM-DD)"
-msgstr ""
+msgstr "Zapnout hranice pro datum vytvoření (RRRR-MM-DD:RRRR-MM-DD)"
 
 #: src/commandline/cmdlineoptions.cpp:30
 msgid "activate boundaries for the modification date (YYYY-MM-DD:YYYY-MM-DD)"
-msgstr ""
+msgstr "Zapnout hranice pro datum úprav (RRRR-MM-DD:RRRR-MM-DD)"
 
 #: src/commandline/cmdlineoptions.cpp:31
 msgid ""
 "activate filter by labels, node must contain the given labels (label1,label2)"
 msgstr ""
+"Zapnout filtr podle štítků, uzel musí obsahovat dané štítky (štítek1.štítek2)"
 
 #: src/commandline/cmdlineoptions.cpp:32
 msgid ""
 "activate filter by labels, node must not contain the given labels (label1,"
 "label2)"
 msgstr ""
+"Zapnout filtr podle štítků, uzel musí obsahovat dané štítky (štítek1.štítek2)"
 
 #: src/commandline/cmdlineoptions.cpp:33
 msgid "activate filter by type"
-msgstr ""
+msgstr "Zapnout filtr podle typu"
 
 #: src/data/aboutdata.cpp:28
 msgid "An information management tool."
-msgstr "Nástroji na správu informací."
+msgstr "Nástroj na správu informací."
 
 #: src/data/aboutdata.cpp:30
 msgid "(c) 2009 - 2010, Silence developers"
-msgstr ""
+msgstr "(c) 2009 - 2010, vývojáři programu Silence"
 
 #: src/data/aboutdata.cpp:35
 msgid "Manuel Unglaub"
@@ -152,7 +156,7 @@ msgstr "Manuel Unglaub"
 
 #: src/data/aboutdata.cpp:35
 msgid "Maintainer"
-msgstr ""
+msgstr "Údržbář"
 
 #: src/data/aboutdata.cpp:36
 msgid "Yves Adler"
@@ -170,11 +174,11 @@ msgstr "Název"
 #: src/data/model/treemodel.cpp:94
 msgctxt "caption of the first nodetree column"
 msgid "Title"
-msgstr ""
+msgstr "Název"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:31
 msgid "Label Management"
-msgstr ""
+msgstr "Správa štítků"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:79
 msgid "Add Label"
@@ -204,12 +208,12 @@ msgstr "Jste si jistý?"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:107
 msgid "Yes, delete Label"
-msgstr ""
+msgstr "Ano, smazat štítek"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:110
 #: src/gui/sidebar/treeview.cpp:200
 msgid "No, abort"
-msgstr ""
+msgstr "Ne, zrušit"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:145
 msgid "New Label"
@@ -225,7 +229,7 @@ msgstr "Nový odkaz"
 
 #: src/gui/dialog/newlinkdialog.cpp:35
 msgid "Link Text"
-msgstr ""
+msgstr "Text odkazu"
 
 #: src/gui/dialog/newlinkdialog.cpp:52
 msgid "Website Url"
@@ -262,7 +266,7 @@ msgstr "Název uzlu"
 #: src/gui/dialog/newnodedialog.cpp:41
 #: src/gui/sidebar/nodepropertywidget.cpp:69
 msgid "Node name:"
-msgstr ""
+msgstr "Název uzlu:"
 
 #: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:67
 msgid "Type"
@@ -270,11 +274,11 @@ msgstr "Typ"
 
 #: src/gui/dialog/newnodedialog.cpp:49
 msgid "RichText"
-msgstr ""
+msgstr "Formátovaný text"
 
 #: src/gui/dialog/newnodedialog.cpp:50
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/gui/mainwindow.cpp:41 src/gui/sidebar/treeview.cpp:150
 msgid "Properties"
@@ -291,7 +295,7 @@ msgstr "Hledat uzly"
 #: src/gui/mainwindow.cpp:54
 msgctxt "title of the navigation sidebar"
 msgid "Navigation"
-msgstr ""
+msgstr "Navádění"
 
 #: src/gui/mainwindow.cpp:58
 msgid "Info"
@@ -319,7 +323,7 @@ msgstr "Postranní panel s informacemi"
 
 #: src/gui/menu/viewmenu.cpp:56
 msgid "Navigation Sidebar"
-msgstr ""
+msgstr "Postranní panel pro navádění"
 
 #: src/gui/menu/viewmenu.cpp:63
 msgid "Node Properties Sidebar"
@@ -350,12 +354,12 @@ msgstr "Štítky"
 #: src/gui/sidebar/navigationsidebar.cpp:35
 msgctxt "go to the previous selected node"
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 #: src/gui/sidebar/navigationsidebar.cpp:37
 msgctxt "go to the next node"
 msgid "Forward"
-msgstr ""
+msgstr "Vpřed"
 
 #: src/gui/sidebar/nodepropertywidget.cpp:36
 msgid "Nodeinfos"
@@ -392,7 +396,7 @@ msgstr "Smazat uzel"
 
 #: src/gui/sidebar/treeview.cpp:197
 msgid "Yes, delete Node"
-msgstr ""
+msgstr "Ano, smazat uzel"
 
 #: src/gui/sistatusbar.cpp:51
 msgid "saved"
@@ -531,19 +535,19 @@ msgstr "GPLv2"
 
 #: src/gui/view/welcomeview.cpp:62
 msgid "Recently modified Nodes"
-msgstr ""
+msgstr "Nedávno upravené uzly"
 
 #: src/gui/widget/addimage.cpp:35
 msgid "Browse"
-msgstr ""
+msgstr "Procházet"
 
 #: src/gui/widget/addimage.cpp:41
 msgid "Width"
-msgstr ""
+msgstr "Šířka"
 
 #: src/gui/widget/addimage.cpp:47
 msgid "Height"
-msgstr ""
+msgstr "Výška"
 
 #: src/gui/widget/addtable.cpp:30
 msgid "Rows"
@@ -563,7 +567,7 @@ msgstr "Smazat štítek"
 
 #: src/gui/widget/notificationbox.cpp:33
 msgid "You didn't save:"
-msgstr ""
+msgstr "Neuložil jste:"
 
 #: src/gui/widget/notificationbox.cpp:36
 msgid "Save"
