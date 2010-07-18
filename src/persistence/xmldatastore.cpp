@@ -69,6 +69,13 @@ Node* XmlDataStore::getRootNode()
 	return rootNode;
 }
 
+QStringList XmlDataStore::getNodeTypeNames()
+{
+	QStringList result;
+	result << "Books" << "Recips" << "Adresses" << "foobar";
+	return result;
+}
+
 Node* XmlDataStore::getNode(NodeId id)
 {
 	return findNode(rootNode, id);

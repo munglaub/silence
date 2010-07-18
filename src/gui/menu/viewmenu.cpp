@@ -36,6 +36,10 @@ ViewMenu::ViewMenu(KActionCollection *actionCollection)
 	action->setText(i18n("Manage Labels"));
 	connect(action, SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
 
+	action = actionCollection->addAction("shownodemanagement");
+	action->setText(i18n("Manage Nodetypes"));
+	connect(action, SIGNAL(triggered()), this, SLOT(showNodeTypeManagement()));
+
 	action = actionCollection->addAction("showtreenodesidebar");
 	action->setText(i18n("Node Sidebar"));
 	action->setCheckable(true);
@@ -88,6 +92,11 @@ void ViewMenu::showLabelManagementDialog()
 	delete dlg;
 	Controller::create()->getNodePropertyWidget()->updateLabels();
 	Controller::create()->getSearchNodeSidebar()->updateLabels();
+}
+
+void ViewMenu::showNodeTypeManagement()
+{
+	Controller::create()->getMainWindow()->showNodeTypeManagement();
 }
 
 void ViewMenu::showNodeTree(bool visible)

@@ -55,6 +55,7 @@ class XmlDataStore : public AbstractDataStore
 		Node* getRootNode();
 		Node *getNode(NodeId id);
 		Label* getRootLabel();
+		QStringList getNodeTypeNames();
 
 		void removeNode(Node *node);
 		void addNode(Node *node);

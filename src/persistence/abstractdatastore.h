@@ -58,6 +58,12 @@ class AbstractDataStore : public QObject
 		virtual Label* getRootLabel() = 0;
 
 		/*!
+		 * Get a list with the names of all custom node types.
+		 * \return A QStringList with the names of all custom node types.
+		 */
+		virtual QStringList getNodeTypeNames() = 0;
+
+		/*!
 		 * Remove a node with all its subnodes from the persistence layer.
 		 * \param node The node which will be removed from the persistence layer.
 		 */

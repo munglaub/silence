@@ -79,6 +79,7 @@
 			<text>View</text>
 			<Action name="showwelcomeview" />
 			<Action name="showlabelmanagement" />
+			<Action name="shownodemanagement" />
 			<Separator />
 			<Action name="showtreenodesidebar" />
 			<Action name="showinfosidebar" />

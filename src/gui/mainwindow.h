@@ -22,7 +22,6 @@
 #define MAINWINDOW_H
 
 #include <KXmlGuiWindow>
-#include "src/controller.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
@@ -57,8 +56,15 @@ class MainWindow : public KXmlGuiWindow
 		 */
 		~MainWindow();
 
+		/*!
+		 * Show a screen to manage the node types.
+		 */
+		 void showNodeTypeManagement();
+
+	private slots:
+		void showContentView();
+
 	private:
-		Controller *controller;
 		ContentView *contentview;
 		TreeView *treeview;
 		InfoSidebar *infosidebar;

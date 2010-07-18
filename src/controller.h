@@ -21,6 +21,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "src/gui/mainwindow.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
@@ -62,6 +63,18 @@ class Controller
 		 * \return A instance of the Controller.
 		 */
 		static Controller* create();
+
+		/*!
+		 * This function provides the Controller with a pointer of the MainWindow.
+		 * \param A pointer to the MainWindow.
+		 */
+		void setMainWindow(MainWindow *mainwindow);
+
+		/*!
+		 * Get a pointer of the MainWindow.
+		 * \return A pointer to the MainWindow.
+		 */
+		MainWindow* getMainWindow();
 
 		/*!
 		 * This function provides the Controller with a pointer of the ContentView.
@@ -187,6 +200,7 @@ class Controller
 	private:
 		static Controller *controller;
 		
+		MainWindow *mainwindow;
 		ContentView *contentview;
 		WelcomeView *welcomeview;
 		TextEdit *textedit;

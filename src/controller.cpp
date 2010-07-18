@@ -24,6 +24,7 @@ Controller* Controller::controller = 0;
 
 Controller::Controller()
 {
+	mainwindow = 0;
 	contentview = 0;
 	welcomeview = 0;
 	textedit = 0;
@@ -54,6 +55,16 @@ Controller* Controller::create()
 	if (controller == 0)
 		controller = new Controller;
 	return controller;
+}
+
+void Controller::setMainWindow(MainWindow* mainwindow)
+{
+	this->mainwindow = mainwindow;
+}
+
+MainWindow* Controller::getMainWindow()
+{
+	return mainwindow;
 }
 
 void Controller::setContentView(ContentView* contentview)

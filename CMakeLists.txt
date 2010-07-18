@@ -58,6 +58,7 @@ set ( silence_HDRS
 	src/gui/widget/searchnodeoptions.h
 	src/gui/widget/labellist.h
 	src/gui/widget/notificationbox.h
+	src/gui/widget/nodetypemanager.h
 	)
 
 set ( silence_SRCS
@@ -102,6 +103,7 @@ set ( silence_SRCS
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
 	src/gui/widget/notificationbox.cpp
+	src/gui/widget/nodetypemanager.cpp
 	src/commandline/cmdmain.cpp
 	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp

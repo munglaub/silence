@@ -23,20 +23,22 @@
 #include <klocalizedstring.h>
 #include <KMenuBar>
 #include <QApplication>
+#include "src/controller.h"
 #include "src/gui/mainwindow.h"
+#include "src/gui/widget/nodetypemanager.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
 	: KXmlGuiWindow(parent)
 {
 	setWindowTitle(i18n("Silence"));
-	controller = Controller::create();
+	Controller *controller = Controller::create();
+	controller->setMainWindow(this);
 
 	// ContentView
 	contentview = new ContentView;
 	setCentralWidget(contentview);
 	controller->setContentView(contentview);
-
 
 	nodepropertywidget = new NodePropertyWidget(i18n("Properties"), this);
 	nodepropertywidget->hide();
@@ -95,6 +97,21 @@ MainWindow::~MainWindow()
 
 	delete viewmenu;
 
-	delete controller;
+	delete Controller::create();
 }
+
+void MainWindow::showContentView()
+{
+	delete centralWidget();
+	setCentralWidget(contentview);
+}
+
+void MainWindow::showNodeTypeManagement()
+{
+	contentview->setParent(0);
+	NodeTypeManager *ntm = new NodeTypeManager;
+	setCentralWidget(ntm);
+	connect(ntm, SIGNAL(exit()), this, SLOT(showContentView()));
+}
+
 
