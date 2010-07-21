@@ -18,41 +18,36 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NODETYPEMANAGER_H
-#define NODETYPEMANAGER_H
+#ifndef NODETYPESPANEL_H
+#define NODETYPESPANEL_H
 
 #include <QWidget>
-#include <QVBoxLayout>
-#include "src/gui/widget/nodetypespanel.h"
-#include "src/gui/widget/inputwidget.h"
-#include "src/gui/widget/nodetypebuilder.h"
+#include <QGridLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QListWidget>
 
 
 //TODO: documentation
-class NodeTypeManager : public QWidget
+class NodeTypesPanel : public QWidget
 {
 	Q_OBJECT
 
 	public:
-		NodeTypeManager();
-		~NodeTypeManager();
+		NodeTypesPanel();
+		~NodeTypesPanel();
 	
 	signals:
 		void exit();
-
+		void addNodeType();
+	
 	private slots:
 		void sendExit();
-		void addNodeType();
-		void showNodeTypeBuilder();
-		void hideNodeTypeBuilder();
+		void addType();
 
 	private:
-		QVBoxLayout *layout;
-		NodeTypesPanel *ntp;
-		InputWidget *iw;
-		NodeTypeBuilder *ntb;
-
+		QGridLayout *layout;
 };
 
-#endif // NODETYPEMANAGER_H
+#endif // NODETYPESPANEL_H
 

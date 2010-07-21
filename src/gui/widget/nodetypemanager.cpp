@@ -20,37 +20,27 @@
 
 #include "src/gui/widget/nodetypemanager.h"
 #include <klocalizedstring.h>
-#include "src/controller.h"
+
 
 NodeTypeManager::NodeTypeManager()
 {
-	layout = new QGridLayout;
+	layout = new QVBoxLayout;
 	layout->setAlignment(Qt::AlignTop);
+	ntp = new NodeTypesPanel;
+	layout->addWidget(ntp);
+	connect(ntp, SIGNAL(exit()), this, SLOT(sendExit()));
+	//connect(ntp, SIGNAL(addNodeType()), this, SLOT(showNodeTypeBuilder()));
+	connect(ntp, SIGNAL(addNodeType()), this, SLOT(addNodeType()));
+	iw = new InputWidget;
+	iw->setVisible(false);
+	layout->addWidget(iw);
+	connect(iw, SIGNAL(done()), this, SLOT(showNodeTypeBuilder()));
 
-	int row = 0;
-	QLabel *caption = new QLabel("<h2>" + i18n("Node Types") + "</h2>");
-	layout->addWidget(caption, row, 0);
-	++row;
+	ntb = new NodeTypeBuilder;
+	ntb->setVisible(false);
+	layout->addWidget(ntb);
+	connect(ntb, SIGNAL(close()), this, SLOT(hideNodeTypeBuilder()));
 
-	QListWidget *typelist = new QListWidget;
-	layout->addWidget(typelist, row, 0, 4, 1);
-	++row;
-	typelist->addItems(Controller::create()->getDataStore()->getNodeTypeNames());
-
-	//TODO: icons
-	QPushButton *btnAdd = new QPushButton(i18n("Add new Node Type"));
-	layout->addWidget(btnAdd, row, 1);
-	++row;
-	QPushButton *btnEdit = new QPushButton(i18n("Edit"));
-	layout->addWidget(btnEdit, row, 1);
-	++row;
-	QPushButton *btnDelete = new QPushButton(i18n("Delete"));
-	layout->addWidget(btnDelete, row, 1);
-	++row;
-
-	QPushButton *btnExit = new QPushButton(i18n("Close"));
-	layout->addWidget(btnExit, row, 0);
-	connect(btnExit, SIGNAL(clicked()), this, SLOT(sendExit()));
 	setLayout(layout);
 }
 
@@ -63,4 +53,27 @@ void NodeTypeManager::sendExit()
 {
 	emit exit();
 }
+
+void NodeTypeManager::addNodeType()
+{
+	iw->show(i18n("Node Type Name"));
+}
+
+void NodeTypeManager::showNodeTypeBuilder()
+{
+	//TODO:
+	// - ueberpruefen ob es leer ist
+	// - ueberpruefen ob es den namen schon gibt
+	ntp->setVisible(false);
+	iw->setVisible(false);
+	ntb->show(iw->getInput());
+}
+
+void NodeTypeManager::hideNodeTypeBuilder()
+{
+	ntp->setVisible(true);
+	ntb->setVisible(false);
+}
+
+
 
