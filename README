@@ -1,0 +1,52 @@
+Silence - An information management tool
+
+Website: http://silence.sekalura.net
+Email: silence@sekalura.net
+
+Developers
+~~~~~~~~~~
+(C) 2009, 2010 Manuel Unglaub <m.unglaub@gmail.com>
+(C) 2009 Yves Adler <yves.adler@googlemail.com>
+
+
+Contributing
+~~~~~~~~~~~~
+At silence.sekalura.net you can report bug or create feature requests.
+It is also possible to make a mergerequest at gitorious.
+You can send a mail with questions, ideas, translations or a "thank you"
+to silence@sekalura.net.
+
+
+Building/Installation
+~~~~~~~~~~~~~~~~~~~~~
+To run Silence properly it needs to be installed. For developing purposes a
+local installation may be the best way. The following commands checkout
+the current version of Silence into your home directory, compile and install
+it inside the silence direcory.
+
+cd
+git clone git://gitorious.org/silence/silence.git
+cd silence
+mkdir build install
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/home/username/silence/install
+make
+make install
+
+run with: ../install/bin/silence
+
+If you want to compile it for real use you can use the following commands:
+
+git clone git://gitorious.org/silence/silence.git
+cd silence
+mkdir build
+cd build
+cmake ..
+make
+# as root:
+make install
+
+Now Silence should appear in your menu and you can start it from the
+commandline by typing in "silence".
+
+
