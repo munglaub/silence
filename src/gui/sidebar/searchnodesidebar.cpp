@@ -45,22 +45,18 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 
 	setAllowedAreas(Qt::AllDockWidgetAreas);
 
-	layout = new QGridLayout();
+	layout = new QVBoxLayout();
 	layout->setAlignment(Qt::AlignTop);
-	int row = 0;
 
 	searchedit = new KLineEdit;
 	searchedit->setClearButtonShown(true);
-	layout->addWidget(searchedit, row, 0);
-	++row;
+	layout->addWidget(searchedit);
 
 	searchnodeoptions = new SearchNodeOptions();
-	layout->addWidget(searchnodeoptions, row, 0);
-	++row;
+	layout->addWidget(searchnodeoptions);
 
 	labellist = new LabelList;
-	layout->addWidget(labellist, row, 0);
-	++row;
+	layout->addWidget(labellist);
 
 	connectOptions();
 	connectLabelList();
@@ -68,12 +64,11 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	// setup the resultlist
 	resultList = new QListView;
 	resultList->setModel(filtermodel);
-	layout->addWidget(resultList, row, 0);
-	++row;
+	layout->addWidget(resultList);
 
-	frame = new QFrame;
-	frame->setLayout(layout);
-	setWidget(frame);
+	splitter = new QSplitter(Qt::Vertical);
+	splitter->setLayout(layout);
+	setWidget(splitter);
 	
 	// Update search criterias
 	connect(searchedit, SIGNAL(textChanged(QString)),
@@ -92,7 +87,7 @@ SearchNodeSidebar::~SearchNodeSidebar()
 	delete searchnodeoptions;
 
 	delete layout;
-	delete frame;
+	delete splitter;
 
 	delete filtermodel;
 	delete listProxy;

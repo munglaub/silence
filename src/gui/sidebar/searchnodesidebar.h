@@ -22,14 +22,15 @@
 #ifndef SEARCHNODESIDEBAR_H
 #define SEARCHNODESIDEBAR_H
 
+#include <klineedit.h>
+#include <QDockWidget>
+#include <QListView>
+#include <QSplitter>
+#include <QVBoxLayout>
 #include "src/data/model/filtermodel.h"
 #include "src/data/model/listproxymodel.h"
 #include "src/gui/widget/labellist.h"
 #include "src/gui/widget/searchnodeoptions.h"
-#include <QDockWidget>
-#include <QGridLayout>
-#include <klineedit.h>
-#include <QListView>
 
 
 /*!\class SearchNodeSidebar
@@ -77,8 +78,8 @@ class SearchNodeSidebar : public QDockWidget
 		ListProxyModel *listProxy;
 		FilterModel *filtermodel;
 
-		QGridLayout *layout;
-		QFrame	*frame;
+		QVBoxLayout *layout;
+		QSplitter *splitter;
 		SearchNodeOptions *searchnodeoptions;
 		LabelList *labellist;
 		QListView *resultList;
