@@ -35,9 +35,12 @@ MainWindow::MainWindow(QWidget *parent)
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
 
+	centralwidgetstack = new QStackedWidget;
+	setCentralWidget(centralwidgetstack);
+
 	// ContentView
 	contentview = new ContentView;
-	setCentralWidget(contentview);
+	centralwidgetstack->addWidget(contentview);
 	controller->setContentView(contentview);
 
 	nodepropertywidget = new NodePropertyWidget(i18n("Properties"), this);
@@ -89,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {   
 	delete contentview;
+	delete centralwidgetstack;
 	delete treeview;
 	delete infosidebar;
 	delete statusbar;
@@ -100,18 +104,18 @@ MainWindow::~MainWindow()
 	delete Controller::create();
 }
 
-void MainWindow::showContentView()
+void MainWindow::deleteFromCentralWidgetStack(QWidget *widget)
 {
-	delete centralWidget();
-	setCentralWidget(contentview);
+	centralwidgetstack->removeWidget(widget);
+	delete widget;
 }
 
 void MainWindow::showNodeTypeManagement()
 {
-	contentview->setParent(0);
 	NodeTypeManager *ntm = new NodeTypeManager;
-	setCentralWidget(ntm);
-	connect(ntm, SIGNAL(exit()), this, SLOT(showContentView()));
+	centralwidgetstack->addWidget(ntm);
+	centralwidgetstack->setCurrentWidget(ntm);
+	connect(ntm, SIGNAL(exit(QWidget*)), this, SLOT(deleteFromCentralWidgetStack(QWidget*)));
 }
 
 

@@ -38,7 +38,7 @@ class NodeTypeManager : public QWidget
 		~NodeTypeManager();
 	
 	signals:
-		void exit();
+		void exit(QWidget *itself);
 
 	private slots:
 		void sendExit();

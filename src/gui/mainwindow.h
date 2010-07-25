@@ -30,6 +30,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
+#include <QStackedWidget>
 
 
 /*!\class MainWindow
@@ -62,9 +63,10 @@ class MainWindow : public KXmlGuiWindow
 		 void showNodeTypeManagement();
 
 	private slots:
-		void showContentView();
+		void deleteFromCentralWidgetStack(QWidget *widget);
 
 	private:
+		QStackedWidget *centralwidgetstack;
 		ContentView *contentview;
 		TreeView *treeview;
 		InfoSidebar *infosidebar;

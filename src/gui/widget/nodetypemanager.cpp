@@ -51,7 +51,7 @@ NodeTypeManager::~NodeTypeManager()
 
 void NodeTypeManager::sendExit()
 {
-	emit exit();
+	emit exit(this);
 }
 
 void NodeTypeManager::addNodeType()
