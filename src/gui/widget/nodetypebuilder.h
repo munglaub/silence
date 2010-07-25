@@ -47,16 +47,21 @@ class NodeTypeBuilder : public QWidget
 
 	private slots:
 		void onClose();
+		void addElement();
+		void updateBtnAddElement();
 
 	private:
-		QVBoxLayout *layout;
+		QVBoxLayout *layout,
+					*prevlayout;
 		QLabel	*lblElementCaption,
 				*lblElementTypes;
-		QGroupBox *buildpane;
+		QGroupBox	*buildpane,
+					*prevpane;
 		QGridLayout *buildlayout;
 		QLineEdit *leElementCaption;
 		QListWidget *elementTypes;
 		QPushButton *btnAddElement;
+
 
 };
 

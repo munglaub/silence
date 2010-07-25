@@ -35,6 +35,7 @@ NodeTypeBuilder::NodeTypeBuilder()
 	buildlayout->addWidget(lblElementCaption, 0, 0);
 	leElementCaption = new QLineEdit;
 	buildlayout->addWidget(leElementCaption, 1, 0, 1, 1, Qt::AlignTop);
+	connect(leElementCaption, SIGNAL(textChanged(const QString &)), this, SLOT(updateBtnAddElement()));
 
 	lblElementTypes = new QLabel(i18n("Element Type"));
 	buildlayout->addWidget(lblElementTypes, 0, 1);
@@ -48,25 +49,37 @@ NodeTypeBuilder::NodeTypeBuilder()
 
 	btnAddElement = new QPushButton(i18n("Add Element"));
 	buildlayout->addWidget(btnAddElement, 1, 2, 1, 1, Qt::AlignBottom);
+	connect(btnAddElement, SIGNAL(clicked()), this, SLOT(addElement()));
 
 	buildpane->setLayout(buildlayout);
 
 // ein panel mit einer vorschau wie das aussieht und knoepfen zum element entfernen
-	QGroupBox *blubb = new QGroupBox("foobar");
-	QVBoxLayout *blubblayout = new QVBoxLayout;
-	blubb->setLayout(blubblayout);
-	layout->addWidget(blubb);
+	prevpane = new QGroupBox(i18n("Preview")); //TODO: bessere ueberschrift ausdenken
+	//TODO: scrollbar machen
+	prevlayout = new QVBoxLayout;
+	prevpane->setLayout(prevlayout);
+	layout->addWidget(prevpane);
+
 
 	layout->addStretch();
 
 
-	//TODO: unterscheidung zwischen ok und abbrechen
-	// -> oder kein abbrechen?
-	QPushButton *btnClose = new QPushButton(i18n("Close"));
-	layout->addWidget(btnClose);
-	connect(btnClose, SIGNAL(clicked()), this, SLOT(onClose()));
+	// Buttons
+	QHBoxLayout *btnLayout = new QHBoxLayout;
+	QPushButton *btnAbort = new QPushButton(i18n("Abort"));
+	btnLayout->addWidget(btnAbort);
+	connect(btnAbort, SIGNAL(clicked()), this, SLOT(onClose()));
+
+	QPushButton *btnSave = new QPushButton(i18n("Save Node Type"));
+	//layout->addWidget(btnSave, 0, Qt::AlignRight);
+	btnLayout->addWidget(btnSave);
+	connect(btnSave, SIGNAL(clicked()), this, SLOT(onClose()));
+
+	layout->addLayout(btnLayout);
+
 
 	setLayout(layout);
+	updateBtnAddElement();
 }
 
 NodeTypeBuilder::~NodeTypeBuilder()
@@ -88,5 +101,14 @@ void NodeTypeBuilder::onClose()
 	emit close();
 }
 
+void NodeTypeBuilder::addElement()
+{
+	prevlayout->addWidget(new QLabel(leElementCaption->text()));
+	leElementCaption->setText("");
+}
 
+void NodeTypeBuilder::updateBtnAddElement()
+{
+	btnAddElement->setEnabled(!leElementCaption->text().isEmpty());
+}
 
