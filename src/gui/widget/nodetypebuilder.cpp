@@ -20,6 +20,8 @@
 
 #include "src/gui/widget/nodetypebuilder.h"
 #include <klocalizedstring.h>
+#include "src/gui/widget/customnodeelement.h"
+
 
 NodeTypeBuilder::NodeTypeBuilder()
 {
@@ -103,7 +105,8 @@ void NodeTypeBuilder::onClose()
 
 void NodeTypeBuilder::addElement()
 {
-	prevlayout->addWidget(new QLabel(leElementCaption->text()));
+//	prevlayout->addWidget(new QLabel(leElementCaption->text()));
+	prevlayout->addWidget(new CustomNodeElement);
 	leElementCaption->setText("");
 }
 

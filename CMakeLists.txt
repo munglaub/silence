@@ -61,6 +61,7 @@ set ( silence_HDRS
 	src/gui/widget/nodetypemanager.h
 	src/gui/widget/nodetypebuilder.h
 	src/gui/widget/nodetypespanel.h
+	src/gui/widget/customnodeelement.h
 	)
 
 set ( silence_SRCS
@@ -108,6 +109,7 @@ set ( silence_SRCS
 	src/gui/widget/nodetypemanager.cpp
 	src/gui/widget/nodetypebuilder.cpp
 	src/gui/widget/nodetypespanel.cpp
+	src/gui/widget/customnodeelement.cpp
 	src/commandline/cmdmain.cpp
 	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp
