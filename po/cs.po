@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Silence\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-08 14:43+0200\n"
+"POT-Creation-Date: 2010-08-01 00:00+0200\n"
 "PO-Revision-Date: 2004-01-01 01:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -27,7 +27,7 @@ msgstr ""
 #. i18n: ectx: Menu (silence)
 #. i18n: file: src/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
-#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:32 rc.cpp:3 rc.cpp:21
+#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:32
 msgid "Silence"
 msgstr "Silence"
 
@@ -39,7 +39,7 @@ msgstr "Silence"
 #. i18n: ectx: Menu (node)
 #. i18n: file: src/silenceui.rc:16
 #. i18n: ectx: Menu (node)
-#: rc.cpp:6 rc.cpp:24 src/gui/dialog/newlinkdialog.cpp:42 rc.cpp:6 rc.cpp:24
+#: rc.cpp:6 rc.cpp:24 src/gui/dialog/newlinkdialog.cpp:42
 msgid "Node"
 msgstr "Uzel"
 
@@ -51,7 +51,7 @@ msgstr "Uzel"
 #. i18n: ectx: Menu (siedit)
 #. i18n: file: src/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
-#: rc.cpp:9 rc.cpp:27 rc.cpp:9 rc.cpp:27
+#: rc.cpp:9 rc.cpp:27
 msgid "Edit"
 msgstr "Úpravy"
 
@@ -63,7 +63,7 @@ msgstr "Úpravy"
 #. i18n: ectx: Menu (table)
 #. i18n: file: src/silenceui.rc:56
 #. i18n: ectx: Menu (table)
-#: rc.cpp:12 rc.cpp:30 rc.cpp:12 rc.cpp:30
+#: rc.cpp:12 rc.cpp:30
 msgid "Table"
 msgstr "Tabulka"
 
@@ -75,7 +75,7 @@ msgstr "Tabulka"
 #. i18n: ectx: Menu (format)
 #. i18n: file: src/silenceui.rc:65
 #. i18n: ectx: Menu (format)
-#: rc.cpp:15 rc.cpp:33 rc.cpp:15 rc.cpp:33
+#: rc.cpp:15 rc.cpp:33
 msgid "Format"
 msgstr "Formát"
 
@@ -87,16 +87,16 @@ msgstr "Formát"
 #. i18n: ectx: Menu (siview)
 #. i18n: file: src/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
-#: rc.cpp:18 rc.cpp:36 rc.cpp:18 rc.cpp:36
+#: rc.cpp:18 rc.cpp:36
 msgid "View"
 msgstr "Pohled"
 
-#: rc.cpp:37 rc.cpp:37
+#: rc.cpp:37
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Pavel Fric"
 
-#: rc.cpp:38 rc.cpp:38
+#: rc.cpp:38
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fripohled.blogspot.com"
@@ -268,7 +268,7 @@ msgstr "Název uzlu"
 msgid "Node name:"
 msgstr "Název uzlu:"
 
-#: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:67
+#: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:59
 msgid "Type"
 msgstr "Typ"
 
@@ -298,8 +298,8 @@ msgid "Navigation"
 msgstr "Navádění"
 
 #: src/gui/mainwindow.cpp:58
-msgid "Info"
-msgstr "Informace"
+msgid "Information"
+msgstr "Postranní panel s informacemi"
 
 #: src/gui/mainwindow.cpp:80
 msgid "&Exit"
@@ -333,20 +333,21 @@ msgstr "Postranní panel s vlastnostmi uzlů"
 msgid "Search Nodes Sidebar"
 msgstr "Postranní panel s hledáním uzlů"
 
-#: src/gui/sidebar/infosidebar.cpp:46
+#: src/gui/sidebar/infosidebar.cpp:47
 msgid "ID"
 msgstr "ID"
 
-#: src/gui/sidebar/infosidebar.cpp:53
+#: src/gui/sidebar/infosidebar.cpp:51
 msgctxt "time the node was created"
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: src/gui/sidebar/infosidebar.cpp:60
-msgid "Last edit"
+#: src/gui/sidebar/infosidebar.cpp:55
+msgctxt "last time the node was modified"
+msgid "Modified"
 msgstr "Naposledy upraveno"
 
-#: src/gui/sidebar/infosidebar.cpp:76
+#: src/gui/sidebar/infosidebar.cpp:65
 #: src/gui/sidebar/nodepropertywidget.cpp:37 src/gui/widget/labellist.cpp:35
 msgid "Labels"
 msgstr "Štítky"
@@ -629,5 +630,4 @@ msgstr "Dbát na psaní velkých a malých písmen"
 #: src/gui/widget/textfind.cpp:85
 msgid "Match whole word"
 msgstr "Celé slovo"
-
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: silence\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-08 14:43+0200\n"
+"POT-Creation-Date: 2010-08-01 00:00+0200\n"
 "PO-Revision-Date: 2010-05-20 22:29+0100\n"
 "Last-Translator: Manuel Unglaub <m.unglaub@gmail.com>\n"
 "Language-Team: \n"
@@ -263,7 +263,7 @@ msgstr "Artikelname"
 msgid "Node name:"
 msgstr "Artikelname"
 
-#: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:67
+#: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:59
 msgid "Type"
 msgstr "Typ"
 
@@ -293,8 +293,8 @@ msgid "Navigation"
 msgstr "Navigation"
 
 #: src/gui/mainwindow.cpp:58
-msgid "Info"
-msgstr "Info"
+msgid "Information"
+msgstr "Informationsleiste"
 
 #: src/gui/mainwindow.cpp:80
 msgid "&Exit"
@@ -328,20 +328,21 @@ msgstr "Eigenschaften"
 msgid "Search Nodes Sidebar"
 msgstr "Artikelsuche"
 
-#: src/gui/sidebar/infosidebar.cpp:46
+#: src/gui/sidebar/infosidebar.cpp:47
 msgid "ID"
 msgstr "ID"
 
-#: src/gui/sidebar/infosidebar.cpp:53
+#: src/gui/sidebar/infosidebar.cpp:51
 msgctxt "time the node was created"
 msgid "Created"
 msgstr "Erstellt"
 
-#: src/gui/sidebar/infosidebar.cpp:60
-msgid "Last edit"
+#: src/gui/sidebar/infosidebar.cpp:55
+msgctxt "last time the node was modified"
+msgid "Modified"
 msgstr "Bearbeitet"
 
-#: src/gui/sidebar/infosidebar.cpp:76
+#: src/gui/sidebar/infosidebar.cpp:65
 #: src/gui/sidebar/nodepropertywidget.cpp:37 src/gui/widget/labellist.cpp:35
 msgid "Labels"
 msgstr "Label"

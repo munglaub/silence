@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <kglobalsettings.h>
 #include <klocalizedstring.h>
 #include "src/gui/sidebar/infosidebar.h"
 
@@ -27,65 +28,48 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
 	setObjectName("InfoSidebar");
-	layout = new QGridLayout();
-	layout->setAlignment(Qt::AlignTop);
+	layout = new QFormLayout;
+	toplayout = new QVBoxLayout;
 	node = 0;
 
-	int row = 0;
-
-	caption = new QLabel("");
+	caption = new QLabel;
 	caption->setWordWrap(true);
-	caption->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(caption, row, 0, 1, 2, Qt::AlignCenter);
-	++row;
+	QFont captionFont = caption->font();
+	captionFont.setBold(true);
+	caption->setFont(captionFont);
+	toplayout->addWidget(caption, 0, Qt::AlignCenter);
 	
-	icon = new QLabel("");
-	layout->addWidget(icon, row, 0, 1, 2, Qt::AlignCenter);
-	++row;
+	icon = new QLabel;
+	toplayout->addWidget(icon, 0, Qt::AlignCenter);
 
-	id = new QLabel(i18n("ID") + ':');
-	id->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(id, row, 0);
-	idValue = new QLabel("-");
-	layout->addWidget(idValue, row, 1);
-	++row;
+	layout->addRow(toplayout);
 
-	created = new QLabel(i18nc("time the node was created", "Created") + ':');
-	created->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(created, row, 0);
-	createdDate = new QLabel("-");
-	layout->addWidget(createdDate, row, 1);
-	++row;
+	id = createInfoLabel(i18n("ID") + ':', true);
+	idValue = createInfoLabel("-");
+	layout->addRow(id, idValue);
 
-	lastedit = new QLabel(i18n("Last edit") + ':');
-	lastedit->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(lastedit, row, 0);
-	lasteditDate = new QLabel("-");
-	layout->addWidget(lasteditDate, row, 1);
-	++row;
+	created = createInfoLabel(i18nc("time the node was created", "Created") + ':', true);
+	createdDate = createInfoLabel("-");
+	layout->addRow(created, createdDate);
 
-	type = new QLabel(i18n("Type") + ':');
-	type->setFont(QFont("Times", 10, QFont::Bold));
+	modified = createInfoLabel(i18nc("last time the node was modified", "Modified") + ':', true);
+	modifiedDate = createInfoLabel("-");
+	layout->addRow(modified, modifiedDate);
+
+	type = createInfoLabel(i18n("Type") + ':', true);
 	type->setHidden(true);
-	layout->addWidget(type, row, 0);
-	typeName = new QLabel("");
+	typeName = createInfoLabel("");
 	typeName->setHidden(true);
-	layout->addWidget(typeName, row, 1);
-	++row;
+	layout->addRow(type, typeName);
 
-	labels = new QLabel(i18n("Labels") + ':');
-	labels->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(labels, row, 0);
-	labelsData = new QLabel("-");
+	labels = createInfoLabel(i18n("Labels") + ':', true);
+	labelsData = createInfoLabel("-");
 	labelsData->setWordWrap(true);
-	layout->addWidget(labelsData, row, 1);
-	++row;
+	layout->addRow(labels, labelsData);
 
-	metaInfo = new QLabel("");
-	metaInfo->setFont(QFont("Times", 10, QFont::Bold));
-	layout->addWidget(metaInfo, row, 0);
-	metaInfoData = new QLabel("");
-	layout->addWidget(metaInfoData, row, 1);
+	metaInfo = createInfoLabel("", true);
+	metaInfoData = createInfoLabel("");
+	layout->addRow(metaInfo, metaInfoData);
 
 
 	frame = new QFrame;
@@ -100,12 +84,13 @@ InfoSidebar::~InfoSidebar()
 	delete idValue;
 	delete created;
 	delete createdDate;
-	delete lastedit;
-	delete lasteditDate;
+	delete modified;
+	delete modifiedDate;
 	delete labels;
 	delete labelsData;
 	delete metaInfo;
 	delete metaInfoData;
+	delete toplayout;
 	delete layout;
 	delete frame;
 }
@@ -125,7 +110,7 @@ void InfoSidebar::clearInfos()
 	caption->setText("");
 	idValue->setText("-");
 	createdDate->setText("-");
-	lasteditDate->setText("-");
+	modifiedDate->setText("-");
 	labelsData->setText("-");
 	icon->setPixmap(QPixmap());
 	type->setHidden(true);
@@ -146,7 +131,7 @@ void InfoSidebar::updateInfos()
 	caption->setText(node->getCaption());
 	idValue->setText(QString().setNum(node->getId().getId()));
 	createdDate->setText(node->getCreationDate().toString(Qt::SystemLocaleShortDate));
-	lasteditDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
+	modifiedDate->setText(node->getModificationDate().toString(Qt::SystemLocaleShortDate));
 
 	labelsData->setText(node->getLabels()->join(", "));
 
@@ -180,4 +165,20 @@ void InfoSidebar::updateInfos()
 		metaInfoData->setHidden(true);
 	}
 }
+
+QLabel* InfoSidebar::createInfoLabel(QString text, bool caption)
+{
+	QLabel *label = new QLabel(text);
+	if (caption)
+	{
+		QColor color = palette().color(QPalette::Foreground);
+		color.setAlpha(128);
+		QPalette labelPalette = label->palette();
+		labelPalette.setColor(QPalette::Foreground, color);
+		label->setPalette(labelPalette);
+	}
+	label->setFont(KGlobalSettings::smallestReadableFont());
+	return label;
+}
+
 

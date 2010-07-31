@@ -21,10 +21,10 @@
 #ifndef INFOSIDEBAR_H
 #define INFOSIDEBAR_H
 
-#include "src/data/node/node.h"
 #include <QDockWidget>
-#include <QGridLayout>
+#include <QFormLayout>
 #include <QLabel>
+#include "src/data/node/node.h"
 
 
 /*!\class InfoSidebar
@@ -75,15 +75,16 @@ class InfoSidebar : public QDockWidget
 
 	private:
 		Node *node; 
-		QGridLayout *layout;
+		QFormLayout *layout;
+		QVBoxLayout *toplayout;
 		QFrame *frame;
 		QLabel	*caption,
 				*id,
 				*idValue,
 				*created,
 				*createdDate,
-				*lastedit,
-				*lasteditDate,
+				*modified,
+				*modifiedDate,
 				*labels,
 				*labelsData,
 				*metaInfo,
@@ -91,6 +92,7 @@ class InfoSidebar : public QDockWidget
 				*type,
 				*typeName,
 				*icon;
+		QLabel* createInfoLabel(QString text, bool caption = false);
 };
 
 #endif // INFOSIDEBAR_H
