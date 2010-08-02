@@ -43,10 +43,11 @@ NodeTypeBuilder::NodeTypeBuilder()
 	buildlayout->addWidget(lblElementTypes, 0, 1);
 	elementTypes = new QListWidget;
 	buildlayout->addWidget(elementTypes, 1, 1, 1, 1, Qt::AlignTop);
-	elementTypes->addItem("Line of Text");
+	elementTypes->addItem("String");
 	elementTypes->addItem("Text");
 	elementTypes->addItem("Integer");
-	elementTypes->addItem("Checkbox");
+	elementTypes->addItem("Number");
+	elementTypes->addItem("Boolean");
 	elementTypes->addItem("Picture");
 
 	btnAddElement = new QPushButton(i18n("Add Element"));
@@ -89,13 +90,12 @@ NodeTypeBuilder::~NodeTypeBuilder()
 	// TODO: implement
 }
 
-void NodeTypeBuilder::show(QString name)
+void NodeTypeBuilder::show(CustomNodeTypeDefinition *def)
 {
-	buildpane->setTitle(name); // Vieleicht noch was davor schreiben oder so..
+	buildpane->setTitle(def->getName()); // Vieleicht noch was davor schreiben oder so..
 	setVisible(true);
 	//TODO:
-	// - gucken ob es den typ schon gibt
-	//	-> wenn ja laden
+	// eventuell schon vorhandene items anzeigen
 }
 
 void NodeTypeBuilder::onClose()

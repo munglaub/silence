@@ -29,6 +29,7 @@
 #include <QGroupBox>
 #include <QLineEdit>
 #include <QListWidget>
+#include "src/data/node/customnodetypedefinition.h"
 
 
 //TODO: documentation
@@ -40,7 +41,7 @@ class NodeTypeBuilder : public QWidget
 		NodeTypeBuilder();
 		~NodeTypeBuilder();
 
-		void show(QString name);
+		void show(CustomNodeTypeDefinition *def);
 
 	signals:
 		void close();

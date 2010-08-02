@@ -17,6 +17,9 @@ set ( silence_HDRS
 	src/data/node/abstractcontentchange.h
 	src/data/node/textcontentchange.h
 	src/data/node/rtfcontentchange.h
+	src/data/node/customnodecontent.h
+	src/data/node/customnodeitem.h
+	src/data/node/customnodetypedefinition.h
 	src/data/label.h
 	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
@@ -74,6 +77,9 @@ set ( silence_SRCS
 	src/data/node/richtextnodecontent.cpp
 	src/data/node/textcontentchange.cpp
 	src/data/node/rtfcontentchange.cpp
+	src/data/node/customnodecontent.cpp
+	src/data/node/customnodeitem.cpp
+	src/data/node/customnodetypedefinition.cpp
 	src/data/label.cpp
 	src/data/aboutdata.cpp
 	src/data/model/labelmodel.cpp

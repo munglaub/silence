@@ -19,6 +19,7 @@
  */
 
 #include "src/gui/widget/nodetypemanager.h"
+#include "src/data/node/customnodetypedefinition.h"
 #include <klocalizedstring.h>
 
 
@@ -61,12 +62,20 @@ void NodeTypeManager::addNodeType()
 
 void NodeTypeManager::showNodeTypeBuilder()
 {
+	if (iw->getInput().isEmpty())
+		return;
 	//TODO:
 	// - ueberpruefen ob es leer ist
 	// - ueberpruefen ob es den namen schon gibt
 	ntp->setVisible(false);
 	iw->setVisible(false);
-	ntb->show(iw->getInput());
+
+	//TODO: wenn es ein neuer type ist:
+	ntb->show(new CustomNodeTypeDefinition(iw->getInput()));
+
+	//TODO: wenn es ein vorhandener ist:
+	// -> vom datastore customnodedtypedefinition holen
+	// => andere moeglichkeit ist es das immer vom datastore zu holen, dann kann der das ueberpruefen und im zeifelsfall eine neue leere schicken..
 }
 
 void NodeTypeManager::hideNodeTypeBuilder()
