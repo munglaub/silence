@@ -21,10 +21,12 @@
 #include "src/gui/widget/nodetypebuilder.h"
 #include <klocalizedstring.h>
 #include "src/gui/widget/customnodeelement.h"
+#include "src/data/node/customnodeitem.h"
 
 
 NodeTypeBuilder::NodeTypeBuilder()
 {
+	def = 0;
 	layout = new QVBoxLayout;
 	layout->setAlignment(Qt::AlignTop);
 
@@ -43,12 +45,12 @@ NodeTypeBuilder::NodeTypeBuilder()
 	buildlayout->addWidget(lblElementTypes, 0, 1);
 	elementTypes = new QListWidget;
 	buildlayout->addWidget(elementTypes, 1, 1, 1, 1, Qt::AlignTop);
-	elementTypes->addItem("String");
-	elementTypes->addItem("Text");
-	elementTypes->addItem("Integer");
-	elementTypes->addItem("Number");
-	elementTypes->addItem("Boolean");
-	elementTypes->addItem("Picture");
+	elementTypes->addItem(new QListWidgetItem("String", elementTypes, CustomNodeItem::String));
+	elementTypes->addItem(new QListWidgetItem("Text", elementTypes, CustomNodeItem::Text));
+	elementTypes->addItem(new QListWidgetItem("Integer", elementTypes, CustomNodeItem::Integer));
+	elementTypes->addItem(new QListWidgetItem("Number", elementTypes, CustomNodeItem::Number));
+	elementTypes->addItem(new QListWidgetItem("Boolean", elementTypes, CustomNodeItem::Boolean));
+	elementTypes->addItem(new QListWidgetItem("Image", elementTypes, CustomNodeItem::Image));
 
 	btnAddElement = new QPushButton(i18n("Add Element"));
 	buildlayout->addWidget(btnAddElement, 1, 2, 1, 1, Qt::AlignBottom);
@@ -92,6 +94,7 @@ NodeTypeBuilder::~NodeTypeBuilder()
 
 void NodeTypeBuilder::show(CustomNodeTypeDefinition *def)
 {
+	this->def = def;
 	buildpane->setTitle(def->getName()); // Vieleicht noch was davor schreiben oder so..
 	setVisible(true);
 	//TODO:
@@ -105,8 +108,12 @@ void NodeTypeBuilder::onClose()
 
 void NodeTypeBuilder::addElement()
 {
-//	prevlayout->addWidget(new QLabel(leElementCaption->text()));
-	prevlayout->addWidget(new CustomNodeElement);
+	CustomNodeItem::Type type = (CustomNodeItem::Type)elementTypes->currentItem()->type();
+//	CustomNodeItem::Type type = CustomNodeItem::String;
+	QString caption = leElementCaption->text();
+	def->addItem(caption, type);
+
+	prevlayout->addWidget(new CustomNodeElement(new CustomNodeItem(caption, type)));
 	leElementCaption->setText("");
 }
 
@@ -114,4 +121,7 @@ void NodeTypeBuilder::updateBtnAddElement()
 {
 	btnAddElement->setEnabled(!leElementCaption->text().isEmpty());
 }
+
+
+
 

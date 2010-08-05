@@ -30,10 +30,19 @@ CustomNodeTypeDefinition::~CustomNodeTypeDefinition()
 	// TODO: implement
 }
 
-QString CustomNodeTypeDefinition::getName()
+QString CustomNodeTypeDefinition::getName() const
 {
-	// TODO: implement
 	return name;
 }
 
+
+QList<QPair<QString, CustomNodeItem::Type> > CustomNodeTypeDefinition::getItemList() const
+{
+	return itemList;
+}
+
+void CustomNodeTypeDefinition::addItem(QString caption, CustomNodeItem::Type type)
+{
+	itemList.append(QPair<QString, CustomNodeItem::Type>(caption, type));
+}
 

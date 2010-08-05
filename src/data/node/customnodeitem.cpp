@@ -20,9 +20,10 @@
 
 #include "src/data/node/customnodeitem.h"
 
-CustomNodeItem::CustomNodeItem(CustomNodeItem::Type type)
+CustomNodeItem::CustomNodeItem(QString caption, CustomNodeItem::Type type)
 {
-	// TODO: implement
+	this->caption = caption;
+	this->type = type;
 }
 
 CustomNodeItem::~CustomNodeItem()
@@ -30,15 +31,13 @@ CustomNodeItem::~CustomNodeItem()
 	// TODO: implement
 }
 
-void CustomNodeItem::setCaption(QString caption)
+QString CustomNodeItem::getCaption() const
 {
-	// TODO: implement
+	return caption;
 }
 
-QString CustomNodeItem::getCaption()
+CustomNodeItem::Type CustomNodeItem::getType() const
 {
-	// TODO: implement
-	return "";
+	return type;
 }
-
 

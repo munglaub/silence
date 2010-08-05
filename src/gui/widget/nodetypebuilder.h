@@ -63,6 +63,8 @@ class NodeTypeBuilder : public QWidget
 		QListWidget *elementTypes;
 		QPushButton *btnAddElement;
 
+		CustomNodeTypeDefinition *def;
+
 
 };
 

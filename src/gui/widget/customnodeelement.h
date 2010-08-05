@@ -25,7 +25,11 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QCheckBox>
+#include <QTextEdit>
+#include <QSpinBox>
 #include <QPushButton>
+#include "src/data/node/customnodeitem.h"
 
 
 class CustomNodeElement : public QWidget
@@ -33,12 +37,20 @@ class CustomNodeElement : public QWidget
 	Q_OBJECT
 
 	public:
-		CustomNodeElement(QWidget *parent = 0);
+		CustomNodeElement(CustomNodeItem *item, QWidget *parent = 0);
 		~CustomNodeElement();
-	
+
+	signals:
+		void remove(CustomNodeElement *element, CustomNodeItem *item);
+
+	private slots:
+		void onRemove();
+
 	private:
 		QHBoxLayout *layout;
+		QPushButton *btnRemove;
 
+		CustomNodeItem *item;
 };
 
 #endif // CUSTOMNODEELEMENT_H

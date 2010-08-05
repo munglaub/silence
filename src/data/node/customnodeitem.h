@@ -23,6 +23,7 @@
 
 #include <QString>
 
+//TODO: docu
 class CustomNodeItem
 {
 	public:
@@ -35,11 +36,16 @@ class CustomNodeItem
 			Image
 		};
 
-		CustomNodeItem(CustomNodeItem::Type type);
+		CustomNodeItem(QString caption, CustomNodeItem::Type type);
 		~CustomNodeItem();
 
-		void setCaption(QString caption);
-		QString getCaption();
+		QString getCaption() const;
+		Type getType() const;
+		//TODO: daten
+
+	private:
+		Type type;
+		QString caption;
 };
 
 #endif // CUSTOMNODEITEM_H

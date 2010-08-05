@@ -22,6 +22,9 @@
 #define CUSTOMNODETYPEDEFINITION_H
 
 #include <QString>
+#include <QList>
+#include <QPair>
+#include "src/data/node/customnodeitem.h"
 
 
 class CustomNodeTypeDefinition
@@ -30,10 +33,14 @@ class CustomNodeTypeDefinition
 		CustomNodeTypeDefinition(QString name);
 		~CustomNodeTypeDefinition();
 
-		QString getName();
+		QString getName() const;
+
+		QList<QPair<QString, CustomNodeItem::Type> > getItemList() const;
+		void addItem(QString caption, CustomNodeItem::Type type);
 
 	private:
 		QString name;
+		QList<QPair<QString, CustomNodeItem::Type> > itemList;
 };
 
 #endif // CUSTOMNODETYPEDEFINITION_H

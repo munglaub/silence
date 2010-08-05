@@ -19,15 +19,48 @@
  */
 
 #include "src/gui/widget/customnodeelement.h"
+#include <klocalizedstring.h>
 
-CustomNodeElement::CustomNodeElement(QWidget *parent)
+
+CustomNodeElement::CustomNodeElement(CustomNodeItem *item, QWidget *parent)
 	: QWidget(parent)
 {
+	this->item = item;
 	layout = new QHBoxLayout;
-	layout->addWidget(new QLabel("caption"));
-	layout->addWidget(new QLineEdit);
-	layout->addWidget(new QPushButton("remove"));
+
+	layout->addWidget(new QLabel(item->getCaption()));
+
+	switch (item->getType()){
+		case CustomNodeItem::String:
+			layout->addWidget(new QLineEdit);
+			break;
+		case CustomNodeItem::Text:
+			layout->addWidget(new QTextEdit);
+			break;
+		case CustomNodeItem::Integer:
+			layout->addWidget(new QSpinBox);
+			break;
+		case CustomNodeItem::Number:
+			layout->addWidget(new QLineEdit);
+			break;
+		case CustomNodeItem::Boolean:
+			layout->addWidget(new QCheckBox);
+			break;
+		case CustomNodeItem::Image:
+			layout->addWidget(new QLabel("Image"));
+			break;
+	}
+
+
+	btnRemove = new QPushButton(i18n("Remove"));
+	layout->addWidget(btnRemove);
+	connect(btnRemove, SIGNAL(clicked()), this, SLOT(onRemove()));
 	setLayout(layout);
+}
+
+void CustomNodeElement::onRemove()
+{
+	emit remove(this, item);
 }
 
 CustomNodeElement::~CustomNodeElement()
