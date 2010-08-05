@@ -36,17 +36,30 @@ class NodeTypesPanel : public QWidget
 	public:
 		NodeTypesPanel();
 		~NodeTypesPanel();
+
+		void updateTypeList();
 	
 	signals:
 		void exit();
 		void addNodeType();
+		void editNodeType(QString name);
+		void deleteNodeType(QString name);
 	
 	private slots:
 		void sendExit();
 		void addType();
+		void editType();
+		void deleteType();
+		void updateButtons();
 
 	private:
 		QGridLayout *layout;
+		QListWidget *typelist;
+		QPushButton *btnAdd,
+					*btnEdit,
+					*btnDelete,
+					*btnExit;
+
 };
 
 #endif // NODETYPESPANEL_H

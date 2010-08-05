@@ -21,26 +21,29 @@
 #include "src/gui/widget/nodetypemanager.h"
 #include "src/data/node/customnodetypedefinition.h"
 #include <klocalizedstring.h>
+#include "src/controller.h"
 
 
 NodeTypeManager::NodeTypeManager()
 {
 	layout = new QVBoxLayout;
 	layout->setAlignment(Qt::AlignTop);
-	ntp = new NodeTypesPanel;
-	layout->addWidget(ntp);
-	connect(ntp, SIGNAL(exit()), this, SLOT(sendExit()));
-	//connect(ntp, SIGNAL(addNodeType()), this, SLOT(showNodeTypeBuilder()));
-	connect(ntp, SIGNAL(addNodeType()), this, SLOT(addNodeType()));
-	iw = new InputWidget;
-	iw->setVisible(false);
-	layout->addWidget(iw);
-	connect(iw, SIGNAL(done()), this, SLOT(showNodeTypeBuilder()));
+	nodetypespanel = new NodeTypesPanel;
+	layout->addWidget(nodetypespanel);
+	connect(nodetypespanel, SIGNAL(exit()), this, SLOT(sendExit()));
+	connect(nodetypespanel, SIGNAL(addNodeType()), this, SLOT(showInputWidget()));
+	connect(nodetypespanel, SIGNAL(editNodeType(QString)), this, SLOT(showNodeTypeBuilder(QString)));
+	connect(nodetypespanel, SIGNAL(deleteNodeType(QString)), this, SLOT(deleteNodeType(QString)));
 
-	ntb = new NodeTypeBuilder;
-	ntb->setVisible(false);
-	layout->addWidget(ntb);
-	connect(ntb, SIGNAL(close()), this, SLOT(hideNodeTypeBuilder()));
+	inputwidget = new InputWidget;
+	inputwidget->setVisible(false);
+	layout->addWidget(inputwidget);
+	connect(inputwidget, SIGNAL(done()), this, SLOT(addNodeType()));
+
+	nodetypebuilder = new NodeTypeBuilder;
+	nodetypebuilder->setVisible(false);
+	layout->addWidget(nodetypebuilder);
+	connect(nodetypebuilder, SIGNAL(close()), this, SLOT(hideNodeTypeBuilder()));
 
 	setLayout(layout);
 }
@@ -55,33 +58,41 @@ void NodeTypeManager::sendExit()
 	emit exit(this);
 }
 
-void NodeTypeManager::addNodeType()
+void NodeTypeManager::showInputWidget()
 {
-	iw->show(i18n("Node Type Name"));
+	inputwidget->show(i18n("Node Type Name"));
 }
 
-void NodeTypeManager::showNodeTypeBuilder()
+void NodeTypeManager::addNodeType()
 {
-	if (iw->getInput().isEmpty())
+	if (inputwidget->getInput().isEmpty())
 		return;
-	//TODO:
-	// - ueberpruefen ob es leer ist
-	// - ueberpruefen ob es den namen schon gibt
-	ntp->setVisible(false);
-	iw->setVisible(false);
+	showNodeTypeBuilder(inputwidget->getInput());
+}
 
-	//TODO: wenn es ein neuer type ist:
-	ntb->show(new CustomNodeTypeDefinition(iw->getInput()));
+void NodeTypeManager::deleteNodeType(QString name)
+{
+	//TODO: eine grosse warnung und willst-du-wirklich-abfrage!!!
+	//TODO: alle nodes mit dem nodetype loeschen..
+	// alternative -> gucken ob es nodes mit dem type gibt und wenn ja sagen das loeschen nicht geht weil es noch nodes gibt..
+	Controller::create()->getDataStore()->removeCustomNodeType(name);
+	nodetypespanel->updateTypeList();
+}
 
-	//TODO: wenn es ein vorhandener ist:
-	// -> vom datastore customnodedtypedefinition holen
-	// => andere moeglichkeit ist es das immer vom datastore zu holen, dann kann der das ueberpruefen und im zeifelsfall eine neue leere schicken..
+void NodeTypeManager::showNodeTypeBuilder(QString customNodeTypeName)
+{
+	nodetypespanel->setVisible(false);
+	inputwidget->setVisible(false);
+
+	nodetypebuilder->show(Controller::create()->getDataStore()->getCustomNodeType(customNodeTypeName));
 }
 
 void NodeTypeManager::hideNodeTypeBuilder()
 {
-	ntp->setVisible(true);
-	ntb->setVisible(false);
+	Controller::create()->getDataStore()->saveCustomNodeType(nodetypebuilder->getCustomNodeTypeDefinition());
+	nodetypespanel->updateTypeList();
+	nodetypespanel->setVisible(true);
+	nodetypebuilder->setVisible(false);
 }
 
 

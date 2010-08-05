@@ -42,15 +42,17 @@ class NodeTypeManager : public QWidget
 
 	private slots:
 		void sendExit();
+		void showInputWidget();
 		void addNodeType();
-		void showNodeTypeBuilder();
+		void deleteNodeType(QString name);
+		void showNodeTypeBuilder(QString customNodeTypeName);
 		void hideNodeTypeBuilder();
 
 	private:
 		QVBoxLayout *layout;
-		NodeTypesPanel *ntp;
-		InputWidget *iw;
-		NodeTypeBuilder *ntb;
+		NodeTypesPanel *nodetypespanel;
+		InputWidget *inputwidget;
+		NodeTypeBuilder *nodetypebuilder;
 
 };
 

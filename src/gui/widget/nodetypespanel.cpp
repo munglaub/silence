@@ -33,33 +33,45 @@ NodeTypesPanel::NodeTypesPanel()
 	layout->addWidget(caption, row, 0);
 	++row;
 
-	QListWidget *typelist = new QListWidget;
+	typelist = new QListWidget;
 	layout->addWidget(typelist, row, 0, 4, 1);
 	++row;
-	typelist->addItems(Controller::create()->getDataStore()->getNodeTypeNames());
+	typelist->addItems(Controller::create()->getDataStore()->getCustomNodeTypeNames());
 
 	//TODO: icons
-	QPushButton *btnAdd = new QPushButton(i18n("Add new Node Type"));
+	btnAdd = new QPushButton(i18n("Add new Node Type"));
 	layout->addWidget(btnAdd, row, 1);
 	++row;
 	connect(btnAdd, SIGNAL(clicked()), this, SLOT(addType()));
 
-	QPushButton *btnEdit = new QPushButton(i18n("Edit"));
+	btnEdit = new QPushButton(i18n("Edit"));
 	layout->addWidget(btnEdit, row, 1);
 	++row;
-	QPushButton *btnDelete = new QPushButton(i18n("Delete"));
+	connect(btnEdit, SIGNAL(clicked()), this, SLOT(editType()));
+
+	btnDelete = new QPushButton(i18n("Delete"));
 	layout->addWidget(btnDelete, row, 1);
 	++row;
+	connect(btnDelete, SIGNAL(clicked()), this, SLOT(deleteType()));
 
-	QPushButton *btnExit = new QPushButton(i18n("Close"));
+	btnExit = new QPushButton(i18n("Close"));
 	layout->addWidget(btnExit, row, 0);
 	connect(btnExit, SIGNAL(clicked()), this, SLOT(sendExit()));
 	setLayout(layout);
+
+	connect(typelist, SIGNAL(itemSelectionChanged()), this, SLOT(updateButtons()));
+	updateButtons();
 }
 
 NodeTypesPanel::~NodeTypesPanel()
 {
 	// TODO: implement
+}
+
+void NodeTypesPanel::updateTypeList()
+{
+	typelist->clear();
+	typelist->addItems(Controller::create()->getDataStore()->getCustomNodeTypeNames());
 }
 
 void NodeTypesPanel::sendExit()
@@ -70,5 +82,27 @@ void NodeTypesPanel::sendExit()
 void NodeTypesPanel::addType()
 {
 	emit addNodeType();
+}
+
+void NodeTypesPanel::editType()
+{
+	emit editNodeType(typelist->currentItem()->text());
+}
+
+void NodeTypesPanel::deleteType()
+{
+	emit deleteNodeType(typelist->currentItem()->text());
+}
+
+void NodeTypesPanel::updateButtons()
+{
+	if (typelist->selectedItems().isEmpty())
+	{
+		btnEdit->setEnabled(false);
+		btnDelete->setEnabled(false);
+	} else {
+		btnEdit->setEnabled(true);
+		btnDelete->setEnabled(true);
+	}
 }
 

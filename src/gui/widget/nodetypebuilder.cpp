@@ -28,6 +28,8 @@ NodeTypeBuilder::NodeTypeBuilder()
 	layout = new QVBoxLayout;
 	layout->setAlignment(Qt::AlignTop);
 
+//TODO: so eine VORSICHT! warnung hinmalen wo steht das es unwahrscheinlich unguenstige auswirkungen auf vorhandene daten haben kann wenn man da einen nodetype veraendert..
+
 // ein panel mit den neues element erstellen dingern
 	buildpane = new QGroupBox;
 	layout->addWidget(buildpane);
@@ -68,6 +70,7 @@ NodeTypeBuilder::NodeTypeBuilder()
 
 
 	// Buttons
+	//TODO: btnAbort entfernen
 	QHBoxLayout *btnLayout = new QHBoxLayout;
 	QPushButton *btnAbort = new QPushButton(i18n("Abort"));
 	btnLayout->addWidget(btnAbort);
@@ -92,11 +95,19 @@ NodeTypeBuilder::~NodeTypeBuilder()
 
 void NodeTypeBuilder::show(CustomNodeTypeDefinition *def)
 {
+	clearPrevlayout();
 	this->def = def;
 	buildpane->setTitle(def->getName()); // Vieleicht noch was davor schreiben oder so..
 	setVisible(true);
-	//TODO:
-	// eventuell schon vorhandene items anzeigen
+
+	// show existing elements
+	for (int i = 0; i < def->getItemList().size(); ++i)
+		addElementToPrevlayout(def->getItemList().at(i));
+}
+
+CustomNodeTypeDefinition* NodeTypeBuilder::getCustomNodeTypeDefinition()
+{
+	return def;
 }
 
 void NodeTypeBuilder::onClose()
@@ -107,14 +118,11 @@ void NodeTypeBuilder::onClose()
 void NodeTypeBuilder::addElement()
 {
 	CustomNodeItem::Type type = (CustomNodeItem::Type)elementTypes->currentItem()->type();
-//	CustomNodeItem::Type type = CustomNodeItem::String;
 	QString caption = leElementCaption->text();
 	CustomNodeItem *item = new CustomNodeItem(caption, type);
 	def->addItem(item);
-	CustomNodeElement *itemwidget = new CustomNodeElement(item);
-	prevlayout->addWidget(itemwidget);
 
-	connect(itemwidget, SIGNAL(remove(CustomNodeElement*, CustomNodeItem*)), this, SLOT(removeItem(CustomNodeElement*, CustomNodeItem*)));
+	addElementToPrevlayout(item);
 
 	leElementCaption->setText("");
 }
@@ -128,8 +136,27 @@ void NodeTypeBuilder::removeItem(CustomNodeElement* element, CustomNodeItem *ite
 {
 	def->removeItem(item);
 	prevlayout->removeWidget(element);
+	elements.removeOne(element);
 	delete element;
 }
 
+void NodeTypeBuilder::clearPrevlayout()
+{
+	while (!elements.isEmpty())
+	{
+		CustomNodeElement *tmp = elements.takeFirst();
+		prevlayout->removeWidget(tmp);
+		delete tmp;
+	}
+}
+
+void NodeTypeBuilder::addElementToPrevlayout(CustomNodeItem *item)
+{
+	CustomNodeElement *itemwidget = new CustomNodeElement(item);
+	prevlayout->addWidget(itemwidget);
+	elements.append(itemwidget);
+
+	connect(itemwidget, SIGNAL(remove(CustomNodeElement*, CustomNodeItem*)), this, SLOT(removeItem(CustomNodeElement*, CustomNodeItem*)));
+}
 
 

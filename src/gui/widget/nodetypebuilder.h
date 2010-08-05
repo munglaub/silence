@@ -44,6 +44,7 @@ class NodeTypeBuilder : public QWidget
 		~NodeTypeBuilder();
 
 		void show(CustomNodeTypeDefinition *def);
+		CustomNodeTypeDefinition* getCustomNodeTypeDefinition();
 
 	signals:
 		void close();
@@ -67,6 +68,10 @@ class NodeTypeBuilder : public QWidget
 		QPushButton *btnAddElement;
 
 		CustomNodeTypeDefinition *def;
+		QList<CustomNodeElement*> elements;
+
+		void clearPrevlayout();
+		void addElementToPrevlayout(CustomNodeItem *item);
 
 
 };

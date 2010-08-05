@@ -69,11 +69,32 @@ Node* XmlDataStore::getRootNode()
 	return rootNode;
 }
 
-QStringList XmlDataStore::getNodeTypeNames()
+QStringList XmlDataStore::getCustomNodeTypeNames()
 {
-	QStringList result;
-	result << "Books" << "Recips" << "Adresses" << "foobar";
-	return result;
+	return QStringList(customNodeTypeDefinitions.keys());
+}
+
+CustomNodeTypeDefinition* XmlDataStore::getCustomNodeType(QString name)
+{
+	if (customNodeTypeDefinitions.contains(name))
+		return customNodeTypeDefinitions[name];
+	else
+		customNodeTypeDefinitions[name] = new CustomNodeTypeDefinition(name);
+		saveCustomNodeTypeDefinitions();
+		return customNodeTypeDefinitions[name];
+}
+
+void XmlDataStore::removeCustomNodeType(QString typeName)
+{
+	delete customNodeTypeDefinitions.take(typeName);
+	saveCustomNodeTypeDefinitions();
+}
+
+void XmlDataStore::saveCustomNodeType(CustomNodeTypeDefinition *type)
+{
+	if (!customNodeTypeDefinitions.contains(type->getName()))
+		customNodeTypeDefinitions[type->getName()] = type;
+	saveCustomNodeTypeDefinitions();
 }
 
 Node* XmlDataStore::getNode(NodeId id)
@@ -171,6 +192,11 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 void XmlDataStore::saveNode(Node*)
 {
 	saveAll();
+}
+
+void XmlDataStore::saveCustomNodeTypeDefinitions()
+{
+	//TODO: implement
 }
 
 void XmlDataStore::saveAll()
