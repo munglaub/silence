@@ -23,7 +23,6 @@
 
 #include <QString>
 #include <QList>
-#include <QPair>
 #include "src/data/node/customnodeitem.h"
 
 
@@ -35,12 +34,13 @@ class CustomNodeTypeDefinition
 
 		QString getName() const;
 
-		QList<QPair<QString, CustomNodeItem::Type> > getItemList() const;
-		void addItem(QString caption, CustomNodeItem::Type type);
+		QList<CustomNodeItem*> getItemList() const;
+		void addItem(CustomNodeItem *item);
+		void removeItem(CustomNodeItem *item);
 
 	private:
 		QString name;
-		QList<QPair<QString, CustomNodeItem::Type> > itemList;
+		QList<CustomNodeItem*> itemList;
 };
 
 #endif // CUSTOMNODETYPEDEFINITION_H

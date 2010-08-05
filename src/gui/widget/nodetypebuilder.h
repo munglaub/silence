@@ -30,6 +30,8 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include "src/data/node/customnodetypedefinition.h"
+#include "src/gui/widget/customnodeelement.h"
+#include "src/data/node/customnodeitem.h"
 
 
 //TODO: documentation
@@ -50,6 +52,7 @@ class NodeTypeBuilder : public QWidget
 		void onClose();
 		void addElement();
 		void updateBtnAddElement();
+		void removeItem(CustomNodeElement* element, CustomNodeItem *item);
 
 	private:
 		QVBoxLayout *layout,

@@ -36,13 +36,19 @@ QString CustomNodeTypeDefinition::getName() const
 }
 
 
-QList<QPair<QString, CustomNodeItem::Type> > CustomNodeTypeDefinition::getItemList() const
+QList<CustomNodeItem*> CustomNodeTypeDefinition::getItemList() const
 {
 	return itemList;
 }
 
-void CustomNodeTypeDefinition::addItem(QString caption, CustomNodeItem::Type type)
+void CustomNodeTypeDefinition::addItem(CustomNodeItem *item)
 {
-	itemList.append(QPair<QString, CustomNodeItem::Type>(caption, type));
+	itemList.append(item);
 }
+
+void CustomNodeTypeDefinition::removeItem(CustomNodeItem *item)
+{
+	itemList.removeOne(item);
+}
+
 

@@ -20,8 +20,6 @@
 
 #include "src/gui/widget/nodetypebuilder.h"
 #include <klocalizedstring.h>
-#include "src/gui/widget/customnodeelement.h"
-#include "src/data/node/customnodeitem.h"
 
 
 NodeTypeBuilder::NodeTypeBuilder()
@@ -111,9 +109,13 @@ void NodeTypeBuilder::addElement()
 	CustomNodeItem::Type type = (CustomNodeItem::Type)elementTypes->currentItem()->type();
 //	CustomNodeItem::Type type = CustomNodeItem::String;
 	QString caption = leElementCaption->text();
-	def->addItem(caption, type);
+	CustomNodeItem *item = new CustomNodeItem(caption, type);
+	def->addItem(item);
+	CustomNodeElement *itemwidget = new CustomNodeElement(item);
+	prevlayout->addWidget(itemwidget);
 
-	prevlayout->addWidget(new CustomNodeElement(new CustomNodeItem(caption, type)));
+	connect(itemwidget, SIGNAL(remove(CustomNodeElement*, CustomNodeItem*)), this, SLOT(removeItem(CustomNodeElement*, CustomNodeItem*)));
+
 	leElementCaption->setText("");
 }
 
@@ -122,6 +124,12 @@ void NodeTypeBuilder::updateBtnAddElement()
 	btnAddElement->setEnabled(!leElementCaption->text().isEmpty());
 }
 
+void NodeTypeBuilder::removeItem(CustomNodeElement* element, CustomNodeItem *item)
+{
+	def->removeItem(item);
+	prevlayout->removeWidget(element);
+	delete element;
+}
 
 
 
