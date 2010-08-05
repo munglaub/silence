@@ -73,9 +73,11 @@ class XmlDataStore : public AbstractDataStore
 		Node *rootNode;
 		Label *rootLabel;
 		static const QString DATA_FILE;
+		static const QString TYPE_FILE;
 
 		QHash<QString, CustomNodeTypeDefinition*> customNodeTypeDefinitions;
 		void saveCustomNodeTypeDefinitions();
+		void loadCustomNodeTypeDefinitions();
 
 		void saveAll(); //TODO: rename to saveNodesAndLabels()
 		Node* findNode(Node* parent, NodeId id);
