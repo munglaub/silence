@@ -18,37 +18,22 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customimagedatawidget.h"
 
-CustomNodeItem::CustomNodeItem(QString caption, CustomNodeItem::Type type)
+CustomImageDataWidget::CustomImageDataWidget(CustomNodeItem *item)
 {
-	this->caption = caption;
-	this->type = type;
+	this->item = item;
+	setText("empty");
 }
 
-CustomNodeItem::~CustomNodeItem()
+CustomImageDataWidget::~CustomImageDataWidget()
 {
 	// TODO: implement
 }
 
-QString CustomNodeItem::getCaption() const
+void CustomImageDataWidget::save()
 {
-	return caption;
+	// TODO: implement
 }
 
-CustomNodeItem::Type CustomNodeItem::getType() const
-{
-	return type;
-}
-
-QString CustomNodeItem::getData() const
-{
-	return data;
-}
-
-void CustomNodeItem::setData(QString data)
-{
-	this->data = data;
-	emit changed();
-}
 

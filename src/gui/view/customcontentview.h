@@ -33,6 +33,8 @@
 
 class CustomContentView : public AbstractContentView
 {
+	Q_OBJECT
+
 	public:
 		CustomContentView();
 		~CustomContentView();
@@ -40,6 +42,9 @@ class CustomContentView : public AbstractContentView
 		void setItems(QList<CustomNodeItem*> items);
 		bool hasChanged();
 		AbstractContentChange* getChange();
+
+	private slots:
+		void save();
 
 	private:
 		QList<CustomNodeElement*> elements;

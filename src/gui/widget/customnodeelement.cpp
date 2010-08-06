@@ -19,8 +19,13 @@
  */
 
 #include "src/gui/widget/customnodeelement.h"
+#include "src/gui/widget/customstringdatawidget.h"
+#include "src/gui/widget/customtextdatawidget.h"
+#include "src/gui/widget/customintegerdatawidget.h"
+#include "src/gui/widget/customnumberdatawidget.h"
+#include "src/gui/widget/custombooleandatawidget.h"
+#include "src/gui/widget/customimagedatawidget.h"
 #include <klocalizedstring.h>
-
 
 CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, QWidget *parent)
 	: QWidget(parent)
@@ -28,26 +33,53 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, Q
 	this->item = item;
 	layout = new QHBoxLayout;
 
-	layout->addWidget(new QLabel(item->getCaption()));
+	caption = new QLabel(item->getCaption());
+	layout->addWidget(caption);
+
+	datawidget = 0;
 
 	switch (item->getType()){
 		case CustomNodeItem::String:
-			layout->addWidget(new QLineEdit);
+			{
+				CustomStringDataWidget *tmp = new CustomStringDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 		case CustomNodeItem::Text:
-			layout->addWidget(new QTextEdit);
+			{
+				CustomTextDataWidget *tmp = new CustomTextDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 		case CustomNodeItem::Integer:
-			layout->addWidget(new QSpinBox);
+			{
+				CustomIntegerDataWidget *tmp = new CustomIntegerDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 		case CustomNodeItem::Number:
-			layout->addWidget(new QLineEdit);
+			{
+				CustomNumberDataWidget *tmp = new CustomNumberDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 		case CustomNodeItem::Boolean:
-			layout->addWidget(new QCheckBox);
+			{
+				CustomBooleanDataWidget *tmp = new CustomBooleanDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 		case CustomNodeItem::Image:
-			layout->addWidget(new QLabel("Image"));
+			{
+				CustomImageDataWidget *tmp = new CustomImageDataWidget(item);
+				layout->addWidget(tmp);
+				datawidget = tmp;
+			}
 			break;
 	}
 
@@ -59,14 +91,23 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, Q
 	setLayout(layout);
 }
 
+CustomNodeElement::~CustomNodeElement()
+{
+	// TODO: implement
+}
+
 void CustomNodeElement::onRemove()
 {
 	emit remove(this, item);
 }
 
-CustomNodeElement::~CustomNodeElement()
+void CustomNodeElement::save()
 {
-	// TODO: implement
+	if (datawidget)
+	{
+		datawidget->save();
+	}
 }
+
 
 

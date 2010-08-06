@@ -48,6 +48,9 @@ class CustomNodeContent : public AbstractNodeContent
 	signals:
 		void changed();
 	
+	private slots:
+		void onChange();
+
 	private:
 		QHash<QString, QString> *metaInfos;
 		QList<CustomNodeItem*> items;

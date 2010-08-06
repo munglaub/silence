@@ -32,6 +32,7 @@ CustomContentView::CustomContentView()
 
 	btnSave = new QPushButton(i18n("Save"));
 	scrolllayout->addWidget(btnSave, 0, Qt::AlignRight);
+	connect(btnSave, SIGNAL(clicked()), this, SLOT(save()));
 
 	scrollarea->setLayout(scrolllayout);
 	setLayout(layout);
@@ -68,5 +69,12 @@ AbstractContentChange* CustomContentView::getChange()
 	// TODO: implement
 	return 0;
 }
+
+void CustomContentView::save()
+{
+	for (int i = 0; i < elements.size(); ++i)
+		elements.at(i)->save();
+}
+
 
 

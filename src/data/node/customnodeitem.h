@@ -22,10 +22,13 @@
 #define CUSTOMNODEITEM_H
 
 #include <QString>
+#include <QObject>
 
 //TODO: docu
-class CustomNodeItem
+class CustomNodeItem : public QObject
 {
+	Q_OBJECT
+
 	public:
 		enum Type {
 			String,
@@ -41,11 +44,17 @@ class CustomNodeItem
 
 		QString getCaption() const;
 		Type getType() const;
-		//TODO: daten
+
+		void setData(QString data);
+		QString getData() const;
+
+	signals:
+		void changed();
 
 	private:
 		Type type;
 		QString caption;
+		QString data;
 };
 
 #endif // CUSTOMNODEITEM_H

@@ -18,37 +18,16 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/data/node/customnodeitem.h"
+#ifndef CUSTOMDATAWIDGET_H
+#define CUSTOMDATAWIDGET_H
 
-CustomNodeItem::CustomNodeItem(QString caption, CustomNodeItem::Type type)
-{
-	this->caption = caption;
-	this->type = type;
-}
+#include <QObject>
 
-CustomNodeItem::~CustomNodeItem()
+class CustomDataWidget : public QObject
 {
-	// TODO: implement
-}
+	public:
+		virtual void save() = 0;
+};
 
-QString CustomNodeItem::getCaption() const
-{
-	return caption;
-}
-
-CustomNodeItem::Type CustomNodeItem::getType() const
-{
-	return type;
-}
-
-QString CustomNodeItem::getData() const
-{
-	return data;
-}
-
-void CustomNodeItem::setData(QString data)
-{
-	this->data = data;
-	emit changed();
-}
+#endif // CUSTOMDATAWIDGET_H
 

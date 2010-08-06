@@ -18,37 +18,26 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/custombooleandatawidget.h"
 
-CustomNodeItem::CustomNodeItem(QString caption, CustomNodeItem::Type type)
+
+CustomBooleanDataWidget::CustomBooleanDataWidget(CustomNodeItem *item)
 {
-	this->caption = caption;
-	this->type = type;
+	this->item = item;
+	setChecked(item->getData() == "True");
 }
 
-CustomNodeItem::~CustomNodeItem()
+CustomBooleanDataWidget::~CustomBooleanDataWidget()
 {
 	// TODO: implement
 }
 
-QString CustomNodeItem::getCaption() const
+void CustomBooleanDataWidget::save()
 {
-	return caption;
+	if (isChecked())
+		item->setData("True");
+	else
+		item->setData("False");
 }
 
-CustomNodeItem::Type CustomNodeItem::getType() const
-{
-	return type;
-}
-
-QString CustomNodeItem::getData() const
-{
-	return data;
-}
-
-void CustomNodeItem::setData(QString data)
-{
-	this->data = data;
-	emit changed();
-}
 

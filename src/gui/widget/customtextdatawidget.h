@@ -18,46 +18,25 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CUSTOMNODEELEMENT_H
-#define CUSTOMNODEELEMENT_H
+#ifndef CUSTOMTEXTDATAWIDGET_H
+#define CUSTOMTEXTDATAWIDGET_H
 
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QLineEdit>
-#include <QCheckBox>
 #include <QTextEdit>
-#include <QSpinBox>
-#include <QPushButton>
-#include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
+#include "src/data/node/customnodeitem.h"
 
 
-class CustomNodeElement : public QWidget
+class CustomTextDataWidget : public CustomDataWidget, public QTextEdit
 {
-	Q_OBJECT
-
 	public:
-		CustomNodeElement(CustomNodeItem *item, bool showModifiers = false, QWidget *parent = 0);
-		~CustomNodeElement();
+		CustomTextDataWidget(CustomNodeItem *item);
+		~CustomTextDataWidget();
 
-	signals:
-		void remove(CustomNodeElement *element, CustomNodeItem *item);
-
-	public slots:
 		void save();
 
-	private slots:
-		void onRemove();
-
 	private:
-		QHBoxLayout *layout;
-		QLabel *caption;
-		CustomDataWidget *datawidget;
-		QPushButton *btnRemove;
-
 		CustomNodeItem *item;
 };
 
-#endif // CUSTOMNODEELEMENT_H
+#endif // CUSTOMTEXTDATAWIDGET_H
 

@@ -66,6 +66,13 @@ set ( silence_HDRS
 	src/gui/widget/nodetypebuilder.h
 	src/gui/widget/nodetypespanel.h
 	src/gui/widget/customnodeelement.h
+	src/gui/widget/customdatawidget.h
+	src/gui/widget/customstringdatawidget.h
+	src/gui/widget/customtextdatawidget.h
+	src/gui/widget/customintegerdatawidget.h
+	src/gui/widget/customnumberdatawidget.h
+	src/gui/widget/custombooleandatawidget.h
+	src/gui/widget/customimagedatawidget.h
 	)
 
 set ( silence_SRCS
@@ -118,6 +125,12 @@ set ( silence_SRCS
 	src/gui/widget/nodetypebuilder.cpp
 	src/gui/widget/nodetypespanel.cpp
 	src/gui/widget/customnodeelement.cpp
+	src/gui/widget/customstringdatawidget.cpp
+	src/gui/widget/customtextdatawidget.cpp
+	src/gui/widget/customintegerdatawidget.cpp
+	src/gui/widget/customnumberdatawidget.cpp
+	src/gui/widget/custombooleandatawidget.cpp
+	src/gui/widget/customimagedatawidget.cpp
 	src/commandline/cmdmain.cpp
 	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp

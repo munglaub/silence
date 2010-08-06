@@ -31,7 +31,9 @@ CustomNodeContent::CustomNodeContent(CustomNodeTypeDefinition *typeDefinition)
 	QListIterator<CustomNodeItem*> i(typeDefinition->getItemList());
 	while (i.hasNext())
 	{
-		items.append(new CustomNodeItem(i.peekNext()->getCaption(), i.peekNext()->getType()));
+		CustomNodeItem *item = new CustomNodeItem(i.peekNext()->getCaption(), i.peekNext()->getType());
+		connect(item, SIGNAL(changed()), this, SLOT(onChange()));
+		items.append(item);
 		i.next();
 	}
 
@@ -89,7 +91,8 @@ QDomElement CustomNodeContent::getXmlData(QDomDocument &doc)
 		QDomElement item = doc.createElement("NodeItem");
 		item.setAttribute("Type", QString::number(items.at(i)->getType()));
 		item.setAttribute("Caption", items.at(i)->getCaption());
-		//TODO: data
+		QDomText data = doc.createTextNode(items.at(i)->getData());
+		item.appendChild(data);
 
 		contentItems.appendChild(item);
 	}
@@ -125,6 +128,8 @@ void CustomNodeContent::readXmlContentItems(QDomElement &xmlNode)
 				e.attribute("Caption", ""),
 				(CustomNodeItem::Type)e.attribute("Type", "0").toInt()
 			);
+			item->setData(e.text());
+			connect(item, SIGNAL(changed()), this, SLOT(onChange()));
 			items.append(item);
 		}
 
@@ -146,6 +151,11 @@ QString CustomNodeContent::toString()
 {
 	// TODO: implement
 	return "";
+}
+
+void CustomNodeContent::onChange()
+{
+	emit changed();
 }
 
 
