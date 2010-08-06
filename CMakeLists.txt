@@ -52,6 +52,7 @@ set ( silence_HDRS
 	src/gui/view/textedit.h
 	src/gui/view/welcomeview.h
 	src/gui/view/richtextedit.h
+	src/gui/view/customcontentview.h
 	src/gui/widget/rtfedit.h
 	src/gui/widget/textfind.h
 	src/gui/widget/labelwidget.h
@@ -102,6 +103,7 @@ set ( silence_SRCS
 	src/gui/view/contentview.cpp
 	src/gui/view/welcomeview.cpp
 	src/gui/view/richtextedit.cpp
+	src/gui/view/customcontentview.cpp
 	src/gui/widget/rtfedit.cpp
 	src/gui/widget/textfind.cpp
 	src/gui/widget/labelwidget.cpp

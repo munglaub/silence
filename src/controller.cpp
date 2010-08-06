@@ -29,6 +29,7 @@ Controller::Controller()
 	welcomeview = 0;
 	textedit = 0;
 	richtextedit = 0;
+	customcontentview = 0;
 	actionCollection = 0;
 	infosidebar = 0;
 	treeview = 0;
@@ -48,6 +49,9 @@ Controller::~Controller()
 		delete textedit;
 	if (richtextedit)
 		delete richtextedit;
+//TODO:
+//	if (customcontentview)
+//		delete customcontentview;
 }
 
 Controller* Controller::create()
@@ -96,6 +100,13 @@ RichTextEdit* Controller::getRichTextEdit()
 	if (richtextedit == 0)
 		richtextedit = new RichTextEdit(actionCollection);
 	return richtextedit;
+}
+
+CustomContentView* Controller::getCustomContentView()
+{
+	if (customcontentview == 0)
+		customcontentview = new CustomContentView;
+	return customcontentview;
 }
 
 void Controller::setActionCollection(KActionCollection *actionCollection)

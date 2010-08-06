@@ -29,6 +29,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
+#include "src/gui/view/customcontentview.h"
 #include "src/gui/view/richtextedit.h"
 #include "src/gui/view/textedit.h"
 #include "src/gui/view/welcomeview.h"
@@ -107,6 +108,13 @@ class Controller
 		 * \return A pointer to the RichTextEdit.
 		 */
 		RichTextEdit* getRichTextEdit();
+
+		/*!
+		 * Get a pointer to the CustomContentView. The Controller will manage the
+		 * CustomContentView, that means it will create and destroy it.
+		 * \return A pointer to the CustomContentView.
+		 */
+		CustomContentView* getCustomContentView();
 
 		/*!
 		 * Get a pointer to the datastore. The Controller will manage the
@@ -205,6 +213,7 @@ class Controller
 		WelcomeView *welcomeview;
 		TextEdit *textedit;
 		RichTextEdit *richtextedit;
+		CustomContentView *customcontentview;
 		InfoSidebar *infosidebar;
 		SearchNodeSidebar *searchsidebar;
 		TreeView *treeview;

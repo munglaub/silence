@@ -19,11 +19,26 @@
  */
 
 #include "src/data/node/customnodecontent.h"
+#include "src/gui/view/customcontentview.h"
+#include <KIcon>
+#include "src/controller.h"
 
-CustomNodeContent::CustomNodeContent()
+
+CustomNodeContent::CustomNodeContent(CustomNodeTypeDefinition *typeDefinition)
 {
-//TODO: hier muss eine customnodetypedefinition uebergeben werden
-	// TODO: implement
+	init("silence/" + typeDefinition->getName());
+
+	QListIterator<CustomNodeItem*> i(typeDefinition->getItemList());
+	while (i.hasNext())
+	{
+		items.append(new CustomNodeItem(i.peekNext()->getCaption(), i.peekNext()->getType()));
+		i.next();
+	}
+
+}
+CustomNodeContent::CustomNodeContent(QString mimetype)
+{
+	init(mimetype);
 }
 
 CustomNodeContent::~CustomNodeContent()
@@ -31,28 +46,33 @@ CustomNodeContent::~CustomNodeContent()
 	// TODO: implement
 }
 
+void CustomNodeContent::init(QString mimetype)
+{
+	this->mimetype = mimetype;
+	metaInfos = new QHash<QString, QString>;
+}
+
 AbstractContentView* CustomNodeContent::getWidget()
 {
-	// TODO: implement
-	return 0;
+	CustomContentView *view = Controller::create()->getCustomContentView();
+	view->setItems(items);
+	return view;
 }
 
 QHash<QString, QString>* CustomNodeContent::getMetaInfos()
 {
-	// TODO: implement
-	return 0;
+	return metaInfos;
 }
 
 void CustomNodeContent::addMetaInfo(QString key, QString value)
 {
-	// TODO: implement
+	metaInfos->insert(key, value);
+	emit changed();
 }
 
 QString CustomNodeContent::getMimeType()
 {
-//TODO: typ aus der customnodedefinition zurueckgeben
-	// TODO: implement
-	return "";
+	return mimetype;
 }
 
 bool CustomNodeContent::contains(const QString& value)
@@ -63,25 +83,63 @@ bool CustomNodeContent::contains(const QString& value)
 
 QDomElement CustomNodeContent::getXmlData(QDomDocument &doc)
 {
-	// TODO: implement
-	return QDomElement();
+	QDomElement contentItems = doc.createElement("ContentItems");
+	for (int i = 0; i < items.size(); ++i)
+	{
+		QDomElement item = doc.createElement("NodeItem");
+		item.setAttribute("Type", QString::number(items.at(i)->getType()));
+		item.setAttribute("Caption", items.at(i)->getCaption());
+		//TODO: data
+
+		contentItems.appendChild(item);
+	}
+	return contentItems;
 }
 
 void CustomNodeContent::setXmlData(QDomElement &xmlNode)
 {
-	// TODO: implement
+	QDomNode n = xmlNode.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+
+		if (e.tagName() == "metainfo")
+			metaInfos->insert(e.attribute("key"), e.text());
+		if (e.tagName() == "ContentItems")
+			readXmlContentItems(e);
+
+		n = n.nextSibling();
+	}
+}
+
+void CustomNodeContent::readXmlContentItems(QDomElement &xmlNode)
+{
+	items.clear();//TODO: delete each item
+	QDomNode n = xmlNode.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		if (e.tagName() == "NodeItem")
+		{
+			CustomNodeItem *item = new CustomNodeItem(
+				e.attribute("Caption", ""),
+				(CustomNodeItem::Type)e.attribute("Type", "0").toInt()
+			);
+			items.append(item);
+		}
+
+		n = n.nextSibling();
+	}
 }
 
 QPixmap CustomNodeContent::getPixmap()
 {
-	// TODO: implement
-	return QPixmap();
+	return getIcon().pixmap(16, 16);
 }
 
 QIcon CustomNodeContent::getIcon()
 {
-	// TODO: implement
-	return QIcon();
+	return KIcon("unknown");
 }
 
 QString CustomNodeContent::toString()

@@ -22,6 +22,7 @@
 #define CUSTOMNODECONTENT_H
 
 #include "src/data/node/abstractnodecontent.h"
+#include "src/data/node/customnodetypedefinition.h"
 
 
 class CustomNodeContent : public AbstractNodeContent
@@ -29,7 +30,8 @@ class CustomNodeContent : public AbstractNodeContent
 	Q_OBJECT
 
 	public:
-		CustomNodeContent();
+		CustomNodeContent(CustomNodeTypeDefinition *typeDefinition);
+		CustomNodeContent(QString mimetype);
 		~CustomNodeContent();
 
 		AbstractContentView* getWidget();
@@ -48,6 +50,11 @@ class CustomNodeContent : public AbstractNodeContent
 	
 	private:
 		QHash<QString, QString> *metaInfos;
+		QList<CustomNodeItem*> items;
+		QString mimetype;
+
+		void init(QString mimetype);
+		void readXmlContentItems(QDomElement &xmlNode);
 };
 
 #endif // CUSTOMNODECONTENT_H

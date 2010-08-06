@@ -21,6 +21,8 @@
 #include <klocalizedstring.h>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include "src/controller.h"
+#include "src/data/node/customnodecontent.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/dialog/newnodedialog.h"
@@ -48,6 +50,7 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 	typebox = new KComboBox;
 	typebox->addItem(i18n("RichText"));
 	typebox->addItem(i18n("Text"));
+	typebox->addItems(Controller::create()->getDataStore()->getCustomNodeTypeNames());
 	connect(typebox, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
 	typelayout->addWidget(typebox, 0, 1);
 
@@ -114,7 +117,8 @@ AbstractNodeContent* NewNodeDialog::getContent() const
 			return content;
 			break;
 		default:
-			return new RichTextNodeContent;
+			return new CustomNodeContent(Controller::create()->getDataStore()->getCustomNodeType(typebox->currentText()));
+//			return new RichTextNodeContent;
 			break;
 	}
 }

@@ -18,40 +18,37 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CUSTOMNODEELEMENT_H
-#define CUSTOMNODEELEMENT_H
+#ifndef CUSTOMCONTENTVIEW_H
+#define CUSTOMCONTENTVIEW_H
 
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QTextEdit>
-#include <QSpinBox>
-#include <QPushButton>
+#include "src/gui/view/abstractcontentview.h"
+#include <QList>
 #include "src/data/node/customnodeitem.h"
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include "src/gui/widget/customnodeelement.h"
 
 
-class CustomNodeElement : public QWidget
+class CustomContentView : public AbstractContentView
 {
-	Q_OBJECT
-
 	public:
-		CustomNodeElement(CustomNodeItem *item, bool showModifiers = false, QWidget *parent = 0);
-		~CustomNodeElement();
+		CustomContentView();
+		~CustomContentView();
 
-	signals:
-		void remove(CustomNodeElement *element, CustomNodeItem *item);
-
-	private slots:
-		void onRemove();
+		void setItems(QList<CustomNodeItem*> items);
+		bool hasChanged();
+		AbstractContentChange* getChange();
 
 	private:
-		QHBoxLayout *layout;
-		QPushButton *btnRemove;
+		QList<CustomNodeElement*> elements;
+		QVBoxLayout *layout;
+		QScrollArea *scrollarea;
+		QVBoxLayout *scrolllayout;
+		QPushButton *btnSave;
 
-		CustomNodeItem *item;
 };
 
-#endif // CUSTOMNODEELEMENT_H
+#endif // CUSTOMCONTENTVIEW_H
 

@@ -21,6 +21,7 @@
 #include <ksavefile.h>
 #include <kstandarddirs.h>
 #include <QTextStream>
+#include "src/data/node/customnodecontent.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/persistence/xmldatastore.h"
@@ -177,6 +178,12 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 			if (e.attribute("mimetype", "") == "text/richtext")
 			{
 				RichTextNodeContent *content = new RichTextNodeContent;
+				content->setXmlData(e);
+				node->setContent(content);
+			}
+			if (e.attribute("mimetype", "").startsWith("silence/"))
+			{
+				CustomNodeContent *content = new CustomNodeContent(e.attribute("mimetype", ""));
 				content->setXmlData(e);
 				node->setContent(content);
 			}

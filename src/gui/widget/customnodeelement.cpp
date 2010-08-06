@@ -22,7 +22,7 @@
 #include <klocalizedstring.h>
 
 
-CustomNodeElement::CustomNodeElement(CustomNodeItem *item, QWidget *parent)
+CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, QWidget *parent)
 	: QWidget(parent)
 {
 	this->item = item;
@@ -53,6 +53,7 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, QWidget *parent)
 
 
 	btnRemove = new QPushButton(i18n("Remove"));
+	btnRemove->setVisible(showModifiers);
 	layout->addWidget(btnRemove);
 	connect(btnRemove, SIGNAL(clicked()), this, SLOT(onRemove()));
 	setLayout(layout);

@@ -152,7 +152,7 @@ void NodeTypeBuilder::clearPrevlayout()
 
 void NodeTypeBuilder::addElementToPrevlayout(CustomNodeItem *item)
 {
-	CustomNodeElement *itemwidget = new CustomNodeElement(item);
+	CustomNodeElement *itemwidget = new CustomNodeElement(item, true);
 	prevlayout->addWidget(itemwidget);
 	elements.append(itemwidget);
 
