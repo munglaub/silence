@@ -19,11 +19,25 @@
  */
 
 #include "src/gui/widget/customimagedatawidget.h"
+#include <kfiledialog.h>
+#include <klocalizedstring.h>
 
 CustomImageDataWidget::CustomImageDataWidget(CustomNodeItem *item)
 {
+	// TODO: provide a method to empty the picture..
 	this->item = item;
-	setText("empty");
+	fileName = item->getData();
+	setToolTip(i18n("Click to change the image"));
+	if (item->getData().isEmpty())
+	{
+		setText(i18n("Click to add an image"));
+	} else {
+		QImage image(item->getData());
+		if (!image.isNull())
+			setPixmap(QPixmap::fromImage(image));
+		else
+			setText(i18n("Click to add an image"));
+	}
 }
 
 CustomImageDataWidget::~CustomImageDataWidget()
@@ -33,7 +47,20 @@ CustomImageDataWidget::~CustomImageDataWidget()
 
 void CustomImageDataWidget::save()
 {
-	// TODO: implement
+	item->setData(fileName);
 }
 
+void CustomImageDataWidget::mousePressEvent(QMouseEvent *event)
+{
+	QString tmpFileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "Select Image");
+
+	if (tmpFileName.isEmpty())
+		return;
+	QImage image(tmpFileName);
+	if (!image.isNull())
+	{
+		setPixmap(QPixmap::fromImage(image));
+		fileName = tmpFileName;
+	}
+}
 

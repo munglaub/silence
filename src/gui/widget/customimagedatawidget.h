@@ -34,8 +34,12 @@ class CustomImageDataWidget : public CustomDataWidget, public QLabel
 
 		void save();
 
+	protected:
+		void mousePressEvent(QMouseEvent *event);
+
 	private:
 		CustomNodeItem *item;
+		QString fileName;
 };
 
 #endif // CUSTOMIMAGEDATAWIDGET_H
