@@ -21,32 +21,58 @@
 #ifndef NODETYPEBUILDER_H
 #define NODETYPEBUILDER_H
 
-#include <QWidget>
-#include <QGridLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QPushButton>
+#include <QComboBox>
+#include <QFormLayout>
 #include <QGroupBox>
 #include <QLineEdit>
-#include <QListWidget>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QWidget>
+#include "src/data/node/customnodeitem.h"
 #include "src/data/node/customnodetypedefinition.h"
 #include "src/gui/widget/customnodeelement.h"
-#include "src/data/node/customnodeitem.h"
 
 
-//TODO: documentation
+/*!\class NodeTypeBuilder
+ * \brief Create custom node types.
+ *
+ * Provides a widget to create custom node types. It takes a CustomNodeTypeDefinition and provides a GUI to modify it.
+ *
+ * \author Manuel Unglaub
+ */
 class NodeTypeBuilder : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the NodeTypeBuilder.
+		 */
 		NodeTypeBuilder();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NodeTypeBuilder();
 
+		/*!
+		 * Make this widget visible and provide it with a CustomNodeTypeDefinition to modify it.
+		 * \param def The CustomNodeTypeDefinition to modify.
+		 */
 		void show(CustomNodeTypeDefinition *def);
+
+		/*!
+		 * Get the modified CustomNodeTypeDefinition.
+		 * \return A pointer to the modified CustomNodeTypeDefinition.
+		 */
 		CustomNodeTypeDefinition* getCustomNodeTypeDefinition();
 
 	signals:
+		/*!
+		 * The close button was clicked.
+		 */
 		void close();
 
 	private slots:
@@ -58,22 +84,19 @@ class NodeTypeBuilder : public QWidget
 	private:
 		QVBoxLayout *layout,
 					*prevlayout;
-		QLabel	*lblElementCaption,
-				*lblElementTypes;
+		QFormLayout *buildlayout;
 		QGroupBox	*buildpane,
 					*prevpane;
-		QGridLayout *buildlayout;
 		QLineEdit *leElementCaption;
-		QListWidget *elementTypes;
-		QPushButton *btnAddElement;
+		QComboBox *elementTypes;
+		QPushButton *btnAddElement,
+					*btnClose;
 
 		CustomNodeTypeDefinition *def;
 		QList<CustomNodeElement*> elements;
 
 		void clearPrevlayout();
 		void addElementToPrevlayout(CustomNodeItem *item);
-
-
 };
 
 #endif // NODETYPEBUILDER_H

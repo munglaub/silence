@@ -18,8 +18,8 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/nodetypebuilder.h"
 #include <klocalizedstring.h>
+#include "src/gui/widget/nodetypebuilder.h"
 
 
 NodeTypeBuilder::NodeTypeBuilder()
@@ -28,61 +28,40 @@ NodeTypeBuilder::NodeTypeBuilder()
 	layout = new QVBoxLayout;
 	layout->setAlignment(Qt::AlignTop);
 
-//TODO: so eine VORSICHT! warnung hinmalen wo steht das es unwahrscheinlich unguenstige auswirkungen auf vorhandene daten haben kann wenn man da einen nodetype veraendert..
-
-// ein panel mit den neues element erstellen dingern
 	buildpane = new QGroupBox;
 	layout->addWidget(buildpane);
-	buildlayout = new QGridLayout;
-	buildlayout->setAlignment(Qt::AlignTop);
-	lblElementCaption = new QLabel(i18n("Caption"));
-	buildlayout->addWidget(lblElementCaption, 0, 0);
-	leElementCaption = new QLineEdit;
-	buildlayout->addWidget(leElementCaption, 1, 0, 1, 1, Qt::AlignTop);
-	connect(leElementCaption, SIGNAL(textChanged(const QString &)), this, SLOT(updateBtnAddElement()));
 
-	lblElementTypes = new QLabel(i18n("Element Type"));
-	buildlayout->addWidget(lblElementTypes, 0, 1);
-	elementTypes = new QListWidget;
-	buildlayout->addWidget(elementTypes, 1, 1, 1, 1, Qt::AlignTop);
-	elementTypes->addItem(new QListWidgetItem("String", elementTypes, CustomNodeItem::String));
-	elementTypes->addItem(new QListWidgetItem("Text", elementTypes, CustomNodeItem::Text));
-	elementTypes->addItem(new QListWidgetItem("Integer", elementTypes, CustomNodeItem::Integer));
-	elementTypes->addItem(new QListWidgetItem("Number", elementTypes, CustomNodeItem::Number));
-	elementTypes->addItem(new QListWidgetItem("Boolean", elementTypes, CustomNodeItem::Boolean));
-	elementTypes->addItem(new QListWidgetItem("Image", elementTypes, CustomNodeItem::Image));
+	buildlayout = new QFormLayout;
+	buildlayout->setAlignment(Qt::AlignTop);
+
+	leElementCaption = new QLineEdit;
+	connect(leElementCaption, SIGNAL(textChanged(const QString &)), this, SLOT(updateBtnAddElement()));
+	buildlayout->addRow(i18n("Caption"), leElementCaption);
+
+	elementTypes = new QComboBox;
+	elementTypes->addItem(i18n("String"));
+	elementTypes->addItem(i18n("Text"));
+	elementTypes->addItem(i18n("Integer"));
+	elementTypes->addItem(i18n("Number"));
+	elementTypes->addItem(i18n("Boolean"));
+	elementTypes->addItem(i18n("Image"));
+	buildlayout->addRow(i18n("Element Type"), elementTypes);
 
 	btnAddElement = new QPushButton(i18n("Add Element"));
-	buildlayout->addWidget(btnAddElement, 1, 2, 1, 1, Qt::AlignBottom);
+	buildlayout->addRow("", btnAddElement);
 	connect(btnAddElement, SIGNAL(clicked()), this, SLOT(addElement()));
 
 	buildpane->setLayout(buildlayout);
 
-// ein panel mit einer vorschau wie das aussieht und knoepfen zum element entfernen
-	prevpane = new QGroupBox(i18n("Preview")); //TODO: bessere ueberschrift ausdenken
-	//TODO: scrollbar machen
+	btnClose = new QPushButton(i18n("Close"));
+	btnClose->setMinimumWidth(100);
+	layout->addWidget(btnClose, 0, Qt::AlignRight);
+	connect(btnClose, SIGNAL(clicked()), this, SLOT(onClose()));
+
+	prevpane = new QGroupBox(i18n("Preview"));
 	prevlayout = new QVBoxLayout;
 	prevpane->setLayout(prevlayout);
 	layout->addWidget(prevpane);
-
-
-	layout->addStretch();
-
-
-	// Buttons
-	//TODO: btnAbort entfernen
-	QHBoxLayout *btnLayout = new QHBoxLayout;
-	QPushButton *btnAbort = new QPushButton(i18n("Abort"));
-	btnLayout->addWidget(btnAbort);
-	connect(btnAbort, SIGNAL(clicked()), this, SLOT(onClose()));
-
-	QPushButton *btnSave = new QPushButton(i18n("Save Node Type"));
-	//layout->addWidget(btnSave, 0, Qt::AlignRight);
-	btnLayout->addWidget(btnSave);
-	connect(btnSave, SIGNAL(clicked()), this, SLOT(onClose()));
-
-	layout->addLayout(btnLayout);
-
 
 	setLayout(layout);
 	updateBtnAddElement();
@@ -90,14 +69,23 @@ NodeTypeBuilder::NodeTypeBuilder()
 
 NodeTypeBuilder::~NodeTypeBuilder()
 {
-	// TODO: implement
+	clearPrevlayout();
+	delete btnClose;
+	delete btnAddElement;
+	delete elementTypes;
+	delete leElementCaption;
+	delete buildlayout;
+	delete prevlayout;
+	delete prevpane;
+	delete buildpane;
+	delete layout;
 }
 
 void NodeTypeBuilder::show(CustomNodeTypeDefinition *def)
 {
 	clearPrevlayout();
 	this->def = def;
-	buildpane->setTitle(def->getName()); // Vieleicht noch was davor schreiben oder so..
+	buildpane->setTitle(def->getName());
 	setVisible(true);
 
 	// show existing elements
@@ -117,13 +105,12 @@ void NodeTypeBuilder::onClose()
 
 void NodeTypeBuilder::addElement()
 {
-	CustomNodeItem::Type type = (CustomNodeItem::Type)elementTypes->currentItem()->type();
+	CustomNodeItem::Type type = (CustomNodeItem::Type)elementTypes->currentIndex();
 	QString caption = leElementCaption->text();
 	CustomNodeItem *item = new CustomNodeItem(caption, type);
 	def->addItem(item);
 
 	addElementToPrevlayout(item);
-
 	leElementCaption->setText("");
 }
 
