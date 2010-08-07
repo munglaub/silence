@@ -24,31 +24,67 @@
 #include <QString>
 #include <QObject>
 
-//TODO: docu
+/*!\class CustomNodeItem
+ * \brief An item of the CustomNodeContent.
+ *
+ * A CustomNodeContent contains a number of CustomNodeItems.
+ * The CustomNodeItem has a type, a caption and data.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomNodeItem : public QObject
 {
 	Q_OBJECT
 
 	public:
+		/*!
+		 * This type describes the data of this CustomNodeItem and determines how to interpret it.
+		 */
 		enum Type {
-			String,
-			Text,
-			Integer,
-			Number,
-			Boolean,
-			Image
+			String,		/*!< A simple string. */
+			Text,		/*!< A longer text. */
+			Integer,	/*!< A integer. */
+			Number,		/*!< A number (double). */
+			Boolean,	/*!< A boolean (true or false) */
+			Image		/*!< An image. */
 		};
 
+		/*! The constructor.
+		 *
+		 * Constructs the CustomNodeItem with a caption and a type.
+		 * \param caption The caption of this CustomNodeItem.
+		 * \param type The type of this CustomNodeItem.
+		 */
 		CustomNodeItem(QString caption, CustomNodeItem::Type type);
-		~CustomNodeItem();
 
+		/*!
+		 * Get the caption of this CustomNodeItem.
+		 * \return The caption of this item.
+		 */
 		QString getCaption() const;
+
+		/*!
+		 * Get the type of this CustomNodeItem.
+		 * \return The type of this item.
+		 */
 		Type getType() const;
 
+		/*!
+		 * Set the data of this CustomNodeItem.
+		 * \param data The data assigned to this item.
+		 */
 		void setData(QString data);
+
+		/*!
+		 * Get the data of this CustomNodeItem.
+		 * \return The data of this CustomNodeItem.
+		 */
 		QString getData() const;
 
 	signals:
+		/*!
+		 * This signal will be emitted after the data of this CustomNodeItem changes.
+		 */
 		void changed();
 
 	private:

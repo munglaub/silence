@@ -20,15 +20,11 @@
 
 #include "src/data/node/customnodeitem.h"
 
+
 CustomNodeItem::CustomNodeItem(QString caption, CustomNodeItem::Type type)
 {
 	this->caption = caption;
 	this->type = type;
-}
-
-CustomNodeItem::~CustomNodeItem()
-{
-	// TODO: implement
 }
 
 QString CustomNodeItem::getCaption() const
