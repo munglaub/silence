@@ -21,28 +21,63 @@
 #ifndef NODETYPESPANEL_H
 #define NODETYPESPANEL_H
 
-#include <QWidget>
 #include <QGridLayout>
-#include <QPushButton>
 #include <QLabel>
 #include <QListWidget>
+#include <QPushButton>
+#include <QWidget>
 
 
-//TODO: documentation
+/*!\class NodeTypesPanel
+ * \brief Lists the custom node types.
+ *
+ * Provides a list of custom node types and buttons to add, edit and delete them.
+ *
+ * \author Manuel Unglaub
+ */
 class NodeTypesPanel : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the NodeTypesPanel.
+		 */
 		NodeTypesPanel();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NodeTypesPanel();
 
+		/*!
+		 * Triggers an update of the list of custom node types.
+		 */
 		void updateTypeList();
 	
 	signals:
+		/*!
+		 * The close button was clicked.
+		 */
 		void exit();
+
+		/*!
+		 * The user wants to create a new type.
+		 */
 		void addNodeType();
+
+		/*!
+		 * The user wants to edit a type.
+		 * \param name The type the user wants to edit.
+		 */
 		void editNodeType(QString name);
+
+		/*!
+		 * The user wants to delete a type.
+		 * \param name The type the user wants to delete.
+		 */
 		void deleteNodeType(QString name);
 	
 	private slots:
@@ -54,6 +89,7 @@ class NodeTypesPanel : public QWidget
 
 	private:
 		QGridLayout *layout;
+		QLabel *caption;
 		QListWidget *typelist;
 		QPushButton *btnAdd,
 					*btnEdit,

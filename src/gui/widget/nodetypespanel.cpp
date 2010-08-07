@@ -29,7 +29,7 @@ NodeTypesPanel::NodeTypesPanel()
 	layout->setAlignment(Qt::AlignTop);
 
 	int row = 0;
-	QLabel *caption = new QLabel("<h2>" + i18n("Custom Node Types") + "</h2>");
+	caption = new QLabel("<h2>" + i18n("Custom Node Types") + "</h2>");
 	layout->addWidget(caption, row, 0);
 	++row;
 
@@ -38,7 +38,6 @@ NodeTypesPanel::NodeTypesPanel()
 	++row;
 	typelist->addItems(Controller::create()->getDataStore()->getCustomNodeTypeNames());
 
-	//TODO: icons
 	btnAdd = new QPushButton(i18n("Add new Node Type"));
 	layout->addWidget(btnAdd, row, 1);
 	++row;
@@ -55,7 +54,8 @@ NodeTypesPanel::NodeTypesPanel()
 	connect(btnDelete, SIGNAL(clicked()), this, SLOT(deleteType()));
 
 	btnExit = new QPushButton(i18n("Close"));
-	layout->addWidget(btnExit, row, 0);
+	btnExit->setMinimumWidth(100);
+	layout->addWidget(btnExit, row, 0, 1, 1, Qt::AlignRight);
 	connect(btnExit, SIGNAL(clicked()), this, SLOT(sendExit()));
 	setLayout(layout);
 
@@ -65,7 +65,13 @@ NodeTypesPanel::NodeTypesPanel()
 
 NodeTypesPanel::~NodeTypesPanel()
 {
-	// TODO: implement
+	delete btnExit;
+	delete btnDelete;
+	delete btnEdit;
+	delete btnAdd;
+	delete typelist;
+	delete caption;
+	delete layout;
 }
 
 void NodeTypesPanel::updateTypeList()
