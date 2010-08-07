@@ -64,6 +64,8 @@ XmlDataStore::XmlDataStore()
 
 XmlDataStore::~XmlDataStore()
 {
+	while(!customNodeTypeDefinitions.keys().isEmpty())
+		delete customNodeTypeDefinitions.take(customNodeTypeDefinitions.keys().first());
 	delete rootNode;
 	delete rootLabel;
 }

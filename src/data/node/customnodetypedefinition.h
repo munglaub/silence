@@ -21,21 +21,56 @@
 #ifndef CUSTOMNODETYPEDEFINITION_H
 #define CUSTOMNODETYPEDEFINITION_H
 
-#include <QString>
 #include <QList>
+#include <QString>
 #include "src/data/node/customnodeitem.h"
 
 
+/*!\class CustomNodeTypeDefinition
+ * \brief Defines a custom node type.
+ *
+ * Contains a list of CustomNodeItems and the name of this type.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomNodeTypeDefinition
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomNodeTypeDefinition.
+		 * \param name The name of this type.
+		 */
 		CustomNodeTypeDefinition(QString name);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~CustomNodeTypeDefinition();
 
+		/*!
+		 * Get the name of this CustomNodeTypeDefinition.
+		 * \return The name of this type.
+		 */
 		QString getName() const;
 
+		/*!
+		 * Get a list of the CustomNodeItems contained in this CustomNodeTypeDefinition.
+		 * \return The list of CustomNodeItems contained in this type.
+		 */
 		QList<CustomNodeItem*> getItemList() const;
+
+		/*!
+		 * Add a CustomNodeItem to this CustomNodeTypeDefinition.
+		 * \param item This CustomNodeItem will be added to this type.
+		 */
 		void addItem(CustomNodeItem *item);
+
+		/*!
+		 * Remove a CustomNodeItem form this CustomNodeTypeDefinition.
+		 * \param item The CustomNodeItem which will be removed from this type.
+		 */
 		void removeItem(CustomNodeItem *item);
 
 	private:

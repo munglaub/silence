@@ -20,6 +20,7 @@
 
 #include "src/data/node/customnodetypedefinition.h"
 
+
 CustomNodeTypeDefinition::CustomNodeTypeDefinition(QString name)
 {
 	this->name = name;
@@ -27,14 +28,14 @@ CustomNodeTypeDefinition::CustomNodeTypeDefinition(QString name)
 
 CustomNodeTypeDefinition::~CustomNodeTypeDefinition()
 {
-	// TODO: implement
+	while (!itemList.isEmpty())
+		delete itemList.takeFirst();
 }
 
 QString CustomNodeTypeDefinition::getName() const
 {
 	return name;
 }
-
 
 QList<CustomNodeItem*> CustomNodeTypeDefinition::getItemList() const
 {
