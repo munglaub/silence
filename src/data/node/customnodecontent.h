@@ -25,13 +25,36 @@
 #include "src/data/node/customnodetypedefinition.h"
 
 
+/*!\class CustomNodeContent
+ * \brief A user defined node content.
+ *
+ * This content is user defined. It consists of a number of CustomNodeItems. Either defined by a CustomNodeTypeDefinition or ascertained from the QDomElement provided by the setXmlData() function.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomNodeContent : public AbstractNodeContent
 {
 	Q_OBJECT
 
 	public:
+		/*! A constructor.
+		 *
+		 * Constructs the CustomNodeContent with the provided CustomNodeItems from the CustomNodeTypeDefinition.
+		 * \param typeDefinition Provides the CustomNodeItems and the mimetype this CustomNodeContent will have.
+		 */
 		CustomNodeContent(CustomNodeTypeDefinition *typeDefinition);
+
+		/*! A constructor.
+		 *
+		 * Constructs the CustomNodeContent and sets the mimetype.
+		 * \param mimetype The mimetype the CustomNodeContent will have.
+		 */
 		CustomNodeContent(QString mimetype);
+
+		/*! The destructor.
+		 *
+		 * Destroys the obejct.
+		 */
 		~CustomNodeContent();
 
 		AbstractContentView* getWidget();
@@ -46,6 +69,9 @@ class CustomNodeContent : public AbstractNodeContent
 		QString toString();
 
 	signals:
+		/*!
+		 * This signal will be emitted after the metainfos or a CustomNodeItem changes.
+		 */
 		void changed();
 	
 	private slots:

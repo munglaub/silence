@@ -18,10 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/data/node/customnodecontent.h"
-#include "src/gui/view/customcontentview.h"
 #include <KIcon>
 #include "src/controller.h"
+#include "src/data/node/customnodecontent.h"
+#include "src/gui/view/customcontentview.h"
 
 
 CustomNodeContent::CustomNodeContent(CustomNodeTypeDefinition *typeDefinition)
@@ -45,7 +45,9 @@ CustomNodeContent::CustomNodeContent(QString mimetype)
 
 CustomNodeContent::~CustomNodeContent()
 {
-	// TODO: implement
+	while (!items.isEmpty())
+		delete items.takeFirst();
+	delete metaInfos;
 }
 
 void CustomNodeContent::init(QString mimetype)
@@ -79,8 +81,10 @@ QString CustomNodeContent::getMimeType()
 
 bool CustomNodeContent::contains(const QString& value)
 {
-	// TODO: implement
-	return false;
+	bool contains = false;
+	for (int i = 0; i < items.size() && !contains; ++i)
+		contains = items.at(i)->getData().contains(value, Qt::CaseInsensitive);
+	return contains;
 }
 
 QDomElement CustomNodeContent::getXmlData(QDomDocument &doc)
@@ -117,7 +121,9 @@ void CustomNodeContent::setXmlData(QDomElement &xmlNode)
 
 void CustomNodeContent::readXmlContentItems(QDomElement &xmlNode)
 {
-	items.clear();//TODO: delete each item
+	while (!items.isEmpty())
+		delete items.takeFirst();
+
 	QDomNode n = xmlNode.firstChild();
 	while (!n.isNull())
 	{
@@ -132,7 +138,6 @@ void CustomNodeContent::readXmlContentItems(QDomElement &xmlNode)
 			connect(item, SIGNAL(changed()), this, SLOT(onChange()));
 			items.append(item);
 		}
-
 		n = n.nextSibling();
 	}
 }
