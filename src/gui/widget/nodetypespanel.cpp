@@ -43,12 +43,12 @@ NodeTypesPanel::NodeTypesPanel()
 	++row;
 	connect(btnAdd, SIGNAL(clicked()), this, SLOT(addType()));
 
-	btnEdit = new QPushButton(i18n("Edit"));
+	btnEdit = new QPushButton(i18n("Edit Node Type"));
 	layout->addWidget(btnEdit, row, 1);
 	++row;
 	connect(btnEdit, SIGNAL(clicked()), this, SLOT(editType()));
 
-	btnDelete = new QPushButton(i18n("Delete"));
+	btnDelete = new QPushButton(i18n("Delete Node Type"));
 	layout->addWidget(btnDelete, row, 1);
 	++row;
 	connect(btnDelete, SIGNAL(clicked()), this, SLOT(deleteType()));

@@ -21,23 +21,42 @@
 #ifndef NODETYPEMANAGER_H
 #define NODETYPEMANAGER_H
 
-#include <QWidget>
 #include <QVBoxLayout>
-#include "src/gui/widget/nodetypespanel.h"
+#include <QWidget>
 #include "src/gui/widget/inputwidget.h"
 #include "src/gui/widget/nodetypebuilder.h"
+#include "src/gui/widget/nodetypespanel.h"
 
 
-//TODO: documentation
+/*!\class NodeTypeManager
+ * \brief Manage custom node types.
+ *
+ * This class can add, edit and delete custom node types. It uses a NodeTypesPanel to show the the custom node types and a NodeTypeBuilder to add and edit them.
+ *
+ * \author Manuel Unglaub
+ */
 class NodeTypeManager : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the NodeTypeManager.
+		 */
 		NodeTypeManager();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~NodeTypeManager();
 	
 	signals:
+		/*!
+		 * Indicates that the user wants to close this view.
+		 * \param itself This NodeTypeManager.
+		 */
 		void exit(QWidget *itself);
 
 	private slots:

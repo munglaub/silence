@@ -18,10 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/nodetypemanager.h"
-#include "src/data/node/customnodetypedefinition.h"
 #include <klocalizedstring.h>
 #include "src/controller.h"
+#include "src/data/node/customnodetypedefinition.h"
+#include "src/gui/widget/nodetypemanager.h"
 
 
 NodeTypeManager::NodeTypeManager()
@@ -50,7 +50,10 @@ NodeTypeManager::NodeTypeManager()
 
 NodeTypeManager::~NodeTypeManager()
 {
-	// TODO: implement
+	delete nodetypebuilder;
+	delete inputwidget;
+	delete nodetypespanel;
+	delete layout;
 }
 
 void NodeTypeManager::sendExit()
@@ -72,9 +75,6 @@ void NodeTypeManager::addNodeType()
 
 void NodeTypeManager::deleteNodeType(QString name)
 {
-	//TODO: eine grosse warnung und willst-du-wirklich-abfrage!!!
-	//TODO: alle nodes mit dem nodetype loeschen..
-	// alternative -> gucken ob es nodes mit dem type gibt und wenn ja sagen das loeschen nicht geht weil es noch nodes gibt..
 	Controller::create()->getDataStore()->removeCustomNodeType(name);
 	nodetypespanel->updateTypeList();
 }
