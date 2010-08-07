@@ -18,8 +18,8 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/view/customcontentview.h"
 #include <klocalizedstring.h>
+#include "src/gui/view/customcontentview.h"
 
 
 CustomContentView::CustomContentView()
@@ -31,6 +31,7 @@ CustomContentView::CustomContentView()
 	scrolllayout->setAlignment(Qt::AlignTop);
 
 	btnSave = new QPushButton(i18n("Save"));
+	btnSave->setShortcut(QKeySequence::Save);
 	scrolllayout->addWidget(btnSave, 0, Qt::AlignRight);
 	connect(btnSave, SIGNAL(clicked()), this, SLOT(save()));
 
@@ -40,16 +41,16 @@ CustomContentView::CustomContentView()
 
 CustomContentView::~CustomContentView()
 {
-	// TODO: implement
+	deleteElements();
+	delete btnSave;
+	delete scrolllayout;
+	delete scrollarea;
+	delete layout;
 }
 
 void CustomContentView::setItems(QList<CustomNodeItem*> items)
 {
-	while (!elements.isEmpty())
-	{
-		scrolllayout->removeWidget(elements.first());
-		delete elements.takeFirst();
-	}
+	deleteElements();
 	for (int i = 0; i < items.size(); ++i)
 	{
 		CustomNodeElement *element = new CustomNodeElement(items.at(i));
@@ -76,5 +77,13 @@ void CustomContentView::save()
 		elements.at(i)->save();
 }
 
+void CustomContentView::deleteElements()
+{
+	while (!elements.isEmpty())
+	{
+		scrolllayout->removeWidget(elements.first());
+		delete elements.takeFirst();
+	}
+}
 
 

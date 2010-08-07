@@ -45,8 +45,8 @@
  * static create() function.
  *
  * Some classes should have only one instance which is managed by the
- * Controller. These classes are WelcomeView, TextEdit, DataStore
- * and RichTextEdit.
+ * Controller. These classes are WelcomeView, TextEdit, DataStore,
+ * CustomContentView and RichTextEdit.
  * To use these classes you can use the get-methods of the Controller.
  *
  * \author Manuel Unglaub

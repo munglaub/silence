@@ -21,25 +21,46 @@
 #ifndef CUSTOMCONTENTVIEW_H
 #define CUSTOMCONTENTVIEW_H
 
-#include "src/gui/view/abstractcontentview.h"
 #include <QList>
-#include "src/data/node/customnodeitem.h"
+#include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
-#include <QPushButton>
-#include <QLabel>
+#include "src/data/node/customnodeitem.h"
+#include "src/gui/view/abstractcontentview.h"
 #include "src/gui/widget/customnodeelement.h"
 
 
+/*!\class CustomContentView
+ * \brief A view for a CustomNodeContent
+ *
+ * This CustomContentView can show and modify a CustomNodeContent. Set its data with the setItems() function.
+ * Each item will be displayed with help of the CustomNodeElement.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomContentView : public AbstractContentView
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomContentView.
+		 */
 		CustomContentView();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~CustomContentView();
 
+		/*!
+		 * Provide this CustomContentView with data.
+		 * \param items The CustomNodeItems which will be shown and can be modified.
+		 */
 		void setItems(QList<CustomNodeItem*> items);
+
 		bool hasChanged();
 		AbstractContentChange* getChange();
 
@@ -52,6 +73,8 @@ class CustomContentView : public AbstractContentView
 		QScrollArea *scrollarea;
 		QVBoxLayout *scrolllayout;
 		QPushButton *btnSave;
+
+		void deleteElements();
 
 };
 
