@@ -18,14 +18,15 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/customnodeelement.h"
-#include "src/gui/widget/customstringdatawidget.h"
-#include "src/gui/widget/customtextdatawidget.h"
-#include "src/gui/widget/customintegerdatawidget.h"
-#include "src/gui/widget/customnumberdatawidget.h"
+#include <klocalizedstring.h>
 #include "src/gui/widget/custombooleandatawidget.h"
 #include "src/gui/widget/customimagedatawidget.h"
-#include <klocalizedstring.h>
+#include "src/gui/widget/customintegerdatawidget.h"
+#include "src/gui/widget/customnodeelement.h"
+#include "src/gui/widget/customnumberdatawidget.h"
+#include "src/gui/widget/customstringdatawidget.h"
+#include "src/gui/widget/customtextdatawidget.h"
+
 
 CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, QWidget *parent)
 	: QWidget(parent)
@@ -93,7 +94,10 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, Q
 
 CustomNodeElement::~CustomNodeElement()
 {
-	// TODO: implement
+	delete datawidget;
+	delete btnRemove;
+	delete caption;
+	delete layout;
 }
 
 void CustomNodeElement::onRemove()
@@ -104,9 +108,7 @@ void CustomNodeElement::onRemove()
 void CustomNodeElement::save()
 {
 	if (datawidget)
-	{
 		datawidget->save();
-	}
 }
 
 

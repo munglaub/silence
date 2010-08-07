@@ -21,30 +21,53 @@
 #ifndef CUSTOMNODEELEMENT_H
 #define CUSTOMNODEELEMENT_H
 
-#include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QTextEdit>
-#include <QSpinBox>
 #include <QPushButton>
+#include <QWidget>
 #include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomNodeElement
+ * \brief A widget for a CustomNodeItem.
+ *
+ * This class provides a widget to display and modify a CustomNodeItem. It uses a CustomDataWidget to show the data of the item.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomNodeElement : public QWidget
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomNodeElement.
+		 * \param item The item which will be displayed.
+		 * \param showModifiers If true a remove button will be shown.
+		 * \param parent The parent of this widget.
+		 */
 		CustomNodeElement(CustomNodeItem *item, bool showModifiers = false, QWidget *parent = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~CustomNodeElement();
 
 	signals:
+		/*!
+		 * This signal will be emitted when the remove button is clicked.
+		 * \param element A pointer to this CustomNodeItem.
+		 * \param item A pointer to the CustomNodeItem contained in this CustomNodeElement.
+		 */
 		void remove(CustomNodeElement *element, CustomNodeItem *item);
 
 	public slots:
+		/*!
+		 * The data from the widget will be written into the CustomNodeItem.
+		 */
 		void save();
 
 	private slots:
