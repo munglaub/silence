@@ -22,15 +22,26 @@
 #define CUSTOMINTEGERDATAWIDGET_H
 
 #include <QSpinBox>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomIntegerDataWidget
+ * \brief A widget for a CustomNodeItem with integer data
+ *
+ * A spinbox to represent an integer.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomIntegerDataWidget : public CustomDataWidget, public QSpinBox
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomIntegerDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomIntegerDataWidget(CustomNodeItem *item);
-		~CustomIntegerDataWidget();
 
 		void save();
 

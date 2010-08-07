@@ -22,15 +22,26 @@
 #define CUSTOMSTRINGDATAWIDGET_H
 
 #include <QLineEdit>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomStringDataWidget
+ * \brief A widget for a CustomNodeItem with string data.
+ *
+ * A lineedit to represent a string.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomStringDataWidget : public CustomDataWidget, public QLineEdit
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomStringDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomStringDataWidget(CustomNodeItem *item);
-		~CustomStringDataWidget();
 
 		void save();
 

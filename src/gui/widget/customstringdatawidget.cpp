@@ -27,11 +27,6 @@ CustomStringDataWidget::CustomStringDataWidget(CustomNodeItem *item)
 	setText(item->getData());
 }
 
-CustomStringDataWidget::~CustomStringDataWidget()
-{
-	// TODO: implement
-}
-
 void CustomStringDataWidget::save()
 {
 	item->setData(text());

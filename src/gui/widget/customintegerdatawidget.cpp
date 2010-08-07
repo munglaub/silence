@@ -27,11 +27,6 @@ CustomIntegerDataWidget::CustomIntegerDataWidget(CustomNodeItem *item)
 	setValue(item->getData().toInt());
 }
 
-CustomIntegerDataWidget::~CustomIntegerDataWidget()
-{
-	// TODO: implement
-}
-
 void CustomIntegerDataWidget::save()
 {
 	item->setData(QString::number(value()));

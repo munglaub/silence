@@ -22,6 +22,7 @@
 #include "src/gui/widget/custombooleandatawidget.h"
 #include "src/gui/widget/customimagedatawidget.h"
 #include "src/gui/widget/customintegerdatawidget.h"
+#include <KIcon>
 #include "src/gui/widget/customnodeelement.h"
 #include "src/gui/widget/customnumberdatawidget.h"
 #include "src/gui/widget/customstringdatawidget.h"
@@ -84,8 +85,10 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, Q
 			break;
 	}
 
-
-	btnRemove = new QPushButton(i18n("Remove"));
+	btnRemove = new QPushButton(KIcon("edit-delete"), "");
+	btnRemove->setFlat(true);
+	btnRemove->setMaximumWidth(30);
+	btnRemove->setToolTip(i18n("Remove Item"));
 	btnRemove->setVisible(showModifiers);
 	layout->addWidget(btnRemove);
 	connect(btnRemove, SIGNAL(clicked()), this, SLOT(onRemove()));

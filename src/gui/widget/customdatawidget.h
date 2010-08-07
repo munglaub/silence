@@ -23,9 +23,20 @@
 
 #include <QObject>
 
+
+/*!\class CustomDataWidget
+ * \brief An abstract class to display the data of a CustomNodeItem
+ *
+ * Inherit from this class to create a class to display and edit the data of a specific type of a CustomNodeItem.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomDataWidget : public QObject
 {
 	public:
+		/*!
+		 * Write the data from the widget into the CustomNodeItem.
+		 */
 		virtual void save() = 0;
 };
 

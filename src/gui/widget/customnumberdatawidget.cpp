@@ -18,19 +18,17 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <limits>
 #include "src/gui/widget/customnumberdatawidget.h"
 
 
 CustomNumberDataWidget::CustomNumberDataWidget(CustomNodeItem *item)
 {
 	this->item = item;
-	//TODO: expand range and precision
+	setMaximum(std::numeric_limits<double>::max());
+	setMinimum(-std::numeric_limits<double>::max());
+	setDecimals(4);
 	setValue(item->getData().toDouble());
-}
-
-CustomNumberDataWidget::~CustomNumberDataWidget()
-{
-	// TODO: implement
 }
 
 void CustomNumberDataWidget::save()

@@ -22,15 +22,26 @@
 #define CUSTOMNUMBERDATAWIDGET_H
 
 #include <QDoubleSpinBox>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomNumberDataWidget
+ * \brief A widget for a CustomNodeItem with double data
+ *
+ * A doublespinbox to represent a double.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomNumberDataWidget : public CustomDataWidget, public QDoubleSpinBox
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomNumberDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomNumberDataWidget(CustomNodeItem *item);
-		~CustomNumberDataWidget();
 
 		void save();
 

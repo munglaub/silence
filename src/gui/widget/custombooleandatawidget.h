@@ -22,15 +22,26 @@
 #define CUSTOMBOOLEANDATAWIDGET_H
 
 #include <QCheckBox>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomBooleanDataWidget
+ * \brief A widget for a CustomNodeItem with boolean data
+ *
+ * A checkbox to represent a boolean.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomBooleanDataWidget : public CustomDataWidget, public QCheckBox
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomBooleanDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomBooleanDataWidget(CustomNodeItem *item);
-		~CustomBooleanDataWidget();
 
 		void save();
 

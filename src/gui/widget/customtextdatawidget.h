@@ -22,15 +22,26 @@
 #define CUSTOMTEXTDATAWIDGET_H
 
 #include <QTextEdit>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomTextDataWidget
+ * \brief A widget for a CustomNodeItem with text data
+ *
+ * A textedit to represent a longer text.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomTextDataWidget : public CustomDataWidget, public QTextEdit
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomTextDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomTextDataWidget(CustomNodeItem *item);
-		~CustomTextDataWidget();
 
 		void save();
 

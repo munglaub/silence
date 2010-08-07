@@ -27,11 +27,6 @@ CustomTextDataWidget::CustomTextDataWidget(CustomNodeItem *item)
 	setHtml(item->getData());
 }
 
-CustomTextDataWidget::~CustomTextDataWidget()
-{
-	// TODO: implement
-}
-
 void CustomTextDataWidget::save()
 {
 	item->setData(toHtml());

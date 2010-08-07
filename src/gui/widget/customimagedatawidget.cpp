@@ -18,9 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/widget/customimagedatawidget.h"
 #include <kfiledialog.h>
 #include <klocalizedstring.h>
+#include "src/gui/widget/customimagedatawidget.h"
+
 
 CustomImageDataWidget::CustomImageDataWidget(CustomNodeItem *item)
 {
@@ -40,19 +41,14 @@ CustomImageDataWidget::CustomImageDataWidget(CustomNodeItem *item)
 	}
 }
 
-CustomImageDataWidget::~CustomImageDataWidget()
-{
-	// TODO: implement
-}
-
 void CustomImageDataWidget::save()
 {
 	item->setData(fileName);
 }
 
-void CustomImageDataWidget::mousePressEvent(QMouseEvent *event)
+void CustomImageDataWidget::mousePressEvent(QMouseEvent*)
 {
-	QString tmpFileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", this, "Select Image");
+	QString tmpFileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| " + i18n("Image Files") + "\n*| "+ i18n("All Files"), this, i18n("Select Image"));
 
 	if (tmpFileName.isEmpty())
 		return;
@@ -63,4 +59,5 @@ void CustomImageDataWidget::mousePressEvent(QMouseEvent *event)
 		fileName = tmpFileName;
 	}
 }
+
 

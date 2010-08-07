@@ -22,24 +22,34 @@
 #define CUSTOMIMAGEDATAWIDGET_H
 
 #include <QLabel>
-#include "src/gui/widget/customdatawidget.h"
 #include "src/data/node/customnodeitem.h"
+#include "src/gui/widget/customdatawidget.h"
 
 
+/*!\class CustomImageDataWidget
+ * \brief A widget for a CustomNodeItem with image data
+ *
+ * Displays an image.
+ *
+ * \author Manuel Unglaub
+ */
 class CustomImageDataWidget : public CustomDataWidget, public QLabel
 {
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the CustomImageDataWidget.
+		 * \param item The data of this CustomNodeItem will be displayed.
+		 */
 		CustomImageDataWidget(CustomNodeItem *item);
-		~CustomImageDataWidget();
 
 		void save();
-
-	protected:
-		void mousePressEvent(QMouseEvent *event);
 
 	private:
 		CustomNodeItem *item;
 		QString fileName;
+
+		void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // CUSTOMIMAGEDATAWIDGET_H

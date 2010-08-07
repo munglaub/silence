@@ -27,11 +27,6 @@ CustomBooleanDataWidget::CustomBooleanDataWidget(CustomNodeItem *item)
 	setChecked(item->getData() == "True");
 }
 
-CustomBooleanDataWidget::~CustomBooleanDataWidget()
-{
-	// TODO: implement
-}
-
 void CustomBooleanDataWidget::save()
 {
 	if (isChecked())
