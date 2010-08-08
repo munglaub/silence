@@ -22,6 +22,7 @@
 #define CUSTOMBOOLEANDATAWIDGET_H
 
 #include <QCheckBox>
+#include <QVBoxLayout>
 #include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
 
@@ -33,8 +34,10 @@
  *
  * \author Manuel Unglaub
  */
-class CustomBooleanDataWidget : public CustomDataWidget, public QCheckBox
+class CustomBooleanDataWidget : public CustomDataWidget
 {
+	Q_OBJECT
+
 	public:
 		/*! The constructor.
 		 *
@@ -43,10 +46,29 @@ class CustomBooleanDataWidget : public CustomDataWidget, public QCheckBox
 		 */
 		CustomBooleanDataWidget(CustomNodeItem *item);
 
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
+		~CustomBooleanDataWidget();
+
 		void save();
+		void setData(QString data);
+		QString getData() const;
+
+	signals:
+		/*!
+		 * This signal will be emitted when the data changes.
+		 */
+		void changed();
+
+	private slots:
+		void onChange();
 
 	private:
 		CustomNodeItem *item;
+		QVBoxLayout *layout;
+		QCheckBox *checkbox;
 };
 
 #endif // CUSTOMBOOLEANDATAWIDGET_H

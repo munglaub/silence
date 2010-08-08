@@ -64,15 +64,25 @@ class CustomContentView : public AbstractContentView
 		bool hasChanged();
 		AbstractContentChange* getChange();
 
+		/*!
+		 * Set data to the CustomNodeElements in this CustomContentView.
+		 * \param data The data which will be set to the CustomNodeElements.
+		 */
+		void setData(QStringList data);
+
 	private slots:
 		void save();
+		void contentChanged();
 
 	private:
 		QList<CustomNodeElement*> elements;
+		QList<CustomNodeItem*> items;
 		QVBoxLayout *layout;
 		QScrollArea *scrollarea;
 		QVBoxLayout *scrolllayout;
 		QPushButton *btnSave;
+
+		bool isChanged;
 
 		void deleteElements();
 

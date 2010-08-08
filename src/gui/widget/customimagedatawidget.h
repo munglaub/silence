@@ -22,6 +22,7 @@
 #define CUSTOMIMAGEDATAWIDGET_H
 
 #include <QLabel>
+#include <QVBoxLayout>
 #include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
 
@@ -33,8 +34,10 @@
  *
  * \author Manuel Unglaub
  */
-class CustomImageDataWidget : public CustomDataWidget, public QLabel
+class CustomImageDataWidget : public CustomDataWidget
 {
+	Q_OBJECT
+
 	public:
 		/*! The constructor.
 		 *
@@ -43,13 +46,33 @@ class CustomImageDataWidget : public CustomDataWidget, public QLabel
 		 */
 		CustomImageDataWidget(CustomNodeItem *item);
 
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
+		~CustomImageDataWidget();
+
 		void save();
+		void setData(QString data);
+		QString getData() const;
+
+	signals:
+		/*!
+		 * This signal will be emitted when the data changes.
+		 */
+		void changed();
+
+	private slots:
+		void onChange();
 
 	private:
 		CustomNodeItem *item;
 		QString fileName;
+		QVBoxLayout *layout;
+		QLabel *imageLabel;
 
 		void mousePressEvent(QMouseEvent *event);
+		void setImage(QString fname);
 };
 
 #endif // CUSTOMIMAGEDATAWIDGET_H

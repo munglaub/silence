@@ -23,13 +23,42 @@
 
 CustomIntegerDataWidget::CustomIntegerDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	spinbox = new QSpinBox;
+	layout->addWidget(spinbox);
+	setLayout(layout);
+
 	this->item = item;
-	setValue(item->getData().toInt());
+	spinbox->setValue(item->getData().toInt());
+
+	connect(spinbox, SIGNAL(valueChanged(int)), this, SLOT(onChange()));
+}
+
+CustomIntegerDataWidget::~CustomIntegerDataWidget()
+{
+	delete layout;
+	delete spinbox;
 }
 
 void CustomIntegerDataWidget::save()
 {
-	item->setData(QString::number(value()));
+	item->setData(getData());
+}
+
+void CustomIntegerDataWidget::setData(QString data)
+{
+	spinbox->setValue(data.toInt());
+	onChange();
+}
+
+QString CustomIntegerDataWidget::getData() const
+{
+	return QString::number(spinbox->value());
+}
+
+void CustomIntegerDataWidget::onChange()
+{
+	emit changed();
 }
 
 

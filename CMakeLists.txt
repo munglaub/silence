@@ -20,6 +20,7 @@ set ( silence_HDRS
 	src/data/node/customnodecontent.h
 	src/data/node/customnodeitem.h
 	src/data/node/customnodetypedefinition.h
+	src/data/node/customcontentchange.h
 	src/data/label.h
 	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
@@ -88,6 +89,7 @@ set ( silence_SRCS
 	src/data/node/customnodecontent.cpp
 	src/data/node/customnodeitem.cpp
 	src/data/node/customnodetypedefinition.cpp
+	src/data/node/customcontentchange.cpp
 	src/data/label.cpp
 	src/data/aboutdata.cpp
 	src/data/model/labelmodel.cpp

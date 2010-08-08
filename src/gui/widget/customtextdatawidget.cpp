@@ -23,13 +23,42 @@
 
 CustomTextDataWidget::CustomTextDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	textedit = new QTextEdit;
+	layout->addWidget(textedit);
+	setLayout(layout);
+
 	this->item = item;
-	setHtml(item->getData());
+	textedit->setHtml(item->getData());
+
+	connect(textedit, SIGNAL(textChanged()), this, SLOT(onChange()));
+}
+
+CustomTextDataWidget::~CustomTextDataWidget()
+{
+	delete layout;
+	delete textedit;
 }
 
 void CustomTextDataWidget::save()
 {
-	item->setData(toHtml());
+	item->setData(textedit->toHtml());
+}
+
+void CustomTextDataWidget::setData(QString data)
+{
+	textedit->setHtml(data);
+	onChange();
+}
+
+QString CustomTextDataWidget::getData() const
+{
+	return textedit->toHtml();
+}
+
+void CustomTextDataWidget::onChange()
+{
+	emit changed();
 }
 
 

@@ -25,25 +25,44 @@
 
 CustomImageDataWidget::CustomImageDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	imageLabel = new QLabel;
+	layout->addWidget(imageLabel);
+	setLayout(layout);
+
 	// TODO: provide a method to empty the picture..
 	this->item = item;
 	fileName = item->getData();
-	setToolTip(i18n("Click to change the image"));
-	if (item->getData().isEmpty())
-	{
-		setText(i18n("Click to add an image"));
-	} else {
-		QImage image(item->getData());
-		if (!image.isNull())
-			setPixmap(QPixmap::fromImage(image));
-		else
-			setText(i18n("Click to add an image"));
-	}
+	imageLabel->setToolTip(i18n("Click to change the image"));
+	setImage(item->getData());
+}
+
+CustomImageDataWidget::~CustomImageDataWidget()
+{
+	delete imageLabel;
+	delete layout;
 }
 
 void CustomImageDataWidget::save()
 {
 	item->setData(fileName);
+}
+
+void CustomImageDataWidget::setData(QString data)
+{
+	fileName = data;
+	setImage(data);
+	onChange();
+}
+
+QString CustomImageDataWidget::getData() const
+{
+	return fileName;
+}
+
+void CustomImageDataWidget::onChange()
+{
+	emit changed();
 }
 
 void CustomImageDataWidget::mousePressEvent(QMouseEvent*)
@@ -55,8 +74,23 @@ void CustomImageDataWidget::mousePressEvent(QMouseEvent*)
 	QImage image(tmpFileName);
 	if (!image.isNull())
 	{
-		setPixmap(QPixmap::fromImage(image));
+		imageLabel->setPixmap(QPixmap::fromImage(image));
 		fileName = tmpFileName;
+		emit changed();
+	}
+}
+
+void CustomImageDataWidget::setImage(QString fname)
+{
+	if (fname.isEmpty())
+	{
+		imageLabel->setText(i18n("Click to add an image"));
+	} else {
+		QImage image(fname);
+		if (!image.isNull())
+			imageLabel->setPixmap(QPixmap::fromImage(image));
+		else
+			imageLabel->setText(i18n("Click to add an image"));
 	}
 }
 

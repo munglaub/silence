@@ -23,13 +23,42 @@
 
 CustomStringDataWidget::CustomStringDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	edit = new QLineEdit;
+	layout->addWidget(edit);
+	setLayout(layout);
+
 	this->item = item;
-	setText(item->getData());
+	edit->setText(item->getData());
+
+	connect(edit, SIGNAL(textChanged(const QString&)), this, SLOT(onChange()));
+}
+
+CustomStringDataWidget::~CustomStringDataWidget()
+{
+	delete edit;
+	delete layout;
 }
 
 void CustomStringDataWidget::save()
 {
-	item->setData(text());
+	item->setData(edit->text());
+}
+
+void CustomStringDataWidget::setData(QString data)
+{
+	edit->setText(data);
+	onChange();
+}
+
+QString CustomStringDataWidget::getData() const
+{
+	return edit->text();
+}
+
+void CustomStringDataWidget::onChange()
+{
+	emit changed();
 }
 
 

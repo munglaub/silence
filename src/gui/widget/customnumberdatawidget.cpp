@@ -24,16 +24,45 @@
 
 CustomNumberDataWidget::CustomNumberDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	spinbox = new QDoubleSpinBox;
+	layout->addWidget(spinbox);
+	setLayout(layout);
+
 	this->item = item;
-	setMaximum(std::numeric_limits<double>::max());
-	setMinimum(-std::numeric_limits<double>::max());
-	setDecimals(4);
-	setValue(item->getData().toDouble());
+	spinbox->setMaximum(std::numeric_limits<double>::max());
+	spinbox->setMinimum(-std::numeric_limits<double>::max());
+	spinbox->setDecimals(4);
+	spinbox->setValue(item->getData().toDouble());
+
+	connect(spinbox, SIGNAL(valueChanged(double)), this, SLOT(onChange()));
+}
+
+CustomNumberDataWidget::~CustomNumberDataWidget()
+{
+	delete spinbox;
+	delete layout;
 }
 
 void CustomNumberDataWidget::save()
 {
-	item->setData(QString::number(value()));
+	item->setData(getData());
+}
+
+void CustomNumberDataWidget::setData(QString data)
+{
+	spinbox->setValue(data.toDouble());
+	onChange();
+}
+
+QString CustomNumberDataWidget::getData() const
+{
+	return QString::number(spinbox->value());
+}
+
+void CustomNumberDataWidget::onChange()
+{
+	emit changed();
 }
 
 

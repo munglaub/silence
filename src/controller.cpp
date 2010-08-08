@@ -49,9 +49,8 @@ Controller::~Controller()
 		delete textedit;
 	if (richtextedit)
 		delete richtextedit;
-//TODO:
-//	if (customcontentview)
-//		delete customcontentview;
+	if (customcontentview)
+		delete customcontentview;
 }
 
 Controller* Controller::create()

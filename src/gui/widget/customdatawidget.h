@@ -21,7 +21,7 @@
 #ifndef CUSTOMDATAWIDGET_H
 #define CUSTOMDATAWIDGET_H
 
-#include <QObject>
+#include <QWidget>
 
 
 /*!\class CustomDataWidget
@@ -31,13 +31,25 @@
  *
  * \author Manuel Unglaub
  */
-class CustomDataWidget : public QObject
+class CustomDataWidget : public QWidget
 {
 	public:
 		/*!
 		 * Write the data from the widget into the CustomNodeItem.
 		 */
 		virtual void save() = 0;
+
+		/*!
+		 * Set data to this widget.
+		 * \param data Set this data to this widget.
+		 */
+		virtual void setData(QString data) = 0;
+
+		/*!
+		 * Get the data of this widget.
+		 * \return The data of this widget.
+		 */
+		virtual QString getData() const = 0;
 };
 
 #endif // CUSTOMDATAWIDGET_H

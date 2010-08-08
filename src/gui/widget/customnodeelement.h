@@ -56,6 +56,18 @@ class CustomNodeElement : public QWidget
 		 */
 		~CustomNodeElement();
 
+		/*!
+		 * Set data to the CustomDataWidget.
+		 * \param data This data will be set to the CustomDataWidget.
+		 */
+		void setData(QString data);
+
+		/*!
+		 * Get the data from the CustomDataWidget.
+		 * \return The data from the CustomDataWidget.
+		 */
+		QString getData() const;
+
 	signals:
 		/*!
 		 * This signal will be emitted when the remove button is clicked.
@@ -63,6 +75,11 @@ class CustomNodeElement : public QWidget
 		 * \param item A pointer to the CustomNodeItem contained in this CustomNodeElement.
 		 */
 		void remove(CustomNodeElement *element, CustomNodeItem *item);
+
+		/*!
+		 * This signal will be emitted when the content of this widget changes.
+		 */
+		void changed();
 
 	public slots:
 		/*!
@@ -72,6 +89,7 @@ class CustomNodeElement : public QWidget
 
 	private slots:
 		void onRemove();
+		void onChange();
 
 	private:
 		QHBoxLayout *layout;

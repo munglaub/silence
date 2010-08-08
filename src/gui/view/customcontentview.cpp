@@ -19,11 +19,15 @@
  */
 
 #include <klocalizedstring.h>
+#include "src/controller.h"
+#include "src/data/node/customcontentchange.h"
 #include "src/gui/view/customcontentview.h"
 
 
 CustomContentView::CustomContentView()
 {
+	isChanged = false;
+
 	layout = new QVBoxLayout;
 	scrollarea = new QScrollArea;
 	layout->addWidget(scrollarea);
@@ -51,30 +55,50 @@ CustomContentView::~CustomContentView()
 void CustomContentView::setItems(QList<CustomNodeItem*> items)
 {
 	deleteElements();
+	this->items = items;
 	for (int i = 0; i < items.size(); ++i)
 	{
 		CustomNodeElement *element = new CustomNodeElement(items.at(i));
+		connect(element, SIGNAL(changed()), this, SLOT(contentChanged()));
 		scrolllayout->insertWidget(i, element);
 		elements.append(element);
 	}
+	isChanged = false;
+	Controller::create()->getStatusBar()->setSaveStatus(true);
 }
 	
 bool CustomContentView::hasChanged()
 {
-	// TODO: implement
-	return false;
+	return isChanged;
 }
 
 AbstractContentChange* CustomContentView::getChange()
 {
-	// TODO: implement
-	return 0;
+	QStringList data;
+	for (int i = 0; i < elements.size(); ++i)
+		data.append(elements.at(i)->getData());
+	return new CustomContentChange(items, data, this);
+}
+
+void CustomContentView::setData(QStringList data)
+{
+	if (data.size() == elements.size())
+		for (int i = 0; i < data.size(); ++i)
+			elements.at(i)->setData(data.at(i));
 }
 
 void CustomContentView::save()
 {
 	for (int i = 0; i < elements.size(); ++i)
 		elements.at(i)->save();
+	isChanged = false;
+	Controller::create()->getStatusBar()->setSaveStatus(true);
+}
+
+void CustomContentView::contentChanged()
+{
+	Controller::create()->getStatusBar()->setSaveStatus(false);
+	isChanged = true;
 }
 
 void CustomContentView::deleteElements()

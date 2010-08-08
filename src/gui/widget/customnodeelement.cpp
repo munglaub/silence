@@ -42,47 +42,28 @@ CustomNodeElement::CustomNodeElement(CustomNodeItem *item, bool showModifiers, Q
 
 	switch (item->getType()){
 		case CustomNodeItem::String:
-			{
-				CustomStringDataWidget *tmp = new CustomStringDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomStringDataWidget(item);
 			break;
 		case CustomNodeItem::Text:
-			{
-				CustomTextDataWidget *tmp = new CustomTextDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomTextDataWidget(item);
 			break;
 		case CustomNodeItem::Integer:
-			{
-				CustomIntegerDataWidget *tmp = new CustomIntegerDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomIntegerDataWidget(item);
 			break;
 		case CustomNodeItem::Number:
-			{
-				CustomNumberDataWidget *tmp = new CustomNumberDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomNumberDataWidget(item);
 			break;
 		case CustomNodeItem::Boolean:
-			{
-				CustomBooleanDataWidget *tmp = new CustomBooleanDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomBooleanDataWidget(item);
 			break;
 		case CustomNodeItem::Image:
-			{
-				CustomImageDataWidget *tmp = new CustomImageDataWidget(item);
-				layout->addWidget(tmp);
-				datawidget = tmp;
-			}
+				datawidget = new CustomImageDataWidget(item);
 			break;
+	}
+	if (datawidget)
+	{
+		layout->addWidget(datawidget);
+		connect(datawidget, SIGNAL(changed()), this, SLOT(onChange()));
 	}
 
 	btnRemove = new QPushButton(KIcon("edit-delete"), "");
@@ -103,9 +84,28 @@ CustomNodeElement::~CustomNodeElement()
 	delete layout;
 }
 
+void CustomNodeElement::setData(QString data)
+{
+	if (datawidget)
+		datawidget->setData(data);
+}
+
+QString CustomNodeElement::getData() const
+{
+	if (datawidget)
+		return datawidget->getData();
+	else
+		return "";
+}
+
 void CustomNodeElement::onRemove()
 {
 	emit remove(this, item);
+}
+
+void CustomNodeElement::onChange()
+{
+	emit changed();
 }
 
 void CustomNodeElement::save()

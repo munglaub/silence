@@ -23,16 +23,43 @@
 
 CustomBooleanDataWidget::CustomBooleanDataWidget(CustomNodeItem *item)
 {
+	layout = new QVBoxLayout;
+	checkbox = new QCheckBox;
+	layout->addWidget(checkbox);
+	setLayout(layout);
 	this->item = item;
-	setChecked(item->getData() == "True");
+	checkbox->setChecked(item->getData() == "True");
+	connect(checkbox, SIGNAL(stateChanged(int)), this, SLOT(onChange()));
+}
+
+CustomBooleanDataWidget::~CustomBooleanDataWidget()
+{
+	delete checkbox;
+	delete layout;
 }
 
 void CustomBooleanDataWidget::save()
 {
-	if (isChecked())
-		item->setData("True");
+	item->setData(getData());
+}
+
+void CustomBooleanDataWidget::setData(QString data)
+{
+	checkbox->setChecked(data == "True");
+	onChange();
+}
+
+QString CustomBooleanDataWidget::getData() const
+{
+	if (checkbox->isChecked())
+		return "True";
 	else
-		item->setData("False");
+		return "False";
+}
+
+void CustomBooleanDataWidget::onChange()
+{
+	emit changed();
 }
 
 

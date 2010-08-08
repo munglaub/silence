@@ -22,6 +22,7 @@
 #define CUSTOMSTRINGDATAWIDGET_H
 
 #include <QLineEdit>
+#include <QVBoxLayout>
 #include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
 
@@ -33,8 +34,10 @@
  *
  * \author Manuel Unglaub
  */
-class CustomStringDataWidget : public CustomDataWidget, public QLineEdit
+class CustomStringDataWidget : public CustomDataWidget
 {
+	Q_OBJECT
+
 	public:
 		/*! The constructor.
 		 *
@@ -43,10 +46,29 @@ class CustomStringDataWidget : public CustomDataWidget, public QLineEdit
 		 */
 		CustomStringDataWidget(CustomNodeItem *item);
 
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
+		~CustomStringDataWidget();
+
 		void save();
+		void setData(QString data);
+		QString getData() const;
+
+	signals:
+		/*!
+		 * This signal will be emitted when the data changes.
+		 */
+		void changed();
+
+	private slots:
+		void onChange();
 
 	private:
 		CustomNodeItem *item;
+		QVBoxLayout *layout;
+		QLineEdit *edit;
 };
 
 #endif // CUSTOMSTRINGDATAWIDGET_H

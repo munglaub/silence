@@ -22,6 +22,7 @@
 #define CUSTOMINTEGERDATAWIDGET_H
 
 #include <QSpinBox>
+#include <QVBoxLayout>
 #include "src/data/node/customnodeitem.h"
 #include "src/gui/widget/customdatawidget.h"
 
@@ -33,8 +34,10 @@
  *
  * \author Manuel Unglaub
  */
-class CustomIntegerDataWidget : public CustomDataWidget, public QSpinBox
+class CustomIntegerDataWidget : public CustomDataWidget
 {
+	Q_OBJECT
+
 	public:
 		/*! The constructor.
 		 *
@@ -43,10 +46,29 @@ class CustomIntegerDataWidget : public CustomDataWidget, public QSpinBox
 		 */
 		CustomIntegerDataWidget(CustomNodeItem *item);
 
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
+		~CustomIntegerDataWidget();
+
 		void save();
+		void setData(QString data);
+		QString getData() const;
+
+	signals:
+		/*!
+		 * This signal will be emitted when the data changes.
+		 */
+		void changed();
+
+	private slots:
+		void onChange();
 
 	private:
 		CustomNodeItem *item;
+		QVBoxLayout *layout;
+		QSpinBox *spinbox;
 };
 
 #endif // CUSTOMINTEGERDATAWIDGET_H
