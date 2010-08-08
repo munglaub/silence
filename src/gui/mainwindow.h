@@ -22,7 +22,6 @@
 #define MAINWINDOW_H
 
 #include <KXmlGuiWindow>
-#include "src/controller.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
@@ -31,6 +30,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
+#include <QStackedWidget>
 
 
 /*!\class MainWindow
@@ -57,8 +57,16 @@ class MainWindow : public KXmlGuiWindow
 		 */
 		~MainWindow();
 
+		/*!
+		 * Show a screen to manage the node types.
+		 */
+		 void showNodeTypeManagement();
+
+	private slots:
+		void deleteFromCentralWidgetStack(QWidget *widget);
+
 	private:
-		Controller *controller;
+		QStackedWidget *centralwidgetstack;
 		ContentView *contentview;
 		TreeView *treeview;
 		InfoSidebar *infosidebar;

@@ -47,6 +47,7 @@ class ViewMenu : public QObject
 	private slots:
 		void showWelcomeView();
 		void showLabelManagementDialog();
+		void showNodeTypeManagement();
 		void showNodeTree(bool visible);
 		void showInfo(bool visible);
 		void showNavigation(bool visible);

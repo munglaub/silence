@@ -21,13 +21,15 @@
 #include <ksavefile.h>
 #include <kstandarddirs.h>
 #include <QTextStream>
+#include "src/data/node/customnodecontent.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/persistence/xmldatastore.h"
 
 
-// Constant for Datastore file
+// Constants for Datastore files
 const QString XmlDataStore::DATA_FILE("silence/data.xml");
+const QString XmlDataStore::TYPE_FILE("silence/customnodetypedefinitions.xml");
 
 
 XmlDataStore::XmlDataStore()
@@ -35,6 +37,8 @@ XmlDataStore::XmlDataStore()
 	rootNode = new Node();
 
 	rootLabel = new Label();
+
+	loadCustomNodeTypeDefinitions();
 
 	QDomDocument doc;
 	QFile file(KStandardDirs::locateLocal("data", DATA_FILE));
@@ -60,6 +64,8 @@ XmlDataStore::XmlDataStore()
 
 XmlDataStore::~XmlDataStore()
 {
+	while(!customNodeTypeDefinitions.keys().isEmpty())
+		delete customNodeTypeDefinitions.take(customNodeTypeDefinitions.keys().first());
 	delete rootNode;
 	delete rootLabel;
 }
@@ -67,6 +73,34 @@ XmlDataStore::~XmlDataStore()
 Node* XmlDataStore::getRootNode()
 {
 	return rootNode;
+}
+
+QStringList XmlDataStore::getCustomNodeTypeNames()
+{
+	return QStringList(customNodeTypeDefinitions.keys());
+}
+
+CustomNodeTypeDefinition* XmlDataStore::getCustomNodeType(QString name)
+{
+	if (customNodeTypeDefinitions.contains(name))
+		return customNodeTypeDefinitions[name];
+	else
+		customNodeTypeDefinitions[name] = new CustomNodeTypeDefinition(name);
+		saveCustomNodeTypeDefinitions();
+		return customNodeTypeDefinitions[name];
+}
+
+void XmlDataStore::removeCustomNodeType(QString typeName)
+{
+	delete customNodeTypeDefinitions.take(typeName);
+	saveCustomNodeTypeDefinitions();
+}
+
+void XmlDataStore::saveCustomNodeType(CustomNodeTypeDefinition *type)
+{
+	if (!customNodeTypeDefinitions.contains(type->getName()))
+		customNodeTypeDefinitions[type->getName()] = type;
+	saveCustomNodeTypeDefinitions();
 }
 
 Node* XmlDataStore::getNode(NodeId id)
@@ -149,6 +183,12 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 				content->setXmlData(e);
 				node->setContent(content);
 			}
+			if (e.attribute("mimetype", "").startsWith("silence/"))
+			{
+				CustomNodeContent *content = new CustomNodeContent(e.attribute("mimetype", ""));
+				content->setXmlData(e);
+				node->setContent(content);
+			}
 		}
 
 		if (e.tagName() == "node")
@@ -164,6 +204,81 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 void XmlDataStore::saveNode(Node*)
 {
 	saveAll();
+}
+
+void XmlDataStore::saveCustomNodeTypeDefinitions()
+{
+	QDomDocument doc;
+	doc.setContent(QString("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"));
+	QDomElement xmlRoot = doc.createElement("CustomNodeTypeDefinitions");
+	xmlRoot.setAttribute("version", "1");
+	doc.appendChild(xmlRoot);
+
+	QHashIterator<QString, CustomNodeTypeDefinition*> i(customNodeTypeDefinitions);
+	while (i.hasNext())
+	{
+		i.next();
+
+		QDomElement l = doc.createElement("TypeDefinition");
+		l.setAttribute("name", i.value()->getName());
+		QList<CustomNodeItem*> items = i.value()->getItemList();
+		for (int j = 0; j < items.size(); ++j)
+		{
+			QDomElement m = doc.createElement("NodeItem");
+			m.setAttribute("Type", QString::number(items.at(j)->getType()));
+			m.setAttribute("Caption", items.at(j)->getCaption());
+			l.appendChild(m);
+		}
+
+		xmlRoot.appendChild(l);
+	}
+
+	KSaveFile file(KStandardDirs::locateLocal("data", TYPE_FILE));
+	if( !file.open(QIODevice::WriteOnly))
+		return;
+	QTextStream ts(&file);
+	ts << doc.toString();
+	file.close();
+}
+
+void XmlDataStore::loadCustomNodeTypeDefinitions()
+{
+	QDomDocument doc;
+	QFile file(KStandardDirs::locateLocal("data", TYPE_FILE));
+	if (!file.open(QIODevice::ReadOnly))
+		return;
+	doc.setContent(&file);
+	file.close();
+
+	QDomElement xmlRoot = doc.documentElement();
+	if (xmlRoot.tagName() != "CustomNodeTypeDefinitions")
+		return;
+	//TODO: test if right version
+	QDomNode n = xmlRoot.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		if (e.tagName() == "TypeDefinition")
+		{
+			CustomNodeTypeDefinition *def = new CustomNodeTypeDefinition(e.attribute("name", "noname"));
+			QDomNode m = e.firstChild();
+			while (!m.isNull())
+			{
+				QDomElement f = m.toElement();
+				if (f.tagName() == "NodeItem")
+				{
+					CustomNodeItem *item = new CustomNodeItem(
+						f.attribute("Caption", ""),
+						(CustomNodeItem::Type)f.attribute("Type", "0").toInt()
+					);
+					def->addItem(item);
+				}
+				m = m.nextSibling();
+			}
+			customNodeTypeDefinitions[def->getName()] = def;
+		}
+		n = n.nextSibling();
+	}
 }
 
 void XmlDataStore::saveAll()

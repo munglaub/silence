@@ -17,6 +17,10 @@ set ( silence_HDRS
 	src/data/node/abstractcontentchange.h
 	src/data/node/textcontentchange.h
 	src/data/node/rtfcontentchange.h
+	src/data/node/customnodecontent.h
+	src/data/node/customnodeitem.h
+	src/data/node/customnodetypedefinition.h
+	src/data/node/customcontentchange.h
 	src/data/label.h
 	src/data/aboutdata.h
 	src/data/model/simpletreemodel.h
@@ -49,6 +53,7 @@ set ( silence_HDRS
 	src/gui/view/textedit.h
 	src/gui/view/welcomeview.h
 	src/gui/view/richtextedit.h
+	src/gui/view/customcontentview.h
 	src/gui/widget/rtfedit.h
 	src/gui/widget/textfind.h
 	src/gui/widget/labelwidget.h
@@ -58,6 +63,17 @@ set ( silence_HDRS
 	src/gui/widget/searchnodeoptions.h
 	src/gui/widget/labellist.h
 	src/gui/widget/notificationbox.h
+	src/gui/widget/nodetypemanager.h
+	src/gui/widget/nodetypebuilder.h
+	src/gui/widget/nodetypespanel.h
+	src/gui/widget/customnodeelement.h
+	src/gui/widget/customdatawidget.h
+	src/gui/widget/customstringdatawidget.h
+	src/gui/widget/customtextdatawidget.h
+	src/gui/widget/customintegerdatawidget.h
+	src/gui/widget/customnumberdatawidget.h
+	src/gui/widget/custombooleandatawidget.h
+	src/gui/widget/customimagedatawidget.h
 	)
 
 set ( silence_SRCS
@@ -70,6 +86,10 @@ set ( silence_SRCS
 	src/data/node/richtextnodecontent.cpp
 	src/data/node/textcontentchange.cpp
 	src/data/node/rtfcontentchange.cpp
+	src/data/node/customnodecontent.cpp
+	src/data/node/customnodeitem.cpp
+	src/data/node/customnodetypedefinition.cpp
+	src/data/node/customcontentchange.cpp
 	src/data/label.cpp
 	src/data/aboutdata.cpp
 	src/data/model/labelmodel.cpp
@@ -92,6 +112,7 @@ set ( silence_SRCS
 	src/gui/view/contentview.cpp
 	src/gui/view/welcomeview.cpp
 	src/gui/view/richtextedit.cpp
+	src/gui/view/customcontentview.cpp
 	src/gui/widget/rtfedit.cpp
 	src/gui/widget/textfind.cpp
 	src/gui/widget/labelwidget.cpp
@@ -102,6 +123,16 @@ set ( silence_SRCS
 	src/gui/widget/searchnodeoptions.cpp
 	src/gui/widget/labellist.cpp
 	src/gui/widget/notificationbox.cpp
+	src/gui/widget/nodetypemanager.cpp
+	src/gui/widget/nodetypebuilder.cpp
+	src/gui/widget/nodetypespanel.cpp
+	src/gui/widget/customnodeelement.cpp
+	src/gui/widget/customstringdatawidget.cpp
+	src/gui/widget/customtextdatawidget.cpp
+	src/gui/widget/customintegerdatawidget.cpp
+	src/gui/widget/customnumberdatawidget.cpp
+	src/gui/widget/custombooleandatawidget.cpp
+	src/gui/widget/customimagedatawidget.cpp
 	src/commandline/cmdmain.cpp
 	src/commandline/cmdlineoptions.cpp
 	src/commandline/nodefilter.cpp

@@ -21,9 +21,10 @@
 #ifndef ABSTRACTDATASTORE_H
 #define ABSTRACTDATASTORE_H
 
-#include "src/data/label.h"
-#include "src/data/node/node.h"
 #include <QObject>
+#include "src/data/label.h"
+#include "src/data/node/customnodetypedefinition.h"
+#include "src/data/node/node.h"
 
 
 /*!\class AbstractDataStore
@@ -56,6 +57,31 @@ class AbstractDataStore : public QObject
 		 * \return The root of the label structure.
 		 */
 		virtual Label* getRootLabel() = 0;
+
+		/*!
+		 * Get a list with the names of all custom node types.
+		 * \return A QStringList with the names of all custom node types.
+		 */
+		virtual QStringList getCustomNodeTypeNames() = 0;
+
+		/*!
+		 * Get a CustomNodeTypeDefinition by its name.
+		 * \param name The name of the requested CustomNodeTypeDefinition.
+		 * \return A CustomNodeTypeDefinition with the requested name. If it does not exists, a CustomNodeTypeDefinition with the specified name will be created, saved and returned.
+		 */
+		virtual CustomNodeTypeDefinition* getCustomNodeType(QString name) = 0;
+
+		/*!
+		 * Remove a CustomNodeTypeDefinition.
+		 * \param typeName The name of the CustomNodeTypeDefinition which will be removed.
+		 */
+		virtual void removeCustomNodeType(QString typeName) = 0;
+
+		/*!
+		 * Save the CustomNodeTypeDefinition.
+		 * \param type The CustomNodeTypeDefinition which will be saved.
+		 */
+		virtual void saveCustomNodeType(CustomNodeTypeDefinition *type) = 0;
 
 		/*!
 		 * Remove a node with all its subnodes from the persistence layer.

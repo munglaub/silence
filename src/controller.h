@@ -21,6 +21,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "src/gui/mainwindow.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
@@ -28,6 +29,7 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
+#include "src/gui/view/customcontentview.h"
 #include "src/gui/view/richtextedit.h"
 #include "src/gui/view/textedit.h"
 #include "src/gui/view/welcomeview.h"
@@ -43,8 +45,8 @@
  * static create() function.
  *
  * Some classes should have only one instance which is managed by the
- * Controller. These classes are WelcomeView, TextEdit, DataStore
- * and RichTextEdit.
+ * Controller. These classes are WelcomeView, TextEdit, DataStore,
+ * CustomContentView and RichTextEdit.
  * To use these classes you can use the get-methods of the Controller.
  *
  * \author Manuel Unglaub
@@ -62,6 +64,18 @@ class Controller
 		 * \return A instance of the Controller.
 		 */
 		static Controller* create();
+
+		/*!
+		 * This function provides the Controller with a pointer of the MainWindow.
+		 * \param A pointer to the MainWindow.
+		 */
+		void setMainWindow(MainWindow *mainwindow);
+
+		/*!
+		 * Get a pointer of the MainWindow.
+		 * \return A pointer to the MainWindow.
+		 */
+		MainWindow* getMainWindow();
 
 		/*!
 		 * This function provides the Controller with a pointer of the ContentView.
@@ -94,6 +108,13 @@ class Controller
 		 * \return A pointer to the RichTextEdit.
 		 */
 		RichTextEdit* getRichTextEdit();
+
+		/*!
+		 * Get a pointer to the CustomContentView. The Controller will manage the
+		 * CustomContentView, that means it will create and destroy it.
+		 * \return A pointer to the CustomContentView.
+		 */
+		CustomContentView* getCustomContentView();
 
 		/*!
 		 * Get a pointer to the datastore. The Controller will manage the
@@ -187,10 +208,12 @@ class Controller
 	private:
 		static Controller *controller;
 		
+		MainWindow *mainwindow;
 		ContentView *contentview;
 		WelcomeView *welcomeview;
 		TextEdit *textedit;
 		RichTextEdit *richtextedit;
+		CustomContentView *customcontentview;
 		InfoSidebar *infosidebar;
 		SearchNodeSidebar *searchsidebar;
 		TreeView *treeview;

@@ -23,20 +23,25 @@
 #include <klocalizedstring.h>
 #include <KMenuBar>
 #include <QApplication>
+#include "src/controller.h"
 #include "src/gui/mainwindow.h"
+#include "src/gui/widget/nodetypemanager.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
 	: KXmlGuiWindow(parent)
 {
 	setWindowTitle(i18n("Silence"));
-	controller = Controller::create();
+	Controller *controller = Controller::create();
+	controller->setMainWindow(this);
+
+	centralwidgetstack = new QStackedWidget;
+	setCentralWidget(centralwidgetstack);
 
 	// ContentView
 	contentview = new ContentView;
-	setCentralWidget(contentview);
+	centralwidgetstack->addWidget(contentview);
 	controller->setContentView(contentview);
-
 
 	nodepropertywidget = new NodePropertyWidget(i18n("Properties"), this);
 	nodepropertywidget->hide();
@@ -87,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {   
 	delete contentview;
+	delete centralwidgetstack;
 	delete treeview;
 	delete infosidebar;
 	delete statusbar;
@@ -95,6 +101,21 @@ MainWindow::~MainWindow()
 
 	delete viewmenu;
 
-	delete controller;
+	delete Controller::create();
 }
+
+void MainWindow::deleteFromCentralWidgetStack(QWidget *widget)
+{
+	centralwidgetstack->removeWidget(widget);
+	delete widget;
+}
+
+void MainWindow::showNodeTypeManagement()
+{
+	NodeTypeManager *ntm = new NodeTypeManager;
+	centralwidgetstack->addWidget(ntm);
+	centralwidgetstack->setCurrentWidget(ntm);
+	connect(ntm, SIGNAL(exit(QWidget*)), this, SLOT(deleteFromCentralWidgetStack(QWidget*)));
+}
+
 

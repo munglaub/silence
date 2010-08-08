@@ -24,10 +24,12 @@ Controller* Controller::controller = 0;
 
 Controller::Controller()
 {
+	mainwindow = 0;
 	contentview = 0;
 	welcomeview = 0;
 	textedit = 0;
 	richtextedit = 0;
+	customcontentview = 0;
 	actionCollection = 0;
 	infosidebar = 0;
 	treeview = 0;
@@ -47,6 +49,8 @@ Controller::~Controller()
 		delete textedit;
 	if (richtextedit)
 		delete richtextedit;
+	if (customcontentview)
+		delete customcontentview;
 }
 
 Controller* Controller::create()
@@ -54,6 +58,16 @@ Controller* Controller::create()
 	if (controller == 0)
 		controller = new Controller;
 	return controller;
+}
+
+void Controller::setMainWindow(MainWindow* mainwindow)
+{
+	this->mainwindow = mainwindow;
+}
+
+MainWindow* Controller::getMainWindow()
+{
+	return mainwindow;
 }
 
 void Controller::setContentView(ContentView* contentview)
@@ -85,6 +99,13 @@ RichTextEdit* Controller::getRichTextEdit()
 	if (richtextedit == 0)
 		richtextedit = new RichTextEdit(actionCollection);
 	return richtextedit;
+}
+
+CustomContentView* Controller::getCustomContentView()
+{
+	if (customcontentview == 0)
+		customcontentview = new CustomContentView;
+	return customcontentview;
 }
 
 void Controller::setActionCollection(KActionCollection *actionCollection)
