@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: silence\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-01 00:00+0200\n"
+"POT-Creation-Date: 2010-08-09 13:56+0200\n"
 "PO-Revision-Date: 2010-05-20 22:29+0100\n"
 "Last-Translator: Manuel Unglaub <m.unglaub@gmail.com>\n"
 "Language-Team: \n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:10
+#. i18n: file: install/share/apps/silence/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
 #. i18n: file: src/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:10
+#. i18n: file: install/share/apps/silence/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
 #. i18n: file: src/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
-#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:32
+#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:34
 msgid "Silence"
 msgstr "Silence"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:16
+#. i18n: file: install/share/apps/silence/silenceui.rc:16
 #. i18n: ectx: Menu (node)
 #. i18n: file: src/silenceui.rc:16
 #. i18n: ectx: Menu (node)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:16
+#. i18n: file: install/share/apps/silence/silenceui.rc:16
 #. i18n: ectx: Menu (node)
 #. i18n: file: src/silenceui.rc:16
 #. i18n: ectx: Menu (node)
@@ -40,11 +40,11 @@ msgstr "Silence"
 msgid "Node"
 msgstr "Artikel"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:23
+#. i18n: file: install/share/apps/silence/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
 #. i18n: file: src/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:23
+#. i18n: file: install/share/apps/silence/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
 #. i18n: file: src/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
@@ -52,11 +52,11 @@ msgstr "Artikel"
 msgid "Edit"
 msgstr "B&earbeiten"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:56
+#. i18n: file: install/share/apps/silence/silenceui.rc:56
 #. i18n: ectx: Menu (table)
 #. i18n: file: src/silenceui.rc:56
 #. i18n: ectx: Menu (table)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:56
+#. i18n: file: install/share/apps/silence/silenceui.rc:56
 #. i18n: ectx: Menu (table)
 #. i18n: file: src/silenceui.rc:56
 #. i18n: ectx: Menu (table)
@@ -64,23 +64,23 @@ msgstr "B&earbeiten"
 msgid "Table"
 msgstr "Tabelle"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:65
+#. i18n: file: install/share/apps/silence/silenceui.rc:65
 #. i18n: ectx: Menu (format)
 #. i18n: file: src/silenceui.rc:65
 #. i18n: ectx: Menu (format)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:65
+#. i18n: file: install/share/apps/silence/silenceui.rc:65
 #. i18n: ectx: Menu (format)
 #. i18n: file: src/silenceui.rc:65
 #. i18n: ectx: Menu (format)
 #: rc.cpp:15 rc.cpp:33
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
-#. i18n: file: inst/share/apps/silence/silenceui.rc:79
+#. i18n: file: install/share/apps/silence/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
 #. i18n: file: src/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
-#. i18n: file: inst/share/apps/silence/silenceui.rc:79
+#. i18n: file: install/share/apps/silence/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
 #. i18n: file: src/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
@@ -189,6 +189,7 @@ msgid "Remove Node"
 msgstr "Artikel entfernen"
 
 #: src/gui/dialog/labelmanagementdialog.cpp:68
+#: src/gui/widget/nodetypebuilder.cpp:56 src/gui/widget/nodetypespanel.cpp:56
 msgid "Close"
 msgstr "Schließen"
 
@@ -238,65 +239,65 @@ msgstr "Datei"
 msgid "Select File"
 msgstr "Datei Auswählen"
 
-#: src/gui/dialog/newlinkdialog.cpp:75 src/gui/dialog/newnodedialog.cpp:67
+#: src/gui/dialog/newlinkdialog.cpp:75 src/gui/dialog/newnodedialog.cpp:70
 #: src/gui/widget/addimage.cpp:55 src/gui/widget/addtable.cpp:44
 #: src/gui/widget/inputwidget.cpp:32 src/gui/widget/notificationbox.cpp:39
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/gui/dialog/newlinkdialog.cpp:78 src/gui/dialog/newnodedialog.cpp:70
+#: src/gui/dialog/newlinkdialog.cpp:78 src/gui/dialog/newnodedialog.cpp:73
 #: src/gui/widget/addimage.cpp:58 src/gui/widget/addtable.cpp:48
 #: src/gui/widget/inputwidget.cpp:35
 msgid "OK"
 msgstr "OK"
 
-#: src/gui/dialog/newnodedialog.cpp:32
+#: src/gui/dialog/newnodedialog.cpp:34
 msgid "New Node"
 msgstr "Neuer Artikel"
 
-#: src/gui/dialog/newnodedialog.cpp:38
+#: src/gui/dialog/newnodedialog.cpp:40
 msgid "Nodename"
 msgstr "Artikelname"
 
-#: src/gui/dialog/newnodedialog.cpp:41
+#: src/gui/dialog/newnodedialog.cpp:43
 #: src/gui/sidebar/nodepropertywidget.cpp:69
 msgid "Node name:"
 msgstr "Artikelname"
 
-#: src/gui/dialog/newnodedialog.cpp:46 src/gui/sidebar/infosidebar.cpp:59
+#: src/gui/dialog/newnodedialog.cpp:48 src/gui/sidebar/infosidebar.cpp:59
 msgid "Type"
 msgstr "Typ"
 
-#: src/gui/dialog/newnodedialog.cpp:49
+#: src/gui/dialog/newnodedialog.cpp:51
 msgid "RichText"
 msgstr "Text"
 
-#: src/gui/dialog/newnodedialog.cpp:50
+#: src/gui/dialog/newnodedialog.cpp:52 src/gui/widget/nodetypebuilder.cpp:43
 msgid "Text"
 msgstr "Quelltext"
 
-#: src/gui/mainwindow.cpp:41 src/gui/sidebar/treeview.cpp:150
+#: src/gui/mainwindow.cpp:46 src/gui/sidebar/treeview.cpp:150
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: src/gui/mainwindow.cpp:46
+#: src/gui/mainwindow.cpp:51
 msgid "Nodes"
 msgstr "Baumansicht"
 
-#: src/gui/mainwindow.cpp:50
+#: src/gui/mainwindow.cpp:55
 msgid "Search Nodes"
 msgstr "Artikelsuche"
 
-#: src/gui/mainwindow.cpp:54
+#: src/gui/mainwindow.cpp:59
 msgctxt "title of the navigation sidebar"
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/gui/mainwindow.cpp:58
+#: src/gui/mainwindow.cpp:63
 msgid "Information"
 msgstr "Informationsleiste"
 
-#: src/gui/mainwindow.cpp:80
+#: src/gui/mainwindow.cpp:85
 msgid "&Exit"
 msgstr "B&eenden"
 
@@ -306,25 +307,29 @@ msgstr "Startbildschirm"
 
 #: src/gui/menu/viewmenu.cpp:36 src/gui/widget/labelwidget.cpp:35
 msgid "Manage Labels"
-msgstr "Label bearbeiten"
+msgstr "Labels bearbeiten"
 
 #: src/gui/menu/viewmenu.cpp:40
+msgid "Manage Nodetypes"
+msgstr "Artikeltypen"
+
+#: src/gui/menu/viewmenu.cpp:44
 msgid "Node Sidebar"
 msgstr "Baumansicht"
 
-#: src/gui/menu/viewmenu.cpp:49
+#: src/gui/menu/viewmenu.cpp:53
 msgid "Information Sidebar"
 msgstr "Informationsleiste"
 
-#: src/gui/menu/viewmenu.cpp:56
+#: src/gui/menu/viewmenu.cpp:60
 msgid "Navigation Sidebar"
 msgstr "Navigationsleiste"
 
-#: src/gui/menu/viewmenu.cpp:63
+#: src/gui/menu/viewmenu.cpp:67
 msgid "Node Properties Sidebar"
 msgstr "Eigenschaften"
 
-#: src/gui/menu/viewmenu.cpp:70
+#: src/gui/menu/viewmenu.cpp:74
 msgid "Search Nodes Sidebar"
 msgstr "Artikelsuche"
 
@@ -403,9 +408,13 @@ msgctxt "indicate that the node has been modified"
 msgid "changed"
 msgstr "verändert"
 
+#: src/gui/view/customcontentview.cpp:37 src/gui/widget/notificationbox.cpp:36
+msgid "Save"
+msgstr "Speichern"
+
 #: src/gui/view/richtextedit.cpp:110
 msgid "Edit Actions"
-msgstr "Bearbeitungsaktionen"
+msgstr "Bearbeiten"
 
 #: src/gui/view/richtextedit.cpp:159
 msgctxt "toggle selected text to bold"
@@ -553,6 +562,31 @@ msgstr "Zeilen"
 msgid "Columns"
 msgstr "Spalten"
 
+#: src/gui/widget/customimagedatawidget.cpp:36
+msgid "Click to change the image"
+msgstr "Klicken um ein Bild auszuwählen"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "Image Files"
+msgstr "Bilder"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "All Files"
+msgstr "Alle Dateien"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "Select Image"
+msgstr "Bild Auswählen"
+
+#: src/gui/widget/customimagedatawidget.cpp:87
+#: src/gui/widget/customimagedatawidget.cpp:93
+msgid "Click to add an image"
+msgstr "Klicken um ein Bild hinzuzufügen"
+
+#: src/gui/widget/customnodeelement.cpp:72
+msgid "Remove Item"
+msgstr "Element entfernen"
+
 #: src/gui/widget/labellist.cpp:85
 msgid "Ban Label"
 msgstr "Label Ausschließen"
@@ -561,37 +595,89 @@ msgstr "Label Ausschließen"
 msgid "Clear Label"
 msgstr "Label entfernen"
 
+#: src/gui/widget/nodetypebuilder.cpp:39
+msgid "Caption"
+msgstr "Name"
+
+#: src/gui/widget/nodetypebuilder.cpp:42
+msgid "String"
+msgstr "Zeichenkette"
+
+#: src/gui/widget/nodetypebuilder.cpp:44
+msgid "Integer"
+msgstr "Ganzzahl"
+
+#: src/gui/widget/nodetypebuilder.cpp:45
+msgid "Number"
+msgstr "Zahl"
+
+#: src/gui/widget/nodetypebuilder.cpp:46
+msgid "Boolean"
+msgstr "Wahrheitswert"
+
+#: src/gui/widget/nodetypebuilder.cpp:47
+msgid "Image"
+msgstr "Bild"
+
+#: src/gui/widget/nodetypebuilder.cpp:48
+msgid "Element Type"
+msgstr "Typ"
+
+#: src/gui/widget/nodetypebuilder.cpp:50
+msgid "Add Element"
+msgstr "Element hinzufügen"
+
+#: src/gui/widget/nodetypebuilder.cpp:61
+msgid "Preview"
+msgstr "Vorschau"
+
+#: src/gui/widget/nodetypemanager.cpp:66
+msgid "Node Type Name"
+msgstr "Artikeltypname"
+
+#: src/gui/widget/nodetypespanel.cpp:32
+msgid "Custom Node Types"
+msgstr "Benutzerdefinierte Artikeltypen"
+
+#: src/gui/widget/nodetypespanel.cpp:41
+msgid "Add new Node Type"
+msgstr "Artikeltyp hinzufügen"
+
+#: src/gui/widget/nodetypespanel.cpp:46
+msgid "Edit Node Type"
+msgstr "Artikeltyp Bearbeiten"
+
+#: src/gui/widget/nodetypespanel.cpp:51
+msgid "Delete Node Type"
+msgstr "Artikeltyp löschen"
+
 #: src/gui/widget/notificationbox.cpp:33
 msgid "You didn't save:"
 msgstr "Sie haben nicht gespeichert:"
 
-#: src/gui/widget/notificationbox.cpp:36
-msgid "Save"
-msgstr "Speichern"
-
-#: src/gui/widget/searchnodeoptions.cpp:33
+#: src/gui/widget/searchnodeoptions.cpp:34
 msgid "Search Options"
 msgstr "Suchoptionen"
 
-#: src/gui/widget/searchnodeoptions.cpp:75
+#: src/gui/widget/searchnodeoptions.cpp:76
 msgctxt "search by node caption"
 msgid "Caption"
 msgstr "Name"
 
-#: src/gui/widget/searchnodeoptions.cpp:83
+#: src/gui/widget/searchnodeoptions.cpp:84
 msgid "mime type"
 msgstr "Typ"
 
-#: src/gui/widget/searchnodeoptions.cpp:102
+#: src/gui/widget/searchnodeoptions.cpp:106
 msgid "created between"
 msgstr "Erstellt zwischen"
 
-#: src/gui/widget/searchnodeoptions.cpp:111
-#: src/gui/widget/searchnodeoptions.cpp:129
+#: src/gui/widget/searchnodeoptions.cpp:115
+#: src/gui/widget/searchnodeoptions.cpp:133
 msgid "and"
 msgstr "und"
 
-#: src/gui/widget/searchnodeoptions.cpp:120
+#: src/gui/widget/searchnodeoptions.cpp:124
 msgid "modified between"
 msgstr "Bearbeitet zwischen"
 
@@ -625,4 +711,3 @@ msgstr "Groß-/Kleinschreibung"
 #: src/gui/widget/textfind.cpp:85
 msgid "Match whole word"
 msgstr "Ganzes Wort"
-
