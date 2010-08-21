@@ -141,6 +141,14 @@ QIcon TextNodeContent::getIcon()
 		return KIcon("text-x-sql");
 	if (metaInfos->value("Syntax") == "LaTeX")
 		return KIcon("text-x-tex");
+	if (metaInfos->value("Syntax") == "BibTeX")
+		return KIcon("text-x-bibtex");
+	if (metaInfos->value("Syntax") == "PHP (HTML)")
+		return KIcon("application-x-php");
+	if (metaInfos->value("Syntax") == "XML")
+		return KIcon("application-xml");
+	if (metaInfos->value("Syntax") == "Pascal")
+		return KIcon("text-x-pascal");
 	return KIcon("text-plain");
 }
 

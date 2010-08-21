@@ -37,25 +37,30 @@ SyntaxBox::SyntaxBox(bool showLabel, QWidget *parent)
 
 	synbox->addItem("Bash");
 	synbox->addItem("Batch");
-	synbox->addItem("CMake");
-	synbox->addItem("C++");
+	synbox->addItem("BibTeX");
 	synbox->addItem("C#");
+	synbox->addItem("C++");
+	synbox->addItem("CMake");
 	synbox->addItem("CSS");
 	synbox->addItem("D");
 	synbox->addItem("Diff");
+	synbox->addItem("fstab");
 	synbox->addItem("HTML");
 	synbox->addItem("IDL");
 	synbox->addItem("Java");
 	synbox->addItem("JavaScript");
+	synbox->addItem("LaTeX");
 	synbox->addItem("Lua");
 	synbox->addItem("Makefile");
+	synbox->addItem("Pascal");
 	synbox->addItem("Perl");
+	synbox->addItem("PHP (HTML)");
 	synbox->addItem("POV");
 	synbox->addItem("Python");
 	synbox->addItem("Ruby");
 	synbox->addItem("SQL");
-	synbox->addItem("LaTeX");
 	synbox->addItem("VHDL");
+	synbox->addItem("XML");
 
 	layout->addWidget(synbox);
 	setLayout(layout);
