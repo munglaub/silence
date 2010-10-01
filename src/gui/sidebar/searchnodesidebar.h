@@ -25,7 +25,7 @@
 #include <klineedit.h>
 #include <QDockWidget>
 #include <QListView>
-#include <QSplitter>
+#include <QFrame>
 #include <QVBoxLayout>
 #include "src/data/model/filtermodel.h"
 #include "src/data/model/listproxymodel.h"
@@ -79,7 +79,7 @@ class SearchNodeSidebar : public QDockWidget
 		FilterModel *filtermodel;
 
 		QVBoxLayout *layout;
-		QSplitter *splitter;
+		QFrame *frame;
 		SearchNodeOptions *searchnodeoptions;
 		LabelList *labellist;
 		QListView *resultList;

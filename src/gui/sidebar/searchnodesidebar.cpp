@@ -66,9 +66,9 @@ SearchNodeSidebar::SearchNodeSidebar(const QString &title, QWidget *parent, Qt::
 	resultList->setModel(filtermodel);
 	layout->addWidget(resultList);
 
-	splitter = new QSplitter(Qt::Vertical);
-	splitter->setLayout(layout);
-	setWidget(splitter);
+	frame = new QFrame;
+	frame->setLayout(layout);
+	setWidget(frame);
 	
 	// Update search criterias
 	connect(searchedit, SIGNAL(textChanged(QString)),
@@ -87,7 +87,7 @@ SearchNodeSidebar::~SearchNodeSidebar()
 	delete searchnodeoptions;
 
 	delete layout;
-	delete splitter;
+	delete frame;
 
 	delete filtermodel;
 	delete listProxy;
