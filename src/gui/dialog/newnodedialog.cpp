@@ -28,11 +28,11 @@
 #include "src/gui/dialog/newnodedialog.h"
 
 
-NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
-	: QDialog(parent, flags)
+NewNodeDialog::NewNodeDialog(QModelIndex &index, int row, QWidget *parent, Qt::WindowFlags flags)
+	: QFrame(parent, flags)
 {
-	setWindowTitle(i18n("New Node"));
-	resize(400, 400);
+	this->index = index;
+	this->row = row;
 
 	baselayout = new QVBoxLayout;
 
@@ -67,13 +67,15 @@ NewNodeDialog::NewNodeDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	// buttons
 	buttonlayout = new QGridLayout;
-	cancel = new QPushButton(i18n("Cancel"));
-	buttonlayout->addWidget(cancel, 0, 0, 1, 1, Qt::AlignLeft);
-	connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
-	ok = new QPushButton(i18n("OK"));
-	ok->setDefault(true);
-	connect(ok, SIGNAL(clicked()), this, SLOT(accept()));
-	buttonlayout->addWidget(ok, 0, 1, 1, 1, Qt::AlignRight);
+	btnCancel = new QPushButton(i18n("Cancel"));
+	btnCancel->setMinimumWidth(100);
+	buttonlayout->addWidget(btnCancel, 0, 0, 1, 1, Qt::AlignLeft);
+	connect(btnCancel, SIGNAL(clicked()), this, SLOT(cancel()));
+	btnOk = new QPushButton(i18n("OK"));
+	btnOk->setMinimumWidth(100);
+	btnOk->setDefault(true);
+	connect(btnOk, SIGNAL(clicked()), this, SLOT(accept()));
+	buttonlayout->addWidget(btnOk, 0, 1, 1, 1, Qt::AlignRight);
 	baselayout->addLayout(buttonlayout);
 
 	setLayout(baselayout);
@@ -91,8 +93,8 @@ NewNodeDialog::~NewNodeDialog()
 
 	delete labelwidget;
 
-	delete cancel;
-	delete ok;
+	delete btnCancel;
+	delete btnOk;
 	delete buttonlayout;
 
 	delete baselayout;
@@ -128,6 +130,21 @@ QStringList NewNodeDialog::getLabels() const
 	return labelwidget->getLabels();
 }
 
+QModelIndex NewNodeDialog::getIndex() const
+{
+	return index;
+}
+
+int NewNodeDialog::getRow() const
+{
+	return row;
+}
+
+void NewNodeDialog::cancel()
+{
+	emit done(this, false);
+}
+
 void NewNodeDialog::indexChanged(int index)
 {
 	if (index == 1)
@@ -135,5 +152,11 @@ void NewNodeDialog::indexChanged(int index)
 	else
 		syntaxbox->setEnabled(false);
 }
+
+void NewNodeDialog::accept()
+{
+	emit done(this, true);
+}
+
 
 

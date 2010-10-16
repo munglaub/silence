@@ -23,12 +23,13 @@
 
 #include <kcombobox.h>
 #include <klineedit.h>
-#include <QDialog>
 #include <QFormLayout>
+#include <QFrame>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
 #include <QListWidget>
+#include <QModelIndex>
 #include "src/data/node/abstractnodecontent.h"
 #include "src/gui/widget/labelwidget.h"
 #include "src/gui/widget/syntaxbox.h"
@@ -41,7 +42,7 @@
  *
  * \author Manuel Unglaub
  */
-class NewNodeDialog : public QDialog
+class NewNodeDialog : public QFrame
 {
 	Q_OBJECT
 
@@ -49,10 +50,12 @@ class NewNodeDialog : public QDialog
 		/*! The constructor.
 		 *
 		 * Constructs the NewNodeDialog which is a child of parent.
+		 * \parent index The QModelIndex of the parent of the new node in the TreeView.
+		 * \parent row The row of the new node of its parents children in the TreeView.
 		 * \param parent The parent of this NewNodeDialog.
 		 * \param f The dialog flags f are passed on to the QDialog constructor.
 		 */
-		explicit NewNodeDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit NewNodeDialog(QModelIndex &index, int row, QWidget *parent = 0, Qt::WindowFlags f = 0);
 
 		/*! The destructor.
 		 *
@@ -78,10 +81,40 @@ class NewNodeDialog : public QDialog
 		 */
 		QStringList getLabels() const;
 
+		/*!
+		 * Get the QModelIndex of the parent of the new node.
+		 * \return The QModelIndex of the parent of the new node in the TreeView.
+		 */
+		QModelIndex getIndex() const;
+
+		/*!
+		 * Get the row of the new node of its parents children.
+		 * \return The row of the new node of its parents children in the TreeView.
+		 */
+		int getRow() const;
+
+	signals:
+		/*!
+		 * The user clicked a button to close this NewNodeDialog.
+		 * \param dlg This NewNodeDialog.
+		 * \param accepted True if the OK button was clicked, False if cancel was clicked.
+		 */
+		void done(NewNodeDialog* dlg, bool accepted);
+
+	public slots:
+		/*!
+		 * Indicate that the NewNodeDialog is not needed anymore.
+		 */
+		void cancel();
+
 	private slots:
 		void indexChanged(int index);
+		void accept();
 
 	private:
+		QModelIndex index;
+		int row;
+
 		QVBoxLayout *baselayout;
 
 		QFormLayout *namelayout;
@@ -94,8 +127,8 @@ class NewNodeDialog : public QDialog
 
 		LabelWidget *labelwidget;
 
-		QPushButton *cancel,
-					*ok;
+		QPushButton *btnCancel,
+					*btnOk;
 		QGridLayout *buttonlayout;
 };
 

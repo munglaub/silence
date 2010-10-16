@@ -60,7 +60,19 @@ class MainWindow : public KXmlGuiWindow
 		/*!
 		 * Show a screen to manage the node types.
 		 */
-		 void showNodeTypeManagement();
+		void showNodeTypeManagement();
+
+		/*!
+		 * Show a widget as centralwidget. Use this instead of modal dialogs.
+		 * \param widget The widget which will be shown as centralwidget.
+		 */
+		void showDialog(QWidget *widget);
+
+		/*!
+		 * Remove a previously with showDialog() added widget. It will not be deleted.
+		 * \param widget The widget which will be removed.
+		 */
+		void removeDialog(QWidget *widget);
 
 	private slots:
 		void deleteFromCentralWidgetStack(QWidget *widget);

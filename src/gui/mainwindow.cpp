@@ -118,4 +118,16 @@ void MainWindow::showNodeTypeManagement()
 	connect(ntm, SIGNAL(exit(QWidget*)), this, SLOT(deleteFromCentralWidgetStack(QWidget*)));
 }
 
+void MainWindow::showDialog(QWidget *widget)
+{
+	centralwidgetstack->addWidget(widget);
+	centralwidgetstack->setCurrentWidget(widget);
+}
+
+void MainWindow::removeDialog(QWidget *widget)
+{
+	centralwidgetstack->removeWidget(widget);
+}
+
+
 

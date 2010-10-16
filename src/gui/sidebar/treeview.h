@@ -34,6 +34,7 @@
 #include <QTreeView>
 #include <QVBoxLayout>
 #include "src/data/model/treemodel.h"
+#include "src/gui/dialog/newnodedialog.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 
 
@@ -111,6 +112,7 @@ class TreeView : public QDockWidget
 		void removeTreeItem();
 		void showTreeContextMenu();
 		void nodeDropped(QModelIndex index);
+		void insertNode(NewNodeDialog *dlg, bool insert);
                 
 	private:
 		QTreeView *tree;
