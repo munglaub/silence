@@ -22,6 +22,7 @@
 #define VIEWMENU_H
 
 #include <kactioncollection.h>
+#include "src/gui/dialog/labelmanagementdialog.h"
 
 
 /*!\class ViewMenu
@@ -47,6 +48,7 @@ class ViewMenu : public QObject
 	private slots:
 		void showWelcomeView();
 		void showLabelManagementDialog();
+		void closeLabelManagementDialog(LabelManagementDialog *dlg);
 		void showNodeTypeManagement();
 		void showNodeTree(bool visible);
 		void showInfo(bool visible);

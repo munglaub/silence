@@ -21,12 +21,13 @@
 #ifndef LABELWIDGET_H
 #define LABELWIDGET_H
 
-#include "src/data/label.h"
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QWidget>
+#include "src/data/label.h"
+#include "src/gui/dialog/labelmanagementdialog.h"
 
 
 /*!\class LabelWidget
@@ -80,6 +81,7 @@ class LabelWidget : public QWidget
 
 	private slots:
 		void itemActivated(QTreeWidgetItem *item, int column);
+		void closeLabelManagementDialog(LabelManagementDialog *dlg);
 
 	private:
 		QGridLayout *layout;
