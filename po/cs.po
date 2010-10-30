@@ -4,19 +4,20 @@
 # This file is distributed under the same license as the Silence package.
 #
 # Manuel Unglaub <m.unglaub@gmail.com>, 2010, 2004.
+# Pavel Fric, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Silence\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-09 13:56+0200\n"
-"PO-Revision-Date: 2004-01-01 01:29+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2010-10-30 10:55+0200\n"
+"Last-Translator: Pavel Fric\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. i18n: file: install/share/apps/silence/silenceui.rc:10
@@ -315,9 +316,8 @@ msgid "Manage Labels"
 msgstr "Spravovat štítky"
 
 #: src/gui/menu/viewmenu.cpp:40
-#, fuzzy
 msgid "Manage Nodetypes"
-msgstr "Spravovat štítky"
+msgstr "Spravovat typy uzlů"
 
 #: src/gui/menu/viewmenu.cpp:44
 msgid "Node Sidebar"
@@ -482,7 +482,7 @@ msgstr "Vložit obrázek"
 
 #: src/gui/view/richtextedit.cpp:249
 msgid "Insert Table"
-msgstr "Vložit tabulka"
+msgstr "Vložit tabulku"
 
 #: src/gui/view/richtextedit.cpp:254
 msgid "Insert Horizontal Rule"
@@ -570,31 +570,28 @@ msgstr "Sloupce"
 
 #: src/gui/widget/customimagedatawidget.cpp:36
 msgid "Click to change the image"
-msgstr ""
+msgstr "Klepněte pro změnu obrázku"
 
 #: src/gui/widget/customimagedatawidget.cpp:70
 msgid "Image Files"
-msgstr ""
+msgstr "Obrázkové soubory"
 
 #: src/gui/widget/customimagedatawidget.cpp:70
-#, fuzzy
 msgid "All Files"
-msgstr "Soubor"
+msgstr "Všechny soubory"
 
 #: src/gui/widget/customimagedatawidget.cpp:70
-#, fuzzy
 msgid "Select Image"
 msgstr "Vybrat soubor"
 
 #: src/gui/widget/customimagedatawidget.cpp:87
 #: src/gui/widget/customimagedatawidget.cpp:93
 msgid "Click to add an image"
-msgstr ""
+msgstr "Klepněte pro přidání obrázku"
 
 #: src/gui/widget/customnodeelement.cpp:72
-#, fuzzy
 msgid "Remove Item"
-msgstr "Odstranit uzel"
+msgstr "Odstranit položku"
 
 #: src/gui/widget/labellist.cpp:85
 msgid "Ban Label"
@@ -605,65 +602,60 @@ msgid "Clear Label"
 msgstr "Smazat štítek"
 
 #: src/gui/widget/nodetypebuilder.cpp:39
-#, fuzzy
 msgid "Caption"
-msgstr "Název"
+msgstr "Popisek"
 
 #: src/gui/widget/nodetypebuilder.cpp:42
 msgid "String"
-msgstr ""
+msgstr "Řetězec"
 
 #: src/gui/widget/nodetypebuilder.cpp:44
 msgid "Integer"
-msgstr ""
+msgstr "Celé číslo"
 
 #: src/gui/widget/nodetypebuilder.cpp:45
 msgid "Number"
-msgstr ""
+msgstr "Číslo"
 
 #: src/gui/widget/nodetypebuilder.cpp:46
 msgid "Boolean"
-msgstr ""
+msgstr "Booleánský"
 
 #: src/gui/widget/nodetypebuilder.cpp:47
 msgid "Image"
-msgstr ""
+msgstr "Obrázek"
 
 #: src/gui/widget/nodetypebuilder.cpp:48
 msgid "Element Type"
-msgstr ""
+msgstr "Typ prvku"
 
 #: src/gui/widget/nodetypebuilder.cpp:50
 msgid "Add Element"
-msgstr ""
+msgstr "Přidat prvek"
 
 #: src/gui/widget/nodetypebuilder.cpp:61
-#, fuzzy
 msgid "Preview"
-msgstr "Předchozí"
+msgstr "Náhled"
 
 #: src/gui/widget/nodetypemanager.cpp:66
-#, fuzzy
 msgid "Node Type Name"
-msgstr "Název uzlu:"
+msgstr "Název typu uzlu"
 
 #: src/gui/widget/nodetypespanel.cpp:32
 msgid "Custom Node Types"
-msgstr ""
+msgstr "Vlastní typy uzlů"
 
 #: src/gui/widget/nodetypespanel.cpp:41
-#, fuzzy
 msgid "Add new Node Type"
-msgstr "Přidat uzel"
+msgstr "Přidat nový typ uzlu"
 
 #: src/gui/widget/nodetypespanel.cpp:46
 msgid "Edit Node Type"
-msgstr ""
+msgstr "Upravit typ uzlu"
 
 #: src/gui/widget/nodetypespanel.cpp:51
-#, fuzzy
 msgid "Delete Node Type"
-msgstr "Smazat uzel"
+msgstr "Smazat typ uzlu"
 
 #: src/gui/widget/notificationbox.cpp:33
 msgid "You didn't save:"
@@ -725,3 +717,5 @@ msgstr "Dbát na psaní velkých a malých písmen"
 #: src/gui/widget/textfind.cpp:85
 msgid "Match whole word"
 msgstr "Celé slovo"
+
+
