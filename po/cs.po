@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Silence\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-09 13:56+0200\n"
+"POT-Creation-Date: 2010-10-30 18:31+0200\n"
 "PO-Revision-Date: 2010-10-30 10:55+0200\n"
 "Last-Translator: Pavel Fric\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -20,84 +20,48 @@ msgstr ""
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:10
-#. i18n: ectx: Menu (silence)
 #. i18n: file: src/silenceui.rc:10
 #. i18n: ectx: Menu (silence)
-#. i18n: file: install/share/apps/silence/silenceui.rc:10
-#. i18n: ectx: Menu (silence)
-#. i18n: file: src/silenceui.rc:10
-#. i18n: ectx: Menu (silence)
-#: rc.cpp:3 rc.cpp:21 src/gui/mainwindow.cpp:34
+#: rc.cpp:3 src/gui/mainwindow.cpp:34
 msgid "Silence"
 msgstr "Silence"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:16
-#. i18n: ectx: Menu (node)
 #. i18n: file: src/silenceui.rc:16
 #. i18n: ectx: Menu (node)
-#. i18n: file: install/share/apps/silence/silenceui.rc:16
-#. i18n: ectx: Menu (node)
-#. i18n: file: src/silenceui.rc:16
-#. i18n: ectx: Menu (node)
-#: rc.cpp:6 rc.cpp:24 src/gui/dialog/newlinkdialog.cpp:42
+#: rc.cpp:6 src/gui/dialog/newlinkdialog.cpp:42
 msgid "Node"
 msgstr "Uzel"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:23
-#. i18n: ectx: Menu (siedit)
 #. i18n: file: src/silenceui.rc:23
 #. i18n: ectx: Menu (siedit)
-#. i18n: file: install/share/apps/silence/silenceui.rc:23
-#. i18n: ectx: Menu (siedit)
-#. i18n: file: src/silenceui.rc:23
-#. i18n: ectx: Menu (siedit)
-#: rc.cpp:9 rc.cpp:27
+#: rc.cpp:9
 msgid "Edit"
 msgstr "Úpravy"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:56
-#. i18n: ectx: Menu (table)
 #. i18n: file: src/silenceui.rc:56
 #. i18n: ectx: Menu (table)
-#. i18n: file: install/share/apps/silence/silenceui.rc:56
-#. i18n: ectx: Menu (table)
-#. i18n: file: src/silenceui.rc:56
-#. i18n: ectx: Menu (table)
-#: rc.cpp:12 rc.cpp:30
+#: rc.cpp:12
 msgid "Table"
 msgstr "Tabulka"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:65
-#. i18n: ectx: Menu (format)
 #. i18n: file: src/silenceui.rc:65
 #. i18n: ectx: Menu (format)
-#. i18n: file: install/share/apps/silence/silenceui.rc:65
-#. i18n: ectx: Menu (format)
-#. i18n: file: src/silenceui.rc:65
-#. i18n: ectx: Menu (format)
-#: rc.cpp:15 rc.cpp:33
+#: rc.cpp:15
 msgid "Format"
 msgstr "Formát"
 
-#. i18n: file: install/share/apps/silence/silenceui.rc:79
-#. i18n: ectx: Menu (siview)
 #. i18n: file: src/silenceui.rc:79
 #. i18n: ectx: Menu (siview)
-#. i18n: file: install/share/apps/silence/silenceui.rc:79
-#. i18n: ectx: Menu (siview)
-#. i18n: file: src/silenceui.rc:79
-#. i18n: ectx: Menu (siview)
-#: rc.cpp:18 rc.cpp:36
+#: rc.cpp:18
 msgid "View"
 msgstr "Pohled"
 
-#: rc.cpp:37
+#: rc.cpp:19
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Pavel Fric"
 
-#: rc.cpp:38
+#: rc.cpp:20
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fripohled.blogspot.com"
@@ -717,5 +681,3 @@ msgstr "Dbát na psaní velkých a malých písmen"
 #: src/gui/widget/textfind.cpp:85
 msgid "Match whole word"
 msgstr "Celé slovo"
-
-
