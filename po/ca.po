@@ -1,0 +1,678 @@
+# translation of silence.pot to Catalan
+# Copyright (C) 2010 Manuel Unglaub <m.unglaub@gmail.com>
+# Copyright (C) 2010 Salva Ardid <jsardid@gmail.com>
+# This file is distributed under the same license as the Silence package.
+# Salva Ardid <jsardid@gmail.com>, 2010 
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: silence\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-30 18:31+0200\n"
+"PO-Revision-Date: 2010-10-30 18:31+0200n"
+"Last-Translator: Salva Ardid <jsardid@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. i18n: file: src/silenceui.rc:10
+#. i18n: ectx: Menu (silence)
+#: rc.cpp:3 src/gui/mainwindow.cpp:34 rc.cpp:3
+msgid "Silence"
+msgstr "Silence"
+
+#. i18n: file: src/silenceui.rc:16
+#. i18n: ectx: Menu (node)
+#: rc.cpp:6 src/gui/dialog/newlinkdialog.cpp:42 rc.cpp:6
+msgid "Node"
+msgstr "Node"
+
+#. i18n: file: src/silenceui.rc:23
+#. i18n: ectx: Menu (siedit)
+#: rc.cpp:9 rc.cpp:9
+msgid "Edit"
+msgstr "Edita"
+
+#. i18n: file: src/silenceui.rc:56
+#. i18n: ectx: Menu (table)
+#: rc.cpp:12 rc.cpp:12
+msgid "Table"
+msgstr "Taula"
+
+#. i18n: file: src/silenceui.rc:65
+#. i18n: ectx: Menu (format)
+#: rc.cpp:15 rc.cpp:15
+msgid "Format"
+msgstr "Format"
+
+#. i18n: file: src/silenceui.rc:79
+#. i18n: ectx: Menu (siview)
+#: rc.cpp:18 rc.cpp:18
+msgid "View"
+msgstr "Visualitza"
+
+#: rc.cpp:19 rc.cpp:19
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Salva Ardid"
+
+#: rc.cpp:20 rc.cpp:20
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "jsardid@gmail.com"
+
+#: src/commandline/cmdlineoptions.cpp:25
+msgid "show node with given id"
+msgstr "Mostra el node amb una ID específica"
+
+#: src/commandline/cmdlineoptions.cpp:26
+msgid "find nodes"
+msgstr "Cerca nodes"
+
+#: src/commandline/cmdlineoptions.cpp:27
+msgid "find nodes with a caption that contains text"
+msgstr "Cerca nodes que continguen la selecció"
+
+#: src/commandline/cmdlineoptions.cpp:28
+msgid "activate fulltextsearch"
+msgstr "Activa la cerca a tot el text"
+
+#: src/commandline/cmdlineoptions.cpp:29
+msgid "activate boundaries for the creation date (YYYY-MM-DD:YYYY-MM-DD)"
+msgstr "Indica els límits per a la data de creació (AAAA-MM-DD:AAAA-MM-DD)"
+
+#: src/commandline/cmdlineoptions.cpp:30
+msgid "activate boundaries for the modification date (YYYY-MM-DD:YYYY-MM-DD)"
+msgstr "Indica els límits per a la data de modificació (AAAA-MM-DD:AAAA-MM-DD)"
+
+#: src/commandline/cmdlineoptions.cpp:31
+msgid ""
+"activate filter by labels, node must contain the given labels (label1,label2)"
+msgstr "Utilitza les etiquetes com a filtre, el node ha de contenir les etiquetes (etiqueta1, etiqueta2)"
+
+#: src/commandline/cmdlineoptions.cpp:32
+msgid ""
+"activate filter by labels, node must not contain the given labels (label1,"
+"label2)"
+msgstr "Utilitza les etiquetes com a filtre, el node no ha de contenir les etiquetes (etiqueta1, etiqueta2)"
+
+#: src/commandline/cmdlineoptions.cpp:33
+msgid "activate filter by type"
+msgstr "Utilitza el tipus com a filtre"
+
+#: src/data/aboutdata.cpp:28
+msgid "An information management tool."
+msgstr "Una eina per gestionar la teua informació"
+
+#: src/data/aboutdata.cpp:30
+msgid "(c) 2009 - 2010, Silence developers"
+msgstr "(c) 2009 - 2010, programadors Silence"
+
+#: src/data/aboutdata.cpp:35
+msgid "Manuel Unglaub"
+msgstr "Manuel Unglaub"
+
+#: src/data/aboutdata.cpp:35
+msgid "Maintainer"
+msgstr "Mantenidor"
+
+#: src/data/aboutdata.cpp:36
+msgid "Yves Adler"
+msgstr "Yves Adler"
+
+#: src/data/model/labelmodel.cpp:55 src/gui/widget/labelwidget.cpp:60
+msgid "Label"
+msgstr "Etiqueta"
+
+#: src/data/model/simpletreemodel.cpp:58
+msgctxt "caption of the fist labletree column"
+msgid "Title"
+msgstr "Títol"
+
+#: src/data/model/treemodel.cpp:94
+msgctxt "caption of the first nodetree column"
+msgid "Title"
+msgstr "Títol"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:31
+msgid "Label Management"
+msgstr "Gestió d'etiquetes"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:38 src/gui/widget/labellist.cpp:79
+msgid "Add Label"
+msgstr "Afegeix etiqueta"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:40
+msgid "Add Sublabel"
+msgstr "Afegeix subetiqueta"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:42
+#: src/gui/sidebar/treeview.cpp:144
+msgid "Remove Node"
+msgstr "Esborra node"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:68
+#: src/gui/widget/nodetypebuilder.cpp:56 src/gui/widget/nodetypespanel.cpp:56
+msgid "Close"
+msgstr "Tanca"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:99
+msgid "Delete Label"
+msgstr "Esborra etiqueta"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:105
+#: src/gui/sidebar/treeview.cpp:194
+msgid "Are you sure?"
+msgstr "N'estàs segur?"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:107
+msgid "Yes, delete Label"
+msgstr "Sí, elimina l'etiqueta"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:110
+#: src/gui/sidebar/treeview.cpp:200
+msgid "No, abort"
+msgstr "No, cancel·la"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:145
+msgid "New Label"
+msgstr "Nova etiqueta"
+
+#: src/gui/dialog/labelmanagementdialog.cpp:152
+msgid "New Sublabel"
+msgstr "Nova subetiqueta"
+
+#: src/gui/dialog/newlinkdialog.cpp:29
+msgid "New Link"
+msgstr "Nou enllaç"
+
+#: src/gui/dialog/newlinkdialog.cpp:35
+msgid "Link Text"
+msgstr "Nou text"
+
+#: src/gui/dialog/newlinkdialog.cpp:52
+msgid "Website Url"
+msgstr "Adreça d'internet"
+
+#: src/gui/dialog/newlinkdialog.cpp:61
+msgid "File"
+msgstr "Fitxer"
+
+#: src/gui/dialog/newlinkdialog.cpp:68
+msgid "Select File"
+msgstr "Selecciona fitxer"
+
+#: src/gui/dialog/newlinkdialog.cpp:75 src/gui/dialog/newnodedialog.cpp:70
+#: src/gui/widget/addimage.cpp:55 src/gui/widget/addtable.cpp:44
+#: src/gui/widget/inputwidget.cpp:32 src/gui/widget/notificationbox.cpp:39
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/gui/dialog/newlinkdialog.cpp:78 src/gui/dialog/newnodedialog.cpp:73
+#: src/gui/widget/addimage.cpp:58 src/gui/widget/addtable.cpp:48
+#: src/gui/widget/inputwidget.cpp:35
+msgid "OK"
+msgstr "D'acord"
+
+#: src/gui/dialog/newnodedialog.cpp:34
+msgid "New Node"
+msgstr "Nou node"
+
+#: src/gui/dialog/newnodedialog.cpp:40
+msgid "Nodename"
+msgstr "Nom del node"
+
+#: src/gui/dialog/newnodedialog.cpp:43
+#: src/gui/sidebar/nodepropertywidget.cpp:69
+msgid "Node name:"
+msgstr "Nom del node:"
+
+#: src/gui/dialog/newnodedialog.cpp:48 src/gui/sidebar/infosidebar.cpp:59
+msgid "Type"
+msgstr "Tipus"
+
+#: src/gui/dialog/newnodedialog.cpp:51
+msgid "RichText"
+msgstr "Text enriquit"
+
+#: src/gui/dialog/newnodedialog.cpp:52 src/gui/widget/nodetypebuilder.cpp:43
+msgid "Text"
+msgstr "Text"
+
+#: src/gui/mainwindow.cpp:46 src/gui/sidebar/treeview.cpp:150
+msgid "Properties"
+msgstr "Propietats"
+
+#: src/gui/mainwindow.cpp:51
+msgid "Nodes"
+msgstr "Nodes"
+
+#: src/gui/mainwindow.cpp:55
+msgid "Search Nodes"
+msgstr "Cerca nodes"
+
+#: src/gui/mainwindow.cpp:59
+msgctxt "title of the navigation sidebar"
+msgid "Navigation"
+msgstr "Navegador"
+
+#: src/gui/mainwindow.cpp:63
+msgid "Information"
+msgstr "Informació"
+
+#: src/gui/mainwindow.cpp:85
+msgid "&Exit"
+msgstr "Abandona"
+
+#: src/gui/menu/viewmenu.cpp:32
+msgid "Welcome View"
+msgstr "Visualitza el missatge de benvinguda"
+
+#: src/gui/menu/viewmenu.cpp:36 src/gui/widget/labelwidget.cpp:35
+msgid "Manage Labels"
+msgstr "Gestiona etiquetes"
+
+#: src/gui/menu/viewmenu.cpp:40
+msgid "Manage Nodetypes"
+msgstr "Gestiona els tipus de nodes"
+
+#: src/gui/menu/viewmenu.cpp:44
+msgid "Node Sidebar"
+msgstr "Plafó de nodes"
+
+#: src/gui/menu/viewmenu.cpp:53
+msgid "Information Sidebar"
+msgstr "Plafó d'informació"
+
+#: src/gui/menu/viewmenu.cpp:60
+msgid "Navigation Sidebar"
+msgstr "Plafó del navegador"
+
+#: src/gui/menu/viewmenu.cpp:67
+msgid "Node Properties Sidebar"
+msgstr "Plafó de propietats dels nodes"
+
+#: src/gui/menu/viewmenu.cpp:74
+msgid "Search Nodes Sidebar"
+msgstr "Plafó de cerca de nodes"
+
+#: src/gui/sidebar/infosidebar.cpp:47
+msgid "ID"
+msgstr "ID"
+
+#: src/gui/sidebar/infosidebar.cpp:51
+msgctxt "time the node was created"
+msgid "Created"
+msgstr "Creat"
+
+#: src/gui/sidebar/infosidebar.cpp:55
+msgctxt "last time the node was modified"
+msgid "Modified"
+msgstr "Modificat"
+
+#: src/gui/sidebar/infosidebar.cpp:65
+#: src/gui/sidebar/nodepropertywidget.cpp:37 src/gui/widget/labellist.cpp:35
+msgid "Labels"
+msgstr "Etiquetes"
+
+#: src/gui/sidebar/navigationsidebar.cpp:35
+msgctxt "go to the previous selected node"
+msgid "Back"
+msgstr "Enrere"
+
+#: src/gui/sidebar/navigationsidebar.cpp:37
+msgctxt "go to the next node"
+msgid "Forward"
+msgstr "Endavant"
+
+#: src/gui/sidebar/nodepropertywidget.cpp:36
+msgid "Nodeinfos"
+msgstr "Informació del node"
+
+#: src/gui/sidebar/nodepropertywidget.cpp:72 src/gui/widget/syntaxbox.cpp:31
+msgid "Syntax:"
+msgstr "Sintaxi:"
+
+#: src/gui/sidebar/nodepropertywidget.cpp:75
+msgid "Creationdate:"
+msgstr "Data de creació:"
+
+#: src/gui/sidebar/nodepropertywidget.cpp:78
+msgid "Modificationdate:"
+msgstr "Data de modificació:"
+
+#: src/gui/sidebar/nodepropertywidget.cpp:80
+#: src/gui/sidebar/nodepropertywidget.cpp:95
+msgid "Apply"
+msgstr "Aplica"
+
+#: src/gui/sidebar/treeview.cpp:132
+msgid "Add Node"
+msgstr "Afegeix node"
+
+#: src/gui/sidebar/treeview.cpp:138
+msgid "Add Subnode"
+msgstr "Afegeix subnode"
+
+#: src/gui/sidebar/treeview.cpp:186
+msgid "Delete Node"
+msgstr "Esborra node"
+
+#: src/gui/sidebar/treeview.cpp:197
+msgid "Yes, delete Node"
+msgstr "Sí, esborra el node"
+
+#: src/gui/sistatusbar.cpp:51
+msgid "saved"
+msgstr "Desat"
+
+#: src/gui/sistatusbar.cpp:53
+msgctxt "indicate that the node has been modified"
+msgid "changed"
+msgstr "Modificat"
+
+#: src/gui/view/customcontentview.cpp:37 src/gui/widget/notificationbox.cpp:36
+msgid "Save"
+msgstr "Desa"
+
+#: src/gui/view/richtextedit.cpp:110
+msgid "Edit Actions"
+msgstr "Edita accions"
+
+#: src/gui/view/richtextedit.cpp:159
+msgctxt "toggle selected text to bold"
+msgid "Bold"
+msgstr "Negreta"
+
+#: src/gui/view/richtextedit.cpp:169
+msgctxt "toggle selected text to italic"
+msgid "Italic"
+msgstr "Cursiva"
+
+#: src/gui/view/richtextedit.cpp:179
+msgctxt "underline selected text"
+msgid "Underline"
+msgstr "Subrallat"
+
+#: src/gui/view/richtextedit.cpp:194
+msgctxt "justify text left"
+msgid "Left"
+msgstr "Alinea a l'esquerra"
+
+#: src/gui/view/richtextedit.cpp:199
+msgctxt "justify text centered"
+msgid "Center"
+msgstr "Alinea al centre"
+
+#: src/gui/view/richtextedit.cpp:204
+msgctxt "justify text right"
+msgid "Right"
+msgstr "Alinea a la dreta"
+
+#: src/gui/view/richtextedit.cpp:209
+msgid "Justify"
+msgstr "Justifica"
+
+#: src/gui/view/richtextedit.cpp:217
+msgid "Create Unordered List"
+msgstr "Crea una llista no numerada"
+
+#: src/gui/view/richtextedit.cpp:222
+msgid "Create Ordered List"
+msgstr "Crea una llista numerada"
+
+#: src/gui/view/richtextedit.cpp:227
+msgid "Indent more"
+msgstr "Augmenta el sagnat"
+
+#: src/gui/view/richtextedit.cpp:232
+msgid "Indent less"
+msgstr "Minva el sagnat"
+
+#: src/gui/view/richtextedit.cpp:239
+msgid "Insert Link"
+msgstr "Enllaça"
+
+#: src/gui/view/richtextedit.cpp:244
+msgid "Insert Image"
+msgstr "Afegeix una imatge"
+
+#: src/gui/view/richtextedit.cpp:249
+msgid "Insert Table"
+msgstr "Afegeix una taula"
+
+#: src/gui/view/richtextedit.cpp:254
+msgid "Insert Horizontal Rule"
+msgstr "Afegeix una línia horizontal"
+
+#: src/gui/view/richtextedit.cpp:259
+msgid "&Find"
+msgstr "Cerca"
+
+#: src/gui/view/richtextedit.cpp:265
+msgid "Find/Replace"
+msgstr "Substitueix"
+
+#: src/gui/view/richtextedit.cpp:273
+msgid "Text Color"
+msgstr "Color del text"
+
+#: src/gui/view/richtextedit.cpp:278
+msgid "Text Highlight"
+msgstr "Ressalta el text"
+
+#: src/gui/view/richtextedit.cpp:299
+msgid "Insert Table Row"
+msgstr "Afegeix una fila"
+
+#: src/gui/view/richtextedit.cpp:304
+msgid "Insert Table Column"
+msgstr "Afegeix una columna"
+
+#: src/gui/view/richtextedit.cpp:309
+msgid "Remove Table Row"
+msgstr "Esborra la fila"
+
+#: src/gui/view/richtextedit.cpp:314
+msgid "Remove Table Column"
+msgstr "Esborra la columna"
+
+#: src/gui/view/welcomeview.cpp:38
+msgid "Welcome to Silence, an information management tool."
+msgstr "Benvingut a Silence, una eina per gestionar la teua informació"
+
+#: src/gui/view/welcomeview.cpp:52
+msgid "Version"
+msgstr "Versió"
+
+#: src/gui/view/welcomeview.cpp:54
+msgid "Authors"
+msgstr "Autors"
+
+#: src/gui/view/welcomeview.cpp:55
+msgid "Manuel Unglaub, Yves Adler, Marcel Winkel"
+msgstr "Manuel Unglaub, Yves Adler, Marcel Winkel"
+
+#: src/gui/view/welcomeview.cpp:56
+msgid "License"
+msgstr "Llicència"
+
+#: src/gui/view/welcomeview.cpp:57
+msgid "GPLv2"
+msgstr "GPLv2"
+
+#: src/gui/view/welcomeview.cpp:62
+msgid "Recently modified Nodes"
+msgstr "Nodes modificats recentment"
+
+#: src/gui/widget/addimage.cpp:35
+msgid "Browse"
+msgstr "Explora"
+
+#: src/gui/widget/addimage.cpp:41
+msgid "Width"
+msgstr "Amplada"
+
+#: src/gui/widget/addimage.cpp:47
+msgid "Height"
+msgstr "Alçada"
+
+#: src/gui/widget/addtable.cpp:30
+msgid "Rows"
+msgstr "Files"
+
+#: src/gui/widget/addtable.cpp:37
+msgid "Columns"
+msgstr "Columnes"
+
+#: src/gui/widget/customimagedatawidget.cpp:36
+msgid "Click to change the image"
+msgstr "Canvia la imatge"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "Image Files"
+msgstr "Fitxers d'imatge"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "All Files"
+msgstr "Tots els fitxers"
+
+#: src/gui/widget/customimagedatawidget.cpp:70
+msgid "Select Image"
+msgstr "Selecciona una imatge"
+
+#: src/gui/widget/customimagedatawidget.cpp:87
+#: src/gui/widget/customimagedatawidget.cpp:93
+msgid "Click to add an image"
+msgstr "Fes clic per afegir una imatge"
+
+#: src/gui/widget/customnodeelement.cpp:72
+msgid "Remove Item"
+msgstr "Esborra la selecció"
+
+#: src/gui/widget/labellist.cpp:85
+msgid "Ban Label"
+msgstr "Etiqueta prohibida"
+
+#: src/gui/widget/labellist.cpp:91
+msgid "Clear Label"
+msgstr "Neteja l'etiqueta"
+
+#: src/gui/widget/nodetypebuilder.cpp:39
+msgid "Caption"
+msgstr "Títol"
+
+#: src/gui/widget/nodetypebuilder.cpp:42
+msgid "String"
+msgstr "Cadena de caràcters"
+
+#: src/gui/widget/nodetypebuilder.cpp:44
+msgid "Integer"
+msgstr "Enter"
+
+#: src/gui/widget/nodetypebuilder.cpp:45
+msgid "Number"
+msgstr "Nombre"
+
+#: src/gui/widget/nodetypebuilder.cpp:46
+msgid "Boolean"
+msgstr "Booleà"
+
+#: src/gui/widget/nodetypebuilder.cpp:47
+msgid "Image"
+msgstr "Imatge"
+
+#: src/gui/widget/nodetypebuilder.cpp:48
+msgid "Element Type"
+msgstr "Tipus d'element"
+
+#: src/gui/widget/nodetypebuilder.cpp:50
+msgid "Add Element"
+msgstr "Afegeix element"
+
+#: src/gui/widget/nodetypebuilder.cpp:61
+msgid "Preview"
+msgstr "Previsualitza"
+
+#: src/gui/widget/nodetypemanager.cpp:66
+msgid "Node Type Name"
+msgstr "Nom per al tipus de node"
+
+#: src/gui/widget/nodetypespanel.cpp:32
+msgid "Custom Node Types"
+msgstr "Tipus de node personalitzat"
+
+#: src/gui/widget/nodetypespanel.cpp:41
+msgid "Add new Node Type"
+msgstr "Afegeix un nou tipus de node"
+
+#: src/gui/widget/nodetypespanel.cpp:46
+msgid "Edit Node Type"
+msgstr "Edita el tipus de node"
+
+#: src/gui/widget/nodetypespanel.cpp:51
+msgid "Delete Node Type"
+msgstr "Esborra el tipus de node"
+
+#: src/gui/widget/notificationbox.cpp:33
+msgid "You didn't save:"
+msgstr "No s'ha desat"
+
+#: src/gui/widget/searchnodeoptions.cpp:34
+msgid "Search Options"
+msgstr "Opcions de cerca"
+
+#: src/gui/widget/searchnodeoptions.cpp:76
+msgctxt "search by node caption"
+msgid "Caption"
+msgstr "Títol"
+
+#: src/gui/widget/searchnodeoptions.cpp:84
+msgid "mime type"
+msgstr "Tipus"
+
+#: src/gui/widget/searchnodeoptions.cpp:106
+msgid "created between"
+msgstr "Creat entre"
+
+#: src/gui/widget/searchnodeoptions.cpp:115
+#: src/gui/widget/searchnodeoptions.cpp:133
+msgid "and"
+msgstr "i"
+
+#: src/gui/widget/searchnodeoptions.cpp:124
+msgid "modified between"
+msgstr "Modificat entre"
+
+#: src/gui/widget/syntaxbox.cpp:36
+msgctxt "no syntax selected"
+msgid "None"
+msgstr "Cap"
+
+#: src/gui/widget/textfind.cpp:48
+msgctxt "find previous occurrence"
+msgid "Previous"
+msgstr "Previ"
+
+#: src/gui/widget/textfind.cpp:53
+msgctxt "find next occurrence"
+msgid "Next"
+msgstr "Següent"
+
+#: src/gui/widget/textfind.cpp:69
+msgid "Replace"
+msgstr "Substitueix"
+
+#: src/gui/widget/textfind.cpp:74
+msgid "Replace All"
+msgstr "Substitueix tot"
+
+#: src/gui/widget/textfind.cpp:83
+msgid "Match case"
+msgstr "Fes coincidir"
+
+#: src/gui/widget/textfind.cpp:85
+msgid "Match whole word"
+msgstr "Fes coincidir tota la paraula"
