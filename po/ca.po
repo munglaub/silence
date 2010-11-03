@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: silence\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-30 18:31+0200\n"
-"PO-Revision-Date: 2010-10-30 18:31+0200n"
+"PO-Revision-Date: 2010-10-30 18:31+0200\n"
 "Last-Translator: Salva Ardid <jsardid@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -445,7 +445,7 @@ msgstr "Afegeix una taula"
 
 #: src/gui/view/richtextedit.cpp:254
 msgid "Insert Horizontal Rule"
-msgstr "Afegeix una línia horizontal"
+msgstr "Afegeix una línia horitzontal"
 
 #: src/gui/view/richtextedit.cpp:259
 msgid "&Find"

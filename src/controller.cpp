@@ -113,6 +113,11 @@ void Controller::setActionCollection(KActionCollection *actionCollection)
 	this->actionCollection = actionCollection;
 }
 
+KActionCollection* Controller::getActionCollection() const
+{
+	return actionCollection;
+}
+
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)
 {
 	this->infosidebar = infosidebar;

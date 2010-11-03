@@ -28,16 +28,23 @@ InputWidget::InputWidget(QWidget *parent)
 	layout = new QGridLayout;
 	inputEdit = new KLineEdit;
 	inputEdit->setClearButtonShown(true);
+	connect(inputEdit, SIGNAL(textChanged(const QString&)), this, SLOT(updateButtons()));
 	layout->addWidget(inputEdit, 0, 0, 1, 2);
+
 	cancelBtn = new QPushButton(i18n("Cancel"));
+	cancelBtn->setMinimumWidth(100);
+	cancelBtn->setShortcut(Qt::Key_Escape);
 	connect(cancelBtn, SIGNAL(clicked()), this, SLOT(hide()));
-	layout->addWidget(cancelBtn, 1, 0);
+	layout->addWidget(cancelBtn, 1, 0, 1, 1, Qt::AlignLeft);
 	okBtn = new QPushButton(i18n("OK"));
+	okBtn->setMinimumWidth(100);
 	connect(okBtn, SIGNAL(clicked()), this, SLOT(confirm()));
-	layout->addWidget(okBtn, 1, 1);
+	layout->addWidget(okBtn, 1, 1, 1, 1, Qt::AlignRight);
+
 	setLayout(layout);
 	
 	connect(inputEdit, SIGNAL(returnPressed()), this, SLOT(confirm()));
+	updateButtons();
 }
 
 InputWidget::~InputWidget()
@@ -64,6 +71,14 @@ QString InputWidget::getInput()
 void InputWidget::confirm()
 {
 	emit done();
+}
+
+void InputWidget::updateButtons()
+{
+	if (inputEdit->text().isEmpty())
+		okBtn->setEnabled(false);
+	else
+		okBtn->setEnabled(true);
 }
 
 

@@ -130,6 +130,12 @@ class Controller
 		void setActionCollection(KActionCollection *actionCollection);
 
 		/*!
+		 * Get a pointer to the actioncollection.
+		 * \return A pointer to the actioncollection.
+		 */
+		KActionCollection* getActionCollection() const;
+
+		/*!
 		 * This function provides the Controller with a pointer to the InfoSidebar.
 		 * \param infosidebar A pointer to the InfoSidebar
 		 */

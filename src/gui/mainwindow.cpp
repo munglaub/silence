@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
 	setWindowTitle(i18n("Silence"));
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
+	controller->setActionCollection(actionCollection());
+
 
 	centralwidgetstack = new QStackedWidget;
 	setCentralWidget(centralwidgetstack);
@@ -75,13 +77,11 @@ MainWindow::MainWindow(QWidget *parent)
 	setStatusBar(statusbar);
 	controller->setStatusBar(statusbar);
 
-	controller->setActionCollection(actionCollection());
-
 	controller->getTextEdit()->setVisible(false);
 	controller->getRichTextEdit()->setVisible(false);
 
 	viewmenu = new ViewMenu(actionCollection());
-	KAction *action = actionCollection()->addAction(KStandardAction::Quit);
+	KAction *action = actionCollection()->addAction(KStandardAction::Quit, "exit");
 	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
 
 	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
