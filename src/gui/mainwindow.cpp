@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
 	setWindowTitle(i18n("Silence"));
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
+	controller->setActionCollection(actionCollection());
+
 
 	centralwidgetstack = new QStackedWidget;
 	setCentralWidget(centralwidgetstack);
@@ -74,8 +76,6 @@ MainWindow::MainWindow(QWidget *parent)
 	statusbar = new SiStatusBar;
 	setStatusBar(statusbar);
 	controller->setStatusBar(statusbar);
-
-	controller->setActionCollection(actionCollection());
 
 	controller->getTextEdit()->setVisible(false);
 	controller->getRichTextEdit()->setVisible(false);

@@ -22,6 +22,7 @@
 #include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/gui/sidebar/navigationsidebar.h"
+#include "src/controller.h"
 
 
 NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -31,10 +32,21 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 	setObjectName("NavigationBar");
 	skip = false;
 
+	KActionCollection *actionCollection = Controller::create()->getActionCollection();
+
 	toolbar = new QToolBar;
-	prevAction = toolbar->addAction(KIcon("go-previous"), i18nc("go to the previous selected node", "Back"));
+	prevAction = actionCollection->addAction("go-previous");
+	prevAction->setText(i18nc("go to the previous selected node", "Back"));
+	prevAction->setIcon(KIcon("go-previous"));
+	prevAction->setShortcut(QKeySequence::Back);
+	toolbar->addAction(prevAction);
 	connect(prevAction, SIGNAL(triggered()), this, SLOT(previous()));
-	nextAction = toolbar->addAction(KIcon("go-next"), i18nc("go to the next node", "Forward"));
+
+	nextAction = actionCollection->addAction("go-next");
+	nextAction->setText(i18nc("go to the next node", "Forward"));
+	nextAction->setIcon(KIcon("go-next"));
+	nextAction->setShortcut(QKeySequence::Forward);
+	toolbar->addAction(nextAction);
 	connect(nextAction, SIGNAL(triggered()), this, SLOT(next()));
 
 	toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

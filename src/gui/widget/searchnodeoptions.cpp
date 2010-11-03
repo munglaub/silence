@@ -76,7 +76,7 @@ QWidget* SearchNodeOptions::createOptionbox()
 	captionBtn = new QRadioButton(i18nc("search by node caption", "Caption"));
 	captionBtn->setChecked(true);
 	optboxlayout->addWidget(captionBtn, 0, 0);
-	fulltextBtn = new QRadioButton("Fulltext");
+	fulltextBtn = new QRadioButton(i18n("Fulltext"));
 	connect(fulltextBtn, SIGNAL(toggled(bool)), this, SLOT(enableFulltext(bool)));
 	optboxlayout->addWidget(fulltextBtn, 0, 1);
 

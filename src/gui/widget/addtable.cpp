@@ -42,11 +42,9 @@ AddTable::AddTable(QWidget *parent)
 	++row;
 
 	btnCancel = new QPushButton(i18n("Cancel"));
-	btnCancel->setFlat(true);
 	addWidget(btnCancel, row, 0);
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(exit()));
 	btnOk = new QPushButton(i18n("OK"));
-	btnOk->setFlat(true);
 	addWidget(btnOk, row, 1);
 	connect(btnOk, SIGNAL(clicked()), this, SLOT(addTable()));
 }

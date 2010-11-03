@@ -66,18 +66,19 @@ QWidget* NodePropertyWidget::createNodeInfoTab()
 	infolayout = new QFormLayout;
 	nodeName = new KLineEdit;
 	nodeName->setClearButtonShown(true);
-	infolayout->addRow(i18n("Node name:"), nodeName);
+	infolayout->addRow(i18n("Node name") + ":", nodeName);
 	
 	syntaxbox = new SyntaxBox(false);
-	infolayout->addRow(i18n("Syntax:"), syntaxbox);
+	infolayout->addRow(i18n("Syntax") + ":", syntaxbox);
 	
 	creationdate = new QLabel("");
-	infolayout->addRow(i18n("Creationdate:"), creationdate);
+	infolayout->addRow(i18n("Created") + ":", creationdate);
 
 	modificationdate = new QLabel("");
-	infolayout->addRow(i18n("Modificationdate:"), modificationdate);
+	infolayout->addRow(i18n("Modified") + ":", modificationdate);
 
 	applyNodeInfo = new QPushButton(i18n("Apply"));
+	applyNodeInfo->setMinimumWidth(100);
 	infolayout->addRow("", applyNodeInfo);
 	connect(applyNodeInfo, SIGNAL(clicked()), this, SLOT(saveNodeInfo()));
 

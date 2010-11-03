@@ -75,6 +75,7 @@ class InputWidget : public QGroupBox
 
 	private slots:
 		void confirm();
+		void updateButtons();
 
 	private:
 		QGridLayout *layout;
