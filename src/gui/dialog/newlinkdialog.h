@@ -22,13 +22,11 @@
 #define NEWLINKDIALOG_H
 
 #include <klineedit.h>
-#include <QDialog>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QTreeView>
-#include <QUrl>
 #include "src/data/model/simpletreemodel.h"
 
 
@@ -39,7 +37,7 @@
  *
  * \author Manuel Unglaub
  */
-class NewLinkDialog : public QDialog
+class NewLinkDialog : public QGridLayout
 {
 	Q_OBJECT
 
@@ -47,12 +45,11 @@ class NewLinkDialog : public QDialog
 		/*!
 		 * The constructor.
 		 *
-		 * Constructs the NewLinkDialog which is a child of parent and has the provided window flags.
+		 * Constructs the NewLinkDialog which is a child of parent.
 		 *
 		 * \param parent The parent of this NewLinkDialog.
-		 * \param f The window flags of this NewLinkDialog.
 		 */
-		explicit NewLinkDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		explicit NewLinkDialog(QWidget *parent = 0);
 
 		/*!
 		 * The destructor.
@@ -68,25 +65,25 @@ class NewLinkDialog : public QDialog
 		 */
 		void setLinkText(QString text);
 
+	signals:
 		/*!
-		 * Get the link text form the NewLinkDialog.
+		 * This signal is emitted when the user clicked the ok button.
 		 *
-		 * \return The link text.
+		 * \param link Containing the HTML tag that represents the link.
 		 */
-		QString getLinkText();
+		void addedLink(const QString &link);
 
+	public slots:
 		/*!
-		 * Get the url of the link.
-		 *
-		 * \return The url of the link.
+		 * Delete this dialog.
 		 */
-		KUrl getUrl();
+		void exit();
 
 	private slots:
 		void selectFile();
+		void addLink();
 
 	private:
-		QGridLayout *layout;
 		QTreeView *tree;
 		SimpleTreeModel *model;
 		QPushButton *btnCancel,
@@ -100,6 +97,8 @@ class NewLinkDialog : public QDialog
 					*ledWebUrl,
 					*ledFile;
 
+		QString getLinkText();
+		KUrl getUrl();
 };
 
 #endif // NEWLINKDIALOG_H
