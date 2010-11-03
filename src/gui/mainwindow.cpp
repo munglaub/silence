@@ -81,16 +81,14 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->getRichTextEdit()->setVisible(false);
 
 	viewmenu = new ViewMenu(actionCollection());
-	KAction *action = actionCollection()->addAction("exit");
-	action->setText(i18n("&Exit"));
-	action->setIcon(KIcon("application-exit"));
+	KAction *action = actionCollection()->addAction(KStandardAction::Quit);
 	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
 
 	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }
 
 MainWindow::~MainWindow()
-{   
+{
 	delete contentview;
 	delete centralwidgetstack;
 	delete treeview;
@@ -117,5 +115,17 @@ void MainWindow::showNodeTypeManagement()
 	centralwidgetstack->setCurrentWidget(ntm);
 	connect(ntm, SIGNAL(exit(QWidget*)), this, SLOT(deleteFromCentralWidgetStack(QWidget*)));
 }
+
+void MainWindow::showDialog(QWidget *widget)
+{
+	centralwidgetstack->addWidget(widget);
+	centralwidgetstack->setCurrentWidget(widget);
+}
+
+void MainWindow::removeDialog(QWidget *widget)
+{
+	centralwidgetstack->removeWidget(widget);
+}
+
 
 

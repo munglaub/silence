@@ -22,7 +22,6 @@
 #include <kaction.h>
 #include <klocalizedstring.h>
 #include "src/controller.h"
-#include "src/gui/dialog/labelmanagementdialog.h"
 #include "src/gui/menu/viewmenu.h"
 
 
@@ -88,7 +87,13 @@ void ViewMenu::showWelcomeView()
 void ViewMenu::showLabelManagementDialog()
 {
 	LabelManagementDialog *dlg = new LabelManagementDialog;
-	dlg->exec();
+	connect(dlg, SIGNAL(exit(LabelManagementDialog*)), this, SLOT(closeLabelManagementDialog(LabelManagementDialog*)));
+	Controller::create()->getMainWindow()->showDialog(dlg);
+}
+
+void ViewMenu::closeLabelManagementDialog(LabelManagementDialog *dlg)
+{
+	Controller::create()->getMainWindow()->removeDialog(dlg);
 	delete dlg;
 	Controller::create()->getNodePropertyWidget()->updateLabels();
 	Controller::create()->getSearchNodeSidebar()->updateLabels();

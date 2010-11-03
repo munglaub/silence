@@ -657,23 +657,14 @@ void RichTextEdit::insertRule()
 
 void RichTextEdit::insertLink()
 {
+	NewLinkDialog *dlg = new NewLinkDialog(this);
 	QTextCursor cursor = textedit->textCursor();
-	NewLinkDialog dlg;
 	if (cursor.hasSelection())
-		dlg.setLinkText(cursor.selectedText());
-	if (dlg.exec() == QDialog::Accepted)
-	{
-		QString linktext = dlg.getLinkText();
-		QUrl url = dlg.getUrl();
-		if (!url.isValid() || linktext.isEmpty())
-			return;
+		dlg->setLinkText(cursor.selectedText());
 
-		QString html = QString("<a href='%1'>%2</a>")
-						.arg(url.toString())
-						.arg(linktext);
-
-		textedit->insertHtml(html);
-	}
+	layout->insertLayout(2, dlg);
+	connect(dlg, SIGNAL(addedLink(const QString&)), this, SLOT(insertHtml(QString)));
+	connect(textedit, SIGNAL(textChanged()), dlg, SLOT(exit()));
 }
 
 void RichTextEdit::insertTable()

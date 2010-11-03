@@ -20,7 +20,6 @@
 
 #include <klocalizedstring.h>
 #include "src/controller.h"
-#include "src/gui/dialog/labelmanagementdialog.h"
 #include "src/gui/widget/labelwidget.h"
 
 
@@ -134,7 +133,13 @@ void LabelWidget::deselectChildren(QTreeWidgetItem* item)
 void LabelWidget::manageLabels()
 {
 	LabelManagementDialog *dlg = new LabelManagementDialog;
-	dlg->exec();
+	connect(dlg, SIGNAL(exit(LabelManagementDialog*)), this, SLOT(closeLabelManagementDialog(LabelManagementDialog*)));
+	Controller::create()->getMainWindow()->showDialog(dlg);
+}
+
+void LabelWidget::closeLabelManagementDialog(LabelManagementDialog *dlg)
+{
+	Controller::create()->getMainWindow()->removeDialog(dlg);
 	delete dlg;
 	fillTree();
 	Controller::create()->getNodePropertyWidget()->updateLabels();

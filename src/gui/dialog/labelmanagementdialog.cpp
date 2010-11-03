@@ -26,11 +26,8 @@
 
 
 LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
-	: QDialog(parent, f)
+	: QFrame(parent, f)
 {
-	setWindowTitle(i18n("Label Management"));
-	resize(300, 500);
-
 	layout = new QGridLayout;
 	int row = 0;
 
@@ -39,7 +36,7 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 	addChildAction = toolbar->addAction(KIcon("view-right-new"), i18n("Add Sublabel"));
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addSublabel()));
-	removeAction = toolbar->addAction(KIcon("list-remove"), i18n("Remove Node"));
+	removeAction = toolbar->addAction(KIcon("list-remove"), i18n("Remove Label"));
 	
 	layout->addWidget(toolbar, row, 0);
 	++row;
@@ -66,7 +63,8 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	++row;
 
 	closeBtn = new QPushButton(i18n("Close"));
-	connect(closeBtn, SIGNAL(clicked()), this, SLOT(accept()));
+	closeBtn->setShortcut(QKeySequence(Qt::ALT + Qt::Key_F4));
+	connect(closeBtn, SIGNAL(clicked()), this, SLOT(onClose()));
 	layout->addWidget(closeBtn, row, 0, 1, 1, Qt::AlignRight);
 	setLayout(layout);
 	connect(removeAction, SIGNAL(triggered()), deleteFrame, SLOT(show()));
@@ -93,6 +91,7 @@ LabelManagementDialog::~LabelManagementDialog()
 	delete toolbar;
 	delete layout;
 }
+
 
 QWidget* LabelManagementDialog::createDeleteFrame()
 {
@@ -188,6 +187,11 @@ void LabelManagementDialog::updateActions()
 
 	bool hasCurrent = tree->selectionModel()->currentIndex().isValid();
 	addRowAction->setEnabled(hasCurrent);
+}
+
+void LabelManagementDialog::onClose()
+{
+	emit exit(this);
 }
 
 

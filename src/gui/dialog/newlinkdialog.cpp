@@ -23,63 +23,59 @@
 #include "src/gui/dialog/newlinkdialog.h"
 
 
-NewLinkDialog::NewLinkDialog(QWidget *parent, Qt::WindowFlags f)
-	: QDialog(parent, f)
+NewLinkDialog::NewLinkDialog(QWidget *parent)
+	: QGridLayout(parent)
 {
-	setWindowTitle(i18n("New Link"));
-	resize(500, 400);
-
-	layout = new QGridLayout;
 	int row = 0;
 
 	lblLinkText = new QLabel(i18n("Link Text"));
-	layout->addWidget(lblLinkText, row, 0);
+	addWidget(lblLinkText, row, 0);
 	ledLinkText = new KLineEdit;
 	ledLinkText->setClearButtonShown(true);
-	layout->addWidget(ledLinkText, row, 1, 1, 2);
+	addWidget(ledLinkText, row, 1, 1, 2);
 	++row;
 
 	rbtnNode = new QRadioButton(i18n("Node"));
 	rbtnNode->setChecked(true);
-	layout->addWidget(rbtnNode, row, 0, 1, 1, Qt::AlignTop);
+	addWidget(rbtnNode, row, 0, 1, 1, Qt::AlignTop);
 	tree = new QTreeView;
 	model = new SimpleTreeModel;
 	tree->setModel(model);
-	layout->addWidget(tree, row, 1, 1, 2);
+	addWidget(tree, row, 1, 1, 2);
 	connect(rbtnNode, SIGNAL(toggled(bool)), tree, SLOT(setEnabled(bool)));
 	++row;
 
 	rbtnWebUrl = new QRadioButton(i18n("Website Url"));
-	layout->addWidget(rbtnWebUrl, row, 0);
+	addWidget(rbtnWebUrl, row, 0);
 	ledWebUrl = new KLineEdit("http://");
 	ledWebUrl->setClearButtonShown(true);
 	ledWebUrl->setEnabled(false);
-	layout->addWidget(ledWebUrl, row, 1, 1, 2);
+	addWidget(ledWebUrl, row, 1, 1, 2);
 	connect(rbtnWebUrl, SIGNAL(toggled(bool)), ledWebUrl, SLOT(setEnabled(bool)));
 	++row;
 
 	rbtnFile = new QRadioButton(i18n("File"));
-	layout->addWidget(rbtnFile, row, 0);
+	addWidget(rbtnFile, row, 0);
 	ledFile = new KLineEdit;
 	ledFile->setClearButtonShown(true);
 	ledFile->setEnabled(false);
-	layout->addWidget(ledFile, row, 1);
+	addWidget(ledFile, row, 1);
 	connect(rbtnFile, SIGNAL(toggled(bool)), ledFile, SLOT(setEnabled(bool)));
 	btnSelectFile = new QPushButton(i18n("Select File"));
 	btnSelectFile->setEnabled(false);
-	layout->addWidget(btnSelectFile, row, 2);
+	addWidget(btnSelectFile, row, 2);
 	connect(rbtnFile, SIGNAL(toggled(bool)), btnSelectFile, SLOT(setEnabled(bool)));
 	connect(btnSelectFile, SIGNAL(clicked()), this, SLOT(selectFile()));
 	++row;
 
 	btnCancel = new QPushButton(i18n("Cancel"));
-	layout->addWidget(btnCancel, row, 0, 1, 1, Qt::AlignLeft);
-	connect(btnCancel, SIGNAL(clicked()), this, SLOT(reject()));
+	btnCancel->setMinimumWidth(100);
+	addWidget(btnCancel, row, 0, 1, 1, Qt::AlignLeft);
+	connect(btnCancel, SIGNAL(clicked()), this, SLOT(exit()));
 	btnOk = new QPushButton(i18n("OK"));
-	layout->addWidget(btnOk, row, 2, 1, 1, Qt::AlignRight);
-	connect(btnOk, SIGNAL(clicked()), this, SLOT(accept()));
-
-	setLayout(layout);
+	btnOk->setMinimumWidth(100);
+	addWidget(btnOk, row, 2, 1, 1, Qt::AlignRight);
+	connect(btnOk, SIGNAL(clicked()), this, SLOT(addLink()));
 }
 
 NewLinkDialog::~NewLinkDialog()
@@ -96,7 +92,6 @@ NewLinkDialog::~NewLinkDialog()
 	delete btnCancel;
 	delete model;
 	delete tree;
-	delete layout;
 }
 
 void NewLinkDialog::setLinkText(QString text)
@@ -129,10 +124,29 @@ KUrl NewLinkDialog::getUrl()
 	return url;
 }
 
+void NewLinkDialog::exit()
+{
+	delete this;
+}
+
 void NewLinkDialog::selectFile()
 {
-	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*|All Files", this, "Select File");
+	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*|" + i18n("All Files"), parentWidget(), i18n("Select File"));
 	ledFile->setText(fileName);
+}
+
+void NewLinkDialog::addLink()
+{
+	QString linktext = getLinkText();
+	QUrl url = getUrl();
+	if (!url.isValid() || linktext.isEmpty())
+		return;
+
+	QString html = QString("<a href='%1'>%2</a>")
+					.arg(url.toString())
+					.arg(linktext);
+
+	emit addedLink(html);
 }
 
 

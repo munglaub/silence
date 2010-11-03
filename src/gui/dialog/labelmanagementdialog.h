@@ -21,15 +21,16 @@
 #ifndef LABELMANAGEMENTDIALOG_H
 #define LABELMANAGEMENTDIALOG_H
 
-#include "src/data/model/labelmodel.h"
 #include <QAction>
-#include <QDialog>
+#include <QEventLoop>
+#include <QFrame>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
 #include <QPushButton>
 #include <QToolBar>
 #include <QTreeView>
+#include "src/data/model/labelmodel.h"
 #include "src/gui/widget/inputwidget.h"
 
 
@@ -40,7 +41,7 @@
  *
  * \author Manuel Unglaub
  */
-class LabelManagementDialog : public QDialog
+class LabelManagementDialog : public QFrame
 {
 	Q_OBJECT
 
@@ -59,6 +60,9 @@ class LabelManagementDialog : public QDialog
 		 */
 		~LabelManagementDialog();
 
+	signals:
+		void exit(LabelManagementDialog *self);
+
 	private slots:
 		void showTreeContextMenu();
 		void addLabel();
@@ -67,6 +71,7 @@ class LabelManagementDialog : public QDialog
 		void removeLabel();
 		void selectItem();
 		void updateActions();
+		void onClose();
 
 	private:
 		QGridLayout *layout;

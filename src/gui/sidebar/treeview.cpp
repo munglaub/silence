@@ -28,7 +28,6 @@
 #include "src/data/model/treemodel.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
-#include "src/gui/dialog/newnodedialog.h"
 #include "src/gui/sidebar/treeview.h"
 
 
@@ -92,36 +91,40 @@ void TreeView::selectItem(NodeId id)
 
 void TreeView::addNode(QModelIndex &index, int row)
 {
-	NewNodeDialog *newDialog = new NewNodeDialog;
-	if (!newDialog->exec())
+	NewNodeDialog *newDialog = new NewNodeDialog(index, row);
+	Controller::create()->getMainWindow()->showDialog(newDialog);
+	connect(newDialog, SIGNAL(done(NewNodeDialog*, bool)), this, SLOT(insertNode(NewNodeDialog*, bool)));
+	// cancel dialog if parent is deleted
+	connect(model->getItem(index), SIGNAL(destroyed(QObject*)), newDialog, SLOT(cancel()));
+}
+
+void TreeView::insertNode(NewNodeDialog *dlg, bool insert)
+{
+	if (insert)
 	{
-		delete newDialog;
-		return;
+		QModelIndex index = dlg->getIndex();
+		int row = dlg->getRow();
+		if (model->insertRow(row, index))
+		{
+			int column = 0;
+			QModelIndex child = model->index(row, column, index);
+
+			model->setData(child, QVariant(dlg->getCaption()), Qt::EditRole);
+
+			Node *item = model->getItem(child);
+			item->setContent(dlg->getContent());
+			item->addLabels(dlg->getLabels());
+			connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(saveNode(Node*)));
+			Controller::create()->getDataStore()->addNode(item);
+
+			tree->selectionModel()->setCurrentIndex(model->index(row, column, index), QItemSelectionModel::ClearAndSelect);
+
+			updateActions();
+		}
 	}
 
-	if (!model->insertRow(row, index))
-	{
-		delete newDialog;
-		return;
-	}
-
-	int column = 0;
-	QModelIndex child = model->index(row, column, index);
-
-	model->setData(child, QVariant(newDialog->getCaption()), Qt::EditRole);
-
-	Node *item = model->getItem(child);
-	item->setContent(newDialog->getContent());
-	item->addLabels(newDialog->getLabels());
-	connect(item, SIGNAL(changed(Node*)), Controller::create()->getDataStore(), SLOT(saveNode(Node*)));
-	Controller::create()->getDataStore()->addNode(item);
-
-	delete newDialog;
-
-	tree->selectionModel()->setCurrentIndex(model->index(row, column, index),
-		QItemSelectionModel::ClearAndSelect);
-	
-	updateActions();
+	Controller::create()->getMainWindow()->removeDialog(dlg);
+	delete dlg;
 }
 
 void TreeView::setupToolbar(KActionCollection *actionCollection)
