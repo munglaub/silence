@@ -127,6 +127,13 @@ void TreeView::insertNode(NewNodeDialog *dlg, bool insert)
 	delete dlg;
 }
 
+void TreeView::showWelcomeView()
+{
+	// setting contentview to NULL will display welcomeview
+	// TODO: find a more elegant solution
+	Controller::create()->getContentView()->setNode(0);
+}
+
 void TreeView::setupToolbar(KActionCollection *actionCollection)
 {
 	toolbar = new QToolBar();
@@ -149,11 +156,19 @@ void TreeView::setupToolbar(KActionCollection *actionCollection)
 	toolbar->addAction(removeAction);
 	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
 
+	toolbar->addSeparator();
+
 	propertyAction = actionCollection->addAction("shownodeproperties");
 	propertyAction->setText(i18n("Properties"));
 	propertyAction->setIcon(KIcon("document-properties"));
 	toolbar->addAction(propertyAction);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
+
+	welcomeAction = actionCollection->addAction("showwelcomeview");
+	welcomeAction->setText(i18n("Welcome View"));
+	welcomeAction->setIcon(KIcon("silence"));
+	toolbar->addAction(welcomeAction);
+	connect(welcomeAction, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
 }
 
 void TreeView::setupTree()

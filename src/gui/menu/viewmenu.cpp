@@ -27,11 +27,7 @@
 
 ViewMenu::ViewMenu(KActionCollection *actionCollection)
 {
-	KAction *action = actionCollection->addAction("showwelcomeview");
-	action->setText(i18n("Welcome View"));
-	connect(action, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
-
-	action = actionCollection->addAction("showlabelmanagement");
+	KAction *action = actionCollection->addAction("showlabelmanagement");
 	action->setText(i18n("Manage Labels"));
 	connect(action, SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
 
@@ -75,13 +71,6 @@ ViewMenu::ViewMenu(KActionCollection *actionCollection)
 	action->setChecked(true);
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showNodeSearch(bool)));
 	connect(Controller::create()->getSearchNodeSidebar(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));
-}
-
-void ViewMenu::showWelcomeView()
-{
-	// setting contentview to NULL will display welcomeview
-	// TODO: find a more elegant solution
-	Controller::create()->getContentView()->setNode(0);
 }
 
 void ViewMenu::showLabelManagementDialog()

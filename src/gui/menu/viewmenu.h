@@ -46,7 +46,6 @@ class ViewMenu : public QObject
 		ViewMenu(KActionCollection *actionCollection);
 
 	private slots:
-		void showWelcomeView();
 		void showLabelManagementDialog();
 		void closeLabelManagementDialog(LabelManagementDialog *dlg);
 		void showNodeTypeManagement();

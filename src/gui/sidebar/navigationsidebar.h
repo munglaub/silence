@@ -25,7 +25,7 @@
 #include <QToolBar>
 #include "src/data/node/node.h"
 #include <QList>
-#include <QAction>
+#include <KAction>
 
 
 /*!\class NavigationSidebar
@@ -66,7 +66,7 @@ class NavigationSidebar : public QDockWidget
 	private:
 		bool skip;
 		QToolBar *toolbar;
-		QAction *prevAction,
+		KAction *prevAction,
 				*nextAction;
 
 		QList<Node*> prevList;

@@ -113,6 +113,7 @@ class TreeView : public QDockWidget
 		void showTreeContextMenu();
 		void nodeDropped(QModelIndex index);
 		void insertNode(NewNodeDialog *dlg, bool insert);
+		void showWelcomeView();
                 
 	private:
 		QTreeView *tree;
@@ -122,7 +123,8 @@ class TreeView : public QDockWidget
 		KAction *addRowAction,
 				*addChildAction,
 				*removeAction,
-				*propertyAction;
+				*propertyAction,
+				*welcomeAction;
 
 		QLabel	*question,
 				*icon;
