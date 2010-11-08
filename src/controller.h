@@ -21,6 +21,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "src/gui/actionmanager.h"
 #include "src/gui/mainwindow.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
@@ -136,6 +137,18 @@ class Controller
 		KActionCollection* getActionCollection() const;
 
 		/*!
+		 * This function provides the Controller with an ActionManager.
+		 * \param actionmanager A pointer to the ActionManager.
+		 */
+		void setActionManager(ActionManager *actionmanager);
+
+		/*!
+		 * Get a pointer to the ActionManager.
+		 * \return A pointer to the ActionManager.
+		 */
+		ActionManager* getActionManager() const;
+
+		/*!
 		 * This function provides the Controller with a pointer to the InfoSidebar.
 		 * \param infosidebar A pointer to the InfoSidebar
 		 */
@@ -228,6 +241,7 @@ class Controller
 		NavigationSidebar *navigationsidebar;
 
 		KActionCollection *actionCollection;
+		ActionManager *actionmanager;
 
 		AbstractDataStore *datastore;
 };

@@ -37,6 +37,7 @@ Controller::Controller()
 	statusbar = 0;
 	nodepropertywidget = 0;
 	navigationsidebar = 0;
+	actionmanager = 0;
 }
 
 Controller::~Controller()
@@ -116,6 +117,16 @@ void Controller::setActionCollection(KActionCollection *actionCollection)
 KActionCollection* Controller::getActionCollection() const
 {
 	return actionCollection;
+}
+
+void Controller::setActionManager(ActionManager *actionmanager)
+{
+	this->actionmanager = actionmanager;
+}
+
+ActionManager* Controller::getActionManager() const
+{
+	return actionmanager;
 }
 
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)

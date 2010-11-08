@@ -24,6 +24,7 @@
 #include <KMenuBar>
 #include <QApplication>
 #include "src/controller.h"
+#include "src/gui/actionmanager.h"
 #include "src/gui/mainwindow.h"
 #include "src/gui/widget/nodetypemanager.h"
 
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
 	controller->setActionCollection(actionCollection());
+	controller->setActionManager(new ActionManager(actionCollection()));
 
 
 	centralwidgetstack = new QStackedWidget;
