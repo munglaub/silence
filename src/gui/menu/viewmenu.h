@@ -21,7 +21,6 @@
 #ifndef VIEWMENU_H
 #define VIEWMENU_H
 
-#include <kactioncollection.h>
 #include "src/gui/dialog/labelmanagementdialog.h"
 
 
@@ -40,10 +39,9 @@ class ViewMenu : public QObject
 	public:
 		/*! The constructor.
 		 *
-		 * Constructs the ViewMenu which is a child of parent.
-		 * \param actionCollection The collection of the applications actions.
+		 * Constructs the ViewMenu.
 		 */
-		ViewMenu(KActionCollection *actionCollection);
+		ViewMenu();
 
 	private slots:
 		void showLabelManagementDialog();

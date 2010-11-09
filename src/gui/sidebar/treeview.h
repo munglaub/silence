@@ -21,7 +21,6 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
-#include <kactioncollection.h>
 #include <kaction.h>
 #include <QDockWidget>
 #include <QFrame>
@@ -62,7 +61,7 @@ class TreeView : public QDockWidget
 		 * \param parent The parent of this TreeView.
 		 * \param flags The window flags of this TreeView.
 		 */
-		TreeView(const QString &title, KActionCollection *actionCollection, QWidget *parent = 0, Qt::WindowFlags flags = 0);
+		TreeView(const QString &title, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 		/*! The destructor.
 		 *
@@ -139,7 +138,7 @@ class TreeView : public QDockWidget
 
 		void addNode(QModelIndex &index, int row);
 
-		void setupToolbar(KActionCollection *actionCollection);
+		void setupToolbar();
 		void setupTree();
 		void setupQuestionFrame();
 };

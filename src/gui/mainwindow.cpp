@@ -19,7 +19,6 @@
  */
 
 #include <kactioncollection.h>
-#include <kaction.h>
 #include <klocalizedstring.h>
 #include <KMenuBar>
 #include <QApplication>
@@ -52,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
-	treeview = new TreeView(i18n("Nodes"), actionCollection(), this);
+	treeview = new TreeView(i18n("Nodes"), this);
 	controller->setTreeView(treeview);
 
 	// search sidebar
@@ -82,9 +81,8 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->getTextEdit()->setVisible(false);
 	controller->getRichTextEdit()->setVisible(false);
 
-	viewmenu = new ViewMenu(actionCollection());
-	KAction *action = actionCollection()->addAction(KStandardAction::Quit, "exit");
-	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
+	viewmenu = new ViewMenu();
+	connect(controller->getActionManager()->getGlobalAction("exit"), SIGNAL(triggered()), qApp, SLOT(quit()));
 
 	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }

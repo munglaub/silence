@@ -23,6 +23,8 @@
 
 
 #include "kactioncollection.h"
+#include <QHash>
+#include <KAction>
 
 
 //TODO: docu
@@ -33,9 +35,15 @@ class ActionManager
 		~ActionManager();
 
 		KAction* getAction(QString name);
+		KAction* getGlobalAction(QString name);
 	
 	private:
 		KActionCollection *actioncollection;
+		QHash<QString, KAction*> globalActions;
+		QHash<QString, KAction*> actions;
+
+		void createGlobalActions();
+		KAction* addGlobalAction(QString name, QString text, bool checkable = false);
 
 };
 

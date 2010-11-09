@@ -19,7 +19,6 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KIcon>
 #include <klocalizedstring.h>
 #include <QMenu>
 #include <QPoint>
@@ -28,10 +27,11 @@
 #include "src/data/model/treemodel.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
+#include "src/gui/actionmanager.h"
 #include "src/gui/sidebar/treeview.h"
 
 
-TreeView::TreeView(const QString &title, KActionCollection *actionCollection, QWidget *parent, Qt::WindowFlags flags)
+TreeView::TreeView(const QString &title, QWidget *parent, Qt::WindowFlags flags)
 	: QDockWidget(title, parent, flags)
 {
 	setAllowedAreas(Qt::AllDockWidgetAreas);
@@ -39,7 +39,7 @@ TreeView::TreeView(const QString &title, KActionCollection *actionCollection, QW
 
 	setupTree();
 	setupQuestionFrame();
-	setupToolbar(actionCollection);
+	setupToolbar();
 
 
 	frame = new QFrame();
@@ -134,39 +134,30 @@ void TreeView::showWelcomeView()
 	Controller::create()->getContentView()->setNode(0);
 }
 
-void TreeView::setupToolbar(KActionCollection *actionCollection)
+void TreeView::setupToolbar()
 {
+	ActionManager *ac = Controller::create()->getActionManager();
 	toolbar = new QToolBar();
 
-	addRowAction = actionCollection->addAction("addnode");
-	addRowAction->setText(i18n("Add Node"));
-	addRowAction->setIcon(KIcon("list-add"));
+	addRowAction = ac->getGlobalAction("addnode");
 	toolbar->addAction(addRowAction);
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 
-	addChildAction = actionCollection->addAction("addsubnode");
-	addChildAction->setText(i18n("Add Subnode"));
-	addChildAction->setIcon(KIcon("view-right-new"));
+	addChildAction = ac->getGlobalAction("addsubnode");
 	toolbar->addAction(addChildAction);
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 
-	removeAction = actionCollection->addAction("removenode");
-	removeAction->setText(i18n("Remove Node"));
-	removeAction->setIcon(KIcon("list-remove"));
+	removeAction = ac->getGlobalAction("removenode");
 	toolbar->addAction(removeAction);
 	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
 
 	toolbar->addSeparator();
 
-	propertyAction = actionCollection->addAction("shownodeproperties");
-	propertyAction->setText(i18n("Properties"));
-	propertyAction->setIcon(KIcon("document-properties"));
+	propertyAction = ac->getGlobalAction("shownodeproperties");
 	toolbar->addAction(propertyAction);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 
-	welcomeAction = actionCollection->addAction("showwelcomeview");
-	welcomeAction->setText(i18n("Welcome View"));
-	welcomeAction->setIcon(KIcon("silence"));
+	welcomeAction = ac->getGlobalAction("showwelcomeview");
 	toolbar->addAction(welcomeAction);
 	connect(welcomeAction, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
 }
