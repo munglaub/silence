@@ -22,6 +22,8 @@
 #define MAINWINDOW_H
 
 #include <KXmlGuiWindow>
+#include <QStackedWidget>
+#include "src/gui/menu/silencemenu.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
@@ -30,7 +32,6 @@
 #include "src/gui/sidebar/treeview.h"
 #include "src/gui/sistatusbar.h"
 #include "src/gui/view/contentview.h"
-#include <QStackedWidget>
 
 
 /*!\class MainWindow
@@ -89,6 +90,7 @@ class MainWindow : public KXmlGuiWindow
 
 		// Menus
 		ViewMenu *viewmenu;
+		SilenceMenu *silencemenu;
 };
 
 #endif // MAINWINDOW_H

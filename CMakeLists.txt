@@ -41,9 +41,11 @@ set ( silence_HDRS
 	src/gui/mainwindow.h
 	src/gui/sistatusbar.h
 	src/gui/menu/viewmenu.h
+	src/gui/menu/silencemenu.h
 	src/gui/dialog/newnodedialog.h
 	src/gui/dialog/newlinkdialog.h
 	src/gui/dialog/labelmanagementdialog.h
+	src/gui/dialog/exportsilencexmldialog.h
 	src/gui/sidebar/treeview.h
 	src/gui/sidebar/infosidebar.h
 	src/gui/sidebar/searchnodesidebar.h
@@ -100,9 +102,11 @@ set ( silence_SRCS
 	src/gui/mainwindow.cpp
 	src/gui/sistatusbar.cpp
 	src/gui/menu/viewmenu.cpp
+	src/gui/menu/silencemenu.cpp
 	src/gui/dialog/newnodedialog.cpp
 	src/gui/dialog/newlinkdialog.cpp
 	src/gui/dialog/labelmanagementdialog.cpp
+	src/gui/dialog/exportsilencexmldialog.cpp
 	src/gui/sidebar/treeview.cpp
 	src/gui/sidebar/infosidebar.cpp
 	src/gui/sidebar/searchnodesidebar.cpp

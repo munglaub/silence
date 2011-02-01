@@ -93,7 +93,7 @@ void AddImage::addImage()
 
 void AddImage::browse()
 {
-	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|All Files", parent, "Select Image");
+	QString fileName = KFileDialog::getOpenFileName(KUrl(), "*.png *.jpg *.bmp| Image Files\n*|" + i18n("All Files"), parent, i18n("Select Image"));
 	ledFile->setText(fileName);
 }
 

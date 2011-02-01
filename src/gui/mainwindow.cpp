@@ -84,6 +84,8 @@ MainWindow::MainWindow(QWidget *parent)
 	KAction *action = actionCollection()->addAction(KStandardAction::Quit, "exit");
 	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
 
+	silencemenu = new SilenceMenu(actionCollection());
+
 	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }
 
@@ -98,6 +100,7 @@ MainWindow::~MainWindow()
 	delete searchnodesidebar;
 
 	delete viewmenu;
+	delete silencemenu;
 
 	delete Controller::create();
 }

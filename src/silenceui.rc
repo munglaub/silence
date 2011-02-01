@@ -10,6 +10,14 @@
 			<text>Silence</text>
 			<Action name="te_save" />
 			<Action name="rtf_save" />
+			<Menu name="import">
+				<text>Import</text>
+				<Action name="import_silencexml" />
+			</Menu>
+			<Menu name="export">
+				<text>Export</text>
+				<Action name="export_silencexml" />
+			</Menu>
 			<Action name="exit" />
 		</Menu>
 		<Menu name="node">

@@ -25,7 +25,6 @@
 #include <QPoint>
 #include <QVariant>
 #include "src/controller.h"
-#include "src/data/model/treemodel.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/sidebar/treeview.h"
