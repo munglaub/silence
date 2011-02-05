@@ -21,6 +21,7 @@
 #include <ksavefile.h>
 #include <kstandarddirs.h>
 #include <QTextStream>
+#include "src/controller.h"
 #include "src/data/node/customnodecontent.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
@@ -402,5 +403,28 @@ void XmlDataStore::removeLabel(Label*)
 	saveAll();
 }
 
+void XmlDataStore::writeToXmlFile(QString fileName, Node* root){
+	QDomDocument doc;
+	doc.setContent(QString("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"));
+	QDomElement xmlRoot = doc.createElement("silence");
+	doc.appendChild(xmlRoot);
+
+	if (root == Controller::create()->getDataStore()->getRootNode()){
+		for (int i = 0; i < root->getChildCount(); ++i)
+		{
+			addXmlNode(root->getChild(i), xmlRoot, doc);
+		}
+	} else {
+		addXmlNode(root, xmlRoot, doc);
+	}
+	
+	// write to file
+	KSaveFile file(fileName);
+	if( !file.open(QIODevice::WriteOnly))
+		return;
+	QTextStream ts(&file);
+	ts << doc.toString();
+	file.close();
+}
 
 

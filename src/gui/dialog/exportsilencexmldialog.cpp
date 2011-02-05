@@ -18,55 +18,62 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/dialog/exportsilencexmldialog.h"
-#include <klocalizedstring.h>
-#include "src/data/model/treemodel.h"
-#include <QGridLayout>
 #include <kfiledialog.h>
-#include <QRadioButton>
-#include <QPushButton>
-#include <QTreeView>
+#include <klocalizedstring.h>
+#include "src/controller.h"
+#include "src/gui/dialog/exportsilencexmldialog.h"
+#include "src/persistence/xmldatastore.h"
 
 
 ExportSilenceXmlDialog::ExportSilenceXmlDialog(QWidget *parent, Qt::WindowFlags f)
 	: QFrame(parent, f)
 {
-	QGridLayout *layout = new QGridLayout;
+	layout = new QGridLayout;
 	int row = 0;
 
-	QRadioButton *rbExportAll = new QRadioButton(i18n("Export all"));
+	caption = new QLabel("<h2>" + i18n("Export Silence XML-File") + "</h2>");
+	layout->addWidget(caption, row, 0);
+	++row;
+
+	hint = new QLabel("<i>(" + i18n("Export data in the Silence format.") + ")</i>");
+	layout->addWidget(hint, row, 0);
+	++row;
+
+	rbExportAll = new QRadioButton(i18n("Export all"));
 	rbExportAll->setChecked(true);
 	layout->addWidget(rbExportAll, row, 0);
 	++row;
 
-	QRadioButton *rbExportPartial = new QRadioButton(i18n("Export partial"));
-	layout->addWidget(rbExportPartial, row, 0);
-	++row;
+	rbExportPartial = new QRadioButton(i18n("Export partial"));
+	layout->addWidget(rbExportPartial, row, 0, 1, 1, Qt::AlignTop);
 
-	QTreeView *treeview = new QTreeView;
-	TreeModel *treemodel = new TreeModel;
+	treeview = new QTreeView;
+	treemodel = new TreeModel;
 	treeview->setModel(treemodel);
 	treeview->setSelectionBehavior(QAbstractItemView::SelectItems);
 	treeview->setEnabled(false);
 	layout->addWidget(treeview, row, 1);
 	++row;
 
+	pathCaption = new QLabel(i18n("Exportfile"));
+	layout->addWidget(pathCaption, row, 0, 1, 1, Qt::AlignRight);
+
 	ledPath = new QLineEdit;
 	layout->addWidget(ledPath, row, 1);
 
-	QPushButton *btnSelectFile = new QPushButton(i18n("Select File"));
+	btnSelectFile = new QPushButton(i18n("Select File"));
 	btnSelectFile->setMinimumWidth(100);
 	connect(btnSelectFile, SIGNAL(clicked()), this, SLOT(selectFile()));
 	layout->addWidget(btnSelectFile, row, 2, 1, 1, Qt::AlignLeft);
 	++row;
 
 
-	QPushButton *btnAbort = new QPushButton(i18n("Close"));
+	btnAbort = new QPushButton(i18n("Close"));
 	btnAbort->setMinimumWidth(100);
 	connect(btnAbort, SIGNAL(clicked()), this, SLOT(abort()));
-	layout->addWidget(btnAbort, row, 0);
+	layout->addWidget(btnAbort, row, 0, 1, 1, Qt::AlignLeft);
 
-	QPushButton *btnExport = new QPushButton(i18n("Export"));
+	btnExport = new QPushButton(i18n("Export"));
 	btnExport->setMinimumWidth(100);
 	connect(btnExport, SIGNAL(clicked()), this, SLOT(exportXml()));
 	layout->addWidget(btnExport, row, 2, 1, 1, Qt::AlignLeft);
@@ -86,16 +93,26 @@ void ExportSilenceXmlDialog::abort(){
 }
 
 void ExportSilenceXmlDialog::exportXml(){
-	// get root node (selected or full)
-	// check for valid file
-	// tell the xmldatastore to write it to the file
+	if (ledPath->text().isEmpty()){
+		hint->setText("<font color=\"#FF0000\">" + i18n("Select a file to export the data.") + "</font>");
+		pathCaption->setText("<font color=\"#FF0000\">" + pathCaption->text() + "</font>");
+		return;
+	}
 
+	Node *exportRoot;
+	if (rbExportAll->isChecked()){
+		exportRoot = Controller::create()->getDataStore()->getRootNode();
+	} else {
+		QModelIndex index = treeview->selectionModel()->currentIndex();
+		exportRoot = treemodel->getItem(index);
+	}
+	XmlDataStore::writeToXmlFile(ledPath->text(), exportRoot);
 
 	emit exit(this);
 }
 
 void ExportSilenceXmlDialog::selectFile(){
-	QString fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML file"), this, i18n("Select File"));
+	QString fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
 	ledPath->setText(fileName);
 
 }

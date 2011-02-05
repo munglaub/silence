@@ -22,7 +22,13 @@
 #define EXPORTSILENCEXMLDIALOG_H
 
 #include <QFrame>
+#include <QGridLayout>
+#include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QTreeView>
+#include "src/data/model/treemodel.h"
 
 
 // TODO: docu
@@ -43,7 +49,18 @@ class ExportSilenceXmlDialog : public QFrame
 		void selectFile();
 	
 	private:
+		QGridLayout *layout;
+		QLabel	*caption,
+				*hint,
+				*pathCaption;
+		QRadioButton	*rbExportAll,
+						*rbExportPartial;
+		QTreeView *treeview;
+		TreeModel *treemodel;
 		QLineEdit *ledPath;
+		QPushButton *btnSelectFile,
+					*btnAbort,
+					*btnExport;
 
 };
 
