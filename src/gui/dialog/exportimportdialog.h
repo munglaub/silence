@@ -18,8 +18,8 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EXPORTSILENCEXMLDIALOG_H
-#define EXPORTSILENCEXMLDIALOG_H
+#ifndef EXPORTIMPORTDIALOG_H
+#define EXPORTIMPORTDIALOG_H
 
 #include <QFrame>
 #include <QGridLayout>
@@ -32,7 +32,7 @@
 
 
 // TODO: docu
-class ExportSilenceXmlDialog : public QFrame
+class ExportImportDialog : public QFrame
 {
 	Q_OBJECT
 
@@ -42,8 +42,8 @@ class ExportSilenceXmlDialog : public QFrame
 			Export		/*!< It is an export. */
 		};
 
-		ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type, QWidget *parent = 0, Qt::WindowFlags f = 0);
-		~ExportSilenceXmlDialog();
+		ExportImportDialog(ExportImportDialog::Type type, QWidget *parent = 0, Qt::WindowFlags f = 0);
+		~ExportImportDialog();
 
 		void setCaption(QString caption);
 		void setHint(QString hint);
@@ -53,7 +53,7 @@ class ExportSilenceXmlDialog : public QFrame
 		void setErrorMessage(QString errorMessage);
 	
 	signals:
-		void exit(ExportSilenceXmlDialog *self);
+		void exit(ExportImportDialog *self);
 		void executed(Node *root, QString fileName);
 	
 	private slots:
@@ -62,22 +62,22 @@ class ExportSilenceXmlDialog : public QFrame
 		void selectFile();
 	
 	private:
-		ExportSilenceXmlDialog::Type type;
+		ExportImportDialog::Type type;
 		QString errorMessage;
 		QGridLayout *layout;
 		QLabel	*caption,
 				*hint,
 				*pathCaption;
-		QRadioButton	*rbExportAll,
-						*rbExportPartial;
+		QRadioButton	*rbAll,
+						*rbPartial;
 		QTreeView *treeview;
 		TreeModel *treemodel;
 		QLineEdit *ledPath;
 		QPushButton *btnSelectFile,
 					*btnAbort,
-					*btnExport;
+					*btnExcecute;
 
 };
 
-#endif // EXPORTSILENCEXMLDIALOG_H
+#endif // EXPORTIMPORTDIALOG_H
 

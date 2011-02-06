@@ -22,7 +22,7 @@
 #define SILENCEMENU_H
 
 #include <kactioncollection.h>
-#include "src/gui/dialog/exportsilencexmldialog.h"
+#include "src/gui/dialog/exportimportdialog.h"
 #include "src/data/node/node.h"
 
 
@@ -36,8 +36,8 @@ class SilenceMenu : public QObject
 		~SilenceMenu();
 
 	private slots:
-		void showExportSilenceXmlDialog();
-		void closeExportSilenceXmlDialog(ExportSilenceXmlDialog *dlg);
+		void showExportImportDialog();
+		void closeExportImportDialog(ExportImportDialog *dlg);
 		void showImportSilenceXmlDialog();
 		void exportSilenceXml(Node *node, QString fileName);
 		void importSilenceXml(Node *node, QString fileName);

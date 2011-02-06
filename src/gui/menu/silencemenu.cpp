@@ -32,7 +32,7 @@ SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
 
 	action = actionCollection->addAction("export_silencexml");
 	action->setText(i18n("Export Silence XML-File"));
-	connect(action, SIGNAL(triggered()), this, SLOT(showExportSilenceXmlDialog()));
+	connect(action, SIGNAL(triggered()), this, SLOT(showExportImportDialog()));
 
 
 }
@@ -42,8 +42,8 @@ SilenceMenu::~SilenceMenu()
 	// TODO: implement
 }
 
-void SilenceMenu::showExportSilenceXmlDialog(){
-	ExportSilenceXmlDialog *dlg = new ExportSilenceXmlDialog(ExportSilenceXmlDialog::Export);
+void SilenceMenu::showExportImportDialog(){
+	ExportImportDialog *dlg = new ExportImportDialog(ExportImportDialog::Export);
 	dlg->setCaption(i18n("Export Silence XML-File"));
 	dlg->setHint(i18n("Export data in the Silence format."));
 	dlg->setOptions(i18n("Export all"), i18n("Export partial"));
@@ -52,11 +52,11 @@ void SilenceMenu::showExportSilenceXmlDialog(){
 	dlg->setErrorMessage(i18n("Select a file to export the data."));
 	Controller::create()->getMainWindow()->showDialog(dlg);
 	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(exportSilenceXml(Node*, QString)));
-	connect(dlg, SIGNAL(exit(ExportSilenceXmlDialog*)), this, SLOT(closeExportSilenceXmlDialog(ExportSilenceXmlDialog*)));
+	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
 }
 
 void SilenceMenu::showImportSilenceXmlDialog(){
-	ExportSilenceXmlDialog *dlg = new ExportSilenceXmlDialog(ExportSilenceXmlDialog::Import);
+	ExportImportDialog *dlg = new ExportImportDialog(ExportImportDialog::Import);
 	dlg->setCaption(i18n("Import Silence XML-File"));
 	dlg->setHint(i18n("Import data from a file in the Silence format."));
 	dlg->setOptions(i18n("Add to toplevel"), i18n("Select parent Node"));
@@ -66,11 +66,11 @@ void SilenceMenu::showImportSilenceXmlDialog(){
 
 	Controller::create()->getMainWindow()->showDialog(dlg);
 	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importSilenceXml(Node*, QString)));
-	connect(dlg, SIGNAL(exit(ExportSilenceXmlDialog*)), this, SLOT(closeExportSilenceXmlDialog(ExportSilenceXmlDialog*)));
+	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
 
 }
 
-void SilenceMenu::closeExportSilenceXmlDialog(ExportSilenceXmlDialog *dlg){
+void SilenceMenu::closeExportImportDialog(ExportImportDialog *dlg){
 	Controller::create()->getMainWindow()->removeDialog(dlg);
 	delete dlg;
 }

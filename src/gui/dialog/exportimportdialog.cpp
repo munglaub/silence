@@ -21,11 +21,11 @@
 #include <kfiledialog.h>
 #include <klocalizedstring.h>
 #include "src/controller.h"
-#include "src/gui/dialog/exportsilencexmldialog.h"
+#include "src/gui/dialog/exportimportdialog.h"
 #include "src/persistence/xmldatastore.h"
 
 
-ExportSilenceXmlDialog::ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type, QWidget *parent, Qt::WindowFlags f)
+ExportImportDialog::ExportImportDialog(ExportImportDialog::Type type, QWidget *parent, Qt::WindowFlags f)
 	: QFrame(parent, f)
 {
 	this->type = type;
@@ -41,13 +41,13 @@ ExportSilenceXmlDialog::ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type
 	layout->addWidget(hint, row, 0);
 	++row;
 
-	rbExportAll = new QRadioButton;
-	rbExportAll->setChecked(true);
-	layout->addWidget(rbExportAll, row, 0);
+	rbAll = new QRadioButton;
+	rbAll->setChecked(true);
+	layout->addWidget(rbAll, row, 0);
 	++row;
 
-	rbExportPartial = new QRadioButton;
-	layout->addWidget(rbExportPartial, row, 0, 1, 1, Qt::AlignTop);
+	rbPartial = new QRadioButton;
+	layout->addWidget(rbPartial, row, 0, 1, 1, Qt::AlignTop);
 
 	treeview = new QTreeView;
 	treemodel = new TreeModel;
@@ -75,52 +75,52 @@ ExportSilenceXmlDialog::ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type
 	connect(btnAbort, SIGNAL(clicked()), this, SLOT(abort()));
 	layout->addWidget(btnAbort, row, 0, 1, 1, Qt::AlignLeft);
 
-	btnExport = new QPushButton;
-	btnExport->setMinimumWidth(100);
-	connect(btnExport, SIGNAL(clicked()), this, SLOT(execute()));
-	layout->addWidget(btnExport, row, 2, 1, 1, Qt::AlignLeft);
+	btnExcecute = new QPushButton;
+	btnExcecute->setMinimumWidth(100);
+	connect(btnExcecute, SIGNAL(clicked()), this, SLOT(execute()));
+	layout->addWidget(btnExcecute, row, 2, 1, 1, Qt::AlignLeft);
 
 	setLayout(layout);
 
-	connect(rbExportPartial, SIGNAL(toggled(bool)), treeview, SLOT(setEnabled(bool)));
+	connect(rbPartial, SIGNAL(toggled(bool)), treeview, SLOT(setEnabled(bool)));
 }
 
-ExportSilenceXmlDialog::~ExportSilenceXmlDialog()
+ExportImportDialog::~ExportImportDialog()
 {
 	// TODO: implement
 }
 
-void ExportSilenceXmlDialog::setCaption(QString caption){
+void ExportImportDialog::setCaption(QString caption){
 	this->caption->setText("<h2>" + caption + "</h2>");
 }
 
-void ExportSilenceXmlDialog::setHint(QString hint){
+void ExportImportDialog::setHint(QString hint){
 	this->hint->setText("<i>(" + hint + ")</i>");
 }
 
-void ExportSilenceXmlDialog::setOptions(QString full, QString partial){
-	rbExportAll->setText(full);
-	rbExportPartial->setText(partial);
+void ExportImportDialog::setOptions(QString full, QString partial){
+	rbAll->setText(full);
+	rbPartial->setText(partial);
 }
 
-void ExportSilenceXmlDialog::setPathCaption(QString pathCaption){
+void ExportImportDialog::setPathCaption(QString pathCaption){
 	this->pathCaption->setText(pathCaption);
 }
 
-void ExportSilenceXmlDialog::setButtonCaptions(QString abort, QString execute){
+void ExportImportDialog::setButtonCaptions(QString abort, QString execute){
 	btnAbort->setText(abort);
-	btnExport->setText(execute);
+	btnExcecute->setText(execute);
 }
 
-void ExportSilenceXmlDialog::setErrorMessage(QString errorMessage){
+void ExportImportDialog::setErrorMessage(QString errorMessage){
 	this->errorMessage = errorMessage;
 }
 
-void ExportSilenceXmlDialog::abort(){
+void ExportImportDialog::abort(){
 	emit exit(this);
 }
 
-void ExportSilenceXmlDialog::execute(){
+void ExportImportDialog::execute(){
 	if (ledPath->text().isEmpty()){
 		hint->setText("<font color=\"#FF0000\">" + errorMessage + "</font>");
 		pathCaption->setText("<font color=\"#FF0000\">" + pathCaption->text() + "</font>");
@@ -128,7 +128,7 @@ void ExportSilenceXmlDialog::execute(){
 	}
 
 	Node *node;
-	if (rbExportAll->isChecked()){
+	if (rbAll->isChecked()){
 		node = Controller::create()->getDataStore()->getRootNode();
 	} else {
 		QModelIndex index = treeview->selectionModel()->currentIndex();
@@ -139,9 +139,9 @@ void ExportSilenceXmlDialog::execute(){
 	emit exit(this);
 }
 
-void ExportSilenceXmlDialog::selectFile(){
+void ExportImportDialog::selectFile(){
 	QString fileName;
-	if (type == ExportSilenceXmlDialog::Export){
+	if (type == ExportImportDialog::Export){
 		fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
 	} else {
 		fileName = KFileDialog::getOpenFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
