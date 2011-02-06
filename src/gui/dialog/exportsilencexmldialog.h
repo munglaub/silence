@@ -37,18 +37,33 @@ class ExportSilenceXmlDialog : public QFrame
 	Q_OBJECT
 
 	public:
-		ExportSilenceXmlDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+		enum Type {
+			Import,		/*!< It is an import. */
+			Export		/*!< It is an export. */
+		};
+
+		ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type, QWidget *parent = 0, Qt::WindowFlags f = 0);
 		~ExportSilenceXmlDialog();
+
+		void setCaption(QString caption);
+		void setHint(QString hint);
+		void setOptions(QString full, QString partial);
+		void setPathCaption(QString pathCaption);
+		void setButtonCaptions(QString abort, QString execute);
+		void setErrorMessage(QString errorMessage);
 	
 	signals:
 		void exit(ExportSilenceXmlDialog *self);
+		void executed(Node *root, QString fileName);
 	
 	private slots:
 		void abort();
-		void exportXml();
+		void execute();
 		void selectFile();
 	
 	private:
+		ExportSilenceXmlDialog::Type type;
+		QString errorMessage;
 		QGridLayout *layout;
 		QLabel	*caption,
 				*hint,

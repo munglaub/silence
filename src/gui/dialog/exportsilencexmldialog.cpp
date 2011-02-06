@@ -25,26 +25,28 @@
 #include "src/persistence/xmldatastore.h"
 
 
-ExportSilenceXmlDialog::ExportSilenceXmlDialog(QWidget *parent, Qt::WindowFlags f)
+ExportSilenceXmlDialog::ExportSilenceXmlDialog(ExportSilenceXmlDialog::Type type, QWidget *parent, Qt::WindowFlags f)
 	: QFrame(parent, f)
 {
+	this->type = type;
+
 	layout = new QGridLayout;
 	int row = 0;
 
-	caption = new QLabel("<h2>" + i18n("Export Silence XML-File") + "</h2>");
+	caption = new QLabel;
 	layout->addWidget(caption, row, 0);
 	++row;
 
-	hint = new QLabel("<i>(" + i18n("Export data in the Silence format.") + ")</i>");
+	hint = new QLabel;
 	layout->addWidget(hint, row, 0);
 	++row;
 
-	rbExportAll = new QRadioButton(i18n("Export all"));
+	rbExportAll = new QRadioButton;
 	rbExportAll->setChecked(true);
 	layout->addWidget(rbExportAll, row, 0);
 	++row;
 
-	rbExportPartial = new QRadioButton(i18n("Export partial"));
+	rbExportPartial = new QRadioButton;
 	layout->addWidget(rbExportPartial, row, 0, 1, 1, Qt::AlignTop);
 
 	treeview = new QTreeView;
@@ -55,7 +57,7 @@ ExportSilenceXmlDialog::ExportSilenceXmlDialog(QWidget *parent, Qt::WindowFlags 
 	layout->addWidget(treeview, row, 1);
 	++row;
 
-	pathCaption = new QLabel(i18n("Exportfile"));
+	pathCaption = new QLabel;
 	layout->addWidget(pathCaption, row, 0, 1, 1, Qt::AlignRight);
 
 	ledPath = new QLineEdit;
@@ -68,14 +70,14 @@ ExportSilenceXmlDialog::ExportSilenceXmlDialog(QWidget *parent, Qt::WindowFlags 
 	++row;
 
 
-	btnAbort = new QPushButton(i18n("Close"));
+	btnAbort = new QPushButton;
 	btnAbort->setMinimumWidth(100);
 	connect(btnAbort, SIGNAL(clicked()), this, SLOT(abort()));
 	layout->addWidget(btnAbort, row, 0, 1, 1, Qt::AlignLeft);
 
-	btnExport = new QPushButton(i18n("Export"));
+	btnExport = new QPushButton;
 	btnExport->setMinimumWidth(100);
-	connect(btnExport, SIGNAL(clicked()), this, SLOT(exportXml()));
+	connect(btnExport, SIGNAL(clicked()), this, SLOT(execute()));
 	layout->addWidget(btnExport, row, 2, 1, 1, Qt::AlignLeft);
 
 	setLayout(layout);
@@ -88,33 +90,63 @@ ExportSilenceXmlDialog::~ExportSilenceXmlDialog()
 	// TODO: implement
 }
 
+void ExportSilenceXmlDialog::setCaption(QString caption){
+	this->caption->setText("<h2>" + caption + "</h2>");
+}
+
+void ExportSilenceXmlDialog::setHint(QString hint){
+	this->hint->setText("<i>(" + hint + ")</i>");
+}
+
+void ExportSilenceXmlDialog::setOptions(QString full, QString partial){
+	rbExportAll->setText(full);
+	rbExportPartial->setText(partial);
+}
+
+void ExportSilenceXmlDialog::setPathCaption(QString pathCaption){
+	this->pathCaption->setText(pathCaption);
+}
+
+void ExportSilenceXmlDialog::setButtonCaptions(QString abort, QString execute){
+	btnAbort->setText(abort);
+	btnExport->setText(execute);
+}
+
+void ExportSilenceXmlDialog::setErrorMessage(QString errorMessage){
+	this->errorMessage = errorMessage;
+}
+
 void ExportSilenceXmlDialog::abort(){
 	emit exit(this);
 }
 
-void ExportSilenceXmlDialog::exportXml(){
+void ExportSilenceXmlDialog::execute(){
 	if (ledPath->text().isEmpty()){
-		hint->setText("<font color=\"#FF0000\">" + i18n("Select a file to export the data.") + "</font>");
+		hint->setText("<font color=\"#FF0000\">" + errorMessage + "</font>");
 		pathCaption->setText("<font color=\"#FF0000\">" + pathCaption->text() + "</font>");
 		return;
 	}
 
-	Node *exportRoot;
+	Node *node;
 	if (rbExportAll->isChecked()){
-		exportRoot = Controller::create()->getDataStore()->getRootNode();
+		node = Controller::create()->getDataStore()->getRootNode();
 	} else {
 		QModelIndex index = treeview->selectionModel()->currentIndex();
-		exportRoot = treemodel->getItem(index);
+		node = treemodel->getItem(index);
 	}
-	XmlDataStore::writeToXmlFile(ledPath->text(), exportRoot);
+	emit executed(node, ledPath->text());
 
 	emit exit(this);
 }
 
 void ExportSilenceXmlDialog::selectFile(){
-	QString fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
+	QString fileName;
+	if (type == ExportSilenceXmlDialog::Export){
+		fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
+	} else {
+		fileName = KFileDialog::getOpenFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
+	}
 	ledPath->setText(fileName);
-
 }
 
 

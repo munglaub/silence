@@ -68,6 +68,7 @@ class XmlDataStore : public AbstractDataStore
 
 		//TODO: docu
 		static void writeToXmlFile(QString fileName, Node* root);
+		static void readFromXmlFile(QString fileName, Node* root);
 
 	public slots:
 		void saveNode(Node *node);
@@ -88,7 +89,7 @@ class XmlDataStore : public AbstractDataStore
 		void xmlToLabels(QDomElement &xmlLabels, Label* label);
 
 		static void addXmlNode(Node* node, QDomElement &parent, QDomDocument &doc);
-		void xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc);
+		static void xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc, AbstractDataStore *datastore);
 
 		void writeLabels(QDomDocument &doc, QDomElement &parent, Label* parentLabel);
 };

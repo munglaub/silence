@@ -58,7 +58,7 @@ XmlDataStore::XmlDataStore()
 		if (e.tagName() == "labels")
 			xmlToLabels(e, rootLabel);
 		if (e.tagName() == "node")
-			xmlToNode(rootNode, n, doc);
+			xmlToNode(rootNode, n, doc, this);
 		n = n.nextSibling();
 	}
 }
@@ -146,7 +146,7 @@ void XmlDataStore::xmlToLabels(QDomElement &xmlLabels, Label* label)
 	}
 }
 
-void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc)
+void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &doc, AbstractDataStore *datastore)
 {
 	// node erstellen
 	int index = parentNode->getChildCount();
@@ -193,13 +193,13 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 		}
 
 		if (e.tagName() == "node")
-			xmlToNode(node, n, doc);
+			xmlToNode(node, n, doc, datastore);
 
 		n = n.nextSibling();
 	}
 	node->setModificationDate(modificationDate);
 	
-	connect(node, SIGNAL(changed(Node*)), this, SLOT(saveNode(Node*)));
+	connect(node, SIGNAL(changed(Node*)), datastore, SLOT(saveNode(Node*)));
 }
 
 void XmlDataStore::saveNode(Node*)
@@ -426,5 +426,37 @@ void XmlDataStore::writeToXmlFile(QString fileName, Node* root){
 	ts << doc.toString();
 	file.close();
 }
+
+void XmlDataStore::readFromXmlFile(QString fileName, Node* root){
+	QDomDocument doc;
+	QFile file(fileName);
+	if (!file.open(QIODevice::ReadOnly))
+		return;
+	doc.setContent(&file);
+	file.close();
+
+	QDomElement xmlRoot = doc.documentElement();
+	if (xmlRoot.tagName() != "silence")
+		return;
+	QDomNode n = xmlRoot.firstChild();
+	while (!n.isNull())
+	{
+		QDomElement e = n.toElement();
+		if (e.tagName() == "node")
+			xmlToNode(root, n, doc, Controller::create()->getDataStore());
+		n = n.nextSibling();
+	}
+	QList<Node*> nodes = root->toNodeList();
+	for (int i=0; i<nodes.size(); ++i){
+		// update ids to ensure uniq ids
+		nodes.at(i)->setId(new NodeId);
+		Controller::create()->getDataStore()->saveNode(nodes.at(i));
+	}
+
+	// tell the treemodel to update the treeview
+	Controller::create()->getTreeView()->getTreeModel()->insertRows(0, 0);
+}
+
+
 
 

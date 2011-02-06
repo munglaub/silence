@@ -26,10 +26,9 @@
 
 SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
 {
-	// TODO: implement
 	KAction *action = actionCollection->addAction("import_silencexml");
 	action->setText(i18n("Import Silence XML-File"));
-	connect(action, SIGNAL(triggered()), this, SLOT(importSilenceXml()));
+	connect(action, SIGNAL(triggered()), this, SLOT(showImportSilenceXmlDialog()));
 
 	action = actionCollection->addAction("export_silencexml");
 	action->setText(i18n("Export Silence XML-File"));
@@ -43,12 +42,32 @@ SilenceMenu::~SilenceMenu()
 	// TODO: implement
 }
 
-#include<iostream>
 void SilenceMenu::showExportSilenceXmlDialog(){
-std::cout << "foo" << std::endl;
-	ExportSilenceXmlDialog *dlg = new ExportSilenceXmlDialog;
+	ExportSilenceXmlDialog *dlg = new ExportSilenceXmlDialog(ExportSilenceXmlDialog::Export);
+	dlg->setCaption(i18n("Export Silence XML-File"));
+	dlg->setHint(i18n("Export data in the Silence format."));
+	dlg->setOptions(i18n("Export all"), i18n("Export partial"));
+	dlg->setPathCaption(i18n("Exportfile"));
+	dlg->setButtonCaptions(i18n("Abort"), i18n("Export"));
+	dlg->setErrorMessage(i18n("Select a file to export the data."));
 	Controller::create()->getMainWindow()->showDialog(dlg);
+	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(exportSilenceXml(Node*, QString)));
 	connect(dlg, SIGNAL(exit(ExportSilenceXmlDialog*)), this, SLOT(closeExportSilenceXmlDialog(ExportSilenceXmlDialog*)));
+}
+
+void SilenceMenu::showImportSilenceXmlDialog(){
+	ExportSilenceXmlDialog *dlg = new ExportSilenceXmlDialog(ExportSilenceXmlDialog::Import);
+	dlg->setCaption(i18n("Import Silence XML-File"));
+	dlg->setHint(i18n("Import data from a file in the Silence format."));
+	dlg->setOptions(i18n("Add to toplevel"), i18n("Select parent Node"));
+	dlg->setPathCaption(i18n("Importfile"));
+	dlg->setButtonCaptions(i18n("Abort"), i18n("Import"));
+	dlg->setErrorMessage(i18n("Select a file to import the data from."));
+
+	Controller::create()->getMainWindow()->showDialog(dlg);
+	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importSilenceXml(Node*, QString)));
+	connect(dlg, SIGNAL(exit(ExportSilenceXmlDialog*)), this, SLOT(closeExportSilenceXmlDialog(ExportSilenceXmlDialog*)));
+
 }
 
 void SilenceMenu::closeExportSilenceXmlDialog(ExportSilenceXmlDialog *dlg){
@@ -56,9 +75,11 @@ void SilenceMenu::closeExportSilenceXmlDialog(ExportSilenceXmlDialog *dlg){
 	delete dlg;
 }
 
-void SilenceMenu::importSilenceXml(){
-std::cout << "bar" << std::endl;
+void SilenceMenu::exportSilenceXml(Node *node, QString fileName){
+	XmlDataStore::writeToXmlFile(fileName, node);
 }
 
-
+void SilenceMenu::importSilenceXml(Node *node, QString fileName){
+	XmlDataStore::readFromXmlFile(fileName, node);
+}
 
