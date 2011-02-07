@@ -22,18 +22,28 @@
 #define SILENCEMENU_H
 
 #include <kactioncollection.h>
-#include "src/gui/dialog/exportimportdialog.h"
 #include "src/data/node/node.h"
+#include "src/gui/dialog/exportimportdialog.h"
 
 
-//TODO: docu
+/*!\class SilenceMenu
+ * \brief Consists of actions to import and export data and to exit the application.
+ *
+ * This menu creates the actions to import and export data.
+ *
+ * \author Manuel Unglaub
+ */
 class SilenceMenu : public QObject
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the SilenceMenu and creates actions.
+		 * \param actionCollection The applications actioncollection which is needed to add the created actions.
+		 */
 		SilenceMenu(KActionCollection *actionCollection);
-		~SilenceMenu();
 
 	private slots:
 		void showExportImportDialog();

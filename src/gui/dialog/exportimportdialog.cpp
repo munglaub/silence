@@ -75,10 +75,10 @@ ExportImportDialog::ExportImportDialog(ExportImportDialog::Type type, QWidget *p
 	connect(btnAbort, SIGNAL(clicked()), this, SLOT(abort()));
 	layout->addWidget(btnAbort, row, 0, 1, 1, Qt::AlignLeft);
 
-	btnExcecute = new QPushButton;
-	btnExcecute->setMinimumWidth(100);
-	connect(btnExcecute, SIGNAL(clicked()), this, SLOT(execute()));
-	layout->addWidget(btnExcecute, row, 2, 1, 1, Qt::AlignLeft);
+	btnExecute = new QPushButton;
+	btnExecute->setMinimumWidth(100);
+	connect(btnExecute, SIGNAL(clicked()), this, SLOT(execute()));
+	layout->addWidget(btnExecute, row, 2, 1, 1, Qt::AlignLeft);
 
 	setLayout(layout);
 
@@ -87,7 +87,16 @@ ExportImportDialog::ExportImportDialog(ExportImportDialog::Type type, QWidget *p
 
 ExportImportDialog::~ExportImportDialog()
 {
-	// TODO: implement
+	delete btnExecute;
+	delete btnAbort;
+	delete btnSelectFile;
+	delete ledPath;
+	delete treemodel;
+	delete treeview;
+	delete pathCaption;
+	delete hint;
+	delete caption;
+	delete layout;
 }
 
 void ExportImportDialog::setCaption(QString caption){
@@ -109,7 +118,7 @@ void ExportImportDialog::setPathCaption(QString pathCaption){
 
 void ExportImportDialog::setButtonCaptions(QString abort, QString execute){
 	btnAbort->setText(abort);
-	btnExcecute->setText(execute);
+	btnExecute->setText(execute);
 }
 
 void ExportImportDialog::setErrorMessage(QString errorMessage){

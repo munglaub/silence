@@ -21,11 +21,11 @@
 #ifndef XMLDATASTORE_H
 #define XMLDATASTORE_H
 
+#include <QDomDocument>
+#include <QObject>
 #include "src/data/label.h"
 #include "src/data/node/node.h"
 #include "src/persistence/abstractdatastore.h"
-#include <QDomDocument>
-#include <QObject>
 
 
 /*!\class XmlDataStore
@@ -66,8 +66,18 @@ class XmlDataStore : public AbstractDataStore
 		void addLabel(Label *label);
 		void removeLabel(Label *label);
 
-		//TODO: docu
+		/*!
+		 * Use this function to write a node with all its subnodes into a XML-file. It uses the Silence format but it will NOT save the labelstructure. The labels assignt to the nodes will be saved.
+		 * \param fileName The path and name of the file to write to.
+		 * \param root The node with its subnodes which will be saved.
+		 */
 		static void writeToXmlFile(QString fileName, Node* root);
+
+		/*!
+		 * Use this function to read a XML-file and add the nodes which are found to the provided node. It will not read a labelstructure form the XML-file.
+		 * \param fileName The path and name of the file which will be read.
+		 * \param root The node to add the found nodes.
+		 */
 		static void readFromXmlFile(QString fileName, Node* root);
 
 	public slots:

@@ -18,10 +18,10 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/menu/silencemenu.h"
 #include <kaction.h>
 #include <klocalizedstring.h>
 #include "src/controller.h"
+#include "src/gui/menu/silencemenu.h"
 
 
 SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
@@ -33,13 +33,6 @@ SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
 	action = actionCollection->addAction("export_silencexml");
 	action->setText(i18n("Export Silence XML-File"));
 	connect(action, SIGNAL(triggered()), this, SLOT(showExportImportDialog()));
-
-
-}
-
-SilenceMenu::~SilenceMenu()
-{
-	// TODO: implement
 }
 
 void SilenceMenu::showExportImportDialog(){

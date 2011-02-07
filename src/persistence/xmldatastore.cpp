@@ -418,7 +418,6 @@ void XmlDataStore::writeToXmlFile(QString fileName, Node* root){
 		addXmlNode(root, xmlRoot, doc);
 	}
 	
-	// write to file
 	KSaveFile file(fileName);
 	if( !file.open(QIODevice::WriteOnly))
 		return;
