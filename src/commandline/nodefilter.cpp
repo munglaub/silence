@@ -92,10 +92,10 @@ void NodeFilter::printNodes()
 	for (int i=0; i < nodes.size(); ++i)
 	{
 		cout << "(" << nodes.at(i)->getId().getId() << ") - ";
-		cout << nodes.at(i)->getCaption().toStdString() << endl;
-		cout << "  Created: " << nodes.at(i)->getCreationDate().toString(Qt::DefaultLocaleShortDate).toStdString();
-		cout << ", Modified: " << nodes.at(i)->getModificationDate().toString(Qt::DefaultLocaleShortDate).toStdString() << endl;
-		cout << "  Labels:  " << nodes.at(i)->getLabels()->join(", ").toStdString() << endl;
+		cout << nodes.at(i)->getCaption().toLocal8Bit().data() << endl;
+		cout << "  Created: " << nodes.at(i)->getCreationDate().toString(Qt::DefaultLocaleShortDate).toLocal8Bit().data();
+		cout << ", Modified: " << nodes.at(i)->getModificationDate().toString(Qt::DefaultLocaleShortDate).toLocal8Bit().data() << endl;
+		cout << "  Labels:  " << nodes.at(i)->getLabels()->join(", ").toLocal8Bit().data() << endl;
 	}
 }
 

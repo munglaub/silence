@@ -58,7 +58,7 @@ void CmdMain::printNode(int id)
 
 	if (node)
 	{
-		cout << node->toString().toStdString() << endl;
+		cout << node->toString().toLocal8Bit().data() << endl;
 	} else {
 		cout << "not found" << endl;
 	}
