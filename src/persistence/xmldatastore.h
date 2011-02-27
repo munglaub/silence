@@ -82,6 +82,7 @@ class XmlDataStore : public AbstractDataStore
 
 	public slots:
 		void saveNode(Node *node);
+		void saveNodes(QList<Node*> nodes);
 	
 	private:
 		Node *rootNode;

@@ -21,6 +21,7 @@
 #ifndef ABSTRACTDATASTORE_H
 #define ABSTRACTDATASTORE_H
 
+#include <QList>
 #include <QObject>
 #include "src/data/label.h"
 #include "src/data/node/customnodetypedefinition.h"
@@ -113,6 +114,12 @@ class AbstractDataStore : public QObject
 		 * \param node This node will be saved with all its changes.
 		 */
 		virtual void saveNode(Node *node) = 0;
+
+		/*!
+		 * Save a list of nodes.
+		 * \param nodes This nodes will be saved with all their changes.
+		 */
+		 virtual void saveNodes(QList<Node*> nodes) = 0;
 };
 
 #endif // ABSTRACTDATASTORE_H

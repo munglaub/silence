@@ -207,6 +207,11 @@ void XmlDataStore::saveNode(Node*)
 	saveAll();
 }
 
+void XmlDataStore::saveNodes(QList<Node*>)
+{
+	saveAll();
+}
+
 void XmlDataStore::saveCustomNodeTypeDefinitions()
 {
 	QDomDocument doc;
@@ -445,12 +450,13 @@ void XmlDataStore::readFromXmlFile(QString fileName, Node* root){
 			xmlToNode(root, n, doc, Controller::create()->getDataStore());
 		n = n.nextSibling();
 	}
+
 	QList<Node*> nodes = root->toNodeList();
 	for (int i=0; i<nodes.size(); ++i){
 		// update ids to ensure uniq ids
 		nodes.at(i)->setId(new NodeId);
-		Controller::create()->getDataStore()->saveNode(nodes.at(i));
 	}
+	Controller::create()->getDataStore()->saveNodes(nodes);
 
 	// tell the treemodel to update the treeview
 	Controller::create()->getTreeView()->getTreeModel()->insertRows(0, 0);
