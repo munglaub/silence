@@ -21,12 +21,31 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include <QString>
+
 //#define VERSION "0.1"
 
 static const char VERSION[] = "0.2.1";
 static const char APPNAME[] = "Silence";
 
 namespace Actions {
+	static const QString SHOW_LABELMANAGEMENT = "showlabelmanagement";
+	static const QString SHOW_NODEMANAGEMENT = "shownodemanagement";
+	static const QString SHOW_TREENODESIDEBAR = "showtreenodesidebar";
+	static const QString SHOW_INFOSIDEBAR = "showinfosidebar";
+	static const QString SHOW_NAVISIDEBAR = "shownavisidebar";
+	static const QString SHOW_PROPERTYSIDEBAR = "showpropertysidebar";
+	static const QString SHOW_SEARCHSIDEBAR = "showsearchsidebar";
+	static const QString EXIT = "exit";
+	static const QString GO_PREVIOUS = "go-previous";
+	static const QString GO_NEXT = "go-next";
+	static const QString ADD_NODE = "addnode";
+	static const QString ADD_SUBNODE = "addsubnode";
+	static const QString REMOVE_NODE = "removenode";
+	static const QString SHOW_NODE_PROPERTIES = "shownodeproperties";
+	static const QString SHOW_WELCOMEVIEW = "showwelcomeview";
+
+
 	static const QString SAVE = "si_save";
 	static const QString UNDO = "si_undo";
 	static const QString REDO = "si_redo";

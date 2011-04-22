@@ -18,6 +18,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/sidebar/navigationsidebar.h"
 
@@ -31,11 +32,11 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 
 	toolbar = new QToolBar;
 
-	prevAction = Controller::create()->getActionManager()->getGlobalAction("go-previous");
+	prevAction = Controller::create()->getActionManager()->getGlobalAction(Actions::GO_PREVIOUS);
 	toolbar->addAction(prevAction);
 	connect(prevAction, SIGNAL(triggered()), this, SLOT(previous()));
 
-	nextAction = Controller::create()->getActionManager()->getGlobalAction("go-next");
+	nextAction = Controller::create()->getActionManager()->getGlobalAction(Actions::GO_NEXT);
 	toolbar->addAction(nextAction);
 	connect(nextAction, SIGNAL(triggered()), this, SLOT(next()));
 

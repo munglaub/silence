@@ -37,34 +37,33 @@ ActionManager::~ActionManager()
 
 void ActionManager::createGlobalActions()
 {
-// TODO: write constants to constants.h
-	addGlobalAction("showlabelmanagement", i18n("Manage Labels"));
-	addGlobalAction("shownodemanagement", i18n("Manage Nodetypes"));
-	addGlobalAction("showtreenodesidebar", i18n("Node Sidebar"), true);
-	addGlobalAction("showinfosidebar", i18n("Information Sidebar"), true);
-	addGlobalAction("shownavisidebar", i18n("Navigation Sidebar"), true);
-	addGlobalAction("showpropertysidebar", i18n("Node Properties Sidebar"), true);
-	addGlobalAction("showsearchsidebar", i18n("Search Nodes Sidebar"), true);
+	addGlobalAction(Actions::SHOW_LABELMANAGEMENT, i18n("Manage Labels"));
+	addGlobalAction(Actions::SHOW_NODEMANAGEMENT, i18n("Manage Nodetypes"));
+	addGlobalAction(Actions::SHOW_TREENODESIDEBAR, i18n("Node Sidebar"), true);
+	addGlobalAction(Actions::SHOW_INFOSIDEBAR, i18n("Information Sidebar"), true);
+	addGlobalAction(Actions::SHOW_NAVISIDEBAR, i18n("Navigation Sidebar"), true);
+	addGlobalAction(Actions::SHOW_PROPERTYSIDEBAR, i18n("Node Properties Sidebar"), true);
+	addGlobalAction(Actions::SHOW_SEARCHSIDEBAR, i18n("Search Nodes Sidebar"), true);
 
-	globalActions["exit"] = actioncollection->addAction(KStandardAction::Quit, "exit");
+	globalActions[Actions::EXIT] = actioncollection->addAction(KStandardAction::Quit, "exit");
 
-	KAction *action = addGlobalAction("go-previous", i18nc("go to the previous selected node", "Back"));
+	KAction *action = addGlobalAction(Actions::GO_PREVIOUS, i18nc("go to the previous selected node", "Back"));
 	action->setIcon(KIcon("go-previous"));
 	action->setShortcut(QKeySequence::Back);
 
-	action = addGlobalAction("go-next", i18nc("go to the next node", "Forward"));
+	action = addGlobalAction(Actions::GO_NEXT, i18nc("go to the next node", "Forward"));
 	action->setIcon(KIcon("go-next"));
 	action->setShortcut(QKeySequence::Forward);
 
-	action = addGlobalAction("addnode", i18n("Add Node"));
+	action = addGlobalAction(Actions::ADD_NODE, i18n("Add Node"));
 	action->setIcon(KIcon("list-add"));
-	action = addGlobalAction("addsubnode", i18n("Add Subnode"));
+	action = addGlobalAction(Actions::ADD_SUBNODE, i18n("Add Subnode"));
 	action->setIcon(KIcon("view-right-new"));
-	action = addGlobalAction("removenode", i18n("Remove Node"));
+	action = addGlobalAction(Actions::REMOVE_NODE, i18n("Remove Node"));
 	action->setIcon(KIcon("list-remove"));
-	action = addGlobalAction("shownodeproperties", i18n("Properties"));
+	action = addGlobalAction(Actions::SHOW_NODE_PROPERTIES, i18n("Properties"));
 	action->setIcon(KIcon("document-properties"));
-	action = addGlobalAction("showwelcomeview", i18n("Welcome View"));
+	action = addGlobalAction(Actions::SHOW_WELCOMEVIEW, i18n("Welcome View"));
 	action->setIcon(KIcon("silence"));
 }
 

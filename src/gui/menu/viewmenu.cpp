@@ -24,38 +24,39 @@
 #include "src/controller.h"
 #include "src/gui/menu/viewmenu.h"
 #include "src/gui/actionmanager.h"
+#include "src/constants.h"
 
 
 ViewMenu::ViewMenu()
 {
 	ActionManager *ac = Controller::create()->getActionManager();
-	connect(ac->getGlobalAction("showlabelmanagement"), SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
+	connect(ac->getGlobalAction(Actions::SHOW_LABELMANAGEMENT), SIGNAL(triggered()), this, SLOT(showLabelManagementDialog()));
 
-	connect(ac->getGlobalAction("shownodemanagement"), SIGNAL(triggered()), this, SLOT(showNodeTypeManagement()));
+	connect(ac->getGlobalAction(Actions::SHOW_NODEMANAGEMENT), SIGNAL(triggered()), this, SLOT(showNodeTypeManagement()));
 
-	KAction *action = ac->getGlobalAction("showtreenodesidebar");
+	KAction *action = ac->getGlobalAction(Actions::SHOW_TREENODESIDEBAR);
 	action->setChecked(true);
 	// TODO: Controller::create()->getTreeView()->isVisible() does not work
 	//	 --> find a working solution which is NOT hardcorded!!
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showNodeTree(bool)));
 	connect(Controller::create()->getTreeView(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));
 
-	action = ac->getGlobalAction("showinfosidebar");
+	action = ac->getGlobalAction(Actions::SHOW_INFOSIDEBAR);
 	action->setChecked(true);
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showInfo(bool)));
 	connect(Controller::create()->getInfoSidebar(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));
 
-	action = ac->getGlobalAction("shownavisidebar");
+	action = ac->getGlobalAction(Actions::SHOW_NAVISIDEBAR);
 	action->setChecked(true);
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showNavigation(bool)));
 	connect(Controller::create()->getNavigationSidebar(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));
 
-	action = ac->getGlobalAction("showpropertysidebar");
+	action = ac->getGlobalAction(Actions::SHOW_PROPERTYSIDEBAR);
 	action->setChecked(false);
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showProperties(bool)));
 	connect(Controller::create()->getNodePropertyWidget(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));
 
-	action = ac->getGlobalAction("showsearchsidebar");
+	action = ac->getGlobalAction(Actions::SHOW_SEARCHSIDEBAR);
 	action->setChecked(true);
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(showNodeSearch(bool)));
 	connect(Controller::create()->getSearchNodeSidebar(), SIGNAL(visibilityChanged(bool)), action, SLOT(setChecked(bool)));

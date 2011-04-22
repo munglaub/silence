@@ -23,6 +23,7 @@
 #include <QMenu>
 #include <QPoint>
 #include <QVariant>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/model/treemodel.h"
 #include "src/data/node/richtextnodecontent.h"
@@ -139,25 +140,25 @@ void TreeView::setupToolbar()
 	ActionManager *ac = Controller::create()->getActionManager();
 	toolbar = new QToolBar();
 
-	addRowAction = ac->getGlobalAction("addnode");
+	addRowAction = ac->getGlobalAction(Actions::ADD_NODE);
 	toolbar->addAction(addRowAction);
 	connect(addRowAction, SIGNAL(triggered()), this, SLOT(addRow()));
 
-	addChildAction = ac->getGlobalAction("addsubnode");
+	addChildAction = ac->getGlobalAction(Actions::ADD_SUBNODE);
 	toolbar->addAction(addChildAction);
 	connect(addChildAction, SIGNAL(triggered()), this, SLOT(addChild()));
 
-	removeAction = ac->getGlobalAction("removenode");
+	removeAction = ac->getGlobalAction(Actions::REMOVE_NODE);
 	toolbar->addAction(removeAction);
 	connect(removeAction, SIGNAL(triggered()), questionFrame, SLOT(show()));
 
 	toolbar->addSeparator();
 
-	propertyAction = ac->getGlobalAction("shownodeproperties");
+	propertyAction = ac->getGlobalAction(Actions::SHOW_NODE_PROPERTIES);
 	toolbar->addAction(propertyAction);
 	connect(propertyAction, SIGNAL(triggered()), Controller::create()->getNodePropertyWidget(), SLOT(show()));
 
-	welcomeAction = ac->getGlobalAction("showwelcomeview");
+	welcomeAction = ac->getGlobalAction(Actions::SHOW_WELCOMEVIEW);
 	toolbar->addAction(welcomeAction);
 	connect(welcomeAction, SIGNAL(triggered(bool)), this, SLOT(showWelcomeView()));
 }

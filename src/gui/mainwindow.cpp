@@ -22,6 +22,7 @@
 #include <klocalizedstring.h>
 #include <KMenuBar>
 #include <QApplication>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/actionmanager.h"
 #include "src/gui/mainwindow.h"
@@ -82,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->getRichTextEdit()->setVisible(false);
 
 	viewmenu = new ViewMenu();
-	connect(controller->getActionManager()->getGlobalAction("exit"), SIGNAL(triggered()), qApp, SLOT(quit()));
+	connect(controller->getActionManager()->getGlobalAction(Actions::EXIT), SIGNAL(triggered()), qApp, SLOT(quit()));
 
 	setupGUI(QSize(1100, 600), Keys | StatusBar | Save | Create);
 }
