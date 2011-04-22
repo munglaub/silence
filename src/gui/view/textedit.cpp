@@ -71,15 +71,23 @@ void TextEdit::addAction(KActionCollection *actionCollection, KStandardAction::S
 	actionCollection->addAction(name, action);
 	actionGroup->addAction(action);
 }
-
+#include "src/constants.h"
 void TextEdit::setupActions(KActionCollection *actionCollection)
 {
+//TODO: get action from actionmanager
+	ActionManager *ac = Controller::create()->getActionManager();
 	QAction *action;
 	actionGroup = new QActionGroup(this);
 
-	addAction(actionCollection, KStandardAction::Save, "te_save");
-	saveAction = actionCollection->action("te_save");
-	saveAction->disconnect();
+//TODO: remove:
+//isActive = true;
+//	addAction(actionCollection, KStandardAction::Save, "te_save");
+//	saveAction = actionCollection->action("te_save");
+view->actionCollection()->removeAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Save)));
+//	saveAction = ac->getAction("si_save");
+	saveAction = ac->getAction(Actions::SAVE);
+//	saveAction->disconnect();
+	actionGroup->addAction(saveAction);
 	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
 
 	action = new QAction(actionGroup);
@@ -162,11 +170,15 @@ void TextEdit::setText(QString text)
 	view->setCursorPosition(KTextEditor::Cursor(0, 0));
 }
 
+#include<iostream>
 void TextEdit::saveContent()
 {
-	content->setText(document->text());
-	Controller::create()->getStatusBar()->setSaveStatus(true);
-	isChanged = false;
+	if (isActive){
+		std::cout << "TextEdid save" << std::endl;
+		content->setText(document->text());
+		Controller::create()->getStatusBar()->setSaveStatus(true);
+		isChanged = false;
+	}
 }
 
 void TextEdit::setSyntax(QString syntax)
@@ -186,8 +198,10 @@ AbstractContentChange* TextEdit::getChange()
 
 void TextEdit::setVisible(bool visible)
 {
+	this->isActive = visible;
 	this->QWidget::setVisible(visible);
 	actionGroup->setVisible(visible);
+	saveAction->setVisible(true); //TODO: remove/replace whatever..
 }
 
 void TextEdit::contentChanged()

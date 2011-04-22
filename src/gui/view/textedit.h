@@ -98,10 +98,12 @@ class TextEdit : public AbstractContentView
 		void saveContent();
 		void contentChanged();
 		void cursorPositionChanged(KTextEditor::View *view, const KTextEditor::Cursor &newPosition);
+		//TODO: slots for all actions, execute actions only if isActive or visible
 	
 	private:
 		TextNodeContent *content;
 		bool isChanged;
+		bool isActive; //TODO: isActive or use visible
 		QVBoxLayout *layout;
 
 		QActionGroup *actionGroup;

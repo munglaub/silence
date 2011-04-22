@@ -43,7 +43,10 @@ class ActionManager
 		QHash<QString, KAction*> actions;
 
 		void createGlobalActions();
+		void createActions();
 		KAction* addGlobalAction(QString name, QString text, bool checkable = false);
+		KAction* addAction(KStandardAction::StandardAction actionType, QString name);
+		KAction* addAction(QString name, QString text, QIcon icon, bool checkable = false);
 
 };
 

@@ -18,14 +18,16 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/actionmanager.h"
 #include <klocalizedstring.h>
+#include "src/constants.h"
+#include "src/gui/actionmanager.h"
 
 
 ActionManager::ActionManager(KActionCollection *actioncollection)
 {
 	this->actioncollection = actioncollection;
 	createGlobalActions();
+	createActions();
 }
 
 ActionManager::~ActionManager()
@@ -35,6 +37,7 @@ ActionManager::~ActionManager()
 
 void ActionManager::createGlobalActions()
 {
+// TODO: write constants to constants.h
 	addGlobalAction("showlabelmanagement", i18n("Manage Labels"));
 	addGlobalAction("shownodemanagement", i18n("Manage Nodetypes"));
 	addGlobalAction("showtreenodesidebar", i18n("Node Sidebar"), true);
@@ -63,6 +66,75 @@ void ActionManager::createGlobalActions()
 	action->setIcon(KIcon("document-properties"));
 	action = addGlobalAction("showwelcomeview", i18n("Welcome View"));
 	action->setIcon(KIcon("silence"));
+}
+
+void ActionManager::createActions()
+{
+	addAction(KStandardAction::Save, Actions::SAVE);
+	addAction(KStandardAction::Undo, Actions::UNDO);
+	addAction(KStandardAction::Redo, Actions::REDO);
+	addAction(KStandardAction::Cut, Actions::CUT);
+	addAction(KStandardAction::Copy, Actions::COPY);
+	addAction(KStandardAction::Paste, Actions::PASTE);
+	addAction(KStandardAction::SelectAll, Actions::SELECTALL);
+
+	addAction(Actions::BOLD, i18nc("toggle selected text to bold", "Bold"), KIcon("format-text-bold"), true);
+	actions[Actions::BOLD]->setShortcut(Qt::CTRL + Qt::Key_B);
+	QFont bold;
+	bold.setBold(true);
+	actions[Actions::BOLD]->setFont(bold);
+
+	addAction(Actions::ITALIC, i18nc("toggle selected text to italic", "Italic"), KIcon("format-text-italic"), true);
+	actions[Actions::ITALIC]->setShortcut(Qt::CTRL + Qt::Key_I);
+	QFont italic;
+	italic.setItalic(true);
+	actions[Actions::ITALIC]->setFont(italic);
+
+	addAction(Actions::UNDERLINE, i18nc("underline selected text", "Underline"), KIcon("format-text-underline"), true);
+	actions[Actions::UNDERLINE]->setShortcut(Qt::CTRL + Qt::Key_U);
+	QFont underline;
+	underline.setUnderline(true);
+	actions[Actions::UNDERLINE]->setFont(underline);
+
+	addAction(Actions::ALIGN_LEFT, i18nc("justify text left", "Left"), KIcon("format-justify-left"), true);
+	addAction(Actions::ALIGN_RIGHT, i18nc("justify text right", "Right"), KIcon("format-justify-right"), true);
+	addAction(Actions::ALIGN_CENTER, i18nc("justify text centered", "Center"), KIcon("format-justify-center"), true);
+	addAction(Actions::ALIGN_JUSTIFY, i18n("Justify"), KIcon("format-justify-fill"), true);
+
+	addAction(Actions::UNORDERED_LIST, i18n("Create Unordered List"), KIcon("format-list-unordered"));
+	addAction(Actions::ORDERED_LIST, i18n("Create Ordered List"), KIcon("format-list-ordered"));
+	addAction(Actions::INDENT_MORE, i18n("Indent more"), KIcon("format-indent-more"));
+	addAction(Actions::INDENT_LESS, i18n("Indent less"), KIcon("format-indent-less"));
+
+	addAction(Actions::INSERT_IMAGE, i18n("Insert Image"), KIcon("insert-image"));
+	addAction(Actions::INSERT_RULE, i18n("Insert Horizontal Rule"), KIcon("insert-horizontal-rule"));
+	addAction(Actions::INSERT_LINK, i18n("Insert Link"), KIcon("insert-link"));
+	addAction(Actions::INSERT_TABLE, i18n("Insert Table"), KIcon("insert-table"));
+
+	addAction(Actions::FIND, i18n("&Find"), KIcon("edit-find"));
+	actions[Actions::FIND]->setShortcut(QKeySequence::Find);
+	addAction(Actions::REPLACE, i18n("Find/Replace"), KIcon("edit-find-replace"));
+	addAction(Actions::TEXT_COLOR, i18n("Text Color"), KIcon("format-text-color"));
+	addAction(Actions::TEXT_BGCOLOR, i18n("Text Highlight"), KIcon("format-fill-color"));
+
+	addAction(Actions::INSERT_TABLE_ROW, i18n("Insert Table Row"), QIcon(":/icons/actions/insert-table-row.png"));
+	addAction(Actions::INSERT_TABLE_COLUMN, i18n("Insert Table Column"), QIcon(":/icons/actions/insert-table-column.png"));
+	addAction(Actions::REMOVE_TABLE_ROW, i18n("Remove Table Row"), QIcon(":/icons/actions/remove-table-row.png"));
+	addAction(Actions::REMOVE_TABLE_COLUMN, i18n("Remove Table Column"), QIcon(":/icons/actions/remove-table-column.png"));
+}
+
+KAction* ActionManager::addAction(KStandardAction::StandardAction actionType, QString name)
+{
+	actions[name] = actioncollection->addAction(actionType, name);
+	return actions[name];
+}
+
+KAction* ActionManager::addAction(QString name, QString text, QIcon icon, bool checkable){
+	actions[name] = actioncollection->addAction(name);
+	actions[name]->setText(text);
+	actions[name]->setIcon(icon);
+	actions[name]->setCheckable(checkable);
+	return actions[name];
 }
 
 KAction* ActionManager::addGlobalAction(QString name, QString text, bool checkable)

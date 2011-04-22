@@ -83,6 +83,12 @@ class RichTextEdit : public AbstractContentView
 
 	private slots:
 		void saveContent();
+		void undo();
+		void redo();
+		void cut();
+		void copy();
+		void paste();
+		void selectAll();
 		void textBold();
 		void textItalic();
 		void textUnderline();
@@ -97,6 +103,8 @@ class RichTextEdit : public AbstractContentView
 
 		void contentChanged();
 
+		void showFind();
+		void showReplace();
 		void findNext();
 		void findPrev();
 		void findFirst();
@@ -120,6 +128,7 @@ class RichTextEdit : public AbstractContentView
 		void removeTableColumn();
 
 	private:
+		bool isActive; //TODO: isActive or use visible
 		RichTextNodeContent *content;
 		bool isChanged;
 		TextFind *findWidget;
