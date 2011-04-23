@@ -585,6 +585,8 @@ void RichTextEdit::setVisible(bool visible)
 	this->QWidget::setVisible(visible);
 	for (int i = 0; i < actions.size(); ++i)
 		actions.at(i)->setVisible(visible);
+	actionUndo->setEnabled(textedit->document()->isUndoAvailable());
+	actionRedo->setEnabled(textedit->document()->isRedoAvailable());
 }
 
 void RichTextEdit::showFind(){

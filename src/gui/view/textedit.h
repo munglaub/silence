@@ -25,6 +25,7 @@
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/view/abstractcontentview.h"
 
+
 namespace KTextEditor
 {
 	class Document;
@@ -56,9 +57,8 @@ class TextEdit : public AbstractContentView
 		/*! The constructor.
 		 *
 		 * Constructs the TextEdit.
-		 * \param actionCollection The action collection of the application.
 		 */
-		TextEdit(KActionCollection *actionCollection);
+		TextEdit();
 
 		/*! The destructor.
 		 *
@@ -98,27 +98,50 @@ class TextEdit : public AbstractContentView
 		void saveContent();
 		void contentChanged();
 		void cursorPositionChanged(KTextEditor::View *view, const KTextEditor::Cursor &newPosition);
-		//TODO: slots for all actions, execute actions only if isActive or visible
+		void undo();
+		void redo();
+		void cut();
+		void copy();
+		void paste();
+		void selectall();
+		void find();
+		void replace();
+		void updateActions();
 	
 	private:
 		TextNodeContent *content;
 		bool isChanged;
-		bool isActive; //TODO: isActive or use visible
+		bool isActive;
 		QVBoxLayout *layout;
 
 		QActionGroup *actionGroup;
-
 		QToolBar *toolbar;
-		QAction *saveAction;
+		QAction *saveAction,
+				*undoAction,
+				*keundoAction,
+				*redoAction,
+				*keredoAction,
+				*cutAction,
+				*kecutAction,
+				*copyAction,
+				*kecopyAction,
+				*pasteAction,
+				*kepasteAction,
+				*selectallAction,
+				*keselectallAction,
+				*findAction,
+				*kefindAction,
+				*replaceAction,
+				*kereplaceAction;
 
 		KTextEditor::View *view;
 		KTextEditor::Document *document;
 		KTextEditor::Editor *editor;
 		
-
-		void addAction(KActionCollection *actionCollection, KStandardAction::StandardAction actionType, QString name);
-		void setupActions(KActionCollection *actionCollection);
+		void addAction(QAction **keAction, QAction **action, KStandardAction::StandardAction actionType, QString name);
+		void setupActions();
 		void setupEditor();
+
 };
 
 #endif // TEXTEDIT_H

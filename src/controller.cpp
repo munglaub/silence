@@ -91,7 +91,7 @@ WelcomeView* Controller::getWelcomeView()
 TextEdit* Controller::getTextEdit()
 {
 	if (textedit == 0)
-		textedit = new TextEdit(actionCollection);
+		textedit = new TextEdit();
 	return textedit;
 }
 
