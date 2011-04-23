@@ -30,11 +30,6 @@ ActionManager::ActionManager(KActionCollection *actioncollection)
 	createActions();
 }
 
-ActionManager::~ActionManager()
-{
-	// TODO: implement
-}
-
 void ActionManager::createGlobalActions()
 {
 	addGlobalAction(Actions::SHOW_LABELMANAGEMENT, i18n("Manage Labels"));

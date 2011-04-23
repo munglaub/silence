@@ -78,7 +78,6 @@ void TextEdit::updateActions(){
 	pasteAction->setEnabled(kepasteAction->isEnabled());
 }
 
-#include<iostream>
 void TextEdit::setupActions()
 {
 	QAction *action;
@@ -93,11 +92,9 @@ void TextEdit::setupActions()
 	action->setSeparator(true);
 	actionGroup->addAction(action);
 
-	//addAction(actionCollection, KStandardAction::Undo, "te_undo");
 	addAction(&keundoAction, &undoAction, KStandardAction::Undo, Actions::UNDO);
 	connect(undoAction, SIGNAL(triggered()), this, SLOT(undo()));
 
-	//addAction(actionCollection, KStandardAction::Redo, "te_redo");
 	addAction(&keredoAction, &redoAction, KStandardAction::Redo, Actions::REDO);
 	connect(redoAction, SIGNAL(triggered()), this, SLOT(redo()));
 
@@ -113,10 +110,6 @@ void TextEdit::setupActions()
 	addAction(&kepasteAction, &pasteAction, KStandardAction::Paste, Actions::PASTE);
 	connect(pasteAction, SIGNAL(triggered()), this, SLOT(paste()));
 
-//	addAction(actionCollection, KStandardAction::Cut, "te_cut");
-//	addAction(actionCollection, KStandardAction::Copy, "te_copy");
-//	addAction(actionCollection, KStandardAction::Paste, "te_paste");
-
 	action = new QAction(actionGroup);
 	action->setSeparator(true);
 	actionGroup->addAction(action);
@@ -128,11 +121,6 @@ void TextEdit::setupActions()
 	connect(findAction, SIGNAL(triggered()), this, SLOT(find()));
 	addAction(&kereplaceAction, &replaceAction, KStandardAction::Replace, Actions::REPLACE);
 	connect(replaceAction, SIGNAL(triggered()), this, SLOT(replace()));
-
-//	addAction(actionCollection, KStandardAction::SelectAll, "te_selectall");
-//	addAction(actionCollection, KStandardAction::Find, "te_find");
-//	addAction(actionCollection, KStandardAction::Replace, "te_replace");
-//	actionCollection->action("te_replace")->setIcon(KIcon("edit-find-replace"));
 
 	toolbar = new QToolBar;
 	for (int i = 0; i < actionGroup->actions().size(); ++i)
@@ -193,7 +181,6 @@ void TextEdit::setText(QString text)
 void TextEdit::saveContent()
 {
 	if (isActive){
-		std::cout << "TextEdid save" << std::endl;
 		content->setText(document->text());
 		Controller::create()->getStatusBar()->setSaveStatus(true);
 		isChanged = false;
@@ -236,67 +223,43 @@ void TextEdit::cursorPositionChanged(KTextEditor::View*, const KTextEditor::Curs
 	updateActions();
 }
 
-//TODO: if und trigger in eine execute(QAction*action) methode auslagern
-void TextEdit::undo(){
+void TextEdit::execute(QAction *action){
 	if (isActive){
-		std::cout << "TextEdit::undo" << std::endl;
-		keundoAction->trigger();
+		action->trigger();
 		updateActions();
 	}
+}
+
+void TextEdit::undo(){
+	execute(keundoAction);
 }
 
 void TextEdit::redo(){
-	if (isActive){
-		std::cout << "TextEdit::redo" << std::endl;
-		keredoAction->trigger();
-		updateActions();
-	}
+	execute(keredoAction);
 }
 
 void TextEdit::cut(){
-	if (isActive){
-		std::cout << "TextEdit::cut" << std::endl;
-		kecutAction->trigger();
-		updateActions();
-	}
+	execute(kecutAction);
 }
 
 void TextEdit::copy(){
-	if (isActive){
-		std::cout << "TextEdit::copy" << std::endl;
-		kecopyAction->trigger();
-		updateActions();
-	}
+	execute(kecopyAction);
 }
 
 void TextEdit::paste(){
-	if (isActive){
-		std::cout << "TextEdit::paste" << std::endl;
-		kepasteAction->trigger();
-		updateActions();
-	}
+	execute(kepasteAction);
 }
 
 void TextEdit::selectall(){
-	if (isActive){
-		std::cout << "TextEdit::selectall" << std::endl;
-		keselectallAction->trigger();
-		updateActions();
-	}
+	execute(keselectallAction);
 }
 
 void TextEdit::find(){
-	if (isActive){
-		std::cout << "TextEdit::find" << std::endl;
-		kefindAction->trigger();
-	}
+	execute(kefindAction);
 }
 
 void TextEdit::replace(){
-	if (isActive){
-		std::cout << "TextEdit::replace" << std::endl;
-		kereplaceAction->trigger();
-	}
+	execute(kereplaceAction);
 }
 
 

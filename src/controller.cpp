@@ -30,7 +30,6 @@ Controller::Controller()
 	textedit = 0;
 	richtextedit = 0;
 	customcontentview = 0;
-	actionCollection = 0;
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
@@ -98,7 +97,7 @@ TextEdit* Controller::getTextEdit()
 RichTextEdit* Controller::getRichTextEdit()
 {
 	if (richtextedit == 0)
-		richtextedit = new RichTextEdit(actionCollection);
+		richtextedit = new RichTextEdit();
 	return richtextedit;
 }
 
@@ -107,16 +106,6 @@ CustomContentView* Controller::getCustomContentView()
 	if (customcontentview == 0)
 		customcontentview = new CustomContentView;
 	return customcontentview;
-}
-
-void Controller::setActionCollection(KActionCollection *actionCollection)
-{
-	this->actionCollection = actionCollection;
-}
-
-KActionCollection* Controller::getActionCollection() const
-{
-	return actionCollection;
 }
 
 void Controller::setActionManager(ActionManager *actionmanager)

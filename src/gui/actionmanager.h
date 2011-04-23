@@ -22,9 +22,9 @@
 #define ACTIONMANAGER_H
 
 
+#include <KAction>
 #include "kactioncollection.h"
 #include <QHash>
-#include <KAction>
 
 
 //TODO: docu
@@ -32,7 +32,6 @@ class ActionManager
 {
 	public:
 		ActionManager(KActionCollection *actioncollection);
-		~ActionManager();
 
 		KAction* getAction(QString name);
 		KAction* getGlobalAction(QString name);

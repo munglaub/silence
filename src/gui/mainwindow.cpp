@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
 	setWindowTitle(i18n("Silence"));
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
-	controller->setActionCollection(actionCollection());
 	controller->setActionManager(new ActionManager(actionCollection()));
 
 
@@ -99,7 +98,7 @@ MainWindow::~MainWindow()
 	delete searchnodesidebar;
 
 	delete viewmenu;
-
+	delete Controller::create()->getActionManager();
 	delete Controller::create();
 }
 

@@ -49,9 +49,8 @@ class RichTextEdit : public AbstractContentView
 		/*! The constructor.
 		 *
 		 * Constructs the RichTextEdit.
-		 * \param actionColleciton The action collection of the application.
 		 */
-		RichTextEdit(KActionCollection *actionCollection);
+		RichTextEdit();
 
 		/*! The destructor.
 		 *
@@ -84,7 +83,9 @@ class RichTextEdit : public AbstractContentView
 	private slots:
 		void saveContent();
 		void undo();
+		void enableUndo(bool enable);
 		void redo();
+		void enableRedo(bool enable);
 		void cut();
 		void copy();
 		void paste();
@@ -111,12 +112,12 @@ class RichTextEdit : public AbstractContentView
 		void replace();
 		void replaceAll();
 
-		void increaseIndent();
-		void decreaseIndent();
+		void indentMore();
+		void indentLess();
 		void createOrderedList();
 		void createUnorderedList();
 
-		void addPicture();
+		void insertImage();
 		void insertHtml(QString html);
 		void insertRule();
 		void insertLink();
@@ -128,7 +129,7 @@ class RichTextEdit : public AbstractContentView
 		void removeTableColumn();
 
 	private:
-		bool isActive; //TODO: isActive or use visible
+		bool isActive;
 		RichTextNodeContent *content;
 		bool isChanged;
 		TextFind *findWidget;
@@ -157,11 +158,11 @@ class RichTextEdit : public AbstractContentView
 				*actionTextBgColor,
 				*actionFind,
 				*actionFindReplace,
-				*actionIncreaseIndent,
-				*actionDecreaseIndent,
+				*actionIndentMore,
+				*actionIndentLess,
 				*actionOrderedList,
 				*actionUnorderedList,
-				*actionAddPicture,
+				*actionInsertImage,
 				*actionInsertRule,
 				*actionInsertLink,
 				*actionInsertTable,
@@ -174,9 +175,9 @@ class RichTextEdit : public AbstractContentView
 		QFontComboBox *comboFont;
 		KComboBox *comboSize;
 
-		KAction* addAction(KActionCollection *actionCollection, QString name, QString text, QIcon icon);
-		void setupActions(KActionCollection *actionCollection);
-		void setupFontActions(KActionCollection *actionCollection);
+		void setupActions();
+		void setupFontActions();
+		KAction* addToolbarAction(QString name);
 
 		void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 		void alignmentChanged(Qt::Alignment alignment);

@@ -141,6 +141,7 @@ class TextEdit : public AbstractContentView
 		void addAction(QAction **keAction, QAction **action, KStandardAction::StandardAction actionType, QString name);
 		void setupActions();
 		void setupEditor();
+		void execute(QAction *action);
 
 };
 

@@ -125,18 +125,6 @@ class Controller
 		AbstractDataStore* getDataStore();
 
 		/*!
-		 * This function provides the Controller with a collection of the applications actions.
-		 * \param actionCollection The collection of actions of the application.
-		 */
-		void setActionCollection(KActionCollection *actionCollection);
-
-		/*!
-		 * Get a pointer to the actioncollection.
-		 * \return A pointer to the actioncollection.
-		 */
-		KActionCollection* getActionCollection() const;
-
-		/*!
 		 * This function provides the Controller with an ActionManager.
 		 * \param actionmanager A pointer to the ActionManager.
 		 */
@@ -240,7 +228,6 @@ class Controller
 		NodePropertyWidget *nodepropertywidget;
 		NavigationSidebar *navigationsidebar;
 
-		KActionCollection *actionCollection;
 		ActionManager *actionmanager;
 
 		AbstractDataStore *datastore;
