@@ -656,6 +656,7 @@ void RichTextEdit::insertImage()
 		layout->insertLayout(2, addImage);
 		connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertHtml(QString)));
 		connect(textedit, SIGNAL(textChanged()), addImage, SLOT(exit()));
+		addImage->setFocus();
 	}
 }
 
@@ -686,6 +687,7 @@ void RichTextEdit::insertLink()
 	layout->insertLayout(2, dlg);
 	connect(dlg, SIGNAL(addedLink(const QString&)), this, SLOT(insertHtml(QString)));
 	connect(textedit, SIGNAL(textChanged()), dlg, SLOT(exit()));
+	dlg->setFocus();
 }
 
 void RichTextEdit::insertTable()

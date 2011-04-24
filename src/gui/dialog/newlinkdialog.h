@@ -65,6 +65,11 @@ class NewLinkDialog : public QGridLayout
 		 */
 		void setLinkText(QString text);
 
+		/*!
+		 * Set the focus to this NewLinkDialog.
+		 */
+		void setFocus();
+
 	signals:
 		/*!
 		 * This signal is emitted when the user clicked the ok button.

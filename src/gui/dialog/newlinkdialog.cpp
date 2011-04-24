@@ -149,4 +149,10 @@ void NewLinkDialog::addLink()
 	emit addedLink(html);
 }
 
+void NewLinkDialog::setFocus(){
+	ledLinkText->setFocus(Qt::OtherFocusReason);
+}
+
+
+
 

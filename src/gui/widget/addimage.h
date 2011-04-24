@@ -56,6 +56,11 @@ class AddImage : public QGridLayout
 		 */
 		~AddImage();
 
+		/*!
+		 * Set the focus to this widget.
+		 */
+		void setFocus();
+
 	public slots:
 		/*!
 		 * Connect to this slot to destroy this object.

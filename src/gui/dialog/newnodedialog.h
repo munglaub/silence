@@ -93,6 +93,12 @@ class NewNodeDialog : public QFrame
 		 */
 		int getRow() const;
 
+		/*!
+		 * Set the focus to this NewNodeDialog.
+		 * \param reason The reason for the call of this function (see Qt docu).
+		 */
+		void setFocus(Qt::FocusReason reason);
+
 	signals:
 		/*!
 		 * The user clicked a button to close this NewNodeDialog.

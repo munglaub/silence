@@ -96,6 +96,7 @@ void TreeView::addNode(QModelIndex &index, int row)
 	connect(newDialog, SIGNAL(done(NewNodeDialog*, bool)), this, SLOT(insertNode(NewNodeDialog*, bool)));
 	// cancel dialog if parent is deleted
 	connect(model->getItem(index), SIGNAL(destroyed(QObject*)), newDialog, SLOT(cancel()));
+	newDialog->setFocus(Qt::OtherFocusReason);
 }
 
 void TreeView::insertNode(NewNodeDialog *dlg, bool insert)
@@ -124,7 +125,7 @@ void TreeView::insertNode(NewNodeDialog *dlg, bool insert)
 	}
 
 	Controller::create()->getMainWindow()->removeDialog(dlg);
-	delete dlg;
+	dlg->deleteLater();
 }
 
 void TreeView::showWelcomeView()

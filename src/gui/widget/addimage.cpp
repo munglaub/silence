@@ -102,5 +102,8 @@ void AddImage::exit()
 	delete this;
 }
 
+void AddImage::setFocus(){
+	ledFile->setFocus(Qt::OtherFocusReason);
+}
 
 

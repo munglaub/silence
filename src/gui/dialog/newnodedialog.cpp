@@ -40,6 +40,7 @@ NewNodeDialog::NewNodeDialog(QModelIndex &index, int row, QWidget *parent, Qt::W
 	nameedit = new KLineEdit(i18n("Nodename"));
 	nameedit->setClearButtonShown(true);
 	nameedit->selectAll();
+	connect(nameedit, SIGNAL(returnPressed()), this, SLOT(accept()));
 	namelayout->addRow(i18n("Node name:"), nameedit);
 	baselayout->addLayout(namelayout);
 
@@ -158,5 +159,9 @@ void NewNodeDialog::accept()
 	emit done(this, true);
 }
 
+void NewNodeDialog::setFocus(Qt::FocusReason reason)
+{
+	nameedit->setFocus(reason);
+}
 
 
