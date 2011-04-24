@@ -30,13 +30,13 @@ Controller::Controller()
 	textedit = 0;
 	richtextedit = 0;
 	customcontentview = 0;
-	actionCollection = 0;
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
 	statusbar = 0;
 	nodepropertywidget = 0;
 	navigationsidebar = 0;
+	actionmanager = 0;
 }
 
 Controller::~Controller()
@@ -90,14 +90,14 @@ WelcomeView* Controller::getWelcomeView()
 TextEdit* Controller::getTextEdit()
 {
 	if (textedit == 0)
-		textedit = new TextEdit(actionCollection);
+		textedit = new TextEdit();
 	return textedit;
 }
 
 RichTextEdit* Controller::getRichTextEdit()
 {
 	if (richtextedit == 0)
-		richtextedit = new RichTextEdit(actionCollection);
+		richtextedit = new RichTextEdit();
 	return richtextedit;
 }
 
@@ -108,14 +108,14 @@ CustomContentView* Controller::getCustomContentView()
 	return customcontentview;
 }
 
-void Controller::setActionCollection(KActionCollection *actionCollection)
+void Controller::setActionManager(ActionManager *actionmanager)
 {
-	this->actionCollection = actionCollection;
+	this->actionmanager = actionmanager;
 }
 
-KActionCollection* Controller::getActionCollection() const
+ActionManager* Controller::getActionManager() const
 {
-	return actionCollection;
+	return actionmanager;
 }
 
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)

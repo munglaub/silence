@@ -28,6 +28,7 @@
 #include <QTextDocumentFragment>
 #include <QTextList>
 #include <QTextTable>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/node/rtfcontentchange.h"
 #include "src/gui/dialog/newlinkdialog.h"
@@ -36,7 +37,7 @@
 #include "src/gui/widget/addtable.h"
 
 
-RichTextEdit::RichTextEdit(KActionCollection *actionCollection)
+RichTextEdit::RichTextEdit()
 {
 	isChanged = false;
 	layout = new QVBoxLayout;
@@ -63,8 +64,8 @@ RichTextEdit::RichTextEdit(KActionCollection *actionCollection)
 
 	setLayout(layout);
 
-	setupActions(actionCollection);
-	setupFontActions(actionCollection);
+	setupActions();
+	setupFontActions();
 	QList<QAction*> contextActions;
 	contextActions.append(actionUndo);
 	contextActions.append(actionRedo);
@@ -97,185 +98,129 @@ RichTextEdit::~RichTextEdit()
 	delete layout;
 }
 
-KAction* RichTextEdit::addAction(KActionCollection *actionCollection, QString name, QString text, QIcon icon)
-{
-	KAction *action = actionCollection->addAction(name);
-	action->setText(text);
-	action->setIcon(icon);
+KAction* RichTextEdit::addToolbarAction(QString name){
+	KAction* action = Controller::create()->getActionManager()->getAction(name);
+	toolbar->addAction(action);
+	actions.append(action);
 	return action;
 }
 
-void RichTextEdit::setupActions(KActionCollection *actionCollection)
+void RichTextEdit::setupActions()
 {
+	ActionManager *ac = Controller::create()->getActionManager();
 	toolbar->setWindowTitle(i18n("Edit Actions"));
 
-	actionSave = actionCollection->addAction(KStandardAction::Save, "rtf_save");
+	actionSave = ac->getAction(Actions::SAVE);
 	toolbar->addAction(actionSave);
 	actions.append(actionSave);
 	connect(actionSave, SIGNAL(triggered()), this, SLOT(saveContent()));
 
 	toolbar->addSeparator();
 
-	actionUndo = actionCollection->addAction(KStandardAction::Undo, "rtf_undo");
-	toolbar->addAction(actionUndo);
-	actions.append(actionUndo);
-	connect(textedit->document(), SIGNAL(undoAvailable(bool)), actionUndo, SLOT(setEnabled(bool)));
+	actionUndo = addToolbarAction(Actions::UNDO);
+	connect(textedit->document(), SIGNAL(undoAvailable(bool)), this, SLOT(enableUndo(bool)));
 	actionUndo->setEnabled(textedit->document()->isUndoAvailable());
-	connect(actionUndo, SIGNAL(triggered()), textedit, SLOT(undo()));
+	connect(actionUndo, SIGNAL(triggered()), this, SLOT(undo()));
 
-	actionRedo = actionCollection->addAction(KStandardAction::Redo, "rtf_redo");
-	toolbar->addAction(actionRedo);
-	actions.append(actionRedo);
-	connect(textedit->document(), SIGNAL(redoAvailable(bool)), actionRedo, SLOT(setEnabled(bool)));
+	actionRedo = addToolbarAction(Actions::REDO);
+	connect(textedit->document(), SIGNAL(redoAvailable(bool)), this, SLOT(enableRedo(bool)));
 	actionRedo->setEnabled(textedit->document()->isRedoAvailable());
-	connect(actionRedo, SIGNAL(triggered()), textedit, SLOT(redo()));
+	connect(actionRedo, SIGNAL(triggered()), this, SLOT(redo()));
 
-	actionCut = actionCollection->addAction(KStandardAction::Cut, "rtf_cut");
-	toolbar->addAction(actionCut);
-	actions.append(actionCut);
+	actionCut = addToolbarAction(Actions::CUT);
 	actionCut->setEnabled(false);
-	connect(actionCut, SIGNAL(triggered()), textedit, SLOT(cut()));
+	connect(actionCut, SIGNAL(triggered()), this, SLOT(cut()));
 	connect(textedit, SIGNAL(copyAvailable(bool)), actionCut, SLOT(setEnabled(bool)));
 
-	actionCopy = actionCollection->addAction(KStandardAction::Copy, "rtf_copy");
-	toolbar->addAction(actionCopy);
-	actions.append(actionCopy);
+	actionCopy = addToolbarAction(Actions::COPY);
 	actionCopy->setEnabled(false);
-	connect(actionCopy, SIGNAL(triggered()), textedit, SLOT(copy()));
+	connect(actionCopy, SIGNAL(triggered()), this, SLOT(copy()));
 	connect(textedit, SIGNAL(copyAvailable(bool)), actionCopy, SLOT(setEnabled(bool)));
 
-	actionPaste = actionCollection->addAction(KStandardAction::Paste, "rtf_paste");
-	toolbar->addAction(actionPaste);
-	actions.append(actionPaste);
-	connect(actionPaste, SIGNAL(triggered()), textedit, SLOT(paste()));
+	actionPaste = addToolbarAction(Actions::PASTE);
+	connect(actionPaste, SIGNAL(triggered()),this, SLOT(paste()));
 
-	actionSelectAll = actionCollection->addAction(KStandardAction::SelectAll, "rtf_selectall");
-	toolbar->addAction(actionSelectAll);
-	actions.append(actionSelectAll);
-	connect(actionSelectAll, SIGNAL(triggered()), textedit, SLOT(selectAll()));
+	actionSelectAll = addToolbarAction(Actions::SELECTALL);
+	connect(actionSelectAll, SIGNAL(triggered()), this, SLOT(selectAll()));
 
 	toolbar->addSeparator();
 
-	actionTextBold = addAction(actionCollection, "rtf_bold", i18nc("toggle selected text to bold", "Bold"), KIcon("format-text-bold"));
-	toolbar->addAction(actionTextBold);
-	actions.append(actionTextBold);
-	actionTextBold->setShortcut(Qt::CTRL + Qt::Key_B);
-	QFont bold;
-	bold.setBold(true);
-	actionTextBold->setFont(bold);
+	actionTextBold = addToolbarAction(Actions::BOLD);
 	connect(actionTextBold, SIGNAL(triggered()), this, SLOT(textBold()));
-	actionTextBold->setCheckable(true);
 
-	actionTextItalic = addAction(actionCollection, "rtf_italic", i18nc("toggle selected text to italic", "Italic"), KIcon("format-text-italic"));
-	toolbar->addAction(actionTextItalic);
-	actions.append(actionTextItalic);
-	actionTextItalic->setShortcut(Qt::CTRL + Qt::Key_I);
-	QFont italic;
-	italic.setItalic(true);
-	actionTextItalic->setFont(italic);
+	actionTextItalic = addToolbarAction(Actions::ITALIC);
 	connect(actionTextItalic, SIGNAL(triggered()), this, SLOT(textItalic()));
-	actionTextItalic->setCheckable(true);
 
-	actionTextUnderline = addAction(actionCollection, "rtf_underline", i18nc("underline selected text", "Underline"), KIcon("format-text-underline"));
-	toolbar->addAction(actionTextUnderline);
-	actions.append(actionTextUnderline);
-	actionTextUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
-	QFont underline;
-	underline.setUnderline(true);
-	actionTextUnderline->setFont(underline);
+	actionTextUnderline = addToolbarAction(Actions::UNDERLINE);
 	connect(actionTextUnderline, SIGNAL(triggered()), this, SLOT(textUnderline()));
-	actionTextUnderline->setCheckable(true);	
 
 	toolbar->addSeparator();
 
 	QActionGroup *grp = new QActionGroup(this);
 	connect(grp, SIGNAL(triggered(QAction *)), this, SLOT(textAlign(QAction *)));
 
-	actionAlignLeft = addAction(actionCollection, "rtf_alignleft", i18nc("justify text left", "Left"), KIcon("format-justify-left"));
+	actionAlignLeft = ac->getAction(Actions::ALIGN_LEFT);
 	grp->addAction(actionAlignLeft);
 	actions.append(actionAlignLeft);
-	actionAlignLeft->setCheckable(true);
 
-	actionAlignCenter = addAction(actionCollection, "rtf_aligncenter", i18nc("justify text centered", "Center"), KIcon("format-justify-center"));
+	actionAlignCenter = ac->getAction(Actions::ALIGN_CENTER);
 	grp->addAction(actionAlignCenter);
 	actions.append(actionAlignCenter);
-	actionAlignCenter->setCheckable(true);
 
-	actionAlignRight = addAction(actionCollection, "rtf_alignright", i18nc("justify text right", "Right"), KIcon("format-justify-right"));
+	actionAlignRight = ac->getAction(Actions::ALIGN_RIGHT);
 	grp->addAction(actionAlignRight);
 	actions.append(actionAlignRight);
-	actionAlignRight->setCheckable(true);
 
-	actionAlignJustify = addAction(actionCollection, "rtf_alignjustify", i18n("Justify"), KIcon("format-justify-fill"));
+	actionAlignJustify = ac->getAction(Actions::ALIGN_JUSTIFY);
 	grp->addAction(actionAlignJustify);
 	actions.append(actionAlignJustify);
-	actionAlignJustify->setCheckable(true);
 
 	toolbar->addActions(grp->actions());
 	toolbar->addSeparator();
 
-	actionUnorderedList = addAction(actionCollection, "rtf_unorderedlist", i18n("Create Unordered List"), KIcon("format-list-unordered"));
-	toolbar->addAction(actionUnorderedList);
-	actions.append(actionUnorderedList);
+	actionUnorderedList = addToolbarAction(Actions::UNORDERED_LIST);
 	connect(actionUnorderedList, SIGNAL(triggered()), this, SLOT(createUnorderedList()));
 
-	actionOrderedList = addAction(actionCollection, "rtf_orderedlist", i18n("Create Ordered List"), KIcon("format-list-ordered"));
-	toolbar->addAction(actionOrderedList);
-	actions.append(actionOrderedList);
+	actionOrderedList = addToolbarAction(Actions::ORDERED_LIST);
 	connect(actionOrderedList, SIGNAL(triggered()), this, SLOT(createOrderedList()));
 
-	actionIncreaseIndent = addAction(actionCollection, "rtf_increaseindent", i18n("Indent more"), KIcon("format-indent-more"));
-	toolbar->addAction(actionIncreaseIndent);
-	actions.append(actionIncreaseIndent);
-	connect(actionIncreaseIndent, SIGNAL(triggered()), this, SLOT(increaseIndent()));
+	actionIndentMore = addToolbarAction(Actions::INDENT_MORE);
+	connect(actionIndentMore, SIGNAL(triggered()), this, SLOT(indentMore()));
 
-	actionDecreaseIndent = addAction(actionCollection, "rtf_decreaseindent", i18n("Indent less"), KIcon("format-indent-less"));
-	toolbar->addAction(actionDecreaseIndent);
-	actions.append(actionDecreaseIndent);
-	connect(actionDecreaseIndent, SIGNAL(triggered()), this, SLOT(decreaseIndent()));
+	actionIndentLess = addToolbarAction(Actions::INDENT_LESS);
+	connect(actionIndentLess, SIGNAL(triggered()), this, SLOT(indentLess()));
 
 	toolbar->addSeparator();
 
-	actionInsertLink = addAction(actionCollection, "rtf_insertlink", i18n("Insert Link"), KIcon("insert-link"));
-	toolbar->addAction(actionInsertLink);
-	actions.append(actionInsertLink);
+	actionInsertLink = addToolbarAction(Actions::INSERT_LINK);
 	connect(actionInsertLink, SIGNAL(triggered()), this, SLOT(insertLink()));
 
-	actionAddPicture = addAction(actionCollection, "rtf_insertimage", i18n("Insert Image"), KIcon("insert-image"));
-	toolbar->addAction(actionAddPicture);
-	actions.append(actionAddPicture);
-	connect(actionAddPicture, SIGNAL(triggered()), this, SLOT(addPicture()));
+	actionInsertImage = addToolbarAction(Actions::INSERT_IMAGE);
+	connect(actionInsertImage, SIGNAL(triggered()), this, SLOT(insertImage()));
 
-	actionInsertTable = addAction(actionCollection, "rtf_inserttable", i18n("Insert Table"), KIcon("insert-table"));
-	toolbar->addAction(actionInsertTable);
-	actions.append(actionInsertTable);
+	actionInsertTable = addToolbarAction(Actions::INSERT_TABLE);
 	connect(actionInsertTable, SIGNAL(triggered()), this, SLOT(insertTable()));
 
-	actionInsertRule = addAction(actionCollection, "rtf_insertrule", i18n("Insert Horizontal Rule"), KIcon("insert-horizontal-rule"));
-	toolbar->addAction(actionInsertRule);
-	actions.append(actionInsertRule);
+	actionInsertRule = addToolbarAction(Actions::INSERT_RULE);
 	connect(actionInsertRule, SIGNAL(triggered()), this, SLOT(insertRule()));
 
-	actionFind = addAction(actionCollection, "rtf_find", i18n("&Find"), KIcon("edit-find"));
-	toolbar->addAction(actionFind);
-	actions.append(actionFind);
-	actionFind->setShortcut(QKeySequence::Find);
-	connect(actionFind, SIGNAL(triggered()), findWidget, SLOT(show()));
+	actionFind = addToolbarAction(Actions::FIND);
+	connect(actionFind, SIGNAL(triggered()), this, SLOT(showFind()));
 
-	actionFindReplace = addAction(actionCollection, "rtf_replace", i18n("Find/Replace"), KIcon("edit-find-replace"));
-	toolbar->addAction(actionFindReplace);
-	actions.append(actionFindReplace);
-	connect(actionFindReplace, SIGNAL(triggered()), findWidget, SLOT(showFull()));
+	actionFindReplace = addToolbarAction(Actions::REPLACE);
+	connect(actionFindReplace, SIGNAL(triggered()), this, SLOT(showReplace()));
 }
 
-void RichTextEdit::setupFontActions(KActionCollection *actionCollection)
+void RichTextEdit::setupFontActions()
 {
-	actionTextColor = addAction(actionCollection, "rtf_textcolor", i18n("Text Color"), KIcon("format-text-color"));
+	ActionManager *ac = Controller::create()->getActionManager();
+
+	actionTextColor = ac->getAction(Actions::TEXT_COLOR);
 	fontToolbar->addAction(actionTextColor);
 	actions.append(actionTextColor);
 	connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
 
-	actionTextBgColor = addAction(actionCollection, "rtf_textbgcolor", i18n("Text Highlight"), KIcon("format-fill-color"));
+	actionTextBgColor = ac->getAction(Actions::TEXT_BGCOLOR);
 	fontToolbar->addAction(actionTextBgColor);
 	actions.append(actionTextBgColor);
 	connect(actionTextBgColor, SIGNAL(triggered()), this, SLOT(textBgColor()));
@@ -296,22 +241,22 @@ void RichTextEdit::setupFontActions(KActionCollection *actionCollection)
 	connect(comboSize, SIGNAL(activated(const QString &)), this, SLOT(textSize(const QString &)));
 	comboSize->setCurrentIndex(comboSize->findText(QString::number(QApplication::font().pointSize())));
 
-	actionInsertTableRow = addAction(actionCollection, "rtf_inserttablerow", i18n("Insert Table Row"), QIcon(":/icons/actions/insert-table-row.png"));
+	actionInsertTableRow = ac->getAction(Actions::INSERT_TABLE_ROW);
 	fontToolbar->addAction(actionInsertTableRow);
 	actions.append(actionInsertTableRow);
 	connect(actionInsertTableRow, SIGNAL(triggered()), this, SLOT(insertTableRow()));
 
-	actionInsertTableColumn = addAction(actionCollection, "rtf_inserttablecolumn", i18n("Insert Table Column"), QIcon(":/icons/actions/insert-table-column.png"));
+	actionInsertTableColumn = ac->getAction(Actions::INSERT_TABLE_COLUMN);
 	fontToolbar->addAction(actionInsertTableColumn);
 	actions.append(actionInsertTableColumn);
 	connect(actionInsertTableColumn, SIGNAL(triggered()), this, SLOT(insertTableColumn()));
 
-	actionRemoveTableRow = addAction(actionCollection, "rtf_removetablerow", i18n("Remove Table Row"), QIcon(":/icons/actions/remove-table-row.png"));
+	actionRemoveTableRow = ac->getAction(Actions::REMOVE_TABLE_ROW);
 	fontToolbar->addAction(actionRemoveTableRow);
 	actions.append(actionRemoveTableRow);
 	connect(actionRemoveTableRow, SIGNAL(triggered()), this, SLOT(removeTableRow()));
 
-	actionRemoveTableColumn = addAction(actionCollection, "rtf_removetablecolumn", i18n("Remove Table Column"), QIcon(":/icons/actions/remove-table-column.png"));
+	actionRemoveTableColumn = ac->getAction(Actions::REMOVE_TABLE_COLUMN);
 	fontToolbar->addAction(actionRemoveTableColumn);
 	actions.append(actionRemoveTableColumn);
 	connect(actionRemoveTableColumn, SIGNAL(triggered()), this, SLOT(removeTableColumn()));
@@ -319,23 +264,29 @@ void RichTextEdit::setupFontActions(KActionCollection *actionCollection)
 
 void RichTextEdit::textBold()
 {
-	QTextCharFormat fmt;
-	fmt.setFontWeight(actionTextBold->isChecked() ? QFont::Bold : QFont::Normal);
-	mergeFormatOnWordOrSelection(fmt);
+	if (isActive){
+		QTextCharFormat fmt;
+		fmt.setFontWeight(actionTextBold->isChecked() ? QFont::Bold : QFont::Normal);
+		mergeFormatOnWordOrSelection(fmt);
+	}
 }
 
 void RichTextEdit::textItalic()
 {
-	QTextCharFormat fmt;
-	fmt.setFontItalic(actionTextItalic->isChecked());
-	mergeFormatOnWordOrSelection(fmt);
+	if (isActive){
+		QTextCharFormat fmt;
+		fmt.setFontItalic(actionTextItalic->isChecked());
+		mergeFormatOnWordOrSelection(fmt);
+	}
 }
 
 void RichTextEdit::textUnderline()
 {
-	QTextCharFormat fmt;
-	fmt.setFontUnderline(actionTextUnderline->isChecked());
-	mergeFormatOnWordOrSelection(fmt);
+	if (isActive){
+		QTextCharFormat fmt;
+		fmt.setFontUnderline(actionTextUnderline->isChecked());
+		mergeFormatOnWordOrSelection(fmt);
+	}
 }
 
 void RichTextEdit::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
@@ -349,6 +300,8 @@ void RichTextEdit::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
 
 void RichTextEdit::textAlign(QAction *action)
 {
+	if (!isActive)
+		return;
 	if (action == actionAlignLeft)
 		textedit->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 	else if (action == actionAlignCenter)
@@ -389,6 +342,8 @@ void RichTextEdit::cursorPositionChanged()
 
 void RichTextEdit::textColor()
 {
+	if (!isActive)
+		return;
 	QColor col = textedit->textColor();
 	KColorDialog::getColor(col, this);
 	if (!col.isValid())
@@ -400,6 +355,8 @@ void RichTextEdit::textColor()
 
 void RichTextEdit::textBgColor()
 {
+	if (!isActive)
+		return;
 	QColor col = textedit->textBackgroundColor();
 	KColorDialog::getColor(col, this);
 	if (!col.isValid())
@@ -465,9 +422,51 @@ AbstractContentChange* RichTextEdit::getChange()
 
 void RichTextEdit::saveContent()
 {
-	content->setText(textedit->toHtml());
-	Controller::create()->getStatusBar()->setSaveStatus(true);
-	isChanged = false;
+	if (isActive){
+		content->setText(textedit->toHtml());
+		Controller::create()->getStatusBar()->setSaveStatus(true);
+		isChanged = false;
+	}
+}
+
+void RichTextEdit::undo(){
+	if (isActive)
+		textedit->undo();
+}
+
+void RichTextEdit::enableUndo(bool enable){
+	if (isActive)
+		actionUndo->setEnabled(enable);
+}
+
+void RichTextEdit::redo(){
+	if (isActive)
+		textedit->redo();
+}
+
+void RichTextEdit::enableRedo(bool enable){
+	if (isActive)
+		actionRedo->setEnabled(enable);
+}
+
+void RichTextEdit::cut(){
+	if (isActive)
+		textedit->cut();
+}
+
+void RichTextEdit::copy(){
+	if (isActive)
+		textedit->copy();
+}
+
+void RichTextEdit::paste(){
+	if (isActive)
+		textedit->paste();
+}
+
+void RichTextEdit::selectAll(){
+	if (isActive)
+		textedit->selectAll();
 }
 
 void RichTextEdit::clipboardDataChanged()
@@ -477,9 +476,22 @@ void RichTextEdit::clipboardDataChanged()
 
 void RichTextEdit::setVisible(bool visible)
 {
+	this->isActive = visible;
 	this->QWidget::setVisible(visible);
 	for (int i = 0; i < actions.size(); ++i)
 		actions.at(i)->setVisible(visible);
+	actionUndo->setEnabled(textedit->document()->isUndoAvailable());
+	actionRedo->setEnabled(textedit->document()->isRedoAvailable());
+}
+
+void RichTextEdit::showFind(){
+	if (isActive)
+		findWidget->show();
+}
+
+void RichTextEdit::showReplace(){
+	if (isActive)
+		findWidget->showFull();
 }
 
 bool RichTextEdit::find(bool forward)
@@ -539,14 +551,16 @@ void RichTextEdit::replaceAll()
 	} while (found);
 }
 
-void RichTextEdit::increaseIndent()
+void RichTextEdit::indentMore()
 {
-	changeIndent(true);
+	if (isActive)
+		changeIndent(true);
 }
 
-void RichTextEdit::decreaseIndent()
+void RichTextEdit::indentLess()
 {
-	changeIndent(false);
+	if (isActive)
+		changeIndent(false);
 }
 
 void RichTextEdit::changeIndent(bool increase)
@@ -598,12 +612,14 @@ void RichTextEdit::changeIndent(bool increase)
 
 void RichTextEdit::createOrderedList()
 {
-	createList(QTextListFormat::ListDecimal);
+	if (isActive)
+		createList(QTextListFormat::ListDecimal);
 }
 
 void RichTextEdit::createUnorderedList()
 {
-	createList(QTextListFormat::ListDisc);
+	if (isActive)
+		createList(QTextListFormat::ListDisc);
 }
 
 void RichTextEdit::createList(QTextListFormat::Style style)
@@ -633,12 +649,14 @@ void RichTextEdit::contentChanged()
 	isChanged = true;
 }
 
-void RichTextEdit::addPicture()
+void RichTextEdit::insertImage()
 {
-	AddImage *addImage = new AddImage(this);
-	layout->insertLayout(2, addImage);
-	connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertHtml(QString)));
-	connect(textedit, SIGNAL(textChanged()), addImage, SLOT(exit()));
+	if (isActive){
+		AddImage *addImage = new AddImage(this);
+		layout->insertLayout(2, addImage);
+		connect(addImage, SIGNAL(addedImage(const QString&)), this, SLOT(insertHtml(QString)));
+		connect(textedit, SIGNAL(textChanged()), addImage, SLOT(exit()));
+	}
 }
 
 void RichTextEdit::insertHtml(QString html)
@@ -652,11 +670,14 @@ void RichTextEdit::insertHtml(QString html)
 
 void RichTextEdit::insertRule()
 {
-	insertHtml("<hr />");
+	if (isActive)
+		insertHtml("<hr />");
 }
 
 void RichTextEdit::insertLink()
 {
+	if (!isActive)
+		return;
 	NewLinkDialog *dlg = new NewLinkDialog(this);
 	QTextCursor cursor = textedit->textCursor();
 	if (cursor.hasSelection())
@@ -669,30 +690,36 @@ void RichTextEdit::insertLink()
 
 void RichTextEdit::insertTable()
 {
-	AddTable *addTable = new AddTable(this);
-	layout->insertLayout(2, addTable);
-	connect(addTable, SIGNAL(addedTable(const QString&)), this, SLOT(insertHtml(QString)));
-	connect(textedit, SIGNAL(textChanged()), addTable, SLOT(exit()));
+	if (isActive){
+		AddTable *addTable = new AddTable(this);
+		layout->insertLayout(2, addTable);
+		connect(addTable, SIGNAL(addedTable(const QString&)), this, SLOT(insertHtml(QString)));
+		connect(textedit, SIGNAL(textChanged()), addTable, SLOT(exit()));
+	}
 }
 
 void RichTextEdit::insertTableRow()
 {
-	editTable(true, true);
+	if (isActive)
+		editTable(true, true);
 }
 
 void RichTextEdit::insertTableColumn()
 {
-	editTable(false, true);
+	if (isActive)
+		editTable(false, true);
 }
 
 void RichTextEdit::removeTableRow()
 {
-	editTable(true, false);
+	if (isActive)
+		editTable(true, false);
 }
 
 void RichTextEdit::removeTableColumn()
 {
-	editTable(false, false);
+	if (isActive)
+		editTable(false, false);
 }
 
 void RichTextEdit::editTable(bool row, bool insert)

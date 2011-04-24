@@ -18,11 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KIcon>
-#include <klocalizedstring.h>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/sidebar/navigationsidebar.h"
-#include "src/controller.h"
 
 
 NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::WindowFlags flags)
@@ -32,20 +30,13 @@ NavigationSidebar::NavigationSidebar(const QString &title, QWidget *parent, Qt::
 	setObjectName("NavigationBar");
 	skip = false;
 
-	KActionCollection *actionCollection = Controller::create()->getActionCollection();
-
 	toolbar = new QToolBar;
-	prevAction = actionCollection->addAction("go-previous");
-	prevAction->setText(i18nc("go to the previous selected node", "Back"));
-	prevAction->setIcon(KIcon("go-previous"));
-	prevAction->setShortcut(QKeySequence::Back);
+
+	prevAction = Controller::create()->getActionManager()->getGlobalAction(Actions::GO_PREVIOUS);
 	toolbar->addAction(prevAction);
 	connect(prevAction, SIGNAL(triggered()), this, SLOT(previous()));
 
-	nextAction = actionCollection->addAction("go-next");
-	nextAction->setText(i18nc("go to the next node", "Forward"));
-	nextAction->setIcon(KIcon("go-next"));
-	nextAction->setShortcut(QKeySequence::Forward);
+	nextAction = Controller::create()->getActionManager()->getGlobalAction(Actions::GO_NEXT);
 	toolbar->addAction(nextAction);
 	connect(nextAction, SIGNAL(triggered()), this, SLOT(next()));
 

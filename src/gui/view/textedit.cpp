@@ -31,15 +31,16 @@
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/node/textcontentchange.h"
 #include "src/gui/view/textedit.h"
 
 
-TextEdit::TextEdit(KActionCollection *actionCollection)
+TextEdit::TextEdit()
 {
 	setupEditor();
-	setupActions(actionCollection);
+	setupActions();
 	isChanged = false;
 
 	layout = new QVBoxLayout;
@@ -48,10 +49,7 @@ TextEdit::TextEdit(KActionCollection *actionCollection)
 	layout->addWidget(view);
 	setLayout(layout);
 	
-	// cursorposition
 	connect(view, SIGNAL(cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor&)), this, SLOT(cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor&)));
-
-	// modificationstatus
 	connect(document, SIGNAL(textChanged(KTextEditor::Document*)), this, SLOT(contentChanged()));
 }
 
@@ -65,46 +63,64 @@ TextEdit::~TextEdit()
 	delete layout;
 }
 
-void TextEdit::addAction(KActionCollection *actionCollection, KStandardAction::StandardAction actionType, QString name)
-{
-	QAction *action = view->actionCollection()->action(KStandardAction::name(actionType));
-	actionCollection->addAction(name, action);
-	actionGroup->addAction(action);
+void TextEdit::addAction(QAction **keAction, QAction **action, KStandardAction::StandardAction kename, QString name){
+	*keAction = view->actionCollection()->action(KStandardAction::name(kename));
+	(*keAction)->setShortcut(QKeySequence());
+	*action = Controller::create()->getActionManager()->getAction(name);
+	actionGroup->addAction(*action);
 }
 
-void TextEdit::setupActions(KActionCollection *actionCollection)
+void TextEdit::updateActions(){
+	undoAction->setEnabled(keundoAction->isEnabled());
+	redoAction->setEnabled(keredoAction->isEnabled());
+	cutAction->setEnabled(kecutAction->isEnabled());
+	copyAction->setEnabled(kecopyAction->isEnabled());
+	pasteAction->setEnabled(kepasteAction->isEnabled());
+}
+
+void TextEdit::setupActions()
 {
 	QAction *action;
 	actionGroup = new QActionGroup(this);
 
-	addAction(actionCollection, KStandardAction::Save, "te_save");
-	saveAction = actionCollection->action("te_save");
-	saveAction->disconnect();
+	view->actionCollection()->removeAction(view->actionCollection()->action(KStandardAction::name(KStandardAction::Save)));
+	saveAction = Controller::create()->getActionManager()->getAction(Actions::SAVE);
+	actionGroup->addAction(saveAction);
 	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveContent()));
 
 	action = new QAction(actionGroup);
 	action->setSeparator(true);
 	actionGroup->addAction(action);
 
-	addAction(actionCollection, KStandardAction::Undo, "te_undo");
-	addAction(actionCollection, KStandardAction::Redo, "te_redo");
+	addAction(&keundoAction, &undoAction, KStandardAction::Undo, Actions::UNDO);
+	connect(undoAction, SIGNAL(triggered()), this, SLOT(undo()));
+
+	addAction(&keredoAction, &redoAction, KStandardAction::Redo, Actions::REDO);
+	connect(redoAction, SIGNAL(triggered()), this, SLOT(redo()));
 
 	action = new QAction(actionGroup);
 	action->setSeparator(true);
 	actionGroup->addAction(action);
 
-	addAction(actionCollection, KStandardAction::Cut, "te_cut");
-	addAction(actionCollection, KStandardAction::Copy, "te_copy");
-	addAction(actionCollection, KStandardAction::Paste, "te_paste");
+
+	addAction(&kecutAction, &cutAction, KStandardAction::Cut, Actions::CUT);
+	connect(cutAction, SIGNAL(triggered()), this, SLOT(cut()));
+	addAction(&kecopyAction, &copyAction, KStandardAction::Copy, Actions::COPY);
+	connect(copyAction, SIGNAL(triggered()), this, SLOT(copy()));
+	addAction(&kepasteAction, &pasteAction, KStandardAction::Paste, Actions::PASTE);
+	connect(pasteAction, SIGNAL(triggered()), this, SLOT(paste()));
 
 	action = new QAction(actionGroup);
 	action->setSeparator(true);
 	actionGroup->addAction(action);
 
-	addAction(actionCollection, KStandardAction::SelectAll, "te_selectall");
-	addAction(actionCollection, KStandardAction::Find, "te_find");
-	addAction(actionCollection, KStandardAction::Replace, "te_replace");
-	actionCollection->action("te_replace")->setIcon(KIcon("edit-find-replace"));
+
+	addAction(&keselectallAction, &selectallAction, KStandardAction::SelectAll, Actions::SELECTALL);
+	connect(selectallAction, SIGNAL(triggered()), this, SLOT(selectall()));
+	addAction(&kefindAction, &findAction, KStandardAction::Find, Actions::FIND);
+	connect(findAction, SIGNAL(triggered()), this, SLOT(find()));
+	addAction(&kereplaceAction, &replaceAction, KStandardAction::Replace, Actions::REPLACE);
+	connect(replaceAction, SIGNAL(triggered()), this, SLOT(replace()));
 
 	toolbar = new QToolBar;
 	for (int i = 0; i < actionGroup->actions().size(); ++i)
@@ -164,9 +180,11 @@ void TextEdit::setText(QString text)
 
 void TextEdit::saveContent()
 {
-	content->setText(document->text());
-	Controller::create()->getStatusBar()->setSaveStatus(true);
-	isChanged = false;
+	if (isActive){
+		content->setText(document->text());
+		Controller::create()->getStatusBar()->setSaveStatus(true);
+		isChanged = false;
+	}
 }
 
 void TextEdit::setSyntax(QString syntax)
@@ -186,8 +204,11 @@ AbstractContentChange* TextEdit::getChange()
 
 void TextEdit::setVisible(bool visible)
 {
+	this->isActive = visible;
 	this->QWidget::setVisible(visible);
-	actionGroup->setVisible(visible);
+	for (int i = 0; i < actionGroup->actions().size(); ++i)
+		actionGroup->actions().at(i)->setVisible(visible);
+	updateActions();
 }
 
 void TextEdit::contentChanged()
@@ -199,6 +220,46 @@ void TextEdit::contentChanged()
 void TextEdit::cursorPositionChanged(KTextEditor::View*, const KTextEditor::Cursor &newPosition)
 {
 	Controller::create()->getStatusBar()->setCursorPosition(newPosition.line() + 1, newPosition.column());
+	updateActions();
+}
+
+void TextEdit::execute(QAction *action){
+	if (isActive){
+		action->trigger();
+		updateActions();
+	}
+}
+
+void TextEdit::undo(){
+	execute(keundoAction);
+}
+
+void TextEdit::redo(){
+	execute(keredoAction);
+}
+
+void TextEdit::cut(){
+	execute(kecutAction);
+}
+
+void TextEdit::copy(){
+	execute(kecopyAction);
+}
+
+void TextEdit::paste(){
+	execute(kepasteAction);
+}
+
+void TextEdit::selectall(){
+	execute(keselectallAction);
+}
+
+void TextEdit::find(){
+	execute(kefindAction);
+}
+
+void TextEdit::replace(){
+	execute(kereplaceAction);
 }
 
 

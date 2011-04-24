@@ -19,11 +19,12 @@
  */
 
 #include <kactioncollection.h>
-#include <kaction.h>
 #include <klocalizedstring.h>
 #include <KMenuBar>
 #include <QApplication>
+#include "src/constants.h"
 #include "src/controller.h"
+#include "src/gui/actionmanager.h"
 #include "src/gui/mainwindow.h"
 #include "src/gui/widget/nodetypemanager.h"
 
@@ -34,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 	setWindowTitle(i18n("Silence"));
 	Controller *controller = Controller::create();
 	controller->setMainWindow(this);
-	controller->setActionCollection(actionCollection());
+	controller->setActionManager(new ActionManager(actionCollection()));
 
 
 	centralwidgetstack = new QStackedWidget;
@@ -50,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->setNodePropertyWidget(nodepropertywidget);
 
 	// the treeview on the left side
-	treeview = new TreeView(i18n("Nodes"), actionCollection(), this);
+	treeview = new TreeView(i18n("Nodes"), this);
 	controller->setTreeView(treeview);
 
 	// search sidebar
@@ -80,9 +81,8 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->getTextEdit()->setVisible(false);
 	controller->getRichTextEdit()->setVisible(false);
 
-	viewmenu = new ViewMenu(actionCollection());
-	KAction *action = actionCollection()->addAction(KStandardAction::Quit, "exit");
-	connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
+	viewmenu = new ViewMenu();
+	connect(controller->getActionManager()->getGlobalAction(Actions::EXIT), SIGNAL(triggered()), qApp, SLOT(quit()));
 
 	silencemenu = new SilenceMenu(actionCollection());
 
@@ -101,7 +101,7 @@ MainWindow::~MainWindow()
 
 	delete viewmenu;
 	delete silencemenu;
-
+	delete Controller::create()->getActionManager();
 	delete Controller::create();
 }
 

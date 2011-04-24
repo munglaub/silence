@@ -8,8 +8,6 @@
 	<MenuBar>
 		<Menu name="silence">
 			<text>Silence</text>
-			<Action name="te_save" />
-			<Action name="rtf_save" />
 			<Menu name="import">
 				<text>Import</text>
 				<Action name="import_silencexml" />
@@ -18,6 +16,7 @@
 				<text>Export</text>
 				<Action name="export_silencexml" />
 			</Menu>
+			<Action name="si_save" />
 			<Action name="exit" />
 		</Menu>
 		<Menu name="node">
@@ -29,6 +28,15 @@
 		</Menu>
 		<Menu name="siedit">
 			<text>Edit</text>
+
+			<Action name="si_undo" />
+			<Action name="si_redo" />
+			<Separator />
+			<Action name="si_cut" />
+			<Action name="si_copy" />
+			<Action name="si_paste" />
+			<Action name="si_selectall" />
+
 			<Action name="te_undo" />
 			<Action name="te_redo" />
 			<Separator />
@@ -40,48 +48,41 @@
 			<Action name="te_find" />
 			<Action name="te_replace" />
 
-			<Action name="rtf_undo" />
-			<Action name="rtf_redo" />
 			<Separator />
-			<Action name="rtf_cut" />
-			<Action name="rtf_copy" />
-			<Action name="rtf_paste" />
-			<Action name="rtf_selectall" />
+			<Action name="si_indentmore" />
+			<Action name="si_indentless" />
+			<Action name="si_orderedlist" />
+			<Action name="si_unorderedlist" />
+			<Action name="si_insertimage" />
+			<Action name="si_insertrule" />
+			<Action name="si_insertlink" />
+			<Action name="si_inserttable" />
 			<Separator />
-			<Action name="rtf_increaseindent" />
-			<Action name="rtf_decreaseindent" />
-			<Action name="rtf_orderedlist" />
-			<Action name="rtf_unorderedlist" />
-			<Action name="rtf_insertimage" />
-			<Action name="rtf_insertrule" />
-			<Action name="rtf_insertlink" />
-			<Action name="rtf_inserttable" />
-			<Separator />
-			<Action name="rtf_find" />
-			<Action name="rtf_replace" />
+			<Action name="si_find" />
+			<Action name="si_replace" />
 			<!--
 			<Menu name="table">
 			<text>Table</text>
-				<Action name="rtf_inserttablerow" />
-				<Action name="rtf_inserttablecolumn" />
-				<Action name="rtf_removetablerow" />
-				<Action name="rtf_removetablecolumn" />
+				<Action name="si_inserttablerow" />
+				<Action name="si_inserttablecolumn" />
+				<Action name="si_removetablerow" />
+				<Action name="si_removetablecolumn" />
 			</Menu>
 			-->
 		</Menu>
 		<Menu name="format">
 			<text>Format</text>
-			<Action name="rtf_bold" />
-			<Action name="rtf_italic" />
-			<Action name="rtf_underline" />
+			<Action name="si_bold" />
+			<Action name="si_italic" />
+			<Action name="si_underline" />
 			<Separator />
-			<Action name="rtf_alignleft" />
-			<Action name="rtf_alignright" />
-			<Action name="rtf_aligncenter" />
-			<Action name="rtf_alignjustify" />
+			<Action name="si_alignleft" />
+			<Action name="si_alignright" />
+			<Action name="si_aligncenter" />
+			<Action name="si_alignjustify" />
 			<Separator />
-			<Action name="rtf_textcolor" />
-			<Action name="rtf_textbgcolor" />
+			<Action name="si_textcolor" />
+			<Action name="si_textbgcolor" />
 		</Menu>
 		<Menu name="siview">
 			<text>View</text>
