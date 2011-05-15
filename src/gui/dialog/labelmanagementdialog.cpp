@@ -54,6 +54,9 @@ LabelManagementDialog::LabelManagementDialog(QWidget *parent, Qt::WindowFlags f)
 	tree = new QTreeView;
 	tree->setModel(model);
 	tree->expandAll();
+	tree->setDragEnabled(true);
+	tree->setAcceptDrops(true);
+	tree->setDropIndicatorShown(true);
 	tree->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(tree, SIGNAL(customContextMenuRequested(const QPoint&)),
 			this, SLOT(showTreeContextMenu()));

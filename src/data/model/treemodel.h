@@ -173,6 +173,7 @@ class TreeModel : public QAbstractItemModel
 
 		/*!
 		 * Get a list of MIME types that can be used to describe a list of model indexes.
+		 * This model supports the "application/silence-nodeid" mimetype.
 		 *
 		 * \return A list of MIME types that can be used to describe a list of model indexes.
 		 */

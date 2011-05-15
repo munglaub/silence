@@ -59,8 +59,6 @@ QString* NodeId::toString()
 
 QByteArray NodeId::toByteArray()
 {
-	QByteArray result;
-	result.setNum(id);
-	return result;
+	return QByteArray::number(id);
 }
 

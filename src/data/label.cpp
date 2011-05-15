@@ -20,6 +20,8 @@
 
 #include "src/data/label.h"
 
+int Label::highestid = 0;
+
 Label::Label()
 {
 	init(0, "");
@@ -37,6 +39,7 @@ Label::~Label()
 
 void Label::init(Label *parent, QString text)
 {
+	this->id = ++highestid;
 	this->parent = parent;
 	this->text = text;
 }
@@ -103,6 +106,13 @@ bool Label::removeChildren(int position, int count)
 	return true;
 }
 
+Label* Label::takeChild(int position){
+	if (position >= 0 && position < children.size())
+		return children.takeAt(position);
+	else
+		return 0;
+}
+
 void Label::appendChild(Label *child)
 {
 	children.append(child);
@@ -135,6 +145,22 @@ bool Label::contains(QString labelText)
 	}
 }
 
+bool Label::contains(int id)
+{
+	if (this->id == id)
+		return true;
+	else {
+		bool result = false;
+		for (int i = 0; i < children.size() && !result; ++i)
+			result = children.at(i)->contains(id);
+		return result;
+	}
+}
+
+
+int Label::getId(){
+	return id;
+}
 
 
 

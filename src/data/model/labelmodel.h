@@ -148,9 +148,49 @@ class LabelModel : public QAbstractItemModel
 		 */
 		Label* getItem(const QModelIndex &index) const;
 
+		/*!
+		 * Find out which drop actions are supported by this model.
+		 *
+		 * \return The drop actions supported by this model.
+		 */
+		Qt::DropActions supportedDropActions() const;
+
+		/*!
+		 * Returns an object that contains serialized items of data corresponding to the list of indexes specified. The formats used to describe the encoded data is obtained from the mimeTypes() function.
+		 *
+		 * \param indexes The indexes that will be serialized.
+		 * \return The object that contains serialized items of data.
+		 */
+		QMimeData* mimeData(const QModelIndexList &indexes) const;
+
+		/*!
+		 * Handles the data supplied by a drag and drop operation that ended with the given action.
+		 *
+		 * \param data The data supplied by a drag and drop operation.
+		 * \param action The action the drag and drop operation ended with.
+		 * \param row The row where the drag and drop operation ended.
+		 * \param column The column where the drag and drop operation ended.
+		 * \param parent The parent where the drag and drop operation ended.
+		 * \return True if the dropping was successful.
+		 */
+		bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
+
+		/*!
+		 * Get a list of MIME types that can be used to describe a list of model indexes.
+		 * This model supports the "application/silence-label" mimetype.
+		 *
+		 * \return A list of MIME types that can be used to describe a list of model indexes.
+		 */
+		QStringList mimeTypes() const;
+
+	signals:
+		void dropped(QModelIndex index);
 
 	private:
 		Label *rootItem;
+
+		QModelIndex findById(int id);
+		QModelIndex findById(int id, QModelIndex &searchIndex);
 
 };
 

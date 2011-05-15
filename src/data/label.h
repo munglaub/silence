@@ -113,6 +113,13 @@ class Label
 		bool removeChildren(int position, int count);
 
 		/*!
+		 * Get a child of this Label and remove it from the list of children.
+		 * \param position The position of the label in the list of children. It must be greater or equal to 0 and less then getChildCount().
+		 * \return The label at position or 0 if the position is out of bounds.
+		 */
+		Label* takeChild(int position);
+
+		/*!
 		 * Append a child to this Label.
 		 * \param child The child that will be appended to the list of children of this Label.
 		 */
@@ -136,6 +143,20 @@ class Label
 		 * \return True if this Label or its sublabels contain a member text with the value of the parameter labelText.
 		 */
 		bool contains(QString labelText);
+
+		/*!
+		 * Find out if this Label or on of its sublabels has the specified id.
+		 * \param id The id to look for.
+		 * \return True if this Label or its sublabels have the specified id.
+		 * \sa contains(), getId()
+		 */
+		bool contains(int id);
+
+		/*!
+		 * Get the id of this Label. The id is a automatic generated uniqe identifier for a Label.
+		 * \return The id of this Label.
+		 */
+		int getId();
 	
 	protected:
 		/*!
@@ -145,6 +166,8 @@ class Label
 		void setParent(Label *parent);
 
 	private:
+		static int highestid;
+		int id;
 		QString text;
 		Label* parent;
 		QList<Label*> children;

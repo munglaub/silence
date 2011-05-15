@@ -19,6 +19,7 @@
  */
 
 #include <klocalizedstring.h>
+#include <QMimeData>
 #include "src/controller.h"
 #include "src/data/model/labelmodel.h"
 
@@ -44,9 +45,9 @@ QVariant LabelModel::data(const QModelIndex &index, int role) const
 Qt::ItemFlags LabelModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())
-		return 0;
+		return Qt::ItemIsDropEnabled;
 
-	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 }
 
 QVariant LabelModel::headerData(int, Qt::Orientation orientation, int role) const
@@ -131,14 +132,98 @@ bool LabelModel::removeRows(int position, int rows, const QModelIndex &parent)
 
 Label* LabelModel::getItem(const QModelIndex &index) const
 {
-	if (index.isValid())
-	{
+	if (index.isValid()){
 		Label *item = static_cast<Label*>(index.internalPointer());
 		if (item) 
 			return item;
 	}
 	return rootItem;
 }
+
+Qt::DropActions LabelModel::supportedDropActions() const
+{
+	return Qt::MoveAction | Qt::CopyAction;
+}
+
+QMimeData* LabelModel::mimeData(const QModelIndexList &indexes) const
+{
+	QMimeData *mimeData = new QMimeData();
+	// only on Label can be selected at a time
+	Label *label = getItem(indexes.first());
+	if (label)
+		mimeData->setData("application/silence-label", QByteArray::number(label->getId()));
+	return mimeData;
+}
+
+bool LabelModel::dropMimeData(const QMimeData *data, Qt::DropAction, int row, int, const QModelIndex & parent)
+{
+	int id = data->data("application/silence-label").toInt();
+	QModelIndex movingIndex = findById(id);
+
+	QModelIndex oldparent = movingIndex.parent();
+	int oldPos = movingIndex.row();
+	Label* oldparentLabel = getItem(oldparent);
+
+	QModelIndex newparent = parent;
+	if (newparent == movingIndex)
+		return false;
+	int newPos = row < 0 ? 0 : row;
+	Label* newparentLabel = getItem(newparent);
+
+	if (getItem(movingIndex)->contains(newparentLabel->getId()))
+		return false;
+
+	if (oldparent == newparent && oldPos < newPos)
+		newPos -= 1;
+
+	// move label
+	if (oldPos < 0)
+		oldPos = 0;
+	beginRemoveRows(oldparent, oldPos, oldPos);
+	Label *movingLabel = oldparentLabel->takeChild(oldPos);
+	endRemoveRows();
+	beginInsertRows(newparent, newPos, newPos);
+	bool success = newparentLabel->addChild(newPos, movingLabel);
+	endInsertRows();
+
+	if (success)
+		emit dropped(newparent.child(newPos, 0));
+
+	return success;
+}
+
+QStringList LabelModel::mimeTypes() const
+{
+	QStringList types;
+	types << "application/silence-label";
+	return types;
+}
+
+QModelIndex LabelModel::findById(int id){
+	int column = 0;
+	for (int row = 0; index(row, column).isValid(); ++row){
+		QModelIndex currentIndex = index(row, column);
+		QModelIndex res = findById(id, currentIndex);
+		if (res.isValid())
+			return res;
+	}
+	return QModelIndex();
+}
+
+
+QModelIndex LabelModel::findById(int id, QModelIndex &searchIndex){
+	if (getItem(searchIndex)->getId() == id)
+		return searchIndex;
+	int column = 0;
+	for (int row = 0; searchIndex.child(row, column).isValid(); ++row){
+		QModelIndex currentIndex = searchIndex.child(row, column);
+		QModelIndex res = findById(id, currentIndex);
+		if (res.isValid())
+			return res;
+	}
+	return QModelIndex();
+}
+
 
 
 

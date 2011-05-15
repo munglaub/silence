@@ -78,7 +78,7 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())
-		return 0;
+		return Qt::ItemIsDropEnabled;
 
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 }
