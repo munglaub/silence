@@ -25,6 +25,7 @@
 #include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/actionmanager.h"
+#include "src/gui/dialog/saveexitdialog.h"
 #include "src/gui/mainwindow.h"
 #include "src/gui/widget/nodetypemanager.h"
 
@@ -130,5 +131,14 @@ void MainWindow::removeDialog(QWidget *widget)
 	centralwidgetstack->removeWidget(widget);
 }
 
+bool MainWindow::queryClose()
+{
+	bool result = true;
+	SaveExitDialog *dlg = new SaveExitDialog;
+	if (dlg->exec() == QDialog::Rejected)
+		result = false;
+	delete dlg;
+	return result;
+}
 
 

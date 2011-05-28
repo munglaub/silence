@@ -75,6 +75,10 @@ class MainWindow : public KXmlGuiWindow
 		 */
 		void removeDialog(QWidget *widget);
 
+	protected:
+		//TODO: docu
+		bool queryClose();
+
 	private slots:
 		void deleteFromCentralWidgetStack(QWidget *widget);
 
