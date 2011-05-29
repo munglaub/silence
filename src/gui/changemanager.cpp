@@ -26,7 +26,6 @@ ChangeManager::ChangeManager()
 
 ChangeManager::~ChangeManager()
 {
-	// TODO: implement
 }
 
 

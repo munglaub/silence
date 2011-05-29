@@ -30,13 +30,31 @@
 #include "src/data/node/node.h"
 
 
-//TODO: docu
+/*!\class SaveExitDialog
+ * \brief A dialog giving the user the chance to save the unsaved nodes.
+ *
+ * This dialog should be shown if the user is trying to close this application while there are unsaved nodes. It gives
+ * the user the chance to save these unsaved nodes or to go back to the nodes without closing the applicaiton.
+ *
+ * \author Manuel Unglaub
+ */
 class SaveExitDialog : public QDialog
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the SaveExitDialog which is a child of parent and has the provided WindowFlags.
+		 * \param parent The parent of this SaveExitDialog.
+		 * \param f Tje WindowFlags of this SaveExitDialog.
+		 */
 		SaveExitDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~SaveExitDialog();
 
 	private slots:

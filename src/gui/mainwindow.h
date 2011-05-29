@@ -76,7 +76,10 @@ class MainWindow : public KXmlGuiWindow
 		void removeDialog(QWidget *widget);
 
 	protected:
-		//TODO: docu
+		/*!
+		 * Should be called before closing this application. Checks if there are unsaved nodes and provides the possibility to save them.
+		 * \return True if the application can be closed savely, False if the application should not be closed yet.
+		 */
 		bool queryClose();
 
 	private slots:

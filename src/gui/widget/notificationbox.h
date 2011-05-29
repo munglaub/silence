@@ -55,8 +55,18 @@ class NotificationBox : public QHBoxLayout
 		~NotificationBox();
 
 	signals:
-		//TODO: docu
+		/*!
+		 * This signal will be emitted after the user has clicked the save button.
+		 * \param node The Node which was saved.
+		 * \sa cancelled()
+		 */
 		void saved(Node *node);
+
+		/*!
+		 * This signal will be emitted after the user has clicked the cancel button.
+		 * \param node The Node which the user did not want to save.
+		 * \sa saved()
+		 */
 		void cancelled(Node *node);
 
 	private slots:

@@ -18,10 +18,9 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/gui/dialog/saveexitdialog.h"
 #include <klocalizedstring.h>
-#include <QStringList>
 #include "src/controller.h"
+#include "src/gui/dialog/saveexitdialog.h"
 
 
 SaveExitDialog::SaveExitDialog(QWidget *parent, Qt::WindowFlags f)
@@ -33,7 +32,12 @@ SaveExitDialog::SaveExitDialog(QWidget *parent, Qt::WindowFlags f)
 
 SaveExitDialog::~SaveExitDialog()
 {
-	// TODO: implement
+	delete btnDontClose;
+	delete btnSave;
+	delete btnDontSave;
+	delete btnLayout;
+	delete list;
+	delete layout;
 }
 
 void SaveExitDialog::setupGui(){

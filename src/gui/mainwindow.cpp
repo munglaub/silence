@@ -157,9 +157,8 @@ bool MainWindow::queryClose()
 
 void MainWindow::quit()
 {
-	if (queryClose()){
+	if (queryClose())
 		qApp->quit();
-	}
 }
 
 

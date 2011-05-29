@@ -27,6 +27,7 @@
 #include "src/data/node/node.h"
 #include "src/gui/view/abstractcontentview.h"
 
+
 /*!\class ContentView
  * \brief The central widget of the MainWindow.
  *
@@ -56,9 +57,16 @@ class ContentView : public QWidget
 		 */
 		void setNode(Node *node);
 
-		//TODO: docu
+		/*!
+		 * Get the node which is currently shown.
+		 * \return The node which is currently shown. Can be 0 if there is no node shown (e.g. if the WelcomeView is shown).
+		 */
 		Node* getNode();
-		//TODO: docu
+
+		/*!
+		 * Get the currently shown contentview.
+		 * \return The currently shown contentview.
+		 */
 		AbstractContentView* getView();
 
 	private:
