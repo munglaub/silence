@@ -54,6 +54,11 @@ class NotificationBox : public QHBoxLayout
 		 */
 		~NotificationBox();
 
+	signals:
+		//TODO: docu
+		void saved(Node *node);
+		void cancelled(Node *node);
+
 	private slots:
 		void save();
 		void cancel();

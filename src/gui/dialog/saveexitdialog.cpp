@@ -21,6 +21,7 @@
 #include "src/gui/dialog/saveexitdialog.h"
 #include <klocalizedstring.h>
 #include <QStringList>
+#include "src/controller.h"
 
 
 SaveExitDialog::SaveExitDialog(QWidget *parent, Qt::WindowFlags f)
@@ -42,11 +43,8 @@ void SaveExitDialog::setupGui(){
 	QLabel *info = new QLabel(i18n("The following nodes have been modified. Do you want to save them before closing?"));
 	layout->addWidget(info);
 
-	// nodelist
 	list = new QTreeWidget;
-	QStringList header;
-	header << i18n("Title") << i18n("Location");
-	list->setHeaderLabels(header);
+	list->setHeaderLabel(i18n("Title"));
 	layout->addWidget(list);
 
 	btnLayout = new QHBoxLayout;
@@ -70,11 +68,31 @@ void SaveExitDialog::setupGui(){
 
 void SaveExitDialog::addUnsavedNodes()
 {
-	//TODO: foo
+	int column = 0;
+	QList<Node*> nodes = Controller::create()->getChangeManager()->getNodes();
+	for (int i=0; i<nodes.size(); ++i){
+		QTreeWidgetItem *item = new QTreeWidgetItem(list);
+		item->setText(column, nodes.at(i)->getCaption());
+		item->setCheckState(column, Qt::Checked);
+		list->addTopLevelItem(item);
+		this->items.insert(item, nodes.at(i));
+	}
 }
 
 void SaveExitDialog::save()
 {
+	QList<Node*> toSave;
+	QHashIterator<QTreeWidgetItem*, Node*> i(this->items);
+	int column = 0;
+	while (i.hasNext()){
+		i.next();
+		if (i.key()->checkState(column) == Qt::Checked)
+			toSave.append(i.value());
+	}
+	Controller::create()->getChangeManager()->saveNodes(toSave);
+
 	accept();
 }
+
+
 

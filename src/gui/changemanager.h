@@ -18,43 +18,35 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAVEEXITDIALOG_H
-#define SAVEEXITDIALOG_H
+#ifndef CHANGEMANAGER_H
+#define CHANGEMANAGER_H
 
-#include <QDialog>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QPushButton>
-#include <QTreeWidget>
-#include <QVBoxLayout>
+#include <QHash>
+#include "src/data/node/abstractcontentchange.h"
 #include "src/data/node/node.h"
+#include <QList>
 
 
 //TODO: docu
-class SaveExitDialog : public QDialog
+class ChangeManager : public QObject
 {
 	Q_OBJECT
 
 	public:
-		SaveExitDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
-		~SaveExitDialog();
+		ChangeManager();
+		~ChangeManager();
 
-	private slots:
-		void save();
+		void add(Node *node, AbstractContentChange *change);
+		QList<Node*> getNodes();
+		void saveNodes(QList<Node*> nodes);
+		bool unsavedNodes();
+
+	public slots:
+		void remove(Node *node);
 
 	private:
-		QVBoxLayout *layout;
-		QTreeWidget *list;
-		QHBoxLayout *btnLayout;
-		QPushButton *btnDontSave,
-					*btnSave,
-					*btnDontClose;
-
-		QHash<QTreeWidgetItem*, Node*> items;
-
-		void setupGui();
-		void addUnsavedNodes();
+		QHash<Node*, AbstractContentChange*> changes;
 };
 
-#endif // SAVEEXITDIALOG_H
+#endif // CHANGEMANAGER_H
 

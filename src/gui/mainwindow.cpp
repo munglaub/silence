@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
 	controller->getRichTextEdit()->setVisible(false);
 
 	viewmenu = new ViewMenu();
-	connect(controller->getActionManager()->getGlobalAction(Actions::EXIT), SIGNAL(triggered()), qApp, SLOT(quit()));
+	connect(controller->getActionManager()->getGlobalAction(Actions::EXIT), SIGNAL(triggered()), this, SLOT(quit()));
 
 	silencemenu = new SilenceMenu(actionCollection());
 
@@ -133,12 +133,33 @@ void MainWindow::removeDialog(QWidget *widget)
 
 bool MainWindow::queryClose()
 {
+	Controller *controller = Controller::create();
 	bool result = true;
+
+	AbstractContentView *view = controller->getContentView()->getView();
+	Node *node = controller->getContentView()->getNode();
+	if (view->hasChanged())
+		if (view->getChange())
+			controller->getChangeManager()->add(node, view->getChange());
+
+	if (!controller->getChangeManager()->unsavedNodes())
+		return result;
+
 	SaveExitDialog *dlg = new SaveExitDialog;
-	if (dlg->exec() == QDialog::Rejected)
+	if (dlg->exec() == QDialog::Rejected){
+		if (view->hasChanged())
+			controller->getChangeManager()->remove(node);
 		result = false;
+	}
 	delete dlg;
 	return result;
+}
+
+void MainWindow::quit()
+{
+	if (queryClose()){
+		qApp->quit();
+	}
 }
 
 

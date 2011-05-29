@@ -37,6 +37,7 @@ Controller::Controller()
 	nodepropertywidget = 0;
 	navigationsidebar = 0;
 	actionmanager = 0;
+	changemanager = 0;
 }
 
 Controller::~Controller()
@@ -51,6 +52,8 @@ Controller::~Controller()
 		delete richtextedit;
 	if (customcontentview)
 		delete customcontentview;
+	if (changemanager)
+		delete changemanager;
 }
 
 Controller* Controller::create()
@@ -116,6 +119,13 @@ void Controller::setActionManager(ActionManager *actionmanager)
 ActionManager* Controller::getActionManager() const
 {
 	return actionmanager;
+}
+
+ChangeManager* Controller::getChangeManager()
+{
+	if (changemanager == 0)
+		changemanager = new ChangeManager;
+	return changemanager;
 }
 
 void Controller::setInfoSidebar(InfoSidebar* infosidebar)

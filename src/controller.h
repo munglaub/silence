@@ -22,6 +22,7 @@
 #define CONTROLLER_H
 
 #include "src/gui/actionmanager.h"
+#include "src/gui/changemanager.h"
 #include "src/gui/mainwindow.h"
 #include "src/gui/sidebar/infosidebar.h"
 #include "src/gui/sidebar/navigationsidebar.h"
@@ -137,6 +138,13 @@ class Controller
 		ActionManager* getActionManager() const;
 
 		/*!
+		 * Get a pointer to the ChangeManager. The Controller will manage the ChangeManager.
+		 * That means the Controller will create and destroy it.
+		 * \return A pointer to the ChangeManager.
+		 */
+		ChangeManager* getChangeManager();
+
+		/*!
 		 * This function provides the Controller with a pointer to the InfoSidebar.
 		 * \param infosidebar A pointer to the InfoSidebar
 		 */
@@ -229,6 +237,7 @@ class Controller
 		NavigationSidebar *navigationsidebar;
 
 		ActionManager *actionmanager;
+		ChangeManager *changemanager;
 
 		AbstractDataStore *datastore;
 };

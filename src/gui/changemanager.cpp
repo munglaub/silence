@@ -18,43 +18,41 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAVEEXITDIALOG_H
-#define SAVEEXITDIALOG_H
+#include "src/gui/changemanager.h"
 
-#include <QDialog>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QPushButton>
-#include <QTreeWidget>
-#include <QVBoxLayout>
-#include "src/data/node/node.h"
-
-
-//TODO: docu
-class SaveExitDialog : public QDialog
+ChangeManager::ChangeManager()
 {
-	Q_OBJECT
+}
 
-	public:
-		SaveExitDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
-		~SaveExitDialog();
+ChangeManager::~ChangeManager()
+{
+	// TODO: implement
+}
 
-	private slots:
-		void save();
 
-	private:
-		QVBoxLayout *layout;
-		QTreeWidget *list;
-		QHBoxLayout *btnLayout;
-		QPushButton *btnDontSave,
-					*btnSave,
-					*btnDontClose;
+void ChangeManager::add(Node *node, AbstractContentChange *change)
+{
+	this->changes.insert(node, change);
+}
 
-		QHash<QTreeWidgetItem*, Node*> items;
+QList<Node*> ChangeManager::getNodes()
+{
+	return this->changes.keys();
+}
 
-		void setupGui();
-		void addUnsavedNodes();
-};
+void ChangeManager::remove(Node *node)
+{
+	this->changes.remove(node);
+}
 
-#endif // SAVEEXITDIALOG_H
+void ChangeManager::saveNodes(QList<Node*> nodes)
+{
+	for (int i=0; i<nodes.size(); ++i)
+		changes.value(nodes.at(i))->updateContent();
+}
+
+bool ChangeManager::unsavedNodes()
+{
+	return !this->changes.isEmpty();
+}
 

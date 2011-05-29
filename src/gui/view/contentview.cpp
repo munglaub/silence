@@ -53,6 +53,10 @@ void ContentView::setNode(Node *node)
 		{
 			QLayout *notification = new NotificationBox(this->node, change);
 			layout->insertLayout(0, notification);
+			ChangeManager *cm = Controller::create()->getChangeManager();
+			cm->add(this->node, change);
+			connect(notification, SIGNAL(saved(Node*)), cm, SLOT(remove(Node*)));
+			connect(notification, SIGNAL(cancelled(Node*)), cm, SLOT(remove(Node*)));
 		}
 	}
 	layout->removeWidget(widget);
@@ -70,4 +74,15 @@ void ContentView::setNode(Node *node)
 	layout->addWidget(widget);
 	widget->setVisible(true);
 }
+
+Node* ContentView::getNode()
+{
+	return this->node;
+}
+
+AbstractContentView* ContentView::getView()
+{
+	return this->widget;
+}
+
 

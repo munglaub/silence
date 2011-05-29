@@ -64,11 +64,13 @@ NotificationBox::~NotificationBox()
 void NotificationBox::save()
 {
 	change->updateContent();
+	emit saved(this->node);
 	exit();
 }
 
 void NotificationBox::cancel()
 {
+	emit cancelled(this->node);
 	exit();
 }
 

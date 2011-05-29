@@ -81,6 +81,7 @@ class MainWindow : public KXmlGuiWindow
 
 	private slots:
 		void deleteFromCentralWidgetStack(QWidget *widget);
+		void quit();
 
 	private:
 		QStackedWidget *centralwidgetstack;

@@ -56,6 +56,11 @@ class ContentView : public QWidget
 		 */
 		void setNode(Node *node);
 
+		//TODO: docu
+		Node* getNode();
+		//TODO: docu
+		AbstractContentView* getView();
+
 	private:
 		QVBoxLayout *layout;
 		AbstractContentView *widget;
