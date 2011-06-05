@@ -22,6 +22,7 @@
 #define TEXTNODECONTENT_H
 
 #include "src/data/node/abstractnodecontent.h"
+#include "src/data/node/node.h"
 
 
 /*!\class TextNodeContent
@@ -80,8 +81,9 @@ class TextNodeContent : public AbstractNodeContent
 
 		QPixmap getPixmap();
 		QIcon getIcon();
-
 		QString toString();
+		void setParentNode(Node* parent);
+		QString getHtml();
 	
 	signals:
 		/*!

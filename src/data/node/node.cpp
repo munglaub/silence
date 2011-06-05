@@ -168,6 +168,7 @@ AbstractNodeContent* Node::getContent() const
 void Node::setContent(AbstractNodeContent *content)
 {
 	this->content = content;
+	this->content->setParentNode(this);
 	connect(content, SIGNAL(changed()), this, SLOT(change()));
 	change();
 }

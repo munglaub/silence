@@ -170,4 +170,13 @@ QString TextNodeContent::toString()
 	return result;
 }
 
+void TextNodeContent::setParentNode(Node*)
+{
+}
+
+QString TextNodeContent::getHtml()
+{
+	return "<pre>" + text + "</pre>";
+}
+
 

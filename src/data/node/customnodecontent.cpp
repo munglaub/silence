@@ -163,4 +163,15 @@ void CustomNodeContent::onChange()
 	emit changed();
 }
 
+void CustomNodeContent::setParentNode(Node*)
+{
+}
+
+QString CustomNodeContent::getHtml()
+{
+	//TODO: implement
+	return "";
+}
+
+
 

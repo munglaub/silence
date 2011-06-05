@@ -30,6 +30,7 @@ Controller::Controller()
 	textedit = 0;
 	richtextedit = 0;
 	customcontentview = 0;
+	bookview = 0;
 	infosidebar = 0;
 	treeview = 0;
 	datastore = 0;
@@ -52,6 +53,8 @@ Controller::~Controller()
 		delete richtextedit;
 	if (customcontentview)
 		delete customcontentview;
+	if (bookview)
+		delete bookview;
 	if (changemanager)
 		delete changemanager;
 }
@@ -109,6 +112,13 @@ CustomContentView* Controller::getCustomContentView()
 	if (customcontentview == 0)
 		customcontentview = new CustomContentView;
 	return customcontentview;
+}
+
+BookView* Controller::getBookView()
+{
+	if (bookview == 0)
+		bookview = new BookView;
+	return bookview;
 }
 
 void Controller::setActionManager(ActionManager *actionmanager)

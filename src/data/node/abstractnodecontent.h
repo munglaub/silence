@@ -27,6 +27,8 @@
 #include <QWidget>
 #include "src/gui/view/abstractcontentview.h"
 
+class Node;
+
 
 /*!\class AbstractNodeContent
  * \brief An abstract base for the Node contents.
@@ -105,6 +107,11 @@ class AbstractNodeContent : public QObject
 		 * \return The content as a QString.
 		 */
 		virtual QString toString() = 0;
+
+		//TODO: docu
+		virtual void setParentNode(Node *parent) = 0;
+		//TODO: docu
+		virtual QString getHtml() = 0;
 };
 
 #endif // ABSTRACTNODECONTENT_H

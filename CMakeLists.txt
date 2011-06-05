@@ -33,6 +33,7 @@ set ( silence_HDRS
 	src/persistence/xmldatastore.h
 	src/data/node/node.h
 	src/data/node/textnodecontent.h
+	src/data/node/booknodecontent.h
 	src/data/node/richtextnodecontent.h
 	src/data/model/labelmodel.h
 	src/data/model/treemodel.h
@@ -56,6 +57,7 @@ set ( silence_HDRS
 	src/gui/sidebar/navigationsidebar.h
 	src/gui/view/abstractcontentview.h
 	src/gui/view/textedit.h
+	src/gui/view/bookview.h
 	src/gui/view/welcomeview.h
 	src/gui/view/richtextedit.h
 	src/gui/view/customcontentview.h
@@ -88,6 +90,7 @@ set ( silence_SRCS
 	src/data/node/node.cpp
 	src/data/node/nodeid.cpp
 	src/data/node/textnodecontent.cpp
+	src/data/node/booknodecontent.cpp
 	src/data/node/richtextnodecontent.cpp
 	src/data/node/textcontentchange.cpp
 	src/data/node/rtfcontentchange.cpp
@@ -119,6 +122,7 @@ set ( silence_SRCS
 	src/gui/sidebar/nodepropertywidget.cpp
 	src/gui/sidebar/navigationsidebar.cpp
 	src/gui/view/textedit.cpp
+	src/gui/view/bookview.cpp
 	src/gui/view/contentview.cpp
 	src/gui/view/welcomeview.cpp
 	src/gui/view/richtextedit.cpp

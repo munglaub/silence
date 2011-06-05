@@ -23,6 +23,7 @@
 
 #include "src/data/node/abstractnodecontent.h"
 #include "src/data/node/customnodetypedefinition.h"
+#include "src/data/node/node.h"
 
 
 /*!\class CustomNodeContent
@@ -67,6 +68,8 @@ class CustomNodeContent : public AbstractNodeContent
 		QPixmap getPixmap();
 		QIcon getIcon();
 		QString toString();
+		void setParentNode(Node* parent);
+		QString getHtml();
 
 	signals:
 		/*!

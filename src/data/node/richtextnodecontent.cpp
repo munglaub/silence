@@ -128,4 +128,17 @@ QString RichTextNodeContent::toString()
 	return result;
 }
 
+void RichTextNodeContent::setParentNode(Node*)
+{
+}
+
+QString RichTextNodeContent::getHtml()
+{
+	QString result = text;
+	int start = result.indexOf("<body ");
+	start = result.indexOf(">", start);
+	result = result.remove(0, start + 1);
+	result = result.replace("</body></html>", "");
+	return result;
+}
 

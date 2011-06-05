@@ -25,6 +25,7 @@
 #include "src/data/node/customnodecontent.h"
 #include "src/data/node/richtextnodecontent.h"
 #include "src/data/node/textnodecontent.h"
+#include "src/data/node/booknodecontent.h"
 #include "src/gui/dialog/newnodedialog.h"
 
 
@@ -51,6 +52,7 @@ NewNodeDialog::NewNodeDialog(QModelIndex &index, int row, QWidget *parent, Qt::W
 	typebox = new KComboBox;
 	typebox->addItem(i18n("RichText"));
 	typebox->addItem(i18n("Text"));
+	typebox->addItem(i18n("Book"));
 	typebox->addItems(Controller::create()->getDataStore()->getCustomNodeTypeNames());
 	connect(typebox, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
 	typelayout->addWidget(typebox, 0, 1);
@@ -118,6 +120,11 @@ AbstractNodeContent* NewNodeDialog::getContent() const
 			content = new TextNodeContent;
 			content->setSyntax(syntaxbox->getSyntax());
 			return content;
+			break;
+		case 2:
+			BookNodeContent *bookContent;
+			bookContent = new BookNodeContent;
+			return bookContent;
 			break;
 		default:
 			return new CustomNodeContent(Controller::create()->getDataStore()->getCustomNodeType(typebox->currentText()));
