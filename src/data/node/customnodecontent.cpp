@@ -19,6 +19,7 @@
  */
 
 #include <KIcon>
+#include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/data/node/customnodecontent.h"
 #include "src/gui/view/customcontentview.h"
@@ -169,8 +170,24 @@ void CustomNodeContent::setParentNode(Node*)
 
 QString CustomNodeContent::getHtml()
 {
-	//TODO: implement
-	return "";
+	QString html = "<table>";
+	for (int i = 0; i < items.size(); ++i){
+		CustomNodeItem *item = items.at(i);
+		html += "<tr><td><b>" + item->getCaption() + "</b></td><td>";
+		switch (item->getType()){
+			case CustomNodeItem::Boolean:
+					html += item->getData() == "True" ? i18n("Yes") : i18n("No");
+				break;
+			case CustomNodeItem::Image:
+					html += "<img src=\"" + item->getData() + "\"/>";
+				break;
+			default:
+				html += item->getData();
+		}
+		html += "</td></tr>";
+	}
+	html += "</table>";
+	return html;
 }
 
 

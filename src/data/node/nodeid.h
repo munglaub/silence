@@ -64,7 +64,7 @@ class NodeId
 		 * Get the id of this NodeId as a QString.
 		 * \return The id of this NodeId.
 		 */
-		QString* toString();
+		QString toString();
 
 		/*!
 		 * Get the id of this NodeId as a QByteArray.

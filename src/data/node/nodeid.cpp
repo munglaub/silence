@@ -49,13 +49,10 @@ int NodeId::getId() const
 	return id;
 }
 
-QString* NodeId::toString()
+QString NodeId::toString()
 {
-	QString *result = new QString;
-	result->setNum(id);
-	return result;
+	return QString::number(id);
 }
-
 
 QByteArray NodeId::toByteArray()
 {

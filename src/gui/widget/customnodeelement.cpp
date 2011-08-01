@@ -18,11 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KIcon>
 #include <klocalizedstring.h>
 #include "src/gui/widget/custombooleandatawidget.h"
 #include "src/gui/widget/customimagedatawidget.h"
 #include "src/gui/widget/customintegerdatawidget.h"
-#include <KIcon>
 #include "src/gui/widget/customnodeelement.h"
 #include "src/gui/widget/customnumberdatawidget.h"
 #include "src/gui/widget/customstringdatawidget.h"

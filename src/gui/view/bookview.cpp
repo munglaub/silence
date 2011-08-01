@@ -39,7 +39,8 @@ BookView::BookView()
 
 BookView::~BookView()
 {
-	// TODO: implement
+	delete view;
+	delete layout;
 }
 
 bool BookView::hasChanged()

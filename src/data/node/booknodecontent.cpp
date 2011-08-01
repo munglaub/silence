@@ -31,13 +31,13 @@ BookNodeContent::BookNodeContent()
 
 BookNodeContent::~BookNodeContent()
 {
-	// TODO: implement
+	delete metaInfos;
 }
 
 AbstractContentView* BookNodeContent::getWidget()
 {
 	BookView *view = Controller::create()->getBookView();
-	view->setHtmlContent(createContent().arg("").arg(""));
+	view->setHtmlContent(createContent());
 	return view;
 }
 
@@ -57,22 +57,21 @@ QString BookNodeContent::getMimeType()
 	return "silence/book";
 }
 
-bool BookNodeContent::contains(const QString& value)
+bool BookNodeContent::contains(const QString&)
 {
+	// toes not have any real content so it does not contain anything
 	return false;
 }
 
-QDomElement BookNodeContent::getXmlData(QDomDocument &doc)
+QDomElement BookNodeContent::getXmlData(QDomDocument&)
 {
-	// TODO: implement
-	// im prinziep hat das ding ja keinen inhalt..
+	// does not have any real content
 	return QDomElement();
 }
 
-void BookNodeContent::setXmlData(QDomElement &xmlNode)
+void BookNodeContent::setXmlData(QDomElement&)
 {
-	// TODO: implement
-	// im prinziep hat das ding ja keinen inhalt..
+	// does not have any real content so it does not to to do anything
 }
 
 QPixmap BookNodeContent::getPixmap()
@@ -87,8 +86,7 @@ QIcon BookNodeContent::getIcon()
 
 QString BookNodeContent::toString()
 {
-	// TODO: implement
-	// summe der ganzen nodes??
+	// TODO: not shure what to return..
 	return "";
 }
 
@@ -103,35 +101,35 @@ QString BookNodeContent::visitNodesForCaption(QString html, Node *node)
 		return html;
 	html += "<ul>";
 	for (int i=0; i < node->getChildCount(); ++i){
-		html += "<li><a href=\"#" + *(node->getChild(i)->getId().toString()) + "\">"  + node->getChild(i)->getCaption() + "</a></li>";
+		html += "<li><a href=\"#" + node->getChild(i)->getId().toString() + "\">"  + node->getChild(i)->getCaption() + "</a></li>";
 		html = visitNodesForCaption(html, node->getChild(i));
 	}
 	html += "</ul>";
 	return html;
 }
 
-QString BookNodeContent::visitNodesForContent(QString html, Node *node)
+QString BookNodeContent::visitNodesForContent(QString html, Node *node, QString &backlink)
 {
 	if (node->getChildCount() < 1)
 		return html;
 	for (int i=0; i < node->getChildCount(); ++i){
 		Node *n = node->getChild(i);
+		html += " - <a href=\"#" + n->getId().toString() + "\"> next (" + n->getCaption() + ")</a>";
+		html += "</div>";
 		html += "<hr>";
-		QString nodeId = *(n->getId().toString());
+		QString nodeId = n->getId().toString();
 		html += "<h2><a name=\"" + nodeId + "\" href=\"silence://0.0.0.0/" + nodeId + "\">"  + n->getCaption() + "</a></h2>";
 		html += n->getContent()->getHtml();
 
 		if (n->getContent()->getMimeType() != "silence/book"){
-			html = html.arg("#" + QString::number(n->getId().getId()));
-			html = html.arg(n->getCaption());
 			QString navi = "<div align=\"center\">";
-			navi += "<a href=\"\">back</a> "; //TODO: name and link to the previous node
-			navi += "<a href=\"#" + QString::number(this->node->getId().getId()) + "\">" + i18n("top") + "</a> ";
-			navi += "<a href=\"%1\">%2</a>";
-			navi += "</div>";
+			navi += backlink;
+			navi += "<a href=\"#top\">" + i18n("top") + "</a> ";
 			html += navi;
 
-			html = visitNodesForContent(html, node->getChild(i));
+			// backlink for the next node
+			backlink = "<a href=\"#" + n->getId().toString() + "\"> back (" + n->getCaption() + ")</a> - ";
+			html = visitNodesForContent(html, node->getChild(i), backlink);
 		}
 	}
 	return html;
@@ -139,9 +137,13 @@ QString BookNodeContent::visitNodesForContent(QString html, Node *node)
 
 QString BookNodeContent::createContent()
 {
-	QString html = "<h1><a name=\"" + QString::number(this->node->getId().getId()) + "\">" + this->node->getCaption() + "</a></h1>";
+	QString html = "<h1>" + this->node->getCaption() + "</h1>";
 	html = visitNodesForCaption(html, this->node);
-	html = visitNodesForContent(html, this->node);
+	QString backlink = "<a href=\"#" + this->node->getId().toString() + "\"> back (" + this->node->getCaption() + ")</a> - ";
+	html += "<div align=\"center\">";
+	html += "<a href=\"#top\">" + i18n("top") + "</a> ";
+	html = visitNodesForContent(html, this->node, backlink);
+	html += "</div>";
 	return html;
 }
 

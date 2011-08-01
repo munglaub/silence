@@ -22,8 +22,8 @@
 #define BOOKNODECONTENT_H
 
 
-#include "src/data/node/abstractnodecontent.h"
 #include <KIcon>
+#include "src/data/node/abstractnodecontent.h"
 #include "src/data/node/node.h"
 
 
@@ -61,7 +61,7 @@ class BookNodeContent : public AbstractNodeContent
 
 		QString createContent();
 		QString visitNodesForCaption(QString html, Node *node);
-		QString visitNodesForContent(QString html, Node *node);
+		QString visitNodesForContent(QString html, Node *node, QString &backlink);
 };
 
 #endif // BOOKNODECONTENT_H

@@ -117,7 +117,7 @@ void WelcomeView::createRecentModifiedList()
 	for (int i = 0; i < recent.size() && i < 10; ++i){
 		html += recent.at(i)->getModificationDate().toString(Qt::SystemLocaleShortDate);
 		html += " - <a href=\" ";
-		html += *recent.at(i)->getId().toString() + "\" >";
+		html += recent.at(i)->getId().toString() + "\" >";
 		html += recent.at(i)->getCaption() + "</a><br/>";
 	}
 	html += "</font>";
