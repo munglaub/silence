@@ -26,18 +26,39 @@
 #include "src/gui/view/abstractcontentview.h"
 
 
-//TODO: docu
+/*!\class BookView
+ * \brief View to show a BookNodeContent or any HTML content.
+ *
+ * This BookView should be used to show HTML content (mainly the BookNodeContent). It only
+ * shows the content and can not edit it.
+ * This BookView can handel Silence links as well as links to external content.
+ *
+ * \author Manuel Unglaub
+ */
 class BookView : public AbstractContentView
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the BookView.
+		 */
 		BookView();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~BookView();
 
 		bool hasChanged();
 		AbstractContentChange* getChange();
 
+		/*!
+		 * Set the html content which will be shown.
+		 * \param html The html content to show.
+		 */
 		void setHtmlContent(QString html);
 
 	private slots:

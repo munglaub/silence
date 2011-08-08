@@ -59,19 +59,16 @@ QString BookNodeContent::getMimeType()
 
 bool BookNodeContent::contains(const QString&)
 {
-	// toes not have any real content so it does not contain anything
 	return false;
 }
 
 QDomElement BookNodeContent::getXmlData(QDomDocument&)
 {
-	// does not have any real content
 	return QDomElement();
 }
 
 void BookNodeContent::setXmlData(QDomElement&)
 {
-	// does not have any real content so it does not to to do anything
 }
 
 QPixmap BookNodeContent::getPixmap()

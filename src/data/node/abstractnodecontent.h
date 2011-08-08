@@ -108,9 +108,16 @@ class AbstractNodeContent : public QObject
 		 */
 		virtual QString toString() = 0;
 
-		//TODO: docu
+		/*!
+		 * Provide this content with a reference to the Node responsible for it.
+		 * \param parent The resoponsible Node for this content.
+		 */
 		virtual void setParentNode(Node *parent) = 0;
-		//TODO: docu
+
+		/*!
+		 * Get the conent as HTML.
+		 * \return The conent as HTML.
+		 */
 		virtual QString getHtml() = 0;
 };
 

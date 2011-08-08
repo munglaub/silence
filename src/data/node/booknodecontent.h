@@ -27,13 +27,30 @@
 #include "src/data/node/node.h"
 
 
-//TODO: docu
+/*!\class BookNodeContent
+ * \brief A content type which shows the content of its subnodes.
+ *
+ * The BookNodeContent doesn't have a content of its own except the usual metainfos. It will however
+ * show the contents of the subnodes of its node as a html page. It will generate a table of contents
+ * and create links to make the navigation easier.
+ *
+ * \author Manuel Unglaub
+ */
 class BookNodeContent : public AbstractNodeContent
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the BookNodeContent.
+		 */
 		BookNodeContent();
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~BookNodeContent();
 
 		AbstractContentView* getWidget();
