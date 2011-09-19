@@ -18,11 +18,12 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "src/controller.h"
-#include "src/gui/view/richtextedit.h"
-#include "src/data/node/richtextnodecontent.h"
-#include <QTextDocumentFragment>
 #include <KIcon>
+#include <QTextDocumentFragment>
+#include "src/constants.h"
+#include "src/controller.h"
+#include "src/data/node/richtextnodecontent.h"
+#include "src/gui/view/richtextedit.h"
 
 
 RichTextNodeContent::RichTextNodeContent()
@@ -57,7 +58,7 @@ void RichTextNodeContent::addMetaInfo(QString key, QString value)
 
 QString RichTextNodeContent::getMimeType()
 {
-	return "text/richtext";
+	return MimeType::TEXT_RICHTEXT;
 }
 
 bool RichTextNodeContent::contains(const QString& value)

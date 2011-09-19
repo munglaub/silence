@@ -19,6 +19,7 @@
  */
 
 #include <klocalizedstring.h>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/sidebar/nodepropertywidget.h"
 
@@ -111,7 +112,7 @@ void NodePropertyWidget::setNode(Node* node)
 	nodeName->setText(node->getCaption());
 	syntaxbox->setEnabled(false);
 	if (node->getContent() != 0)
-		if (node->getContent()->getMimeType() == "text/plain")
+		if (node->getContent()->getMimeType() == MimeType::TEXT_PLAIN)
 		{
 			syntaxbox->setEnabled(true);
 			syntaxbox->setSyntax(node->getContent()->getMetaInfos()->value("Syntax"));

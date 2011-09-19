@@ -20,6 +20,7 @@
 
 #include <KIcon>
 #include <klocalizedstring.h>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/gui/widget/searchnodeoptions.h"
 
@@ -85,8 +86,8 @@ QWidget* SearchNodeOptions::createOptionbox()
 	connect(cbMime, SIGNAL(clicked(bool)), this, SLOT(enableMimetype(bool)));
 	optboxlayout->addWidget(cbMime, 1, 0, 1, 2);
 	mimeCombo = new KComboBox;
-	mimeCombo->addItem("text/plain");
-	mimeCombo->addItem("text/richtext");
+	mimeCombo->addItem(MimeType::TEXT_PLAIN);
+	mimeCombo->addItem(MimeType::TEXT_RICHTEXT);
 	QStringList customNodeNames = Controller::create()->getDataStore()->getCustomNodeTypeNames();
 	for (int i = 0; i < customNodeNames.size(); ++i)
 		mimeCombo->addItem("silence/" + customNodeNames.at(i));

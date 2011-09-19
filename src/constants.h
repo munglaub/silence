@@ -78,5 +78,11 @@ namespace Actions {
 	static const QString REMOVE_TABLE_COLUMN = "si_removetablecolumn";
 }
 
+namespace MimeType {
+	static const QString SILENCE_BUILDIN_BOOK = "silence-buildin/book";
+	static const QString TEXT_PLAIN = "text/plain";
+	static const QString TEXT_RICHTEXT = "text/richtext";
+}
+
 #endif // CONSTANTS_H
 

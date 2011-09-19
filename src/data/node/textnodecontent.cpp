@@ -18,10 +18,11 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KIcon>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/node/textnodecontent.h"
 #include "src/gui/view/textedit.h"
-#include <KIcon>
 
 
 TextNodeContent::TextNodeContent()
@@ -68,7 +69,7 @@ void TextNodeContent::addMetaInfo(QString key, QString value)
 
 QString TextNodeContent::getMimeType()
 {
-	return "text/plain";
+	return MimeType::TEXT_PLAIN;
 }
 
 bool TextNodeContent::contains(const QString& value)

@@ -21,6 +21,7 @@
 #include <ksavefile.h>
 #include <kstandarddirs.h>
 #include <QTextStream>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/node/booknodecontent.h"
 #include "src/data/node/customnodecontent.h"
@@ -173,15 +174,15 @@ void XmlDataStore::xmlToNode(Node* parentNode, QDomNode &xmlNode, QDomDocument &
 			node->addLabel(e.text());
 		if (e.tagName() == "content")
 		{
-			if (e.attribute("mimetype", "") == "text/plain") {
+			if (e.attribute("mimetype", "") == MimeType::TEXT_PLAIN) {
 				TextNodeContent *content = new TextNodeContent;
 				content->setXmlData(e);
 				node->setContent(content);
-			} else if (e.attribute("mimetype", "") == "text/richtext") {
+			} else if (e.attribute("mimetype", "") == MimeType::TEXT_RICHTEXT) {
 				RichTextNodeContent *content = new RichTextNodeContent;
 				content->setXmlData(e);
 				node->setContent(content);
-			} else if (e.attribute("mimetype", "") == "silence/book") {
+			} else if (e.attribute("mimetype", "") == MimeType::SILENCE_BUILDIN_BOOK) {
 				BookNodeContent *content = new BookNodeContent;
 				content->setXmlData(e);
 				node->setContent(content);

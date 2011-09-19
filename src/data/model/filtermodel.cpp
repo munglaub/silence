@@ -19,6 +19,7 @@
  * along with Silence.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/model/filtermodel.h"
 #include "src/utils/listutils.h"
@@ -35,7 +36,7 @@ FilterModel::FilterModel(QObject *parent)
 	modifiedToDate = new QDateTime;
 
 	filterMimetype = false;
-	mimetype = new QString("text/plain");
+	mimetype = new QString(MimeType::TEXT_PLAIN);
 
 	filterFulltext = false;
 }

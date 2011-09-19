@@ -59,6 +59,7 @@ InfoSidebar::InfoSidebar(const QString &title, QWidget *parent, Qt::WindowFlags 
 	type = createInfoLabel(i18n("Type") + ':', true);
 	type->setHidden(true);
 	typeName = createInfoLabel("");
+	typeName->setWordWrap(true);
 	typeName->setHidden(true);
 	layout->addRow(type, typeName);
 

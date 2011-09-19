@@ -19,6 +19,7 @@
  */
 
 #include <klocalizedstring.h>
+#include "src/constants.h"
 #include "src/controller.h"
 #include "src/data/node/booknodecontent.h"
 #include "src/gui/view/bookview.h"
@@ -54,7 +55,7 @@ void BookNodeContent::addMetaInfo(QString key, QString value)
 
 QString BookNodeContent::getMimeType()
 {
-	return "silence/book";
+	return MimeType::SILENCE_BUILDIN_BOOK;
 }
 
 bool BookNodeContent::contains(const QString&)
@@ -83,7 +84,7 @@ QIcon BookNodeContent::getIcon()
 
 QString BookNodeContent::toString()
 {
-	// TODO: not shure what to return..
+	// TODO: not sure what to return..
 	return "";
 }
 
@@ -118,7 +119,7 @@ QString BookNodeContent::visitNodesForContent(QString html, Node *node, QString 
 		html += "<h2><a name=\"" + nodeId + "\" href=\"silence://0.0.0.0/" + nodeId + "\">"  + n->getCaption() + "</a></h2>";
 		html += n->getContent()->getHtml();
 
-		if (n->getContent()->getMimeType() != "silence/book"){
+		if (n->getContent()->getMimeType() != MimeType::SILENCE_BUILDIN_BOOK){
 			QString navi = "<div align=\"center\">";
 			navi += backlink;
 			navi += "<a href=\"#top\">" + i18n("top") + "</a> ";
