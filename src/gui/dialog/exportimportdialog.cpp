@@ -83,6 +83,8 @@ ExportImportDialog::ExportImportDialog(ExportImportDialog::Type type, QWidget *p
 	setLayout(layout);
 
 	connect(rbPartial, SIGNAL(toggled(bool)), treeview, SLOT(setEnabled(bool)));
+
+	fileTypeString = "* | " + i18n("All Files");
 }
 
 ExportImportDialog::~ExportImportDialog()
@@ -125,6 +127,10 @@ void ExportImportDialog::setErrorMessage(QString errorMessage){
 	this->errorMessage = errorMessage;
 }
 
+void ExportImportDialog::setFileTypeString(QString fileTypeString){
+	this->fileTypeString = fileTypeString;
+}
+
 void ExportImportDialog::abort(){
 	emit exit(this);
 }
@@ -151,9 +157,9 @@ void ExportImportDialog::execute(){
 void ExportImportDialog::selectFile(){
 	QString fileName;
 	if (type == ExportImportDialog::Export){
-		fileName = KFileDialog::getSaveFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
+		fileName = KFileDialog::getSaveFileName(KUrl(), fileTypeString, this, i18n("Select File"));
 	} else {
-		fileName = KFileDialog::getOpenFileName(KUrl(), "*.xml | " + i18n("Silence XML-File"), this, i18n("Select File"));
+		fileName = KFileDialog::getOpenFileName(KUrl(), fileTypeString, this, i18n("Select File"));
 	}
 	ledPath->setText(fileName);
 }

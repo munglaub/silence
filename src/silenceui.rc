@@ -11,6 +11,7 @@
 			<Menu name="import">
 				<text>Import</text>
 				<Action name="import_silencexml" />
+				<Action name="import_kjotsbook" />
 			</Menu>
 			<Menu name="export">
 				<text>Export</text>

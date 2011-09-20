@@ -30,6 +30,10 @@ SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
 	action->setText(i18n("Import Silence XML-File"));
 	connect(action, SIGNAL(triggered()), this, SLOT(showImportSilenceXmlDialog()));
 
+	action = actionCollection->addAction("import_kjotsbook");
+	action->setText(i18n("Import KJots-Book-File"));
+	connect(action, SIGNAL(triggered()), this, SLOT(showImportKjotsBookDialog()));
+
 	action = actionCollection->addAction("export_silencexml");
 	action->setText(i18n("Export Silence XML-File"));
 	connect(action, SIGNAL(triggered()), this, SLOT(showExportImportDialog()));
@@ -43,6 +47,8 @@ void SilenceMenu::showExportImportDialog(){
 	dlg->setPathCaption(i18n("Exportfile"));
 	dlg->setButtonCaptions(i18n("Abort"), i18n("Export"));
 	dlg->setErrorMessage(i18n("Select a file to export the data."));
+	dlg->setFileTypeString("*.xml | " + i18n("Silence XML-File"));
+
 	Controller::create()->getMainWindow()->showDialog(dlg);
 	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(exportSilenceXml(Node*, QString)));
 	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
@@ -56,11 +62,26 @@ void SilenceMenu::showImportSilenceXmlDialog(){
 	dlg->setPathCaption(i18n("Importfile"));
 	dlg->setButtonCaptions(i18n("Abort"), i18n("Import"));
 	dlg->setErrorMessage(i18n("Select a file to import the data from."));
+	dlg->setFileTypeString("*.xml | " + i18n("Silence XML-File"));
 
 	Controller::create()->getMainWindow()->showDialog(dlg);
 	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importSilenceXml(Node*, QString)));
 	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
 
+}
+
+void SilenceMenu::showImportKjotsBookDialog(){
+	ExportImportDialog *dlg = new ExportImportDialog(ExportImportDialog::Import);
+	dlg->setCaption(i18n("Import KJots-Book-File"));
+	dlg->setHint(i18n("Import data from a file in the KJots-Book format."));
+	dlg->setOptions(i18n("Add to toplevel"), i18n("Select parent Node"));
+	dlg->setPathCaption(i18n("Importfile"));
+	dlg->setButtonCaptions(i18n("Abort"), i18n("Import"));
+	dlg->setErrorMessage(i18n("Select a file to import the data from."));
+
+	Controller::create()->getMainWindow()->showDialog(dlg);
+	//connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importSilenceXml(Node*, QString)));
+	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
 }
 
 void SilenceMenu::closeExportImportDialog(ExportImportDialog *dlg){

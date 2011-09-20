@@ -103,6 +103,13 @@ class ExportImportDialog : public QFrame
 		 * \param errorMessage The message that will be shown to the user if no path is entered.
 		 */
 		void setErrorMessage(QString errorMessage);
+
+		/*!
+		 * Set the string that defines which filetypes are displayed.
+		 * Default: "* | All Files"
+		 * \param fileTypeString The fileTypeString which will be used when opening the KFileDialog.
+		 */
+		 void setFileTypeString(QString fileTypeString);
 	
 	signals:
 		/*!
@@ -125,7 +132,8 @@ class ExportImportDialog : public QFrame
 	
 	private:
 		ExportImportDialog::Type type;
-		QString errorMessage;
+		QString errorMessage,
+				fileTypeString;
 		QGridLayout *layout;
 		QLabel	*caption,
 				*hint,
