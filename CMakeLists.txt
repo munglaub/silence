@@ -31,6 +31,7 @@ set ( silence_HDRS
 	src/commandline/nodefilter.h
 	src/utils/listutils.h
 	src/persistence/xmldatastore.h
+	src/persistence/kjotsimporter.h
 	src/data/node/node.h
 	src/data/node/textnodecontent.h
 	src/data/node/booknodecontent.h
@@ -87,6 +88,7 @@ set ( silence_SRCS
 	src/main.cpp
 	src/controller.cpp
 	src/persistence/xmldatastore.cpp
+	src/persistence/kjotsimporter.cpp
 	src/data/node/node.cpp
 	src/data/node/nodeid.cpp
 	src/data/node/textnodecontent.cpp

@@ -22,6 +22,7 @@
 #include <klocalizedstring.h>
 #include "src/controller.h"
 #include "src/gui/menu/silencemenu.h"
+#include "src/persistence/kjotsimporter.h"
 
 
 SilenceMenu::SilenceMenu(KActionCollection *actionCollection)
@@ -80,7 +81,7 @@ void SilenceMenu::showImportKjotsBookDialog(){
 	dlg->setErrorMessage(i18n("Select a file to import the data from."));
 
 	Controller::create()->getMainWindow()->showDialog(dlg);
-	//connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importSilenceXml(Node*, QString)));
+	connect(dlg, SIGNAL(executed(Node*, QString)), this, SLOT(importKjotsBook(Node*, QString)));
 	connect(dlg, SIGNAL(exit(ExportImportDialog*)), this, SLOT(closeExportImportDialog(ExportImportDialog*)));
 }
 
@@ -96,4 +97,17 @@ void SilenceMenu::exportSilenceXml(Node *node, QString fileName){
 void SilenceMenu::importSilenceXml(Node *node, QString fileName){
 	XmlDataStore::readFromXmlFile(fileName, node);
 }
+
+void SilenceMenu::importKjotsBook(Node *node, QString fileName){
+	KjotsImporter *importer = new KjotsImporter(node, fileName);
+
+	QList<Node*> nodes = importer->import();
+	Controller::create()->getDataStore()->saveNodes(nodes);
+
+	// tell the treemodel to update the treeview
+	Controller::create()->getTreeView()->getTreeModel()->insertRows(0, 0);
+
+	delete importer;
+}
+
 

@@ -52,6 +52,7 @@ class SilenceMenu : public QObject
 		void showImportKjotsBookDialog();
 		void exportSilenceXml(Node *node, QString fileName);
 		void importSilenceXml(Node *node, QString fileName);
+		void importKjotsBook(Node *node, QString fileName);
 };
 
 #endif // SILENCEMENU_H
