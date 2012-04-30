@@ -80,7 +80,10 @@ QModelIndex ListProxyModel::mapFromSource(const QModelIndex &sourceIndex) const
 
 QModelIndex ListProxyModel::mapToSource(const QModelIndex &proxyIndex) const
 {
-    return indexList[indexList.indexOf(proxyIndex)];
+	int index = indexList.indexOf(proxyIndex);
+	if (index < indexList.count() && index >= 0)
+		return indexList[index];
+	return QModelIndex();
 }
 
 void ListProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
