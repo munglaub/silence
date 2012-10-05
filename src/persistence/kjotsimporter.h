@@ -21,6 +21,7 @@
 #ifndef KJOTSIMPORTER_H
 #define KJOTSIMPORTER_H
 
+#include <QFile>
 #include <QObject>
 #include "src/data/node/node.h"
 
@@ -40,6 +41,11 @@ class KjotsImporter : public QObject
 		Node *rootNode;
 		QString fileName;
 		QList<Node*> importedNodes;
+
+		void getBook(QDomElement element, Node *parentNode);
+		void getPage(QDomElement element, Node *parentNode);
+		QString readFile(QFile & file);
+
 };
 
 #endif // KJOTSIMPORTER_H
