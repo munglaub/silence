@@ -35,7 +35,6 @@ KjotsImporter::KjotsImporter(Node *node, QString fileName)
 
 KjotsImporter::~KjotsImporter()
 {
-	// TODO: implement
 }
 
 void KjotsImporter::getBook(QDomElement element, Node *parentNode)
@@ -118,7 +117,6 @@ QList<Node*> KjotsImporter::import()
 	QDomDocument doc;
 	QFile file(fileName);
 	if (!file.open(QIODevice::ReadOnly)){
-		//TODO: notify the user
 		return this->importedNodes;;
 	}
 
@@ -127,7 +125,6 @@ QList<Node*> KjotsImporter::import()
 
 	QDomElement xmlRoot = doc.documentElement();
 	if (xmlRoot.tagName().toLower() != "kjots"){
-		//TODO: notify the user
 		return this->importedNodes;;
 	}
 

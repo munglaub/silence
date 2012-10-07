@@ -102,6 +102,7 @@ void SilenceMenu::importKjotsBook(Node *node, QString fileName){
 	KjotsImporter *importer = new KjotsImporter(node, fileName);
 
 	QList<Node*> nodes = importer->import();
+	//TODO: inform the user of the number of imported nodes
 	Controller::create()->getDataStore()->saveNodes(nodes);
 
 	// tell the treemodel to update the treeview

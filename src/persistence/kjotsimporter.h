@@ -26,15 +26,37 @@
 #include "src/data/node/node.h"
 
 
-//TODO: docu
+/*!\class KjotsImporter
+ * \brief A class to import data from KJots.
+ *
+ * This class is able to import data from KJots which is available in the xml-based KJots book format. It creates Books for KJots-Books and RichTextNodes from KJots-Pages.
+ *
+ * \author Manuel Unglaub
+ */
 class KjotsImporter : public QObject
 {
 	Q_OBJECT
 
 	public:
+		/*! The constructor.
+		 *
+		 * Constructs the KjotsImporter.
+		 *
+		 * \param node The parent node to add the imported nodes.
+		 * \param fileName The file to import.
+		 */
 		KjotsImporter(Node *node, QString fileName);
+
+		/*! The destructor.
+		 *
+		 * Destroys the object.
+		 */
 		~KjotsImporter();
 
+		/*!
+		 * Import the Nodes from the file and add them to the parent node.
+		 * \return A list of importet nodes. Contains the parent node because this node has to be saved to.
+		 */
 		QList<Node*> import();
 
 	private:
